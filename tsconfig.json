@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "lib": ["dom", "DOM.Iterable", "esnext"],
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "strict": true,
+    "moduleResolution": "node",
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react"
+  },
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}
