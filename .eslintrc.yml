@@ -1,5 +1,0 @@
-env:
-  es2017: true
-  browser: true
-
-extends: 'htmlacademy/react'
