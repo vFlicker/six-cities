@@ -1,9 +1,11 @@
 import React from 'react';
-import Card from '../card/card';
+import Header from '../header';
+import Card from '../card';
 
-function Main(): React.ReactElement {
+function MainPage(): React.ReactElement {
   return (
     <div className="page page--gray page--main">
+      <Header />
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
@@ -78,4 +80,4 @@ function Main(): React.ReactElement {
   );
 }
 
-export default Main;
+export default MainPage;

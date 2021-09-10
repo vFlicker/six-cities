@@ -1,13 +1,9 @@
 import React from 'react';
-import Main from '../main/main';
-import Header from '../header/header';
+import MainPage from '../pages/main';
 
 function App(): React.ReactElement {
   return (
-    <>
-      <Header />
-      <Main />
-    </>
+    <MainPage />
   );
 }
 
