@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../header';
 
-function PropertyPage(): React.ReactElement {
+function OfferPage(): React.ReactElement {
   return (
     <div className="page">
       <Header />
@@ -391,4 +391,4 @@ function PropertyPage(): React.ReactElement {
   );
 }
 
-export default PropertyPage;
+export default OfferPage;
