@@ -24,18 +24,20 @@
     }
   },
   "rules": {
-    "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
     "import/extensions": ["error", "ignorePackages", {
       "js": "never",
       "ts": "never",
       "tsx": "never"
     }],
-    "no-use-before-define": "off",
-    "@typescript-eslint/no-use-before-define": ["error"],
-    "jsx-a11y/no-noninteractive-tabindex": "off",
     "jsx-a11y/label-has-associated-control": "off",
-    "@typescript-eslint/no-unused-vars": [2, { "args": "none" }],
+    "jsx-a11y/no-noninteractive-tabindex": "off",
+    "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
+    "react/prop-types": "off",
+    "no-console": "off",
     "no-shadow": "off",
-    "@typescript-eslint/no-shadow": ["error"]
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-shadow": ["error"],
+    "@typescript-eslint/no-unused-vars": [2, { "args": "none" }],
+    "@typescript-eslint/no-use-before-define": ["error"]
   }
 }
