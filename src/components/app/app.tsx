@@ -22,7 +22,7 @@ function App(): React.ReactElement {
         <Route exact path={AppRoute.LOGIN}>
           <LoginPage />
         </Route>
-        <Route exact path={AppRoute.OFFER}>
+        <Route exact path={AppRoute.OFFERS}>
           <OfferPage />
         </Route>
         <Route>
