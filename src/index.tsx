@@ -1,8 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { offers } from './mocks';
 import App from './components/app';
 
 ReactDOM.render(
-  <App />,
+  <App
+    offers={offers}
+  />,
   document.getElementById('root'),
 );

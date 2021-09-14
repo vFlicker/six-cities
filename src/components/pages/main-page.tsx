@@ -1,8 +1,9 @@
 import React from 'react';
+import { IOffer } from '../../interfaces';
 import Header from '../header';
-import Card from '../card';
+import CardList from '../card-list';
 
-function MainPage(): React.ReactElement {
+function MainPage({ offers }: {offers: IOffer[]}): React.ReactElement {
   return (
     <div className="page page--gray page--main">
       <Header />
@@ -51,6 +52,7 @@ function MainPage(): React.ReactElement {
               <b className="places__found">
                 120 places to stay in Amsterdam
               </b>
+
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex={0}>
@@ -66,9 +68,8 @@ function MainPage(): React.ReactElement {
                   <li className="places__option" tabIndex={0}>Top rated first</li>
                 </ul>
               </form>
-              <div className="cities__places-list places__list tabs__content">
-                {[1, 2, 3, 4].map((item) => <Card key={item} />)}
-              </div>
+
+              <CardList offers={offers} />
             </section>
             <div className="cities__right-section">
               <section className="cities__map map" />

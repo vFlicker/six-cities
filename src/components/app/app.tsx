@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { AppRoute } from '../../const';
+import { IOffer } from '../../interfaces';
 import {
   FavoritesPage,
   LoginPage,
@@ -9,12 +10,18 @@ import {
   OfferPage
 } from '../pages';
 
-function App(): React.ReactElement {
+interface AppProps {
+  offers: IOffer[]
+}
+
+function App(props: AppProps): React.ReactElement {
+  const { offers } = props;
+
   return (
     <Router>
       <Switch>
         <Route exact path={AppRoute.ROOT}>
-          <MainPage />
+          <MainPage offers={offers} />
         </Route>
         <Route exact path={AppRoute.FAVORITES}>
           <FavoritesPage />
