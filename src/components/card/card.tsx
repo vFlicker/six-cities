@@ -2,7 +2,12 @@ import React from 'react';
 import { IOffer } from '../../interfaces';
 import { getStarRating } from '../../utils';
 
-function Card({ offer }: {offer: IOffer}): React.ReactElement {
+interface CardProps {
+  offer: IOffer,
+  onMouseEnter: (evt: React.MouseEvent) => void,
+}
+
+function Card({ offer, onMouseEnter }: CardProps): React.ReactElement {
   const {
     isPremium,
     previewImage,
@@ -13,7 +18,10 @@ function Card({ offer }: {offer: IOffer}): React.ReactElement {
   } = offer;
 
   return (
-    <article className="cities__place-card place-card">
+    <article
+      className="cities__place-card place-card"
+      onMouseEnter={onMouseEnter}
+    >
       {isPremium && (
         <div className="place-card__mark">
           <span>Premium</span>
