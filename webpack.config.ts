@@ -39,8 +39,7 @@ const config: Configuration = {
     port: 3000,
     open: true,
     historyApiFallback: true,
-  },
-  devtool: 'source-map',
+  }
 };
 
 export default config;

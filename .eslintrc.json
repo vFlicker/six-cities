@@ -33,6 +33,7 @@
     "jsx-a11y/no-noninteractive-tabindex": "off",
     "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
     "react/prop-types": "off",
+    "react/jsx-props-no-spreading": "off",
     "no-console": "off",
     "no-shadow": "off",
     "no-use-before-define": "off",
