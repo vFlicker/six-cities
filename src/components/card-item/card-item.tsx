@@ -7,7 +7,7 @@ interface CardProps {
   onMouseEnter: (evt: React.MouseEvent) => void,
 }
 
-function Card({ offer, onMouseEnter }: CardProps): React.ReactElement {
+function CardItem({ offer, onMouseEnter }: CardProps): React.ReactElement {
   const {
     isPremium,
     previewImage,
@@ -69,4 +69,4 @@ function Card({ offer, onMouseEnter }: CardProps): React.ReactElement {
   );
 }
 
-export default Card;
+export default CardItem;
