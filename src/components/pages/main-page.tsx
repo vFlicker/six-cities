@@ -1,4 +1,5 @@
 import React from 'react';
+import { CardType } from '../../const';
 import { IOffer } from '../../interfaces';
 import Header from '../header';
 import CardList from '../card-list';
@@ -69,7 +70,7 @@ function MainPage({ offers }: {offers: IOffer[]}): React.ReactElement {
                 </ul>
               </form>
 
-              <CardList offers={offers} />
+              <CardList offers={offers} cardType={CardType.CITIES} />
             </section>
             <div className="cities__right-section">
               <section className="cities__map map" />

@@ -1,13 +1,24 @@
 import React from 'react';
+import { CardType } from '../../const';
 import { IOffer } from '../../interfaces';
-import { getStarRating } from '../../utils';
 
-interface CardProps {
+interface CardItemProps {
   offer: IOffer,
+  cardType: CardType,
   onMouseEnter: (evt: React.MouseEvent) => void,
 }
 
-function CardItem({ offer, onMouseEnter }: CardProps): React.ReactElement {
+const getCardItemStyles = (type: CardType, isFavorite: boolean) => {
+  const cardClass = isFavorite ? 'favorites__card place-card' : `${type}__place-card place-card`;
+  const cardImageWrapperClass = `${type}__image-wrapper place-card__image-wrapper`;
+  const cardInfoClass = isFavorite ? 'favorites__card-info place-card__info' : 'place-card__info';
+
+  return { cardClass, cardImageWrapperClass, cardInfoClass };
+};
+
+const getStarRating = (numericalRating: number): string => `${(73 * numericalRating) / 5}%`;
+
+function CardItem({ offer, cardType, onMouseEnter }: CardItemProps): React.ReactElement {
   const {
     isPremium,
     previewImage,
@@ -17,28 +28,40 @@ function CardItem({ offer, onMouseEnter }: CardProps): React.ReactElement {
     type,
   } = offer;
 
+  const premiumMark = isPremium && (
+    <div className="place-card__mark">
+      <span>Premium</span>
+    </div>
+  );
+
+  const isFavorite = cardType === CardType.FAVORITES;
+
+  const {
+    cardClass,
+    cardImageWrapperClass,
+    cardInfoClass,
+  } = getCardItemStyles(cardType, isFavorite);
+
+  const imageSize = isFavorite
+    ? { width: '150', height: '110' }
+    : { width: '260', height: '200' };
+
+  const ratingStarStyles = { width: getStarRating(rating) };
+
   return (
-    <article
-      className="cities__place-card place-card"
-      onMouseEnter={onMouseEnter}
-    >
-      {isPremium && (
-        <div className="place-card__mark">
-          <span>Premium</span>
-        </div>
-      )}
-      <div className="cities__image-wrapper place-card__image-wrapper">
+    <article className={cardClass} onMouseEnter={onMouseEnter}>
+      {premiumMark}
+      <div className={cardImageWrapperClass}>
         <a href="/">
           <img
             className="place-card__image"
             src={previewImage}
-            width="260"
-            height="200"
+            {...imageSize}
             alt="Place"
           />
         </a>
       </div>
-      <div className="place-card__info">
+      <div className={cardInfoClass}>
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">
@@ -56,7 +79,7 @@ function CardItem({ offer, onMouseEnter }: CardProps): React.ReactElement {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{ width: getStarRating(rating) }} />
+            <span style={ratingStarStyles} />
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
