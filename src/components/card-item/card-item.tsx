@@ -1,6 +1,7 @@
 import React from 'react';
 import { CardType } from '../../const';
 import { IOffer } from '../../interfaces';
+import convertRatingToPercents from '../../utils';
 
 interface CardItemProps {
   offer: IOffer,
@@ -15,8 +16,6 @@ const getCardItemStyles = (type: CardType, isFavorite: boolean) => {
 
   return { cardClass, cardImageWrapperClass, cardInfoClass };
 };
-
-const getStarRating = (numericalRating: number): string => `${(73 * numericalRating) / 5}%`;
 
 function CardItem({ offer, cardType, onMouseEnter }: CardItemProps): React.ReactElement {
   const {
@@ -46,7 +45,7 @@ function CardItem({ offer, cardType, onMouseEnter }: CardItemProps): React.React
     ? { width: '150', height: '110' }
     : { width: '260', height: '200' };
 
-  const ratingStarStyles = { width: getStarRating(rating) };
+  const ratingStarStyles = { width: convertRatingToPercents(rating) };
 
   return (
     <article className={cardClass} onMouseEnter={onMouseEnter}>

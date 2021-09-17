@@ -29,9 +29,16 @@ function App(props: AppProps): React.ReactElement {
         <Route exact path={AppRoute.LOGIN}>
           <LoginPage />
         </Route>
-        <Route exact path={AppRoute.OFFERS}>
-          <OfferPage offers={offers} />
-        </Route>
+        <Route
+          exact
+          path={AppRoute.OFFERS}
+          render={
+            ({ match }) => {
+              const { id } = match.params;
+              return <OfferPage offers={offers} id={+id} />;
+            }
+          }
+        />
         <Route>
           <NotFoundPage />
         </Route>
