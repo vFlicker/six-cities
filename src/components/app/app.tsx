@@ -30,7 +30,7 @@ function App(props: AppProps): React.ReactElement {
           <LoginPage />
         </Route>
         <Route exact path={AppRoute.OFFERS}>
-          <OfferPage />
+          <OfferPage offers={offers} />
         </Route>
         <Route>
           <NotFoundPage />

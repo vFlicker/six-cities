@@ -957,7 +957,7 @@ img {
   margin-right: 20px
 }
 
-.favorites__card .place-card__bookmark-button {
+.favorites__place-card .place-card__bookmark-button {
   margin-top: 0;
   -webkit-transform: skew(10deg);
   transform: skew(10deg)
@@ -1843,7 +1843,7 @@ img {
   padding-left: 3px
 }
 
-.near-places__card {
+.near-places__place-card {
   width: 260px;
   margin-left: 8px;
   margin-bottom: 24px
@@ -1950,7 +1950,7 @@ img {
   margin-right: 20px
 }
 
-.favorites__card {
+.favorites__place-card {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1961,7 +1961,7 @@ img {
   margin-bottom: 32px
 }
 
-.favorites__card:last-child {
+.favorites__place-card:last-child {
   margin-bottom: 0
 }
 
@@ -1971,7 +1971,7 @@ img {
   margin-bottom: 0
 }
 
-.favorites__card-info {
+.favorites__info {
   padding-top: 1px
 }
 

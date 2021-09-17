@@ -9,9 +9,9 @@ interface CardItemProps {
 }
 
 const getCardItemStyles = (type: CardType, isFavorite: boolean) => {
-  const cardClass = isFavorite ? 'favorites__card place-card' : `${type}__place-card place-card`;
+  const cardClass = `${type}__place-card place-card`;
   const cardImageWrapperClass = `${type}__image-wrapper place-card__image-wrapper`;
-  const cardInfoClass = isFavorite ? 'favorites__card-info place-card__info' : 'place-card__info';
+  const cardInfoClass = isFavorite ? 'favorites__info place-card__info' : 'place-card__info';
 
   return { cardClass, cardImageWrapperClass, cardInfoClass };
 };

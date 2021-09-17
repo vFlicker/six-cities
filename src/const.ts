@@ -7,5 +7,6 @@ export enum AppRoute {
 
 export enum CardType {
   CITIES = 'cities',
-  FAVORITES = 'favorites'
+  FAVORITES = 'favorites',
+  NEAR_PLACES = 'near-places',
 }

@@ -11,6 +11,7 @@ interface CardListProps {
 const getCardListClass = {
   [CardType.CITIES]: 'cities__places-list places__list tabs__content',
   [CardType.FAVORITES]: 'favorites__places',
+  [CardType.NEAR_PLACES]: 'near-places__list places__list',
 };
 
 function CardList({ offers, cardType }: CardListProps): React.ReactElement {
