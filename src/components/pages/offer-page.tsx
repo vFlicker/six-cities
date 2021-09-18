@@ -1,4 +1,5 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import { CardType } from '../../const';
 import { IOffer } from '../../interfaces';
 import Header from '../header';
@@ -7,12 +8,12 @@ import Offer from '../offer';
 import NotFoundPage from './not-found-page';
 
 interface OfferPageProps {
-  id: number,
   offers: IOffer[],
 }
 
-function OfferPage({ id, offers }: OfferPageProps): React.ReactElement {
-  const offer = offers.find((item) => item.id === id);
+function OfferPage({ offers }: OfferPageProps): React.ReactElement {
+  const { id }: {id: string} = useParams();
+  const offer = offers.find((item) => item.id === Number(id));
 
   if (!offer) {
     return <NotFoundPage />;

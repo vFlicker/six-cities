@@ -1,13 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { CardType } from '../../const';
 import { IOffer } from '../../interfaces';
 import convertRatingToPercents from '../../utils';
 
-interface CardItemProps {
-  offer: IOffer,
-  cardType: CardType,
-  onMouseEnter: (evt: React.MouseEvent) => void,
-}
+const OFFER_LINK = '/offers';
 
 const getCardItemStyles = (type: CardType, isFavorite: boolean) => {
   const cardClass = `${type}__place-card place-card`;
@@ -17,8 +14,15 @@ const getCardItemStyles = (type: CardType, isFavorite: boolean) => {
   return { cardClass, cardImageWrapperClass, cardInfoClass };
 };
 
+interface CardItemProps {
+  offer: IOffer,
+  cardType: CardType,
+  onMouseEnter: (evt: React.MouseEvent) => void,
+}
+
 function CardItem({ offer, cardType, onMouseEnter }: CardItemProps): React.ReactElement {
   const {
+    id,
     isPremium,
     previewImage,
     price,
@@ -51,14 +55,14 @@ function CardItem({ offer, cardType, onMouseEnter }: CardItemProps): React.React
     <article className={cardClass} onMouseEnter={onMouseEnter}>
       {premiumMark}
       <div className={cardImageWrapperClass}>
-        <a href="/">
+        <Link to={`${OFFER_LINK}/${id}`}>
           <img
             className="place-card__image"
             src={previewImage}
             {...imageSize}
             alt="Place"
           />
-        </a>
+        </Link>
       </div>
       <div className={cardInfoClass}>
         <div className="place-card__price-wrapper">
@@ -83,7 +87,9 @@ function CardItem({ offer, cardType, onMouseEnter }: CardItemProps): React.React
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="/">{title}</a>
+          <Link to={`${OFFER_LINK}/${id}`}>
+            {title}
+          </Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>
