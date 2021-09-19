@@ -2,7 +2,12 @@ import React from 'react';
 
 const RatingTitles = ['perfect', 'good', 'not bad', 'badly', 'terribly'];
 
-interface RatingViewProps {
+interface RatingProps {
+  rating: number,
+  ratingToggleHandler: (rating: number) => void
+}
+
+interface RatingViewProps extends RatingProps {
   title: string,
   currentItem: number
 }
@@ -11,7 +16,11 @@ function RatingView(props: RatingViewProps): React.ReactElement {
   const {
     title,
     currentItem,
+    rating,
+    ratingToggleHandler,
   } = props;
+
+  const isChecked = rating === currentItem;
 
   return (
     <>
@@ -21,6 +30,8 @@ function RatingView(props: RatingViewProps): React.ReactElement {
         value={currentItem}
         id={`${currentItem}-stars`}
         type="radio"
+        checked={isChecked}
+        onChange={() => ratingToggleHandler(currentItem)}
       />
       <label
         htmlFor={`${currentItem}-stars`}
@@ -35,7 +46,7 @@ function RatingView(props: RatingViewProps): React.ReactElement {
   );
 }
 
-function Rating(): React.ReactElement {
+function Rating({ rating, ratingToggleHandler }: RatingProps): React.ReactElement {
   return (
     <div className="reviews__rating-form form__rating">
       {RatingTitles.map((title, index) => {
@@ -46,6 +57,8 @@ function Rating(): React.ReactElement {
             key={title}
             title={title}
             currentItem={currentItem}
+            rating={rating}
+            ratingToggleHandler={ratingToggleHandler}
           />
         );
       })}
