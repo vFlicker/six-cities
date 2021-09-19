@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 import { useParams } from 'react-router-dom';
 import { CardType } from '../../const';
 import { IOffer } from '../../interfaces';
@@ -11,8 +11,9 @@ interface OfferPageProps {
   offers: IOffer[],
 }
 
-function OfferPage({ offers }: OfferPageProps): React.ReactElement {
+function OfferPage({ offers }: PropsWithChildren<OfferPageProps>): React.ReactElement {
   const { id }: {id: string} = useParams();
+
   const offer = offers.find((item) => item.id === Number(id));
 
   if (!offer) {

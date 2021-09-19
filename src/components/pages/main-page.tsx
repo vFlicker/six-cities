@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 import { CardType } from '../../const';
 import { IOffer } from '../../interfaces';
 import Header from '../header';
 import CardList from '../card-list';
 
-function MainPage({ offers }: {offers: IOffer[]}): React.ReactElement {
+interface MainPageProps {
+  offers: IOffer[]
+}
+
+function MainPage({ offers }: PropsWithChildren<MainPageProps>): React.ReactElement {
   return (
     <div className="page page--gray page--main">
       <Header />

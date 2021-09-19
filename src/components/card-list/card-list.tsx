@@ -1,12 +1,7 @@
-import React, { useState } from 'react';
+import React, { PropsWithChildren, useState } from 'react';
 import { CardType } from '../../const';
 import { IOffer } from '../../interfaces';
 import CardItem from '../card-item';
-
-interface CardListProps {
-  offers: IOffer[],
-  cardType: CardType
-}
 
 const getCardListClass = {
   [CardType.CITIES]: 'cities__places-list places__list tabs__content',
@@ -14,7 +9,14 @@ const getCardListClass = {
   [CardType.NEAR_PLACES]: 'near-places__list places__list',
 };
 
-function CardList({ offers, cardType }: CardListProps): React.ReactElement {
+interface CardListProps {
+  offers: IOffer[],
+  cardType: CardType
+}
+
+function CardList(props: PropsWithChildren<CardListProps>): React.ReactElement {
+  const { offers, cardType } = props;
+
   const [, setActiveCard] = useState<number>(0);
 
   const mouseEnterHandler = (evt: React.MouseEvent, id: number) => {

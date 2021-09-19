@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import { IOffer } from '../../interfaces';
@@ -14,7 +14,7 @@ interface AppProps {
   offers: IOffer[]
 }
 
-function App(props: AppProps): React.ReactElement {
+function App(props: PropsWithChildren<AppProps>): React.ReactElement {
   const { offers } = props;
 
   return (

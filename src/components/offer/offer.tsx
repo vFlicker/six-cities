@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 import { IOffer } from '../../interfaces';
 import convertRatingToPercents from '../../utils';
 import Reviews from '../reviews';
 
-function Offer({ offer }: {offer: IOffer}): React.ReactElement {
+interface OfferProps {
+  offer: IOffer
+}
+
+function Offer({ offer }: PropsWithChildren<OfferProps>): React.ReactElement {
   const {
     bedrooms: bedroomCount,
     description,

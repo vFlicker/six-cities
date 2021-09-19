@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 
 const RatingTitles = ['perfect', 'good', 'not bad', 'badly', 'terribly'];
 
@@ -12,7 +12,7 @@ interface RatingViewProps extends RatingProps {
   currentItem: number
 }
 
-function RatingView(props: RatingViewProps): React.ReactElement {
+function RatingView(props: PropsWithChildren<RatingViewProps>): React.ReactElement {
   const {
     title,
     currentItem,
@@ -46,7 +46,9 @@ function RatingView(props: RatingViewProps): React.ReactElement {
   );
 }
 
-function Rating({ rating, ratingToggleHandler }: RatingProps): React.ReactElement {
+function Rating(props: PropsWithChildren<RatingProps>): React.ReactElement {
+  const { rating, ratingToggleHandler } = props;
+
   return (
     <div className="reviews__rating-form form__rating">
       {RatingTitles.map((title, index) => {

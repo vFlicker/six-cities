@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 import { CardType } from '../../const';
 import { IOffer } from '../../interfaces';
 import Header from '../header';
 import CardList from '../card-list';
 import Footer from '../footer';
 
-function FavoritesPage({ offers }: {offers: IOffer[]}): React.ReactElement {
+interface FavoritesPageProps {
+  offers: IOffer[]
+}
+
+function FavoritesPage({ offers }: PropsWithChildren<FavoritesPageProps>): React.ReactElement {
   return (
     <div className="page">
       <Header />

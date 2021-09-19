@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 import { Link } from 'react-router-dom';
 import { CardType } from '../../const';
 import { IOffer } from '../../interfaces';
@@ -20,7 +20,9 @@ interface CardItemProps {
   onMouseEnter: (evt: React.MouseEvent) => void,
 }
 
-function CardItem({ offer, cardType, onMouseEnter }: CardItemProps): React.ReactElement {
+function CardItem(props: PropsWithChildren<CardItemProps>): React.ReactElement {
+  const { offer, cardType, onMouseEnter } = props;
+
   const {
     id,
     isPremium,
@@ -31,7 +33,7 @@ function CardItem({ offer, cardType, onMouseEnter }: CardItemProps): React.React
     type,
   } = offer;
 
-  const premiumMark = isPremium && (
+  const cardMark = isPremium && (
     <div className="place-card__mark">
       <span>Premium</span>
     </div>
@@ -53,7 +55,7 @@ function CardItem({ offer, cardType, onMouseEnter }: CardItemProps): React.React
 
   return (
     <article className={cardClass} onMouseEnter={onMouseEnter}>
-      {premiumMark}
+      {cardMark}
       <div className={cardImageWrapperClass}>
         <Link to={`${OFFER_LINK}/${id}`}>
           <img
