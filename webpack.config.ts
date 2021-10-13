@@ -21,6 +21,14 @@ const config: Configuration = {
         exclude: /node_modules/,
         loader: 'babel-loader',
       },
+      {
+        test: /\.(css)$/,
+        use: [ 'style-loader', 'css-loader'],
+      },
+      {
+        test: /\.(png|jpe?g|gif|ico)$/,
+        loader: 'file-loader',
+      },
     ],
   },
   plugins: [
