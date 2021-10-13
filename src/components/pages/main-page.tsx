@@ -3,6 +3,7 @@ import { CardType } from '../../const';
 import { IOffer } from '../../interfaces';
 import Header from '../header';
 import CardList from '../card-list';
+import Map from '../map';
 
 interface MainPageProps {
   offers: IOffer[]
@@ -77,7 +78,7 @@ function MainPage({ offers }: PropsWithChildren<MainPageProps>): React.ReactElem
               <CardList offers={offers} cardType={CardType.CITIES} />
             </section>
             <div className="cities__right-section">
-              <section className="cities__map map" />
+              <Map offers={offers} />
             </div>
           </div>
         </div>
