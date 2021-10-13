@@ -1,10 +1,10 @@
 import React, { PropsWithChildren } from 'react';
-import { IOffer } from '../../interfaces';
+import { OfferListItem } from '../../types';
 import convertRatingToPercents from '../../utils';
 import Reviews from '../reviews';
 
-interface OfferProps {
-  offer: IOffer
+type OfferProps = {
+  offer: OfferListItem
 }
 
 function Offer({ offer }: PropsWithChildren<OfferProps>): React.ReactElement {

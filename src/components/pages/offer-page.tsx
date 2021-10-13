@@ -1,14 +1,14 @@
 import React, { PropsWithChildren } from 'react';
 import { useParams } from 'react-router-dom';
 import { CardType } from '../../const';
-import { IOffer } from '../../interfaces';
+import { OfferListItem } from '../../types';
 import Header from '../header';
 import CardList from '../card-list';
 import Offer from '../offer';
 import NotFoundPage from './not-found-page';
 
-interface OfferPageProps {
-  offers: IOffer[],
+type OfferPageProps = {
+  offers: OfferListItem[],
 }
 
 function OfferPage({ offers }: PropsWithChildren<OfferPageProps>): React.ReactElement {

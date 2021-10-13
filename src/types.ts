@@ -1,4 +1,4 @@
-export interface IComment {
+export type CommentListItem = {
   id: number,
   comment: string,
   date: string,
@@ -11,7 +11,7 @@ export interface IComment {
   }
 }
 
-export interface IOffer {
+export type OfferListItem = {
   id: number,
   bedrooms: number,
   city: {
@@ -37,7 +37,7 @@ export interface IOffer {
     latitude: number,
     longitude: number,
     zoom: number,
-  }
+  },
   maxAdults: number,
   previewImage: string,
   price: number,

@@ -1,18 +1,18 @@
 import React, { PropsWithChildren, useState } from 'react';
 import { CardType } from '../../const';
-import { IOffer } from '../../interfaces';
+import { OfferListItem } from '../../types';
 import CardItem from '../card-item';
+
+type CardListProps = {
+  offers: OfferListItem[],
+  cardType: CardType
+}
 
 const getCardListClass = {
   [CardType.CITIES]: 'cities__places-list places__list tabs__content',
   [CardType.FAVORITES]: 'favorites__places',
   [CardType.NEAR_PLACES]: 'near-places__list places__list',
 };
-
-interface CardListProps {
-  offers: IOffer[],
-  cardType: CardType
-}
 
 function CardList(props: PropsWithChildren<CardListProps>): React.ReactElement {
   const { offers, cardType } = props;

@@ -1,12 +1,12 @@
 import React, { PropsWithChildren } from 'react';
 import { CardType } from '../../const';
-import { IOffer } from '../../interfaces';
+import { OfferListItem } from '../../types';
 import Header from '../header';
 import CardList from '../card-list';
 import Footer from '../footer';
 
-interface FavoritesPageProps {
-  offers: IOffer[]
+type FavoritesPageProps = {
+  offers: OfferListItem[]
 }
 
 function FavoritesPage({ offers }: PropsWithChildren<FavoritesPageProps>): React.ReactElement {

@@ -1,8 +1,14 @@
 import React, { PropsWithChildren } from 'react';
 import { Link } from 'react-router-dom';
 import { CardType } from '../../const';
-import { IOffer } from '../../interfaces';
+import { OfferListItem } from '../../types';
 import convertRatingToPercents from '../../utils';
+
+type CardItemProps = {
+  offer: OfferListItem,
+  cardType: CardType,
+  onMouseEnter: (evt: React.MouseEvent) => void,
+}
 
 const OFFER_LINK = '/offers';
 
@@ -13,12 +19,6 @@ const getCardItemStyles = (type: CardType, isFavorite: boolean) => {
 
   return { cardClass, cardImageWrapperClass, cardInfoClass };
 };
-
-interface CardItemProps {
-  offer: IOffer,
-  cardType: CardType,
-  onMouseEnter: (evt: React.MouseEvent) => void,
-}
 
 function CardItem(props: PropsWithChildren<CardItemProps>): React.ReactElement {
   const { offer, cardType, onMouseEnter } = props;
@@ -39,7 +39,7 @@ function CardItem(props: PropsWithChildren<CardItemProps>): React.ReactElement {
     </div>
   );
 
-  const isFavorite = cardType === CardType.FAVORITES;
+  const isFavorite = type === CardType.FAVORITES;
 
   const {
     cardClass,

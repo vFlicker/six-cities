@@ -1,7 +1,7 @@
 import React, { PropsWithChildren } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { AppRoute } from '../../const';
-import { IOffer } from '../../interfaces';
+import { OfferListItem } from '../../types';
 import {
   FavoritesPage,
   LoginPage,
@@ -10,8 +10,8 @@ import {
   OfferPage
 } from '../pages';
 
-interface AppProps {
-  offers: IOffer[]
+type AppProps = {
+  offers: OfferListItem[]
 }
 
 function App(props: PropsWithChildren<AppProps>): React.ReactElement {

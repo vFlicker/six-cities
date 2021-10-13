@@ -1,10 +1,10 @@
 import React, { PropsWithChildren, useEffect, useRef } from 'react';
 import leaflet from 'leaflet';
-import { IOffer } from '../../interfaces';
+import { OfferListItem } from '../../types';
 import 'leaflet/dist/leaflet.css';
 
-interface MapProps {
-  offers: IOffer[];
+type MapProps = {
+  offers: OfferListItem[];
 }
 
 const icon = leaflet.icon({

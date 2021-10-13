@@ -1,12 +1,12 @@
 import React, { PropsWithChildren } from 'react';
 import { CardType } from '../../const';
-import { IOffer } from '../../interfaces';
+import { OfferListItem } from '../../types';
 import Header from '../header';
 import CardList from '../card-list';
 import Map from '../map';
 
-interface MainPageProps {
-  offers: IOffer[]
+type MainPageProps = {
+  offers: OfferListItem[]
 }
 
 function MainPage({ offers }: PropsWithChildren<MainPageProps>): React.ReactElement {

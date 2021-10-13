@@ -2,15 +2,15 @@ import React, { PropsWithChildren } from 'react';
 
 const RatingTitles = ['perfect', 'good', 'not bad', 'badly', 'terribly'];
 
-interface RatingProps {
+type RatingProps = {
   rating: number,
   ratingToggleHandler: (rating: number) => void
 }
 
-interface RatingViewProps extends RatingProps {
+type RatingViewProps = {
   title: string,
   currentItem: number
-}
+} & RatingProps;
 
 function RatingView(props: PropsWithChildren<RatingViewProps>): React.ReactElement {
   const {
