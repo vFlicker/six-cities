@@ -1,7 +1,7 @@
-import comments from './comments';
+import reviews from './reviews';
 import offers from './offers';
 
 export {
-  comments,
+  reviews,
   offers
 };

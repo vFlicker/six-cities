@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import RatingList from '../rating-list';
 
 const MIN_STAR_COUNT = 1;
-const MIN_REVIEW_LENGTH = 1;
+const MIN_REVIEW_LENGTH = 5;
 
 function ReviewsForm(): React.ReactElement {
   const [rating, setRating] = useState<number>(0);

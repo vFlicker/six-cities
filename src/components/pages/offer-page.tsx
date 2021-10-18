@@ -1,16 +1,17 @@
 import React, { PropsWithChildren } from 'react';
 import { useParams } from 'react-router-dom';
 import { CardType } from '../../const';
-import { OfferListItem } from '../../types';
+import { OfferListItem, ReviewsListItem } from '../../types';
 import { SectionHeader, SectionPlaces, SectionProperty } from '../sections';
 import CardList from '../card-list';
 import NotFoundPage from './not-found-page';
 
 type OfferPageProps = {
   offers: OfferListItem[],
+  reviews: ReviewsListItem[],
 }
 
-function OfferPage({ offers }: PropsWithChildren<OfferPageProps>): React.ReactElement {
+function OfferPage({ reviews, offers }: PropsWithChildren<OfferPageProps>): React.ReactElement {
   const { id }: {id: string} = useParams();
 
   const offer = offers.find((item) => item.id === Number(id));
@@ -23,7 +24,7 @@ function OfferPage({ offers }: PropsWithChildren<OfferPageProps>): React.ReactEl
     <div className="page">
       <SectionHeader />
       <main className="page__main page__main--property">
-        <SectionProperty offer={offer} />
+        <SectionProperty offer={offer} reviews={reviews} />
 
         <div className="container">
           <SectionPlaces className="near-places">

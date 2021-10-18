@@ -1,4 +1,4 @@
-export type CommentListItem = {
+export type ReviewsListItem = {
   id: number,
   comment: string,
   date: string,

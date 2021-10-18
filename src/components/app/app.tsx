@@ -1,7 +1,7 @@
 import React, { PropsWithChildren } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { AppRoute } from '../../const';
-import { OfferListItem } from '../../types';
+import { OfferListItem, ReviewsListItem } from '../../types';
 import {
   FavoritesPage,
   LoginPage,
@@ -11,11 +11,12 @@ import {
 } from '../pages';
 
 type AppProps = {
-  offers: OfferListItem[]
+  offers: OfferListItem[],
+  reviews: ReviewsListItem[],
 }
 
 function App(props: PropsWithChildren<AppProps>): React.ReactElement {
-  const { offers } = props;
+  const { reviews, offers } = props;
 
   return (
     <Router>
@@ -30,7 +31,7 @@ function App(props: PropsWithChildren<AppProps>): React.ReactElement {
           <LoginPage />
         </Route>
         <Route exact path={AppRoute.OFFERS}>
-          <OfferPage offers={offers} />
+          <OfferPage offers={offers} reviews={reviews} />
         </Route>
         <Route>
           <NotFoundPage />

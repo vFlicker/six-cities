@@ -1,13 +1,14 @@
 import React, { PropsWithChildren } from 'react';
-import { OfferListItem } from '../../types';
+import { OfferListItem, ReviewsListItem } from '../../types';
 import convertRatingToPercents from '../../utils';
 import { SectionReviews } from './index';
 
 type OfferProps = {
   offer: OfferListItem
+  reviews: ReviewsListItem[]
 }
 
-function SectionProperty({ offer }: PropsWithChildren<OfferProps>): React.ReactElement {
+function SectionProperty({ offer, reviews }: PropsWithChildren<OfferProps>): React.ReactElement {
   const {
     bedrooms: bedroomCount,
     description,
@@ -29,20 +30,6 @@ function SectionProperty({ offer }: PropsWithChildren<OfferProps>): React.ReactE
     ? 'button property__bookmark-button  property__bookmark-button--active'
     : 'button property__bookmark-button';
 
-  const getRatingStarStyles = { width: convertRatingToPercents(rating) };
-
-  const premiumStatus = isPremium && (
-    <div className="property__mark">
-      <span>Premium</span>
-    </div>
-  );
-
-  const proStatus = isPro && (
-    <span className="property__user-status">
-      Pro
-    </span>
-  );
-
   return (
     <section className="property">
       <div className="property__gallery-container container">
@@ -56,7 +43,11 @@ function SectionProperty({ offer }: PropsWithChildren<OfferProps>): React.ReactE
       </div>
       <div className="property__container container">
         <div className="property__wrapper">
-          {premiumStatus}
+          {isPremium && (
+            <div className="property__mark">
+              <span>Premium</span>
+            </div>
+          )}
           <div className="property__name-wrapper">
             <h1 className="property__name">
               {title}
@@ -70,7 +61,7 @@ function SectionProperty({ offer }: PropsWithChildren<OfferProps>): React.ReactE
           </div>
           <div className="property__rating rating">
             <div className="property__stars rating__stars">
-              <span style={getRatingStarStyles} />
+              <span style={{ width: convertRatingToPercents(rating) }} />
               <span className="visually-hidden">Rating</span>
             </div>
             <span className="property__rating-value rating__value">{rating}</span>
@@ -118,7 +109,11 @@ function SectionProperty({ offer }: PropsWithChildren<OfferProps>): React.ReactE
               <span className="property__user-name">
                 {authorName}
               </span>
-              {proStatus}
+              {isPro && (
+                <span className="property__user-status">
+                  Pro
+                </span>
+              )}
             </div>
             <div className="property__description">
               <p className="property__text">
@@ -127,7 +122,7 @@ function SectionProperty({ offer }: PropsWithChildren<OfferProps>): React.ReactE
             </div>
           </div>
 
-          <SectionReviews />
+          <SectionReviews reviews={reviews} />
         </div>
       </div>
       <section className="property__map map" />
