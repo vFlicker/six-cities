@@ -1,27 +1,33 @@
 import React, { PropsWithChildren } from 'react';
 import { Link } from 'react-router-dom';
-import { CardType } from '../../const';
 import { OfferListItem } from '../../types';
 import convertRatingToPercents from '../../utils';
 
-type CardItemProps = {
+export type CardItemType = {
   offer: OfferListItem,
-  cardType: CardType,
   onMouseEnter: (evt: React.MouseEvent) => void,
 }
 
+type CardItemProps = {
+  cardClass: string,
+  cardImageWrapperClass: string,
+  cardInfoClass: string,
+  imageWidth: number,
+  imageHeight: number,
+} & CardItemType;
+
 const OFFER_LINK = '/offers';
 
-const getCardItemStyles = (type: CardType, isFavorite: boolean) => {
-  const cardClass = `${type}__place-card place-card`;
-  const cardImageWrapperClass = `${type}__image-wrapper place-card__image-wrapper`;
-  const cardInfoClass = isFavorite ? 'favorites__info place-card__info' : 'place-card__info';
-
-  return { cardClass, cardImageWrapperClass, cardInfoClass };
-};
-
 function CardItem(props: PropsWithChildren<CardItemProps>): React.ReactElement {
-  const { offer, cardType, onMouseEnter } = props;
+  const {
+    offer,
+    onMouseEnter,
+    cardClass,
+    cardImageWrapperClass,
+    cardInfoClass,
+    imageWidth,
+    imageHeight,
+  } = props;
 
   const {
     id,
@@ -33,35 +39,20 @@ function CardItem(props: PropsWithChildren<CardItemProps>): React.ReactElement {
     type,
   } = offer;
 
-  const cardMark = isPremium && (
-    <div className="place-card__mark">
-      <span>Premium</span>
-    </div>
-  );
-
-  const isFavorite = type === CardType.FAVORITES;
-
-  const {
-    cardClass,
-    cardImageWrapperClass,
-    cardInfoClass,
-  } = getCardItemStyles(cardType, isFavorite);
-
-  const imageSize = isFavorite
-    ? { width: '150', height: '110' }
-    : { width: '260', height: '200' };
-
-  const ratingStarStyles = { width: convertRatingToPercents(rating) };
-
   return (
     <article className={cardClass} onMouseEnter={onMouseEnter}>
-      {cardMark}
+      {isPremium && (
+        <div className="place-card__mark">
+          <span>Premium</span>
+        </div>
+      )}
       <div className={cardImageWrapperClass}>
         <Link to={`${OFFER_LINK}/${id}`}>
           <img
             className="place-card__image"
             src={previewImage}
-            {...imageSize}
+            width={imageWidth}
+            height={imageHeight}
             alt="Place"
           />
         </Link>
@@ -84,7 +75,7 @@ function CardItem(props: PropsWithChildren<CardItemProps>): React.ReactElement {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={ratingStarStyles} />
+            <span style={{ width: convertRatingToPercents(rating) }} />
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
