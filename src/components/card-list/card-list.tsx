@@ -2,9 +2,9 @@ import React, { Fragment, PropsWithChildren, useState } from 'react';
 import { CardType } from '../../const';
 import { OfferListItem } from '../../types';
 import {
-  CitiesCardItem,
-  FavoritesCardItem,
-  NearPlacesCardItem
+  CardItemCities,
+  CardItemFavorites,
+  CardItemNearPlaces
 } from '../card-item';
 
 type CardListProps = {
@@ -26,21 +26,21 @@ const getComponentByType = (
   switch (type) {
     case CardType.CITIES:
       return (
-        <CitiesCardItem
+        <CardItemCities
           offer={offer}
           onMouseEnter={onMouseEnter}
         />
       );
     case CardType.FAVORITES:
       return (
-        <FavoritesCardItem
+        <CardItemFavorites
           offer={offer}
           onMouseEnter={onMouseEnter}
         />
       );
     case CardType.NEAR_PLACES:
       return (
-        <NearPlacesCardItem
+        <CardItemNearPlaces
           offer={offer}
           onMouseEnter={onMouseEnter}
         />

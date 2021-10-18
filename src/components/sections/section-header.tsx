@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
 
-function Header(): React.ReactElement {
+function SectionHeader(): React.ReactElement {
   return (
     <header className="header">
       <div className="container">
@@ -33,4 +33,4 @@ function Header(): React.ReactElement {
   );
 }
 
-export default Header;
+export default SectionHeader;

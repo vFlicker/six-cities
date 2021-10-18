@@ -7,7 +7,7 @@ const cardInfoClass = 'place-card__info';
 const imageWidth = 260;
 const imageHeight = 200;
 
-function CitiesCardItem(props: PropsWithChildren<CardItemType>): React.ReactElement {
+function CardItemCities(props: PropsWithChildren<CardItemType>): React.ReactElement {
   return (
     <CardItem
       cardClass={cardClass}
@@ -20,4 +20,4 @@ function CitiesCardItem(props: PropsWithChildren<CardItemType>): React.ReactElem
   );
 }
 
-export default CitiesCardItem;
+export default CardItemCities;

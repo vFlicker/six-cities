@@ -1,19 +1,16 @@
 import React from 'react';
-import Header from '../header';
-import Footer from '../footer';
+import { SectionHeader, SectionFooter, SectionNotFound } from '../sections';
 
 function NotFoundPage(): React.ReactElement {
   return (
     <div className="page  page--not-found">
-      <Header />
+      <SectionHeader />
       <main className="page__main page__main--not-found">
         <div className="page__not-found-container container">
-          <section className="not-found">
-            <h1 className="not-found__title">Page not found</h1>
-          </section>
+          <SectionNotFound />
         </div>
       </main>
-      <Footer />
+      <SectionFooter />
     </div>
   );
 }

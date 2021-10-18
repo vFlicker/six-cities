@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Rating from '../rating';
+import RatingList from '../rating-list';
 
 const MIN_STAR_COUNT = 1;
 const MIN_REVIEW_LENGTH = 1;
@@ -28,7 +28,7 @@ function ReviewsForm(): React.ReactElement {
       onSubmit={submitHandler}
     >
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
-      <Rating rating={rating} ratingToggleHandler={ratingToggleHandler} />
+      <RatingList rating={rating} ratingToggleHandler={ratingToggleHandler} />
       <textarea
         className="reviews__textarea form__textarea"
         id="review"

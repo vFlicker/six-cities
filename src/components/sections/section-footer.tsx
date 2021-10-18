@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
 
-function Footer(): React.ReactElement {
+function SectionFooter(): React.ReactElement {
   return (
     <footer className="footer container">
       <Link to={AppRoute.ROOT} className="footer__logo-link">
@@ -12,4 +12,4 @@ function Footer(): React.ReactElement {
   );
 }
 
-export default Footer;
+export default SectionFooter;

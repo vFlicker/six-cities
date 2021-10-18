@@ -2,7 +2,7 @@ import React from 'react';
 import ReviewsList from '../reviews-list';
 import ReviewsForm from '../reviews-form';
 
-function Reviews(): React.ReactElement {
+function SectionReviews(): React.ReactElement {
   return (
     <section className="property__reviews reviews">
       <h2 className="reviews__title">
@@ -15,4 +15,4 @@ function Reviews(): React.ReactElement {
   );
 }
 
-export default Reviews;
+export default SectionReviews;

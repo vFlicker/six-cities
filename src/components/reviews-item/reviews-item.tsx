@@ -10,7 +10,7 @@ function ReviewsItem(): React.ReactElement {
             src="img/avatar-max.jpg"
             width="54"
             height="54"
-            alt="Reviews avatar"
+            alt="SectionReviews avatar"
           />
         </div>
         <span className="reviews__user-name">Max</span>

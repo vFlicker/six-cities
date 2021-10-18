@@ -7,7 +7,7 @@ const cardInfoClass = 'place-card__info';
 const imageWidth = 260;
 const imageHeight = 200;
 
-function NearPlacesCardItem(props: PropsWithChildren<CardItemType>): React.ReactElement {
+function CardItemNearPlaces(props: PropsWithChildren<CardItemType>): React.ReactElement {
   return (
     <CardItem
       cardClass={cardClass}
@@ -20,4 +20,4 @@ function NearPlacesCardItem(props: PropsWithChildren<CardItemType>): React.React
   );
 }
 
-export default NearPlacesCardItem;
+export default CardItemNearPlaces;

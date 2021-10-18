@@ -1,11 +1,11 @@
 import CardItemType from './card-item';
-import CitiesCardItem from './cities-card-item';
-import FavoritesCardItem from './favorites-card-item';
-import NearPlacesCardItem from './near-places-card-item';
+import CardItemCities from './card-item-cities';
+import CardItemFavorites from './card-item-favorites';
+import CardItemNearPlaces from './card-item-near-places';
 
 export {
   CardItemType,
-  CitiesCardItem,
-  FavoritesCardItem,
-  NearPlacesCardItem
+  CardItemCities,
+  CardItemFavorites,
+  CardItemNearPlaces
 };

@@ -18,7 +18,7 @@ const layerOptions = {
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
 };
 
-function Map({ offers }: PropsWithChildren<MapProps>): React.ReactElement {
+function SectionMap({ offers }: PropsWithChildren<MapProps>): React.ReactElement {
   const { city } = offers[0];
 
   const mapRef = useRef<HTMLElement>(null);
@@ -60,4 +60,4 @@ function Map({ offers }: PropsWithChildren<MapProps>): React.ReactElement {
   );
 }
 
-export default Map;
+export default SectionMap;

@@ -2,9 +2,8 @@ import React, { PropsWithChildren } from 'react';
 import { useParams } from 'react-router-dom';
 import { CardType } from '../../const';
 import { OfferListItem } from '../../types';
-import Header from '../header';
+import { SectionHeader, SectionPlaces, SectionProperty } from '../sections';
 import CardList from '../card-list';
-import Offer from '../offer';
 import NotFoundPage from './not-found-page';
 
 type OfferPageProps = {
@@ -22,16 +21,16 @@ function OfferPage({ offers }: PropsWithChildren<OfferPageProps>): React.ReactEl
 
   return (
     <div className="page">
-      <Header />
+      <SectionHeader />
       <main className="page__main page__main--property">
-        <Offer offer={offer} />
+        <SectionProperty offer={offer} />
 
         <div className="container">
-          <section className="near-places places">
+          <SectionPlaces className="near-places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
 
             <CardList offers={offers} cardType={CardType.NEAR_PLACES} />
-          </section>
+          </SectionPlaces>
         </div>
       </main>
     </div>

@@ -7,7 +7,7 @@ const cardInfoClass = 'favorites__card-info place-card__info';
 const imageWidth = 150;
 const imageHeight = 110;
 
-function FavoritesCardItem(props: PropsWithChildren<CardItemType>): React.ReactElement {
+function CardItemFavorites(props: PropsWithChildren<CardItemType>): React.ReactElement {
   return (
     <CardItem
       cardClass={cardClass}
@@ -20,4 +20,4 @@ function FavoritesCardItem(props: PropsWithChildren<CardItemType>): React.ReactE
   );
 }
 
-export default FavoritesCardItem;
+export default CardItemFavorites;
