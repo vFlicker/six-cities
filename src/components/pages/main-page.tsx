@@ -58,7 +58,7 @@ function MainPage({ offers }: PropsWithChildren<MainPageProps>): React.ReactElem
               <CardList offers={offers} cardType={CardType.CITIES} />
             </SectionPlaces>
             <div className="cities__right-section">
-              <SectionMap offers={offers} />
+              <SectionMap className="cities__map" offers={offers} />
             </div>
           </div>
         </div>

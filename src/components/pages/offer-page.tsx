@@ -24,7 +24,7 @@ function OfferPage({ reviews, offers }: PropsWithChildren<OfferPageProps>): Reac
     <div className="page">
       <SectionHeader />
       <main className="page__main page__main--property">
-        <SectionProperty offer={offer} reviews={reviews} />
+        <SectionProperty offers={offers} offer={offer} reviews={reviews} />
 
         <div className="container">
           <SectionPlaces className="near-places">

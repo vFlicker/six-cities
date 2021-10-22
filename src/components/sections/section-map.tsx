@@ -4,6 +4,7 @@ import { OfferListItem } from '../../types';
 import 'leaflet/dist/leaflet.css';
 
 type MapProps = {
+  className: string,
   offers: OfferListItem[];
 }
 
@@ -18,7 +19,7 @@ const layerOptions = {
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
 };
 
-function SectionMap({ offers }: PropsWithChildren<MapProps>): React.ReactElement {
+function SectionMap({ className = '', offers }: PropsWithChildren<MapProps>): React.ReactElement {
   const { city } = offers[0];
 
   const mapRef = useRef<HTMLElement>(null);
@@ -56,7 +57,7 @@ function SectionMap({ offers }: PropsWithChildren<MapProps>): React.ReactElement
   }, []);
 
   return (
-    <section className="cities__map map" ref={mapRef} />
+    <section className={`${className}  map`} ref={mapRef} />
   );
 }
 
