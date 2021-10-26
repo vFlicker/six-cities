@@ -1,3 +1,10 @@
+export type CityName = 'Paris'
+  | 'Cologne'
+  | 'Brussels'
+  | 'Amsterdam'
+  | 'Hamburg'
+  | 'Dusseldorf';
+
 export type ReviewsListItem = {
   id: number,
   comment: string,
@@ -7,9 +14,9 @@ export type ReviewsListItem = {
     id: number,
     avatarUrl: string,
     isPro: boolean,
-    name: string
-  }
-}
+    name: string,
+  },
+};
 
 export type OfferListItem = {
   id: number,
@@ -43,5 +50,5 @@ export type OfferListItem = {
   price: number,
   rating: number,
   title: string,
-  type: string
-}
+  type: string,
+};
