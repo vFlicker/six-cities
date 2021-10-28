@@ -1,7 +1,4 @@
-import { CityName, OfferListItem } from '../types';
-
-const getOffers = (city: CityName, offers: OfferListItem[]) => offers
-  .filter((offer) => offer.city.name === city);
+import { CityName } from '../types';
 
 export enum ActionType {
   CHANGE_CITY = 'CHANGE_CITY',
@@ -13,10 +10,8 @@ export const ActionCreator = {
     type: ActionType.CHANGE_CITY,
     payload: city,
   }),
-  setOffers: (
-    city: CityName, offers: OfferListItem[],
-  ): {type: ActionType, payload: OfferListItem[]} => ({
+  setOffers: (city: CityName): {type: ActionType, payload: CityName} => ({
     type: ActionType.SET_OFFERS,
-    payload: getOffers(city, offers),
+    payload: city,
   }),
 };

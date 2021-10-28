@@ -8,17 +8,8 @@ import {
 import LocationsList from '../locations-list/locations-list';
 
 type MainPageProps = {
-  offers: OfferListItem[]
-}
-
-const cities: string[] = [
-  'Paris',
-  'Cologne',
-  'Brussels',
-  'Amsterdam',
-  'Hamburg',
-  'Dusseldorf',
-];
+  offers: OfferListItem[],
+};
 
 function MainPage({ offers }: PropsWithChildren<MainPageProps>): React.ReactElement {
   return (
@@ -28,7 +19,7 @@ function MainPage({ offers }: PropsWithChildren<MainPageProps>): React.ReactElem
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <SectionLocations className="container">
-            <LocationsList cities={cities} />
+            <LocationsList />
           </SectionLocations>
         </div>
         <div className="cities">
