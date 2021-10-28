@@ -1,18 +1,13 @@
-import React, { PropsWithChildren } from 'react';
-import { OfferListItem } from '../../types';
+import React from 'react';
 import { SectionHeader, SectionFooter, SectionFavorites } from '../sections';
 
-type FavoritesPageProps = {
-  offers: OfferListItem[]
-}
-
-function FavoritesPage({ offers }: PropsWithChildren<FavoritesPageProps>): React.ReactElement {
+function FavoritesPage(): React.ReactElement {
   return (
     <div className="page">
       <SectionHeader />
       <main className="page__main page__main--favorites">
         <div className="page__favorites-container container">
-          <SectionFavorites offers={offers} />
+          <SectionFavorites />
         </div>
       </main>
       <SectionFooter />

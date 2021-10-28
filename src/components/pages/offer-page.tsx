@@ -30,7 +30,7 @@ function OfferPage({ reviews, offers }: PropsWithChildren<OfferPageProps>): Reac
           <SectionPlaces className="near-places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
 
-            <CardList offers={offers} cardType={CardType.NEAR_PLACES} />
+            <CardList cardType={CardType.NEAR_PLACES} />
           </SectionPlaces>
         </div>
       </main>

@@ -46,7 +46,7 @@ function MainPage({ offers }: PropsWithChildren<MainPageProps>): React.ReactElem
                 </ul>
               </form>
 
-              <CardList offers={offers} cardType={CardType.CITIES} />
+              <CardList cardType={CardType.CITIES} />
             </SectionPlaces>
             <div className="cities__right-section">
               <SectionMap className="cities__map" offers={offers} />

@@ -25,7 +25,7 @@ function App(props: PropsWithChildren<AppProps>): React.ReactElement {
           <MainPage offers={offers} />
         </Route>
         <Route exact path={AppRoute.FAVORITES}>
-          <FavoritesPage offers={offers} />
+          <FavoritesPage />
         </Route>
         <Route exact path={AppRoute.LOGIN}>
           <LoginPage />

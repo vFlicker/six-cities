@@ -1,4 +1,6 @@
 import React, { Fragment, PropsWithChildren, useState } from 'react';
+import { connect } from 'react-redux';
+import { TState } from '../../store/reducer';
 import { CardType } from '../../const';
 import { OfferListItem } from '../../types';
 import {
@@ -10,7 +12,7 @@ import {
 type CardListProps = {
   offers: OfferListItem[],
   cardType: CardType
-}
+};
 
 const getCardListClass: Record<CardType, string> = {
   [CardType.CITIES]: 'cities__places-list places__list tabs__content',
@@ -78,4 +80,9 @@ function CardList(props: PropsWithChildren<CardListProps>): React.ReactElement {
   );
 }
 
-export default CardList;
+const mapStateToProps = (state: TState) => ({
+  offers: state.filteredOffers,
+});
+
+export { CardList };
+export default connect(mapStateToProps)(CardList);
