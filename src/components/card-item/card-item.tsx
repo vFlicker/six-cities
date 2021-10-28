@@ -5,7 +5,7 @@ import convertRatingToPercents from '../../utils';
 
 export type CardItemType = {
   offer: OfferListItem,
-  onMouseEnter: (evt: React.MouseEvent) => void,
+  onMouseEnter?: (evt: React.MouseEvent) => void,
 }
 
 type CardItemProps = {

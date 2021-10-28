@@ -35,14 +35,12 @@ const getComponentByType = (
       return (
         <CardItemFavorites
           offer={offer}
-          onMouseEnter={onMouseEnter}
         />
       );
     case CardType.NEAR_PLACES:
       return (
         <CardItemNearPlaces
           offer={offer}
-          onMouseEnter={onMouseEnter}
         />
       );
     default:
