@@ -1,5 +1,7 @@
 import React, { PropsWithChildren, useEffect, useRef } from 'react';
 import leaflet from 'leaflet';
+import { connect } from 'react-redux';
+import { TState } from '../../store/reducer';
 import { OfferListItem } from '../../types';
 import 'leaflet/dist/leaflet.css';
 
@@ -20,45 +22,55 @@ const layerOptions = {
 };
 
 function SectionMap({ className = '', offers }: PropsWithChildren<MapProps>): React.ReactElement {
-  const { city } = offers[0];
+  const currentOffer = offers[0] ?? [];
+  const { city = null } = currentOffer;
 
   const mapRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    if (!mapRef.current) {
-      return undefined;
+    if (city && mapRef.current) {
+      const map = leaflet.map(mapRef.current, {
+        center: {
+          lat: city.location.latitude,
+          lng: city.location.longitude,
+        },
+        zoom: city.location.zoom,
+      });
+
+      leaflet
+        .tileLayer(layerUrlTemplate, layerOptions)
+        .addTo(map);
+
+      offers.forEach((offer) => {
+        leaflet
+          .marker({
+            lat: offer.location.latitude,
+            lng: offer.location.longitude,
+          }, { icon })
+          .addTo(map)
+          .bindPopup(offer.title);
+      });
+
+      return () => {
+        map.remove();
+      };
     }
 
-    const map = leaflet.map(mapRef.current, {
-      center: {
-        lat: city.location.latitude,
-        lng: city.location.longitude,
-      },
-      zoom: city.location.zoom,
-    });
+    return undefined;
+  }, [offers]);
 
-    leaflet
-      .tileLayer(layerUrlTemplate, layerOptions)
-      .addTo(map);
-
-    offers.forEach((offer) => {
-      leaflet
-        .marker({
-          lat: offer.location.latitude,
-          lng: offer.location.longitude,
-        }, { icon })
-        .addTo(map)
-        .bindPopup(offer.title);
-    });
-
-    return () => {
-      map.remove();
-    };
-  }, []);
+  if (!city) {
+    return <section className="cities__map map" />;
+  }
 
   return (
     <section className={`${className}  map`} ref={mapRef} />
   );
 }
 
-export default SectionMap;
+const mapStateToProps = (state: TState) => ({
+  offers: state.filteredOffers,
+});
+
+export { SectionMap };
+export default connect(mapStateToProps)(SectionMap);

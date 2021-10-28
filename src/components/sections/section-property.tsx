@@ -4,14 +4,11 @@ import convertRatingToPercents from '../../utils';
 import { SectionMap, SectionReviews } from './index';
 
 type OfferProps = {
-  offers: OfferListItem[],
   offer: OfferListItem,
   reviews: ReviewsListItem[],
-}
+};
 
-function SectionProperty(
-  { offer, offers, reviews }: PropsWithChildren<OfferProps>,
-): React.ReactElement {
+function SectionProperty({ offer, reviews }: PropsWithChildren<OfferProps>): React.ReactElement {
   const {
     bedrooms: bedroomCount,
     description,
@@ -128,7 +125,7 @@ function SectionProperty(
           <SectionReviews reviews={reviews} />
         </div>
       </div>
-      <SectionMap className="property__map" offers={offers} />
+      <SectionMap className="property__map" />
     </section>
   );
 }

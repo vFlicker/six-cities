@@ -22,7 +22,7 @@ function App(props: PropsWithChildren<AppProps>): React.ReactElement {
     <Router>
       <Switch>
         <Route exact path={AppRoute.ROOT}>
-          <MainPage offers={offers} />
+          <MainPage />
         </Route>
         <Route exact path={AppRoute.FAVORITES}>
           <FavoritesPage />

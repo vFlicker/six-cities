@@ -1,17 +1,15 @@
-import React, { PropsWithChildren } from 'react';
+import React from 'react';
 import { CardType } from '../../const';
-import { OfferListItem } from '../../types';
 import CardList from '../card-list';
-import {
-  SectionHeader, SectionLocations, SectionMap, SectionPlaces
-} from '../sections';
 import LocationsList from '../locations-list/locations-list';
+import {
+  SectionHeader,
+  SectionLocations,
+  SectionMap,
+  SectionPlaces
+} from '../sections';
 
-type MainPageProps = {
-  offers: OfferListItem[],
-};
-
-function MainPage({ offers }: PropsWithChildren<MainPageProps>): React.ReactElement {
+function MainPage(): React.ReactElement {
   return (
     <div className="page page--gray page--main">
       <SectionHeader />
@@ -49,7 +47,7 @@ function MainPage({ offers }: PropsWithChildren<MainPageProps>): React.ReactElem
               <CardList cardType={CardType.CITIES} />
             </SectionPlaces>
             <div className="cities__right-section">
-              <SectionMap className="cities__map" offers={offers} />
+              <SectionMap className="cities__map" />
             </div>
           </div>
         </div>
