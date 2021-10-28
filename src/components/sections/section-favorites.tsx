@@ -2,6 +2,7 @@ import React, { PropsWithChildren } from 'react';
 import CardList from '../card-list';
 import { CardType } from '../../const';
 import { OfferListItem } from '../../types';
+import LocationsItem from '../locations-item';
 
 type SectionFavoritesProps = {
   offers: OfferListItem[]
@@ -17,9 +18,7 @@ function SectionFavorites(
         <li className="favorites__locations-items">
           <div className="favorites__locations locations locations--current">
             <div className="locations__item">
-              <a className="locations__item-link" href="/">
-                <span>Amsterdam</span>
-              </a>
+              <LocationsItem city="Amsterdam" />
             </div>
           </div>
 
