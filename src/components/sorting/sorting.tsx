@@ -1,12 +1,5 @@
 import React, { useState } from 'react';
-import { TSortNames } from '../../types';
-
-const sortNames: TSortNames[] = [
-  'Popular',
-  'Price: low to high',
-  'Price: high to low',
-  'Top rated first',
-];
+import { SortType } from '../../const';
 
 function Sorting(): React.ReactElement {
   const [isActive, setIsActive] = useState<boolean>(false);
@@ -40,11 +33,11 @@ function Sorting(): React.ReactElement {
         </svg>
       </span>
       <ul className={`places__options places__options--custom  ${activeClass}`}>
-        {sortNames.map((sortName) => {
+        {Object.entries(SortType).map(([key, sortName]) => {
           const optionClass = sortOptionType === sortName ? 'places__option--active' : '';
           return (
             <li
-              key={sortName}
+              key={key}
               className={`places__option ${optionClass}`}
               tabIndex={0}
               role="presentation"

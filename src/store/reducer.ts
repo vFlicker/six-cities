@@ -1,9 +1,10 @@
-import { CityName, OfferListItem } from '../types';
-import { offers as fetchOffers } from '../mocks';
 import { ActionType } from './action';
+import { CityName } from '../const';
+import { OfferListItem } from '../types';
+import { offers as fetchOffers } from '../mocks';
 
 export type TState = {
-  city: CityName,
+  currentCity: CityName,
   offers: OfferListItem[],
   filteredOffers: OfferListItem[],
 };
@@ -13,14 +14,14 @@ type TAction = {
   payload: CityName,
 };
 
-const getOffers = (offers: OfferListItem[], city: CityName) => offers
-  .filter((offer) => offer.city.name === city)
+const getOffers = (offers: OfferListItem[], currentCity: CityName) => offers
+  .filter((offer) => offer.city.name === currentCity)
   .slice(0, 6);
 
 const initialState: TState = {
-  city: 'Amsterdam',
+  currentCity: CityName.AMSTERDAM,
   offers: fetchOffers,
-  filteredOffers: getOffers(fetchOffers, 'Amsterdam'),
+  filteredOffers: getOffers(fetchOffers, CityName.AMSTERDAM),
 };
 
 export const reducer = (state = initialState, action: TAction): TState => {
@@ -28,7 +29,7 @@ export const reducer = (state = initialState, action: TAction): TState => {
     case ActionType.CHANGE_CITY:
       return {
         ...state,
-        city: action.payload,
+        currentCity: action.payload,
       };
     case ActionType.SET_OFFERS:
       return {

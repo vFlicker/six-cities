@@ -1,6 +1,7 @@
 import React from 'react';
-import { SectionHeader, SectionLocations, SectionLogin } from '../sections';
+import { CityName } from '../../const';
 import LocationsItem from '../locations-item';
+import { SectionHeader, SectionLocations, SectionLogin } from '../sections';
 
 function LoginPage(): React.ReactElement {
   return (
@@ -11,7 +12,7 @@ function LoginPage(): React.ReactElement {
           <SectionLogin />
           <SectionLocations className="locations--login locations--current">
             <div className="locations__item">
-              <LocationsItem city="Amsterdam" />
+              <LocationsItem cityName={CityName.AMSTERDAM} />
             </div>
           </SectionLocations>
         </div>

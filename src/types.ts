@@ -1,15 +1,3 @@
-export type CityName = 'Paris'
-  | 'Cologne'
-  | 'Brussels'
-  | 'Amsterdam'
-  | 'Hamburg'
-  | 'Dusseldorf';
-
-export type TSortNames = 'Popular'
-  | 'Price: low to high'
-  | 'Price: high to low'
-  | 'Top rated first';
-
 export type ReviewsListItem = {
   id: number,
   comment: string,

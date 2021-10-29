@@ -1,4 +1,4 @@
-import { CityName } from '../types';
+import { CityName } from '../const';
 
 export enum ActionType {
   CHANGE_CITY = 'CHANGE_CITY',
@@ -6,12 +6,12 @@ export enum ActionType {
 }
 
 export const ActionCreator = {
-  changeCity: (city: CityName): {type: ActionType, payload: CityName} => ({
+  changeCity: (cityName: CityName): {type: ActionType, payload: CityName} => ({
     type: ActionType.CHANGE_CITY,
-    payload: city,
+    payload: cityName,
   }),
-  setOffers: (city: CityName): {type: ActionType, payload: CityName} => ({
+  setOffers: (cityName: CityName): {type: ActionType, payload: CityName} => ({
     type: ActionType.SET_OFFERS,
-    payload: city,
+    payload: cityName,
   }),
 };

@@ -1,21 +1,21 @@
 import React, { MouseEvent, PropsWithChildren } from 'react';
 import { Link } from 'react-router-dom';
-import { AppRoute } from '../../const';
+import { AppRoute, CityName } from '../../const';
 
 type LocationsItemProps = {
   className?: string,
-  city: string,
+  cityName: CityName,
   onClick?: (evt: MouseEvent) => void,
 };
 
-function LocationsItem({ className = '', city, onClick }: PropsWithChildren<LocationsItemProps>): React.ReactElement {
+function LocationsItem({ className = '', cityName, onClick }: PropsWithChildren<LocationsItemProps>): React.ReactElement {
   return (
     <Link
       to={AppRoute.ROOT}
       className={`locations__item-link ${className}`}
       onClick={onClick}
     >
-      <span>{city}</span>
+      <span>{cityName}</span>
     </Link>
   );
 }

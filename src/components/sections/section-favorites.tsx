@@ -1,6 +1,6 @@
 import React from 'react';
+import { CardType, CityName } from '../../const';
 import CardList from '../card-list';
-import { CardType } from '../../const';
 import LocationsItem from '../locations-item';
 
 function SectionFavorites(): React.ReactElement {
@@ -11,7 +11,7 @@ function SectionFavorites(): React.ReactElement {
         <li className="favorites__locations-items">
           <div className="favorites__locations locations locations--current">
             <div className="locations__item">
-              <LocationsItem city="Amsterdam" />
+              <LocationsItem cityName={CityName.AMSTERDAM} />
             </div>
           </div>
 

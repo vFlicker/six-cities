@@ -3,42 +3,33 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { ActionCreator } from '../../store/action';
 import { TState } from '../../store/reducer';
-import { CityName } from '../../types';
+import { CityName } from '../../const';
 import LocationsItem from '../locations-item';
 
 type LocationsListProps = {
-  activeCity: CityName,
-  changeCity: (name: CityName) => void
+  currentCity: CityName,
+  changeCity: (currentCity: CityName) => void
 };
 
-const cities: CityName[] = [
-  'Paris',
-  'Cologne',
-  'Brussels',
-  'Amsterdam',
-  'Hamburg',
-  'Dusseldorf',
-];
-
 function LocationsList(
-  { activeCity, changeCity }: PropsWithChildren<LocationsListProps>,
+  { currentCity, changeCity }: PropsWithChildren<LocationsListProps>,
 ): React.ReactElement {
-  const clickHandler = (evt: MouseEvent, city: CityName) => {
+  const clickHandler = (evt: MouseEvent, cityName: CityName) => {
     evt.preventDefault();
-    changeCity(city);
+    changeCity(cityName);
   };
 
   return (
     <ul className="locations__list tabs__list">
-      {cities.map((city) => {
-        const activeClass = city === activeCity ? 'tabs__item--active ' : '';
+      {Object.entries(CityName).map(([key, cityName]) => {
+        const activeClass = cityName === currentCity ? 'tabs__item--active ' : '';
 
         return (
-          <li key={city} className="locations__item">
+          <li key={key} className="locations__item">
             <LocationsItem
               className={`tabs__item ${activeClass}`}
-              city={city}
-              onClick={(evt: MouseEvent) => clickHandler(evt, city)}
+              cityName={cityName}
+              onClick={(evt: MouseEvent) => clickHandler(evt, cityName)}
             />
           </li>
         );
@@ -48,13 +39,13 @@ function LocationsList(
 }
 
 const mapStateToProps = (state: TState) => ({
-  activeCity: state.city,
+  currentCity: state.currentCity,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  changeCity: (name: CityName) => {
-    dispatch(ActionCreator.changeCity(name));
-    dispatch(ActionCreator.setOffers(name));
+  changeCity: (cityName: CityName) => {
+    dispatch(ActionCreator.changeCity(cityName));
+    dispatch(ActionCreator.setOffers(cityName));
   },
 });
 
