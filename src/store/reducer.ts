@@ -64,7 +64,6 @@ export const reducer = (state = initialState, action: TAction): TState => {
         offers: getOffers(state, fetchOffers),
       };
     default:
+      return state;
   }
-
-  return state;
 };

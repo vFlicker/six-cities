@@ -46,9 +46,8 @@ const getComponentByType = (
         />
       );
     default:
+      throw new Error('Unknown CardType');
   }
-
-  throw new Error('Unknown CardType');
 };
 
 function CardList(props: PropsWithChildren<CardListProps>): React.ReactElement {
