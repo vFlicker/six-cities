@@ -1,7 +1,7 @@
 import React, { PropsWithChildren } from 'react';
 import { Link } from 'react-router-dom';
 import { OfferListItem } from '../../types';
-import convertRatingToPercents from '../../utils';
+import { convertRatingToPercents } from '../../utils';
 
 export type CardItemType = {
   offer: OfferListItem,

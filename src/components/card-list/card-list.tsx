@@ -81,7 +81,7 @@ function CardList(props: PropsWithChildren<CardListProps>): React.ReactElement {
 }
 
 const mapStateToProps = (state: TState) => ({
-  offers: state.filteredOffers,
+  offers: state.offers,
 });
 
 export { CardList };

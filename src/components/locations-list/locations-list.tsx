@@ -7,22 +7,22 @@ import { CityName } from '../../const';
 import LocationsItem from '../locations-item';
 
 type LocationsListProps = {
-  currentCity: CityName,
-  changeCity: (currentCity: CityName) => void
+  currentCityName: CityName,
+  changeCityName: (currentCityName: CityName) => void
 };
 
 function LocationsList(
-  { currentCity, changeCity }: PropsWithChildren<LocationsListProps>,
+  { currentCityName, changeCityName }: PropsWithChildren<LocationsListProps>,
 ): React.ReactElement {
   const clickHandler = (evt: MouseEvent, cityName: CityName) => {
     evt.preventDefault();
-    changeCity(cityName);
+    changeCityName(cityName);
   };
 
   return (
     <ul className="locations__list tabs__list">
       {Object.entries(CityName).map(([key, cityName]) => {
-        const activeClass = cityName === currentCity ? 'tabs__item--active ' : '';
+        const activeClass = cityName === currentCityName ? 'tabs__item--active ' : '';
 
         return (
           <li key={key} className="locations__item">
@@ -39,13 +39,13 @@ function LocationsList(
 }
 
 const mapStateToProps = (state: TState) => ({
-  currentCity: state.currentCity,
+  currentCityName: state.currentCityName,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  changeCity: (cityName: CityName) => {
-    dispatch(ActionCreator.changeCity(cityName));
-    dispatch(ActionCreator.setOffers(cityName));
+  changeCityName: (cityName: CityName) => {
+    dispatch(ActionCreator.changeCityName(cityName));
+    dispatch(ActionCreator.setOffers());
   },
 });
 

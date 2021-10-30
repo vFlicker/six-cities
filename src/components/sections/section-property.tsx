@@ -1,6 +1,6 @@
 import React, { PropsWithChildren } from 'react';
 import { OfferListItem, ReviewsListItem } from '../../types';
-import convertRatingToPercents from '../../utils';
+import { convertRatingToPercents } from '../../utils';
 import { SectionMap, SectionReviews } from './index';
 
 type OfferProps = {

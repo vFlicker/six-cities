@@ -1,6 +1,6 @@
 import React, { PropsWithChildren } from 'react';
 import { ReviewsListItem } from '../../types';
-import convertRatingToPercents from '../../utils';
+import { convertRatingToPercents } from '../../utils';
 
 type ReviewsItemProps = {
   review: ReviewsListItem,

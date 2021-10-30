@@ -69,7 +69,7 @@ function SectionMap({ className = '', offers }: PropsWithChildren<MapProps>): Re
 }
 
 const mapStateToProps = (state: TState) => ({
-  offers: state.filteredOffers,
+  offers: state.offers,
 });
 
 export { SectionMap };

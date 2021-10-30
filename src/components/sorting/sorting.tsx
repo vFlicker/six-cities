@@ -1,19 +1,27 @@
 import React, { useState } from 'react';
+import { Dispatch } from 'redux';
+import { connect } from 'react-redux';
+import { TState } from '../../store/reducer';
+import { ActionCreator } from '../../store/action';
 import { SortType } from '../../const';
 
-function Sorting(): React.ReactElement {
-  const [isActive, setIsActive] = useState<boolean>(false);
-  const [sortOptionType, setSortOptionType] = useState<string>('Popular');
+type SortingProps = {
+  currentSortType: SortType,
+  changeSortType: (sortType: SortType) => void,
+};
 
-  const activeClass = isActive ? 'places__options--opened ' : '';
+function Sorting({ currentSortType, changeSortType }: SortingProps): React.ReactElement {
+  const [sortMenuOpened, setSortMenuOpened] = useState<boolean>(false);
+
+  const activeClass = sortMenuOpened ? 'places__options--opened ' : '';
 
   const onSortTypeClick = () => {
-    setIsActive((prevState) => !prevState);
+    setSortMenuOpened((prevState) => !prevState);
   };
 
-  const onOptionClick = (type: string) => {
-    setSortOptionType(type);
-    setIsActive((prevState) => !prevState);
+  const onOptionClick = (sortType: SortType) => {
+    changeSortType(sortType);
+    setSortMenuOpened((prevState) => !prevState);
   };
 
   return (
@@ -27,24 +35,24 @@ function Sorting(): React.ReactElement {
         onClick={onSortTypeClick}
         onKeyDown={onSortTypeClick}
       >
-        {sortOptionType}
+        {currentSortType}
         <svg className="places__sorting-arrow" width="7" height="4">
           <use xlinkHref="#icon-arrow-select" />
         </svg>
       </span>
       <ul className={`places__options places__options--custom  ${activeClass}`}>
-        {Object.entries(SortType).map(([key, sortName]) => {
-          const optionClass = sortOptionType === sortName ? 'places__option--active' : '';
+        {Object.entries(SortType).map(([key, sortType]) => {
+          const optionClass = currentSortType === sortType ? 'places__option--active' : '';
           return (
             <li
               key={key}
               className={`places__option ${optionClass}`}
               tabIndex={0}
               role="presentation"
-              onClick={() => onOptionClick(sortName)}
-              onKeyDown={() => onOptionClick(sortName)}
+              onClick={() => onOptionClick(sortType)}
+              onKeyDown={() => onOptionClick(sortType)}
             >
-              {sortName}
+              {sortType}
             </li>
           );
         })}
@@ -53,4 +61,16 @@ function Sorting(): React.ReactElement {
   );
 }
 
-export default Sorting;
+const mapStateToProps = (state: TState) => ({
+  currentSortType: state.currentSortType,
+});
+
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  changeSortType: (sortType: SortType) => {
+    dispatch(ActionCreator.changeSortType(sortType));
+    dispatch(ActionCreator.setOffers());
+  },
+});
+
+export { Sorting };
+export default connect(mapStateToProps, mapDispatchToProps)(Sorting);
