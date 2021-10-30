@@ -6,6 +6,7 @@ import { OfferListItem } from '../../types';
 import 'leaflet/dist/leaflet.css';
 
 type MapProps = {
+  activeCardId: number,
   className: string,
   offers: OfferListItem[];
 }
@@ -15,13 +16,18 @@ const icon = leaflet.icon({
   iconSize: [27, 39],
 });
 
+const activeIcon = leaflet.icon({
+  iconUrl: './img/pin-active.svg',
+  iconSize: [27, 39],
+});
+
 const layerUrlTemplate = 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png';
 
 const layerOptions = {
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
 };
 
-function SectionMap({ className = '', offers }: PropsWithChildren<MapProps>): React.ReactElement {
+function SectionMap({ activeCardId, className = '', offers }: PropsWithChildren<MapProps>): React.ReactElement {
   const currentOffer = offers[0] ?? [];
   const { city = null } = currentOffer;
 
@@ -42,11 +48,15 @@ function SectionMap({ className = '', offers }: PropsWithChildren<MapProps>): Re
         .addTo(map);
 
       offers.forEach((offer) => {
+        const options = offer.id === activeCardId
+          ? { icon: activeIcon }
+          : { icon };
+
         leaflet
           .marker({
             lat: offer.location.latitude,
             lng: offer.location.longitude,
-          }, { icon })
+          }, options)
           .addTo(map)
           .bindPopup(offer.title);
       });
@@ -57,7 +67,7 @@ function SectionMap({ className = '', offers }: PropsWithChildren<MapProps>): Re
     }
 
     return undefined;
-  }, [offers]);
+  }, [activeCardId, offers]);
 
   if (!city) {
     return <section className="cities__map map" />;
@@ -69,6 +79,7 @@ function SectionMap({ className = '', offers }: PropsWithChildren<MapProps>): Re
 }
 
 const mapStateToProps = (state: TState) => ({
+  activeCardId: state.activeCardId,
   offers: state.offers,
 });
 

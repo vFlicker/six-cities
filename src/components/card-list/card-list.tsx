@@ -1,6 +1,8 @@
-import React, { Fragment, PropsWithChildren, useState } from 'react';
+import React, { Fragment, PropsWithChildren } from 'react';
+import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { TState } from '../../store/reducer';
+import { ActionCreator } from '../../store/action';
 import { CardType } from '../../const';
 import { OfferListItem } from '../../types';
 import {
@@ -10,8 +12,9 @@ import {
 } from '../card-item';
 
 type CardListProps = {
-  offers: OfferListItem[],
   cardType: CardType
+  offers: OfferListItem[],
+  setActiveCard: (id: number) => void
 };
 
 const getCardListClass: Record<CardType, string> = {
@@ -24,6 +27,7 @@ const getComponentByType = (
   type: CardType,
   offer: OfferListItem,
   onMouseEnter: (evt: React.MouseEvent) => void,
+  onMouseLeave: (evt: React.MouseEvent) => void,
 ) => {
   switch (type) {
     case CardType.CITIES:
@@ -31,6 +35,7 @@ const getComponentByType = (
         <CardItemCities
           offer={offer}
           onMouseEnter={onMouseEnter}
+          onMouseLeave={onMouseLeave}
         />
       );
     case CardType.FAVORITES:
@@ -51,27 +56,28 @@ const getComponentByType = (
 };
 
 function CardList(props: PropsWithChildren<CardListProps>): React.ReactElement {
-  const { offers, cardType } = props;
-
-  const [, setActiveCard] = useState<number>(0);
-
-  const mouseEnterHandler = (evt: React.MouseEvent, id: number) => {
-    evt.preventDefault();
-    setActiveCard(() => id);
-  };
+  const {
+    cardType,
+    offers,
+    setActiveCard,
+  } = props;
 
   const cardListClass = getCardListClass[cardType];
 
   return (
     <div className={cardListClass}>
       {offers.map((offer) => {
-        const onMouseEnter = (evt: React.MouseEvent) => {
-          mouseEnterHandler(evt, offer.id);
+        const onMouseEnter = () => {
+          setActiveCard(offer.id);
+        };
+
+        const onMouseLeave = () => {
+          setActiveCard(-1);
         };
 
         return (
           <Fragment key={offer.id}>
-            {getComponentByType(cardType, offer, onMouseEnter)}
+            {getComponentByType(cardType, offer, onMouseEnter, onMouseLeave)}
           </Fragment>
         );
       })}
@@ -83,5 +89,11 @@ const mapStateToProps = (state: TState) => ({
   offers: state.offers,
 });
 
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  setActiveCard: (id: number) => {
+    dispatch(ActionCreator.setActiveCard(id));
+  },
+});
+
 export { CardList };
-export default connect(mapStateToProps)(CardList);
+export default connect(mapStateToProps, mapDispatchToProps)(CardList);

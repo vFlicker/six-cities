@@ -5,12 +5,16 @@ import { sortByPriceHighToLow, sortByPriceLowToHigh, topRatedFirst } from '../ut
 import { offers as fetchOffers } from '../mocks';
 
 export type TState = {
+  activeCardId: number,
   currentCityName: CityName,
   currentSortType: SortType,
   offers: OfferListItem[],
 };
 
 type TAction = {
+  type: ActionType.SET_ACTIVE_CARD,
+  payload: number,
+} | {
   type: ActionType.CHANGE_CITY_NAME,
   payload: CityName,
 } | {
@@ -41,6 +45,7 @@ const getOffers = (state: TState, offers: OfferListItem[]) => {
 };
 
 const initialState: TState = {
+  activeCardId: -1,
   currentCityName: CityName.AMSTERDAM,
   currentSortType: SortType.POPULAR,
   offers: fetchOffers,
@@ -48,6 +53,11 @@ const initialState: TState = {
 
 export const reducer = (state = initialState, action: TAction): TState => {
   switch (action.type) {
+    case ActionType.SET_ACTIVE_CARD:
+      return {
+        ...state,
+        activeCardId: action.payload,
+      };
     case ActionType.CHANGE_CITY_NAME:
       return {
         ...state,

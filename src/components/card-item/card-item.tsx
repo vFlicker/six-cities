@@ -6,7 +6,8 @@ import { convertRatingToPercents } from '../../utils';
 export type CardItemType = {
   offer: OfferListItem,
   onMouseEnter?: (evt: React.MouseEvent) => void,
-}
+  onMouseLeave? :(evt: React.MouseEvent) => void,
+};
 
 type CardItemProps = {
   cardClass: string,
@@ -22,6 +23,7 @@ function CardItem(props: PropsWithChildren<CardItemProps>): React.ReactElement {
   const {
     offer,
     onMouseEnter,
+    onMouseLeave,
     cardClass,
     cardImageWrapperClass,
     cardInfoClass,
@@ -40,7 +42,11 @@ function CardItem(props: PropsWithChildren<CardItemProps>): React.ReactElement {
   } = offer;
 
   return (
-    <article className={cardClass} onMouseEnter={onMouseEnter}>
+    <article
+      className={cardClass}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+    >
       {isPremium && (
         <div className="place-card__mark">
           <span>Premium</span>
