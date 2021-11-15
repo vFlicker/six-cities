@@ -1,6 +1,6 @@
 import { ActionType } from './action';
 import { CityName, SortType } from '../const';
-import { OfferListItem } from '../types';
+import { TOffer } from '../types';
 import { sortByPriceHighToLow, sortByPriceLowToHigh, topRatedFirst } from '../utils';
 import { offers as fetchOffers } from '../mocks';
 
@@ -8,7 +8,7 @@ export type TState = {
   activeCardId: number,
   currentCityName: CityName,
   currentSortType: SortType,
-  offers: OfferListItem[],
+  offers: TOffer[],
 };
 
 type TAction = {
@@ -25,7 +25,7 @@ type TAction = {
   payload: CityName,
 };
 
-const getOffers = (state: TState, offers: OfferListItem[]) => {
+const getOffers = (state: TState, offers: TOffer[]) => {
   const { currentCityName, currentSortType } = state;
 
   const filteredOffers = offers

@@ -1,10 +1,10 @@
 import React, { PropsWithChildren } from 'react';
 import ReviewsList from '../reviews-list';
 import ReviewsForm from '../reviews-form';
-import { ReviewsListItem } from '../../types';
+import { TReview } from '../../types';
 
 type SectionReviewsProps = {
-  reviews: ReviewsListItem[]
+  reviews: TReview[]
 }
 
 function SectionReviews({ reviews }: PropsWithChildren<SectionReviewsProps>): React.ReactElement {

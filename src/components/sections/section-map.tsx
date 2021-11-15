@@ -2,13 +2,13 @@ import React, { PropsWithChildren, useEffect, useRef } from 'react';
 import leaflet from 'leaflet';
 import { connect } from 'react-redux';
 import { TState } from '../../store/reducer';
-import { OfferListItem } from '../../types';
+import { TOffer } from '../../types';
 import 'leaflet/dist/leaflet.css';
 
 type MapProps = {
   activeCardId: number,
   className: string,
-  offers: OfferListItem[];
+  offers: TOffer[];
 }
 
 const icon = leaflet.icon({

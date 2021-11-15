@@ -1,7 +1,7 @@
 import React, { PropsWithChildren } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { AppRoute } from '../../const';
-import { OfferListItem, ReviewsListItem } from '../../types';
+import { TOffer, TReview } from '../../types';
 import {
   FavoritesPage,
   LoginPage,
@@ -11,8 +11,8 @@ import {
 } from '../pages';
 
 type AppProps = {
-  offers: OfferListItem[],
-  reviews: ReviewsListItem[],
+  offers: TOffer[],
+  reviews: TReview[],
 }
 
 function App(props: PropsWithChildren<AppProps>): React.ReactElement {

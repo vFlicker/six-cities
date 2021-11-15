@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { TState } from '../../store/reducer';
 import { ActionCreator } from '../../store/action';
 import { CardType } from '../../const';
-import { OfferListItem } from '../../types';
+import { TOffer } from '../../types';
 import {
   CardItemCities,
   CardItemFavorites,
@@ -13,7 +13,7 @@ import {
 
 type CardListProps = {
   cardType: CardType
-  offers: OfferListItem[],
+  offers: TOffer[],
   setActiveCard: (id: number) => void
 };
 
@@ -25,7 +25,7 @@ const getCardListClass: Record<CardType, string> = {
 
 const getComponentByType = (
   type: CardType,
-  offer: OfferListItem,
+  offer: TOffer,
   onMouseEnter: (evt: React.MouseEvent) => void,
   onMouseLeave: (evt: React.MouseEvent) => void,
 ) => {

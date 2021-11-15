@@ -1,21 +1,21 @@
-import { OfferListItem } from './types';
+import { TOffer } from './types';
 
 const MAX_PERCENT = 100;
 const TOTAL_RATING = 5;
 
 export const sortByPriceHighToLow = (
-  firstOffer: OfferListItem,
-  secondOffer: OfferListItem,
+  firstOffer: TOffer,
+  secondOffer: TOffer,
 ): number => secondOffer.price - firstOffer.price;
 
 export const sortByPriceLowToHigh = (
-  firstOffer: OfferListItem,
-  secondOffer: OfferListItem,
+  firstOffer: TOffer,
+  secondOffer: TOffer,
 ): number => firstOffer.price - secondOffer.price;
 
 export const topRatedFirst = (
-  firstOffer: OfferListItem,
-  secondOffer: OfferListItem,
+  firstOffer: TOffer,
+  secondOffer: TOffer,
 ): number => secondOffer.rating - firstOffer.rating;
 
 export const convertRatingToPercents = (

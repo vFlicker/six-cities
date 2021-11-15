@@ -1,4 +1,4 @@
-export type ReviewsListItem = {
+export type TReview = {
   id: number,
   comment: string,
   date: string,
@@ -11,7 +11,7 @@ export type ReviewsListItem = {
   },
 };
 
-export type OfferListItem = {
+export type TOffer = {
   id: number,
   bedrooms: number,
   city: {

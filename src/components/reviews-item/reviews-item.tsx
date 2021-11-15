@@ -1,9 +1,9 @@
 import React, { PropsWithChildren } from 'react';
-import { ReviewsListItem } from '../../types';
+import { TReview } from '../../types';
 import { convertRatingToPercents } from '../../utils';
 
 type ReviewsItemProps = {
-  review: ReviewsListItem,
+  review: TReview,
 }
 
 function ReviewsItem({ review }: PropsWithChildren<ReviewsItemProps>): React.ReactElement {

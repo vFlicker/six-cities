@@ -1,10 +1,10 @@
 import React, { PropsWithChildren } from 'react';
 import { Link } from 'react-router-dom';
-import { OfferListItem } from '../../types';
+import { TOffer } from '../../types';
 import { convertRatingToPercents } from '../../utils';
 
 export type CardItemType = {
-  offer: OfferListItem,
+  offer: TOffer,
   onMouseEnter?: (evt: React.MouseEvent) => void,
   onMouseLeave? :(evt: React.MouseEvent) => void,
 };

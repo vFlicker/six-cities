@@ -1,11 +1,11 @@
 import React, { PropsWithChildren } from 'react';
-import { OfferListItem, ReviewsListItem } from '../../types';
+import { TOffer, TReview } from '../../types';
 import { convertRatingToPercents } from '../../utils';
 import { SectionMap, SectionReviews } from './index';
 
 type OfferProps = {
-  offer: OfferListItem,
-  reviews: ReviewsListItem[],
+  offer: TOffer,
+  reviews: TReview[],
 };
 
 function SectionProperty({ offer, reviews }: PropsWithChildren<OfferProps>): React.ReactElement {

@@ -1,14 +1,14 @@
 import React, { PropsWithChildren } from 'react';
 import { useParams } from 'react-router-dom';
 import { CardType } from '../../const';
-import { OfferListItem, ReviewsListItem } from '../../types';
+import { TOffer, TReview } from '../../types';
 import { SectionHeader, SectionPlaces, SectionProperty } from '../sections';
 import CardList from '../card-list';
 import NotFoundPage from './not-found-page';
 
 type OfferPageProps = {
-  offers: OfferListItem[],
-  reviews: ReviewsListItem[],
+  offers: TOffer[],
+  reviews: TReview[],
 }
 
 function OfferPage({ reviews, offers }: PropsWithChildren<OfferPageProps>): React.ReactElement {
