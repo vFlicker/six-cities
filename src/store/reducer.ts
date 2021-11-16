@@ -9,6 +9,8 @@ export type TState = {
   currentCityName: CityName,
   currentSortType: SortType,
   offers: TOffer[],
+  loading: boolean,
+  error: null | string,
 };
 
 type TAction = {
@@ -26,6 +28,11 @@ type TAction = {
 } | {
   type: ActionType.OFFERS_LOADED,
   payload: TOffer[],
+} | {
+  type: ActionType.OFFERS_REQUESTED,
+} | {
+  type: ActionType.OFFERS_ERROR,
+  payload: string,
 };
 
 const getOffers = (state: TState, offers: TOffer[]) => {
@@ -52,6 +59,8 @@ const initialState: TState = {
   currentCityName: CityName.AMSTERDAM,
   currentSortType: SortType.POPULAR,
   offers: [],
+  loading: true,
+  error: null,
 };
 
 export const reducer = (state = initialState, action: TAction): TState => {
@@ -76,10 +85,26 @@ export const reducer = (state = initialState, action: TAction): TState => {
         ...state,
         offers: getOffers(state, fetchOffers),
       };
+    case ActionType.OFFERS_REQUESTED:
+      return {
+        ...state,
+        offers: [],
+        loading: true,
+        error: null,
+      };
     case ActionType.OFFERS_LOADED:
       return {
         ...state,
         offers: action.payload.slice(0, 6),
+        loading: false,
+        error: null,
+      };
+    case ActionType.OFFERS_ERROR:
+      return {
+        ...state,
+        offers: [],
+        loading: false,
+        error: action.payload,
       };
     default:
       return state;

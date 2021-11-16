@@ -11,13 +11,18 @@ import {
   CardItemFavorites,
   CardItemNearPlaces
 } from '../card-item';
+import Spinner from '../spinner';
 
 type CardListProps = {
   cardType: CardType
   offers: TOffer[],
   setActiveCard: (id: number) => void,
+  offersRequested: () => void,
   offersLoaded: (offers: TOffer[]) => void,
+  offersError: (err: string) => void,
   apiService: ApiService,
+  loading: boolean,
+  error: null | string,
 };
 
 const getCardListClass: Record<CardType, string> = {
@@ -63,16 +68,30 @@ function CardList(props: PropsWithChildren<CardListProps>): React.ReactElement {
     cardType,
     offers,
     setActiveCard,
+    offersRequested,
     offersLoaded,
+    offersError,
     apiService,
+    loading,
+    error,
   } = props;
 
   const cardListClass = getCardListClass[cardType];
 
   useEffect(() => {
+    offersRequested();
     apiService.getHotels()
-      .then((data) => offersLoaded(data));
+      .then((data) => offersLoaded(data))
+      .catch((err) => offersError(err));
   }, []);
+
+  if (loading) {
+    return <Spinner />;
+  }
+
+  if (error) {
+    return <h1>Error</h1>;
+  }
 
   return (
     <div className={cardListClass}>
@@ -97,9 +116,16 @@ function CardList(props: PropsWithChildren<CardListProps>): React.ReactElement {
 
 const mapStateToProps = (state: TState) => ({
   offers: state.offers,
+  loading: state.loading,
+  error: state.error,
 });
 
-const { setActiveCard, offersLoaded } = ActionCreator;
+const {
+  setActiveCard,
+  offersRequested,
+  offersLoaded,
+  offersError,
+} = ActionCreator;
 
 // const mapDispatchToProps = (dispatch: Dispatch) => ({
 //   setActiveCard: (id: number) => {
@@ -112,7 +138,9 @@ const { setActiveCard, offersLoaded } = ActionCreator;
 
 const mapDispatchToProps = {
   setActiveCard,
+  offersRequested,
   offersLoaded,
+  offersError,
 };
 
 export { CardList };

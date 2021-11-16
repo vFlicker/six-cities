@@ -6,7 +6,9 @@ export enum ActionType {
   CHANGE_SORT_TYPE = 'CHANGE_SORT_TYPE',
   SET_ACTIVE_CARD = 'SET_ACTIVE_CARD',
   SET_OFFERS = 'SET_OFFERS',
+  OFFERS_REQUESTED = 'OFFERS_REQUESTED',
   OFFERS_LOADED = 'OFFERS_LOADED',
+  OFFERS_ERROR = 'OFFERS_ERROR',
 }
 
 export const ActionCreator = {
@@ -25,8 +27,15 @@ export const ActionCreator = {
   setOffers: (): {type: ActionType} => ({
     type: ActionType.SET_OFFERS,
   }),
+  offersRequested: (): {type: ActionType} => ({
+    type: ActionType.OFFERS_REQUESTED,
+  }),
   offersLoaded: (offers: TOffer[]): {type: ActionType, payload: TOffer[]} => ({
     type: ActionType.OFFERS_LOADED,
     payload: offers,
+  }),
+  offersError: (error: string): {type: ActionType, payload: string} => ({
+    type: ActionType.OFFERS_ERROR,
+    payload: error,
   }),
 };
