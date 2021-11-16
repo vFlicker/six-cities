@@ -13,6 +13,8 @@ export enum AppRoute {
   ROOT = '/'
 }
 
+export const BACKEND_URL = 'https://6.react.pages.academy/six-cities';
+
 export enum CardType {
   CITIES = 'cities',
   FAVORITES = 'favorites',
