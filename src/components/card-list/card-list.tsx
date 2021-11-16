@@ -1,5 +1,6 @@
 import React, { Fragment, PropsWithChildren, useEffect } from 'react';
 import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
 import { TState } from '../../store/reducer';
 import { ActionCreator } from '../../store/action';
 import { CardType } from '../../const';
@@ -16,13 +17,10 @@ import Spinner from '../spinner';
 type CardListProps = {
   cardType: CardType
   offers: TOffer[],
-  setActiveCard: (id: number) => void,
-  offersRequested: () => void,
-  offersLoaded: (offers: TOffer[]) => void,
-  offersError: (err: string) => void,
-  apiService: ApiService,
   loading: boolean,
   error: null | string,
+  setActiveCard: (id: number) => void,
+  fetchOffers: () => void,
 };
 
 const getCardListClass: Record<CardType, string> = {
@@ -68,21 +66,15 @@ function CardList(props: PropsWithChildren<CardListProps>): React.ReactElement {
     cardType,
     offers,
     setActiveCard,
-    offersRequested,
-    offersLoaded,
-    offersError,
-    apiService,
     loading,
     error,
+    fetchOffers,
   } = props;
 
   const cardListClass = getCardListClass[cardType];
 
   useEffect(() => {
-    offersRequested();
-    apiService.getHotels()
-      .then((data) => offersLoaded(data))
-      .catch((err) => offersError(err));
+    fetchOffers();
   }, []);
 
   if (loading) {
@@ -120,28 +112,19 @@ const mapStateToProps = (state: TState) => ({
   error: state.error,
 });
 
-const {
-  setActiveCard,
-  offersRequested,
-  offersLoaded,
-  offersError,
-} = ActionCreator;
-
-// const mapDispatchToProps = (dispatch: Dispatch) => ({
-//   setActiveCard: (id: number) => {
-//     dispatch(ActionCreator.setActiveCard(id));
-//   },
-//   offersLoaded: (offers: TOffer[]) => {
-//     dispatch(ActionCreator.offersLoaded(offers));
-//   },
-// });
-
-const mapDispatchToProps = {
-  setActiveCard,
-  offersRequested,
-  offersLoaded,
-  offersError,
-};
+const mapDispatchToProps = (dispatch: Dispatch, { apiService }: {apiService: ApiService}) => ({
+  setActiveCard: (id: number) => {
+    dispatch(ActionCreator.setActiveCard(id));
+  },
+  fetchOffers: () => {
+    dispatch(ActionCreator.offersRequested());
+    apiService.getHotels()
+      .then((data) => dispatch(ActionCreator.offersLoaded(data)))
+      .catch((err) => dispatch(ActionCreator.offersError(err)));
+  },
+});
 
 export { CardList };
-export default withApiServices()(connect(mapStateToProps, mapDispatchToProps)(CardList));
+export default withApiServices()(
+  connect(mapStateToProps, mapDispatchToProps)(CardList),
+);
