@@ -23,6 +23,9 @@ type TAction = {
 } | {
   type: ActionType.SET_OFFERS,
   payload: CityName,
+} | {
+  type: ActionType.OFFERS_LOADED,
+  payload: TOffer[],
 };
 
 const getOffers = (state: TState, offers: TOffer[]) => {
@@ -48,7 +51,7 @@ const initialState: TState = {
   activeCardId: -1,
   currentCityName: CityName.AMSTERDAM,
   currentSortType: SortType.POPULAR,
-  offers: fetchOffers,
+  offers: [],
 };
 
 export const reducer = (state = initialState, action: TAction): TState => {
@@ -72,6 +75,11 @@ export const reducer = (state = initialState, action: TAction): TState => {
       return {
         ...state,
         offers: getOffers(state, fetchOffers),
+      };
+    case ActionType.OFFERS_LOADED:
+      return {
+        ...state,
+        offers: action.payload.slice(0, 6),
       };
     default:
       return state;

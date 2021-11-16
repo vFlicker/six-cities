@@ -1,10 +1,12 @@
 import { CityName, SortType } from '../const';
+import { TOffer } from '../types';
 
 export enum ActionType {
   CHANGE_CITY_NAME = 'CHANGE_CITY_NAME',
   CHANGE_SORT_TYPE = 'CHANGE_SORT_TYPE',
   SET_ACTIVE_CARD = 'SET_ACTIVE_CARD',
   SET_OFFERS = 'SET_OFFERS',
+  OFFERS_LOADED = 'OFFERS_LOADED',
 }
 
 export const ActionCreator = {
@@ -22,5 +24,9 @@ export const ActionCreator = {
   }),
   setOffers: (): {type: ActionType} => ({
     type: ActionType.SET_OFFERS,
+  }),
+  offersLoaded: (offers: TOffer[]): {type: ActionType, payload: TOffer[]} => ({
+    type: ActionType.OFFERS_LOADED,
+    payload: offers,
   }),
 };
