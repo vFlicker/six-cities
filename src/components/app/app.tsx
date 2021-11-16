@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import { TOffer, TReview } from '../../types';
 import {
@@ -12,7 +12,7 @@ import {
 
 type AppProps = {
   offers: TOffer[],
-  reviews: TReview[],
+  reviews: TReview[]
 }
 
 function App(props: PropsWithChildren<AppProps>): React.ReactElement {
@@ -20,23 +20,13 @@ function App(props: PropsWithChildren<AppProps>): React.ReactElement {
 
   return (
     <Router>
-      <Switch>
-        <Route exact path={AppRoute.ROOT}>
-          <MainPage />
-        </Route>
-        <Route exact path={AppRoute.FAVORITES}>
-          <FavoritesPage />
-        </Route>
-        <Route exact path={AppRoute.LOGIN}>
-          <LoginPage />
-        </Route>
-        <Route exact path={AppRoute.OFFERS}>
-          <OfferPage offers={offers} reviews={reviews} />
-        </Route>
-        <Route>
-          <NotFoundPage />
-        </Route>
-      </Switch>
+      <Routes>
+        <Route path={AppRoute.ROOT} element={<MainPage />} />
+        <Route path={AppRoute.FAVORITES} element={<FavoritesPage />} />
+        <Route path={AppRoute.LOGIN} element={<LoginPage />} />
+        <Route path={AppRoute.OFFERS} element={<OfferPage offers={offers} reviews={reviews} />} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
     </Router>
   );
 }

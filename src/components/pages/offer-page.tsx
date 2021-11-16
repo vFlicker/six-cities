@@ -12,7 +12,7 @@ type OfferPageProps = {
 }
 
 function OfferPage({ reviews, offers }: PropsWithChildren<OfferPageProps>): React.ReactElement {
-  const { id }: {id: string} = useParams();
+  const { id } = useParams();
 
   const offer = offers.find((item) => item.id === Number(id));
 
