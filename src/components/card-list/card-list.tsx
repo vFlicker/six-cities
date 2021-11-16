@@ -116,12 +116,7 @@ const mapDispatchToProps = (dispatch: Dispatch, { apiService }: {apiService: Api
   setActiveCard: (id: number) => {
     dispatch(ActionCreator.setActiveCard(id));
   },
-  fetchOffers: () => {
-    dispatch(ActionCreator.offersRequested());
-    apiService.getHotels()
-      .then((data) => dispatch(ActionCreator.offersLoaded(data)))
-      .catch((err) => dispatch(ActionCreator.offersError(err)));
-  },
+  fetchOffers: ActionCreator.fetchOffers(apiService, dispatch),
 });
 
 export { CardList };

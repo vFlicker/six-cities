@@ -1,14 +1,16 @@
+import { Dispatch } from 'redux';
 import { CityName, SortType } from '../const';
 import { TOffer } from '../types';
+import ApiService from '../services/api-service';
 
 export enum ActionType {
   CHANGE_CITY_NAME = 'CHANGE_CITY_NAME',
   CHANGE_SORT_TYPE = 'CHANGE_SORT_TYPE',
   SET_ACTIVE_CARD = 'SET_ACTIVE_CARD',
   SET_OFFERS = 'SET_OFFERS',
-  OFFERS_REQUESTED = 'OFFERS_REQUESTED',
-  OFFERS_LOADED = 'OFFERS_LOADED',
-  OFFERS_ERROR = 'OFFERS_ERROR',
+  FETCH_OFFERS_REQUEST = 'FETCH_OFFERS_REQUEST',
+  FETCH_OFFERS_SUCCESS = 'FETCH_OFFERS_SUCCESS',
+  FETCH_OFFERS_FAILURE = 'FETCH_OFFERS_FAILURE',
 }
 
 export const ActionCreator = {
@@ -28,14 +30,20 @@ export const ActionCreator = {
     type: ActionType.SET_OFFERS,
   }),
   offersRequested: (): {type: ActionType} => ({
-    type: ActionType.OFFERS_REQUESTED,
+    type: ActionType.FETCH_OFFERS_REQUEST,
   }),
   offersLoaded: (offers: TOffer[]): {type: ActionType, payload: TOffer[]} => ({
-    type: ActionType.OFFERS_LOADED,
+    type: ActionType.FETCH_OFFERS_SUCCESS,
     payload: offers,
   }),
   offersError: (error: string): {type: ActionType, payload: string} => ({
-    type: ActionType.OFFERS_ERROR,
+    type: ActionType.FETCH_OFFERS_FAILURE,
     payload: error,
   }),
+  fetchOffers: (apiService: ApiService, dispatch: Dispatch) => (): void => {
+    dispatch(ActionCreator.offersRequested());
+    apiService.getHotels()
+      .then((data) => dispatch(ActionCreator.offersLoaded(data)))
+      .catch((err) => dispatch(ActionCreator.offersError(err)));
+  },
 };

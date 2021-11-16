@@ -26,12 +26,12 @@ type TAction = {
   type: ActionType.SET_OFFERS,
   payload: CityName,
 } | {
-  type: ActionType.OFFERS_LOADED,
+  type: ActionType.FETCH_OFFERS_REQUEST,
+} | {
+  type: ActionType.FETCH_OFFERS_SUCCESS,
   payload: TOffer[],
 } | {
-  type: ActionType.OFFERS_REQUESTED,
-} | {
-  type: ActionType.OFFERS_ERROR,
+  type: ActionType.FETCH_OFFERS_FAILURE,
   payload: string,
 };
 
@@ -85,21 +85,21 @@ export const reducer = (state = initialState, action: TAction): TState => {
         ...state,
         offers: getOffers(state, fetchOffers),
       };
-    case ActionType.OFFERS_REQUESTED:
+    case ActionType.FETCH_OFFERS_REQUEST:
       return {
         ...state,
         offers: [],
         loading: true,
         error: null,
       };
-    case ActionType.OFFERS_LOADED:
+    case ActionType.FETCH_OFFERS_SUCCESS:
       return {
         ...state,
         offers: action.payload.slice(0, 6),
         loading: false,
         error: null,
       };
-    case ActionType.OFFERS_ERROR:
+    case ActionType.FETCH_OFFERS_FAILURE:
       return {
         ...state,
         offers: [],
