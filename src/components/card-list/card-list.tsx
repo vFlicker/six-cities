@@ -1,26 +1,22 @@
-import React, { Fragment, PropsWithChildren, useEffect } from 'react';
+import React, { Fragment, PropsWithChildren } from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
+
 import { TState } from '../../store/reducer';
 import { ActionCreator } from '../../store/action';
 import { CardType } from '../../const';
 import { TOffer } from '../../types';
-import ApiService from '../../services/api-service';
-import withApiServices from '../../hocs/with-api-services';
+
 import {
   CardItemCities,
   CardItemFavorites,
   CardItemNearPlaces
 } from '../card-item';
-import Spinner from '../spinner';
 
 type CardListProps = {
   cardType: CardType
   offers: TOffer[],
-  loading: boolean,
-  error: null | string,
   setActiveCard: (id: number) => void,
-  fetchOffers: () => void,
 };
 
 const getCardListClass: Record<CardType, string> = {
@@ -66,24 +62,9 @@ function CardList(props: PropsWithChildren<CardListProps>): React.ReactElement {
     cardType,
     offers,
     setActiveCard,
-    loading,
-    error,
-    fetchOffers,
   } = props;
 
   const cardListClass = getCardListClass[cardType];
-
-  useEffect(() => {
-    fetchOffers();
-  }, []);
-
-  if (loading) {
-    return <Spinner />;
-  }
-
-  if (error) {
-    return <h1>Error</h1>;
-  }
 
   return (
     <div className={cardListClass}>
@@ -108,18 +89,13 @@ function CardList(props: PropsWithChildren<CardListProps>): React.ReactElement {
 
 const mapStateToProps = (state: TState) => ({
   offers: state.offers,
-  loading: state.loading,
-  error: state.error,
 });
 
-const mapDispatchToProps = (dispatch: Dispatch, { apiService }: {apiService: ApiService}) => ({
+const mapDispatchToProps = (dispatch: Dispatch) => ({
   setActiveCard: (id: number) => {
     dispatch(ActionCreator.setActiveCard(id));
   },
-  fetchOffers: ActionCreator.fetchOffers(apiService, dispatch),
 });
 
 export { CardList };
-export default withApiServices()(
-  connect(mapStateToProps, mapDispatchToProps)(CardList),
-);
+export default connect(mapStateToProps, mapDispatchToProps)(CardList);
