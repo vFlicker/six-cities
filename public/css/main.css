@@ -406,6 +406,7 @@ img {
   background-position: center top;
   background-repeat: no-repeat;
 }
+
 .page__main--property {
   padding-bottom: 129px
 }
@@ -511,11 +512,15 @@ img {
   flex-wrap: wrap;
   -webkit-box-align: start;
   -ms-flex-align: start;
-  align-items: flex-start
+  align-items: center
 }
 
 .header__nav-item {
   margin-bottom: 15px
+}
+
+.header__nav-item:not(:last-child) {
+  margin-right: 15px
 }
 
 .header__nav-link {
@@ -2027,6 +2032,7 @@ img {
   position: relative;
   width: 80px;
   height: 80px;
+  margin: auto;
 }
 
 .spinner div {
@@ -2063,3 +2069,4 @@ img {
     transform: rotate(360deg);
   }
 }
+
