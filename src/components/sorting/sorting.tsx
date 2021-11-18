@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
+
+import ApiService from '../../services/api-service';
 import { TState } from '../../store/reducer';
 import { ActionCreator } from '../../store/action';
 import { SortType } from '../../const';
+
+import withApiServices from '../../hocs/with-api-services';
 
 type SortingProps = {
   currentSortType: SortType,
@@ -20,6 +24,10 @@ function Sorting({ currentSortType, changeSortType }: SortingProps): React.React
   };
 
   const onOptionClick = (sortType: SortType) => {
+    if (sortType === currentSortType) {
+      return;
+    }
+
     changeSortType(sortType);
     setSortMenuOpened((prevState) => !prevState);
   };
@@ -65,12 +73,14 @@ const mapStateToProps = (state: TState) => ({
   currentSortType: state.currentSortType,
 });
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
+const mapDispatchToProps = (dispatch: Dispatch, { apiService }: {apiService: ApiService}) => ({
   changeSortType: (sortType: SortType) => {
     dispatch(ActionCreator.changeSortType(sortType));
-    dispatch(ActionCreator.setOffers());
+    ActionCreator.fetchOffers(apiService, dispatch)();
   },
 });
 
 export { Sorting };
-export default connect(mapStateToProps, mapDispatchToProps)(Sorting);
+export default withApiServices()(
+  connect(mapStateToProps, mapDispatchToProps)(Sorting),
+);

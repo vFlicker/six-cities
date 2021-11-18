@@ -7,7 +7,6 @@ export enum ActionType {
   CHANGE_CITY_NAME = 'CHANGE_CITY_NAME',
   CHANGE_SORT_TYPE = 'CHANGE_SORT_TYPE',
   SET_ACTIVE_CARD = 'SET_ACTIVE_CARD',
-  SET_OFFERS = 'SET_OFFERS',
   FETCH_OFFERS_REQUEST = 'FETCH_OFFERS_REQUEST',
   FETCH_OFFERS_SUCCESS = 'FETCH_OFFERS_SUCCESS',
   FETCH_OFFERS_FAILURE = 'FETCH_OFFERS_FAILURE',
@@ -25,9 +24,6 @@ export const ActionCreator = {
   setActiveCard: (cardId: number): {type: ActionType, payload: number} => ({
     type: ActionType.SET_ACTIVE_CARD,
     payload: cardId,
-  }),
-  setOffers: (): {type: ActionType} => ({
-    type: ActionType.SET_OFFERS,
   }),
   offersRequested: (): {type: ActionType} => ({
     type: ActionType.FETCH_OFFERS_REQUEST,

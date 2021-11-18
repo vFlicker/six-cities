@@ -2,7 +2,6 @@ import { ActionType } from './action';
 import { CityName, SortType } from '../const';
 import { TOffer } from '../types';
 import { sortByPriceHighToLow, sortByPriceLowToHigh, topRatedFirst } from '../utils';
-import { offers as fetchOffers } from '../mocks';
 
 export type TState = {
   activeCardId: number,
@@ -22,9 +21,6 @@ type TAction = {
 } | {
   type: ActionType.CHANGE_SORT_TYPE,
   payload: SortType,
-} | {
-  type: ActionType.SET_OFFERS,
-  payload: CityName,
 } | {
   type: ActionType.FETCH_OFFERS_REQUEST,
 } | {
@@ -80,11 +76,6 @@ export const reducer = (state = initialState, action: TAction): TState => {
         ...state,
         currentSortType: action.payload,
       };
-    case ActionType.SET_OFFERS:
-      return {
-        ...state,
-        offers: getOffers(state, fetchOffers),
-      };
     case ActionType.FETCH_OFFERS_REQUEST:
       return {
         ...state,
@@ -95,7 +86,7 @@ export const reducer = (state = initialState, action: TAction): TState => {
     case ActionType.FETCH_OFFERS_SUCCESS:
       return {
         ...state,
-        offers: action.payload.slice(0, 6),
+        offers: getOffers(state, action.payload),
         loading: false,
         error: null,
       };

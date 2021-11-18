@@ -1,21 +1,31 @@
 import React, { MouseEvent, PropsWithChildren } from 'react';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
+
+import ApiService from '../../services/api-service';
 import { ActionCreator } from '../../store/action';
 import { TState } from '../../store/reducer';
 import { CityName } from '../../const';
+
 import LocationsItem from '../locations-item';
+
+import withApiServices from '../../hocs/with-api-services';
 
 type LocationsListProps = {
   currentCityName: CityName,
   changeCityName: (currentCityName: CityName) => void
 };
 
-function LocationsList(
-  { currentCityName, changeCityName }: PropsWithChildren<LocationsListProps>,
-): React.ReactElement {
+function LocationsList(props: PropsWithChildren<LocationsListProps>): React.ReactElement {
+  const { currentCityName, changeCityName } = props;
+
   const clickHandler = (evt: MouseEvent, cityName: CityName) => {
     evt.preventDefault();
+
+    if (cityName === currentCityName) {
+      return;
+    }
+
     changeCityName(cityName);
   };
 
@@ -42,12 +52,14 @@ const mapStateToProps = (state: TState) => ({
   currentCityName: state.currentCityName,
 });
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
+const mapDispatchToProps = (dispatch: Dispatch, { apiService }: {apiService: ApiService}) => ({
   changeCityName: (cityName: CityName) => {
     dispatch(ActionCreator.changeCityName(cityName));
-    dispatch(ActionCreator.setOffers());
+    ActionCreator.fetchOffers(apiService, dispatch)();
   },
 });
 
 export { LocationsList };
-export default connect(mapStateToProps, mapDispatchToProps)(LocationsList);
+export default withApiServices()(
+  connect(mapStateToProps, mapDispatchToProps)(LocationsList),
+);
