@@ -10,7 +10,13 @@ export enum AppRoute {
   FAVORITES = '/favorites',
   LOGIN = '/login',
   OFFERS = '/offers/:id',
-  ROOT = '/'
+  ROOT = '/',
+}
+
+export enum AuthorizationStatus {
+  AUTH = 'AUTH',
+  NO_AUTH = 'NO_AUTH',
+  UNKNOWN = 'UNKNOWN',
 }
 
 export const BACKEND_URL = 'https://6.react.pages.academy/six-cities';

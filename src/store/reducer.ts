@@ -1,5 +1,5 @@
 import { ActionType } from './action';
-import { CityName, SortType } from '../const';
+import { AuthorizationStatus, CityName, SortType } from '../const';
 import { TOffer } from '../types';
 import { sortByPriceHighToLow, sortByPriceLowToHigh, topRatedFirst } from '../utils';
 
@@ -10,6 +10,7 @@ export type TState = {
   offers: TOffer[],
   loading: boolean,
   error: null | string,
+  authorizationStatus: AuthorizationStatus,
 };
 
 type TAction = {
@@ -57,6 +58,7 @@ const initialState: TState = {
   offers: [],
   loading: true,
   error: null,
+  authorizationStatus: AuthorizationStatus.NO_AUTH,
 };
 
 export const reducer = (state = initialState, action: TAction): TState => {
