@@ -1,15 +1,22 @@
 import { Dispatch } from 'redux';
-import { CityName, SortType } from '../const';
-import { TOffer } from '../types';
+
 import ApiService from '../services/api-service';
+import ApiError from '../services/api-error';
+import { TAuthData, TOffer, TUser } from '../types';
+import { CityName, SortType } from '../const';
 
 export enum ActionType {
   CHANGE_CITY_NAME = 'CHANGE_CITY_NAME',
   CHANGE_SORT_TYPE = 'CHANGE_SORT_TYPE',
   SET_ACTIVE_CARD = 'SET_ACTIVE_CARD',
+
   FETCH_OFFERS_REQUEST = 'FETCH_OFFERS_REQUEST',
   FETCH_OFFERS_SUCCESS = 'FETCH_OFFERS_SUCCESS',
   FETCH_OFFERS_FAILURE = 'FETCH_OFFERS_FAILURE',
+
+  LOGIN_REQUEST = 'LOGIN_REQUEST',
+  LOGIN_SUCCESS = 'LOGIN_SUCCESS',
+  LOGIN_FAILURE = 'LOGIN_FAILURE',
 }
 
 export const ActionCreator = {
@@ -25,6 +32,7 @@ export const ActionCreator = {
     type: ActionType.SET_ACTIVE_CARD,
     payload: cardId,
   }),
+
   offersRequested: (): {type: ActionType} => ({
     type: ActionType.FETCH_OFFERS_REQUEST,
   }),
@@ -32,7 +40,7 @@ export const ActionCreator = {
     type: ActionType.FETCH_OFFERS_SUCCESS,
     payload: offers,
   }),
-  offersError: (error: string): {type: ActionType, payload: string} => ({
+  offersError: (error: ApiError): {type: ActionType, payload: ApiError} => ({
     type: ActionType.FETCH_OFFERS_FAILURE,
     payload: error,
   }),
@@ -40,6 +48,24 @@ export const ActionCreator = {
     dispatch(ActionCreator.offersRequested());
     apiService.getHotels()
       .then((data) => dispatch(ActionCreator.offersLoaded(data)))
-      .catch((err) => dispatch(ActionCreator.offersError(err)));
+      .catch((err: ApiError) => dispatch(ActionCreator.offersError(err)));
+  },
+
+  loginRequest: (): {type: ActionType} => ({
+    type: ActionType.LOGIN_REQUEST,
+  }),
+  loginSuccess: (userData: TUser): {type: ActionType, payload: TUser} => ({
+    type: ActionType.LOGIN_SUCCESS,
+    payload: userData,
+  }),
+  loginFailure: (error: ApiError): {type: ActionType, payload: ApiError} => ({
+    type: ActionType.LOGIN_FAILURE,
+    payload: error,
+  }),
+  login: (apiService: ApiService, dispatch: Dispatch) => (authData: TAuthData): void => {
+    dispatch(ActionCreator.loginRequest());
+    apiService.login(authData)
+      .then((userData) => dispatch(ActionCreator.loginSuccess(userData)))
+      .catch((err: ApiError) => dispatch(ActionCreator.loginFailure(err)));
   },
 };

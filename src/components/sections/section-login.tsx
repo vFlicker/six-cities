@@ -1,10 +1,43 @@
-import React from 'react';
+import React, { FormEvent, useRef } from 'react';
+import { Dispatch } from 'redux';
+import { connect } from 'react-redux';
 
-function SectionLogin(): React.ReactElement {
+import ApiService from '../../services/api-service';
+import { ActionCreator } from '../../store/action';
+import { TAuthData } from '../../types';
+
+import withApiServices from '../../hocs/with-api-services';
+
+type SectionLoginProps = {
+  onSubmit: (data: TAuthData) => void,
+};
+
+function SectionLogin({ onSubmit }: SectionLoginProps): React.ReactElement {
+  const emailRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
+
+  const handleSubmit = (evt: FormEvent) => {
+    evt.preventDefault();
+
+    if (!emailRef.current || !passwordRef.current) {
+      return;
+    }
+
+    onSubmit({
+      email: emailRef.current.value,
+      password: passwordRef.current.value,
+    });
+  };
+
   return (
     <section className="login">
       <h1 className="login__title">Sign in</h1>
-      <form className="login__form form" action="#" method="post">
+      <form
+        className="login__form form"
+        action="#"
+        method="post"
+        onSubmit={handleSubmit}
+      >
         <div className="login__input-wrapper form__input-wrapper">
           <label htmlFor="email" className="visually-hidden">E-mail</label>
           <input
@@ -14,6 +47,7 @@ function SectionLogin(): React.ReactElement {
             name="email"
             placeholder="Email"
             required
+            ref={emailRef}
           />
         </div>
         <div className="login__input-wrapper form__input-wrapper">
@@ -25,12 +59,24 @@ function SectionLogin(): React.ReactElement {
             name="password"
             placeholder="Password"
             required
+            ref={passwordRef}
           />
         </div>
-        <button className="login__submit form__submit button" type="submit">Sign in</button>
+        <button className="login__submit form__submit button" type="submit">
+          Sign in
+        </button>
       </form>
     </section>
   );
 }
 
-export default SectionLogin;
+const mapDispatchToProps = (dispatch: Dispatch, { apiService }: {apiService: ApiService}) => ({
+  onSubmit: (authData: TAuthData) => {
+    ActionCreator.login(apiService, dispatch)(authData);
+  },
+});
+
+export { SectionLogin };
+export default withApiServices()(
+  connect(null, mapDispatchToProps)(SectionLogin),
+);

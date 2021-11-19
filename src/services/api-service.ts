@@ -1,6 +1,13 @@
 import ApiError from './api-error';
 import { ApiRoute } from '../const';
-import { TOfferServer, TOffer, TReview } from '../types';
+import {
+  TOfferServer,
+  TOffer,
+  TReview,
+  TUserServer,
+  TUser,
+  TAuthData
+} from '../types';
 
 enum Method {
   GET = 'GET',
@@ -52,6 +59,19 @@ export default class ApiService {
     return adaptOffer;
   };
 
+  private static transformUser = (user: TUserServer) => {
+    const adaptUser = {
+      ...user,
+      avatarUrl: user.avatar_url,
+      isPro: user.is_pro,
+    };
+
+    delete adaptUser.avatar_url;
+    delete adaptUser.is_pro;
+
+    return adaptUser;
+  };
+
   private get = async <T>(url: string): Promise<T> => {
     const fullUrl = `${this.apiBase}/${url}`;
 
@@ -63,7 +83,7 @@ export default class ApiService {
     await ApiService.checkStatus(response);
 
     return response.json();
-  }
+  };
 
   getComments = async (id: number): Promise<TReview[]> => (
     this.get<TReview[]>(`${ApiRoute.COMMENTS}/${id}`)
@@ -72,5 +92,22 @@ export default class ApiService {
   getHotels = async (): Promise<TOffer[]> => {
     const offers = await this.get<TOfferServer[]>(ApiRoute.HOTELS);
     return offers.map((offer) => ApiService.transformOffer(offer));
+  };
+
+  login = async (data: TAuthData): Promise<TUser> => {
+    const fullUrl = `${this.apiBase}/${ApiRoute.LOGIN}`;
+
+    const response = await fetch(fullUrl, {
+      method: Method.POST,
+      credentials: 'same-origin',
+      body: JSON.stringify(data),
+      headers: new Headers({ 'Content-Type': 'application/json' }),
+    });
+
+    await ApiService.checkStatus(response);
+
+    const parsedResponse = await response.json();
+
+    return ApiService.transformUser(parsedResponse);
   };
 }

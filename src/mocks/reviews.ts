@@ -7,6 +7,7 @@ const reviews = [
     user: {
       id: 3,
       avatarUrl: 'img/avatar-angelina.jpg',
+      email: 'img/avatar-angelina.jpg',
       isPro: true,
       name: 'Angelina',
     },
@@ -19,6 +20,7 @@ const reviews = [
     user: {
       id: 2,
       avatarUrl: 'img/avatar-max.jpg',
+      email: 'img/avatar-angelina.jpg',
       isPro: false,
       name: 'Max',
     },

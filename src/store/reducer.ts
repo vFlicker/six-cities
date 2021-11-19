@@ -1,7 +1,8 @@
 import { ActionType } from './action';
 import { AuthorizationStatus, CityName, SortType } from '../const';
-import { TOffer } from '../types';
+import { TOffer, TUser } from '../types';
 import { sortByPriceHighToLow, sortByPriceLowToHigh, topRatedFirst } from '../utils';
+import ApiError from '../services/api-error';
 
 export type TState = {
   activeCardId: number,
@@ -9,9 +10,10 @@ export type TState = {
   currentSortType: SortType,
   offers: TOffer[],
   loading: boolean,
-  error: null | string,
+  error: null | ApiError,
   authorizationStatus: AuthorizationStatus,
-};
+  user: TUser | null
+}
 
 type TAction = {
   type: ActionType.SET_ACTIVE_CARD,
@@ -29,8 +31,16 @@ type TAction = {
   payload: TOffer[],
 } | {
   type: ActionType.FETCH_OFFERS_FAILURE,
-  payload: string,
-};
+  payload: ApiError,
+} | {
+  type: ActionType.LOGIN_REQUEST,
+} | {
+  type: ActionType.LOGIN_SUCCESS,
+  payload: TUser,
+} | {
+  type: ActionType.LOGIN_FAILURE,
+  payload: ApiError,
+}
 
 const getOffers = (state: TState, offers: TOffer[]) => {
   const { currentCityName, currentSortType } = state;
@@ -59,6 +69,7 @@ const initialState: TState = {
   loading: true,
   error: null,
   authorizationStatus: AuthorizationStatus.NO_AUTH,
+  user: null,
 };
 
 export const reducer = (state = initialState, action: TAction): TState => {
@@ -78,6 +89,7 @@ export const reducer = (state = initialState, action: TAction): TState => {
         ...state,
         currentSortType: action.payload,
       };
+
     case ActionType.FETCH_OFFERS_REQUEST:
       return {
         ...state,
@@ -99,6 +111,32 @@ export const reducer = (state = initialState, action: TAction): TState => {
         loading: false,
         error: action.payload,
       };
+
+    case ActionType.LOGIN_REQUEST:
+      return {
+        ...state,
+        authorizationStatus: AuthorizationStatus.UNKNOWN,
+        user: null,
+        loading: true,
+        error: null,
+      };
+    case ActionType.LOGIN_SUCCESS:
+      return {
+        ...state,
+        authorizationStatus: AuthorizationStatus.AUTH,
+        user: action.payload,
+        loading: false,
+        error: null,
+      };
+    case ActionType.LOGIN_FAILURE:
+      return {
+        ...state,
+        authorizationStatus: AuthorizationStatus.NO_AUTH,
+        user: null,
+        loading: false,
+        error: action.payload,
+      };
+
     default:
       return state;
   }

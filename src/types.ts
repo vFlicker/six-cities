@@ -8,6 +8,11 @@ type CamelToSnakeCaseNested<T> = {
   [K in keyof T as CamelToSnakeCase<Extract<K, string>>]: T[K]
 };
 
+type TAuthData = {
+  email: string,
+  password: string,
+};
+
 type TCity = {
   location: TLocation,
   name: string,
@@ -58,14 +63,20 @@ type TReview = {
 };
 
 type TUser = {
+  avatarUrl?: string,
+  email: string,
   id: number,
-  avatarUrl: string,
-  isPro: boolean,
+  isPro?: boolean,
   name: string,
 };
 
+type TUserServer = CamelToSnakeCaseNested<TUser>;
+
 export type {
+  TAuthData,
   TOffer,
   TOfferServer,
-  TReview
+  TReview,
+  TUser,
+  TUserServer
 };
