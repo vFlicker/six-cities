@@ -1,8 +1,8 @@
+import ApiError from '../services/api-error';
 import { ActionType } from './action';
 import { AuthorizationStatus, CityName, SortType } from '../const';
 import { TOffer, TUser } from '../types';
 import { sortByPriceHighToLow, sortByPriceLowToHigh, topRatedFirst } from '../utils';
-import ApiError from '../services/api-error';
 
 export type TState = {
   activeCardId: number,
