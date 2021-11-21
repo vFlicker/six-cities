@@ -78,5 +78,5 @@ export type {
   TOfferServer,
   TReview,
   TUser,
-  TUserServer
+  TUserServer,
 };

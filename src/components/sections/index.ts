@@ -23,5 +23,5 @@ export {
   SectionNotFound,
   SectionPlaces,
   SectionProperty,
-  SectionReviews
+  SectionReviews,
 };

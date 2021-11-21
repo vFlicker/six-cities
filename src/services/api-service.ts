@@ -6,7 +6,7 @@ import {
   TReview,
   TUserServer,
   TUser,
-  TAuthData
+  TAuthData,
 } from '../types';
 
 enum Method {

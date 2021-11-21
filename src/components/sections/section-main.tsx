@@ -17,7 +17,7 @@ import {
   SectionLocations,
   SectionMainEmpty,
   SectionMap,
-  SectionPlaces
+  SectionPlaces,
 } from './index';
 
 import withApiServices from '../../hocs/with-api-services';

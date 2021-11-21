@@ -10,10 +10,10 @@
     "sourceType": "module"
   },
   "extends": [
-    "plugin:react/recommended",
-    "plugin:@typescript-eslint/recommended",
+    "htmlacademy/react",
     "airbnb",
-    "htmlacademy/react"
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended"
   ],
   "plugins": ["react", "@typescript-eslint"],
   "settings": {
@@ -31,14 +31,10 @@
     }],
     "jsx-a11y/label-has-associated-control": "off",
     "jsx-a11y/no-noninteractive-tabindex": "off",
-    "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
-    "react/prop-types": "off",
-    "react/jsx-props-no-spreading": "off",
     "no-console": "off",
     "no-shadow": "off",
     "no-use-before-define": "off",
-    "@typescript-eslint/no-shadow": ["error"],
-    "@typescript-eslint/no-unused-vars": [2, { "args": "none" }],
-    "@typescript-eslint/no-use-before-define": ["error"]
+    "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
+    "react/jsx-props-no-spreading": "off"
   }
 }

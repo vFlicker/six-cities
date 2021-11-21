@@ -7,5 +7,5 @@ export {
   CardItemType,
   CardItemCities,
   CardItemFavorites,
-  CardItemNearPlaces
+  CardItemNearPlaces,
 };

@@ -7,7 +7,7 @@ import { AppRoute, AuthorizationStatus } from '../../const';
 
 import {
   SectionHeader,
-  SectionMain
+  SectionMain,
 } from '../sections';
 
 type MainPageProps = {

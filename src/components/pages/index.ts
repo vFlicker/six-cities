@@ -9,5 +9,5 @@ export {
   LoginPage,
   MainPage,
   NotFoundPage,
-  OfferPage
+  OfferPage,
 };

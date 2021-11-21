@@ -2,7 +2,7 @@ import React, {
   ComponentType,
   PropsWithChildren,
   ReactElement,
-  useContext
+  useContext,
 } from 'react';
 import ApiService from '../services/api-service';
 import { ApiServiceContext } from '../components/api-service-context';

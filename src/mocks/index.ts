@@ -3,5 +3,5 @@ import offers from './offers';
 
 export {
   reviews,
-  offers
+  offers,
 };

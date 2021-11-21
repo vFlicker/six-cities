@@ -7,7 +7,7 @@ import {
   LoginPage,
   MainPage,
   NotFoundPage,
-  OfferPage
+  OfferPage,
 } from '../pages';
 
 type AppProps = {

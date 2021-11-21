@@ -8,5 +8,5 @@ const { Provider: ApiServiceProvider } = ApiServiceContext;
 
 export {
   ApiServiceContext,
-  ApiServiceProvider
+  ApiServiceProvider,
 };

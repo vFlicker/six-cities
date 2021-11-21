@@ -10,7 +10,7 @@ import { TOffer } from '../../types';
 import {
   CardItemCities,
   CardItemFavorites,
-  CardItemNearPlaces
+  CardItemNearPlaces,
 } from '../card-item';
 
 type CardListProps = {
