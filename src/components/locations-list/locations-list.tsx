@@ -19,7 +19,7 @@ type LocationsListProps = {
 function LocationsList(props: PropsWithChildren<LocationsListProps>): React.ReactElement {
   const { currentCityName, changeCityName } = props;
 
-  const clickHandler = (evt: MouseEvent, cityName: CityName) => {
+  const handleLocationsItemClick = (evt: MouseEvent, cityName: CityName) => {
     evt.preventDefault();
 
     if (cityName === currentCityName) {
@@ -39,7 +39,7 @@ function LocationsList(props: PropsWithChildren<LocationsListProps>): React.Reac
             <LocationsItem
               className={`tabs__item ${activeClass}`}
               cityName={cityName}
-              onClick={(evt: MouseEvent) => clickHandler(evt, cityName)}
+              onLocationsItemClick={(evt: MouseEvent) => handleLocationsItemClick(evt, cityName)}
             />
           </li>
         );

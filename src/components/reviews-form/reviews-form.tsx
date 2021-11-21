@@ -8,15 +8,15 @@ function ReviewsForm(): React.ReactElement {
   const [rating, setRating] = useState<number>(0);
   const [review, setReview] = useState<string>('');
 
-  const ratingToggleHandler = (count: number) => {
+  const handleRatingToggle = (count: number) => {
     setRating(() => count);
   };
 
-  const textareaChangeHandler = (evt: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleTextareaChange = (evt: React.ChangeEvent<HTMLTextAreaElement>) => {
     setReview(evt.target.value);
   };
 
-  const submitHandler = (evt: React.FormEvent) => {
+  const handleFormSubmit = (evt: React.FormEvent) => {
     evt.preventDefault();
   };
 
@@ -25,17 +25,17 @@ function ReviewsForm(): React.ReactElement {
   return (
     <form
       className="reviews__form form"
-      onSubmit={submitHandler}
+      onSubmit={handleFormSubmit}
     >
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
-      <RatingList rating={rating} ratingToggleHandler={ratingToggleHandler} />
+      <RatingList rating={rating} onRatingToggle={handleRatingToggle} />
       <textarea
         className="reviews__textarea form__textarea"
         id="review"
         name="review"
         placeholder="Tell how was your stay, what you like and what can be improved"
         value={review}
-        onChange={textareaChangeHandler}
+        onChange={handleTextareaChange}
       />
       <div className="reviews__button-wrapper">
         <p className="reviews__help">

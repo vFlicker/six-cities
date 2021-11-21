@@ -28,16 +28,16 @@ const getCardListClass: Record<CardType, string> = {
 const getComponentByType = (
   type: CardType,
   offer: TOffer,
-  onMouseEnter: (evt: React.MouseEvent) => void,
-  onMouseLeave: (evt: React.MouseEvent) => void,
+  handleCardItemMouseEnter: (evt: React.MouseEvent) => void,
+  handleCardItemMouseLeave: (evt: React.MouseEvent) => void,
 ) => {
   switch (type) {
     case CardType.CITIES:
       return (
         <CardItemCities
           offer={offer}
-          onMouseEnter={onMouseEnter}
-          onMouseLeave={onMouseLeave}
+          onCardItemMouseEnter={handleCardItemMouseEnter}
+          onCardItemMouseLeave={handleCardItemMouseLeave}
         />
       );
     case CardType.FAVORITES:
@@ -69,17 +69,22 @@ function CardList(props: PropsWithChildren<CardListProps>): React.ReactElement {
   return (
     <div className={cardListClass}>
       {offers.map((offer) => {
-        const onMouseEnter = () => {
+        const handleCardItemMouseEnter = () => {
           setActiveCard(offer.id);
         };
 
-        const onMouseLeave = () => {
+        const handleCardItemMouseLeave = () => {
           setActiveCard(-1);
         };
 
         return (
           <Fragment key={offer.id}>
-            {getComponentByType(cardType, offer, onMouseEnter, onMouseLeave)}
+            {getComponentByType(
+              cardType,
+              offer,
+              handleCardItemMouseEnter,
+              handleCardItemMouseLeave,
+            )}
           </Fragment>
         );
       })}

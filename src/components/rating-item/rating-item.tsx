@@ -11,7 +11,7 @@ function RatingItem(props: PropsWithChildren<RatingItemProps>): React.ReactEleme
     title,
     currentItem,
     rating,
-    ratingToggleHandler,
+    onRatingToggle,
   } = props;
 
   const isChecked = rating === currentItem;
@@ -25,7 +25,7 @@ function RatingItem(props: PropsWithChildren<RatingItemProps>): React.ReactEleme
         id={`${currentItem}-stars`}
         type="radio"
         checked={isChecked}
-        onChange={() => ratingToggleHandler(currentItem)}
+        onChange={() => onRatingToggle(currentItem)}
       />
       <label
         htmlFor={`${currentItem}-stars`}

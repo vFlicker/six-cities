@@ -5,11 +5,11 @@ const RatingTitles: string[] = ['perfect', 'good', 'not bad', 'badly', 'terribly
 
 export type RatingListProps = {
   rating: number,
-  ratingToggleHandler: (rating: number) => void
+  onRatingToggle: (rating: number) => void
 }
 
 function RatingList(props: PropsWithChildren<RatingListProps>): React.ReactElement {
-  const { rating, ratingToggleHandler } = props;
+  const { rating, onRatingToggle } = props;
 
   return (
     <div className="reviews__rating-form form__rating">
@@ -22,7 +22,7 @@ function RatingList(props: PropsWithChildren<RatingListProps>): React.ReactEleme
             title={title}
             currentItem={currentItem}
             rating={rating}
-            ratingToggleHandler={ratingToggleHandler}
+            onRatingToggle={onRatingToggle}
           />
         );
       })}

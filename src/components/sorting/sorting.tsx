@@ -19,11 +19,11 @@ function Sorting({ currentSortType, changeSortType }: SortingProps): React.React
 
   const activeClass = sortMenuOpened ? 'places__options--opened ' : '';
 
-  const onSortTypeClick = () => {
+  const handleSortTypeClick = () => {
     setSortMenuOpened((prevState) => !prevState);
   };
 
-  const onOptionClick = (sortType: SortType) => {
+  const handleOptionClick = (sortType: SortType) => {
     if (sortType === currentSortType) {
       return;
     }
@@ -40,8 +40,8 @@ function Sorting({ currentSortType, changeSortType }: SortingProps): React.React
         className="places__sorting-type"
         tabIndex={0}
         role="button"
-        onClick={onSortTypeClick}
-        onKeyDown={onSortTypeClick}
+        onClick={handleSortTypeClick}
+        onKeyDown={handleSortTypeClick}
       >
         {currentSortType}
         <svg className="places__sorting-arrow" width="7" height="4">
@@ -57,8 +57,8 @@ function Sorting({ currentSortType, changeSortType }: SortingProps): React.React
               className={`places__option ${optionClass}`}
               tabIndex={0}
               role="presentation"
-              onClick={() => onOptionClick(sortType)}
-              onKeyDown={() => onOptionClick(sortType)}
+              onClick={() => handleOptionClick(sortType)}
+              onKeyDown={() => handleOptionClick(sortType)}
             >
               {sortType}
             </li>

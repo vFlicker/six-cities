@@ -5,15 +5,15 @@ import { AppRoute, CityName } from '../../const';
 type LocationsItemProps = {
   className?: string,
   cityName: CityName,
-  onClick?: (evt: MouseEvent) => void,
+  onLocationsItemClick?: (evt: MouseEvent) => void,
 };
 
-function LocationsItem({ className = '', cityName, onClick }: PropsWithChildren<LocationsItemProps>): React.ReactElement {
+function LocationsItem({ className = '', cityName, onLocationsItemClick }: PropsWithChildren<LocationsItemProps>): React.ReactElement {
   return (
     <Link
       to={AppRoute.ROOT}
       className={`locations__item-link ${className}`}
-      onClick={onClick}
+      onClick={onLocationsItemClick}
     >
       <span>{cityName}</span>
     </Link>
