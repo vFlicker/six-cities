@@ -1,4 +1,4 @@
-import ApiError from '../services/api-error';
+import ApiError from '../errors';
 import { ActionType } from './action';
 import { AuthorizationStatus, CityName, SortType } from '../const';
 import { TOffer, TUser } from '../types';

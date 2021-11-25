@@ -1,10 +1,10 @@
-import ApiError from './api-error';
+import Adapter from './adapter';
+import ApiError from '../errors';
 import { ApiRoute } from '../const';
 import {
   TOfferServer,
   TOffer,
   TReview,
-  TUserServer,
   TUser,
   TAuthData,
 } from '../types';
@@ -25,52 +25,22 @@ export default class ApiService {
 
   private static checkStatus = async (response: Response): Promise<void> => {
     if (!response.ok) {
+      let serverResponse: { status: string; error: string } | null;
+
       const errorText = await response.text();
 
       try {
-        JSON.parse(errorText);
+        serverResponse = JSON.parse(errorText);
       } catch (err) {
         throw new ApiError({ message: errorText, status: response.status });
       }
+
+      throw new ApiError({
+        message: serverResponse ? serverResponse.error : errorText,
+        status: response.status,
+      });
     }
   }
-
-  private static transformOffer = (offer: TOfferServer) => {
-    const adaptOffer = {
-      ...offer,
-      previewImage: offer.preview_image,
-      isFavorite: offer.is_favorite,
-      isPremium: offer.is_premium,
-      maxAdults: offer.max_adults,
-      host: {
-        ...offer.host,
-        isPro: offer.host.is_pro,
-        avatarUrl: offer.host.avatar_url,
-      },
-    };
-
-    delete adaptOffer.preview_image;
-    delete adaptOffer.is_favorite;
-    delete adaptOffer.is_premium;
-    delete adaptOffer.max_adults;
-    delete adaptOffer.host.is_pro;
-    delete adaptOffer.host.avatar_url;
-
-    return adaptOffer;
-  };
-
-  private static transformUser = (user: TUserServer) => {
-    const adaptUser = {
-      ...user,
-      avatarUrl: user.avatar_url,
-      isPro: user.is_pro,
-    };
-
-    delete adaptUser.avatar_url;
-    delete adaptUser.is_pro;
-
-    return adaptUser;
-  };
 
   private get = async <T>(url: string): Promise<T> => {
     const fullUrl = `${this.apiBase}/${url}`;
@@ -91,7 +61,7 @@ export default class ApiService {
 
   getHotels = async (): Promise<TOffer[]> => {
     const offers = await this.get<TOfferServer[]>(ApiRoute.HOTELS);
-    return offers.map((offer) => ApiService.transformOffer(offer));
+    return offers.map((offer) => Adapter.transformOffer(offer));
   };
 
   login = async (data: TAuthData): Promise<TUser> => {
@@ -108,6 +78,6 @@ export default class ApiService {
 
     const parsedResponse = await response.json();
 
-    return ApiService.transformUser(parsedResponse);
+    return Adapter.transformUser(parsedResponse);
   };
 }

@@ -1,7 +1,7 @@
 import { Dispatch } from 'redux';
 
 import ApiService from '../services/api-service';
-import ApiError from '../services/api-error';
+import ApiError from '../errors';
 import { TAuthData, TOffer, TUser } from '../types';
 import { CityName, SortType } from '../const';
 
