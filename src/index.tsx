@@ -1,30 +1,30 @@
 import React, { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
-import { createStore } from 'redux';
+import { applyMiddleware, createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
 import { reducer } from './store/reducer';
 import { offers, reviews } from './mocks';
 import createApiService from './services/api-service';
 import App from './components/app';
-import { ApiServiceProvider } from './components/api-service-context';
+
+const apiService = createApiService();
 
 const store = createStore(
   reducer,
-  composeWithDevTools(),
+  composeWithDevTools(
+    applyMiddleware(thunk.withExtraArgument(apiService)),
+  ),
 );
-
-const apiService = createApiService();
 
 ReactDOM.render(
   <StrictMode>
     <Provider store={store}>
-      <ApiServiceProvider value={apiService}>
-        <App
-          offers={offers}
-          reviews={reviews}
-        />
-      </ApiServiceProvider>
+      <App
+        offers={offers}
+        reviews={reviews}
+      />
     </Provider>
   </StrictMode>,
   document.getElementById('root'),

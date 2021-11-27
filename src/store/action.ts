@@ -1,7 +1,9 @@
-import { Dispatch } from 'redux';
+import { Action } from 'redux';
+import { ThunkAction, ThunkDispatch } from 'redux-thunk';
 import { AxiosInstance } from 'axios';
 
 import Adapter from '../services/adapter';
+import { TState } from './reducer';
 import ApiError from '../errors';
 import {
   TAuthData,
@@ -29,6 +31,9 @@ export enum ActionType {
   LOGIN_FAILURE = 'LOGIN_FAILURE',
 }
 
+export type TDispatch = ThunkDispatch<TState, AxiosInstance, Action>;
+export type TThunk = ThunkAction<void, TState, AxiosInstance, Action>;
+
 export const ActionCreator = {
   changeCityName: (cityName: CityName): {type: ActionType, payload: CityName} => ({
     type: ActionType.CHANGE_CITY_NAME,
@@ -54,7 +59,7 @@ export const ActionCreator = {
     type: ActionType.FETCH_OFFERS_FAILURE,
     payload: error,
   }),
-  fetchOffers: (apiService: AxiosInstance, dispatch: Dispatch) => (): void => {
+  fetchOffers: (): TThunk => (dispatch, _getState, apiService) => {
     dispatch(ActionCreator.offersRequested());
 
     apiService.get<TOfferServer[]>(`${ApiRoute.HOTELS}`)
@@ -74,7 +79,7 @@ export const ActionCreator = {
     type: ActionType.LOGIN_FAILURE,
     payload: error,
   }),
-  login: (apiService: AxiosInstance, dispatch: Dispatch) => (authData: TAuthData): void => {
+  login: (authData: TAuthData): TThunk => (dispatch, _getState, apiService) => {
     dispatch(ActionCreator.loginRequest());
 
     apiService.post<TUser>(ApiRoute.LOGIN, authData)

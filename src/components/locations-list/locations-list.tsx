@@ -1,15 +1,11 @@
 import React, { MouseEvent, PropsWithChildren } from 'react';
-import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import { AxiosInstance } from 'axios';
 
-import { ActionCreator } from '../../store/action';
+import { ActionCreator, TDispatch } from '../../store/action';
 import { TState } from '../../store/reducer';
 import { CityName } from '../../const';
 
 import LocationsItem from '../locations-item';
-
-import withApiServices from '../../hocs/with-api-services';
 
 type LocationsListProps = {
   currentCityName: CityName,
@@ -52,14 +48,12 @@ const mapStateToProps = (state: TState) => ({
   currentCityName: state.currentCityName,
 });
 
-const mapDispatchToProps = (dispatch: Dispatch, { apiService }: {apiService: AxiosInstance}) => ({
+const mapDispatchToProps = (dispatch: TDispatch) => ({
   changeCityName: (cityName: CityName) => {
     dispatch(ActionCreator.changeCityName(cityName));
-    ActionCreator.fetchOffers(apiService, dispatch)();
+    dispatch(ActionCreator.fetchOffers());
   },
 });
 
 export { LocationsList };
-export default withApiServices()(
-  connect(mapStateToProps, mapDispatchToProps)(LocationsList),
-);
+export default connect(mapStateToProps, mapDispatchToProps)(LocationsList);

@@ -1,13 +1,9 @@
 import React, { useState } from 'react';
-import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import { AxiosInstance } from 'axios';
 
 import { TState } from '../../store/reducer';
-import { ActionCreator } from '../../store/action';
+import { ActionCreator, TDispatch } from '../../store/action';
 import { SortType } from '../../const';
-
-import withApiServices from '../../hocs/with-api-services';
 
 type SortingProps = {
   currentSortType: SortType,
@@ -73,14 +69,12 @@ const mapStateToProps = (state: TState) => ({
   currentSortType: state.currentSortType,
 });
 
-const mapDispatchToProps = (dispatch: Dispatch, { apiService }: {apiService: AxiosInstance}) => ({
+const mapDispatchToProps = (dispatch: TDispatch) => ({
   changeSortType: (sortType: SortType) => {
     dispatch(ActionCreator.changeSortType(sortType));
-    ActionCreator.fetchOffers(apiService, dispatch)();
+    dispatch(ActionCreator.fetchOffers());
   },
 });
 
 export { Sorting };
-export default withApiServices()(
-  connect(mapStateToProps, mapDispatchToProps)(Sorting),
-);
+export default connect(mapStateToProps, mapDispatchToProps)(Sorting);

@@ -1,12 +1,8 @@
 import React, { FormEvent, useRef } from 'react';
-import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import { AxiosInstance } from 'axios';
 
-import { ActionCreator } from '../../store/action';
+import { ActionCreator, TDispatch } from '../../store/action';
 import { TAuthData } from '../../types';
-
-import withApiServices from '../../hocs/with-api-services';
 
 type SectionLoginProps = {
   onSubmit: (data: TAuthData) => void,
@@ -70,13 +66,11 @@ function SectionLogin({ onSubmit }: SectionLoginProps): React.ReactElement {
   );
 }
 
-const mapDispatchToProps = (dispatch: Dispatch, { apiService }: {apiService: AxiosInstance}) => ({
+const mapDispatchToProps = (dispatch: TDispatch) => ({
   onSubmit: (authData: TAuthData) => {
-    ActionCreator.login(apiService, dispatch)(authData);
+    dispatch(ActionCreator.login(authData));
   },
 });
 
 export { SectionLogin };
-export default withApiServices()(
-  connect(null, mapDispatchToProps)(SectionLogin),
-);
+export default connect(null, mapDispatchToProps)(SectionLogin);

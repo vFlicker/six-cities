@@ -1,9 +1,7 @@
 import React, { PropsWithChildren, useEffect } from 'react';
-import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import { AxiosInstance } from 'axios';
 
-import { ActionCreator } from '../../store/action';
+import { ActionCreator, TDispatch } from '../../store/action';
 import { TState } from '../../store/reducer';
 import ApiError from '../../errors';
 import { TOffer } from '../../types';
@@ -19,8 +17,6 @@ import {
   SectionMap,
   SectionPlaces,
 } from './index';
-
-import withApiServices from '../../hocs/with-api-services';
 
 type MainPageProps = {
   offers: TOffer[],
@@ -88,11 +84,9 @@ const mapStateToProps = (state: TState) => ({
   error: state.error,
 });
 
-const mapDispatchToProps = (dispatch: Dispatch, { apiService }: {apiService: AxiosInstance}) => ({
-  fetchOffers: ActionCreator.fetchOffers(apiService, dispatch),
+const mapDispatchToProps = (dispatch: TDispatch) => ({
+  fetchOffers: () => dispatch(ActionCreator.fetchOffers()),
 });
 
 export { SectionMain };
-export default withApiServices()(
-  connect(mapStateToProps, mapDispatchToProps)(SectionMain),
-);
+export default connect(mapStateToProps, mapDispatchToProps)(SectionMain);

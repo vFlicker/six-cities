@@ -1,7 +1,7 @@
 import axios, { AxiosError, AxiosInstance, AxiosResponse } from 'axios';
 import ApiError from '../errors';
-import { BACKEND_URL } from '../const';
 
+const BACKEND_URL = 'https://6.react.pages.academy/six-cities';
 const TIMEOUT = 5000;
 const WITH_CREDENTIALS = true;
 
