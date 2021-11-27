@@ -1,83 +1,38 @@
-import Adapter from './adapter';
+import axios, { AxiosError, AxiosInstance, AxiosResponse } from 'axios';
 import ApiError from '../errors';
-import { ApiRoute } from '../const';
-import {
-  TOfferServer,
-  TOffer,
-  TReview,
-  TUser,
-  TAuthData,
-} from '../types';
+import { BACKEND_URL } from '../const';
 
-enum Method {
-  GET = 'GET',
-  PUT = 'PUT',
-  POST = 'POST',
-  DELETE = 'DELETE',
-}
+const TIMEOUT = 5000;
+const WITH_CREDENTIALS = true;
 
-export default class ApiService {
-  private readonly apiBase: string;
-
-  constructor(apiBase: string) {
-    this.apiBase = apiBase;
+type ErrorResponse = {
+  status: number,
+  data: {
+    error: string,
   }
+};
 
-  private static checkStatus = async (response: Response): Promise<void> => {
-    if (!response.ok) {
-      let serverResponse: { status: string; error: string } | null;
+const createApiService = (): AxiosInstance => {
+  const apiService = axios.create({
+    baseURL: BACKEND_URL,
+    timeout: TIMEOUT,
+    withCredentials: WITH_CREDENTIALS,
+  });
 
-      const errorText = await response.text();
+  const onSuccess = (response: AxiosResponse) => response;
 
-      try {
-        serverResponse = JSON.parse(errorText);
-      } catch (err) {
-        throw new ApiError({ message: errorText, status: response.status });
-      }
+  const onFail = (err: AxiosError) => {
+    const { status, data } = err.response as ErrorResponse;
 
-      throw new ApiError({
-        message: serverResponse ? serverResponse.error : errorText,
-        status: response.status,
-      });
-    }
-  }
-
-  private get = async <T>(url: string): Promise<T> => {
-    const fullUrl = `${this.apiBase}/${url}`;
-
-    const response = await fetch(fullUrl, {
-      method: Method.GET,
-      credentials: 'include',
+    throw new ApiError({
+      message: data.error,
+      status,
     });
-
-    await ApiService.checkStatus(response);
-
-    return response.json();
   };
 
-  getComments = async (id: number): Promise<TReview[]> => (
-    this.get<TReview[]>(`${ApiRoute.COMMENTS}/${id}`)
-  );
+  apiService.interceptors.response.use(onSuccess, onFail);
 
-  getHotels = async (): Promise<TOffer[]> => {
-    const offers = await this.get<TOfferServer[]>(ApiRoute.HOTELS);
-    return offers.map((offer) => Adapter.transformOffer(offer));
-  };
+  return apiService;
+};
 
-  login = async (data: TAuthData): Promise<TUser> => {
-    const fullUrl = `${this.apiBase}/${ApiRoute.LOGIN}`;
-
-    const response = await fetch(fullUrl, {
-      method: Method.POST,
-      credentials: 'same-origin',
-      body: JSON.stringify(data),
-      headers: new Headers({ 'Content-Type': 'application/json' }),
-    });
-
-    await ApiService.checkStatus(response);
-
-    const parsedResponse = await response.json();
-
-    return Adapter.transformUser(parsedResponse);
-  };
-}
+export default createApiService;

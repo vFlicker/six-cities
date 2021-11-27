@@ -1,9 +1,19 @@
 import { Dispatch } from 'redux';
+import { AxiosInstance } from 'axios';
 
-import ApiService from '../services/api-service';
+import Adapter from '../services/adapter';
 import ApiError from '../errors';
-import { TAuthData, TOffer, TUser } from '../types';
-import { CityName, SortType } from '../const';
+import {
+  TAuthData,
+  TOffer,
+  TOfferServer,
+  TUser,
+} from '../types';
+import {
+  ApiRoute,
+  CityName,
+  SortType,
+} from '../const';
 
 export enum ActionType {
   CHANGE_CITY_NAME = 'CHANGE_CITY_NAME',
@@ -44,9 +54,11 @@ export const ActionCreator = {
     type: ActionType.FETCH_OFFERS_FAILURE,
     payload: error,
   }),
-  fetchOffers: (apiService: ApiService, dispatch: Dispatch) => (): void => {
+  fetchOffers: (apiService: AxiosInstance, dispatch: Dispatch) => (): void => {
     dispatch(ActionCreator.offersRequested());
-    apiService.getHotels()
+
+    apiService.get<TOfferServer[]>(`${ApiRoute.HOTELS}`)
+      .then(({ data }) => data.map(Adapter.transformOffer))
       .then((data) => dispatch(ActionCreator.offersLoaded(data)))
       .catch((err: ApiError) => dispatch(ActionCreator.offersError(err)));
   },
@@ -62,9 +74,11 @@ export const ActionCreator = {
     type: ActionType.LOGIN_FAILURE,
     payload: error,
   }),
-  login: (apiService: ApiService, dispatch: Dispatch) => (authData: TAuthData): void => {
+  login: (apiService: AxiosInstance, dispatch: Dispatch) => (authData: TAuthData): void => {
     dispatch(ActionCreator.loginRequest());
-    apiService.login(authData)
+
+    apiService.post<TUser>(ApiRoute.LOGIN, authData)
+      .then(({ data }) => Adapter.transformUser(data))
       .then((userData) => dispatch(ActionCreator.loginSuccess(userData)))
       .catch((err: ApiError) => dispatch(ActionCreator.loginFailure(err)));
   },

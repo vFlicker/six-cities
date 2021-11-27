@@ -1,8 +1,8 @@
 import React, { FormEvent, useRef } from 'react';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
+import { AxiosInstance } from 'axios';
 
-import ApiService from '../../services/api-service';
 import { ActionCreator } from '../../store/action';
 import { TAuthData } from '../../types';
 
@@ -70,7 +70,7 @@ function SectionLogin({ onSubmit }: SectionLoginProps): React.ReactElement {
   );
 }
 
-const mapDispatchToProps = (dispatch: Dispatch, { apiService }: {apiService: ApiService}) => ({
+const mapDispatchToProps = (dispatch: Dispatch, { apiService }: {apiService: AxiosInstance}) => ({
   onSubmit: (authData: TAuthData) => {
     ActionCreator.login(apiService, dispatch)(authData);
   },

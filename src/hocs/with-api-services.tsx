@@ -4,11 +4,11 @@ import React, {
   ReactElement,
   useContext,
 } from 'react';
-import ApiService from '../services/api-service';
+import { AxiosInstance } from 'axios';
 import { ApiServiceContext } from '../components/api-service-context';
 
 interface WithApiServicesProps {
-  apiService: ApiService,
+  apiService: AxiosInstance,
 }
 
 const withApiServices = () => <P, >(

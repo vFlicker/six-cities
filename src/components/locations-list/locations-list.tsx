@@ -1,8 +1,8 @@
 import React, { MouseEvent, PropsWithChildren } from 'react';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
+import { AxiosInstance } from 'axios';
 
-import ApiService from '../../services/api-service';
 import { ActionCreator } from '../../store/action';
 import { TState } from '../../store/reducer';
 import { CityName } from '../../const';
@@ -52,7 +52,7 @@ const mapStateToProps = (state: TState) => ({
   currentCityName: state.currentCityName,
 });
 
-const mapDispatchToProps = (dispatch: Dispatch, { apiService }: {apiService: ApiService}) => ({
+const mapDispatchToProps = (dispatch: Dispatch, { apiService }: {apiService: AxiosInstance}) => ({
   changeCityName: (cityName: CityName) => {
     dispatch(ActionCreator.changeCityName(cityName));
     ActionCreator.fetchOffers(apiService, dispatch)();

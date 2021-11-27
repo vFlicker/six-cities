@@ -1,10 +1,10 @@
 import React, { PropsWithChildren, useEffect } from 'react';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
+import { AxiosInstance } from 'axios';
 
 import { ActionCreator } from '../../store/action';
 import { TState } from '../../store/reducer';
-import ApiService from '../../services/api-service';
 import ApiError from '../../errors';
 import { TOffer } from '../../types';
 import { CardType } from '../../const';
@@ -88,7 +88,7 @@ const mapStateToProps = (state: TState) => ({
   error: state.error,
 });
 
-const mapDispatchToProps = (dispatch: Dispatch, { apiService }: {apiService: ApiService}) => ({
+const mapDispatchToProps = (dispatch: Dispatch, { apiService }: {apiService: AxiosInstance}) => ({
   fetchOffers: ActionCreator.fetchOffers(apiService, dispatch),
 });
 
