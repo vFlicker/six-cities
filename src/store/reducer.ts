@@ -1,5 +1,16 @@
 import ApiError from '../errors';
-import { ActionType } from './action';
+import {
+  ActionType,
+  changeCityName,
+  changeSortType,
+  loginFailure,
+  loginRequest,
+  loginSuccess,
+  offersError,
+  offersLoaded,
+  offersRequested,
+  setActiveCard,
+} from './action';
 import { AuthorizationStatus, CityName, SortType } from '../const';
 import { TOffer, TUser } from '../types';
 import { sortByPriceHighToLow, sortByPriceLowToHigh, topRatedFirst } from '../utils';
@@ -15,32 +26,16 @@ export type TState = {
   user: TUser | null
 }
 
-type TAction = {
-  type: ActionType.SET_ACTIVE_CARD,
-  payload: number,
-} | {
-  type: ActionType.CHANGE_CITY_NAME,
-  payload: CityName,
-} | {
-  type: ActionType.CHANGE_SORT_TYPE,
-  payload: SortType,
-} | {
-  type: ActionType.FETCH_OFFERS_REQUEST,
-} | {
-  type: ActionType.FETCH_OFFERS_SUCCESS,
-  payload: TOffer[],
-} | {
-  type: ActionType.FETCH_OFFERS_FAILURE,
-  payload: ApiError,
-} | {
-  type: ActionType.LOGIN_REQUEST,
-} | {
-  type: ActionType.LOGIN_SUCCESS,
-  payload: TUser,
-} | {
-  type: ActionType.LOGIN_FAILURE,
-  payload: ApiError,
-}
+type TAction =
+  | ReturnType<typeof changeCityName>
+  | ReturnType<typeof changeSortType>
+  | ReturnType<typeof setActiveCard>
+  | ReturnType<typeof offersRequested>
+  | ReturnType<typeof offersLoaded>
+  | ReturnType<typeof offersError>
+  | ReturnType<typeof loginRequest>
+  | ReturnType<typeof loginSuccess>
+  | ReturnType<typeof loginFailure>;
 
 const getOffers = (state: TState, offers: TOffer[]) => {
   const { currentCityName, currentSortType } = state;
