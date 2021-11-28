@@ -1,9 +1,9 @@
 import React, { Fragment, PropsWithChildren } from 'react';
-import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
+import { connect } from 'react-redux';
 
+import { setActiveCard } from '../../store/action';
 import { TState } from '../../store/reducer';
-import { ActionCreator } from '../../store/action';
 import { CardType } from '../../const';
 import { TOffer } from '../../types';
 
@@ -98,7 +98,7 @@ const mapStateToProps = (state: TState) => ({
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   setActiveCard: (id: number) => {
-    dispatch(ActionCreator.setActiveCard(id));
+    dispatch(setActiveCard(id));
   },
 });
 

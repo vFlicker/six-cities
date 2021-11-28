@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
+import { changeSortType } from '../../store/action';
+import { fetchOffers, TDispatch } from '../../store/api-actions';
 import { TState } from '../../store/reducer';
-import { ActionCreator, TDispatch } from '../../store/action';
 import { SortType } from '../../const';
 
 type SortingProps = {
@@ -71,8 +72,8 @@ const mapStateToProps = (state: TState) => ({
 
 const mapDispatchToProps = (dispatch: TDispatch) => ({
   changeSortType: (sortType: SortType) => {
-    dispatch(ActionCreator.changeSortType(sortType));
-    dispatch(ActionCreator.fetchOffers());
+    dispatch(changeSortType(sortType));
+    dispatch(fetchOffers());
   },
 });
 

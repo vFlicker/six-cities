@@ -1,11 +1,11 @@
 import React, { PropsWithChildren, useEffect } from 'react';
 import { connect } from 'react-redux';
 
-import { ActionCreator, TDispatch } from '../../store/action';
+import { fetchOffers, TDispatch } from '../../store/api-actions';
 import { TState } from '../../store/reducer';
+import { CardType } from '../../const';
 import ApiError from '../../errors';
 import { TOffer } from '../../types';
-import { CardType } from '../../const';
 
 import CardList from '../card-list';
 import Sorting from '../sorting';
@@ -85,7 +85,7 @@ const mapStateToProps = (state: TState) => ({
 });
 
 const mapDispatchToProps = (dispatch: TDispatch) => ({
-  fetchOffers: () => dispatch(ActionCreator.fetchOffers()),
+  fetchOffers: () => dispatch(fetchOffers()),
 });
 
 export { SectionMain };

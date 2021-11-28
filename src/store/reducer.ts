@@ -68,7 +68,7 @@ const initialState: TState = {
   offers: [],
   loading: true,
   error: null,
-  authorizationStatus: AuthorizationStatus.NO_AUTH,
+  authorizationStatus: AuthorizationStatus.AUTH,
   user: null,
 };
 

@@ -1,7 +1,8 @@
 import React, { MouseEvent, PropsWithChildren } from 'react';
 import { connect } from 'react-redux';
 
-import { ActionCreator, TDispatch } from '../../store/action';
+import { changeCityName } from '../../store/action';
+import { fetchOffers, TDispatch } from '../../store/api-actions';
 import { TState } from '../../store/reducer';
 import { CityName } from '../../const';
 
@@ -50,8 +51,8 @@ const mapStateToProps = (state: TState) => ({
 
 const mapDispatchToProps = (dispatch: TDispatch) => ({
   changeCityName: (cityName: CityName) => {
-    dispatch(ActionCreator.changeCityName(cityName));
-    dispatch(ActionCreator.fetchOffers());
+    dispatch(changeCityName(cityName));
+    dispatch(fetchOffers());
   },
 });
 
