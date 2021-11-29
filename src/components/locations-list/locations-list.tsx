@@ -2,9 +2,10 @@ import React, { MouseEvent, PropsWithChildren } from 'react';
 import { connect } from 'react-redux';
 
 import { changeCityName } from '../../store/action';
-import { fetchOffers, TDispatch } from '../../store/api-actions';
-import { TState } from '../../store/reducer';
+import { fetchOffers } from '../../store/api-actions';
 import { CityName } from '../../const';
+import { TThunkDispatch } from '../../types/action';
+import { TState } from '../../types/state';
 
 import LocationsItem from '../locations-item';
 
@@ -49,7 +50,7 @@ const mapStateToProps = (state: TState) => ({
   currentCityName: state.currentCityName,
 });
 
-const mapDispatchToProps = (dispatch: TDispatch) => ({
+const mapDispatchToProps = (dispatch: TThunkDispatch) => ({
   changeCityName: (cityName: CityName) => {
     dispatch(changeCityName(cityName));
     dispatch(fetchOffers());

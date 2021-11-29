@@ -1,9 +1,5 @@
-import {
-  TOffer,
-  TOfferServer,
-  TUser,
-  TUserServer,
-} from '../types';
+import { TOffer, TOfferServer } from '../types/offer';
+import { TUser, TUserServer } from '../types/user';
 
 export default class Adapter {
   static transformOffer = (offer: TOfferServer): TOffer => {

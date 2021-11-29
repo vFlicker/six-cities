@@ -3,9 +3,9 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 
 import { setActiveCard } from '../../store/action';
-import { TState } from '../../store/reducer';
 import { CardType } from '../../const';
-import { TOffer } from '../../types';
+import { TOffer } from '../../types/offer';
+import { TState } from '../../types/state';
 
 import {
   CardItemCities,

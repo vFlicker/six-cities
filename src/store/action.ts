@@ -1,26 +1,7 @@
-import {
-  CityName,
-  SortType,
-} from '../const';
+import { ActionType, CityName, SortType } from '../const';
 import ApiError from '../errors';
-import {
-  TOffer,
-  TUser,
-} from '../types';
-
-export enum ActionType {
-  CHANGE_CITY_NAME = 'CHANGE_CITY_NAME',
-  CHANGE_SORT_TYPE = 'CHANGE_SORT_TYPE',
-  SET_ACTIVE_CARD = 'SET_ACTIVE_CARD',
-
-  FETCH_OFFERS_REQUEST = 'FETCH_OFFERS_REQUEST',
-  FETCH_OFFERS_SUCCESS = 'FETCH_OFFERS_SUCCESS',
-  FETCH_OFFERS_FAILURE = 'FETCH_OFFERS_FAILURE',
-
-  LOGIN_REQUEST = 'LOGIN_REQUEST',
-  LOGIN_SUCCESS = 'LOGIN_SUCCESS',
-  LOGIN_FAILURE = 'LOGIN_FAILURE',
-}
+import { TOffer } from '../types/offer';
+import { TUser } from '../types/user';
 
 export const changeCityName = (cityName: CityName) => ({
   type: ActionType.CHANGE_CITY_NAME,

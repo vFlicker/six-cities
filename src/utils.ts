@@ -1,4 +1,4 @@
-import { TOffer } from './types';
+import { TOffer } from './types/offer';
 
 const MAX_PERCENT = 100;
 const TOTAL_RATING = 5;

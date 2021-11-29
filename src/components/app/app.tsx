@@ -1,7 +1,8 @@
 import React, { PropsWithChildren } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { AppRoute } from '../../const';
-import { TOffer, TReview } from '../../types';
+import { TOffer } from '../../types/offer';
+import { TReview } from '../../types/review';
 import {
   FavoritesPage,
   LoginPage,

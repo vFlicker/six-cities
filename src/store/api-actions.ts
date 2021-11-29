@@ -1,8 +1,3 @@
-import { Action } from 'redux';
-import { ThunkAction, ThunkDispatch } from 'redux-thunk';
-import { AxiosInstance } from 'axios';
-
-import Adapter from '../services/adapter';
 import {
   loginFailure,
   loginRequest,
@@ -13,13 +8,13 @@ import {
 } from './action';
 import { ApiRoute } from '../const';
 import ApiError from '../errors';
-import { TState } from './reducer';
-import { TAuthData, TOfferServer, TUser } from '../types';
+import Adapter from '../services/adapter';
+import { TThunkAction } from '../types/action';
+import { TAuthData } from '../types/auth-data';
+import { TOfferServer } from '../types/offer';
+import { TUser } from '../types/user';
 
-export type TDispatch = ThunkDispatch<TState, AxiosInstance, Action>;
-export type TThunk = ThunkAction<void, TState, AxiosInstance, Action>;
-
-export const fetchOffers = (): TThunk => (dispatch, _getState, apiService) => {
+export const fetchOffers = (): TThunkAction => (dispatch, _getState, apiService) => {
   dispatch(offersRequested());
 
   apiService.get<TOfferServer[]>(`${ApiRoute.HOTELS}`)
@@ -28,7 +23,7 @@ export const fetchOffers = (): TThunk => (dispatch, _getState, apiService) => {
     .catch((err: ApiError) => dispatch(offersError(err)));
 };
 
-export const login = (authData: TAuthData): TThunk => (dispatch, _getState, apiService) => {
+export const login = (authData: TAuthData): TThunkAction => (dispatch, _getState, apiService) => {
   dispatch(loginRequest());
 
   apiService.post<TUser>(ApiRoute.LOGIN, authData)

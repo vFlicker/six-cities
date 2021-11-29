@@ -1,8 +1,9 @@
 import React, { FormEvent, useRef } from 'react';
 import { connect } from 'react-redux';
 
-import { login, TDispatch } from '../../store/api-actions';
-import { TAuthData } from '../../types';
+import { login } from '../../store/api-actions';
+import { TThunkDispatch } from '../../types/action';
+import { TAuthData } from '../../types/auth-data';
 
 type SectionLoginProps = {
   onSubmit: (data: TAuthData) => void,
@@ -66,7 +67,7 @@ function SectionLogin({ onSubmit }: SectionLoginProps): React.ReactElement {
   );
 }
 
-const mapDispatchToProps = (dispatch: TDispatch) => ({
+const mapDispatchToProps = (dispatch: TThunkDispatch) => ({
   onSubmit: (authData: TAuthData) => {
     dispatch(login(authData));
   },

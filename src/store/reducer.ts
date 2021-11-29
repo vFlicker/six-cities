@@ -1,41 +1,13 @@
-import ApiError from '../errors';
 import {
   ActionType,
-  changeCityName,
-  changeSortType,
-  loginFailure,
-  loginRequest,
-  loginSuccess,
-  offersError,
-  offersLoaded,
-  offersRequested,
-  setActiveCard,
-} from './action';
-import { AuthorizationStatus, CityName, SortType } from '../const';
-import { TOffer, TUser } from '../types';
+  AuthorizationStatus,
+  CityName,
+  SortType,
+} from '../const';
+import { TAction } from '../types/action';
+import { TOffer } from '../types/offer';
+import { TState } from '../types/state';
 import { sortByPriceHighToLow, sortByPriceLowToHigh, topRatedFirst } from '../utils';
-
-export type TState = {
-  activeCardId: number,
-  currentCityName: CityName,
-  currentSortType: SortType,
-  offers: TOffer[],
-  loading: boolean,
-  error: null | ApiError,
-  authorizationStatus: AuthorizationStatus,
-  user: TUser | null
-}
-
-type TAction =
-  | ReturnType<typeof changeCityName>
-  | ReturnType<typeof changeSortType>
-  | ReturnType<typeof setActiveCard>
-  | ReturnType<typeof offersRequested>
-  | ReturnType<typeof offersLoaded>
-  | ReturnType<typeof offersError>
-  | ReturnType<typeof loginRequest>
-  | ReturnType<typeof loginSuccess>
-  | ReturnType<typeof loginFailure>;
 
 const getOffers = (state: TState, offers: TOffer[]) => {
   const { currentCityName, currentSortType } = state;
@@ -67,7 +39,7 @@ const initialState: TState = {
   user: null,
 };
 
-export const reducer = (state = initialState, action: TAction): TState => {
+const reducer = (state = initialState, action: TAction): TState => {
   switch (action.type) {
     case ActionType.SET_ACTIVE_CARD:
       return {
@@ -136,3 +108,5 @@ export const reducer = (state = initialState, action: TAction): TState => {
       return state;
   }
 };
+
+export default reducer;

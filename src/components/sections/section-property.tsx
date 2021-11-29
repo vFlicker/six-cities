@@ -1,5 +1,6 @@
 import React, { PropsWithChildren } from 'react';
-import { TOffer, TReview } from '../../types';
+import { TOffer } from '../../types/offer';
+import { TReview } from '../../types/review';
 import { convertRatingToPercents } from '../../utils';
 import { SectionMap, SectionReviews } from './index';
 

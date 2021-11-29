@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from 'react';
-import { TReview } from '../../types';
+import { TReview } from '../../types/review';
 import { convertRatingToPercents } from '../../utils';
 
 type ReviewsItemProps = {

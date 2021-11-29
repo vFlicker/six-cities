@@ -1,7 +1,8 @@
 import React, { PropsWithChildren } from 'react';
 import { useParams } from 'react-router-dom';
 import { CardType } from '../../const';
-import { TOffer, TReview } from '../../types';
+import { TOffer } from '../../types/offer';
+import { TReview } from '../../types/review';
 import { SectionHeader, SectionPlaces, SectionProperty } from '../sections';
 import CardList from '../card-list';
 import NotFoundPage from './not-found-page';

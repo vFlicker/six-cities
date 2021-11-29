@@ -1,7 +1,7 @@
 import React, { PropsWithChildren } from 'react';
 import ReviewsList from '../reviews-list';
 import ReviewsForm from '../reviews-form';
-import { TReview } from '../../types';
+import { TReview } from '../../types/review';
 
 type SectionReviewsProps = {
   reviews: TReview[]

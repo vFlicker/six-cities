@@ -1,6 +1,6 @@
 import React, { PropsWithChildren } from 'react';
 import { Link } from 'react-router-dom';
-import { TOffer } from '../../types';
+import { TOffer } from '../../types/offer';
 import { convertRatingToPercents } from '../../utils';
 
 export type CardItemType = {

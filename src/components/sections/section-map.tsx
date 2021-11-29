@@ -1,8 +1,10 @@
 import React, { PropsWithChildren, useEffect, useRef } from 'react';
-import leaflet from 'leaflet';
 import { connect } from 'react-redux';
-import { TState } from '../../store/reducer';
-import { TOffer } from '../../types';
+import leaflet from 'leaflet';
+
+import { TOffer } from '../../types/offer';
+import { TState } from '../../types/state';
+
 import 'leaflet/dist/leaflet.css';
 
 type MapProps = {

@@ -2,8 +2,8 @@ import React from 'react';
 import { Navigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { TState } from '../../store/reducer';
 import { AppRoute, AuthorizationStatus } from '../../const';
+import { TState } from '../../types/state';
 
 import {
   SectionHeader,

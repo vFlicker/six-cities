@@ -2,9 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { TState } from '../../store/reducer';
 import { AppRoute } from '../../const';
-import { TUser } from '../../types';
+import { TUser } from '../../types/user';
+import { TState } from '../../types/state';
 
 type SectionHeaderProps = {
   user: TUser | null,
