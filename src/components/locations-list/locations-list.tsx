@@ -1,11 +1,12 @@
 import React, { MouseEvent, PropsWithChildren } from 'react';
 import { connect } from 'react-redux';
 
+import { CityName } from '../../const';
 import { changeCityName } from '../../store/action';
 import { fetchOffers } from '../../store/api-actions';
-import { CityName } from '../../const';
+import { NameSpace } from '../../store/root-reducer';
 import { TThunkDispatch } from '../../types/action';
-import { TState } from '../../types/state';
+import { TRootState } from '../../types/state';
 
 import LocationsItem from '../locations-item';
 
@@ -46,8 +47,8 @@ function LocationsList(props: PropsWithChildren<LocationsListProps>): React.Reac
   );
 }
 
-const mapStateToProps = (state: TState) => ({
-  currentCityName: state.currentCityName,
+const mapStateToProps = (state: TRootState) => ({
+  currentCityName: state[NameSpace.APP_PROCESS].currentCityName,
 });
 
 const mapDispatchToProps = (dispatch: TThunkDispatch) => ({

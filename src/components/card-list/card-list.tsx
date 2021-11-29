@@ -2,10 +2,11 @@ import React, { Fragment, PropsWithChildren } from 'react';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 
-import { setActiveCard } from '../../store/action';
 import { CardType } from '../../const';
+import { setActiveCard } from '../../store/action';
+import { NameSpace } from '../../store/root-reducer';
 import { TOffer } from '../../types/offer';
-import { TState } from '../../types/state';
+import { TRootState } from '../../types/state';
 
 import {
   CardItemCities,
@@ -92,8 +93,8 @@ function CardList(props: PropsWithChildren<CardListProps>): React.ReactElement {
   );
 }
 
-const mapStateToProps = (state: TState) => ({
-  offers: state.offers,
+const mapStateToProps = (state: TRootState) => ({
+  offers: state[NameSpace.OFFER_DATA].offers,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({

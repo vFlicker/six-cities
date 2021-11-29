@@ -6,7 +6,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { Provider } from 'react-redux';
 
 import createApiService from './services/api-service';
-import reducer from './store/reducer';
+import rootReducer from './store/root-reducer';
 import { offers, reviews } from './mocks';
 
 import App from './components/app';
@@ -14,7 +14,7 @@ import App from './components/app';
 const apiService = createApiService();
 
 const store = createStore(
-  reducer,
+  rootReducer,
   composeWithDevTools(
     applyMiddleware(thunk.withExtraArgument(apiService)),
   ),

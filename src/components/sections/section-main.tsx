@@ -1,12 +1,13 @@
 import React, { PropsWithChildren, useEffect } from 'react';
 import { connect } from 'react-redux';
 
-import { fetchOffers } from '../../store/api-actions';
 import { CardType } from '../../const';
 import ApiError from '../../errors';
+import { fetchOffers } from '../../store/api-actions';
+import { NameSpace } from '../../store/root-reducer';
 import { TThunkDispatch } from '../../types/action';
 import { TOffer } from '../../types/offer';
-import { TState } from '../../types/state';
+import { TRootState } from '../../types/state';
 
 import CardList from '../card-list';
 import Sorting from '../sorting';
@@ -79,10 +80,10 @@ function SectionMain(props: PropsWithChildren<MainPageProps>): React.ReactElemen
   );
 }
 
-const mapStateToProps = (state: TState) => ({
-  offers: state.offers,
-  loading: state.loading,
-  error: state.error,
+const mapStateToProps = (state: TRootState) => ({
+  offers: state[NameSpace.OFFER_DATA].offers,
+  loading: state[NameSpace.OFFER_DATA].loading,
+  error: state[NameSpace.OFFER_DATA].error,
 });
 
 const mapDispatchToProps = (dispatch: TThunkDispatch) => ({

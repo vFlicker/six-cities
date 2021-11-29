@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
+import { SortType } from '../../const';
 import { changeSortType } from '../../store/action';
 import { fetchOffers } from '../../store/api-actions';
-import { SortType } from '../../const';
+import { NameSpace } from '../../store/root-reducer';
 import { TThunkDispatch } from '../../types/action';
-import { TState } from '../../types/state';
+import { TRootState } from '../../types/state';
 
 type SortingProps = {
   currentSortType: SortType,
@@ -67,8 +68,8 @@ function Sorting({ currentSortType, changeSortType }: SortingProps): React.React
   );
 }
 
-const mapStateToProps = (state: TState) => ({
-  currentSortType: state.currentSortType,
+const mapStateToProps = (state: TRootState) => ({
+  currentSortType: state[NameSpace.APP_PROCESS].currentSortType,
 });
 
 const mapDispatchToProps = (dispatch: TThunkDispatch) => ({
