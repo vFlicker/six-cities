@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { CardType } from '../../const';
 import ApiError from '../../errors';
 import { fetchOffers } from '../../store/api-actions';
-import { NameSpace } from '../../store/root-reducer';
+import { getError, getLoading, getOffers } from '../../store/offer-data';
 import { TThunkDispatch } from '../../types/action';
 import { TOffer } from '../../types/offer';
 import { TRootState } from '../../types/state';
@@ -81,9 +81,9 @@ function SectionMain(props: PropsWithChildren<MainPageProps>): React.ReactElemen
 }
 
 const mapStateToProps = (state: TRootState) => ({
-  offers: state[NameSpace.OFFER_DATA].offers,
-  loading: state[NameSpace.OFFER_DATA].loading,
-  error: state[NameSpace.OFFER_DATA].error,
+  offers: getOffers(state),
+  loading: getLoading(state),
+  error: getError(state),
 });
 
 const mapDispatchToProps = (dispatch: TThunkDispatch) => ({

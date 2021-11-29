@@ -1,6 +1,6 @@
-import appProcess from './app-process';
-import offerData from './offer-data';
-import userProcess from './user-process';
+import { appProcess } from './app-process';
+import { offerData } from './offer-data';
+import { userProcess } from './user-process';
 import { TRootAction } from '../types/action';
 import { TRootState } from '../types/state';
 import { AuthorizationStatus, CityName, SortType } from '../const';

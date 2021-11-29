@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import { CardType } from '../../const';
 import { setActiveCard } from '../../store/action';
-import { NameSpace } from '../../store/root-reducer';
+import { getOffers } from '../../store/offer-data';
 import { TOffer } from '../../types/offer';
 import { TRootState } from '../../types/state';
 
@@ -94,7 +94,7 @@ function CardList(props: PropsWithChildren<CardListProps>): React.ReactElement {
 }
 
 const mapStateToProps = (state: TRootState) => ({
-  offers: state[NameSpace.OFFER_DATA].offers,
+  offers: getOffers(state),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({

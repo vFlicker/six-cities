@@ -2,7 +2,8 @@ import React, { PropsWithChildren, useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
 import leaflet from 'leaflet';
 
-import { NameSpace } from '../../store/root-reducer';
+import { getActiveCard } from '../../store/app-process';
+import { getOffers } from '../../store/offer-data';
 import { TOffer } from '../../types/offer';
 import { TRootState } from '../../types/state';
 
@@ -82,8 +83,8 @@ function SectionMap({ activeCardId, className = '', offers }: PropsWithChildren<
 }
 
 const mapStateToProps = (state: TRootState) => ({
-  activeCardId: state[NameSpace.APP_PROCESS].activeCardId,
-  offers: state[NameSpace.OFFER_DATA].offers,
+  activeCardId: getActiveCard(state),
+  offers: getOffers(state),
 });
 
 export { SectionMap };

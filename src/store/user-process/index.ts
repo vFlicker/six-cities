@@ -1,3 +1,8 @@
-import user from './user-process';
+import { getAuthorizationStatus, getUser } from './selectors';
+import userProcess from './user-process';
 
-export default user;
+export {
+  userProcess,
+  getAuthorizationStatus,
+  getUser,
+};

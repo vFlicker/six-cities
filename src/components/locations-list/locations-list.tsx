@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { CityName } from '../../const';
 import { changeCityName } from '../../store/action';
 import { fetchOffers } from '../../store/api-actions';
-import { NameSpace } from '../../store/root-reducer';
+import { getCurrentCityName } from '../../store/app-process';
 import { TThunkDispatch } from '../../types/action';
 import { TRootState } from '../../types/state';
 
@@ -48,7 +48,7 @@ function LocationsList(props: PropsWithChildren<LocationsListProps>): React.Reac
 }
 
 const mapStateToProps = (state: TRootState) => ({
-  currentCityName: state[NameSpace.APP_PROCESS].currentCityName,
+  currentCityName: getCurrentCityName(state),
 });
 
 const mapDispatchToProps = (dispatch: TThunkDispatch) => ({

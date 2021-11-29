@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { AppRoute } from '../../const';
-import { NameSpace } from '../../store/root-reducer';
+import { getUser } from '../../store/user-process';
 import { TUser } from '../../types/user';
 import { TRootState } from '../../types/state';
 
@@ -54,7 +54,7 @@ function SectionHeader({ user }: SectionHeaderProps): React.ReactElement {
 }
 
 const mapStateToProps = (state: TRootState) => ({
-  user: state[NameSpace.USER_PROCESS].user,
+  user: getUser(state),
 });
 
 export { SectionHeader };

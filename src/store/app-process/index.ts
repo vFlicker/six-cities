@@ -1,3 +1,13 @@
-import app from './app-process';
+import appProcess from './app-process';
+import {
+  getActiveCard,
+  getCurrentCityName,
+  getCurrentSortType,
+} from './selectors';
 
-export default app;
+export {
+  appProcess,
+  getActiveCard,
+  getCurrentCityName,
+  getCurrentSortType,
+};

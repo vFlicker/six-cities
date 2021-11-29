@@ -1,3 +1,9 @@
 import offerData from './offer-data';
+import { getError, getLoading, getOffers } from './selectors';
 
-export default offerData;
+export {
+  offerData,
+  getOffers,
+  getLoading,
+  getError,
+};

@@ -3,7 +3,7 @@ import { Navigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { AppRoute, AuthorizationStatus } from '../../const';
-import { NameSpace } from '../../store/root-reducer';
+import { getAuthorizationStatus } from '../../store/user-process';
 import { TRootState } from '../../types/state';
 
 import {
@@ -31,7 +31,7 @@ function MainPage({ authorizationStatus }: MainPageProps): React.ReactElement {
 }
 
 const mapStateToProps = (state: TRootState) => ({
-  authorizationStatus: state[NameSpace.USER_PROCESS].authorizationStatus,
+  authorizationStatus: getAuthorizationStatus(state),
 });
 
 export { MainPage };

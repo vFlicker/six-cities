@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { SortType } from '../../const';
 import { changeSortType } from '../../store/action';
 import { fetchOffers } from '../../store/api-actions';
-import { NameSpace } from '../../store/root-reducer';
+import { getCurrentSortType } from '../../store/app-process';
 import { TThunkDispatch } from '../../types/action';
 import { TRootState } from '../../types/state';
 
@@ -69,7 +69,7 @@ function Sorting({ currentSortType, changeSortType }: SortingProps): React.React
 }
 
 const mapStateToProps = (state: TRootState) => ({
-  currentSortType: state[NameSpace.APP_PROCESS].currentSortType,
+  currentSortType: getCurrentSortType(state),
 });
 
 const mapDispatchToProps = (dispatch: TThunkDispatch) => ({
