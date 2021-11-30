@@ -5,7 +5,7 @@ import { TUserProcessState } from '../../types/state';
 const initialState: TUserProcessState = {
   loading: true,
   error: null,
-  authorizationStatus: AuthorizationStatus.AUTH,
+  authorizationStatus: AuthorizationStatus.NO_AUTH,
   user: null,
 };
 
