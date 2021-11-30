@@ -1,9 +1,15 @@
 import { ActionType, AuthorizationStatus } from '../../const';
-import { NameSpace } from '../root-reducer';
 import { TRootAction } from '../../types/action';
-import { TRootState, TUserProcessState } from '../../types/state';
+import { TUserProcessState } from '../../types/state';
 
-const userProcess = (state: TRootState, action: TRootAction): TUserProcessState => {
+const initialState: TUserProcessState = {
+  loading: true,
+  error: null,
+  authorizationStatus: AuthorizationStatus.AUTH,
+  user: null,
+};
+
+const userProcess = (state = initialState, action: TRootAction): TUserProcessState => {
   switch (action.type) {
     case ActionType.LOGIN_REQUEST:
       return {
@@ -27,7 +33,7 @@ const userProcess = (state: TRootState, action: TRootAction): TUserProcessState 
         error: action.payload,
       };
     default:
-      return state[NameSpace.USER_PROCESS];
+      return state;
   }
 };
 

@@ -1,8 +1,16 @@
 import offerData from './offer-data';
-import { getError, getLoading, getOffers } from './selectors';
+import {
+  getCurrentCityName,
+  getCurrentSortType,
+  getError,
+  getLoading,
+  getOffers,
+} from './selectors';
 
 export {
   offerData,
+  getCurrentCityName,
+  getCurrentSortType,
   getOffers,
   getLoading,
   getError,

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { SortType } from '../../const';
 import { changeSortType } from '../../store/action';
 import { fetchOffers } from '../../store/api-actions';
-import { getCurrentSortType } from '../../store/app-process';
+import { getCurrentSortType } from '../../store/offer-data';
 import { TThunkDispatch } from '../../types/action';
 import { TRootState } from '../../types/state';
 

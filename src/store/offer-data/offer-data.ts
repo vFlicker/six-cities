@@ -1,12 +1,11 @@
-import { ActionType, SortType } from '../../const';
-import { NameSpace } from '../root-reducer';
+import { ActionType, CityName, SortType } from '../../const';
 import { TRootAction } from '../../types/action';
 import { TOffer } from '../../types/offer';
-import { TOfferDataState, TRootState } from '../../types/state';
+import { TOfferDataState } from '../../types/state';
 import { sortByPriceHighToLow, sortByPriceLowToHigh, topRatedFirst } from '../../utils';
 
-const getOffers = (state: TRootState, offers: TOffer[]) => {
-  const { currentCityName, currentSortType } = state[NameSpace.APP_PROCESS];
+const getOffers = (state: TOfferDataState, offers: TOffer[]) => {
+  const { currentCityName, currentSortType } = state;
 
   const filteredOffers = offers
     .filter((offer) => offer.city.name === currentCityName)
@@ -24,28 +23,49 @@ const getOffers = (state: TRootState, offers: TOffer[]) => {
   }
 };
 
-const offerData = (state: TRootState, action: TRootAction): TOfferDataState => {
+const initialState: TOfferDataState = {
+  currentCityName: CityName.AMSTERDAM,
+  currentSortType: SortType.POPULAR,
+  offers: [],
+  loading: true,
+  error: null,
+};
+
+const offerData = (state = initialState, action: TRootAction): TOfferDataState => {
   switch (action.type) {
+    case ActionType.CHANGE_CITY_NAME:
+      return {
+        ...state,
+        currentCityName: action.payload,
+      };
+    case ActionType.CHANGE_SORT_TYPE:
+      return {
+        ...state,
+        currentSortType: action.payload,
+      };
     case ActionType.FETCH_OFFERS_REQUEST:
       return {
+        ...state,
         offers: [],
         loading: true,
         error: null,
       };
     case ActionType.FETCH_OFFERS_SUCCESS:
       return {
+        ...state,
         offers: getOffers(state, action.payload),
         loading: false,
         error: null,
       };
     case ActionType.FETCH_OFFERS_FAILURE:
       return {
+        ...state,
         offers: [],
         loading: false,
         error: action.payload,
       };
     default:
-      return state[NameSpace.OFFER_DATA];
+      return state;
   }
 };
 

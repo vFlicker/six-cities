@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { CityName } from '../../const';
 import { changeCityName } from '../../store/action';
 import { fetchOffers } from '../../store/api-actions';
-import { getCurrentCityName } from '../../store/app-process';
+import { getCurrentCityName } from '../../store/offer-data';
 import { TThunkDispatch } from '../../types/action';
 import { TRootState } from '../../types/state';
 
