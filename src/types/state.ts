@@ -18,7 +18,7 @@ export type TOfferDataState = {
 
 export type TUserProcessState = {
   loading: boolean,
-  error: null | ApiError,
+  error: ApiError | null,
   authorizationStatus: AuthorizationStatus,
   user: TUser | null
 };
