@@ -10,6 +10,7 @@ const reviews = [
       email: 'img/avatar-angelina.jpg',
       isPro: true,
       name: 'Angelina',
+      token: '',
     },
   },
   {
@@ -23,6 +24,7 @@ const reviews = [
       email: 'img/avatar-angelina.jpg',
       isPro: false,
       name: 'Max',
+      token: '',
     },
   },
 ];

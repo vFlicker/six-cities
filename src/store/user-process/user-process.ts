@@ -11,6 +11,28 @@ const initialState: TUserProcessState = {
 
 const userProcess = (state = initialState, action: TRootAction): TUserProcessState => {
   switch (action.type) {
+    case ActionType.CHECK_AUTH_STATUS_REQUEST:
+      return {
+        authorizationStatus: AuthorizationStatus.UNKNOWN,
+        user: null,
+        loading: true,
+        error: null,
+      };
+    case ActionType.CHECK_AUTH_STATUS_SUCCESS:
+      return {
+        authorizationStatus: AuthorizationStatus.AUTH,
+        user: action.payload,
+        loading: false,
+        error: null,
+      };
+    case ActionType.CHECK_AUTH_STATUS_FAILURE:
+      return {
+        authorizationStatus: AuthorizationStatus.NO_AUTH,
+        user: null,
+        loading: false,
+        error: action.payload,
+      };
+
     case ActionType.LOGIN_REQUEST:
       return {
         authorizationStatus: AuthorizationStatus.UNKNOWN,

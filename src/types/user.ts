@@ -6,6 +6,7 @@ export type TUser = {
   id: number,
   isPro?: boolean,
   name: string,
+  token: string,
 };
 
 export type TUserServer = CamelToSnakeCaseNested<TUser>;

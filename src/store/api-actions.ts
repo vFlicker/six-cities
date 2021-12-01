@@ -1,4 +1,7 @@
 import {
+  checkAuthStatusFailure,
+  checkAuthStatusRequest,
+  checkAuthStatusSuccess,
   loginFailure,
   loginRequest,
   loginSuccess,
@@ -13,6 +16,19 @@ import { TThunkAction } from '../types/action';
 import { TAuthData } from '../types/auth-data';
 import { TOfferServer } from '../types/offer';
 import { TUser } from '../types/user';
+
+export const checkAuthStatus = (): TThunkAction => (dispatch, _getState, apiService) => {
+  dispatch(checkAuthStatusRequest());
+
+  apiService.get<TUser>(ApiRoute.LOGIN)
+    .then(({ data }) => {
+      localStorage.setItem('token', data.token);
+      return data;
+    })
+    .then((data) => Adapter.transformUser(data))
+    .then((userData) => dispatch(checkAuthStatusSuccess(userData)))
+    .catch((err: ApiError) => dispatch(checkAuthStatusFailure(err)));
+};
 
 export const fetchOffers = (): TThunkAction => (dispatch, _getState, apiService) => {
   dispatch(offersRequested());

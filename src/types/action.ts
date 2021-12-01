@@ -5,6 +5,9 @@ import { TRootState } from './state';
 import {
   changeCityName,
   changeSortType,
+  checkAuthStatusRequest,
+  checkAuthStatusSuccess,
+  checkAuthStatusFailure,
   loginFailure,
   loginRequest,
   loginSuccess,
@@ -25,6 +28,9 @@ export type TOfferDataAction =
   | ReturnType<typeof offersError>
 
 export type TUserProcessAction =
+  | ReturnType<typeof checkAuthStatusRequest>
+  | ReturnType<typeof checkAuthStatusSuccess>
+  | ReturnType<typeof checkAuthStatusFailure>
   | ReturnType<typeof loginRequest>
   | ReturnType<typeof loginSuccess>
   | ReturnType<typeof loginFailure>;

@@ -13,6 +13,20 @@ export const changeSortType = (sortType: SortType) => ({
   payload: sortType,
 } as const);
 
+export const checkAuthStatusRequest = () => ({
+  type: ActionType.CHECK_AUTH_STATUS_REQUEST,
+} as const);
+
+export const checkAuthStatusSuccess = (userData: TUser) => ({
+  type: ActionType.CHECK_AUTH_STATUS_SUCCESS,
+  payload: userData,
+} as const);
+
+export const checkAuthStatusFailure = (error: ApiError) => ({
+  type: ActionType.CHECK_AUTH_STATUS_FAILURE,
+  payload: error,
+} as const);
+
 export const setActiveCard = (cardId: number) => ({
   type: ActionType.SET_ACTIVE_CARD,
   payload: cardId,

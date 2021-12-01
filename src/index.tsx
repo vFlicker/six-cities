@@ -6,6 +6,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { Provider } from 'react-redux';
 
 import createApiService from './services/api-service';
+import { checkAuthStatus } from './store/api-actions';
 import rootReducer from './store/root-reducer';
 import { offers, reviews } from './mocks';
 
@@ -19,6 +20,8 @@ const store = createStore(
     applyMiddleware(thunk.withExtraArgument(apiService)),
   ),
 );
+
+store.dispatch(checkAuthStatus());
 
 ReactDOM.render(
   <StrictMode>
