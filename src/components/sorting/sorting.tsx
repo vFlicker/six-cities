@@ -1,20 +1,17 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { SortType } from '../../const';
 import { changeSortType } from '../../store/action';
 import { fetchOffers } from '../../store/api-actions';
 import { getCurrentSortType } from '../../store/offer-data';
-import { TThunkDispatch } from '../../types/action';
-import { TRootState } from '../../types/state';
 
-type SortingProps = {
-  currentSortType: SortType,
-  changeSortType: (sortType: SortType) => void,
-};
-
-function Sorting({ currentSortType, changeSortType }: SortingProps): React.ReactElement {
+function Sorting(): React.ReactElement {
   const [sortMenuOpened, setSortMenuOpened] = useState<boolean>(false);
+
+  const currentSortType = useSelector(getCurrentSortType);
+
+  const dispatch = useDispatch();
 
   const activeClass = sortMenuOpened ? 'places__options--opened ' : '';
 
@@ -27,7 +24,9 @@ function Sorting({ currentSortType, changeSortType }: SortingProps): React.React
       return;
     }
 
-    changeSortType(sortType);
+    dispatch(changeSortType(sortType));
+    dispatch(fetchOffers());
+
     setSortMenuOpened((prevState) => !prevState);
   };
 
@@ -68,16 +67,4 @@ function Sorting({ currentSortType, changeSortType }: SortingProps): React.React
   );
 }
 
-const mapStateToProps = (state: TRootState) => ({
-  currentSortType: getCurrentSortType(state),
-});
-
-const mapDispatchToProps = (dispatch: TThunkDispatch) => ({
-  changeSortType: (sortType: SortType) => {
-    dispatch(changeSortType(sortType));
-    dispatch(fetchOffers());
-  },
-});
-
-export { Sorting };
-export default connect(mapStateToProps, mapDispatchToProps)(Sorting);
+export default Sorting;

@@ -1,21 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import { AppRoute, AuthorizationStatus } from '../../const';
 import { getAuthorizationStatus, getUser } from '../../store/user-process';
-import { TRootState } from '../../types/state';
-import { TUser } from '../../types/user';
-
-type HeaderNavListProps = {
-  authorizationStatus: AuthorizationStatus,
-  user: TUser | null,
-};
 
 const USER_DEFAULT_AVATAR_URL = '../img/avatar.svg';
 
-function HeaderNavList(props: HeaderNavListProps): React.ReactElement {
-  const { authorizationStatus, user } = props;
+function HeaderNavList(): React.ReactElement {
+  const authorizationStatus = useSelector(getAuthorizationStatus);
+  const user = useSelector(getUser);
 
   const style = {
     backgroundImage: user ? `url(${user.avatarUrl})` : `url(${USER_DEFAULT_AVATAR_URL})`,
@@ -55,10 +49,4 @@ function HeaderNavList(props: HeaderNavListProps): React.ReactElement {
   );
 }
 
-const mapStateToProps = (state: TRootState) => ({
-  authorizationStatus: getAuthorizationStatus(state),
-  user: getUser(state),
-});
-
-export { HeaderNavList };
-export default connect(mapStateToProps)(HeaderNavList);
+export default HeaderNavList;

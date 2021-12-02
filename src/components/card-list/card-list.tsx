@@ -1,12 +1,10 @@
 import React, { Fragment, PropsWithChildren } from 'react';
-import { Dispatch } from 'redux';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { CardType } from '../../const';
 import { setActiveCard } from '../../store/action';
 import { getOffers } from '../../store/offer-data';
 import { TOffer } from '../../types/offer';
-import { TRootState } from '../../types/state';
 
 import {
   CardItemCities,
@@ -16,8 +14,6 @@ import {
 
 type CardListProps = {
   cardType: CardType
-  offers: TOffer[],
-  setActiveCard: (id: number) => void,
 };
 
 const getCardListClass: Record<CardType, string> = {
@@ -58,12 +54,10 @@ const getComponentByType = (
   }
 };
 
-function CardList(props: PropsWithChildren<CardListProps>): React.ReactElement {
-  const {
-    cardType,
-    offers,
-    setActiveCard,
-  } = props;
+function CardList({ cardType }: PropsWithChildren<CardListProps>): React.ReactElement {
+  const offers = useSelector(getOffers);
+
+  const dispatch = useDispatch();
 
   const cardListClass = getCardListClass[cardType];
 
@@ -71,11 +65,11 @@ function CardList(props: PropsWithChildren<CardListProps>): React.ReactElement {
     <div className={cardListClass}>
       {offers.map((offer) => {
         const handleCardItemMouseEnter = () => {
-          setActiveCard(offer.id);
+          dispatch(setActiveCard(offer.id));
         };
 
         const handleCardItemMouseLeave = () => {
-          setActiveCard(-1);
+          dispatch(setActiveCard(-1));
         };
 
         return (
@@ -93,15 +87,4 @@ function CardList(props: PropsWithChildren<CardListProps>): React.ReactElement {
   );
 }
 
-const mapStateToProps = (state: TRootState) => ({
-  offers: getOffers(state),
-});
-
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  setActiveCard: (id: number) => {
-    dispatch(setActiveCard(id));
-  },
-});
-
-export { CardList };
-export default connect(mapStateToProps, mapDispatchToProps)(CardList);
+export default CardList;

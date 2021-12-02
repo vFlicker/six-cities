@@ -1,5 +1,13 @@
-import { ActionType, AuthorizationStatus } from '../../const';
-import { TRootAction } from '../../types/action';
+import { createReducer } from '@reduxjs/toolkit';
+import {
+  checkAuthStatusFailure,
+  checkAuthStatusRequest,
+  checkAuthStatusSuccess,
+  loginFailure,
+  loginRequest,
+  loginSuccess,
+} from '../action';
+import { AuthorizationStatus } from '../../const';
 import { TUserProcessState } from '../../types/state';
 
 const initialState: TUserProcessState = {
@@ -9,54 +17,44 @@ const initialState: TUserProcessState = {
   user: null,
 };
 
-const userProcess = (state = initialState, action: TRootAction): TUserProcessState => {
-  switch (action.type) {
-    case ActionType.CHECK_AUTH_STATUS_REQUEST:
-      return {
-        authorizationStatus: AuthorizationStatus.UNKNOWN,
-        user: null,
-        loading: true,
-        error: null,
-      };
-    case ActionType.CHECK_AUTH_STATUS_SUCCESS:
-      return {
-        authorizationStatus: AuthorizationStatus.AUTH,
-        user: action.payload,
-        loading: false,
-        error: null,
-      };
-    case ActionType.CHECK_AUTH_STATUS_FAILURE:
-      return {
-        authorizationStatus: AuthorizationStatus.NO_AUTH,
-        user: null,
-        loading: false,
-        error: action.payload,
-      };
-
-    case ActionType.LOGIN_REQUEST:
-      return {
-        authorizationStatus: AuthorizationStatus.UNKNOWN,
-        user: null,
-        loading: true,
-        error: null,
-      };
-    case ActionType.LOGIN_SUCCESS:
-      return {
-        authorizationStatus: AuthorizationStatus.AUTH,
-        user: action.payload,
-        loading: false,
-        error: null,
-      };
-    case ActionType.LOGIN_FAILURE:
-      return {
-        authorizationStatus: AuthorizationStatus.NO_AUTH,
-        user: null,
-        loading: false,
-        error: action.payload,
-      };
-    default:
-      return state;
-  }
-};
+const userProcess = createReducer(initialState, ((builder) => {
+  builder
+    .addCase(checkAuthStatusRequest, (state) => {
+      state.authorizationStatus = AuthorizationStatus.UNKNOWN;
+      state.user = null;
+      state.loading = true;
+      state.error = null;
+    })
+    .addCase(checkAuthStatusSuccess, (state, action) => {
+      state.authorizationStatus = AuthorizationStatus.AUTH;
+      state.user = action.payload;
+      state.loading = false;
+      state.error = null;
+    })
+    .addCase(checkAuthStatusFailure, (state, action) => {
+      state.authorizationStatus = AuthorizationStatus.NO_AUTH;
+      state.user = null;
+      state.loading = false;
+      state.error = action.payload;
+    })
+    .addCase(loginRequest, (state) => {
+      state.authorizationStatus = AuthorizationStatus.UNKNOWN;
+      state.user = null;
+      state.loading = true;
+      state.error = null;
+    })
+    .addCase(loginSuccess, (state, action) => {
+      state.authorizationStatus = AuthorizationStatus.AUTH;
+      state.user = action.payload;
+      state.loading = false;
+      state.error = null;
+    })
+    .addCase(loginFailure, (state, action) => {
+      state.authorizationStatus = AuthorizationStatus.NO_AUTH;
+      state.user = null;
+      state.loading = false;
+      state.error = action.payload;
+    });
+}));
 
 export default userProcess;

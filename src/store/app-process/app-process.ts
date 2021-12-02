@@ -1,21 +1,16 @@
-import { ActionType } from '../../const';
-import { TRootAction } from '../../types/action';
+import { createReducer } from '@reduxjs/toolkit';
 import { TAppProcessState } from '../../types/state';
+import { setActiveCard } from '../action';
 
 const initialState: TAppProcessState = {
   activeCardId: -1,
 };
 
-const appProcess = (state = initialState, action: TRootAction): TAppProcessState => {
-  switch (action.type) {
-    case ActionType.SET_ACTIVE_CARD:
-      return {
-        ...state,
-        activeCardId: action.payload,
-      };
-    default:
-      return state;
-  }
-};
+const appProcess = createReducer(initialState, (builder) => {
+  builder
+    .addCase(setActiveCard, (state, action) => {
+      state.activeCardId = action.payload;
+    });
+});
 
 export default appProcess;

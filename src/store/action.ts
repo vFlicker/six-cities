@@ -1,61 +1,74 @@
+import { createAction } from '@reduxjs/toolkit';
 import { ActionType, CityName, SortType } from '../const';
 import ApiError from '../errors';
 import { TOffer } from '../types/offer';
 import { TUser } from '../types/user';
 
-export const changeCityName = (cityName: CityName) => ({
-  type: ActionType.CHANGE_CITY_NAME,
-  payload: cityName,
-} as const);
+export const changeCityName = createAction(
+  ActionType.CHANGE_CITY_NAME,
+  (cityName: CityName) => ({
+    payload: cityName,
+  }),
+);
 
-export const changeSortType = (sortType: SortType) => ({
-  type: ActionType.CHANGE_SORT_TYPE,
-  payload: sortType,
-} as const);
+export const changeSortType = createAction(
+  ActionType.CHANGE_SORT_TYPE,
+  (sortType: SortType) => ({
+    payload: sortType,
+  }),
+);
 
-export const checkAuthStatusRequest = () => ({
-  type: ActionType.CHECK_AUTH_STATUS_REQUEST,
-} as const);
+export const checkAuthStatusRequest = createAction(ActionType.CHECK_AUTH_STATUS_REQUEST);
 
-export const checkAuthStatusSuccess = (userData: TUser) => ({
-  type: ActionType.CHECK_AUTH_STATUS_SUCCESS,
-  payload: userData,
-} as const);
+export const checkAuthStatusSuccess = createAction(
+  ActionType.CHECK_AUTH_STATUS_SUCCESS,
+  (userData: TUser) => ({
+    payload: userData,
+  }),
+);
 
-export const checkAuthStatusFailure = (error: ApiError) => ({
-  type: ActionType.CHECK_AUTH_STATUS_FAILURE,
-  payload: error,
-} as const);
+export const checkAuthStatusFailure = createAction(
+  ActionType.CHECK_AUTH_STATUS_FAILURE,
+  (error: ApiError) => ({
+    payload: error,
+  }),
+);
 
-export const setActiveCard = (cardId: number) => ({
-  type: ActionType.SET_ACTIVE_CARD,
-  payload: cardId,
-} as const);
+export const setActiveCard = createAction(
+  ActionType.SET_ACTIVE_CARD,
+  (cardId: number) => ({
+    payload: cardId,
+  }),
+);
 
-export const offersRequested = () => ({
-  type: ActionType.FETCH_OFFERS_REQUEST,
-} as const);
+export const offersRequested = createAction(ActionType.FETCH_OFFERS_REQUEST);
 
-export const offersLoaded = (offers: TOffer[]) => ({
-  type: ActionType.FETCH_OFFERS_SUCCESS,
-  payload: offers,
-} as const);
+export const offersLoaded = createAction(
+  ActionType.FETCH_OFFERS_SUCCESS,
+  (offers: TOffer[]) => ({
+    payload: offers,
+  }),
+);
 
-export const offersError = (error: ApiError) => ({
-  type: ActionType.FETCH_OFFERS_FAILURE,
-  payload: error,
-} as const);
+export const offersError = createAction(
+  ActionType.FETCH_OFFERS_FAILURE,
+  (error: ApiError) => ({
+    payload: error,
+  }),
+);
 
-export const loginRequest = () => ({
-  type: ActionType.LOGIN_REQUEST,
-} as const);
+export const loginRequest = createAction(ActionType.LOGIN_REQUEST);
 
-export const loginSuccess = (userData: TUser) => ({
-  type: ActionType.LOGIN_SUCCESS,
-  payload: userData,
-} as const);
+export const loginSuccess = createAction(
+  ActionType.LOGIN_SUCCESS,
+  (userData: TUser) => ({
+    payload: userData,
+  }),
+);
 
-export const loginFailure = (error: ApiError) => ({
-  type: ActionType.LOGIN_FAILURE,
-  payload: error,
-} as const);
+export const loginFailure = createAction(
+  ActionType.LOGIN_FAILURE,
+  (error: ApiError) => ({
+    payload: error,
+  }),
+);

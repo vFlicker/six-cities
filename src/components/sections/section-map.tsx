@@ -1,18 +1,14 @@
 import React, { PropsWithChildren, useEffect, useRef } from 'react';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import leaflet from 'leaflet';
 
 import { getActiveCard } from '../../store/app-process';
 import { getOffers } from '../../store/offer-data';
-import { TOffer } from '../../types/offer';
-import { TRootState } from '../../types/state';
 
 import 'leaflet/dist/leaflet.css';
 
 type MapProps = {
-  activeCardId: number,
   className: string,
-  offers: TOffer[];
 }
 
 const icon = leaflet.icon({
@@ -31,11 +27,14 @@ const layerOptions = {
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
 };
 
-function SectionMap({ activeCardId, className = '', offers }: PropsWithChildren<MapProps>): React.ReactElement {
+function SectionMap({ className = '' }: PropsWithChildren<MapProps>): React.ReactElement {
+  const mapRef = useRef<HTMLElement>(null);
+
+  const activeCardId = useSelector(getActiveCard);
+  const offers = useSelector(getOffers);
+
   const currentOffer = offers[0] ?? [];
   const { city = null } = currentOffer;
-
-  const mapRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     if (city && mapRef.current) {
@@ -82,10 +81,4 @@ function SectionMap({ activeCardId, className = '', offers }: PropsWithChildren<
   );
 }
 
-const mapStateToProps = (state: TRootState) => ({
-  activeCardId: getActiveCard(state),
-  offers: getOffers(state),
-});
-
-export { SectionMap };
-export default connect(mapStateToProps)(SectionMap);
+export default SectionMap;

@@ -1,22 +1,17 @@
-import React, { MouseEvent, PropsWithChildren } from 'react';
-import { connect } from 'react-redux';
+import React, { MouseEvent } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { CityName } from '../../const';
 import { changeCityName } from '../../store/action';
 import { fetchOffers } from '../../store/api-actions';
 import { getCurrentCityName } from '../../store/offer-data';
-import { TThunkDispatch } from '../../types/action';
-import { TRootState } from '../../types/state';
 
 import LocationsItem from '../locations-item';
 
-type LocationsListProps = {
-  currentCityName: CityName,
-  changeCityName: (currentCityName: CityName) => void
-};
+function LocationsList(): React.ReactElement {
+  const currentCityName = useSelector(getCurrentCityName);
 
-function LocationsList(props: PropsWithChildren<LocationsListProps>): React.ReactElement {
-  const { currentCityName, changeCityName } = props;
+  const dispatch = useDispatch();
 
   const handleLocationsItemClick = (evt: MouseEvent, cityName: CityName) => {
     evt.preventDefault();
@@ -25,7 +20,8 @@ function LocationsList(props: PropsWithChildren<LocationsListProps>): React.Reac
       return;
     }
 
-    changeCityName(cityName);
+    dispatch(changeCityName(cityName));
+    dispatch(fetchOffers());
   };
 
   return (
@@ -47,16 +43,4 @@ function LocationsList(props: PropsWithChildren<LocationsListProps>): React.Reac
   );
 }
 
-const mapStateToProps = (state: TRootState) => ({
-  currentCityName: getCurrentCityName(state),
-});
-
-const mapDispatchToProps = (dispatch: TThunkDispatch) => ({
-  changeCityName: (cityName: CityName) => {
-    dispatch(changeCityName(cityName));
-    dispatch(fetchOffers());
-  },
-});
-
-export { LocationsList };
-export default connect(mapStateToProps, mapDispatchToProps)(LocationsList);
+export default LocationsList;

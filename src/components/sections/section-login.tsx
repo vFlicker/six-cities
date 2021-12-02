@@ -1,17 +1,13 @@
 import React, { FormEvent, useRef } from 'react';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { login } from '../../store/api-actions';
-import { TThunkDispatch } from '../../types/action';
-import { TAuthData } from '../../types/auth-data';
 
-type SectionLoginProps = {
-  onSubmit: (data: TAuthData) => void,
-};
-
-function SectionLogin({ onSubmit }: SectionLoginProps): React.ReactElement {
+function SectionLogin(): React.ReactElement {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
+
+  const dispatch = useDispatch();
 
   const handleSubmit = (evt: FormEvent) => {
     evt.preventDefault();
@@ -20,10 +16,10 @@ function SectionLogin({ onSubmit }: SectionLoginProps): React.ReactElement {
       return;
     }
 
-    onSubmit({
+    dispatch(login({
       email: emailRef.current.value,
       password: passwordRef.current.value,
-    });
+    }));
   };
 
   return (
@@ -67,11 +63,4 @@ function SectionLogin({ onSubmit }: SectionLoginProps): React.ReactElement {
   );
 }
 
-const mapDispatchToProps = (dispatch: TThunkDispatch) => ({
-  onSubmit: (authData: TAuthData) => {
-    dispatch(login(authData));
-  },
-});
-
-export { SectionLogin };
-export default connect(null, mapDispatchToProps)(SectionLogin);
+export default SectionLogin;

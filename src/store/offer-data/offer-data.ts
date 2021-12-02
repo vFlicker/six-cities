@@ -1,5 +1,12 @@
-import { ActionType, CityName, SortType } from '../../const';
-import { TRootAction } from '../../types/action';
+import { createReducer } from '@reduxjs/toolkit';
+import {
+  changeCityName,
+  changeSortType,
+  offersError,
+  offersLoaded,
+  offersRequested,
+} from '../action';
+import { CityName, SortType } from '../../const';
 import { TOffer } from '../../types/offer';
 import { TOfferDataState } from '../../types/state';
 import { sortByPriceHighToLow, sortByPriceLowToHigh, topRatedFirst } from '../../utils';
@@ -31,42 +38,29 @@ const initialState: TOfferDataState = {
   error: null,
 };
 
-const offerData = (state = initialState, action: TRootAction): TOfferDataState => {
-  switch (action.type) {
-    case ActionType.CHANGE_CITY_NAME:
-      return {
-        ...state,
-        currentCityName: action.payload,
-      };
-    case ActionType.CHANGE_SORT_TYPE:
-      return {
-        ...state,
-        currentSortType: action.payload,
-      };
-    case ActionType.FETCH_OFFERS_REQUEST:
-      return {
-        ...state,
-        offers: [],
-        loading: true,
-        error: null,
-      };
-    case ActionType.FETCH_OFFERS_SUCCESS:
-      return {
-        ...state,
-        offers: getOffers(state, action.payload),
-        loading: false,
-        error: null,
-      };
-    case ActionType.FETCH_OFFERS_FAILURE:
-      return {
-        ...state,
-        offers: [],
-        loading: false,
-        error: action.payload,
-      };
-    default:
-      return state;
-  }
-};
+const offerData = createReducer(initialState, (builder) => {
+  builder
+    .addCase(changeCityName, (state, action) => {
+      state.currentCityName = action.payload;
+    })
+    .addCase(changeSortType, (state, action) => {
+      state.currentSortType = action.payload;
+    })
+    .addCase(offersRequested, (state) => {
+      state.offers = [];
+      state.loading = true;
+      state.error = null;
+    })
+    .addCase(offersLoaded, (state, action) => {
+      state.offers = getOffers(state, action.payload);
+      state.loading = false;
+      state.error = null;
+    })
+    .addCase(offersError, (state, action) => {
+      state.offers = [];
+      state.loading = false;
+      state.error = action.payload;
+    });
+});
 
 export default offerData;

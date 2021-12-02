@@ -1,13 +1,9 @@
-import React, { PropsWithChildren, useEffect } from 'react';
-import { connect } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { CardType } from '../../const';
-import ApiError from '../../errors';
 import { fetchOffers } from '../../store/api-actions';
 import { getError, getLoading, getOffers } from '../../store/offer-data';
-import { TThunkDispatch } from '../../types/action';
-import { TOffer } from '../../types/offer';
-import { TRootState } from '../../types/state';
 
 import CardList from '../card-list';
 import Sorting from '../sorting';
@@ -20,23 +16,15 @@ import {
   SectionPlaces,
 } from './index';
 
-type MainPageProps = {
-  offers: TOffer[],
-  loading: boolean,
-  error: null | ApiError,
-  fetchOffers: () => void
-};
+function SectionMain(): React.ReactElement {
+  const offers = useSelector(getOffers);
+  const loading = useSelector(getLoading);
+  const error = useSelector(getError);
 
-function SectionMain(props: PropsWithChildren<MainPageProps>): React.ReactElement {
-  const {
-    offers,
-    loading,
-    error,
-    fetchOffers,
-  } = props;
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    fetchOffers();
+    dispatch(fetchOffers());
   }, []);
 
   if (loading) {
@@ -80,15 +68,4 @@ function SectionMain(props: PropsWithChildren<MainPageProps>): React.ReactElemen
   );
 }
 
-const mapStateToProps = (state: TRootState) => ({
-  offers: getOffers(state),
-  loading: getLoading(state),
-  error: getError(state),
-});
-
-const mapDispatchToProps = (dispatch: TThunkDispatch) => ({
-  fetchOffers: () => dispatch(fetchOffers()),
-});
-
-export { SectionMain };
-export default connect(mapStateToProps, mapDispatchToProps)(SectionMain);
+export default SectionMain;
