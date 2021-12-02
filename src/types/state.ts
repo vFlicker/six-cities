@@ -1,8 +1,12 @@
-import { AuthorizationStatus, CityName, SortType } from '../const';
+import {
+  AuthorizationStatus,
+  CityName,
+  ReducerName,
+  SortType,
+} from '../const';
 import ApiError from '../errors';
 import { TOffer } from './offer';
 import { TUser } from './user';
-import { NameSpace } from '../store/root-reducer';
 
 export type TAppProcessState = {
   activeCardId: number,
@@ -24,7 +28,7 @@ export type TUserProcessState = {
 };
 
 export type TRootState = {
-  [NameSpace.APP_PROCESS]: TAppProcessState,
-  [NameSpace.OFFER_DATA]: TOfferDataState,
-  [NameSpace.USER_PROCESS]: TUserProcessState,
+  [ReducerName.APP_PROCESS]: TAppProcessState,
+  [ReducerName.OFFER_DATA]: TOfferDataState,
+  [ReducerName.USER_PROCESS]: TUserProcessState,
 };

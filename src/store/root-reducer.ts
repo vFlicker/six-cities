@@ -1,16 +1,11 @@
 import { combineReducers } from 'redux';
 import { appProcess } from './app-process';
+import { ReducerName } from '../const';
 import { offerData } from './offer-data';
 import { userProcess } from './user-process';
 
-export enum NameSpace {
-  APP_PROCESS = 'APP_PROCESS',
-  OFFER_DATA = 'OFFER_DATA',
-  USER_PROCESS = 'USER_PROCESS',
-}
-
 export default combineReducers({
-  [NameSpace.APP_PROCESS]: appProcess,
-  [NameSpace.OFFER_DATA]: offerData,
-  [NameSpace.USER_PROCESS]: userProcess,
+  [ReducerName.APP_PROCESS]: appProcess,
+  [ReducerName.OFFER_DATA]: offerData,
+  [ReducerName.USER_PROCESS]: userProcess,
 });

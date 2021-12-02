@@ -52,6 +52,12 @@ export enum CityName {
   DUSSELDORF = 'Dusseldorf',
 }
 
+export enum ReducerName {
+  APP_PROCESS = 'APP_PROCESS',
+  OFFER_DATA = 'OFFER_DATA',
+  USER_PROCESS = 'USER_PROCESS',
+}
+
 export enum SortType {
   POPULAR = 'Popular',
   PRICE_HIGH_TO_LOW = 'Price: high to low',
