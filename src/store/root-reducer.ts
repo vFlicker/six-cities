@@ -4,8 +4,10 @@ import { ReducerName } from '../const';
 import { offerData } from './offer-data';
 import { userProcess } from './user-process';
 
-export default combineReducers({
+const rootReducer = combineReducers({
   [ReducerName.APP_PROCESS]: appProcess,
   [ReducerName.OFFER_DATA]: offerData,
   [ReducerName.USER_PROCESS]: userProcess,
 });
+
+export default rootReducer;

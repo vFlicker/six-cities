@@ -1,11 +1,7 @@
-import {
-  AuthorizationStatus,
-  CityName,
-  ReducerName,
-  SortType,
-} from '../const';
+import { AuthorizationStatus, CityName, SortType } from '../const';
 import ApiError from '../errors';
 import { TOffer } from './offer';
+import rootReducer from '../store/root-reducer';
 import { TUser } from './user';
 
 export type TAppProcessState = {
@@ -27,8 +23,4 @@ export type TUserProcessState = {
   user: TUser | null
 };
 
-export type TRootState = {
-  [ReducerName.APP_PROCESS]: TAppProcessState,
-  [ReducerName.OFFER_DATA]: TOfferDataState,
-  [ReducerName.USER_PROCESS]: TUserProcessState,
-};
+export type TRootState = ReturnType<typeof rootReducer>;
