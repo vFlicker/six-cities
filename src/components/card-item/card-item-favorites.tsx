@@ -1,4 +1,5 @@
-import React, { PropsWithChildren } from 'react';
+import React from 'react';
+
 import CardItem, { CardItemType } from './card-item';
 
 const cardClass = 'favorites__card place-card';
@@ -7,7 +8,7 @@ const cardInfoClass = 'favorites__card-info place-card__info';
 const imageWidth = 150;
 const imageHeight = 110;
 
-function CardItemFavorites(props: PropsWithChildren<CardItemType>): React.ReactElement {
+function CardItemFavorites(props: CardItemType): JSX.Element {
   return (
     <CardItem
       cardClass={cardClass}

@@ -1,7 +1,8 @@
 import React from 'react';
+
 import { SectionHeader, SectionFooter, SectionNotFound } from '../sections';
 
-function NotFoundPage(): React.ReactElement {
+function NotFoundPage(): JSX.Element {
   return (
     <div className="page  page--not-found">
       <SectionHeader />

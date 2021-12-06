@@ -1,12 +1,13 @@
-import React, { PropsWithChildren } from 'react';
+import React from 'react';
+
 import ReviewsItem from '../reviews-item';
-import { TReview } from '../../types/review';
+import { TReviews } from '../../types/review';
 
 type ReviewsListProps = {
-  reviews: TReview[]
-}
+  reviews: TReviews;
+};
 
-function ReviewsList({ reviews }: PropsWithChildren<ReviewsListProps>): React.ReactElement {
+function ReviewsList({ reviews }: ReviewsListProps): JSX.Element {
   return (
     <ul className="reviews__list">
       {reviews.map((review) => (

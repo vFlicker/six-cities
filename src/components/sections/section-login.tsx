@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import { login } from '../../store/api-actions';
 
-function SectionLogin(): React.ReactElement {
+function SectionLogin(): JSX.Element {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 

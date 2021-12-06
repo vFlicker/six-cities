@@ -1,12 +1,13 @@
-import React, { PropsWithChildren } from 'react';
+import React from 'react';
+
 import { RatingListProps } from '../rating-list/rating-list';
 
 type RatingItemProps = {
-  title: string,
-  currentItem: number
+  title: string;
+  currentItem: number;
 } & RatingListProps;
 
-function RatingItem(props: PropsWithChildren<RatingItemProps>): React.ReactElement {
+function RatingItem(props: RatingItemProps): JSX.Element {
   const {
     title,
     currentItem,

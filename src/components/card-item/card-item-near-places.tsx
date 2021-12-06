@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from 'react';
+import React from 'react';
 import CardItem, { CardItemType } from './card-item';
 
 const cardClass = 'near-places__card place-card';
@@ -7,7 +7,7 @@ const cardInfoClass = 'place-card__info';
 const imageWidth = 260;
 const imageHeight = 200;
 
-function CardItemNearPlaces(props: PropsWithChildren<CardItemType>): React.ReactElement {
+function CardItemNearPlaces(props: CardItemType): JSX.Element {
   return (
     <CardItem
       cardClass={cardClass}

@@ -6,9 +6,6 @@ import { fetchOffers } from '../../store/api-actions';
 import { getError, getLoading, getOffers } from '../../store/offer-data';
 
 import CardList from '../card-list';
-import Sorting from '../sorting';
-import Spinner from '../spinner';
-import LocationsList from '../locations-list';
 import {
   SectionLocations,
   SectionMainEmpty,
@@ -16,7 +13,11 @@ import {
   SectionPlaces,
 } from './index';
 
-function SectionMain(): React.ReactElement {
+import Sorting from '../sorting';
+import Spinner from '../spinner';
+import LocationsList from '../locations-list';
+
+function SectionMain(): JSX.Element {
   const offers = useSelector(getOffers);
   const loading = useSelector(getLoading);
   const error = useSelector(getError);
@@ -57,7 +58,7 @@ function SectionMain(): React.ReactElement {
 
             <Sorting />
 
-            <CardList cardType={CardType.CITIES} />
+            <CardList cardType={CardType.Cities} />
           </SectionPlaces>
           <div className="cities__right-section">
             <SectionMap className="cities__map" />

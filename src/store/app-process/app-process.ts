@@ -1,6 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { TAppProcessState } from '../../types/state';
-import { setActiveCard } from '../action';
+import setActiveCard from './action';
 
 const initialState: TAppProcessState = {
   activeCardId: -1,

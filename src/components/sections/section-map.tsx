@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import leaflet from 'leaflet';
 
@@ -8,8 +8,8 @@ import { getOffers } from '../../store/offer-data';
 import 'leaflet/dist/leaflet.css';
 
 type MapProps = {
-  className: string,
-}
+  className: string;
+};
 
 const icon = leaflet.icon({
   iconUrl: './img/pin.svg',
@@ -27,7 +27,7 @@ const layerOptions = {
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
 };
 
-function SectionMap({ className = '' }: PropsWithChildren<MapProps>): React.ReactElement {
+function SectionMap({ className = '' }: MapProps): JSX.Element {
   const mapRef = useRef<HTMLElement>(null);
 
   const activeCardId = useSelector(getActiveCard);

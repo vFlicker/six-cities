@@ -1,10 +1,10 @@
 import React, { PropsWithChildren } from 'react';
 
-type SectionPlacesProps = {
-  className?: string;
-}
+type SectionPlacesProps = PropsWithChildren<{
+  className: string;
+}>;
 
-function SectionPlaces({ className = '', children }: PropsWithChildren<SectionPlacesProps>): React.ReactElement {
+function SectionPlaces({ className = '', children }: SectionPlacesProps): JSX.Element {
   return (
     <section className={`${className} places`}>
       {children}

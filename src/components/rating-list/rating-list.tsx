@@ -1,14 +1,15 @@
-import React, { PropsWithChildren } from 'react';
+import React from 'react';
+
 import RatingItem from '../rating-item';
 
 const RatingTitles: string[] = ['perfect', 'good', 'not bad', 'badly', 'terribly'];
 
 export type RatingListProps = {
-  rating: number,
-  onRatingToggle: (rating: number) => void
-}
+  rating: number;
+  onRatingToggle: (rating: number) => void;
+};
 
-function RatingList(props: PropsWithChildren<RatingListProps>): React.ReactElement {
+function RatingList(props: RatingListProps): JSX.Element {
   const { rating, onRatingToggle } = props;
 
   return (

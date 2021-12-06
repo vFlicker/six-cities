@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Spinner(): React.ReactElement {
+function Spinner(): JSX.Element {
   return (
     <div className="spinner">
       <div className="spinner__item  spinner__item--1" />

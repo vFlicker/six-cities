@@ -1,4 +1,6 @@
-const offers = [
+import { TOffers } from '../types/offer';
+
+const offers: TOffers = [
   {
     id: 1,
     bedrooms: 3,

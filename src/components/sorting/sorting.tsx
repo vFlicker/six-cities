@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { SortType } from '../../const';
-import { changeSortType } from '../../store/action';
 import { fetchOffers } from '../../store/api-actions';
 import { getCurrentSortType } from '../../store/offer-data';
+import { changeSortType } from '../../store/offer-data/action';
 
-function Sorting(): React.ReactElement {
+function Sorting(): JSX.Element {
   const [sortMenuOpened, setSortMenuOpened] = useState<boolean>(false);
 
   const currentSortType = useSelector(getCurrentSortType);

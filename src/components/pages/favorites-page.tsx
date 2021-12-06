@@ -1,7 +1,8 @@
 import React from 'react';
+
 import { SectionHeader, SectionFooter, SectionFavorites } from '../sections';
 
-function FavoritesPage(): React.ReactElement {
+function FavoritesPage(): JSX.Element {
   return (
     <div className="page">
       <SectionHeader />

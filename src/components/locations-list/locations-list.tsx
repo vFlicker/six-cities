@@ -2,13 +2,13 @@ import React, { MouseEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { CityName } from '../../const';
-import { changeCityName } from '../../store/action';
 import { fetchOffers } from '../../store/api-actions';
 import { getCurrentCityName } from '../../store/offer-data';
+import { changeCityName } from '../../store/offer-data/action';
 
 import LocationsItem from '../locations-item';
 
-function LocationsList(): React.ReactElement {
+function LocationsList(): JSX.Element {
   const currentCityName = useSelector(getCurrentCityName);
 
   const dispatch = useDispatch();

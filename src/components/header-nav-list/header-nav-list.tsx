@@ -7,7 +7,7 @@ import { getAuthorizationStatus, getUser } from '../../store/user-process';
 
 const USER_DEFAULT_AVATAR_URL = '../img/avatar.svg';
 
-function HeaderNavList(): React.ReactElement {
+function HeaderNavList(): JSX.Element {
   const authorizationStatus = useSelector(getAuthorizationStatus);
   const user = useSelector(getUser);
 
@@ -16,11 +16,11 @@ function HeaderNavList(): React.ReactElement {
     borderRadius: '50%',
   };
 
-  if (authorizationStatus !== AuthorizationStatus.AUTH) {
+  if (authorizationStatus !== AuthorizationStatus.Auth) {
     return (
       <ul className="header__nav-list">
         <li className="header__nav-item user">
-          <Link to={AppRoute.LOGIN} className="header__nav-link header__nav-link--profile">
+          <Link to={AppRoute.Login} className="header__nav-link header__nav-link--profile">
             <div className="header__avatar-wrapper user__avatar-wrapper" />
             <span className="header__login">Sign in</span>
           </Link>
@@ -32,7 +32,7 @@ function HeaderNavList(): React.ReactElement {
   return (
     <ul className="header__nav-list">
       <li className="header__nav-item user">
-        <Link to={AppRoute.FAVORITES} className="header__nav-link header__nav-link--profile">
+        <Link to={AppRoute.Favorites} className="header__nav-link header__nav-link--profile">
           <div
             className="header__avatar-wrapper user__avatar-wrapper"
             style={style}
@@ -41,7 +41,7 @@ function HeaderNavList(): React.ReactElement {
         </Link>
       </li>
       <li className="header__nav-item">
-        <Link to={AppRoute.ROOT} className="header__nav-link">
+        <Link to={AppRoute.Root} className="header__nav-link">
           <span className="header__signout">Sign out</span>
         </Link>
       </li>

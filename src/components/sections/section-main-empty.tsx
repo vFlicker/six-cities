@@ -1,9 +1,9 @@
 import React from 'react';
 
-import LocationsList from '../locations-list';
 import { SectionLocations } from './index';
+import LocationsList from '../locations-list';
 
-function SectionMainEmpty(): React.ReactElement {
+function SectionMainEmpty(): JSX.Element {
   return (
     <main className="page__main page__main--index page__main--index-empty">
       <h1 className="visually-hidden">Cities</h1>

@@ -1,15 +1,16 @@
-import React, { PropsWithChildren } from 'react';
-import { TOffer } from '../../types/offer';
-import { TReview } from '../../types/review';
-import { convertRatingToPercents } from '../../utils';
+import React from 'react';
+
 import { SectionMap, SectionReviews } from './index';
+import { TOffer } from '../../types/offer';
+import { TReviews } from '../../types/review';
+import { convertRatingToPercents } from '../../utils';
 
 type OfferProps = {
-  offer: TOffer,
-  reviews: TReview[],
+  offer: TOffer;
+  reviews: TReviews;
 };
 
-function SectionProperty({ offer, reviews }: PropsWithChildren<OfferProps>): React.ReactElement {
+function SectionProperty({ offer, reviews }: OfferProps): JSX.Element {
   const {
     bedrooms: bedroomCount,
     description,

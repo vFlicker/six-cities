@@ -1,4 +1,6 @@
-const reviews = [
+import { TReviews } from '../types/review';
+
+const reviews: TReviews = [
   {
     id: 1,
     comment: '[1] A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',

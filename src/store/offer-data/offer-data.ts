@@ -5,13 +5,13 @@ import {
   offersError,
   offersLoaded,
   offersRequested,
-} from '../action';
+} from './action';
 import { CityName, SortType } from '../../const';
-import { TOffer } from '../../types/offer';
+import { TOffers } from '../../types/offer';
 import { TOfferDataState } from '../../types/state';
 import { sortByPriceHighToLow, sortByPriceLowToHigh, topRatedFirst } from '../../utils';
 
-const getOffers = (state: TOfferDataState, offers: TOffer[]) => {
+const getOffers = (state: TOfferDataState, offers: TOffers) => {
   const { currentCityName, currentSortType } = state;
 
   const filteredOffers = offers
@@ -19,11 +19,11 @@ const getOffers = (state: TOfferDataState, offers: TOffer[]) => {
     .slice(0, 6);
 
   switch (currentSortType) {
-    case SortType.PRICE_HIGH_TO_LOW:
+    case SortType.PriceHighToLow:
       return filteredOffers.sort(sortByPriceHighToLow);
-    case SortType.PRICE_LOW_TO_HIGH:
+    case SortType.PriceLowToHigh:
       return filteredOffers.sort(sortByPriceLowToHigh);
-    case SortType.TOP_RATED_FIRST:
+    case SortType.TopRatedFirst:
       return filteredOffers.sort(topRatedFirst);
     default:
       return filteredOffers;
@@ -31,8 +31,8 @@ const getOffers = (state: TOfferDataState, offers: TOffer[]) => {
 };
 
 const initialState: TOfferDataState = {
-  currentCityName: CityName.AMSTERDAM,
-  currentSortType: SortType.POPULAR,
+  currentCityName: CityName.Amsterdam,
+  currentSortType: SortType.Popular,
   offers: [],
   loading: true,
   error: null,

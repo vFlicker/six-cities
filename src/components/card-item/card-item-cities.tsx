@@ -1,4 +1,5 @@
-import React, { PropsWithChildren } from 'react';
+import React from 'react';
+
 import CardItem, { CardItemType } from './card-item';
 
 const cardClass = 'cities__place-card place-card';
@@ -7,7 +8,7 @@ const cardInfoClass = 'place-card__info';
 const imageWidth = 260;
 const imageHeight = 200;
 
-function CardItemCities(props: PropsWithChildren<CardItemType>): React.ReactElement {
+function CardItemCities(props: CardItemType): JSX.Element {
   return (
     <CardItem
       cardClass={cardClass}

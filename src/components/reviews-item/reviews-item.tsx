@@ -1,12 +1,13 @@
-import React, { PropsWithChildren } from 'react';
+import React from 'react';
+
 import { TReview } from '../../types/review';
 import { convertRatingToPercents } from '../../utils';
 
 type ReviewsItemProps = {
-  review: TReview,
-}
+  review: TReview;
+};
 
-function ReviewsItem({ review }: PropsWithChildren<ReviewsItemProps>): React.ReactElement {
+function ReviewsItem({ review }: ReviewsItemProps): JSX.Element {
   const {
     comment,
     rating,

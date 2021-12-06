@@ -1,25 +1,26 @@
-import React, { PropsWithChildren } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
+
 import { TOffer } from '../../types/offer';
 import { convertRatingToPercents } from '../../utils';
 
 export type CardItemType = {
-  offer: TOffer,
-  onCardItemMouseEnter?: (evt: React.MouseEvent) => void,
-  onCardItemMouseLeave? :(evt: React.MouseEvent) => void,
+  offer: TOffer;
+  onCardItemMouseEnter?: (evt: React.MouseEvent) => void;
+  onCardItemMouseLeave? :(evt: React.MouseEvent) => void;
 };
 
 type CardItemProps = {
-  cardClass: string,
-  cardImageWrapperClass: string,
-  cardInfoClass: string,
-  imageWidth: number,
-  imageHeight: number,
+  cardClass: string;
+  cardImageWrapperClass: string;
+  cardInfoClass: string;
+  imageWidth: number;
+  imageHeight: number;
 } & CardItemType;
 
 const OFFER_LINK = '/offers';
 
-function CardItem(props: PropsWithChildren<CardItemProps>): React.ReactElement {
+function CardItem(props: CardItemProps): JSX.Element {
   const {
     offer,
     onCardItemMouseEnter,

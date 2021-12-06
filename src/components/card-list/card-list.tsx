@@ -1,9 +1,9 @@
-import React, { Fragment, PropsWithChildren } from 'react';
+import React, { Fragment } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { CardType } from '../../const';
-import { setActiveCard } from '../../store/action';
 import { getOffers } from '../../store/offer-data';
+import setActiveCard from '../../store/app-process/action';
 import { TOffer } from '../../types/offer';
 
 import {
@@ -13,13 +13,13 @@ import {
 } from '../card-item';
 
 type CardListProps = {
-  cardType: CardType
+  cardType: CardType;
 };
 
 const getCardListClass: Record<CardType, string> = {
-  [CardType.CITIES]: 'cities__places-list places__list tabs__content',
-  [CardType.FAVORITES]: 'favorites__places',
-  [CardType.NEAR_PLACES]: 'near-places__list places__list',
+  [CardType.Cities]: 'cities__places-list places__list tabs__content',
+  [CardType.Favorites]: 'favorites__places',
+  [CardType.NearPlaces]: 'near-places__list places__list',
 };
 
 const getComponentByType = (
@@ -29,7 +29,7 @@ const getComponentByType = (
   handleCardItemMouseLeave: (evt: React.MouseEvent) => void,
 ) => {
   switch (type) {
-    case CardType.CITIES:
+    case CardType.Cities:
       return (
         <CardItemCities
           offer={offer}
@@ -37,13 +37,13 @@ const getComponentByType = (
           onCardItemMouseLeave={handleCardItemMouseLeave}
         />
       );
-    case CardType.FAVORITES:
+    case CardType.Favorites:
       return (
         <CardItemFavorites
           offer={offer}
         />
       );
-    case CardType.NEAR_PLACES:
+    case CardType.NearPlaces:
       return (
         <CardItemNearPlaces
           offer={offer}
@@ -54,7 +54,7 @@ const getComponentByType = (
   }
 };
 
-function CardList({ cardType }: PropsWithChildren<CardListProps>): React.ReactElement {
+function CardList({ cardType }: CardListProps): JSX.Element {
   const offers = useSelector(getOffers);
 
   const dispatch = useDispatch();

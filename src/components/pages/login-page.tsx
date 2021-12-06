@@ -1,9 +1,10 @@
 import React from 'react';
+
 import { CityName } from '../../const';
 import LocationsItem from '../locations-item';
 import { SectionHeader, SectionLocations, SectionLogin } from '../sections';
 
-function LoginPage(): React.ReactElement {
+function LoginPage(): JSX.Element {
   return (
     <div className="page page--gray page--login">
       <SectionHeader />
@@ -12,7 +13,7 @@ function LoginPage(): React.ReactElement {
           <SectionLogin />
           <SectionLocations className="locations--login locations--current">
             <div className="locations__item">
-              <LocationsItem cityName={CityName.AMSTERDAM} />
+              <LocationsItem cityName={CityName.Amsterdam} />
             </div>
           </SectionLocations>
         </div>
