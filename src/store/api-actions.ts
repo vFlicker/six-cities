@@ -23,44 +23,61 @@ import {
   logoutSuccess,
 } from './user-process/action';
 
-export const checkAuthStatus = (): TThunkAction => (dispatch, _getState, apiService) => {
+export const checkAuthStatus = (): TThunkAction => async (dispatch, _getState, apiService) => {
   dispatch(checkAuthStatusRequest());
 
-  apiService.get<TUser>(APIRoute.Login)
-    .then(({ data }) => Adapter.transformUser(data))
-    .then((userData) => dispatch(checkAuthStatusSuccess(userData)))
-    .catch((error: ApiError) => dispatch(checkAuthStatusFailure(error)));
+  try {
+    const { data } = await apiService.get<TUser>(APIRoute.Login);
+    const transformedData = await Adapter.transformUser(data);
+
+    dispatch(checkAuthStatusSuccess());
+    dispatch(loginSuccess(transformedData));
+  } catch (error) {
+    checkAuthStatusFailure(error as ApiError);
+  }
 };
 
-export const fetchOffers = (): TThunkAction => (dispatch, _getState, apiService) => {
+export const fetchOffers = (): TThunkAction => async (dispatch, _getState, apiService) => {
   dispatch(offersRequested());
 
-  apiService.get<TOfferServer[]>(`${APIRoute.Hotels}`)
-    .then(({ data }) => data.map(Adapter.transformOffer))
-    .then((data) => dispatch(offersLoaded(data)))
-    .catch((error: ApiError) => dispatch(offersError(error)));
+  try {
+    const { data } = await apiService.get<TOfferServer[]>(`${APIRoute.Hotels}`);
+    const transformedData = await data.map(Adapter.transformOffer);
+
+    dispatch(offersLoaded(transformedData));
+  } catch (error) {
+    dispatch(offersError(error as ApiError));
+  }
 };
 
-export const login = (authData: TAuthData): TThunkAction => (dispatch, _getState, apiService) => {
+export const login = (authData: TAuthData): TThunkAction => async (
+  dispatch,
+  _getState,
+  apiService,
+) => {
   dispatch(loginRequest());
 
-  apiService.post<TUser>(APIRoute.Login, authData)
-    .then(({ data }) => {
-      const { token } = data;
-      saveToken(token);
+  try {
+    const { data } = await apiService.post<TUser>(APIRoute.Login, authData);
+    const transformedData = await Adapter.transformUser(data);
+    const { token } = data;
 
-      return data;
-    })
-    .then((data) => Adapter.transformUser(data))
-    .then((userData) => dispatch(loginSuccess(userData)))
-    .catch((error: ApiError) => dispatch(loginFailure(error)));
+    saveToken(token);
+    dispatch(loginSuccess(transformedData));
+  } catch (error) {
+    dispatch(loginFailure(error as ApiError));
+  }
 };
 
-export const logout = ():TThunkAction => (dispatch, _getState, apiService) => {
+export const logout = ():TThunkAction => async (dispatch, _getState, apiService) => {
   dispatch(logoutRequest());
 
-  apiService.delete(APIRoute.Logout)
-    .then(() => dispatch(logoutSuccess()))
-    .then(() => dropToken())
-    .catch((error: ApiError) => dispatch(logoutFailure(error)));
+  try {
+    await apiService.delete(APIRoute.Logout);
+
+    dropToken();
+    dispatch(logoutSuccess());
+  } catch (error) {
+    dispatch(logoutFailure(error as ApiError));
+  }
 };

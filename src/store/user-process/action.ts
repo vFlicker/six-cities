@@ -16,12 +16,7 @@ enum ActionType {
 
 export const checkAuthStatusRequest = createAction(ActionType.CheckAuthStatusRequest);
 
-export const checkAuthStatusSuccess = createAction(
-  ActionType.CheckAuthStatusSuccess,
-  (userData: TUser) => ({
-    payload: userData,
-  }),
-);
+export const checkAuthStatusSuccess = createAction(ActionType.CheckAuthStatusSuccess);
 
 export const checkAuthStatusFailure = createAction(
   ActionType.CheckAuthStatusFailure,

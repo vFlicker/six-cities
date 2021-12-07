@@ -28,9 +28,8 @@ const userProcess = createReducer(initialState, ((builder) => {
       state.loading = true;
       state.error = null;
     })
-    .addCase(checkAuthStatusSuccess, (state, action) => {
+    .addCase(checkAuthStatusSuccess, (state) => {
       state.authorizationStatus = AuthorizationStatus.Auth;
-      state.user = action.payload;
       state.loading = false;
       state.error = null;
     })
