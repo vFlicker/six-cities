@@ -1,4 +1,4 @@
-export enum ApiRoute {
+export enum APIRoute {
   Comments = '/comments',
   Favorites = '/favorites',
   Hotels = '/hotels',

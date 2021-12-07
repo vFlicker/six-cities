@@ -1,4 +1,4 @@
-import { ApiRoute } from '../const';
+import { APIRoute } from '../const';
 import ApiError from '../errors';
 import {
   offersError,
@@ -6,6 +6,7 @@ import {
   offersRequested,
 } from './offers-data/action';
 import Adapter from '../services/adapter';
+import { dropToken, saveToken } from '../services/token';
 import { TThunkAction } from '../types/action';
 import { TAuthData } from '../types/auth-data';
 import { TOfferServer } from '../types/offer';
@@ -25,7 +26,7 @@ import {
 export const checkAuthStatus = (): TThunkAction => (dispatch, _getState, apiService) => {
   dispatch(checkAuthStatusRequest());
 
-  apiService.get<TUser>(ApiRoute.Login)
+  apiService.get<TUser>(APIRoute.Login)
     .then(({ data }) => Adapter.transformUser(data))
     .then((userData) => dispatch(checkAuthStatusSuccess(userData)))
     .catch((error: ApiError) => dispatch(checkAuthStatusFailure(error)));
@@ -34,7 +35,7 @@ export const checkAuthStatus = (): TThunkAction => (dispatch, _getState, apiServ
 export const fetchOffers = (): TThunkAction => (dispatch, _getState, apiService) => {
   dispatch(offersRequested());
 
-  apiService.get<TOfferServer[]>(`${ApiRoute.Hotels}`)
+  apiService.get<TOfferServer[]>(`${APIRoute.Hotels}`)
     .then(({ data }) => data.map(Adapter.transformOffer))
     .then((data) => dispatch(offersLoaded(data)))
     .catch((error: ApiError) => dispatch(offersError(error)));
@@ -43,10 +44,11 @@ export const fetchOffers = (): TThunkAction => (dispatch, _getState, apiService)
 export const login = (authData: TAuthData): TThunkAction => (dispatch, _getState, apiService) => {
   dispatch(loginRequest());
 
-  apiService.post<TUser>(ApiRoute.Login, authData)
+  apiService.post<TUser>(APIRoute.Login, authData)
     .then(({ data }) => {
       const { token } = data;
-      localStorage.setItem('token', token);
+      saveToken(token);
+
       return data;
     })
     .then((data) => Adapter.transformUser(data))
@@ -57,8 +59,8 @@ export const login = (authData: TAuthData): TThunkAction => (dispatch, _getState
 export const logout = ():TThunkAction => (dispatch, _getState, apiService) => {
   dispatch(logoutRequest());
 
-  apiService.delete(ApiRoute.Logout)
+  apiService.delete(APIRoute.Logout)
     .then(() => dispatch(logoutSuccess()))
-    .then(() => localStorage.removeItem('token'))
+    .then(() => dropToken())
     .catch((error: ApiError) => dispatch(logoutFailure(error)));
 };
