@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import { AppRoute } from '../../const';
 import {
@@ -10,8 +11,12 @@ import {
   OfferPage,
 } from '../pages';
 import PrivateRoute from '../private-route';
+import { getAuthorizationStatus } from '../../store/user-process/selectors';
 import { TOffers } from '../../types/offer';
 import { TReviews } from '../../types/review';
+import { isCheckedAuth } from '../../utils';
+
+import Spinner from '../spinner';
 
 type AppProps = {
   offers: TOffers;
@@ -20,6 +25,14 @@ type AppProps = {
 
 function App(props: AppProps): JSX.Element {
   const { reviews, offers } = props;
+
+  const authorizationStatus = useSelector(getAuthorizationStatus);
+
+  if (isCheckedAuth(authorizationStatus)) {
+    return (
+      <Spinner />
+    );
+  }
 
   return (
     <Router>

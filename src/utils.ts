@@ -1,3 +1,4 @@
+import { AuthorizationStatus } from './const';
 import { TOffer } from './types/offer';
 
 const MAX_PERCENT = 100;
@@ -17,4 +18,8 @@ export const sortByPriceLowToHigh = (firstOffer: TOffer, secondOffer: TOffer): n
 
 export const topRatedFirst = (firstOffer: TOffer, secondOffer: TOffer): number => (
   secondOffer.rating - firstOffer.rating
+);
+
+export const isCheckedAuth = (authorizationStatus: AuthorizationStatus): boolean => (
+  authorizationStatus === AuthorizationStatus.Unknown
 );
