@@ -1,9 +1,13 @@
-import axios, { AxiosError, AxiosInstance, AxiosResponse } from 'axios';
+import axios, {
+  AxiosError,
+  AxiosInstance,
+  AxiosRequestConfig,
+  AxiosResponse,
+} from 'axios';
 import ApiError from '../errors';
 
-const BACKEND_URL = 'https://6.react.pages.academy/six-cities';
+const BACKEND_URL = 'https://8.react.pages.academy/six-cities';
 const TIMEOUT = 5000;
-const WITH_CREDENTIALS = true;
 
 type ErrorResponse = {
   status: number,
@@ -16,21 +20,33 @@ const createApiService = (): AxiosInstance => {
   const apiService = axios.create({
     baseURL: BACKEND_URL,
     timeout: TIMEOUT,
-    withCredentials: WITH_CREDENTIALS,
   });
 
-  const onSuccess = (response: AxiosResponse) => response;
+  apiService.interceptors.request.use(
+    (config: AxiosRequestConfig) => {
+      const token = localStorage.getItem('token');
 
-  const onFail = (err: AxiosError) => {
-    const { status, data } = err.response as ErrorResponse;
+      if (token) {
+        // eslint-disable-next-line no-param-reassign
+        config.headers = { 'x-token': token };
+      }
 
-    throw new ApiError({
-      message: data.error,
-      status,
-    });
-  };
+      return config;
+    },
+  );
 
-  apiService.interceptors.response.use(onSuccess, onFail);
+  apiService.interceptors.response.use(
+    (response: AxiosResponse) => response,
+
+    (err: AxiosError) => {
+      const { status, data } = err.response as ErrorResponse;
+
+      throw new ApiError({
+        message: data.error,
+        status,
+      });
+    },
+  );
 
   return apiService;
 };

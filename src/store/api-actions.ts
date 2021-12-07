@@ -26,11 +26,7 @@ export const checkAuthStatus = (): TThunkAction => (dispatch, _getState, apiServ
   dispatch(checkAuthStatusRequest());
 
   apiService.get<TUser>(ApiRoute.Login)
-    .then(({ data }) => {
-      localStorage.setItem('token', data.token);
-      return data;
-    })
-    .then((data) => Adapter.transformUser(data))
+    .then(({ data }) => Adapter.transformUser(data))
     .then((userData) => dispatch(checkAuthStatusSuccess(userData)))
     .catch((error: ApiError) => dispatch(checkAuthStatusFailure(error)));
 };
@@ -48,7 +44,12 @@ export const login = (authData: TAuthData): TThunkAction => (dispatch, _getState
   dispatch(loginRequest());
 
   apiService.post<TUser>(ApiRoute.Login, authData)
-    .then(({ data }) => Adapter.transformUser(data))
+    .then(({ data }) => {
+      const { token } = data;
+      localStorage.setItem('token', token);
+      return data;
+    })
+    .then((data) => Adapter.transformUser(data))
     .then((userData) => dispatch(loginSuccess(userData)))
     .catch((error: ApiError) => dispatch(loginFailure(error)));
 };
@@ -56,7 +57,7 @@ export const login = (authData: TAuthData): TThunkAction => (dispatch, _getState
 export const logout = ():TThunkAction => (dispatch, _getState, apiService) => {
   dispatch(logoutRequest());
 
-  apiService.get(ApiRoute.Logout)
+  apiService.delete(ApiRoute.Logout)
     .then(() => dispatch(logoutSuccess()))
     .then(() => localStorage.removeItem('token'))
     .catch((error: ApiError) => dispatch(logoutFailure(error)));
