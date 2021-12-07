@@ -31,7 +31,7 @@ function App(props: AppProps): JSX.Element {
             <PrivateRoute>
               <FavoritesPage />
             </PrivateRoute>
-        )}
+          )}
         />
         <Route path={AppRoute.Favorites} element={<FavoritesPage />} />
         <Route path={AppRoute.Login} element={<LoginPage />} />

@@ -8,7 +8,7 @@ export type TAppProcessState = {
   activeCardId: number;
 };
 
-export type TOfferDataState = {
+export type TOffersDataState = {
   currentCityName: CityName;
   currentSortType: SortType;
   offers: TOffers;

@@ -4,7 +4,7 @@ import {
   offersError,
   offersLoaded,
   offersRequested,
-} from './offer-data/action';
+} from './offers-data/action';
 import Adapter from '../services/adapter';
 import { TThunkAction } from '../types/action';
 import { TAuthData } from '../types/auth-data';

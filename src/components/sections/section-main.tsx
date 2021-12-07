@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { CardType } from '../../const';
 import { fetchOffers } from '../../store/api-actions';
-import { getError, getLoading, getOffers } from '../../store/offer-data';
+import { getError, getOffers, getOffersLoadingStatus } from '../../store/offers-data/selectors';
 
 import CardList from '../card-list';
 import {
@@ -19,7 +19,7 @@ import LocationsList from '../locations-list';
 
 function SectionMain(): JSX.Element {
   const offers = useSelector(getOffers);
-  const loading = useSelector(getLoading);
+  const isOffersLoading = useSelector(getOffersLoadingStatus);
   const error = useSelector(getError);
 
   const dispatch = useDispatch();
@@ -28,7 +28,7 @@ function SectionMain(): JSX.Element {
     dispatch(fetchOffers());
   }, []);
 
-  if (loading) {
+  if (isOffersLoading) {
     return <Spinner />;
   }
 

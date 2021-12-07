@@ -36,7 +36,7 @@ export enum CityName {
 
 export enum ReducerName {
   AppProcess = 'APP_PROCESS',
-  OfferData = 'OFFER_DATA',
+  OffersData = 'OFFERS_DATA',
   UserProcess = 'USER_PROCESS',
 }
 

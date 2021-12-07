@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { SortType } from '../../const';
 import { fetchOffers } from '../../store/api-actions';
-import { getCurrentSortType } from '../../store/offer-data';
-import { changeSortType } from '../../store/offer-data/action';
+import { getCurrentSortType } from '../../store/offers-data/selectors';
+import { changeSortType } from '../../store/offers-data/action';
 
 function Sorting(): JSX.Element {
   const [sortMenuOpened, setSortMenuOpened] = useState<boolean>(false);

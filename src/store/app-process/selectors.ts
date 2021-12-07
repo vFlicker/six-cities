@@ -1,8 +1,7 @@
 import { ReducerName } from '../../const';
 import { TRootState } from '../../types/state';
 
-const getActiveCard = (state: TRootState): number => (
+/* eslint-disable import/prefer-default-export */
+export const getActiveCard = (state: TRootState): number => (
   state[ReducerName.AppProcess].activeCardId
 );
-
-export default getActiveCard;

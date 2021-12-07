@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { CardType } from '../../const';
-import { getOffers } from '../../store/offer-data';
+import { getOffers } from '../../store/offers-data/selectors';
 import setActiveCard from '../../store/app-process/action';
 import { TOffer } from '../../types/offer';
 

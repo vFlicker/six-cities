@@ -2,8 +2,8 @@ import React, { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import leaflet from 'leaflet';
 
-import { getActiveCard } from '../../store/app-process';
-import { getOffers } from '../../store/offer-data';
+import { getActiveCard } from '../../store/app-process/selectors';
+import { getOffers } from '../../store/offers-data/selectors';
 
 import 'leaflet/dist/leaflet.css';
 

@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { CityName } from '../../const';
 import { fetchOffers } from '../../store/api-actions';
-import { getCurrentCityName } from '../../store/offer-data';
-import { changeCityName } from '../../store/offer-data/action';
+import { getCurrentCityName } from '../../store/offers-data/selectors';
+import { changeCityName } from '../../store/offers-data/action';
 
 import LocationsItem from '../locations-item';
 

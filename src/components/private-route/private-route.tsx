@@ -3,7 +3,7 @@ import { Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { AppRoute, AuthorizationStatus } from '../../const';
-import { getAuthorizationStatus } from '../../store/user-process';
+import { getAuthorizationStatus } from '../../store/user-process/selectors';
 
 type PrivateRouteProps = {
   children: JSX.Element;

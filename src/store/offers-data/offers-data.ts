@@ -8,10 +8,10 @@ import {
 } from './action';
 import { CityName, SortType } from '../../const';
 import { TOffers } from '../../types/offer';
-import { TOfferDataState } from '../../types/state';
+import { TOffersDataState } from '../../types/state';
 import { sortByPriceHighToLow, sortByPriceLowToHigh, topRatedFirst } from '../../utils';
 
-const getOffers = (state: TOfferDataState, offers: TOffers) => {
+const getOffers = (state: TOffersDataState, offers: TOffers) => {
   const { currentCityName, currentSortType } = state;
 
   const filteredOffers = offers
@@ -30,7 +30,7 @@ const getOffers = (state: TOfferDataState, offers: TOffers) => {
   }
 };
 
-const initialState: TOfferDataState = {
+const initialState: TOffersDataState = {
   currentCityName: CityName.Amsterdam,
   currentSortType: SortType.Popular,
   offers: [],
@@ -38,7 +38,7 @@ const initialState: TOfferDataState = {
   error: null,
 };
 
-const offerData = createReducer(initialState, (builder) => {
+const offersData = createReducer(initialState, (builder) => {
   builder
     .addCase(changeCityName, (state, action) => {
       state.currentCityName = action.payload;
@@ -63,4 +63,4 @@ const offerData = createReducer(initialState, (builder) => {
     });
 });
 
-export default offerData;
+export default offersData;
