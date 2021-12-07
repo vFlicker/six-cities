@@ -9,6 +9,9 @@ enum ActionType {
   LoginRequest = 'userData/loginRequest',
   LoginSuccess = 'userData/loginSuccess',
   LoginFailure = 'userData/loginFailure',
+  LogoutRequest = 'userData/logoutRequest',
+  LogoutSuccess = 'userData/logoutSuccess',
+  LogoutFailure = 'userData/logoutFailure',
 }
 
 export const checkAuthStatusRequest = createAction(ActionType.CheckAuthStatusRequest);
@@ -38,6 +41,17 @@ export const loginSuccess = createAction(
 
 export const loginFailure = createAction(
   ActionType.LoginFailure,
+  (error: ApiError) => ({
+    payload: error,
+  }),
+);
+
+export const logoutRequest = createAction(ActionType.LogoutRequest);
+
+export const logoutSuccess = createAction(ActionType.LogoutSuccess);
+
+export const logoutFailure = createAction(
+  ActionType.LogoutFailure,
   (error: ApiError) => ({
     payload: error,
   }),

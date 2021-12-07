@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { AppRoute, AuthorizationStatus } from '../../const';
+import { logout } from '../../store/api-actions';
 import { getAuthorizationStatus, getUser } from '../../store/user-process/selectors';
 
 const USER_DEFAULT_AVATAR_URL = '../img/avatar.svg';
@@ -10,6 +11,12 @@ const USER_DEFAULT_AVATAR_URL = '../img/avatar.svg';
 function HeaderNavList(): JSX.Element {
   const authorizationStatus = useSelector(getAuthorizationStatus);
   const user = useSelector(getUser);
+
+  const dispatch = useDispatch();
+
+  const handleLogoutClick = () => {
+    dispatch(logout());
+  };
 
   const style = {
     backgroundImage: user ? `url(${user.avatarUrl})` : `url(${USER_DEFAULT_AVATAR_URL})`,
@@ -41,7 +48,11 @@ function HeaderNavList(): JSX.Element {
         </Link>
       </li>
       <li className="header__nav-item">
-        <Link to={AppRoute.Root} className="header__nav-link">
+        <Link
+          to={AppRoute.Root}
+          className="header__nav-link"
+          onClick={handleLogoutClick}
+        >
           <span className="header__signout">Sign out</span>
         </Link>
       </li>

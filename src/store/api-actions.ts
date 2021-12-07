@@ -17,6 +17,9 @@ import {
   loginFailure,
   loginRequest,
   loginSuccess,
+  logoutFailure,
+  logoutRequest,
+  logoutSuccess,
 } from './user-process/action';
 
 export const checkAuthStatus = (): TThunkAction => (dispatch, _getState, apiService) => {
@@ -29,7 +32,7 @@ export const checkAuthStatus = (): TThunkAction => (dispatch, _getState, apiServ
     })
     .then((data) => Adapter.transformUser(data))
     .then((userData) => dispatch(checkAuthStatusSuccess(userData)))
-    .catch((err: ApiError) => dispatch(checkAuthStatusFailure(err)));
+    .catch((error: ApiError) => dispatch(checkAuthStatusFailure(error)));
 };
 
 export const fetchOffers = (): TThunkAction => (dispatch, _getState, apiService) => {
@@ -38,7 +41,7 @@ export const fetchOffers = (): TThunkAction => (dispatch, _getState, apiService)
   apiService.get<TOfferServer[]>(`${ApiRoute.Hotels}`)
     .then(({ data }) => data.map(Adapter.transformOffer))
     .then((data) => dispatch(offersLoaded(data)))
-    .catch((err: ApiError) => dispatch(offersError(err)));
+    .catch((error: ApiError) => dispatch(offersError(error)));
 };
 
 export const login = (authData: TAuthData): TThunkAction => (dispatch, _getState, apiService) => {
@@ -47,5 +50,14 @@ export const login = (authData: TAuthData): TThunkAction => (dispatch, _getState
   apiService.post<TUser>(ApiRoute.Login, authData)
     .then(({ data }) => Adapter.transformUser(data))
     .then((userData) => dispatch(loginSuccess(userData)))
-    .catch((err: ApiError) => dispatch(loginFailure(err)));
+    .catch((error: ApiError) => dispatch(loginFailure(error)));
+};
+
+export const logout = ():TThunkAction => (dispatch, _getState, apiService) => {
+  dispatch(logoutRequest());
+
+  apiService.get(ApiRoute.Logout)
+    .then(() => dispatch(logoutSuccess()))
+    .then(() => localStorage.removeItem('token'))
+    .catch((error: ApiError) => dispatch(logoutFailure(error)));
 };
