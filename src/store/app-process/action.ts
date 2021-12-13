@@ -1,6 +1,6 @@
 import { createAction } from '@reduxjs/toolkit';
 
-enum ActionType {
+export enum ActionType {
   SetActiveCard = 'appProcess/setActiveCard',
 }
 

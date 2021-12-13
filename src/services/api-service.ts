@@ -10,6 +10,10 @@ import { getToken } from './token';
 const BACKEND_URL = 'https://8.react.pages.academy/six-cities';
 const TIMEOUT = 5000;
 
+enum HttpCode {
+  Unauthorized = 401,
+}
+
 type ErrorResponse = {
   status: number,
   data: {
@@ -17,7 +21,9 @@ type ErrorResponse = {
   }
 };
 
-const createApiService = (): AxiosInstance => {
+type UnauthorizedCallback = () => void;
+
+const createApiService = (onUnauthorized: UnauthorizedCallback): AxiosInstance => {
   const apiService = axios.create({
     baseURL: BACKEND_URL,
     timeout: TIMEOUT,
@@ -39,8 +45,12 @@ const createApiService = (): AxiosInstance => {
   apiService.interceptors.response.use(
     (response: AxiosResponse) => response,
 
-    (err: AxiosError) => {
-      const { status, data } = err.response as ErrorResponse;
+    (error: AxiosError) => {
+      const { status, data } = error.response as ErrorResponse;
+
+      if (status === HttpCode.Unauthorized) {
+        onUnauthorized();
+      }
 
       throw new ApiError({
         message: data.error,

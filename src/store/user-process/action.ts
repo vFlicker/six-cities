@@ -1,8 +1,9 @@
 import { createAction } from '@reduxjs/toolkit';
 import { TUser } from '../../types/user';
 import ApiError from '../../errors';
+import { AppRoute, AuthorizationStatus } from '../../const';
 
-enum ActionType {
+export enum ActionType {
   CheckAuthStatusRequest = 'userData/checkAuthStatusRequest',
   CheckAuthStatusSuccess = 'userData/checkAuthStatusSuccess',
   CheckAuthStatusFailure = 'userData/checkAuthStatusFailure',
@@ -12,6 +13,8 @@ enum ActionType {
   LogoutRequest = 'userData/logoutRequest',
   LogoutSuccess = 'userData/logoutSuccess',
   LogoutFailure = 'userData/logoutFailure',
+  RedirectToRoute = 'userData/redirectToRoute',
+  SetAuthorizationStatus = 'userData/setAuthorizationStatus',
 }
 
 export const checkAuthStatusRequest = createAction(ActionType.CheckAuthStatusRequest);
@@ -49,5 +52,19 @@ export const logoutFailure = createAction(
   ActionType.LogoutFailure,
   (error: ApiError) => ({
     payload: error,
+  }),
+);
+
+export const redirectToRoute = createAction(
+  ActionType.RedirectToRoute,
+  (url: AppRoute) => ({
+    payload: url,
+  }),
+);
+
+export const setAuthorizationStatus = createAction(
+  ActionType.SetAuthorizationStatus,
+  (authStatus: AuthorizationStatus) => ({
+    payload: authStatus,
   }),
 );

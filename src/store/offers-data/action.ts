@@ -3,7 +3,7 @@ import { TOffers } from '../../types/offer';
 import ApiError from '../../errors';
 import { CityName, SortType } from '../../const';
 
-enum ActionType {
+export enum ActionType {
   ChangeCityName = 'offerData/changeCityName',
   ChangeSortType = 'offerData/changeSortType',
   FetchOffersRequest = 'offerData/fetchOffersRequest',

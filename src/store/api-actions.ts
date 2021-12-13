@@ -1,4 +1,4 @@
-import { APIRoute } from '../const';
+import { APIRoute, AppRoute } from '../const';
 import ApiError from '../errors';
 import {
   offersError,
@@ -21,6 +21,7 @@ import {
   logoutFailure,
   logoutRequest,
   logoutSuccess,
+  redirectToRoute,
 } from './user-process/action';
 
 export const checkAuthStatus = (): TThunkAction => async (dispatch, _getState, apiService) => {
@@ -64,6 +65,7 @@ export const login = (authData: TAuthData): TThunkAction => async (
 
     saveToken(token);
     dispatch(loginSuccess(transformedData));
+    dispatch(redirectToRoute(AppRoute.Root));
   } catch (error) {
     dispatch(loginFailure(error as ApiError));
   }

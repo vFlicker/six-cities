@@ -3,14 +3,22 @@ import ReactDOM from 'react-dom';
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 
+import { AppRoute, AuthorizationStatus } from './const';
 import createApiService from './services/api-service';
 import { checkAuthStatus } from './store/api-actions';
+import redirect from './store/middlewares';
 import rootReducer from './store/root-reducer';
+import { redirectToRoute, setAuthorizationStatus } from './store/user-process/action';
 import { offers, reviews } from './mocks';
 
 import App from './components/app';
 
-const apiService = createApiService();
+const onUnauthorizedHandler = () => {
+  store.dispatch(setAuthorizationStatus(AuthorizationStatus.NoAuth));
+  store.dispatch(redirectToRoute(AppRoute.Login));
+};
+
+const apiService = createApiService(onUnauthorizedHandler);
 
 const store = configureStore({
   reducer: rootReducer,
@@ -18,7 +26,7 @@ const store = configureStore({
     thunk: {
       extraArgument: apiService,
     },
-  }),
+  }).concat(redirect),
 });
 
 store.dispatch(checkAuthStatus());

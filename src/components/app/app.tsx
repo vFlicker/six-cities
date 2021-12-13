@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { unstable_HistoryRouter as HistoryRouter, Route, Routes } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { AppRoute } from '../../const';
@@ -10,6 +10,7 @@ import {
   NotFoundPage,
   OfferPage,
 } from '../pages';
+import history from '../../history';
 import PrivateRoute from '../private-route';
 import { getAuthorizationStatus } from '../../store/user-process/selectors';
 import { TOffers } from '../../types/offer';
@@ -35,7 +36,7 @@ function App(props: AppProps): JSX.Element {
   }
 
   return (
-    <Router>
+    <HistoryRouter history={history}>
       <Routes>
         <Route path={AppRoute.Root} element={<MainPage />} />
         <Route
@@ -51,7 +52,7 @@ function App(props: AppProps): JSX.Element {
         <Route path={AppRoute.Offers} element={<OfferPage offers={offers} reviews={reviews} />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
-    </Router>
+    </HistoryRouter>
   );
 }
 

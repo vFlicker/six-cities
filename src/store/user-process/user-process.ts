@@ -9,6 +9,7 @@ import {
   logoutFailure,
   logoutRequest,
   logoutSuccess,
+  setAuthorizationStatus,
 } from './action';
 import { AuthorizationStatus } from '../../const';
 import { TUserProcessState } from '../../types/state';
@@ -70,6 +71,9 @@ const userProcess = createReducer(initialState, ((builder) => {
     .addCase(logoutFailure, (state, action) => {
       state.loading = false;
       state.error = action.payload;
+    })
+    .addCase(setAuthorizationStatus, (state, action) => {
+      state.authorizationStatus = action.payload;
     });
 }));
 
