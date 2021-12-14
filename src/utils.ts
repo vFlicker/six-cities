@@ -23,3 +23,7 @@ export const topRatedFirst = (firstOffer: TOffer, secondOffer: TOffer): number =
 export const isCheckedAuth = (authorizationStatus: AuthorizationStatus): boolean => (
   authorizationStatus === AuthorizationStatus.Unknown
 );
+
+export const isUserAuthorized = (authorizationStatus: AuthorizationStatus): boolean => (
+  authorizationStatus === AuthorizationStatus.Auth
+);
