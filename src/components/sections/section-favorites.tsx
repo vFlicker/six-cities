@@ -1,7 +1,8 @@
 import React from 'react';
 
-import { CardType, CityName } from '../../const';
+import { CityName } from '../../const';
 
+import { CardItemFavorites } from '../card-item';
 import CardList from '../card-list';
 import LocationsItem from '../locations-item';
 
@@ -17,7 +18,10 @@ function SectionFavorites(): JSX.Element {
             </div>
           </div>
 
-          <CardList cardType={CardType.Favorites} />
+          <CardList
+            className="favorites__places"
+            getCardItem={(offer) => <CardItemFavorites offer={offer} />}
+          />
         </li>
       </ul>
     </section>

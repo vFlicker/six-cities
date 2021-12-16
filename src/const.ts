@@ -19,12 +19,6 @@ export enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
-export enum CardType {
-  Cities = 'cities',
-  Favorites = 'favorites',
-  NearPlaces = 'near-places',
-}
-
 export enum CityName {
   Paris = 'Paris',
   Cologne = 'Cologne',

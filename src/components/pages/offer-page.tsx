@@ -1,13 +1,13 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 
-import { CardType } from '../../const';
-import { SectionHeader, SectionPlaces, SectionProperty } from '../sections';
 import { TOffers } from '../../types/offer';
 import { TReviews } from '../../types/review';
 
+import { CardItemNearPlaces } from '../card-item';
 import CardList from '../card-list';
 import NotFoundPage from './not-found-page';
+import { SectionHeader, SectionPlaces, SectionProperty } from '../sections';
 
 type OfferPageProps = {
   offers: TOffers;
@@ -33,7 +33,10 @@ function OfferPage({ reviews, offers }: OfferPageProps): JSX.Element {
           <SectionPlaces className="near-places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
 
-            <CardList cardType={CardType.NearPlaces} />
+            <CardList
+              className="near-places__list places__list"
+              getCardItem={(offer) => <CardItemNearPlaces offer={offer} />}
+            />
           </SectionPlaces>
         </div>
       </main>

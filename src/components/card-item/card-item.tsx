@@ -1,35 +1,32 @@
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 import { Link } from 'react-router-dom';
 
 import { TOffer } from '../../types/offer';
 import { convertRatingToPercents } from '../../utils';
 
-export type CardItemType = {
+type CardItemProps = PropsWithChildren<{
   offer: TOffer;
-  onCardItemMouseEnter?: (evt: React.MouseEvent) => void;
-  onCardItemMouseLeave? :(evt: React.MouseEvent) => void;
-};
-
-type CardItemProps = {
   cardClass: string;
   cardImageWrapperClass: string;
-  cardInfoClass: string;
+  cardInfoClass?: string;
   imageWidth: number;
   imageHeight: number;
-} & CardItemType;
+  onCardItemMouseEnter?: (evt: React.MouseEvent) => void;
+  onCardItemMouseLeave? :(evt: React.MouseEvent) => void;
+}>;
 
 const OFFER_LINK = '/offers';
 
 function CardItem(props: CardItemProps): JSX.Element {
   const {
     offer,
-    onCardItemMouseEnter,
-    onCardItemMouseLeave,
     cardClass,
     cardImageWrapperClass,
     cardInfoClass,
     imageWidth,
     imageHeight,
+    onCardItemMouseEnter,
+    onCardItemMouseLeave,
   } = props;
 
   const {
@@ -44,7 +41,7 @@ function CardItem(props: CardItemProps): JSX.Element {
 
   return (
     <article
-      className={cardClass}
+      className={`place-card ${cardClass}`}
       onMouseEnter={onCardItemMouseEnter}
       onMouseLeave={onCardItemMouseLeave}
     >
@@ -53,7 +50,7 @@ function CardItem(props: CardItemProps): JSX.Element {
           <span>Premium</span>
         </div>
       )}
-      <div className={cardImageWrapperClass}>
+      <div className={`place-card__image-wrapper ${cardImageWrapperClass}`}>
         <Link to={`${OFFER_LINK}/${id}`}>
           <img
             className="place-card__image"
@@ -64,7 +61,7 @@ function CardItem(props: CardItemProps): JSX.Element {
           />
         </Link>
       </div>
-      <div className={cardInfoClass}>
+      <div className={`place-card__info ${cardInfoClass}`}>
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">

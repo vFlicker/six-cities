@@ -1,22 +1,28 @@
 import React from 'react';
 
-import CardItem, { CardItemType } from './card-item';
+import { TOffer } from '../../types/offer';
 
-const cardClass = 'favorites__card place-card';
-const cardImageWrapperClass = 'favorites__image-wrapper place-card__image-wrapper';
-const cardInfoClass = 'favorites__card-info place-card__info';
+import CardItem from './card-item';
+
+type CardItemFavoritesProps = {
+  offer: TOffer;
+};
+
+const cardClass = 'favorites__card';
+const cardImageWrapperClass = 'favorites__image-wrapper';
+const cardInfoClass = 'favorites__card-info';
 const imageWidth = 150;
 const imageHeight = 110;
 
-function CardItemFavorites(props: CardItemType): JSX.Element {
+function CardItemFavorites(props: CardItemFavoritesProps): JSX.Element {
   return (
     <CardItem
+      {...props}
       cardClass={cardClass}
       cardImageWrapperClass={cardImageWrapperClass}
       cardInfoClass={cardInfoClass}
       imageWidth={imageWidth}
       imageHeight={imageHeight}
-      {...props}
     />
   );
 }

@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { CardType } from '../../const';
 import { fetchOffers } from '../../store/api-actions';
 import { getError, getOffers, getOffersLoadingStatus } from '../../store/offers-data/selectors';
 
@@ -13,6 +12,7 @@ import {
   SectionPlaces,
 } from './index';
 
+import { CardItemCities } from '../card-item';
 import Sorting from '../sorting';
 import Spinner from '../spinner';
 import LocationsList from '../locations-list';
@@ -58,7 +58,10 @@ function SectionMain(): JSX.Element {
 
             <Sorting />
 
-            <CardList cardType={CardType.Cities} />
+            <CardList
+              className="cities__places-list places__list tabs__content"
+              getCardItem={(offer) => <CardItemCities offer={offer} />}
+            />
           </SectionPlaces>
           <div className="cities__right-section">
             <SectionMap className="cities__map" />

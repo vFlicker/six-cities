@@ -1,22 +1,43 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 
-import CardItem, { CardItemType } from './card-item';
+import setActiveCard from '../../store/app-process/action';
+import { TOffer } from '../../types/offer';
 
-const cardClass = 'cities__place-card place-card';
-const cardImageWrapperClass = 'cities__image-wrapper place-card__image-wrapper';
-const cardInfoClass = 'place-card__info';
+import CardItem from './card-item';
+
+type CardItemNearPlacesProps = {
+  offer: TOffer;
+};
+
+const cardClass = 'cities__place-card';
+const cardImageWrapperClass = 'cities__image-wrapper';
 const imageWidth = 260;
 const imageHeight = 200;
 
-function CardItemCities(props: CardItemType): JSX.Element {
+function CardItemCities(props : CardItemNearPlacesProps): JSX.Element {
+  const { offer } = props;
+  const { id } = offer;
+
+  const dispatch = useDispatch();
+
+  const handleCardItemMouseEnter = () => {
+    dispatch(setActiveCard(id));
+  };
+
+  const handleCardItemMouseLeave = () => {
+    dispatch(setActiveCard(-1));
+  };
+
   return (
     <CardItem
+      {...props}
       cardClass={cardClass}
       cardImageWrapperClass={cardImageWrapperClass}
-      cardInfoClass={cardInfoClass}
       imageWidth={imageWidth}
       imageHeight={imageHeight}
-      {...props}
+      onCardItemMouseEnter={handleCardItemMouseEnter}
+      onCardItemMouseLeave={handleCardItemMouseLeave}
     />
   );
 }
