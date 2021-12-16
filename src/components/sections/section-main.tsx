@@ -26,7 +26,7 @@ function SectionMain(): JSX.Element {
 
   useEffect(() => {
     dispatch(fetchOffers());
-  }, []);
+  }, [dispatch]);
 
   if (isOffersLoading) {
     return <Spinner />;

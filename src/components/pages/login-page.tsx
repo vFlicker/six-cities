@@ -14,11 +14,11 @@ function LoginPage(): JSX.Element {
 
   const authorizationStatus = useSelector(getAuthorizationStatus);
 
-  if (isUserAuthorized(authorizationStatus)) {
-    useEffect(() => {
+  useEffect(() => {
+    if (isUserAuthorized(authorizationStatus)) {
       navigate(AppRoute.Root);
-    }, []);
-  }
+    }
+  }, [authorizationStatus, navigate]);
 
   return (
     <div className="page page--gray page--login">
