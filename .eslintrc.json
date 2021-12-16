@@ -13,8 +13,8 @@
     "htmlacademy/react",
     "airbnb",
     "plugin:react/recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:react-hooks/recommended"
+    "plugin:react-hooks/recommended",
+    "plugin:@typescript-eslint/recommended"
   ],
   "plugins": ["react", "@typescript-eslint"],
   "settings": {
@@ -25,6 +25,7 @@
     }
   },
   "rules": {
+    "@typescript-eslint/no-unused-vars": "error",
     "import/extensions": ["error", "ignorePackages", {
       "js": "never",
       "ts": "never",
@@ -35,6 +36,7 @@
     "no-console": "off",
     "no-shadow": "off",
     "no-use-before-define": "off",
+    "import/prefer-default-export": "off",
     "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
     "react/jsx-props-no-spreading": "off",
     "no-param-reassign": ["error", { "props": true, "ignorePropertyModificationsFor": ["state"] }]
