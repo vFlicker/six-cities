@@ -2,7 +2,7 @@ import React from 'react';
 
 import { CityName } from '../../const';
 
-import { CardItemFavorites } from '../card-item';
+import { CardItemFavorites } from '../card-item/proxy';
 import CardList from '../card-list';
 import LocationsItem from '../locations-item';
 

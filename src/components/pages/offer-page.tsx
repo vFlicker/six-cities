@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { TOffers } from '../../types/offer';
 import { TReviews } from '../../types/review';
 
-import { CardItemNearPlaces } from '../card-item';
+import { CardItemNearPlaces } from '../card-item/proxy';
 import CardList from '../card-list';
 import NotFoundPage from './not-found-page';
 import { SectionHeader, SectionPlaces, SectionProperty } from '../sections';

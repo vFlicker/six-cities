@@ -12,7 +12,7 @@ import {
   SectionPlaces,
 } from './index';
 
-import { CardItemCities } from '../card-item';
+import { CardItemCities } from '../card-item/proxy';
 import Sorting from '../sorting';
 import Spinner from '../spinner';
 import LocationsList from '../locations-list';

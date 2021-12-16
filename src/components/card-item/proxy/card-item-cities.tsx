@@ -1,10 +1,10 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
-import setActiveCard from '../../store/app-process/action';
-import { TOffer } from '../../types/offer';
+import setActiveCard from '../../../store/app-process/action';
+import { TOffer } from '../../../types/offer';
 
-import CardItem from './card-item';
+import CardItem from '../card-item';
 
 type CardItemNearPlacesProps = {
   offer: TOffer;

@@ -1,11 +1,3 @@
-import CardItemType from './card-item';
-import CardItemCities from './card-item-cities';
-import CardItemFavorites from './card-item-favorites';
-import CardItemNearPlaces from './card-item-near-places';
+import CardItem from './card-item';
 
-export {
-  CardItemType,
-  CardItemCities,
-  CardItemFavorites,
-  CardItemNearPlaces,
-};
+export default CardItem;
