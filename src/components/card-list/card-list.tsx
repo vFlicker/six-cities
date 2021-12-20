@@ -1,9 +1,8 @@
 import React, { Fragment } from 'react';
 import { useSelector } from 'react-redux';
 
-import { getCurrentCityName, getCurrentSortType, getOffers } from '../../store/offers-data/selectors';
+import { getSortedOffers } from '../../store/offers-data/selectors';
 import { TOffer } from '../../types/offer';
-import { sortOffers } from '../../utils/sort';
 
 type CardListProps = {
   className: string;
@@ -13,11 +12,7 @@ type CardListProps = {
 function CardList(props: CardListProps): JSX.Element {
   const { className, getCardItem } = props;
 
-  const currentCityName = useSelector(getCurrentCityName);
-  const currentSortType = useSelector(getCurrentSortType);
-  const offers = useSelector(getOffers(currentCityName));
-
-  const sortedOffers = sortOffers(offers, currentSortType);
+  const sortedOffers = useSelector(getSortedOffers);
 
   return (
     <div className={className}>
