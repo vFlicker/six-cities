@@ -1,6 +1,6 @@
 import { AuthorizationStatus, CityName, SortType } from '../const';
 import ApiError from '../errors';
-import { TOffers } from './offer';
+import { TGroupedOffers } from './offer';
 import rootReducer from '../store/root-reducer';
 import { TUser } from './user';
 
@@ -11,7 +11,7 @@ export type TAppProcessState = {
 export type TOffersDataState = {
   currentCityName: CityName;
   currentSortType: SortType;
-  offers: TOffers;
+  groupedOffers: TGroupedOffers;
   loading: boolean;
   error: null | ApiError;
 };

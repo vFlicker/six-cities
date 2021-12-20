@@ -2,7 +2,6 @@ import React, { MouseEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { CityName } from '../../const';
-import { fetchOffers } from '../../store/api-actions';
 import { getCurrentCityName } from '../../store/offers-data/selectors';
 import { changeCityName } from '../../store/offers-data/action';
 
@@ -21,7 +20,6 @@ function LocationsList(): JSX.Element {
     }
 
     dispatch(changeCityName(cityName));
-    dispatch(fetchOffers());
   };
 
   return (

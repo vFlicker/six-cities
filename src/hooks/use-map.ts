@@ -10,22 +10,23 @@ function useMap(mapRef: MutableRefObject<HTMLElement | null>, city: TCity): Map 
   const [map, setMap] = useState<Map | null>(null);
 
   useEffect(() => {
-    if (mapRef.current) {
-      const { latitude, longitude, zoom } = city.location;
+    const { latitude, longitude, zoom } = city.location;
 
-      const mapOptions = {
-        center: latLng(latitude, longitude),
-        zoom,
-      };
+    if (map) {
+      map.flyTo(latLng(latitude, longitude), zoom);
+    }
 
-      const map = new Map(mapRef.current, mapOptions);
+    if (mapRef.current && !map) {
+      const map = new Map(mapRef.current);
       const layer = new TileLayer(LAYER_URL_TEMPLATE, LAYER_OPTIONS);
 
-      map.addLayer(layer);
+      map
+        .addLayer(layer)
+        .setView(latLng(latitude, longitude), zoom);
 
       setMap(map);
     }
-  }, [mapRef, city]);
+  }, [mapRef, city, map]);
 
   return map;
 }

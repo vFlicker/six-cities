@@ -1,5 +1,5 @@
 import { createAction } from '@reduxjs/toolkit';
-import { TOffers } from '../../types/offer';
+import { TGroupedOffers } from '../../types/offer';
 import ApiError from '../../errors';
 import { CityName, SortType } from '../../const';
 
@@ -29,7 +29,7 @@ export const offersRequested = createAction(ActionType.FetchOffersRequest);
 
 export const offersLoaded = createAction(
   ActionType.FetchOffersSuccess,
-  (offers: TOffers) => ({
+  (offers: TGroupedOffers) => ({
     payload: offers,
   }),
 );

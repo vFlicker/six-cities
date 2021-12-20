@@ -11,8 +11,8 @@ export const getCurrentSortType = (state: TRootState): SortType => (
   state[ReducerName.OffersData].currentSortType
 );
 
-export const getOffers = (state: TRootState): TOffers => (
-  state[ReducerName.OffersData].offers
+export const getOffers = (cityName: CityName) => (state: TRootState): TOffers => (
+  state[ReducerName.OffersData].groupedOffers[cityName]
 );
 
 export const getOffersLoadingStatus = (state: TRootState): boolean => (

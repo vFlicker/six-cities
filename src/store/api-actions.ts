@@ -23,6 +23,7 @@ import {
   logoutSuccess,
   redirectToRoute,
 } from './user-process/action';
+import { getGroupedOffers } from '../utils';
 
 export const checkAuthStatus = (): TThunkAction => async (dispatch, _getState, apiService) => {
   dispatch(checkAuthStatusRequest());
@@ -44,8 +45,9 @@ export const fetchOffers = (): TThunkAction => async (dispatch, _getState, apiSe
   try {
     const { data } = await apiService.get<TOfferServer[]>(`${APIRoute.Hotels}`);
     const transformedData = await data.map(Adapter.transformOffer);
+    const groupedOffers = await getGroupedOffers(transformedData);
 
-    dispatch(offersLoaded(transformedData));
+    dispatch(offersLoaded(groupedOffers));
   } catch (error) {
     dispatch(offersError(error as ApiError));
   }

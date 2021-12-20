@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { SortType } from '../../const';
-import { fetchOffers } from '../../store/api-actions';
 import { getCurrentSortType } from '../../store/offers-data/selectors';
 import { changeSortType } from '../../store/offers-data/action';
 
@@ -25,7 +24,6 @@ function Sorting(): JSX.Element {
     }
 
     dispatch(changeSortType(sortType));
-    dispatch(fetchOffers());
 
     setSortMenuOpened((prevState) => !prevState);
   };
