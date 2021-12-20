@@ -7,7 +7,7 @@ import { getAuthorizationStatus } from '../../store/user-process/selectors';
 
 import LocationsItem from '../locations-item';
 import { SectionHeader, SectionLocations, SectionLogin } from '../sections';
-import { isUserAuthorized } from '../../utils';
+import { isUserAuthorized } from '../../utils/user';
 
 function LoginPage(): JSX.Element {
   const navigate = useNavigate();

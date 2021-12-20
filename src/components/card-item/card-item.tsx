@@ -2,7 +2,7 @@ import React, { PropsWithChildren } from 'react';
 import { Link } from 'react-router-dom';
 
 import { TOffer } from '../../types/offer';
-import { convertRatingToPercents } from '../../utils';
+import { convertRatingToPercents } from '../../utils/rating';
 
 type CardItemProps = PropsWithChildren<{
   offer: TOffer;
@@ -12,7 +12,7 @@ type CardItemProps = PropsWithChildren<{
   imageWidth: number;
   imageHeight: number;
   onCardItemMouseEnter?: (evt: React.MouseEvent) => void;
-  onCardItemMouseLeave? :(evt: React.MouseEvent) => void;
+  onCardItemMouseLeave?: (evt: React.MouseEvent) => void;
 }>;
 
 const OFFER_LINK = '/offers';

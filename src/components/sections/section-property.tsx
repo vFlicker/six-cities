@@ -3,7 +3,7 @@ import React from 'react';
 import { SectionMap, SectionReviews } from './index';
 import { TOffer } from '../../types/offer';
 import { TReviews } from '../../types/review';
-import { convertRatingToPercents } from '../../utils';
+import { convertRatingToPercents } from '../../utils/rating';
 
 type OfferProps = {
   offer: TOffer;

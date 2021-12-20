@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 
 import { getCurrentCityName, getCurrentSortType, getOffers } from '../../store/offers-data/selectors';
 import { TOffer } from '../../types/offer';
-import { sortOffers } from '../../utils';
+import { sortOffers } from '../../utils/sort';
 
 type CardListProps = {
   className: string;

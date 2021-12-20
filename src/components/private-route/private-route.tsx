@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 
 import { AppRoute } from '../../const';
 import { getAuthorizationStatus } from '../../store/user-process/selectors';
-import { isUserAuthorized } from '../../utils';
+import { isUserAuthorized } from '../../utils/user';
 
 type PrivateRouteProps = {
   children: JSX.Element;

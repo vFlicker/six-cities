@@ -23,7 +23,7 @@ import {
   logoutSuccess,
   redirectToRoute,
 } from './user-process/action';
-import { getGroupedOffers } from '../utils';
+import { getGroupedOffers } from '../utils/offers';
 
 export const checkAuthStatus = (): TThunkAction => async (dispatch, _getState, apiService) => {
   dispatch(checkAuthStatusRequest());

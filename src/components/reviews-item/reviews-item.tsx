@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { TReview } from '../../types/review';
-import { convertRatingToPercents } from '../../utils';
+import { convertRatingToPercents } from '../../utils/rating';
 
 type ReviewsItemProps = {
   review: TReview;

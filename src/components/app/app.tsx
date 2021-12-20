@@ -15,7 +15,7 @@ import PrivateRoute from '../private-route';
 import { getAuthorizationStatus } from '../../store/user-process/selectors';
 import { TOffers } from '../../types/offer';
 import { TReviews } from '../../types/review';
-import { isCheckedAuth } from '../../utils';
+import { isCheckedAuth } from '../../utils/user';
 
 import Spinner from '../spinner';
 
