@@ -30,7 +30,7 @@ export const checkAuthStatus = (): TThunkAction => async (dispatch, _getState, a
 
   try {
     const { data } = await apiService.get<TUser>(APIRoute.Login);
-    const transformedData = await Adapter.transformUser(data);
+    const transformedData = Adapter.transformUser(data);
 
     dispatch(checkAuthStatusSuccess());
     dispatch(loginSuccess(transformedData));
@@ -44,8 +44,8 @@ export const fetchOffers = (): TThunkAction => async (dispatch, _getState, apiSe
 
   try {
     const { data } = await apiService.get<TOfferServer[]>(`${APIRoute.Hotels}`);
-    const transformedData = await data.map(Adapter.transformOffer);
-    const groupedOffers = await getGroupedOffers(transformedData);
+    const transformedData = data.map(Adapter.transformOffer);
+    const groupedOffers = getGroupedOffers(transformedData);
 
     dispatch(offersLoaded(groupedOffers));
   } catch (error) {
@@ -62,7 +62,7 @@ export const login = (authData: TAuthData): TThunkAction => async (
 
   try {
     const { data } = await apiService.post<TUser>(APIRoute.Login, authData);
-    const transformedData = await Adapter.transformUser(data);
+    const transformedData = Adapter.transformUser(data);
     const { token } = data;
 
     saveToken(token);

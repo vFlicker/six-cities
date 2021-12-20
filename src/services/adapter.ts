@@ -1,8 +1,8 @@
 import { TOffer, TOfferServer } from '../types/offer';
 import { TUser, TUserServer } from '../types/user';
 
-export default class Adapter {
-  static transformOffer = (offer: TOfferServer): TOffer => {
+const Adapter = {
+  transformOffer: (offer: TOfferServer): TOffer => {
     const adaptOffer = {
       ...offer,
       previewImage: offer.preview_image,
@@ -24,9 +24,8 @@ export default class Adapter {
     delete adaptOffer.host.avatar_url;
 
     return adaptOffer;
-  };
-
-  static transformUser = (user: TUserServer): TUser => {
+  },
+  transformUser: (user: TUserServer): TUser => {
     const adaptUser = {
       ...user,
       avatarUrl: user.avatar_url,
@@ -37,5 +36,7 @@ export default class Adapter {
     delete adaptUser.is_pro;
 
     return adaptUser;
-  };
-}
+  },
+};
+
+export default Adapter;
