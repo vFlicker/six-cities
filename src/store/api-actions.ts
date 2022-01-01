@@ -1,18 +1,8 @@
 import { APIRoute, AppRoute } from '../const';
 import ApiError from '../errors';
-import {
-  offerError,
-  offerLoaded,
-  offerRequested,
-  offersNearbyError,
-  offersNearbyLoaded,
-  offersNearbyRequested,
-} from './offer-data/actions';
-import {
-  offersError,
-  offersLoaded,
-  offersRequested,
-} from './offers-data/action';
+import { offerError, offerLoaded, offerRequested } from './offer-data/actions';
+import { offersError, offersLoaded, offersRequested } from './offers-data/action';
+import { offersNearbyError, offersNearbyLoaded, offersNearbyRequested } from './offers-nearby-data/actions';
 import Adapter from '../services/adapter';
 import { dropToken, saveToken } from '../services/token';
 import { TThunkAction } from '../types/action';
@@ -48,7 +38,7 @@ export const checkAuthStatus = (): TThunkAction => async (dispatch, _getState, a
 };
 
 export const fetchOffer = (id: number): TThunkAction => async (dispatch, _getState, apiService) => {
-  dispatch(offerRequested);
+  dispatch(offerRequested());
 
   try {
     const { data } = await apiService.get<TOfferServer>(`${APIRoute.Offers}/${id}`);
@@ -79,7 +69,7 @@ export const fetchOfferNearby = (id: number): TThunkAction => async (
   _getState,
   apiService,
 ) => {
-  dispatch(offersNearbyRequested);
+  dispatch(offersNearbyRequested());
 
   try {
     const { data } = await apiService.get<TOffersServer>(`${APIRoute.Offers}/${id}/nearby`);

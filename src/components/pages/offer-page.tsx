@@ -3,9 +3,8 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { fetchOffer, fetchOfferNearby } from '../../store/api-actions';
-import {
-  getOffer, getOfferError, getOfferLoadingStatus, getOffersNearby,
-} from '../../store/offer-data/selectors';
+import { getOffer, getOfferError, getOfferLoadingStatus } from '../../store/offer-data/selectors';
+import { getOffersNearby, getOffersNearbyError, getOffersNearbyLoadingStatus } from '../../store/offers-nearby-data/selectors';
 import { TReviews } from '../../types/review';
 
 import { CardItemNearPlaces } from '../card-item/proxy';
@@ -23,8 +22,12 @@ function OfferPage({ reviews }: OfferPageProps): JSX.Element {
 
   const offer = useSelector(getOffer);
   const offersNearby = useSelector(getOffersNearby);
+
   const isOfferLoading = useSelector(getOfferLoadingStatus);
+  const isOffersNearbyLoading = useSelector(getOffersNearbyLoadingStatus);
+
   const offerError = useSelector(getOfferError);
+  const offersNearbyError = useSelector(getOffersNearbyError);
 
   const dispatch = useDispatch();
 
@@ -33,11 +36,15 @@ function OfferPage({ reviews }: OfferPageProps): JSX.Element {
     dispatch(fetchOfferNearby(Number(id)));
   }, [dispatch, id]);
 
-  if (isOfferLoading) {
+  if (isOfferLoading || isOffersNearbyLoading) {
     return <Spinner />;
   }
 
-  if (!offer || offerError) {
+  if (offerError || offersNearbyError) {
+    return <h1>Error!</h1>;
+  }
+
+  if (!offer) {
     return <NotFoundPage />;
   }
 

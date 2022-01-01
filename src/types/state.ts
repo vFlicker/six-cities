@@ -10,7 +10,6 @@ export type TAppProcessState = {
 
 export type TOfferDataState = {
   offer: TOffer | null;
-  offersNearby: TOffers;
   loading: boolean;
   error: null | ApiError;
 };
@@ -19,6 +18,12 @@ export type TOffersDataState = {
   currentCityName: CityName;
   currentSortType: SortType;
   groupedOffers: TGroupedOffers | null;
+  loading: boolean;
+  error: null | ApiError;
+};
+
+export type TOfferNearbyDataState = {
+  offersNearby: TOffers;
   loading: boolean;
   error: null | ApiError;
 };

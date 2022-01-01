@@ -32,6 +32,7 @@ export enum ReducerName {
   AppProcess = 'APP_PROCESS',
   OfferData = 'OFFER_DATA',
   OffersData = 'OFFERS_DATA',
+  OffersNearbyData = 'OFFERS_NEARBY_DATA',
   UserProcess = 'USER_PROCESS',
 }
 
