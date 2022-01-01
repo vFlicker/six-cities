@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { AppRoute, CityName } from '../../const';
+import { AppRoute } from '../../const';
+import { getCurrentCityName } from '../../store/offers-data/selectors';
 import { getAuthorizationStatus } from '../../store/user-process/selectors';
 
 import LocationsItem from '../locations-item';
@@ -13,6 +14,7 @@ function LoginPage(): JSX.Element {
   const navigate = useNavigate();
 
   const authorizationStatus = useSelector(getAuthorizationStatus);
+  const currentCityName = useSelector(getCurrentCityName);
 
   useEffect(() => {
     if (isUserAuthorized(authorizationStatus)) {
@@ -28,7 +30,7 @@ function LoginPage(): JSX.Element {
           <SectionLogin />
           <SectionLocations className="locations--login locations--current">
             <div className="locations__item">
-              <LocationsItem cityName={CityName.Amsterdam} />
+              <LocationsItem cityName={currentCityName} />
             </div>
           </SectionLocations>
         </div>
