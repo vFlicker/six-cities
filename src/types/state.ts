@@ -1,6 +1,6 @@
 import { AuthorizationStatus, CityName, SortType } from '../const';
 import ApiError from '../errors';
-import { TGroupedOffers } from './offer';
+import { TGroupedOffers, TOffer, TOffers } from './offer';
 import rootReducer from '../store/root-reducer';
 import { TUser } from './user';
 
@@ -8,10 +8,17 @@ export type TAppProcessState = {
   activeCardId: number;
 };
 
+export type TOfferDataState = {
+  offer: TOffer | null;
+  offersNearby: TOffers;
+  loading: boolean;
+  error: null | ApiError;
+};
+
 export type TOffersDataState = {
   currentCityName: CityName;
   currentSortType: SortType;
-  groupedOffers: TGroupedOffers;
+  groupedOffers: TGroupedOffers | null;
   loading: boolean;
   error: null | ApiError;
 };

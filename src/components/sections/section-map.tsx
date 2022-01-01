@@ -2,9 +2,9 @@ import React, { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { Icon, latLng, Marker } from 'leaflet';
 
-import { getActiveCard } from '../../store/app-process/selectors';
-import { getOffers } from '../../store/offers-data/selectors';
 import useMap from '../../hooks/use-map';
+import { getActiveCard } from '../../store/app-process/selectors';
+import { TOffers } from '../../types/offer';
 
 import 'leaflet/dist/leaflet.css';
 
@@ -13,6 +13,7 @@ const ACTIVE_ICON_URL = './img/pin-active.svg';
 const ICON_SIZE: [number, number] = [27, 39];
 
 type MapProps = {
+  offers: TOffers;
   className: string;
 };
 
@@ -26,14 +27,11 @@ const currentIcon = new Icon({
   iconSize: ICON_SIZE,
 });
 
-function SectionMap({ className = '' }: MapProps): JSX.Element {
-  const mapRef = useRef<HTMLElement>(null);
-
-  const activeCardId = useSelector(getActiveCard);
-  const offers = useSelector(getOffers);
-
+function SectionMap({ offers, className = '' }: MapProps): JSX.Element {
   const { city } = offers[0];
 
+  const mapRef = useRef<HTMLElement>(null);
+  const activeCardId = useSelector(getActiveCard);
   const map = useMap(mapRef, city);
 
   useEffect(() => {

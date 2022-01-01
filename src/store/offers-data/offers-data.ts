@@ -12,7 +12,7 @@ import { TOffersDataState } from '../../types/state';
 const initialState: TOffersDataState = {
   currentCityName: CityName.Amsterdam,
   currentSortType: SortType.Popular,
-  groupedOffers: {},
+  groupedOffers: null,
   loading: true,
   error: null,
 };
@@ -26,7 +26,7 @@ const offersData = createReducer(initialState, (builder) => {
       state.currentSortType = action.payload;
     })
     .addCase(offersRequested, (state) => {
-      state.groupedOffers = {};
+      state.groupedOffers = null;
       state.loading = true;
       state.error = null;
     })
@@ -36,7 +36,7 @@ const offersData = createReducer(initialState, (builder) => {
       state.error = null;
     })
     .addCase(offersError, (state, action) => {
-      state.groupedOffers = {};
+      state.groupedOffers = null;
       state.loading = false;
       state.error = action.payload;
     });

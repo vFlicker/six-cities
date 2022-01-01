@@ -1,7 +1,7 @@
 export enum APIRoute {
   Comments = '/comments',
   Favorites = '/favorites',
-  Hotels = '/hotels',
+  Offers = '/hotels',
   Login = '/login',
   Logout = '/logout',
 }
@@ -9,7 +9,7 @@ export enum APIRoute {
 export enum AppRoute {
   Favorites = '/favorites',
   Login = '/login',
-  Offers = '/offers/:id',
+  Offer = '/offers/:id',
   Root = '/',
 }
 
@@ -30,6 +30,7 @@ export enum CityName {
 
 export enum ReducerName {
   AppProcess = 'APP_PROCESS',
+  OfferData = 'OFFER_DATA',
   OffersData = 'OFFERS_DATA',
   UserProcess = 'USER_PROCESS',
 }

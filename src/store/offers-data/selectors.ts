@@ -14,26 +14,26 @@ export const getCurrentSortType = (state: TRootState): SortType => (
   state[ReducerName.OffersData].currentSortType
 );
 
-export const getGroupedOffers = (state: TRootState): TGroupedOffers => (
+export const getGroupedOffers = (state: TRootState): TGroupedOffers | null => (
   state[ReducerName.OffersData].groupedOffers
 );
 
 export const getOffers = createSelector(
   getGroupedOffers,
   getCurrentCityName,
-  (groupedOffers, cityName) => groupedOffers[cityName],
+  (groupedOffers, cityName) => (groupedOffers ? groupedOffers[cityName] : null),
 );
 
 export const getOffersLoadingStatus = (state: TRootState): boolean => (
   state[ReducerName.OffersData].loading
 );
 
-export const getError = (state: TRootState): ApiError | null => (
+export const getOffersError = (state: TRootState): ApiError | null => (
   state[ReducerName.OffersData].error
 );
 
 export const getSortedOffers = createSelector(
   getOffers,
   getCurrentSortType,
-  (offers, sortType) => sortOffers(offers, sortType),
+  (offers, sortType) => (offers ? sortOffers(offers, sortType) : null),
 );

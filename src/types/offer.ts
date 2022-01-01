@@ -43,4 +43,6 @@ export type TOfferServer = Omit<CamelToSnakeCaseNested<TOffer>, 'host'> & {
 
 export type TOffers = TOffer[];
 
+export type TOffersServer = TOfferServer[];
+
 export type TGroupedOffers = Record<string, TOffers>;

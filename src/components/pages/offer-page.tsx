@@ -1,25 +1,43 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { TOffers } from '../../types/offer';
+import { fetchOffer, fetchOfferNearby } from '../../store/api-actions';
+import {
+  getOffer, getOfferError, getOfferLoadingStatus, getOffersNearby,
+} from '../../store/offer-data/selectors';
 import { TReviews } from '../../types/review';
 
 import { CardItemNearPlaces } from '../card-item/proxy';
 import CardList from '../card-list';
 import NotFoundPage from './not-found-page';
 import { SectionHeader, SectionPlaces, SectionProperty } from '../sections';
+import Spinner from '../spinner';
 
 type OfferPageProps = {
-  offers: TOffers;
   reviews: TReviews;
 };
 
-function OfferPage({ reviews, offers }: OfferPageProps): JSX.Element {
+function OfferPage({ reviews }: OfferPageProps): JSX.Element {
   const { id } = useParams();
 
-  const offer = offers.find((item) => item.id === Number(id));
+  const offer = useSelector(getOffer);
+  const offersNearby = useSelector(getOffersNearby);
+  const isOfferLoading = useSelector(getOfferLoadingStatus);
+  const offerError = useSelector(getOfferError);
 
-  if (!offer) {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchOffer(Number(id)));
+    dispatch(fetchOfferNearby(Number(id)));
+  }, [dispatch, id]);
+
+  if (isOfferLoading) {
+    return <Spinner />;
+  }
+
+  if (!offer || offerError) {
     return <NotFoundPage />;
   }
 
@@ -35,6 +53,7 @@ function OfferPage({ reviews, offers }: OfferPageProps): JSX.Element {
 
             <CardList
               className="near-places__list places__list"
+              offers={offersNearby}
               getCardItem={(offer) => <CardItemNearPlaces offer={offer} />}
             />
           </SectionPlaces>

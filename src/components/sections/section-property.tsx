@@ -1,9 +1,10 @@
 import React from 'react';
 
-import { SectionMap, SectionReviews } from './index';
-import { TOffer } from '../../types/offer';
 import { TReviews } from '../../types/review';
 import { convertRatingToPercents } from '../../utils/rating';
+
+import { SectionReviews } from './index';
+import { TOffer } from '../../types/offer';
 
 type OfferProps = {
   offer: TOffer;
@@ -127,7 +128,7 @@ function SectionProperty({ offer, reviews }: OfferProps): JSX.Element {
           <SectionReviews reviews={reviews} />
         </div>
       </div>
-      <SectionMap className="property__map" />
+      {/* <SectionMap className="property__map" /> */}
     </section>
   );
 }

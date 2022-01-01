@@ -1,6 +1,14 @@
 import { APIRoute, AppRoute } from '../const';
 import ApiError from '../errors';
 import {
+  offerError,
+  offerLoaded,
+  offerRequested,
+  offersNearbyError,
+  offersNearbyLoaded,
+  offersNearbyRequested,
+} from './offer-data/actions';
+import {
   offersError,
   offersLoaded,
   offersRequested,
@@ -9,7 +17,7 @@ import Adapter from '../services/adapter';
 import { dropToken, saveToken } from '../services/token';
 import { TThunkAction } from '../types/action';
 import { TAuthData } from '../types/auth-data';
-import { TOfferServer } from '../types/offer';
+import { TOfferServer, TOffersServer } from '../types/offer';
 import { TUser } from '../types/user';
 import {
   checkAuthStatusFailure,
@@ -39,17 +47,47 @@ export const checkAuthStatus = (): TThunkAction => async (dispatch, _getState, a
   }
 };
 
+export const fetchOffer = (id: number): TThunkAction => async (dispatch, _getState, apiService) => {
+  dispatch(offerRequested);
+
+  try {
+    const { data } = await apiService.get<TOfferServer>(`${APIRoute.Offers}/${id}`);
+    const transformedData = Adapter.transformOffer(data);
+
+    dispatch(offerLoaded(transformedData));
+  } catch (error) {
+    dispatch(offerError(error as ApiError));
+  }
+};
+
 export const fetchOffers = (): TThunkAction => async (dispatch, _getState, apiService) => {
   dispatch(offersRequested());
 
   try {
-    const { data } = await apiService.get<TOfferServer[]>(`${APIRoute.Hotels}`);
+    const { data } = await apiService.get<TOffersServer>(`${APIRoute.Offers}`);
     const transformedData = data.map(Adapter.transformOffer);
     const groupedOffers = getGroupedOffers(transformedData);
 
     dispatch(offersLoaded(groupedOffers));
   } catch (error) {
     dispatch(offersError(error as ApiError));
+  }
+};
+
+export const fetchOfferNearby = (id: number): TThunkAction => async (
+  dispatch,
+  _getState,
+  apiService,
+) => {
+  dispatch(offersNearbyRequested);
+
+  try {
+    const { data } = await apiService.get<TOffersServer>(`${APIRoute.Offers}/${id}/nearby`);
+    const transformedData = data.map(Adapter.transformOffer);
+
+    dispatch(offersNearbyLoaded(transformedData));
+  } catch (error) {
+    dispatch(offersNearbyError(error as ApiError));
   }
 };
 

@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { CityName } from '../../const';
+import offers from '../../mocks/offers';
 
 import { CardItemFavorites } from '../card-item/proxy';
 import CardList from '../card-list';
@@ -20,6 +21,7 @@ function SectionFavorites(): JSX.Element {
 
           <CardList
             className="favorites__places"
+            offers={offers}
             getCardItem={(offer) => <CardItemFavorites offer={offer} />}
           />
         </li>

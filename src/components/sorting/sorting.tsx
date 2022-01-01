@@ -6,7 +6,7 @@ import { getCurrentSortType } from '../../store/offers-data/selectors';
 import { changeSortType } from '../../store/offers-data/action';
 
 function Sorting(): JSX.Element {
-  const [sortMenuOpened, setSortMenuOpened] = useState<boolean>(false);
+  const [sortMenuOpened, setSortMenuOpened] = useState(false);
 
   const currentSortType = useSelector(getCurrentSortType);
 

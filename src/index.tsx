@@ -9,7 +9,7 @@ import { checkAuthStatus } from './store/api-actions';
 import redirect from './store/middlewares';
 import rootReducer from './store/root-reducer';
 import { redirectToRoute, setAuthorizationStatus } from './store/user-process/action';
-import { offers, reviews } from './mocks';
+import { reviews } from './mocks';
 
 import App from './components/app';
 
@@ -35,7 +35,6 @@ ReactDOM.render(
   <StrictMode>
     <Provider store={store}>
       <App
-        offers={offers}
         reviews={reviews}
       />
     </Provider>

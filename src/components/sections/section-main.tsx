@@ -2,8 +2,9 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { fetchOffers } from '../../store/api-actions';
-import { getError, getOffers, getOffersLoadingStatus } from '../../store/offers-data/selectors';
+import { getOffersError, getOffersLoadingStatus, getSortedOffers } from '../../store/offers-data/selectors';
 
+import { CardItemCities } from '../card-item/proxy';
 import CardList from '../card-list';
 import {
   SectionLocations,
@@ -11,16 +12,14 @@ import {
   SectionMap,
   SectionPlaces,
 } from './index';
-
-import { CardItemCities } from '../card-item/proxy';
+import LocationsList from '../locations-list';
 import Sorting from '../sorting';
 import Spinner from '../spinner';
-import LocationsList from '../locations-list';
 
 function SectionMain(): JSX.Element {
-  const offers = useSelector(getOffers);
+  const sortedOffers = useSelector(getSortedOffers);
   const isOffersLoading = useSelector(getOffersLoadingStatus);
-  const error = useSelector(getError);
+  const offersError = useSelector(getOffersError);
 
   const dispatch = useDispatch();
 
@@ -32,11 +31,11 @@ function SectionMain(): JSX.Element {
     return <Spinner />;
   }
 
-  if (error) {
+  if (offersError) {
     return <h1>Error</h1>;
   }
 
-  if (!offers.length) {
+  if (!sortedOffers) {
     return <SectionMainEmpty />;
   }
 
@@ -60,11 +59,12 @@ function SectionMain(): JSX.Element {
 
             <CardList
               className="cities__places-list places__list tabs__content"
+              offers={sortedOffers}
               getCardItem={(offer) => <CardItemCities offer={offer} />}
             />
           </SectionPlaces>
           <div className="cities__right-section">
-            <SectionMap className="cities__map" />
+            <SectionMap offers={sortedOffers} className="cities__map" />
           </div>
         </div>
       </div>
