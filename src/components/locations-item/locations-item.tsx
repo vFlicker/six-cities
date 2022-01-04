@@ -1,9 +1,9 @@
 import React, { MouseEvent, PropsWithChildren } from 'react';
 import { Link } from 'react-router-dom';
-import { AppRoute, CityName } from '../../const';
+import { AppRoute } from '../../const';
 
 type LocationsItemProps = PropsWithChildren<{
-  cityName: CityName;
+  cityName: string;
   className?: string;
   onLocationsItemClick?: (evt: MouseEvent) => void;
 }>;

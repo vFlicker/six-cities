@@ -12,8 +12,8 @@ export const offersNearbyRequested = createAction(ActionType.FetchOffersNearbyRe
 
 export const offersNearbyLoaded = createAction(
   ActionType.FetchOffersNearbyLoaded,
-  (offers: TOffers) => ({
-    payload: offers,
+  (offersNearby: TOffers) => ({
+    payload: offersNearby,
   }),
 );
 

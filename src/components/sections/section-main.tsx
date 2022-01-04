@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useLayoutEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { fetchOffers } from '../../store/api-actions';
@@ -23,7 +23,7 @@ function SectionMain(): JSX.Element {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     dispatch(fetchOffers());
   }, [dispatch]);
 

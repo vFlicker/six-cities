@@ -19,7 +19,13 @@ export type TOffersDataState = {
   currentSortType: SortType;
   groupedOffers: TGroupedOffers | null;
   loading: boolean;
-  error: null | ApiError;
+  error: ApiError | null;
+};
+
+export type TOffersFavoriteDataState = {
+  offersFavorite: TOffers;
+  loading: boolean;
+  error: ApiError | null;
 };
 
 export type TOfferNearbyDataState = {

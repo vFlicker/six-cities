@@ -30,6 +30,7 @@ const store = configureStore({
 });
 
 store.dispatch(checkAuthStatus());
+store.dispatch(checkAuthStatus());
 
 ReactDOM.render(
   <StrictMode>

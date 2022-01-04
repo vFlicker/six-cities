@@ -1,6 +1,6 @@
 export enum APIRoute {
   Comments = '/comments',
-  Favorites = '/favorites',
+  Favorite = '/favorite',
   Offers = '/hotels',
   Login = '/login',
   Logout = '/logout',
@@ -32,6 +32,7 @@ export enum ReducerName {
   AppProcess = 'APP_PROCESS',
   OfferData = 'OFFER_DATA',
   OffersData = 'OFFERS_DATA',
+  OffersFavoriteData = 'OFFERS_FAVORITE_DATA',
   OffersNearbyData = 'OFFERS_NEARBY_DATA',
   UserProcess = 'USER_PROCESS',
 }
