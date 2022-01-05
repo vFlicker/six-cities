@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { fetchOffersFavorite } from '../../store/api-actions';
-import { getOffersFavorite, getOffersFavoriteError, getOffersFavoriteLoadingStatus } from '../../store/offers-favorite/selectors';
+import { getOffersFavorite, getOffersFavoriteError, getOffersFavoriteLoadingStatus } from '../../store/offers-favorite-data/selectors';
 
 import { CardItemFavorites } from '../card-item/proxy';
 import CardList from '../card-list';

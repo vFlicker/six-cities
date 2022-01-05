@@ -3,12 +3,12 @@ import { TOffer } from '../../types/offer';
 import ApiError from '../../errors';
 
 export enum ActionType {
-  FetchOfferRequested = 'fetchOfferRequested',
-  FetchOfferSuccess = 'fetchOfferSuccess',
-  FetchOfferFailure = 'fetchOfferFailure',
+  FetchOfferRequest = 'offerData/fetchOfferRequest',
+  FetchOfferSuccess = 'offerData/fetchOfferSuccess',
+  FetchOfferFailure = 'offerData/fetchOfferFailure',
 }
 
-export const offerRequested = createAction(ActionType.FetchOfferRequested);
+export const offerRequested = createAction(ActionType.FetchOfferRequest);
 
 export const offerLoaded = createAction(
   ActionType.FetchOfferSuccess,

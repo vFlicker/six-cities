@@ -31,7 +31,7 @@ export type TOffersFavoriteDataState = {
 export type TOfferNearbyDataState = {
   offersNearby: TOffers;
   loading: boolean;
-  error: null | ApiError;
+  error: ApiError | null;
 };
 
 export type TUserProcessState = {

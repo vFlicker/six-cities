@@ -3,9 +3,9 @@ import ApiError from '../../errors';
 import { TOffers } from '../../types/offer';
 
 export enum ActionType {
-  FetchOffersFavoriteRequest = 'offerData/fetchOffersFavoriteRequest',
-  FetchOffersFavoriteSuccess = 'offerData/fetchOffersFavoriteSuccess',
-  FetchOffersFavoriteFailure = 'offerData/fetchOffersFavoriteFailure',
+  FetchOffersFavoriteRequest = 'offerFavoriteData/fetchOffersFavoriteRequest',
+  FetchOffersFavoriteSuccess = 'offerFavoriteData/fetchOffersFavoriteSuccess',
+  FetchOffersFavoriteFailure = 'offerFavoriteData/fetchOffersFavoriteFailure',
 }
 
 export const offersFavoriteRequested = createAction(ActionType.FetchOffersFavoriteRequest);

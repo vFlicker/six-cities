@@ -4,11 +4,11 @@ import ApiError from '../../errors';
 import { CityName, SortType } from '../../const';
 
 export enum ActionType {
-  ChangeCityName = 'offerData/changeCityName',
-  ChangeSortType = 'offerData/changeSortType',
-  FetchOffersRequest = 'offerData/fetchOffersRequest',
-  FetchOffersSuccess = 'offerData/fetchOffersSuccess',
-  FetchOffersFailure = 'offerData/fetchOffersFailure',
+  ChangeCityName = 'offersData/changeCityName',
+  ChangeSortType = 'offersData/changeSortType',
+  FetchOffersRequest = 'offersData/fetchOffersRequest',
+  FetchOffersSuccess = 'offersData/fetchOffersSuccess',
+  FetchOffersFailure = 'offersData/fetchOffersFailure',
 }
 
 export const changeCityName = createAction(

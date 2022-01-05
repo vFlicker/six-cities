@@ -2,7 +2,7 @@ import { APIRoute, AppRoute } from '../const';
 import ApiError from '../errors';
 import { offerError, offerLoaded, offerRequested } from './offer-data/actions';
 import { offersError, offersLoaded, offersRequested } from './offers-data/action';
-import { offersFavoriteError, offersFavoriteLoaded, offersFavoriteRequested } from './offers-favorite/actions';
+import { offersFavoriteError, offersFavoriteLoaded, offersFavoriteRequested } from './offers-favorite-data/actions';
 import { offersNearbyError, offersNearbyLoaded, offersNearbyRequested } from './offers-nearby-data/actions';
 import Adapter from '../services/adapter';
 import { dropToken, saveToken } from '../services/token';

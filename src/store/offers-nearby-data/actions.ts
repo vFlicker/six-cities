@@ -3,22 +3,22 @@ import { TOffers } from '../../types/offer';
 import ApiError from '../../errors';
 
 export enum ActionType {
-  FetchOffersNearbyRequested = 'fetchOffersNearbyRequested',
-  FetchOffersNearbyLoaded = 'fetchOffersNearbyLoaded',
-  FetchOffersNearbyError = 'fetchOffersNearbyError',
+  FetchOffersNearbyRequest = 'offerNearbyData/fetchOffersNearbyRequest',
+  FetchOffersNearbySuccess = 'offerNearbyData/fetchOffersNearbySuccess',
+  FetchOffersNearbyFailure = 'offerNearbyData/fetchOffersNearbyFailure',
 }
 
-export const offersNearbyRequested = createAction(ActionType.FetchOffersNearbyRequested);
+export const offersNearbyRequested = createAction(ActionType.FetchOffersNearbyRequest);
 
 export const offersNearbyLoaded = createAction(
-  ActionType.FetchOffersNearbyLoaded,
+  ActionType.FetchOffersNearbySuccess,
   (offersNearby: TOffers) => ({
     payload: offersNearby,
   }),
 );
 
 export const offersNearbyError = createAction(
-  ActionType.FetchOffersNearbyError,
+  ActionType.FetchOffersNearbyFailure,
   (error: ApiError) => ({
     payload: error,
   }),
