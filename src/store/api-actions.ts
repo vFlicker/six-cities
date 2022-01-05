@@ -1,147 +1,117 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { AxiosInstance } from 'axios';
 import { APIRoute, AppRoute } from '../const';
 import ApiError from '../errors';
-// import { offerError, offerLoaded, offerRequested } from './offer-data/actions';
-import { offersError, offersLoaded, offersRequested } from './offers-data/action';
-import { offersFavoriteError, offersFavoriteLoaded, offersFavoriteRequested } from './offers-favorite-data/actions';
-import { offersNearbyError, offersNearbyLoaded, offersNearbyRequested } from './offers-nearby-data/actions';
 import Adapter from '../services/adapter';
 import { dropToken, saveToken } from '../services/token';
-import { TThunkAction } from '../types/action';
+import { TAsyncThunkOptions } from '../types/action';
 import { TAuthData } from '../types/auth-data';
-import { TOffer, TOfferServer, TOffersServer } from '../types/offer';
-import { TUser } from '../types/user';
 import {
-  checkAuthStatusFailure,
-  checkAuthStatusRequest,
-  checkAuthStatusSuccess,
-  loginFailure,
-  loginRequest,
-  loginSuccess,
-  logoutFailure,
-  logoutRequest,
-  logoutSuccess,
-  redirectToRoute,
-} from './user-process/action';
+  TGroupedOffers,
+  TOffer,
+  TOffers,
+  TOfferServer,
+  TOffersServer,
+} from '../types/offer';
+import { TUser } from '../types/user';
+import { loginSuccess, redirectToRoute } from './user-process/action';
 import { getGroupedOffers } from '../utils/offers';
 
-export const checkAuthStatus = (): TThunkAction => async (dispatch, _getState, apiService) => {
-  dispatch(checkAuthStatusRequest());
+export const checkAuthStatus = createAsyncThunk<TUser, void, TAsyncThunkOptions>(
+  'authStatus',
+  async (_, { dispatch, extra: apiService, rejectWithValue }) => {
+    try {
+      const { data } = await apiService.get<TUser>(APIRoute.Login);
+      const transformedData = Adapter.transformUser(data);
 
-  try {
-    const { data } = await apiService.get<TUser>(APIRoute.Login);
-    const transformedData = Adapter.transformUser(data);
+      dispatch(loginSuccess(transformedData));
 
-    dispatch(checkAuthStatusSuccess());
-    dispatch(loginSuccess(transformedData));
-  } catch (error) {
-    checkAuthStatusFailure(error as ApiError);
-  }
-};
+      return Adapter.transformUser(data);
+    } catch (error) {
+      return rejectWithValue(error as ApiError);
+    }
+  },
+);
 
-export const fetchOffersFavorite = (): TThunkAction => async (dispatch, _getState, apiService) => {
-  dispatch(offersFavoriteRequested());
-  console.log(111);
+export const fetchOffersFavorite = createAsyncThunk<TOffers, void, TAsyncThunkOptions>(
+  'offersFavorite',
+  async (_, { extra: apiService, rejectWithValue }) => {
+    try {
+      const { data } = await apiService.get<TOffersServer>(`${APIRoute.Favorite}`);
 
-  try {
-    const { data } = await apiService.get<TOffersServer>(`${APIRoute.Favorite}`);
-    const transformedData = data.map(Adapter.transformOffer);
+      return data.map(Adapter.transformOffer);
+    } catch (error) {
+      return rejectWithValue(error as ApiError);
+    }
+  },
+);
 
-    dispatch(offersFavoriteLoaded(transformedData));
-  } catch (error) {
-    dispatch(offersFavoriteError(error as ApiError));
-  }
-};
+export const fetchOffer = createAsyncThunk<TOffer, number, TAsyncThunkOptions>(
+  'offer',
+  async (id, { extra: apiService, rejectWithValue }) => {
+    try {
+      const { data } = await apiService.get<TOfferServer>(`${APIRoute.Offers}/${id}`);
 
-// export const fetchOffer = (id: number): TThunkAction => async (
-//   dispatch, _getState, apiService,
-// ) => {
-//   dispatch(offerRequested());
-//
-//   try {
-//     //     console.log(apiService);
-//     const { data } = await apiService.get<TOfferServer>(`${APIRoute.Offers}/${id}`);
-//     const transformedData = Adapter.transformOffer(data);
-//
-//     dispatch(offerLoaded(transformedData));
-//   } catch (error) {
-//     dispatch(offerError(error as ApiError));
-//   }
-// };
+      return Adapter.transformOffer(data);
+    } catch (error) {
+      return rejectWithValue(error as ApiError);
+    }
+  },
+);
 
-export const fetchOffer = createAsyncThunk<TOffer, number, {
-  extra: AxiosInstance,
-  rejectValue: ApiError,
-}>('fetchOffer', async (id, { rejectWithValue, extra }) => {
-  try {
-    const { data } = await extra.get<TOfferServer>(`${APIRoute.Offers}/${id}`);
-    return Adapter.transformOffer(data);
-  } catch (error) {
-    return rejectWithValue(error as ApiError);
-  }
-});
+export const fetchOffers = createAsyncThunk<TGroupedOffers, void, TAsyncThunkOptions>(
+  'offers',
+  async (_, { extra: apiService, rejectWithValue }) => {
+    try {
+      const { data } = await apiService.get<TOffersServer>(`${APIRoute.Offers}`);
+      const transformedData = data.map(Adapter.transformOffer);
 
-export const fetchOffers = (): TThunkAction => async (dispatch, _getState, apiService) => {
-  dispatch(offersRequested());
+      return getGroupedOffers(transformedData);
+    } catch (error) {
+      return rejectWithValue(error as ApiError);
+    }
+  },
+);
 
-  try {
-    const { data } = await apiService.get<TOffersServer>(`${APIRoute.Offers}`);
-    const transformedData = data.map(Adapter.transformOffer);
-    const groupedOffers = getGroupedOffers(transformedData);
+export const fetchOfferNearby = createAsyncThunk<TOffers, number, TAsyncThunkOptions>(
+  'offerNearby',
+  async (id, { extra: apiService, rejectWithValue }) => {
+    try {
+      const { data } = await apiService.get<TOffersServer>(`${APIRoute.Offers}/${id}/nearby`);
 
-    dispatch(offersLoaded(groupedOffers));
-  } catch (error) {
-    dispatch(offersError(error as ApiError));
-  }
-};
+      return data.map(Adapter.transformOffer);
+    } catch (error) {
+      return rejectWithValue(error as ApiError);
+    }
+  },
+);
 
-export const fetchOfferNearby = (id: number): TThunkAction => async (
-  dispatch,
-  _getState,
-  apiService,
-) => {
-  dispatch(offersNearbyRequested());
+export const login = createAsyncThunk<TUser, TAuthData, TAsyncThunkOptions>(
+  'userData',
+  async (authData, { dispatch, extra: apiService, rejectWithValue }) => {
+    try {
+      const { data } = await apiService.post<TUser>(APIRoute.Login, authData);
+      const transformedData = Adapter.transformUser(data);
+      const { token } = data;
 
-  try {
-    const { data } = await apiService.get<TOffersServer>(`${APIRoute.Offers}/${id}/nearby`);
-    const transformedData = data.map(Adapter.transformOffer);
+      saveToken(token);
+      dispatch(redirectToRoute(AppRoute.Root));
 
-    dispatch(offersNearbyLoaded(transformedData));
-  } catch (error) {
-    dispatch(offersNearbyError(error as ApiError));
-  }
-};
+      return transformedData;
+    } catch (error) {
+      return rejectWithValue(error as ApiError);
+    }
+  },
+);
 
-export const login = (authData: TAuthData): TThunkAction => async (
-  dispatch,
-  _getState,
-  apiService,
-) => {
-  dispatch(loginRequest());
+export const logout = createAsyncThunk<void, void, TAsyncThunkOptions>(
+  'userData',
+  async (authData, { extra: apiService, rejectWithValue }) => {
+    try {
+      await apiService.delete(APIRoute.Logout);
 
-  try {
-    const { data } = await apiService.post<TUser>(APIRoute.Login, authData);
-    const transformedData = Adapter.transformUser(data);
-    const { token } = data;
-
-    saveToken(token);
-    dispatch(loginSuccess(transformedData));
-    dispatch(redirectToRoute(AppRoute.Root));
-  } catch (error) {
-    dispatch(loginFailure(error as ApiError));
-  }
-};
-
-export const logout = ():TThunkAction => async (dispatch, _getState, apiService) => {
-  dispatch(logoutRequest());
-
-  try {
-    await apiService.delete(APIRoute.Logout);
-
-    dropToken();
-    dispatch(logoutSuccess());
-  } catch (error) {
-    dispatch(logoutFailure(error as ApiError));
-  }
-};
+      return dropToken();
+    } catch (error) {
+      return rejectWithValue(error as ApiError);
+    }
+  },
+);

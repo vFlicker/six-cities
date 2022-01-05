@@ -1,6 +1,7 @@
 import { AuthorizationStatus, CityName, SortType } from '../const';
 import ApiError from '../errors';
 import { TGroupedOffers, TOffer, TOffers } from './offer';
+import { store } from '../store';
 import rootReducer from '../store/root-reducer';
 import { TUser } from './user';
 
@@ -42,3 +43,4 @@ export type TUserProcessState = {
 };
 
 export type TRootState = ReturnType<typeof rootReducer>;
+export type AppDispatch = typeof store.dispatch

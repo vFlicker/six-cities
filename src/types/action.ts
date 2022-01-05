@@ -1,6 +1,9 @@
-import { ThunkAction } from 'redux-thunk';
 import { AxiosInstance } from 'axios';
-import { Action } from 'redux';
-import { TRootState } from './state';
+import ApiError from '../errors';
+import { AppDispatch } from './state';
 
-export type TThunkAction = ThunkAction<Promise<void>, TRootState, AxiosInstance, Action>;
+export type TAsyncThunkOptions = {
+  dispatch: AppDispatch;
+  extra: AxiosInstance;
+  rejectValue: ApiError;
+}
