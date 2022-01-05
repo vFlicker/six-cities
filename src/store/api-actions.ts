@@ -1,6 +1,8 @@
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { AxiosInstance } from 'axios';
 import { APIRoute, AppRoute } from '../const';
 import ApiError from '../errors';
-import { offerError, offerLoaded, offerRequested } from './offer-data/actions';
+// import { offerError, offerLoaded, offerRequested } from './offer-data/actions';
 import { offersError, offersLoaded, offersRequested } from './offers-data/action';
 import { offersFavoriteError, offersFavoriteLoaded, offersFavoriteRequested } from './offers-favorite-data/actions';
 import { offersNearbyError, offersNearbyLoaded, offersNearbyRequested } from './offers-nearby-data/actions';
@@ -8,7 +10,7 @@ import Adapter from '../services/adapter';
 import { dropToken, saveToken } from '../services/token';
 import { TThunkAction } from '../types/action';
 import { TAuthData } from '../types/auth-data';
-import { TOfferServer, TOffersServer } from '../types/offer';
+import { TOffer, TOfferServer, TOffersServer } from '../types/offer';
 import { TUser } from '../types/user';
 import {
   checkAuthStatusFailure,
@@ -52,18 +54,33 @@ export const fetchOffersFavorite = (): TThunkAction => async (dispatch, _getStat
   }
 };
 
-export const fetchOffer = (id: number): TThunkAction => async (dispatch, _getState, apiService) => {
-  dispatch(offerRequested());
+// export const fetchOffer = (id: number): TThunkAction => async (
+//   dispatch, _getState, apiService,
+// ) => {
+//   dispatch(offerRequested());
+//
+//   try {
+//     //     console.log(apiService);
+//     const { data } = await apiService.get<TOfferServer>(`${APIRoute.Offers}/${id}`);
+//     const transformedData = Adapter.transformOffer(data);
+//
+//     dispatch(offerLoaded(transformedData));
+//   } catch (error) {
+//     dispatch(offerError(error as ApiError));
+//   }
+// };
 
+export const fetchOffer = createAsyncThunk<TOffer, number, {
+  extra: AxiosInstance,
+  rejectValue: ApiError,
+}>('fetchOffer', async (id, { rejectWithValue, extra }) => {
   try {
-    const { data } = await apiService.get<TOfferServer>(`${APIRoute.Offers}/${id}`);
-    const transformedData = Adapter.transformOffer(data);
-
-    dispatch(offerLoaded(transformedData));
+    const { data } = await extra.get<TOfferServer>(`${APIRoute.Offers}/${id}`);
+    return Adapter.transformOffer(data);
   } catch (error) {
-    dispatch(offerError(error as ApiError));
+    return rejectWithValue(error as ApiError);
   }
-};
+});
 
 export const fetchOffers = (): TThunkAction => async (dispatch, _getState, apiService) => {
   dispatch(offersRequested());

@@ -1,6 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { offerError, offerRequested, offerLoaded } from './actions';
+import { fetchOffer } from '../api-actions';
 import { TOfferDataState } from '../../types/state';
+import ApiError from '../../errors';
 
 const initialState: TOfferDataState = {
   offer: null,
@@ -10,20 +11,20 @@ const initialState: TOfferDataState = {
 
 const offerData = createReducer(initialState, ((builder) => {
   builder
-    .addCase(offerRequested, (state) => {
+    .addCase(fetchOffer.pending, (state) => {
       state.offer = null;
       state.loading = true;
       state.error = null;
     })
-    .addCase(offerLoaded, (state, action) => {
+    .addCase(fetchOffer.fulfilled, (state, action) => {
       state.offer = action.payload;
       state.loading = false;
       state.error = null;
     })
-    .addCase(offerError, (state, action) => {
+    .addCase(fetchOffer.rejected, (state, action) => {
       state.offer = null;
       state.loading = false;
-      state.error = action.payload;
+      state.error = action.payload as ApiError;
     });
 }));
 
