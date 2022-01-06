@@ -1,14 +1,13 @@
 import { Middleware } from 'redux';
-import history from '../../history';
-import { TRootState } from '../../types/state';
-import { ActionType } from '../user-process/action';
 
-const redirect: Middleware<unknown, TRootState> = () => (next) => (action) => {
+import history from '../../history';
+import { RootState } from '../../types/state';
+import { ActionType } from '../model/user/action';
+
+export const redirect: Middleware<unknown, RootState> = () => (next) => (action) => {
   if (action.type === ActionType.RedirectToRoute) {
     history.push(action.payload);
   }
 
   return next(action);
 };
-
-export default redirect;

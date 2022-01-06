@@ -1,21 +1,20 @@
 import { AuthorizationStatus, CityName, SortType } from '../const';
 import ApiError from '../errors';
 import { TGroupedOffers, TOffer, TOffers } from './offer';
-import { store } from '../store';
-import rootReducer from '../store/root-reducer';
+import { rootReducer } from '../store/root-reducer';
 import { TUser } from './user';
 
-export type TAppProcessState = {
+export type AppState = {
   activeCardId: number;
 };
 
-export type TOfferDataState = {
+export type OfferState = {
   offer: TOffer | null;
   loading: boolean;
   error: null | ApiError;
 };
 
-export type TOffersDataState = {
+export type OffersState = {
   currentCityName: CityName;
   currentSortType: SortType;
   groupedOffers: TGroupedOffers | null;
@@ -23,24 +22,23 @@ export type TOffersDataState = {
   error: ApiError | null;
 };
 
-export type TOffersFavoriteDataState = {
+export type OffersFavoriteState = {
   offersFavorite: TOffers;
   loading: boolean;
   error: ApiError | null;
 };
 
-export type TOfferNearbyDataState = {
+export type OfferNearbyState = {
   offersNearby: TOffers;
   loading: boolean;
   error: ApiError | null;
 };
 
-export type TUserProcessState = {
+export type UserState = {
   loading: boolean;
   error: ApiError | null;
   authorizationStatus: AuthorizationStatus;
   user: TUser | null;
 };
 
-export type TRootState = ReturnType<typeof rootReducer>;
-export type AppDispatch = typeof store.dispatch
+export type RootState = ReturnType<typeof rootReducer>;

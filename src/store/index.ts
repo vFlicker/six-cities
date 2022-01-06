@@ -1,8 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import rootReducer from './root-reducer';
-import redirect from './middlewares';
-import { redirectToRoute, setAuthorizationStatus } from './user-process/action';
+
 import { AppRoute, AuthorizationStatus } from '../const';
+import { redirect } from './middlewares';
+import { redirectToRoute } from './model/user/action';
+import { setAuthorizationStatus } from './model/user/user-slice';
+import { rootReducer } from './root-reducer';
 import createApiService from '../services/api-service';
 
 const onUnauthorizedHandler = () => {
@@ -20,3 +22,5 @@ export const store = configureStore({
     },
   }).concat(redirect),
 });
+
+export type AppDispatch = typeof store.dispatch;

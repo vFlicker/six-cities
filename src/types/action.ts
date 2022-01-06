@@ -1,8 +1,8 @@
 import { AxiosInstance } from 'axios';
 import ApiError from '../errors';
-import { AppDispatch } from './state';
+import { AppDispatch } from '../store';
 
-export type TAsyncThunkOptions = {
+export type AsyncThunkOptions = {
   dispatch: AppDispatch;
   extra: AxiosInstance;
   rejectValue: ApiError;

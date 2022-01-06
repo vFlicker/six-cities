@@ -1,3 +1,1 @@
-import redirect from './redirect';
-
-export default redirect;
+export { redirect } from './redirect';

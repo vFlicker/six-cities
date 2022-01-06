@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
-import { setActiveCard } from '../../../store/app-process/slice';
+import { setActiveCard } from '../../../store/model/app/app-slice';
 import { TOffer } from '../../../types/offer';
 
 import CardItem from '../card-item';

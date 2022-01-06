@@ -1,8 +1,8 @@
 import React, { useLayoutEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { fetchOffers } from '../../store/api-actions';
-import { getOffersError, getOffersLoadingStatus, getSortedOffers } from '../../store/offers-data/selectors';
+import { fetchOffers } from '../../store/model/offers/action';
+import { getOffersError, getOffersLoadingStatus, getSortedOffers } from '../../store/model/offers/selectors';
 
 import { CardItemCities } from '../card-item/proxy';
 import CardList from '../card-list';

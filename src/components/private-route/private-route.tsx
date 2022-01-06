@@ -3,7 +3,7 @@ import { Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { AppRoute } from '../../const';
-import { getAuthorizationStatus } from '../../store/user-process/selectors';
+import { getAuthorizationStatus } from '../../store/model/user/selectors';
 import { isUserAuthorized } from '../../utils/user';
 
 type PrivateRouteProps = {

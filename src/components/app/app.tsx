@@ -12,7 +12,7 @@ import {
 } from '../pages';
 import history from '../../history';
 import PrivateRoute from '../private-route';
-import { getAuthorizationStatus } from '../../store/user-process/selectors';
+import { getAuthorizationStatus } from '../../store/model/user/selectors';
 import { TReviews } from '../../types/review';
 import { isCheckedAuth } from '../../utils/user';
 

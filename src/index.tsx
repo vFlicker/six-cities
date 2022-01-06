@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 
 import { reviews } from './mocks';
 import { store } from './store';
-import { checkAuthStatus } from './store/api-actions';
+import { checkAuthStatus } from './store/model/user/action';
 
 import App from './components/app';
 

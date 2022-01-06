@@ -2,8 +2,8 @@ import React, { MouseEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { CityName } from '../../const';
-import { getCurrentCityName } from '../../store/offers-data/selectors';
-import { changeCityName } from '../../store/offers-data/action';
+import { changeCityName } from '../../store/model/offers/offers-slice';
+import { getCurrentCityName } from '../../store/model/offers/selectors';
 
 import LocationsItem from '../locations-item';
 

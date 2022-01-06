@@ -2,9 +2,10 @@ import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { fetchOffer, fetchOfferNearby } from '../../store/api-actions';
-import { getOffer, getOfferError, getOfferLoadingStatus } from '../../store/offer-data/selectors';
-import { getOffersNearby, getOffersNearbyError, getOffersNearbyLoadingStatus } from '../../store/offers-nearby-data/selectors';
+import { fetchOffer } from '../../store/model/offer/action';
+import { fetchOfferNearby } from '../../store/model/offers-nearby/action';
+import { getOffer, getOfferError, getOfferLoadingStatus } from '../../store/model/offer/selectors';
+import { getOffersNearby, getOffersNearbyError, getOffersNearbyLoadingStatus } from '../../store/model/offers-nearby/selectors';
 import { TReviews } from '../../types/review';
 
 import { CardItemNearPlaces } from '../card-item/proxy';
