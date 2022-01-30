@@ -52,7 +52,9 @@ function SectionMain(): JSX.Element {
           <SectionPlaces className="cities__places">
             <h2 className="visually-hidden">Places</h2>
             <b className="places__found">
-              120 places to stay in Amsterdam
+              {sortedOffers.length}
+              {' '}
+              places to stay in Amsterdam
             </b>
 
             <Sorting />

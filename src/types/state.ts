@@ -6,6 +6,8 @@ import { TUser } from './user';
 
 export type AppState = {
   activeCardId: number;
+  currentCityName: CityName;
+  currentSortType: SortType;
 };
 
 export type OfferState = {
@@ -15,8 +17,6 @@ export type OfferState = {
 };
 
 export type OffersState = {
-  currentCityName: CityName;
-  currentSortType: SortType;
   groupedOffers: TGroupedOffers | null;
   loading: boolean;
   error: ApiError | null;

@@ -7,11 +7,11 @@ import { RootState } from '../../../types/state';
 import { sortOffers } from '../../../utils/sort';
 
 export const getCurrentCityName = (state: RootState): CityName => (
-  state[ReducerName.Offers].currentCityName
+  state[ReducerName.App].currentCityName
 );
 
 export const getCurrentSortType = (state: RootState): SortType => (
-  state[ReducerName.Offers].currentSortType
+  state[ReducerName.App].currentSortType
 );
 
 export const getGroupedOffers = (state: RootState): TGroupedOffers | null => (

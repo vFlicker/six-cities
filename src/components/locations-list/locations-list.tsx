@@ -2,7 +2,7 @@ import React, { MouseEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { CityName } from '../../const';
-import { changeCityName } from '../../store/model/offers/offers-slice';
+import { changeCityName } from '../../store/model/app/app-slice';
 import { getCurrentCityName } from '../../store/model/offers/selectors';
 
 import LocationsItem from '../locations-item';

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { SortType } from '../../const';
-import { changeSortType } from '../../store/model/offers/offers-slice';
+import { changeSortType } from '../../store/model/app/app-slice';
 import { getCurrentSortType } from '../../store/model/offers/selectors';
 
 function Sorting(): JSX.Element {
