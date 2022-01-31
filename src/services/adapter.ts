@@ -1,7 +1,7 @@
 import { TOffer, TOfferServer } from '../types/offer';
 import { TUser, TUserServer } from '../types/user';
 
-const Adapter = {
+export const Adapter = {
   transformOffer: (offer: TOfferServer): TOffer => {
     const adaptOffer = {
       ...offer,
@@ -38,5 +38,3 @@ const Adapter = {
     return adaptUser;
   },
 };
-
-export default Adapter;

@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { APIRoute } from '../../../const';
 import ApiError from '../../../errors';
-import Adapter from '../../../services/adapter';
+import { Adapter } from '../../../services';
 import { AsyncThunkOptions } from '../../../types/action';
 import { TOffer, TOfferServer } from '../../../types/offer';
 

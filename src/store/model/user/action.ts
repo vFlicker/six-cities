@@ -1,11 +1,10 @@
 import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
 
 import { APIRoute, AppRoute } from '../../../const';
-import Adapter from '../../../services/adapter';
+import { Adapter, dropToken, saveToken } from '../../../services';
 import ApiError from '../../../errors';
 import { AsyncThunkOptions } from '../../../types/action';
 import { TAuthData } from '../../../types/auth-data';
-import { dropToken, saveToken } from '../../../services/token';
 import { TUser } from '../../../types/user';
 
 export enum ActionType {

@@ -1,11 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 import { AppRoute, AuthorizationStatus } from '../const';
+import { createApiService } from '../services';
 import { redirect } from './middlewares';
 import { redirectToRoute } from './model/user/action';
 import { setAuthorizationStatus } from './model/user/user-slice';
 import { rootReducer } from './root-reducer';
-import createApiService from '../services/api-service';
 
 const onUnauthorizedHandler = () => {
   store.dispatch(setAuthorizationStatus(AuthorizationStatus.NoAuth));

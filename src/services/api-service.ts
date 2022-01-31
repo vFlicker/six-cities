@@ -4,6 +4,7 @@ import axios, {
   AxiosRequestConfig,
   AxiosResponse,
 } from 'axios';
+
 import ApiError from '../errors';
 import { getToken } from './token';
 
@@ -23,7 +24,7 @@ type ErrorResponse = {
 
 type UnauthorizedCallback = () => void;
 
-const createApiService = (onUnauthorized: UnauthorizedCallback): AxiosInstance => {
+export const createApiService = (onUnauthorized: UnauthorizedCallback): AxiosInstance => {
   const apiService = axios.create({
     baseURL: BACKEND_URL,
     timeout: TIMEOUT,
@@ -61,5 +62,3 @@ const createApiService = (onUnauthorized: UnauthorizedCallback): AxiosInstance =
 
   return apiService;
 };
-
-export default createApiService;
