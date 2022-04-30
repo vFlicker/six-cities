@@ -3,8 +3,8 @@ import { createSelector } from '@reduxjs/toolkit';
 import { CityName, ReducerName, SortType } from '../../../const';
 import ApiError from '../../../errors';
 import { TGroupedOffers } from '../../../types/offer';
-import { RootState } from '../../../types/state';
 import { sortOffers } from '../../../utils/sort';
+import { RootState } from '../root-reducer';
 
 export const getCurrentCityName = (state: RootState): CityName => (
   state[ReducerName.App].currentCityName

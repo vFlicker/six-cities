@@ -1,7 +1,7 @@
 import { ReducerName } from '../../../const';
 import ApiError from '../../../errors';
 import { TOffer } from '../../../types/offer';
-import { RootState } from '../../../types/state';
+import { RootState } from '../root-reducer';
 
 export const getOffer = (state: RootState): TOffer | null => (
   state[ReducerName.Offer].offer

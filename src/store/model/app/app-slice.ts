@@ -1,9 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { CityName, ReducerName, SortType } from '../../../const';
-import { AppState } from '../../../types/state';
 
-const initialState: AppState = {
+export type AppState = typeof initialState;
+
+const initialState = {
   activeCardId: -1,
   currentCityName: CityName.Amsterdam,
   currentSortType: SortType.Popular,

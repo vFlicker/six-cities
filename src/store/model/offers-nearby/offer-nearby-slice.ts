@@ -1,13 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { fetchOfferNearby } from './action';
-import { OfferNearbyState } from '../../../types/state';
 import { ReducerName } from '../../../const';
 import ApiError from '../../../errors';
+import { TOffers } from '../../../types/offer';
 
-const initialState: OfferNearbyState = {
-  offersNearby: [],
+export type OfferNearbyState = typeof initialState;
+
+const initialState = {
+  offersNearby: [] as TOffers,
   loading: true,
-  error: null,
+  error: null as (ApiError | null),
 };
 
 export const offerNearbySlice = createSlice({

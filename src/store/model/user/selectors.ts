@@ -1,6 +1,6 @@
 import { AuthorizationStatus, ReducerName } from '../../../const';
-import { RootState } from '../../../types/state';
 import { TUser } from '../../../types/user';
+import { RootState } from '../root-reducer';
 
 export const getAuthorizationStatus = (state: RootState): AuthorizationStatus => (
   state[ReducerName.User].authorizationStatus

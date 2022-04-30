@@ -1,7 +1,7 @@
 import { ReducerName } from '../../../const';
 import ApiError from '../../../errors';
 import { TOffers } from '../../../types/offer';
-import { RootState } from '../../../types/state';
+import { RootState } from '../root-reducer';
 
 export const getOffersNearby = (state: RootState): TOffers => (
   state[ReducerName.OffersNearby].offersNearby

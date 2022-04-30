@@ -3,14 +3,15 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { checkAuthStatus, login, logout } from './action';
 import { AuthorizationStatus, ReducerName } from '../../../const';
 import ApiError from '../../../errors';
-import { UserState } from '../../../types/state';
 import { TUser } from '../../../types/user';
 
-export const initialState: UserState = {
-  loading: true,
-  error: null,
+export type UserState = typeof initialState;
+
+const initialState = {
   authorizationStatus: AuthorizationStatus.NoAuth,
-  user: null,
+  user: {} as TUser,
+  loading: true,
+  error: null as (ApiError | null),
 };
 
 export const userSlice = createSlice({
@@ -27,7 +28,6 @@ export const userSlice = createSlice({
   extraReducers: ((builder) => {
     builder.addCase(checkAuthStatus.pending, (state) => {
       state.authorizationStatus = AuthorizationStatus.Unknown;
-      state.user = null;
       state.loading = true;
       state.error = null;
     });
@@ -39,13 +39,11 @@ export const userSlice = createSlice({
     });
     builder.addCase(checkAuthStatus.rejected, (state, action) => {
       state.authorizationStatus = AuthorizationStatus.NoAuth;
-      state.user = null;
       state.loading = false;
       state.error = action.payload as ApiError;
     });
     builder.addCase(login.pending, (state) => {
       state.authorizationStatus = AuthorizationStatus.Unknown;
-      state.user = null;
       state.loading = true;
       state.error = null;
     });
@@ -57,7 +55,6 @@ export const userSlice = createSlice({
     });
     builder.addCase(login.rejected, (state, action) => {
       state.authorizationStatus = AuthorizationStatus.NoAuth;
-      state.user = null;
       state.loading = false;
       state.error = action.payload as ApiError;
     });
@@ -67,7 +64,6 @@ export const userSlice = createSlice({
     });
     builder.addCase(logout.fulfilled, (state) => {
       state.authorizationStatus = AuthorizationStatus.NoAuth;
-      state.user = null;
       state.loading = false;
       state.error = null;
     });

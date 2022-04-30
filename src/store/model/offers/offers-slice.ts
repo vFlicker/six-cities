@@ -3,12 +3,14 @@ import { createSlice } from '@reduxjs/toolkit';
 import { fetchOffers } from './action';
 import { ReducerName } from '../../../const';
 import ApiError from '../../../errors';
-import { OffersState } from '../../../types/state';
+import { TGroupedOffers } from '../../../types/offer';
 
-const initialState: OffersState = {
-  groupedOffers: null,
+export type OffersState = typeof initialState;
+
+const initialState = {
+  groupedOffers: {} as TGroupedOffers,
   loading: true,
-  error: null,
+  error: null as (ApiError | null),
 };
 
 export const offersSlice = createSlice({
@@ -17,7 +19,6 @@ export const offersSlice = createSlice({
   reducers: {},
   extraReducers: ((builder) => {
     builder.addCase(fetchOffers.pending, (state) => {
-      state.groupedOffers = null;
       state.loading = true;
       state.error = null;
     });
@@ -27,7 +28,6 @@ export const offersSlice = createSlice({
       state.error = null;
     });
     builder.addCase(fetchOffers.rejected, (state, action) => {
-      state.groupedOffers = null;
       state.loading = false;
       state.error = action.payload as ApiError;
     });

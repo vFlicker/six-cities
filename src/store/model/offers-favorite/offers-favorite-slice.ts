@@ -3,12 +3,14 @@ import { createSlice } from '@reduxjs/toolkit';
 import { fetchOffersFavorite } from './action';
 import { ReducerName } from '../../../const';
 import ApiError from '../../../errors';
-import { OffersFavoriteState } from '../../../types/state';
+import { TOffers } from '../../../types/offer';
 
-const initialState: OffersFavoriteState = {
-  offersFavorite: [],
+export type OffersFavoriteState = typeof initialState;
+
+const initialState = {
+  offersFavorite: [] as TOffers,
   loading: true,
-  error: null,
+  error: null as (ApiError | null),
 };
 
 export const offersFavoriteSlice = createSlice({
@@ -17,7 +19,6 @@ export const offersFavoriteSlice = createSlice({
   reducers: {},
   extraReducers: ((builder) => {
     builder.addCase(fetchOffersFavorite.pending, (state) => {
-      state.offersFavorite = [];
       state.loading = true;
       state.error = null;
     });
@@ -27,7 +28,6 @@ export const offersFavoriteSlice = createSlice({
       state.error = null;
     });
     builder.addCase(fetchOffersFavorite.rejected, (state, action) => {
-      state.offersFavorite = [];
       state.loading = false;
       state.error = action.payload as ApiError;
     });

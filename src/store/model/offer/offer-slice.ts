@@ -1,13 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { fetchOffer } from './action';
 import ApiError from '../../../errors';
-import { OfferState } from '../../../types/state';
+import { TOffer } from '../../../types/offer';
+import { fetchOffer } from './action';
 
-const initialState: OfferState = {
-  offer: null,
+export type OfferState = typeof initialState;
+
+const initialState = {
+  offer: {} as TOffer,
   loading: true,
-  error: null,
+  error: null as (ApiError | null),
 };
 
 export const offerSlice = createSlice({
@@ -16,7 +18,6 @@ export const offerSlice = createSlice({
   reducers: {},
   extraReducers: ((builder) => {
     builder.addCase(fetchOffer.pending, (state) => {
-      state.offer = null;
       state.loading = true;
       state.error = null;
     });
@@ -26,7 +27,6 @@ export const offerSlice = createSlice({
       state.error = null;
     });
     builder.addCase(fetchOffer.rejected, (state, action) => {
-      state.offer = null;
       state.loading = false;
       state.error = action.payload as ApiError;
     });
