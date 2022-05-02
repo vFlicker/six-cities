@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { SectionHeader, SectionFooter, SectionNotFound } from '../sections';
 
 function NotFoundPage(): JSX.Element {

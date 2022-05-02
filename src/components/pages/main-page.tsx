@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { SectionHeader, SectionMain } from '../sections';
 
 function MainPage(): JSX.Element {

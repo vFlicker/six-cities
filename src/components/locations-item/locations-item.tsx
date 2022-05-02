@@ -1,4 +1,4 @@
-import React, { MouseEvent, PropsWithChildren } from 'react';
+import { MouseEvent, PropsWithChildren } from 'react';
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
 

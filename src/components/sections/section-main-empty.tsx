@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { SectionLocations } from './index';
 import LocationsList from '../locations-list';
 

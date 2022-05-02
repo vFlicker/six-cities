@@ -2,7 +2,7 @@
   "compilerOptions": {
     /* Basic Options */
     "lib": ["dom", "esnext"],
-    "jsx": "react",
+    "jsx": "react-jsx",
     "noEmit": true,
     "isolatedModules": true,
 

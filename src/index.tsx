@@ -1,4 +1,4 @@
-import React, { StrictMode } from 'react';
+import { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
@@ -13,9 +13,7 @@ store.dispatch(checkAuthStatus());
 ReactDOM.render(
   <StrictMode>
     <Provider store={store}>
-      <App
-        reviews={reviews}
-      />
+      <App reviews={reviews} />
     </Provider>
   </StrictMode>,
   document.getElementById('root'),

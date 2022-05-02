@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { TReviews } from '../../types/review';
 import { convertRatingToPercents } from '../../utils/rating';
 

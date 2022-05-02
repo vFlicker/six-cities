@@ -1,4 +1,3 @@
-import React from 'react';
 import { useDispatch } from 'react-redux';
 
 import { setActiveCard } from '../../../store/model/app/app-slice';

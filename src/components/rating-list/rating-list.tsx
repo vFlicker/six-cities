@@ -1,5 +1,3 @@
-import React from 'react';
-
 import RatingItem from '../rating-item';
 
 const RatingTitles: string[] = ['perfect', 'good', 'not bad', 'badly', 'terribly'];

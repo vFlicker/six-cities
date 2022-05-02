@@ -7,6 +7,8 @@ interface Configuration extends WebpackConfiguration {
   devServer: WebpackDevServerConfiguration;
 }
 
+export const DEV_SERVER_PORT = 3000;
+
 const config: Configuration = {
   mode: 'development',
   entry: './src/index.tsx',
@@ -44,7 +46,7 @@ const config: Configuration = {
   },
   devServer: {
     static: path.resolve(__dirname, 'public'),
-    port: 3000,
+    port: DEV_SERVER_PORT,
     open: true,
     historyApiFallback: true,
   }

@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { SectionHeader, SectionFooter, SectionFavorites } from '../sections';
 
 function FavoritesPage(): JSX.Element {

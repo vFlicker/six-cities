@@ -1,5 +1,3 @@
-import React from 'react';
-
 function SectionNotFound(): JSX.Element {
   return (
     <section className="not-found">

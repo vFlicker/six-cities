@@ -1,5 +1,3 @@
-import React from 'react';
-
 function Spinner(): JSX.Element {
   return (
     <div className="spinner">

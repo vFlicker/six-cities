@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { TOffer } from '../../../types/offer';
 
 import CardItem from '../card-item';

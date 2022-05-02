@@ -1,4 +1,4 @@
-import React, { MouseEvent } from 'react';
+import { MouseEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { CityName } from '../../const';

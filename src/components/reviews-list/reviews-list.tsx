@@ -1,5 +1,3 @@
-import React from 'react';
-
 import ReviewsItem from '../reviews-item';
 import { TReviews } from '../../types/review';
 

@@ -1,5 +1,3 @@
-import React from 'react';
-
 import ReviewsForm from '../reviews-form';
 import ReviewsList from '../reviews-list';
 import { TReviews } from '../../types/review';

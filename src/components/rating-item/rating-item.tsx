@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { RatingListProps } from '../rating-list/rating-list';
 
 type RatingItemProps = {

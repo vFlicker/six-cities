@@ -1,4 +1,4 @@
-import React, { FormEvent, useRef } from 'react';
+import { FormEvent, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { login } from '../../store/model/user/action';
