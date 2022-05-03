@@ -1,8 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { GroupedOffers } from '@/types';
-import { ReducerName } from '@/constants';
 import { ApiError } from '@/services';
+
+import { ReducerName } from '../constants';
 import { fetchOffers } from './action';
 
 export type OffersState = typeof initialState;
@@ -14,7 +15,7 @@ const initialState = {
 };
 
 export const offersSlice = createSlice({
-  name: ReducerName.Offers,
+  name: ReducerName.OFFERS,
   initialState,
   reducers: {},
   extraReducers: ((builder) => {

@@ -6,8 +6,10 @@ import { getApiRoute } from '@/utils';
 
 import { AsyncThunkOptions } from '../types';
 
+const ACTION_TYPE = '@@offersFavorite';
+
 export const fetchOffersFavorite = createAsyncThunk<Offer[], void, AsyncThunkOptions>(
-  'offersFavorite',
+  ACTION_TYPE,
   async (_, { extra: apiService, rejectWithValue }) => {
     try {
       const { data } = await apiService.get<OfferServer[]>(getApiRoute.favorite());

@@ -1,22 +1,22 @@
 import { createSelector } from '@reduxjs/toolkit';
 
-import { CityName, ReducerName, SortType } from '@/constants';
 import { ApiError } from '@/services';
-import { GroupedOffers } from '@/types';
+import { CityName, GroupedOffers, SortType } from '@/types';
 
+import { ReducerName } from '../constants';
 import { RootState } from '../root-reducer';
 import { sortOffers } from './utils';
 
 export const getCurrentCityName = (state: RootState): CityName => (
-  state[ReducerName.App].currentCityName
+  state[ReducerName.APP].currentCityName
 );
 
 export const getCurrentSortType = (state: RootState): SortType => (
-  state[ReducerName.App].currentSortType
+  state[ReducerName.APP].currentSortType
 );
 
 export const getGroupedOffers = (state: RootState): GroupedOffers | null => (
-  state[ReducerName.Offers].groupedOffers
+  state[ReducerName.OFFERS].groupedOffers
 );
 
 export const getOffers = createSelector(
@@ -26,11 +26,11 @@ export const getOffers = createSelector(
 );
 
 export const getOffersLoadingStatus = (state: RootState): boolean => (
-  state[ReducerName.Offers].loading
+  state[ReducerName.OFFERS].loading
 );
 
 export const getOffersError = (state: RootState): ApiError | null => (
-  state[ReducerName.Offers].error
+  state[ReducerName.OFFERS].error
 );
 
 export const getSortedOffers = createSelector(

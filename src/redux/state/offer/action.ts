@@ -6,8 +6,10 @@ import { Offer, OfferServer } from '@/types';
 
 import { AsyncThunkOptions } from '../types';
 
+const ACTION_TYPE = '@@offer';
+
 export const fetchOffer = createAsyncThunk<Offer, number, AsyncThunkOptions>(
-  'offer',
+  ACTION_TYPE,
   async (id, { extra: apiService, rejectWithValue }) => {
     try {
       const { data } = await apiService.get<OfferServer>(getApiRoute.offer(id));

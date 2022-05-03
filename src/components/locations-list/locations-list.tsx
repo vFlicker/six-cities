@@ -2,6 +2,7 @@ import { MouseEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { CityName } from '@/constants';
+import { CityName as TCityName } from '@/types';
 import { changeCityName } from '@/redux/state/app/app-slice';
 import { getCurrentCityName } from '@/redux/state/offers/selectors';
 
@@ -12,7 +13,7 @@ export function LocationsList(): JSX.Element {
 
   const dispatch = useDispatch();
 
-  const handleLocationsItemClick = (evt: MouseEvent, cityName: CityName) => {
+  const handleLocationsItemClick = (evt: MouseEvent, cityName: TCityName) => {
     evt.preventDefault();
 
     if (cityName === currentCityName) {

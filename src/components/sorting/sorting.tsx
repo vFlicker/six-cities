@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { SortType } from '@/constants';
+import { SortType as TSortType } from '@/types';
 import { changeSortType } from '@/redux/state/app/app-slice';
 import { getCurrentSortType } from '@/redux/state/offers/selectors';
 
@@ -18,7 +19,7 @@ export function Sorting(): JSX.Element {
     setSortMenuOpened((prevState) => !prevState);
   };
 
-  const handleOptionClick = (sortType: SortType) => {
+  const handleOptionClick = (sortType: TSortType) => {
     if (sortType === currentSortType) {
       return;
     }

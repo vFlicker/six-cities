@@ -1,37 +1,28 @@
-export enum AppRoute {
-  Favorites = '/favorites',
-  Login = '/login',
-  Offer = '/offers/:id',
-  Root = '/',
-}
+export const AppRoute = {
+  FAVORITES: '/favorites',
+  LOGIN: '/login',
+  OFFER: '/offers/:id',
+  ROOT: '/',
+} as const;
 
-export enum AuthorizationStatus {
-  Auth = 'AUTH',
-  NoAuth = 'NO_AUTH',
-  Unknown = 'UNKNOWN',
-}
+export const AuthorizationStatus = {
+  AUTH: 'AUTH',
+  NO_AUTH: 'NO_AUTH',
+  UNKNOWN: 'UNKNOWN',
+} as const;
 
-export enum CityName {
-  Paris = 'Paris',
-  Cologne = 'Cologne',
-  Brussels = 'Brussels',
-  Amsterdam = 'Amsterdam',
-  Hamburg = 'Hamburg',
-  Dusseldorf = 'Dusseldorf',
-}
+export const CityName = {
+  PARIS: 'Paris',
+  COLOGNE: 'Cologne',
+  BRUSSELS: 'Brussels',
+  AMSTERDAM: 'Amsterdam',
+  HAMBURG: 'Hamburg',
+  DUSSELDORF: 'Dusseldorf',
+} as const;
 
-export enum ReducerName {
-  App = 'app',
-  Offer = 'offer',
-  Offers = 'offers',
-  OffersFavorite = 'offersFavorite',
-  OffersNearby = 'offersNearby',
-  User = 'user',
-}
-
-export enum SortType {
-  Popular = 'Popular',
-  PriceHighToLow = 'Price: high to low',
-  PriceLowToHigh = 'Price: low to high',
-  TopRatedFirst = 'Top rated first',
-}
+export const SortType = {
+  POPULAR: 'Popular',
+  PRICE_HIGH_TO_LOW: 'Price: high to low',
+  PRICE_LOW_TO_HIGH: 'Price: low to high',
+  TOP_RATED_FIRST: 'Top rated first',
+} as const;

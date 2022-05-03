@@ -18,7 +18,7 @@ export function LoginPage(): JSX.Element {
 
   useEffect(() => {
     if (isUserAuthorized(authorizationStatus)) {
-      navigate(AppRoute.Root);
+      navigate(AppRoute.ROOT);
     }
   }, [authorizationStatus, navigate]);
 

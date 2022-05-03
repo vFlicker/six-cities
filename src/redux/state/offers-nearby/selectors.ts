@@ -1,17 +1,17 @@
-import { ReducerName } from '@/constants';
-import { ApiError } from '@/services/api-error';
-import { Offer } from '@/types/offer';
+import { ApiError } from '@/services';
+import { Offer } from '@/types';
 
+import { ReducerName } from '../constants';
 import { RootState } from '../root-reducer';
 
 export const getOffersNearby = (state: RootState): Offer[] => (
-  state[ReducerName.OffersNearby].offersNearby
+  state[ReducerName.OFFERS_NEARBY].offersNearby
 );
 
 export const getOffersNearbyLoadingStatus = (state: RootState): boolean => (
-  state[ReducerName.OffersNearby].loading
+  state[ReducerName.OFFERS_NEARBY].loading
 );
 
 export const getOffersNearbyError = (state: RootState): ApiError | null => (
-  state[ReducerName.OffersNearby].error
+  state[ReducerName.OFFERS_NEARBY].error
 );

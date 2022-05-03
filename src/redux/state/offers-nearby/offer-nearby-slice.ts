@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { ReducerName } from '@/constants';
 import { ApiError } from '@/services';
 import { Offer } from '@/types';
 
+import { ReducerName } from '../constants';
 import { fetchOfferNearby } from './action';
 
 export type OfferNearbyState = typeof initialState;
@@ -15,7 +15,7 @@ const initialState = {
 };
 
 export const offerNearbySlice = createSlice({
-  name: ReducerName.OffersNearby,
+  name: ReducerName.OFFERS_NEARBY,
   initialState,
   reducers: {},
   extraReducers: ((builder) => {

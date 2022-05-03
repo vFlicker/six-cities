@@ -9,8 +9,8 @@ import { setAuthorizationStatus } from './state/user/user-slice';
 import { rootReducer } from './state/root-reducer';
 
 const onUnauthorizedHandler = () => {
-  store.dispatch(setAuthorizationStatus(AuthorizationStatus.NoAuth));
-  store.dispatch(redirectToRoute(AppRoute.Login));
+  store.dispatch(setAuthorizationStatus(AuthorizationStatus.NO_AUTH));
+  store.dispatch(redirectToRoute(AppRoute.LOGIN));
 };
 
 const apiService = createApiService(onUnauthorizedHandler);

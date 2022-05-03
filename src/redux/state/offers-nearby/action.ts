@@ -5,8 +5,10 @@ import { Offer, OfferServer } from '@/types';
 import { getApiRoute } from '@/utils';
 import { AsyncThunkOptions } from '../types';
 
+const ACTION_TYPE = '@@offerNearby';
+
 export const fetchOfferNearby = createAsyncThunk<Offer[], number, AsyncThunkOptions>(
-  'offerNearby',
+  ACTION_TYPE,
   async (id, { extra: apiService, rejectWithValue }) => {
     try {
       const { data } = await apiService.get<OfferServer[]>(getApiRoute.offersNearby(id));

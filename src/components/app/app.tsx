@@ -34,17 +34,17 @@ export function App(props: AppProps): JSX.Element {
   return (
     <HistoryRouter history={history}>
       <Routes>
-        <Route path={AppRoute.Root} element={<MainPage />} />
+        <Route path={AppRoute.ROOT} element={<MainPage />} />
         <Route
-          path={AppRoute.Favorites}
+          path={AppRoute.FAVORITES}
           element={(
             <PrivateRoute>
               <FavoritesPage />
             </PrivateRoute>
           )}
         />
-        <Route path={AppRoute.Login} element={<LoginPage />} />
-        <Route path={AppRoute.Offer} element={<OfferPage reviews={reviews} />} />
+        <Route path={AppRoute.LOGIN} element={<LoginPage />} />
+        <Route path={AppRoute.OFFER} element={<OfferPage reviews={reviews} />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </HistoryRouter>

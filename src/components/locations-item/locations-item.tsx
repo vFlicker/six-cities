@@ -14,7 +14,7 @@ export function LocationsItem(props: LocationsItemProps): JSX.Element {
 
   return (
     <Link
-      to={AppRoute.Root}
+      to={AppRoute.ROOT}
       className={`locations__item-link ${className}`}
       onClick={onLocationsItemClick}
     >

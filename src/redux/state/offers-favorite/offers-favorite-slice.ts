@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { ReducerName } from '@/constants';
 import { ApiError } from '@/services';
 import { Offer } from '@/types';
 
+import { ReducerName } from '../constants';
 import { fetchOffersFavorite } from './action';
 
 export type OffersFavoriteState = typeof initialState;
@@ -15,7 +15,7 @@ const initialState = {
 };
 
 export const offersFavoriteSlice = createSlice({
-  name: ReducerName.OffersFavorite,
+  name: ReducerName.OFFERS_FAVORITE,
   initialState,
   reducers: {},
   extraReducers: ((builder) => {

@@ -1,7 +1,7 @@
 import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
 
 import { AppRoute } from '@/constants';
-import { User } from '@/types';
+import { AppRoute as TAppRoute, User } from '@/types';
 import { getApiRoute } from '@/utils/get-api-route';
 import {
   Adapter,
@@ -12,19 +12,22 @@ import {
 
 import { AsyncThunkOptions, AuthData } from '../types';
 
-export enum ActionType {
-  RedirectToRoute = 'userData/redirectToRoute',
-}
+export const ActionType = {
+  REDIRECT_TO_ROUTE: '@@userData/redirectToRoute',
+  AUTH_STATUS: '@@userData/authStatus',
+  LOGIN: '@@userData/login',
+  LOGOUT: '@@userData/logout',
+};
 
 export const redirectToRoute = createAction(
-  ActionType.RedirectToRoute,
-  (url: AppRoute) => ({
+  ActionType.REDIRECT_TO_ROUTE,
+  (url: TAppRoute) => ({
     payload: url,
   }),
 );
 
 export const checkAuthStatus = createAsyncThunk<User, void, AsyncThunkOptions>(
-  'userData/authStatus',
+  ActionType.AUTH_STATUS,
   async (_, { extra: apiService, rejectWithValue }) => {
     try {
       const { data } = await apiService.get<User>(getApiRoute.login());
@@ -36,7 +39,7 @@ export const checkAuthStatus = createAsyncThunk<User, void, AsyncThunkOptions>(
 );
 
 export const login = createAsyncThunk<User, AuthData, AsyncThunkOptions>(
-  'userData/login',
+  ActionType.LOGIN,
   async (authData, { dispatch, extra: apiService, rejectWithValue }) => {
     try {
       const { data } = await apiService.post<User>(getApiRoute.login(), authData);
@@ -44,7 +47,7 @@ export const login = createAsyncThunk<User, AuthData, AsyncThunkOptions>(
       const { token } = data;
 
       saveToken(token);
-      dispatch(redirectToRoute(AppRoute.Root));
+      dispatch(redirectToRoute(AppRoute.ROOT));
 
       return transformedData;
     } catch (error) {
@@ -54,7 +57,7 @@ export const login = createAsyncThunk<User, AuthData, AsyncThunkOptions>(
 );
 
 export const logout = createAsyncThunk<void, void, AsyncThunkOptions>(
-  'userData/logout',
+  ActionType.LOGOUT,
   async (authData, { extra: apiService, rejectWithValue }) => {
     try {
       await apiService.delete(getApiRoute.logout());
