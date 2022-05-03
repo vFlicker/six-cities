@@ -1,11 +1,9 @@
-import { TUser } from './user';
+import { User } from './user';
 
-export type TReview = {
+export type Review = {
   id: number;
   comment: string;
   date: string;
   rating: number;
-  user: TUser;
+  user: User;
 };
-
-export type TReviews = TReview[];

@@ -4,7 +4,7 @@ type SectionLocationsProps = PropsWithChildren<{
   className: string;
 }>;
 
-function SectionLocations(props: SectionLocationsProps): JSX.Element {
+export function SectionLocations(props: SectionLocationsProps): JSX.Element {
   const { className = '', children } = props;
 
   return (
@@ -13,5 +13,3 @@ function SectionLocations(props: SectionLocationsProps): JSX.Element {
     </section>
   );
 }
-
-export default SectionLocations;

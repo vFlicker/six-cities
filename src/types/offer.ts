@@ -1,34 +1,34 @@
 import { CamelToSnakeCaseNested } from './helpers';
 
-export type TCity = {
-  location: TLocation;
+export type City = {
+  location: Location;
   name: string;
 };
 
-export type THost = {
+export type Host = {
   id: number;
   avatarUrl?: string;
   isPro?: boolean;
   name: string;
 };
 
-export type TLocation = {
+export type Location = {
   latitude: number;
   longitude: number;
   zoom: number;
 };
 
-export type TOffer = {
+export type Offer = {
   id: number;
   bedrooms: number;
-  city: TCity;
+  city: City;
   description: string;
   goods: string[];
-  host: THost;
+  host: Host;
   images: string[];
   isFavorite?: boolean;
   isPremium?: boolean;
-  location: TLocation;
+  location: Location;
   maxAdults?: number;
   previewImage?: string;
   price: number;
@@ -37,12 +37,8 @@ export type TOffer = {
   type: string;
 };
 
-export type TOfferServer = Omit<CamelToSnakeCaseNested<TOffer>, 'host'> & {
-  host: CamelToSnakeCaseNested<THost>;
+export type OfferServer = Omit<CamelToSnakeCaseNested<Offer>, 'host'> & {
+  host: CamelToSnakeCaseNested<Host>;
 };
 
-export type TOffers = TOffer[];
-
-export type TOffersServer = TOfferServer[];
-
-export type TGroupedOffers = Record<string, TOffers>;
+export type GroupedOffers = Record<string, Offer[]>;

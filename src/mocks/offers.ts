@@ -1,6 +1,6 @@
-import { TOffers } from '../types/offer';
+import { Offer } from '@/types';
 
-const offers: TOffers = [
+export const offers: Offer[] = [
   {
     id: 1,
     bedrooms: 3,
@@ -138,5 +138,3 @@ const offers: TOffers = [
     type: 'Apartment',
   },
 ];
-
-export default offers;

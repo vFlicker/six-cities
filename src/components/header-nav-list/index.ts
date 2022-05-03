@@ -1,3 +1,1 @@
-import HeaderNavList from './header-nav-list';
-
-export default HeaderNavList;
+export { HeaderNavList } from './header-nav-list';

@@ -1,4 +1,4 @@
-function Spinner(): JSX.Element {
+export function Spinner(): JSX.Element {
   return (
     <div className="spinner">
       <div className="spinner__item  spinner__item--1" />
@@ -8,5 +8,3 @@ function Spinner(): JSX.Element {
     </div>
   );
 }
-
-export default Spinner;

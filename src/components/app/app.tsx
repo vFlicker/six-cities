@@ -1,7 +1,13 @@
 import { unstable_HistoryRouter as HistoryRouter, Route, Routes } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { AppRoute } from '../../const';
+import { history, isCheckedAuth } from '@/utils';
+import { Review } from '@/types';
+import { getAuthorizationStatus } from '@/redux/state/user/selectors';
+import { AppRoute } from '@/constants';
+
+import { Spinner } from '../spinner';
+import { PrivateRoute } from '../private-route';
 import {
   FavoritesPage,
   LoginPage,
@@ -9,19 +15,12 @@ import {
   NotFoundPage,
   OfferPage,
 } from '../pages';
-import history from '../../history';
-import PrivateRoute from '../private-route';
-import { getAuthorizationStatus } from '../../store/model/user/selectors';
-import { TReviews } from '../../types/review';
-import { isCheckedAuth } from '../../utils/user';
-
-import Spinner from '../spinner';
 
 type AppProps = {
-  reviews: TReviews;
+  reviews: Review[];
 };
 
-function App(props: AppProps): JSX.Element {
+export function App(props: AppProps): JSX.Element {
   const { reviews } = props;
 
   const authorizationStatus = useSelector(getAuthorizationStatus);
@@ -51,5 +50,3 @@ function App(props: AppProps): JSX.Element {
     </HistoryRouter>
   );
 }
-
-export default App;

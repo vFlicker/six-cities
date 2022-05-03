@@ -1,5 +1,2 @@
-import reviews from './reviews';
-
-export {
-  reviews,
-};
+export { offers } from './offers';
+export { reviews } from './reviews';

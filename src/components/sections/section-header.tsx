@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
 
-import { AppRoute } from '../../const';
+import { AppRoute } from '@/constants';
 
-import HeaderNavList from '../header-nav-list';
+import { HeaderNavList } from '../header-nav-list';
 
-function SectionHeader(): JSX.Element {
+export function SectionHeader(): JSX.Element {
   return (
     <header className="header">
       <div className="container">
@@ -22,5 +22,3 @@ function SectionHeader(): JSX.Element {
     </header>
   );
 }
-
-export default SectionHeader;

@@ -15,7 +15,9 @@
     "esModuleInterop": true,
 
     /* Advanced Options */
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": { "@/*": ["src/*"] }
   },
   "exclude": [
     "node_modules",

@@ -1,13 +1,13 @@
 import { MouseEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { CityName } from '../../const';
-import { changeCityName } from '../../store/model/app/app-slice';
-import { getCurrentCityName } from '../../store/model/offers/selectors';
+import { CityName } from '@/constants';
+import { changeCityName } from '@/redux/state/app/app-slice';
+import { getCurrentCityName } from '@/redux/state/offers/selectors';
 
-import LocationsItem from '../locations-item';
+import { LocationsItem } from '../locations-item';
 
-function LocationsList(): JSX.Element {
+export function LocationsList(): JSX.Element {
   const currentCityName = useSelector(getCurrentCityName);
 
   const dispatch = useDispatch();
@@ -40,5 +40,3 @@ function LocationsList(): JSX.Element {
     </ul>
   );
 }
-
-export default LocationsList;

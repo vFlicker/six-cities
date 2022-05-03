@@ -1,6 +1,6 @@
-import { TReviews } from '../types/review';
+import { Review } from '@/types';
 
-const reviews: TReviews = [
+export const reviews: Review[] = [
   {
     id: 1,
     comment: '[1] A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
@@ -30,5 +30,3 @@ const reviews: TReviews = [
     },
   },
 ];
-
-export default reviews;

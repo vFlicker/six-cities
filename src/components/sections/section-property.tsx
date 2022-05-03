@@ -1,15 +1,14 @@
-import { TReviews } from '../../types/review';
-import { convertRatingToPercents } from '../../utils/rating';
+import { Offer, Review } from '@/types';
+import { convertRatingToPercents } from '@/utils';
 
 import { SectionReviews } from './index';
-import { TOffer } from '../../types/offer';
 
 type OfferProps = {
-  offer: TOffer;
-  reviews: TReviews;
+  offer: Offer;
+  reviews: Review[];
 };
 
-function SectionProperty({ offer, reviews }: OfferProps): JSX.Element {
+export function SectionProperty({ offer, reviews }: OfferProps): JSX.Element {
   const {
     bedrooms: bedroomCount,
     description,
@@ -130,5 +129,3 @@ function SectionProperty({ offer, reviews }: OfferProps): JSX.Element {
     </section>
   );
 }
-
-export default SectionProperty;

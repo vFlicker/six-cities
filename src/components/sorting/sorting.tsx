@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { SortType } from '../../const';
-import { changeSortType } from '../../store/model/app/app-slice';
-import { getCurrentSortType } from '../../store/model/offers/selectors';
+import { SortType } from '@/constants';
+import { changeSortType } from '@/redux/state/app/app-slice';
+import { getCurrentSortType } from '@/redux/state/offers/selectors';
 
-function Sorting(): JSX.Element {
+export function Sorting(): JSX.Element {
   const [sortMenuOpened, setSortMenuOpened] = useState(false);
 
   const currentSortType = useSelector(getCurrentSortType);
@@ -64,5 +64,3 @@ function Sorting(): JSX.Element {
     </form>
   );
 }
-
-export default Sorting;

@@ -2,23 +2,23 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { fetchOffer } from '../../store/model/offer/action';
-import { fetchOfferNearby } from '../../store/model/offers-nearby/action';
-import { getOffer, getOfferError, getOfferLoadingStatus } from '../../store/model/offer/selectors';
-import { getOffersNearby, getOffersNearbyError, getOffersNearbyLoadingStatus } from '../../store/model/offers-nearby/selectors';
-import { TReviews } from '../../types/review';
+import { fetchOffer } from '@/redux/state/offer/action';
+import { fetchOfferNearby } from '@/redux/state/offers-nearby/action';
+import { getOffer, getOfferError, getOfferLoadingStatus } from '@/redux/state/offer/selectors';
+import { getOffersNearby, getOffersNearbyError, getOffersNearbyLoadingStatus } from '@/redux/state/offers-nearby/selectors';
+import { Review } from '@/types';
 
-import { CardItemNearPlaces } from '../card-item/proxy';
-import CardList from '../card-list';
-import NotFoundPage from './not-found-page';
+import { CardItemNearPlaces } from '../card-item';
+import { CardList } from '../card-list';
+import { NotFoundPage } from './not-found-page';
 import { SectionHeader, SectionPlaces, SectionProperty } from '../sections';
-import Spinner from '../spinner';
+import { Spinner } from '../spinner';
 
 type OfferPageProps = {
-  reviews: TReviews;
+  reviews: Review[];
 };
 
-function OfferPage({ reviews }: OfferPageProps): JSX.Element {
+export function OfferPage({ reviews }: OfferPageProps): JSX.Element {
   const { id } = useParams();
 
   const offer = useSelector(getOffer);
@@ -70,5 +70,3 @@ function OfferPage({ reviews }: OfferPageProps): JSX.Element {
     </div>
   );
 }
-
-export default OfferPage;

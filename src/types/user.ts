@@ -1,6 +1,6 @@
 import { CamelToSnakeCaseNested } from './helpers';
 
-export type TUser = {
+export type User = {
   avatarUrl?: string;
   email: string;
   id: number;
@@ -9,4 +9,4 @@ export type TUser = {
   token: string;
 };
 
-export type TUserServer = CamelToSnakeCaseNested<TUser>;
+export type UserServer = CamelToSnakeCaseNested<User>;

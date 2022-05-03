@@ -1,8 +1,8 @@
-import { TReview } from '../../types/review';
-import { convertRatingToPercents } from '../../utils/rating';
+import { convertRatingToPercents } from '@/utils';
+import { Review } from '@/types';
 
 type ReviewsItemProps = {
-  review: TReview;
+  review: Review;
 };
 
 function ReviewsItem({ review }: ReviewsItemProps): JSX.Element {

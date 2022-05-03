@@ -1,6 +1,6 @@
 import { SectionHeader, SectionMain } from '../sections';
 
-function MainPage(): JSX.Element {
+export function MainPage(): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <SectionHeader />
@@ -8,5 +8,3 @@ function MainPage(): JSX.Element {
     </div>
   );
 }
-
-export default MainPage;

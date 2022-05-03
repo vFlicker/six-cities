@@ -1,11 +1,11 @@
 import { useState } from 'react';
 
-import RatingList from '../rating-list';
+import { RatingList } from '../rating-list';
 
 const MIN_STAR_COUNT = 1;
 const MIN_REVIEW_LENGTH = 5;
 
-function ReviewsForm(): JSX.Element {
+export function ReviewsForm(): JSX.Element {
   const [rating, setRating] = useState<number>(0);
   const [review, setReview] = useState<string>('');
 
@@ -60,5 +60,3 @@ function ReviewsForm(): JSX.Element {
     </form>
   );
 }
-
-export default ReviewsForm;

@@ -1,6 +1,6 @@
 import { SectionHeader, SectionFooter, SectionNotFound } from '../sections';
 
-function NotFoundPage(): JSX.Element {
+export function NotFoundPage(): JSX.Element {
   return (
     <div className="page  page--not-found">
       <SectionHeader />
@@ -13,5 +13,3 @@ function NotFoundPage(): JSX.Element {
     </div>
   );
 }
-
-export default NotFoundPage;

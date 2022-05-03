@@ -1,3 +1,4 @@
-export { Adapter } from './adapter';
-export { createApiService } from './api-service';
+export * from './adapter';
+export * from './api-error';
+export * from './api-service';
 export * from './token';

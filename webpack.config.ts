@@ -42,7 +42,8 @@ const config: Configuration = {
     }),
   ],
   resolve: {
-    extensions: ['.js', '.ts', '.tsx'],
+    alias: { '@': path.resolve(__dirname, 'src/') },
+    extensions: ['.ts', '.tsx', '.js'],
   },
   devServer: {
     static: path.resolve(__dirname, 'public'),

@@ -2,15 +2,15 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { AppRoute } from '../../const';
-import { getCurrentCityName } from '../../store/model/offers/selectors';
-import { getAuthorizationStatus } from '../../store/model/user/selectors';
+import { AppRoute } from '@/constants';
+import { getCurrentCityName } from '@/redux/state/offers/selectors';
+import { getAuthorizationStatus } from '@/redux/state/user/selectors';
 
-import LocationsItem from '../locations-item';
+import { LocationsItem } from '../locations-item';
 import { SectionHeader, SectionLocations, SectionLogin } from '../sections';
 import { isUserAuthorized } from '../../utils/user';
 
-function LoginPage(): JSX.Element {
+export function LoginPage(): JSX.Element {
   const navigate = useNavigate();
 
   const authorizationStatus = useSelector(getAuthorizationStatus);
@@ -38,5 +38,3 @@ function LoginPage(): JSX.Element {
     </div>
   );
 }
-
-export default LoginPage;

@@ -1,6 +1,7 @@
 import { MouseEvent, PropsWithChildren } from 'react';
 import { Link } from 'react-router-dom';
-import { AppRoute } from '../../const';
+
+import { AppRoute } from '@/constants';
 
 type LocationsItemProps = PropsWithChildren<{
   cityName: string;
@@ -8,7 +9,7 @@ type LocationsItemProps = PropsWithChildren<{
   onLocationsItemClick?: (evt: MouseEvent) => void;
 }>;
 
-function LocationsItem(props: LocationsItemProps): JSX.Element {
+export function LocationsItem(props: LocationsItemProps): JSX.Element {
   const { className, cityName, onLocationsItemClick } = props;
 
   return (

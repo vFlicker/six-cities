@@ -1,9 +1,9 @@
 import { FormEvent, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { login } from '../../store/model/user/action';
+import { login } from '@/redux/state/user/action';
 
-function SectionLogin(): JSX.Element {
+export function SectionLogin(): JSX.Element {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 
@@ -62,5 +62,3 @@ function SectionLogin(): JSX.Element {
     </section>
   );
 }
-
-export default SectionLogin;

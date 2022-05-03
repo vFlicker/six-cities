@@ -1,14 +1,14 @@
 import { Fragment } from 'react';
 
-import { TOffer, TOffers } from '../../types/offer';
+import { Offer } from '@/types';
 
 type CardListProps = {
   className: string;
-  offers: TOffers,
-  getCardItem: (offer: TOffer) => JSX.Element;
+  offers: Offer[],
+  getCardItem: (offer: Offer) => JSX.Element;
 };
 
-function CardList(props: CardListProps): JSX.Element {
+export function CardList(props: CardListProps): JSX.Element {
   const { className, offers, getCardItem } = props;
 
   return (
@@ -21,5 +21,3 @@ function CardList(props: CardListProps): JSX.Element {
     </div>
   );
 }
-
-export default CardList;

@@ -1,15 +1,15 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { fetchOffersFavorite } from '../../store/model/offers-favorite/action';
-import { getOffersFavorite, getOffersFavoriteError, getOffersFavoriteLoadingStatus } from '../../store/model/offers-favorite/selectors';
+import { fetchOffersFavorite } from '@/redux/state/offers-favorite/action';
+import { getOffersFavorite, getOffersFavoriteError, getOffersFavoriteLoadingStatus } from '@/redux/state/offers-favorite/selectors';
 
-import { CardItemFavorites } from '../card-item/proxy';
-import CardList from '../card-list';
-import LocationsItem from '../locations-item';
-import Spinner from '../spinner';
+import { CardItemFavorites } from '../card-item';
+import { CardList } from '../card-list';
+import { LocationsItem } from '../locations-item';
+import { Spinner } from '../spinner';
 
-function SectionFavorites(): JSX.Element {
+export function SectionFavorites(): JSX.Element {
   const offersFavorite = useSelector(getOffersFavorite);
   const offersFavoriteLoadingStatus = useSelector(getOffersFavoriteLoadingStatus);
   const offersFavoriteError = useSelector(getOffersFavoriteError);
@@ -51,5 +51,3 @@ function SectionFavorites(): JSX.Element {
     </section>
   );
 }
-
-export default SectionFavorites;

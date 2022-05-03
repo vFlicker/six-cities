@@ -1,11 +1,11 @@
 import { PropsWithChildren } from 'react';
 import { Link } from 'react-router-dom';
 
-import { TOffer } from '../../types/offer';
-import { convertRatingToPercents } from '../../utils/rating';
+import { Offer } from '@/types';
+import { convertRatingToPercents } from '@/utils/convert-rating-to-percents';
 
 type CardItemProps = PropsWithChildren<{
-  offer: TOffer;
+  offer: Offer;
   cardClass: string;
   cardImageWrapperClass: string;
   cardInfoClass?: string;
@@ -17,7 +17,7 @@ type CardItemProps = PropsWithChildren<{
 
 const OFFER_LINK = '/offers';
 
-function CardItem(props: CardItemProps): JSX.Element {
+export function CardItem(props: CardItemProps): JSX.Element {
   const {
     offer,
     cardClass,
@@ -93,5 +93,3 @@ function CardItem(props: CardItemProps): JSX.Element {
     </article>
   );
 }
-
-export default CardItem;

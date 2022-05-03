@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { AppRoute, AuthorizationStatus } from '../../const';
-import { logout } from '../../store/model/user/action';
-import { getAuthorizationStatus, getUser } from '../../store/model/user/selectors';
+import { AppRoute, AuthorizationStatus } from '@/constants';
+import { logout } from '@/redux/state/user/action';
+import { getAuthorizationStatus, getUser } from '@/redux/state/user/selectors';
 
 const USER_DEFAULT_AVATAR_URL = '../img/avatar.svg';
 
-function HeaderNavList(): JSX.Element {
+export function HeaderNavList(): JSX.Element {
   const authorizationStatus = useSelector(getAuthorizationStatus);
   const user = useSelector(getUser);
 
@@ -58,5 +58,3 @@ function HeaderNavList(): JSX.Element {
     </ul>
   );
 }
-
-export default HeaderNavList;

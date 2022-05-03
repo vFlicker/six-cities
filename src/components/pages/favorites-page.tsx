@@ -1,6 +1,6 @@
 import { SectionHeader, SectionFooter, SectionFavorites } from '../sections';
 
-function FavoritesPage(): JSX.Element {
+export function FavoritesPage(): JSX.Element {
   return (
     <div className="page">
       <SectionHeader />
@@ -13,5 +13,3 @@ function FavoritesPage(): JSX.Element {
     </div>
   );
 }
-
-export default FavoritesPage;

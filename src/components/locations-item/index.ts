@@ -1,3 +1,1 @@
-import LocationsItem from './locations-item';
-
-export default LocationsItem;
+export { LocationsItem } from './locations-item';

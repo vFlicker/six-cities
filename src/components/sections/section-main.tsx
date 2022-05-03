@@ -1,22 +1,22 @@
 import { useLayoutEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { fetchOffers } from '../../store/model/offers/action';
-import { getOffersError, getOffersLoadingStatus, getSortedOffers } from '../../store/model/offers/selectors';
+import { fetchOffers } from '@/redux/state/offers/action';
+import { getOffersError, getOffersLoadingStatus, getSortedOffers } from '@/redux/state/offers/selectors';
 
-import { CardItemCities } from '../card-item/proxy';
-import CardList from '../card-list';
+import { CardItemCities } from '../card-item';
+import { CardList } from '../card-list';
 import {
   SectionLocations,
   SectionMainEmpty,
   SectionMap,
   SectionPlaces,
 } from './index';
-import LocationsList from '../locations-list';
-import Sorting from '../sorting';
-import Spinner from '../spinner';
+import { LocationsList } from '../locations-list';
+import { Sorting } from '../sorting';
+import { Spinner } from '../spinner';
 
-function SectionMain(): JSX.Element {
+export function SectionMain(): JSX.Element {
   const sortedOffers = useSelector(getSortedOffers);
   const isOffersLoading = useSelector(getOffersLoadingStatus);
   const offersError = useSelector(getOffersError);
@@ -73,5 +73,3 @@ function SectionMain(): JSX.Element {
     </main>
   );
 }
-
-export default SectionMain;

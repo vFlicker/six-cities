@@ -1,11 +1,14 @@
-import { RatingListProps } from '../rating-list/rating-list';
+export type RatingListProps = {
+  rating: number;
+  onRatingToggle: (rating: number) => void;
+};
 
 type RatingItemProps = {
   title: string;
   currentItem: number;
 } & RatingListProps;
 
-function RatingItem(props: RatingItemProps): JSX.Element {
+export function RatingItem(props: RatingItemProps): JSX.Element {
   const {
     title,
     currentItem,
@@ -38,5 +41,3 @@ function RatingItem(props: RatingItemProps): JSX.Element {
     </>
   );
 }
-
-export default RatingItem;

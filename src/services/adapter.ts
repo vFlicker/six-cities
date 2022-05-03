@@ -1,8 +1,12 @@
-import { TOffer, TOfferServer } from '../types/offer';
-import { TUser, TUserServer } from '../types/user';
+import {
+  Offer,
+  OfferServer,
+  User,
+  UserServer,
+} from '@/types';
 
 export const Adapter = {
-  transformOffer: (offer: TOfferServer): TOffer => {
+  transformOffer: (offer: OfferServer): Offer => {
     const adaptOffer = {
       ...offer,
       previewImage: offer.preview_image,
@@ -25,7 +29,8 @@ export const Adapter = {
 
     return adaptOffer;
   },
-  transformUser: (user: TUserServer): TUser => {
+
+  transformUser: (user: UserServer): User => {
     const adaptUser = {
       ...user,
       avatarUrl: user.avatar_url,

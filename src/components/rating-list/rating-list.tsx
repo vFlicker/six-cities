@@ -1,13 +1,8 @@
-import RatingItem from '../rating-item';
+import { RatingItem, RatingListProps } from '../rating-item';
 
 const RatingTitles: string[] = ['perfect', 'good', 'not bad', 'badly', 'terribly'];
 
-export type RatingListProps = {
-  rating: number;
-  onRatingToggle: (rating: number) => void;
-};
-
-function RatingList(props: RatingListProps): JSX.Element {
+export function RatingList(props: RatingListProps): JSX.Element {
   const { rating, onRatingToggle } = props;
 
   return (
@@ -28,5 +23,3 @@ function RatingList(props: RatingListProps): JSX.Element {
     </div>
   );
 }
-
-export default RatingList;

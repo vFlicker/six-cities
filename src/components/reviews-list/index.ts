@@ -1,3 +1,1 @@
-import ReviewsList from './reviews-list';
-
-export default ReviewsList;
+export { ReviewsList } from './reviews-list';

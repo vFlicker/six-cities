@@ -1,12 +1,13 @@
-import ReviewsForm from '../reviews-form';
-import ReviewsList from '../reviews-list';
-import { TReviews } from '../../types/review';
+import { Review } from '@/types';
+
+import { ReviewsForm } from '../reviews-form';
+import { ReviewsList } from '../reviews-list';
 
 type SectionReviewsProps = {
-  reviews: TReviews;
+  reviews: Review[];
 };
 
-function SectionReviews({ reviews }: SectionReviewsProps): JSX.Element {
+export function SectionReviews({ reviews }: SectionReviewsProps): JSX.Element {
   const amount = reviews.length;
 
   return (
@@ -20,5 +21,3 @@ function SectionReviews({ reviews }: SectionReviewsProps): JSX.Element {
     </section>
   );
 }
-
-export default SectionReviews;

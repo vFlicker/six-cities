@@ -1,3 +1,1 @@
-import LocationsList from './locations-list';
-
-export default LocationsList;
+export { LocationsList } from './locations-list';
