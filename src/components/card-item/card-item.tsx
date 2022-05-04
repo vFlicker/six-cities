@@ -1,4 +1,4 @@
-import { PropsWithChildren } from 'react';
+import { MouseEvent, PropsWithChildren } from 'react';
 import { Link } from 'react-router-dom';
 
 import { Offer } from '@/types';
@@ -11,24 +11,24 @@ type CardItemProps = PropsWithChildren<{
   cardInfoClass?: string;
   imageWidth: number;
   imageHeight: number;
-  onCardItemMouseEnter?: (evt: React.MouseEvent) => void;
-  onCardItemMouseLeave?: (evt: React.MouseEvent) => void;
+
+  onCardItemMouseEnter?: (evt: MouseEvent) => void;
+  onCardItemMouseLeave?: (evt: MouseEvent) => void;
 }>;
 
-const OFFER_LINK = '/offers';
+const createOfferLink = (id: number): string => `/offers/${id}`;
 
-export function CardItem(props: CardItemProps): JSX.Element {
-  const {
-    offer,
-    cardClass,
-    cardImageWrapperClass,
-    cardInfoClass,
-    imageWidth,
-    imageHeight,
-    onCardItemMouseEnter,
-    onCardItemMouseLeave,
-  } = props;
+export function CardItem({
+  offer,
+  cardClass,
+  cardImageWrapperClass,
+  cardInfoClass,
+  imageWidth,
+  imageHeight,
 
+  onCardItemMouseEnter,
+  onCardItemMouseLeave,
+}: CardItemProps): JSX.Element {
   const {
     id,
     isPremium,
@@ -51,7 +51,7 @@ export function CardItem(props: CardItemProps): JSX.Element {
         </div>
       )}
       <div className={`place-card__image-wrapper ${cardImageWrapperClass}`}>
-        <Link to={`${OFFER_LINK}/${id}`}>
+        <Link to={createOfferLink(id)}>
           <img
             className="place-card__image"
             src={previewImage}
@@ -84,7 +84,7 @@ export function CardItem(props: CardItemProps): JSX.Element {
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={`${OFFER_LINK}/${id}`}>
+          <Link to={createOfferLink(id)}>
             {title}
           </Link>
         </h2>

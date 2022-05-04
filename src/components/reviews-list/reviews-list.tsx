@@ -12,7 +12,6 @@ export function ReviewsList({ reviews }: ReviewsListProps): JSX.Element {
       {reviews.map((review) => (
         <ReviewsItem key={review.id} review={review} />
       ))}
-
     </ul>
   );
 }

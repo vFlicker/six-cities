@@ -1,5 +1,6 @@
 export type RatingListProps = {
   rating: number;
+
   onRatingToggle: (rating: number) => void;
 };
 
@@ -8,14 +9,13 @@ type RatingItemProps = {
   currentItem: number;
 } & RatingListProps;
 
-export function RatingItem(props: RatingItemProps): JSX.Element {
-  const {
-    title,
-    currentItem,
-    rating,
-    onRatingToggle,
-  } = props;
+export function RatingItem({
+  title,
+  currentItem,
+  rating,
 
+  onRatingToggle,
+}: RatingItemProps): JSX.Element {
   const isChecked = rating === currentItem;
 
   return (

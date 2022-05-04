@@ -13,10 +13,6 @@ export function HeaderNavList(): JSX.Element {
 
   const dispatch = useDispatch();
 
-  const handleLogoutClick = () => {
-    dispatch(logout());
-  };
-
   const style = {
     backgroundImage: user ? `url(${user.avatarUrl})` : `url(${USER_DEFAULT_AVATAR_URL})`,
     borderRadius: '50%',
@@ -50,7 +46,7 @@ export function HeaderNavList(): JSX.Element {
         <Link
           to={AppRoute.ROOT}
           className="header__nav-link"
-          onClick={handleLogoutClick}
+          onClick={() => dispatch(logout())}
         >
           <span className="header__signout">Sign out</span>
         </Link>

@@ -1,10 +1,10 @@
 import { RatingItem, RatingListProps } from '../rating-item';
 
-const RatingTitles: string[] = ['perfect', 'good', 'not bad', 'badly', 'terribly'];
+// TODO: use type for RatingItemProps
+const RatingTitles = ['perfect', 'good', 'not bad', 'badly', 'terribly'] as const;
 
-export function RatingList(props: RatingListProps): JSX.Element {
-  const { rating, onRatingToggle } = props;
-
+// TODO: move all form components to separate directory
+export function RatingList({ rating, onRatingToggle }: RatingListProps): JSX.Element {
   return (
     <div className="reviews__rating-form form__rating">
       {RatingTitles.map((title, index) => {

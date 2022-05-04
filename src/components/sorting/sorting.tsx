@@ -13,20 +13,13 @@ export function Sorting(): JSX.Element {
 
   const dispatch = useDispatch();
 
-  const activeClass = sortMenuOpened ? 'places__options--opened ' : '';
-
-  const handleSortTypeClick = () => {
-    setSortMenuOpened((prevState) => !prevState);
-  };
+  const toggleSortMenu = () => setSortMenuOpened((prevState) => !prevState);
 
   const handleOptionClick = (sortType: TSortType) => {
-    if (sortType === currentSortType) {
-      return;
-    }
+    if (sortType === currentSortType) return;
 
     dispatch(changeSortType(sortType));
-
-    setSortMenuOpened((prevState) => !prevState);
+    toggleSortMenu();
   };
 
   return (
@@ -37,15 +30,15 @@ export function Sorting(): JSX.Element {
         className="places__sorting-type"
         tabIndex={0}
         role="button"
-        onClick={handleSortTypeClick}
-        onKeyDown={handleSortTypeClick}
+        onClick={toggleSortMenu}
+        onKeyDown={toggleSortMenu}
       >
         {currentSortType}
         <svg className="places__sorting-arrow" width="7" height="4">
           <use xlinkHref="#icon-arrow-select" />
         </svg>
       </span>
-      <ul className={`places__options places__options--custom  ${activeClass}`}>
+      <ul className={`places__options places__options--custom ${sortMenuOpened ? 'places__options--opened ' : ''}`}>
         {Object.entries(SortType).map(([key, sortType]) => {
           const optionClass = currentSortType === sortType ? 'places__option--active' : '';
           return (

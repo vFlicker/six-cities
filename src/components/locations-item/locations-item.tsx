@@ -6,12 +6,16 @@ import { AppRoute } from '@/constants';
 type LocationsItemProps = PropsWithChildren<{
   cityName: string;
   className?: string;
+
   onLocationsItemClick?: (evt: MouseEvent) => void;
 }>;
 
-export function LocationsItem(props: LocationsItemProps): JSX.Element {
-  const { className, cityName, onLocationsItemClick } = props;
+export function LocationsItem({
+  className,
+  cityName,
 
+  onLocationsItemClick,
+}: LocationsItemProps): JSX.Element {
   return (
     <Link
       to={AppRoute.ROOT}

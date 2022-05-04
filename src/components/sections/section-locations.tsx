@@ -4,9 +4,7 @@ type SectionLocationsProps = PropsWithChildren<{
   className: string;
 }>;
 
-export function SectionLocations(props: SectionLocationsProps): JSX.Element {
-  const { className = '', children } = props;
-
+export function SectionLocations({ className = '', children }: SectionLocationsProps): JSX.Element {
   return (
     <section className={`locations ${className}`}>
       {children}

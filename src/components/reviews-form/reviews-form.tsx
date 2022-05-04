@@ -9,34 +9,25 @@ export function ReviewsForm(): JSX.Element {
   const [rating, setRating] = useState<number>(0);
   const [review, setReview] = useState<string>('');
 
-  const handleRatingToggle = (count: number) => {
-    setRating(() => count);
-  };
-
-  const handleTextareaChange = (evt: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setReview(evt.target.value);
-  };
-
-  const handleFormSubmit = (evt: React.FormEvent) => {
-    evt.preventDefault();
-  };
-
   const isSubmitDisabled = review.length < MIN_REVIEW_LENGTH || rating < MIN_STAR_COUNT;
 
   return (
     <form
       className="reviews__form form"
-      onSubmit={handleFormSubmit}
+      onSubmit={(evt) => evt.preventDefault()}
     >
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
-      <RatingList rating={rating} onRatingToggle={handleRatingToggle} />
+      <RatingList
+        rating={rating}
+        onRatingToggle={(count: number) => setRating(count)}
+      />
       <textarea
         className="reviews__textarea form__textarea"
         id="review"
         name="review"
         placeholder="Tell how was your stay, what you like and what can be improved"
         value={review}
-        onChange={handleTextareaChange}
+        onChange={({ target }) => setReview(target.value)}
       />
       <div className="reviews__button-wrapper">
         <p className="reviews__help">

@@ -1,8 +1,6 @@
-import { MouseEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { CityName } from '@/constants';
-import { CityName as TCityName } from '@/types';
 import { changeCityName } from '@/redux/state/app/app-slice';
 import { getCurrentCityName } from '@/redux/state/offers/selectors';
 
@@ -12,16 +10,6 @@ export function LocationsList(): JSX.Element {
   const currentCityName = useSelector(getCurrentCityName);
 
   const dispatch = useDispatch();
-
-  const handleLocationsItemClick = (evt: MouseEvent, cityName: TCityName) => {
-    evt.preventDefault();
-
-    if (cityName === currentCityName) {
-      return;
-    }
-
-    dispatch(changeCityName(cityName));
-  };
 
   return (
     <ul className="locations__list tabs__list">
@@ -33,7 +21,12 @@ export function LocationsList(): JSX.Element {
             <LocationsItem
               className={`tabs__item ${activeClass}`}
               cityName={cityName}
-              onLocationsItemClick={(evt: MouseEvent) => handleLocationsItemClick(evt, cityName)}
+              onLocationsItemClick={(evt) => {
+                evt.preventDefault();
+
+                if (cityName === currentCityName) return;
+                dispatch(changeCityName(cityName));
+              }}
             />
           </li>
         );

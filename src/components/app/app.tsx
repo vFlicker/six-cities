@@ -20,9 +20,7 @@ type AppProps = {
   reviews: Review[];
 };
 
-export function App(props: AppProps): JSX.Element {
-  const { reviews } = props;
-
+export function App({ reviews }: AppProps): JSX.Element {
   const authorizationStatus = useSelector(getAuthorizationStatus);
 
   if (isCheckedAuth(authorizationStatus)) {

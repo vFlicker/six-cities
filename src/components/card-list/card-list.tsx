@@ -5,12 +5,11 @@ import { Offer } from '@/types';
 type CardListProps = {
   className: string;
   offers: Offer[],
+
   getCardItem: (offer: Offer) => JSX.Element;
 };
 
-export function CardList(props: CardListProps): JSX.Element {
-  const { className, offers, getCardItem } = props;
-
+export function CardList({ className, offers, getCardItem }: CardListProps): JSX.Element {
   return (
     <div className={className}>
       {offers.map((offer) => (
