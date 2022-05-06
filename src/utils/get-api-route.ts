@@ -2,7 +2,7 @@
 export const getApiRoute = {
   comments: (): string => '/comments',
   favorite: (): string => '/favorite',
-  offer: (id: number): string => `/offers/${id}`,
+  offer: (id: number): string => `/hotels/${id}`,
   offers: (): string => '/hotels',
   offersNearby: (id: number): string => `/hotels/${id}/nearby`,
   login: (): string => '/login',

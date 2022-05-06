@@ -41,6 +41,7 @@ export function CardItem({
 
   return (
     <article
+      // TODO: take a look at this lib https://www.npmjs.com/package/classnames
       className={`place-card ${cardClass}`}
       onMouseEnter={onCardItemMouseEnter}
       onMouseLeave={onCardItemMouseLeave}
