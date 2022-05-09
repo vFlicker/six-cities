@@ -16,7 +16,7 @@ export function useMap(mapRef: MutableRefObject<HTMLElement | null>, city: City)
       map.flyTo(latLng(latitude, longitude), zoom);
     }
 
-    if (mapRef.current && !map) {
+    if (mapRef.current !== null && map === null) {
       const map = new Map(mapRef.current);
       const layer = new TileLayer(LAYER_URL_TEMPLATE, LAYER_OPTIONS);
 

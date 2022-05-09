@@ -18,6 +18,7 @@ type CardItemProps = PropsWithChildren<{
 
 const createOfferLink = (id: number): string => `/offers/${id}`;
 
+// TODO: look at the architecture of the components
 export function CardItem({
   offer,
   cardClass,

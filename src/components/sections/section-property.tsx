@@ -1,7 +1,10 @@
+import { useSelector } from 'react-redux';
+
+import { getOffersNearby } from '@/redux/state/offers-nearby/selectors';
 import { Offer, Review } from '@/types';
 import { convertRatingToPercents } from '@/utils';
 
-import { SectionReviews } from './index';
+import { SectionMap, SectionReviews } from './index';
 
 type OfferProps = {
   offer: Offer;
@@ -9,6 +12,8 @@ type OfferProps = {
 };
 
 export function SectionProperty({ offer, reviews }: OfferProps): JSX.Element {
+  const offersNearby = useSelector(getOffersNearby);
+
   const {
     bedrooms: bedroomCount,
     description,
@@ -125,7 +130,7 @@ export function SectionProperty({ offer, reviews }: OfferProps): JSX.Element {
           <SectionReviews reviews={reviews} />
         </div>
       </div>
-      {/* <SectionMap className="property__map" /> */}
+      <SectionMap className="property__map" offers={offersNearby} />
     </section>
   );
 }

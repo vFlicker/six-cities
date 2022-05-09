@@ -1,3 +1,4 @@
+// TODO: Rename the directory
 import { configureStore } from '@reduxjs/toolkit';
 
 import { AppRoute, AuthorizationStatus } from '@/constants';
