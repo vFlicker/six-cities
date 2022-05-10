@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 
 import { history } from '@/utils';
 import { Review } from '@/types';
-import { getAuthorizationStatus, isCheckedAuth } from '@/redux';
+import { getAuthorizationStatus, isCheckedAuth } from '@/store';
 import { AppRoute } from '@/constants';
 
 import { Spinner } from '../spinner';

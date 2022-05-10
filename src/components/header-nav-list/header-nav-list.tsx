@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { AppRoute, AuthorizationStatus } from '@/constants';
-import { logout, getAuthorizationStatus, getUser } from '@/redux';
+import { logout, getAuthorizationStatus, getUser } from '@/store';
 
 const USER_DEFAULT_AVATAR_URL = '../img/avatar.svg';
 

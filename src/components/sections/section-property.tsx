@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 
-import { getOffersNearby } from '@/redux';
+import { getOffersNearby } from '@/store';
 import { Offer, Review } from '@/types';
 import { convertRatingToPercents } from '@/utils';
 

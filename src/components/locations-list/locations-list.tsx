@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 
 import { CityName } from '@/constants';
-import { changeCityName, getCurrentCityName } from '@/redux';
+import { changeCityName, getCurrentCityName } from '@/store';
 
 import { LocationsItem } from '../locations-item';
 

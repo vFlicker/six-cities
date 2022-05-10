@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { AppRoute } from '@/constants';
-import { getCurrentCityName, getAuthorizationStatus, isUserAuthorized } from '@/redux';
+import { getCurrentCityName, getAuthorizationStatus, isUserAuthorized } from '@/store';
 
 import { LocationsItem } from '../locations-item';
 import { SectionHeader, SectionLocations, SectionLogin } from '../sections';

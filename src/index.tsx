@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
 import { reviews } from '@/mocks';
-import { checkAuthStatus, store } from '@/redux';
+import { checkAuthStatus, store } from '@/store';
 import { App } from '@/components/app';
 
 store.dispatch(checkAuthStatus());

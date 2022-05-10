@@ -1,7 +1,7 @@
 import { FormEvent, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { login } from '@/redux';
+import { login } from '@/store';
 
 export function SectionLogin(): JSX.Element {
   const emailRef = useRef<HTMLInputElement>(null);

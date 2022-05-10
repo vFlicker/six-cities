@@ -6,7 +6,7 @@ import {
   getOffersError,
   getOffersLoadingStatus,
   getSortedOffers,
-} from '@/redux';
+} from '@/store';
 
 import { CardItemCities } from '../card-item';
 import { CardList } from '../card-list';

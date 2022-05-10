@@ -6,7 +6,7 @@ import {
   getOffersFavorite,
   getOffersFavoriteError,
   getOffersFavoriteLoadingStatus,
-} from '@/redux';
+} from '@/store';
 
 import { CardItemFavorites } from '../card-item';
 import { CardList } from '../card-list';

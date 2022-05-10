@@ -11,7 +11,7 @@ import {
   getOffersNearby,
   getOffersNearbyError,
   getOffersNearbyLoadingStatus,
-} from '@/redux';
+} from '@/store';
 import { Review } from '@/types';
 
 import { CardItemNearPlaces } from '../card-item';
