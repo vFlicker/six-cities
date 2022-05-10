@@ -2,10 +2,16 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { fetchOffer } from '@/redux/state/offer/action';
-import { fetchOfferNearby } from '@/redux/state/offers-nearby/action';
-import { getOffer, getOfferError, getOfferLoadingStatus } from '@/redux/state/offer/selectors';
-import { getOffersNearby, getOffersNearbyError, getOffersNearbyLoadingStatus } from '@/redux/state/offers-nearby/selectors';
+import {
+  fetchOffer,
+  fetchOfferNearby,
+  getOffer,
+  getOfferError,
+  getOfferLoadingStatus,
+  getOffersNearby,
+  getOffersNearbyError,
+  getOffersNearbyLoadingStatus,
+} from '@/redux';
 import { Review } from '@/types';
 
 import { CardItemNearPlaces } from '../card-item';

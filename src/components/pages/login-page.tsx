@@ -3,12 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { AppRoute } from '@/constants';
-import { getCurrentCityName } from '@/redux/state/offers/selectors';
-import { getAuthorizationStatus } from '@/redux/state/user/selectors';
+import { getCurrentCityName, getAuthorizationStatus, isUserAuthorized } from '@/redux';
 
 import { LocationsItem } from '../locations-item';
 import { SectionHeader, SectionLocations, SectionLogin } from '../sections';
-import { isUserAuthorized } from '../../utils/user';
 
 export function LoginPage(): JSX.Element {
   const navigate = useNavigate();

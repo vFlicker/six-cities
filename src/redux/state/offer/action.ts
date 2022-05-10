@@ -6,7 +6,7 @@ import { Offer, OfferServer } from '@/types';
 
 import { AsyncThunkOptions } from '../types';
 
-const ACTION_TYPE = '@@offer';
+const ACTION_TYPE = 'offer';
 
 export const fetchOffer = createAsyncThunk<Offer, number, AsyncThunkOptions>(
   ACTION_TYPE,

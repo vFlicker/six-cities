@@ -6,7 +6,7 @@ import { getApiRoute } from '@/utils';
 
 import { AsyncThunkOptions } from '../types';
 
-const ACTION_TYPE = '@@offersFavorite';
+const ACTION_TYPE = 'offersFavorite';
 
 export const fetchOffersFavorite = createAsyncThunk<Offer[], void, AsyncThunkOptions>(
   ACTION_TYPE,

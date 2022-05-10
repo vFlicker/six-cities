@@ -10,13 +10,18 @@ import {
   ApiError,
 } from '@/services';
 
-import { AsyncThunkOptions, AuthData } from '../types';
+import { AsyncThunkOptions } from '../types';
+
+export type AuthData = {
+  email: string;
+  password: string;
+};
 
 export const ActionType = {
-  REDIRECT_TO_ROUTE: '@@userData/redirectToRoute',
-  AUTH_STATUS: '@@userData/authStatus',
-  LOGIN: '@@userData/login',
-  LOGOUT: '@@userData/logout',
+  REDIRECT_TO_ROUTE: 'userData/redirectToRoute',
+  AUTH_STATUS: 'userData/authStatus',
+  LOGIN: 'userData/login',
+  LOGOUT: 'userData/logout',
 };
 
 export const redirectToRoute = createAction(
@@ -58,7 +63,7 @@ export const login = createAsyncThunk<User, AuthData, AsyncThunkOptions>(
 
 export const logout = createAsyncThunk<void, void, AsyncThunkOptions>(
   ActionType.LOGOUT,
-  async (authData, { extra: apiService, rejectWithValue }) => {
+  async (_, { extra: apiService, rejectWithValue }) => {
     try {
       await apiService.delete(getApiRoute.logout());
 

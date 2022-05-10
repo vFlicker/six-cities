@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { Icon, latLng, Marker } from 'leaflet';
 
 import { useMap } from '@/hooks';
-import { getActiveCard } from '@/redux/state/app/selectors';
+import { getActiveCard } from '@/redux';
 import { Offer } from '@/types';
 
 import 'leaflet/dist/leaflet.css';

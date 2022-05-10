@@ -76,4 +76,4 @@ export const userSlice = createSlice({
   }),
 });
 
-export const { setAuthorizationStatus } = userSlice.actions;
+export const { setAuthorizationStatus, setUserData } = userSlice.actions;

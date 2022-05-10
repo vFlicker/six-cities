@@ -3,8 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { SortType } from '@/constants';
 import { SortType as TSortType } from '@/types';
-import { changeSortType } from '@/redux/state/app/app-slice';
-import { getCurrentSortType } from '@/redux/state/offers/selectors';
+import { changeSortType, getCurrentSortType } from '@/redux';
 
 export function Sorting(): JSX.Element {
   const [sortMenuOpened, setSortMenuOpened] = useState(false);

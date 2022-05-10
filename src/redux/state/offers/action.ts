@@ -8,7 +8,7 @@ import { getApiRoute } from '@/utils';
 import { AsyncThunkOptions } from '../types';
 import { getGroupedOffers } from './utils';
 
-const ACTION_TYPE = '@@offers';
+const ACTION_TYPE = 'offers';
 
 export const fetchOffers = createAsyncThunk<GroupedOffers, void, AsyncThunkOptions>(
   ACTION_TYPE,

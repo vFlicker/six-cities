@@ -1,9 +1,9 @@
 import { unstable_HistoryRouter as HistoryRouter, Route, Routes } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { history, isCheckedAuth } from '@/utils';
+import { history } from '@/utils';
 import { Review } from '@/types';
-import { getAuthorizationStatus } from '@/redux/state/user/selectors';
+import { getAuthorizationStatus, isCheckedAuth } from '@/redux';
 import { AppRoute } from '@/constants';
 
 import { Spinner } from '../spinner';

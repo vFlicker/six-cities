@@ -5,7 +5,7 @@ import { Offer, OfferServer } from '@/types';
 import { getApiRoute } from '@/utils';
 import { AsyncThunkOptions } from '../types';
 
-const ACTION_TYPE = '@@offerNearby';
+const ACTION_TYPE = 'offerNearby';
 
 export const fetchOfferNearby = createAsyncThunk<Offer[], number, AsyncThunkOptions>(
   ACTION_TYPE,

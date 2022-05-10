@@ -1,8 +1,12 @@
 import { useLayoutEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { fetchOffers } from '@/redux/state/offers/action';
-import { getOffersError, getOffersLoadingStatus, getSortedOffers } from '@/redux/state/offers/selectors';
+import {
+  fetchOffers,
+  getOffersError,
+  getOffersLoadingStatus,
+  getSortedOffers,
+} from '@/redux';
 
 import { CardItemCities } from '../card-item';
 import { CardList } from '../card-list';

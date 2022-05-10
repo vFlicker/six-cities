@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 
 import { Offer } from '@/types';
-import { setActiveCard } from '@/redux/state/app/app-slice';
+import { setActiveCard } from '@/redux';
 
 import { CardItem } from './card-item';
 

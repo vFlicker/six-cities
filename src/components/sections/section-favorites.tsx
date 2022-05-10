@@ -1,8 +1,12 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { fetchOffersFavorite } from '@/redux/state/offers-favorite/action';
-import { getOffersFavorite, getOffersFavoriteError, getOffersFavoriteLoadingStatus } from '@/redux/state/offers-favorite/selectors';
+import {
+  fetchOffersFavorite,
+  getOffersFavorite,
+  getOffersFavoriteError,
+  getOffersFavoriteLoadingStatus,
+} from '@/redux';
 
 import { CardItemFavorites } from '../card-item';
 import { CardList } from '../card-list';
