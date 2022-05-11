@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { GroupedOffers } from '@/types';
+import { Offers } from '@/types';
 import { ApiError } from '@/services';
 
 import { ReducerName } from '../constants';
@@ -9,7 +9,7 @@ import { fetchOffers } from './action';
 export type OffersState = typeof initialState;
 
 const initialState = {
-  groupedOffers: {} as GroupedOffers,
+  offers: {} as Offers,
   loading: true,
   error: null as (ApiError | null),
 };
@@ -24,7 +24,7 @@ export const offersSlice = createSlice({
       state.error = null;
     });
     builder.addCase(fetchOffers.fulfilled, (state, action) => {
-      state.groupedOffers = action.payload;
+      state.offers = action.payload;
       state.loading = false;
       state.error = null;
     });

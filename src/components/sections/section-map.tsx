@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { Icon, latLng, Marker } from 'leaflet';
 
 import { useMap } from '@/hooks';
-import { getActiveCard } from '@/store';
+import { getActiveCardId } from '@/store';
 import { Offer } from '@/types';
 
 import 'leaflet/dist/leaflet.css';
@@ -33,7 +33,7 @@ export function SectionMap({ offers, className = '' }: MapProps): JSX.Element {
   const { city } = offers[0];
 
   const mapRef = useRef<HTMLElement | null>(null);
-  const activeCardId = useSelector(getActiveCard);
+  const activeCardId = useSelector(getActiveCardId);
   const map = useMap(mapRef, city);
 
   useEffect(() => {

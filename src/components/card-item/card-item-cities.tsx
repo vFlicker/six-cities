@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 
 import { Offer } from '@/types';
-import { setActiveCard } from '@/store';
+import { setActiveCardId } from '@/store';
 
 import { CardItem } from './card-item';
 
@@ -22,8 +22,8 @@ export function CardItemCities(props: CardItemCitiesProps): JSX.Element {
       cardImageWrapperClass="cities__image-wrapper"
       imageWidth={260}
       imageHeight={200}
-      onCardItemMouseEnter={() => dispatch(setActiveCard(id))}
-      onCardItemMouseLeave={() => dispatch(setActiveCard(-1))}
+      onCardItemMouseEnter={() => dispatch(setActiveCardId(id))}
+      onCardItemMouseLeave={() => dispatch(setActiveCardId(-1))}
     />
   );
 }

@@ -23,10 +23,10 @@ export const appSlice = createSlice({
     changeSortType: (state, action: PayloadAction<TSortType>) => {
       state.currentSortType = action.payload;
     },
-    setActiveCard: (state, action: PayloadAction<number>) => {
+    setActiveCardId: (state, action: PayloadAction<number>) => {
       state.activeCardId = action.payload;
     },
   },
 });
 
-export const { changeCityName, changeSortType, setActiveCard } = appSlice.actions;
+export const { changeCityName, changeSortType, setActiveCardId } = appSlice.actions;

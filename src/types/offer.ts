@@ -37,8 +37,8 @@ export type Offer = {
   type: string;
 };
 
+export type Offers = Record<string, Offer[]>;
+
 export type OfferServer = Omit<CamelToSnakeCaseNested<Offer>, 'host'> & {
   host: CamelToSnakeCaseNested<Host>;
 };
-
-export type GroupedOffers = Record<string, Offer[]>;

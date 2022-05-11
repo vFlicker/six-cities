@@ -6,7 +6,7 @@ import {
 } from '@/types';
 
 export const Adapter = {
-  transformOffer: (offer: OfferServer): Offer => {
+  offerFormServerToClient: (offer: OfferServer): Offer => {
     const adaptOffer = {
       ...offer,
       previewImage: offer.preview_image,
@@ -30,7 +30,7 @@ export const Adapter = {
     return adaptOffer;
   },
 
-  transformUser: (user: UserServer): User => {
+  userFormServerToClient: (user: UserServer): User => {
     const adaptUser = {
       ...user,
       avatarUrl: user.avatar_url,

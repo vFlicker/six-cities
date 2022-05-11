@@ -1,2 +1,2 @@
-export { changeCityName, changeSortType, setActiveCard } from './app-slice';
+export { changeCityName, changeSortType, setActiveCardId } from './app-slice';
 export * from './selectors';

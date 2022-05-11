@@ -14,16 +14,12 @@ const topRatedFirst = (firstOffer: Offer, secondOffer: Offer): number => (
 );
 
 export const sortOffers = (offers: Offer[], currentSortType: TSortType): Offer[] => {
-  const copiedOffers = [...offers];
+  const clonedOffers = [...offers];
 
   switch (currentSortType) {
-    case SortType.PRICE_HIGH_TO_LOW:
-      return copiedOffers.sort(sortByPriceHighToLow);
-    case SortType.PRICE_LOW_TO_HIGH:
-      return copiedOffers.sort(sortByPriceLowToHigh);
-    case SortType.TOP_RATED_FIRST:
-      return copiedOffers.sort(topRatedFirst);
-    default:
-      return copiedOffers;
+    case SortType.PRICE_HIGH_TO_LOW: return clonedOffers.sort(sortByPriceHighToLow);
+    case SortType.PRICE_LOW_TO_HIGH: return clonedOffers.sort(sortByPriceLowToHigh);
+    case SortType.TOP_RATED_FIRST: return clonedOffers.sort(topRatedFirst);
+    default: return clonedOffers;
   }
 };

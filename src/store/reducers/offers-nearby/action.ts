@@ -13,7 +13,7 @@ export const fetchOfferNearby = createAsyncThunk<Offer[], number, AsyncThunkOpti
     try {
       const { data } = await apiService.get<OfferServer[]>(getApiRoute.offersNearby(id));
 
-      return data.map(Adapter.transformOffer);
+      return data.map(Adapter.offerFormServerToClient);
     } catch (error) {
       return rejectWithValue(error as ApiError);
     }

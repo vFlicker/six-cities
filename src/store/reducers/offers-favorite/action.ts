@@ -14,7 +14,7 @@ export const fetchOffersFavorite = createAsyncThunk<Offer[], void, AsyncThunkOpt
     try {
       const { data } = await apiService.get<OfferServer[]>(getApiRoute.favorite());
 
-      return data.map(Adapter.transformOffer);
+      return data.map(Adapter.offerFormServerToClient);
     } catch (error) {
       return rejectWithValue(error as ApiError);
     }

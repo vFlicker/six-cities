@@ -2,22 +2,22 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { Adapter, ApiError } from '@/services';
 
-import { GroupedOffers, OfferServer } from '@/types';
+import { Offers, OfferServer } from '@/types';
 import { getApiRoute } from '@/utils';
 
 import { AsyncThunkOptions } from '../types';
-import { getGroupedOffers } from './utils';
+import { transformOffers } from './utils';
 
 const ACTION_TYPE = 'offers';
 
-export const fetchOffers = createAsyncThunk<GroupedOffers, void, AsyncThunkOptions>(
+export const fetchOffers = createAsyncThunk<Offers, void, AsyncThunkOptions>(
   ACTION_TYPE,
   async (_, { extra: apiService, rejectWithValue }) => {
     try {
       const { data } = await apiService.get<OfferServer[]>(getApiRoute.offers());
-      const transformedData = data.map(Adapter.transformOffer);
+      const offers = data.map(Adapter.offerFormServerToClient);
 
-      return getGroupedOffers(transformedData);
+      return transformOffers(offers);
     } catch (error) {
       return rejectWithValue(error as ApiError);
     }

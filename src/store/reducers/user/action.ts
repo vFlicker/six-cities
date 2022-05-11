@@ -36,7 +36,7 @@ export const checkAuthStatus = createAsyncThunk<User, void, AsyncThunkOptions>(
   async (_, { extra: apiService, rejectWithValue }) => {
     try {
       const { data } = await apiService.get<User>(getApiRoute.login());
-      return Adapter.transformUser(data);
+      return Adapter.userFormServerToClient(data);
     } catch (error) {
       return rejectWithValue(error as ApiError);
     }
@@ -48,7 +48,7 @@ export const login = createAsyncThunk<User, AuthData, AsyncThunkOptions>(
   async (authData, { dispatch, extra: apiService, rejectWithValue }) => {
     try {
       const { data } = await apiService.post<User>(getApiRoute.login(), authData);
-      const transformedData = Adapter.transformUser(data);
+      const transformedData = Adapter.userFormServerToClient(data);
       const { token } = data;
 
       saveToken(token);
