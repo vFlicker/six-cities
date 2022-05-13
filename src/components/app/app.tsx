@@ -1,7 +1,7 @@
 import { unstable_HistoryRouter as HistoryRouter, Route, Routes } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { history } from '@/utils';
+import { browserHistory } from '@/utils';
 import { Review } from '@/types';
 import { getAuthorizationStatus, isCheckedAuth } from '@/store';
 import { AppRoute } from '@/constants';
@@ -30,7 +30,7 @@ export function App({ reviews }: AppProps): JSX.Element {
   }
 
   return (
-    <HistoryRouter history={history}>
+    <HistoryRouter history={browserHistory}>
       <Routes>
         <Route path={AppRoute.ROOT} element={<MainPage />} />
         <Route

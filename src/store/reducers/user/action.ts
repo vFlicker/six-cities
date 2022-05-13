@@ -38,6 +38,7 @@ export const checkAuthStatus = createAsyncThunk<User, void, AsyncThunkOptions>(
       const { data } = await apiService.get<User>(getApiRoute.login());
       return Adapter.userFormServerToClient(data);
     } catch (error) {
+      // TODO: add toast info
       return rejectWithValue(error as ApiError);
     }
   },

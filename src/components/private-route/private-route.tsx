@@ -8,6 +8,7 @@ type PrivateRouteProps = {
   children: JSX.Element;
 };
 
+// TODO: how we get token?
 export function PrivateRoute({ children }: PrivateRouteProps): JSX.Element {
   const authorizationStatus = useSelector(getAuthorizationStatus);
 

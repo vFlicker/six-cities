@@ -9,12 +9,10 @@ export function SectionLogin(): JSX.Element {
 
   const dispatch = useDispatch();
 
-  const handleSubmit = (evt: FormEvent) => {
+  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
-    if (!emailRef.current || !passwordRef.current) {
-      return;
-    }
+    if (!emailRef.current || !passwordRef.current) return;
 
     dispatch(login({
       email: emailRef.current.value,

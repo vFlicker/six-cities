@@ -14,6 +14,7 @@ export const fetchOffer = createAsyncThunk<Offer, number, AsyncThunkOptions>(
     try {
       const { data } = await apiService.get<OfferServer>(getApiRoute.offer(id));
 
+      // TODO: look at Redux normalize
       return Adapter.offerFormServerToClient(data);
     } catch (error) {
       return rejectWithValue(error as ApiError);
