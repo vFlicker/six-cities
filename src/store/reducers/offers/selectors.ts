@@ -4,7 +4,7 @@ import { ApiError } from '@/services';
 import { Offers, RootState } from '@/types';
 
 import { getCurrentCityName, getCurrentSortType } from '../app';
-import { ReducerName } from '../constants';
+import { ReducerName } from '../../constants';
 import { sortOffers } from './utils';
 
 const getOffers = (state: RootState): Offers | null => (

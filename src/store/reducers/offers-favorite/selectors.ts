@@ -1,7 +1,7 @@
 import { ApiError } from '@/services';
 import { Offer, RootState } from '@/types';
 
-import { ReducerName } from '../constants';
+import { ReducerName } from '../../constants';
 
 export const getOffersFavorite = (state: RootState): Offer[] => (
   state[ReducerName.OFFERS_FAVORITE].offersFavorite

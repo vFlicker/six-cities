@@ -4,7 +4,7 @@ import { AuthorizationStatus } from '@/constants';
 import { ApiError } from '@/services';
 import { AuthorizationStatus as TAuthorizationStatus, User } from '@/types';
 
-import { ReducerName } from '../constants';
+import { ReducerName } from '../../constants';
 import { checkAuthStatus, login, logout } from './action';
 
 const initialState = {

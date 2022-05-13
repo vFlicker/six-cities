@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { CityName, SortType } from '@/constants';
 import { CityName as TCityName, SortType as TSortType } from '@/types';
 
-import { ReducerName } from '../constants';
+import { ReducerName } from '../../constants';
 
 const initialState = {
   activeCardId: -1,

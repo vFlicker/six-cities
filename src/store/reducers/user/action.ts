@@ -1,7 +1,7 @@
-import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { AppRoute } from '@/constants';
-import { AppRoute as TAppRoute, User } from '@/types';
+import { User } from '@/types';
 import { getApiRoute } from '@/utils/get-api-route';
 import {
   Adapter,
@@ -11,28 +11,15 @@ import {
 } from '@/services';
 
 import { AsyncThunkOptions } from '../types';
+import { redirectToRoute } from './actions';
 
 export type AuthData = {
   email: string;
   password: string;
 };
 
-export const ActionType = {
-  REDIRECT_TO_ROUTE: 'userData/redirectToRoute',
-  AUTH_STATUS: 'userData/authStatus',
-  LOGIN: 'userData/login',
-  LOGOUT: 'userData/logout',
-};
-
-export const redirectToRoute = createAction(
-  ActionType.REDIRECT_TO_ROUTE,
-  (url: TAppRoute) => ({
-    payload: url,
-  }),
-);
-
 export const checkAuthStatus = createAsyncThunk<User, void, AsyncThunkOptions>(
-  ActionType.AUTH_STATUS,
+  'userData/authStatus',
   async (_, { extra: apiService, rejectWithValue }) => {
     try {
       const { data } = await apiService.get<User>(getApiRoute.login());
@@ -45,7 +32,7 @@ export const checkAuthStatus = createAsyncThunk<User, void, AsyncThunkOptions>(
 );
 
 export const login = createAsyncThunk<User, AuthData, AsyncThunkOptions>(
-  ActionType.LOGIN,
+  'userData/login',
   async (authData, { dispatch, extra: apiService, rejectWithValue }) => {
     try {
       const { data } = await apiService.post<User>(getApiRoute.login(), authData);
@@ -63,7 +50,7 @@ export const login = createAsyncThunk<User, AuthData, AsyncThunkOptions>(
 );
 
 export const logout = createAsyncThunk<void, void, AsyncThunkOptions>(
-  ActionType.LOGOUT,
+  'userData/logout',
   async (_, { extra: apiService, rejectWithValue }) => {
     try {
       await apiService.delete(getApiRoute.logout());

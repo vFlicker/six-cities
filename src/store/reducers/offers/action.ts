@@ -8,10 +8,8 @@ import { getApiRoute } from '@/utils';
 import { AsyncThunkOptions } from '../types';
 import { transformOffers } from './utils';
 
-const ACTION_TYPE = 'offers';
-
 export const fetchOffers = createAsyncThunk<Offers, void, AsyncThunkOptions>(
-  ACTION_TYPE,
+  'offers',
   async (_, { extra: apiService, rejectWithValue }) => {
     try {
       const { data } = await apiService.get<OfferServer[]>(getApiRoute.offers());

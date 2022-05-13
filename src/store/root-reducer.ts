@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-import { ReducerName } from './reducers/constants';
+import { ReducerName } from './constants';
 import { appSlice } from './reducers/app/app-slice';
 import { offerSlice } from './reducers/offer/offer-slice';
 import { offersFavoriteSlice } from './reducers/offers-favorite/offers-favorite-slice';

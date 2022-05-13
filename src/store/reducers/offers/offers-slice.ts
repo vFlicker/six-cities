@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { Offers } from '@/types';
 import { ApiError } from '@/services';
 
-import { ReducerName } from '../constants';
+import { ReducerName } from '../../constants';
 import { fetchOffers } from './action';
 
 const initialState = {

@@ -4,7 +4,7 @@ import { AppRoute, AuthorizationStatus } from '@/constants';
 import { createApiService } from '@/services';
 
 import { redirect } from './middlewares';
-import { redirectToRoute } from './reducers/user/action';
+import { redirectToRoute } from './reducers/user/actions';
 import { setAuthorizationStatus } from './reducers/user/user-slice';
 import { rootReducer } from './root-reducer';
 

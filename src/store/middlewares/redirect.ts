@@ -3,10 +3,8 @@ import { Middleware } from 'redux';
 import { RootState } from '@/types';
 import { browserHistory } from '@/utils';
 
-import { ActionType } from '../reducers/user/action';
-
 export const redirect: Middleware<unknown, RootState> = () => (next) => (action) => {
-  if (action.type === ActionType.REDIRECT_TO_ROUTE) {
+  if (action.type === 'userData/redirectToRoute') {
     browserHistory.push(action.payload);
   }
 

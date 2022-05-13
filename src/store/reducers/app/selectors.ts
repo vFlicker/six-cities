@@ -1,6 +1,6 @@
 import { CityName, RootState, SortType } from '@/types';
 
-import { ReducerName } from '../constants';
+import { ReducerName } from '../../constants';
 
 export const getCurrentCityName = (state: RootState): CityName => (
   state[ReducerName.APP].currentCityName
