@@ -5,8 +5,6 @@ import { Offer } from '@/types/';
 
 import { fetchOffer } from './action';
 
-export type OfferState = typeof initialState;
-
 const initialState = {
   offer: {} as Offer,
   loading: true,

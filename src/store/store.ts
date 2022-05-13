@@ -6,7 +6,7 @@ import { createApiService } from '@/services';
 import { redirect } from './middlewares';
 import { redirectToRoute } from './reducers/user/action';
 import { setAuthorizationStatus } from './reducers/user/user-slice';
-import { rootReducer } from './reducers/root-reducer';
+import { rootReducer } from './root-reducer';
 
 const onUnauthorizedHandler = () => {
   store.dispatch(setAuthorizationStatus(AuthorizationStatus.NO_AUTH));

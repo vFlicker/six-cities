@@ -5,8 +5,6 @@ import { CityName as TCityName, SortType as TSortType } from '@/types';
 
 import { ReducerName } from '../constants';
 
-export type AppState = typeof initialState;
-
 const initialState = {
   activeCardId: -1,
   currentCityName: CityName.AMSTERDAM as TCityName,

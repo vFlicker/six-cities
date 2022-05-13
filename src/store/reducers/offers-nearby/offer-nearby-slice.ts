@@ -6,8 +6,6 @@ import { Offer } from '@/types';
 import { ReducerName } from '../constants';
 import { fetchOfferNearby } from './action';
 
-export type OfferNearbyState = typeof initialState;
-
 const initialState = {
   offersNearby: [] as Offer[],
   loading: true,

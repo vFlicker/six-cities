@@ -7,8 +7,6 @@ import { AuthorizationStatus as TAuthorizationStatus, User } from '@/types';
 import { ReducerName } from '../constants';
 import { checkAuthStatus, login, logout } from './action';
 
-export type UserState = typeof initialState;
-
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH as TAuthorizationStatus,
   user: {} as User,

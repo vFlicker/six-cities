@@ -6,8 +6,6 @@ import { ApiError } from '@/services';
 import { ReducerName } from '../constants';
 import { fetchOffers } from './action';
 
-export type OffersState = typeof initialState;
-
 const initialState = {
   offers: {} as Offers,
   loading: true,

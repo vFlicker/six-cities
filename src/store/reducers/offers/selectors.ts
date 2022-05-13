@@ -1,11 +1,10 @@
 import { createSelector } from '@reduxjs/toolkit';
 
 import { ApiError } from '@/services';
-import { Offers } from '@/types';
+import { Offers, RootState } from '@/types';
 
 import { getCurrentCityName, getCurrentSortType } from '../app';
 import { ReducerName } from '../constants';
-import { RootState } from '../root-reducer';
 import { sortOffers } from './utils';
 
 const getOffers = (state: RootState): Offers | null => (

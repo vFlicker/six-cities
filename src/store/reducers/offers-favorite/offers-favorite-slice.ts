@@ -6,8 +6,6 @@ import { Offer } from '@/types';
 import { ReducerName } from '../constants';
 import { fetchOffersFavorite } from './action';
 
-export type OffersFavoriteState = typeof initialState;
-
 const initialState = {
   offersFavorite: [] as Offer[],
   loading: true,
