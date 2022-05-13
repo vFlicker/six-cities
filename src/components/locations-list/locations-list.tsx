@@ -1,14 +1,13 @@
-import { useDispatch, useSelector } from 'react-redux';
-
 import { CityName } from '@/constants';
+import { useAppDispatch, useAppSelector } from '@/hooks';
 import { changeCityName, getCurrentCityName } from '@/store';
 
 import { LocationsItem } from '../locations-item';
 
 export function LocationsList(): JSX.Element {
-  const currentCityName = useSelector(getCurrentCityName);
+  const currentCityName = useAppSelector(getCurrentCityName);
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   return (
     <ul className="locations__list tabs__list">

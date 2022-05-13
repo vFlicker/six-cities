@@ -1,10 +1,10 @@
 import { unstable_HistoryRouter as HistoryRouter, Route, Routes } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 
-import { browserHistory } from '@/utils';
-import { Review } from '@/types';
-import { getAuthorizationStatus, isCheckedAuth } from '@/store';
+import { useAppSelector } from '@/hooks';
 import { AppRoute } from '@/constants';
+import { getAuthorizationStatus, isCheckedAuth } from '@/store';
+import { Review } from '@/types';
+import { browserHistory } from '@/utils';
 
 import { Spinner } from '../spinner';
 import { PrivateRoute } from '../private-route';
@@ -21,7 +21,7 @@ type AppProps = {
 };
 
 export function App({ reviews }: AppProps): JSX.Element {
-  const authorizationStatus = useSelector(getAuthorizationStatus);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
   if (isCheckedAuth(authorizationStatus)) {
     return (

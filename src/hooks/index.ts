@@ -1,1 +1,2 @@
-export { useMap } from './use-map';
+export * from './store';
+export * from './use-map';

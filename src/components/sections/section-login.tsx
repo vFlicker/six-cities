@@ -1,13 +1,13 @@
 import { FormEvent, useRef } from 'react';
-import { useDispatch } from 'react-redux';
 
+import { useAppDispatch } from '@/hooks';
 import { login } from '@/store';
 
 export function SectionLogin(): JSX.Element {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();

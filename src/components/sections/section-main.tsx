@@ -1,6 +1,6 @@
 import { useLayoutEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 
+import { useAppDispatch, useAppSelector } from '@/hooks';
 import {
   fetchOffers,
   getOffersError,
@@ -21,11 +21,11 @@ import { Sorting } from '../sorting';
 import { Spinner } from '../spinner';
 
 export function SectionMain(): JSX.Element {
-  const sortedOffers = useSelector(getSortedOffers);
-  const isOffersLoading = useSelector(getOffersLoadingStatus);
-  const offersError = useSelector(getOffersError);
+  const sortedOffers = useAppSelector(getSortedOffers);
+  const isOffersLoading = useAppSelector(getOffersLoadingStatus);
+  const offersError = useAppSelector(getOffersError);
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   useLayoutEffect(() => {
     dispatch(fetchOffers());

@@ -1,16 +1,16 @@
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 
 import { SortType } from '@/constants';
+import { useAppDispatch, useAppSelector } from '@/hooks';
 import { SortType as TSortType } from '@/types';
 import { changeSortType, getCurrentSortType } from '@/store';
 
 export function Sorting(): JSX.Element {
   const [sortMenuOpened, setSortMenuOpened] = useState(false);
 
-  const currentSortType = useSelector(getCurrentSortType);
+  const currentSortType = useAppSelector(getCurrentSortType);
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const toggleSortMenu = () => setSortMenuOpened((prevState) => !prevState);
 

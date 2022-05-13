@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 
+import { useAppDispatch, useAppSelector } from '@/hooks';
 import {
   fetchOffer,
   fetchOfferNearby,
@@ -27,16 +27,16 @@ type OfferPageProps = {
 export function OfferPage({ reviews }: OfferPageProps): JSX.Element {
   const { id } = useParams();
 
-  const offer = useSelector(getOffer);
-  const offersNearby = useSelector(getOffersNearby);
+  const offer = useAppSelector(getOffer);
+  const offersNearby = useAppSelector(getOffersNearby);
 
-  const isOfferLoading = useSelector(getOfferLoadingStatus);
-  const isOffersNearbyLoading = useSelector(getOffersNearbyLoadingStatus);
+  const isOfferLoading = useAppSelector(getOfferLoadingStatus);
+  const isOffersNearbyLoading = useAppSelector(getOffersNearbyLoadingStatus);
 
-  const offerError = useSelector(getOfferError);
-  const offersNearbyError = useSelector(getOffersNearbyError);
+  const offerError = useAppSelector(getOfferError);
+  const offersNearbyError = useAppSelector(getOffersNearbyError);
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(fetchOffer(Number(id)));

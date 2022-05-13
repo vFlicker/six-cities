@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 
 import {
   fetchOffersFavorite,
@@ -12,13 +11,14 @@ import { CardItemFavorites } from '../card-item';
 import { CardList } from '../card-list';
 import { LocationsItem } from '../locations-item';
 import { Spinner } from '../spinner';
+import { useAppDispatch, useAppSelector } from '@/hooks';
 
 export function SectionFavorites(): JSX.Element {
-  const offersFavorite = useSelector(getOffersFavorite);
-  const offersFavoriteLoadingStatus = useSelector(getOffersFavoriteLoadingStatus);
-  const offersFavoriteError = useSelector(getOffersFavoriteError);
+  const offersFavorite = useAppSelector(getOffersFavorite);
+  const offersFavoriteLoadingStatus = useAppSelector(getOffersFavoriteLoadingStatus);
+  const offersFavoriteError = useAppSelector(getOffersFavoriteError);
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(fetchOffersFavorite());

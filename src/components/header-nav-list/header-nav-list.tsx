@@ -1,16 +1,16 @@
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 
 import { AppRoute, AuthorizationStatus } from '@/constants';
+import { useAppDispatch, useAppSelector } from '@/hooks';
 import { logout, getAuthorizationStatus, getUser } from '@/store';
 
 const USER_DEFAULT_AVATAR_URL = '../img/avatar.svg';
 
 export function HeaderNavList(): JSX.Element {
-  const authorizationStatus = useSelector(getAuthorizationStatus);
-  const user = useSelector(getUser);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const user = useAppSelector(getUser);
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const style = {
     backgroundImage: user ? `url(${user.avatarUrl})` : `url(${USER_DEFAULT_AVATAR_URL})`,

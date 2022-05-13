@@ -1,5 +1,4 @@
-import { useSelector } from 'react-redux';
-
+import { useAppSelector } from '@/hooks';
 import { getOffersNearby } from '@/store';
 import { Offer, Review } from '@/types';
 import { convertRatingToPercents } from '@/utils';
@@ -12,7 +11,7 @@ type OfferProps = {
 };
 
 export function SectionProperty({ offer, reviews }: OfferProps): JSX.Element {
-  const offersNearby = useSelector(getOffersNearby);
+  const offersNearby = useAppSelector(getOffersNearby);
 
   const {
     bedrooms: bedroomCount,

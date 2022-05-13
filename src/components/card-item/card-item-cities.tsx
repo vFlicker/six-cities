@@ -1,5 +1,4 @@
-import { useDispatch } from 'react-redux';
-
+import { useAppDispatch } from '@/hooks';
 import { Offer } from '@/types';
 import { setActiveCardId } from '@/store';
 
@@ -13,7 +12,7 @@ export function CardItemCities(props: CardItemCitiesProps): JSX.Element {
   const { offer } = props;
   const { id } = offer;
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   return (
     <CardItem
