@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
 
 import { ReducerName } from './constants';
-import { appSlice } from './reducers/app/app-slice';
-import { offerSlice } from './reducers/offer/offer-slice';
-import { offersFavoriteSlice } from './reducers/offers-favorite/offers-favorite-slice';
-import { offerNearbySlice } from './reducers/offers-nearby/offer-nearby-slice';
-import { offersSlice } from './reducers/offers/offers-slice';
-import { userSlice } from './reducers/user/user-slice';
+import appSlice from './reducers/app/slice';
+import offerSlice from './reducers/offer/slice';
+import offersFavoriteSlice from './reducers/offers-favorite/slice';
+import offerNearbySlice from './reducers/offers-nearby/slice';
+import offersSlice from './reducers/offers/slice';
+import userSlice from './reducers/user/slice';
 
 export const rootReducer = combineReducers({
   [ReducerName.APP]: appSlice.reducer,

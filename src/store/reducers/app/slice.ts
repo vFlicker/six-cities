@@ -11,7 +11,7 @@ const initialState = {
   currentSortType: SortType.POPULAR as TSortType,
 };
 
-export const appSlice = createSlice({
+const slice = createSlice({
   name: ReducerName.APP,
   initialState,
   reducers: {
@@ -27,4 +27,5 @@ export const appSlice = createSlice({
   },
 });
 
-export const { changeCityName, changeSortType, setActiveCardId } = appSlice.actions;
+export const { changeCityName, changeSortType, setActiveCardId } = slice.actions;
+export default slice;

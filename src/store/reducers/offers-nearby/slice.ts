@@ -4,31 +4,35 @@ import { ApiError } from '@/services';
 import { Offer } from '@/types';
 
 import { ReducerName } from '../../constants';
-import { fetchOffersFavorite } from './api-actions';
+import { fetchOfferNearby } from './api-actions';
 
 const initialState = {
-  offersFavorite: [] as Offer[],
+  offersNearby: [] as Offer[],
   loading: true,
   error: null as (ApiError | null),
 };
 
-export const offersFavoriteSlice = createSlice({
-  name: ReducerName.OFFERS_FAVORITE,
+const slice = createSlice({
+  name: ReducerName.OFFERS_NEARBY,
   initialState,
   reducers: {},
   extraReducers: ((builder) => {
-    builder.addCase(fetchOffersFavorite.pending, (state) => {
+    builder.addCase(fetchOfferNearby.pending, (state) => {
+      state.offersNearby = [];
       state.loading = true;
       state.error = null;
     });
-    builder.addCase(fetchOffersFavorite.fulfilled, (state, action) => {
-      state.offersFavorite = action.payload;
+    builder.addCase(fetchOfferNearby.fulfilled, (state, action) => {
+      state.offersNearby = action.payload;
       state.loading = false;
       state.error = null;
     });
-    builder.addCase(fetchOffersFavorite.rejected, (state, action) => {
+    builder.addCase(fetchOfferNearby.rejected, (state, action) => {
+      state.offersNearby = [];
       state.loading = false;
       state.error = action.payload as ApiError;
     });
   }),
 });
+
+export default slice;

@@ -14,7 +14,7 @@ const initialState = {
   error: null as (ApiError | null),
 };
 
-export const userSlice = createSlice({
+const slice = createSlice({
   name: ReducerName.USER,
   initialState,
   reducers: {
@@ -74,4 +74,5 @@ export const userSlice = createSlice({
   }),
 });
 
-export const { setAuthorizationStatus, setUserData } = userSlice.actions;
+export const { setAuthorizationStatus, setUserData } = slice.actions;
+export default slice;

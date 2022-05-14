@@ -11,7 +11,7 @@ const initialState = {
   error: null as (ApiError | null),
 };
 
-export const offerSlice = createSlice({
+const slice = createSlice({
   name: 'offer',
   initialState,
   reducers: {},
@@ -31,3 +31,5 @@ export const offerSlice = createSlice({
     });
   }),
 });
+
+export default slice;
