@@ -9,3 +9,7 @@ export const getAuthorizationStatus = (state: RootState): AuthorizationStatus =>
 export const getUser = (state: RootState): User | null => (
   state[ReducerName.USER].user
 );
+
+export const getLoadingStatus = (state: RootState): boolean => (
+  state[ReducerName.USER].loading
+);

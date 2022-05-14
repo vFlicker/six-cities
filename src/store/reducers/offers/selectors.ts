@@ -1,7 +1,6 @@
 import { createSelector } from '@reduxjs/toolkit';
 
-import { ApiError } from '@/services';
-import { Offers, RootState } from '@/types';
+import { ErrorType, Offers, RootState } from '@/types';
 
 import { getCurrentCityName, getCurrentSortType } from '../app';
 import { ReducerName } from '../../constants';
@@ -21,7 +20,7 @@ export const getOffersLoadingStatus = (state: RootState): boolean => (
   state[ReducerName.OFFERS].loading
 );
 
-export const getOffersError = (state: RootState): ApiError | null => (
+export const getOffersError = (state: RootState): ErrorType => (
   state[ReducerName.OFFERS].error
 );
 

@@ -1,6 +1,6 @@
 import { AxiosInstance } from 'axios';
 
-import { ApiError } from '@/services';
+import { ErrorType } from '@/types';
 
 import { store } from '../store';
 
@@ -9,5 +9,5 @@ type AppDispatch = typeof store.dispatch;
 export type AsyncThunkOptions = {
   dispatch: AppDispatch;
   extra: AxiosInstance;
-  rejectValue: ApiError;
+  rejectValue: ErrorType;
 }

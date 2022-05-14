@@ -20,6 +20,12 @@ export const CityName = {
   DUSSELDORF: 'Dusseldorf',
 } as const;
 
+export const HttpCode = {
+  BAD_REQUEST: 400,
+  UNAUTHORIZED: 401,
+  NOT_FOUND: 404,
+};
+
 export const SortType = {
   POPULAR: 'Popular',
   PRICE_HIGH_TO_LOW: 'Price: high to low',

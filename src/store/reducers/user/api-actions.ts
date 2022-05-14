@@ -1,32 +1,35 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { AppRoute } from '@/constants';
+import { AppRoute, AuthorizationStatus } from '@/constants';
 import { User } from '@/types';
 import { getApiRoute } from '@/utils/get-api-route';
 import {
   Adapter,
   dropToken,
   saveToken,
-  ApiError,
+  errorHandler,
 } from '@/services';
 
 import { AsyncThunkOptions } from '../types';
 import { redirectToRoute } from './actions';
+import { setAuthorizationStatus } from './slice';
 
-export type AuthData = {
+type AuthData = {
   email: string;
   password: string;
 };
 
-export const checkAuthStatus = createAsyncThunk<User, void, AsyncThunkOptions>(
+export const checkAuthStatus = createAsyncThunk<User, undefined, AsyncThunkOptions>(
   'userData/authStatus',
   async (_, { extra: apiService, rejectWithValue }) => {
     try {
       const { data } = await apiService.get<User>(getApiRoute.login());
+      setAuthorizationStatus(AuthorizationStatus.AUTH);
       return Adapter.userFormServerToClient(data);
     } catch (error) {
-      // TODO: add toast info
-      return rejectWithValue(error as ApiError);
+      setAuthorizationStatus(AuthorizationStatus.NO_AUTH);
+      errorHandler(error);
+      return rejectWithValue(error);
     }
   },
 );
@@ -40,24 +43,28 @@ export const login = createAsyncThunk<User, AuthData, AsyncThunkOptions>(
       const { token } = data;
 
       saveToken(token);
+      setAuthorizationStatus(AuthorizationStatus.AUTH);
       dispatch(redirectToRoute(AppRoute.ROOT));
 
       return transformedData;
     } catch (error) {
-      return rejectWithValue(error as ApiError);
+      setAuthorizationStatus(AuthorizationStatus.NO_AUTH);
+      errorHandler(error);
+      return rejectWithValue(error);
     }
   },
 );
 
-export const logout = createAsyncThunk<void, void, AsyncThunkOptions>(
+export const logout = createAsyncThunk<void, undefined, AsyncThunkOptions>(
   'userData/logout',
   async (_, { extra: apiService, rejectWithValue }) => {
     try {
       await apiService.delete(getApiRoute.logout());
-
+      setAuthorizationStatus(AuthorizationStatus.NO_AUTH);
       return dropToken();
     } catch (error) {
-      return rejectWithValue(error as ApiError);
+      errorHandler(error);
+      return rejectWithValue(error);
     }
   },
 );

@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { Adapter, ApiError } from '@/services';
+import { Adapter, errorHandler } from '@/services';
 import { getApiRoute } from '@/utils';
 import { Offer, OfferServer } from '@/types';
 
@@ -15,7 +15,8 @@ export const fetchOffer = createAsyncThunk<Offer, number, AsyncThunkOptions>(
       // TODO: look at Redux normalize
       return Adapter.offerFormServerToClient(data);
     } catch (error) {
-      return rejectWithValue(error as ApiError);
+      errorHandler(error);
+      return rejectWithValue(error);
     }
   },
 );

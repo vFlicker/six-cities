@@ -1,8 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { Adapter, ApiError } from '@/services';
+import { Adapter, errorHandler } from '@/services';
 import { Offer, OfferServer } from '@/types';
 import { getApiRoute } from '@/utils';
+
 import { AsyncThunkOptions } from '../types';
 
 export const fetchOfferNearby = createAsyncThunk<Offer[], number, AsyncThunkOptions>(
@@ -13,7 +14,8 @@ export const fetchOfferNearby = createAsyncThunk<Offer[], number, AsyncThunkOpti
 
       return data.map(Adapter.offerFormServerToClient);
     } catch (error) {
-      return rejectWithValue(error as ApiError);
+      errorHandler(error);
+      return rejectWithValue(error);
     }
   },
 );

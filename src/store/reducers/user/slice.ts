@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+// TODO: what do we use instead of the enums?
 import { AuthorizationStatus } from '@/constants';
-import { ApiError } from '@/services';
 import { AuthorizationStatus as TAuthorizationStatus, User } from '@/types';
 
 import { ReducerName } from '../../constants';
@@ -11,7 +11,7 @@ const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH as TAuthorizationStatus,
   user: {} as User,
   loading: true,
-  error: null as (ApiError | null),
+  error: null as unknown,
 };
 
 const slice = createSlice({
@@ -26,51 +26,50 @@ const slice = createSlice({
     },
   },
   extraReducers: ((builder) => {
-    builder.addCase(checkAuthStatus.pending, (state) => {
-      state.authorizationStatus = AuthorizationStatus.UNKNOWN;
-      state.loading = true;
-      state.error = null;
-    });
-    builder.addCase(checkAuthStatus.fulfilled, (state, action) => {
-      state.authorizationStatus = AuthorizationStatus.AUTH;
-      state.user = action.payload;
-      state.loading = false;
-      state.error = null;
-    });
-    builder.addCase(checkAuthStatus.rejected, (state, action) => {
-      state.authorizationStatus = AuthorizationStatus.NO_AUTH;
-      state.loading = false;
-      state.error = action.payload as ApiError;
-    });
-    builder.addCase(login.pending, (state) => {
-      state.authorizationStatus = AuthorizationStatus.UNKNOWN;
-      state.loading = true;
-      state.error = null;
-    });
-    builder.addCase(login.fulfilled, (state, action) => {
-      state.authorizationStatus = AuthorizationStatus.AUTH;
-      state.user = action.payload;
-      state.loading = false;
-      state.error = null;
-    });
-    builder.addCase(login.rejected, (state, action) => {
-      state.authorizationStatus = AuthorizationStatus.NO_AUTH;
-      state.loading = false;
-      state.error = action.payload as ApiError;
-    });
-    builder.addCase(logout.pending, (state) => {
-      state.loading = true;
-      state.error = null;
-    });
-    builder.addCase(logout.fulfilled, (state) => {
-      state.authorizationStatus = AuthorizationStatus.NO_AUTH;
-      state.loading = false;
-      state.error = null;
-    });
-    builder.addCase(logout.rejected, (state, action) => {
-      state.loading = false;
-      state.error = action.payload as ApiError;
-    });
+    builder
+      // ----- CHECK AUTH STATUS -----
+      .addCase(checkAuthStatus.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(checkAuthStatus.fulfilled, (state, action) => {
+        state.user = action.payload;
+        state.loading = false;
+        state.error = null;
+      })
+      .addCase(checkAuthStatus.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+
+      // ----- LOGIN -----
+      .addCase(login.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(login.fulfilled, (state, action) => {
+        state.user = action.payload;
+        state.loading = false;
+        state.error = null;
+      })
+      .addCase(login.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+
+      // ----- LOGOUT -----
+      .addCase(logout.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(logout.fulfilled, (state) => {
+        state.loading = false;
+        state.error = null;
+      })
+      .addCase(logout.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      });
   }),
 });
 

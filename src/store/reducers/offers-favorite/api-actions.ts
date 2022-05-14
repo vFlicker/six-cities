@@ -1,12 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { Adapter, ApiError } from '@/services';
+import { Adapter, errorHandler } from '@/services';
 import { Offer, OfferServer } from '@/types';
 import { getApiRoute } from '@/utils';
 
 import { AsyncThunkOptions } from '../types';
 
-export const fetchOffersFavorite = createAsyncThunk<Offer[], void, AsyncThunkOptions>(
+export const fetchOffersFavorite = createAsyncThunk<Offer[], undefined, AsyncThunkOptions>(
   'offersFavorite',
   async (_, { extra: apiService, rejectWithValue }) => {
     try {
@@ -14,7 +14,8 @@ export const fetchOffersFavorite = createAsyncThunk<Offer[], void, AsyncThunkOpt
 
       return data.map(Adapter.offerFormServerToClient);
     } catch (error) {
-      return rejectWithValue(error as ApiError);
+      errorHandler(error);
+      return rejectWithValue(error);
     }
   },
 );

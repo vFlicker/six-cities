@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { ApiError } from '@/services';
-import { Offer } from '@/types';
+import { ErrorType, Offer } from '@/types';
 
 import { ReducerName } from '../../constants';
 import { fetchOffersFavorite } from './api-actions';
@@ -9,7 +8,7 @@ import { fetchOffersFavorite } from './api-actions';
 const initialState = {
   offersFavorite: [] as Offer[],
   loading: true,
-  error: null as (ApiError | null),
+  error: null as ErrorType,
 };
 
 const slice = createSlice({
@@ -17,19 +16,20 @@ const slice = createSlice({
   initialState,
   reducers: {},
   extraReducers: ((builder) => {
-    builder.addCase(fetchOffersFavorite.pending, (state) => {
-      state.loading = true;
-      state.error = null;
-    });
-    builder.addCase(fetchOffersFavorite.fulfilled, (state, action) => {
-      state.offersFavorite = action.payload;
-      state.loading = false;
-      state.error = null;
-    });
-    builder.addCase(fetchOffersFavorite.rejected, (state, action) => {
-      state.loading = false;
-      state.error = action.payload as ApiError;
-    });
+    builder
+      .addCase(fetchOffersFavorite.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchOffersFavorite.fulfilled, (state, action) => {
+        state.offersFavorite = action.payload;
+        state.loading = false;
+        state.error = null;
+      })
+      .addCase(fetchOffersFavorite.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      });
   }),
 });
 

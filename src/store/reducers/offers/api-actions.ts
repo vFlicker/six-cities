@@ -1,14 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { Adapter, ApiError } from '@/services';
-
+import { Adapter, errorHandler } from '@/services';
 import { Offers, OfferServer } from '@/types';
 import { getApiRoute } from '@/utils';
 
 import { AsyncThunkOptions } from '../types';
 import { transformOffers } from './utils';
 
-export const fetchOffers = createAsyncThunk<Offers, void, AsyncThunkOptions>(
+export const fetchOffers = createAsyncThunk<Offers, undefined, AsyncThunkOptions>(
   'offers',
   async (_, { extra: apiService, rejectWithValue }) => {
     try {
@@ -17,7 +16,8 @@ export const fetchOffers = createAsyncThunk<Offers, void, AsyncThunkOptions>(
 
       return transformOffers(offers);
     } catch (error) {
-      return rejectWithValue(error as ApiError);
+      errorHandler(error);
+      return rejectWithValue(error);
     }
   },
 );

@@ -22,8 +22,9 @@ type AppProps = {
 
 export function App({ reviews }: AppProps): JSX.Element {
   const authorizationStatus = useAppSelector(userSlice.getAuthorizationStatus);
+  const isLoading = useAppSelector(userSlice.getLoadingStatus);
 
-  if (userSlice.isCheckedAuth(authorizationStatus)) {
+  if (userSlice.isCheckedAuth(authorizationStatus) || isLoading) {
     return (
       <Spinner />
     );

@@ -1,5 +1,4 @@
-import { ApiError } from '@/services';
-import { Offer, RootState } from '@/types';
+import { ErrorType, Offer, RootState } from '@/types';
 
 import { ReducerName } from '../../constants';
 
@@ -11,6 +10,6 @@ export const getOffersFavoriteLoadingStatus = (state: RootState): boolean => (
   state[ReducerName.OFFERS_FAVORITE].loading
 );
 
-export const getOffersFavoriteError = (state: RootState): ApiError | null => (
+export const getOffersFavoriteError = (state: RootState): ErrorType => (
   state[ReducerName.OFFERS_FAVORITE].error
 );
