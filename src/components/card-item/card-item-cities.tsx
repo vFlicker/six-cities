@@ -1,6 +1,6 @@
 import { useAppDispatch } from '@/hooks';
 import { Offer } from '@/types';
-import { setActiveCardId } from '@/store';
+import { appSlice } from '@/store';
 
 import { CardItem } from './card-item';
 
@@ -21,8 +21,8 @@ export function CardItemCities(props: CardItemCitiesProps): JSX.Element {
       cardImageWrapperClass="cities__image-wrapper"
       imageWidth={260}
       imageHeight={200}
-      onCardItemMouseEnter={() => dispatch(setActiveCardId(id))}
-      onCardItemMouseLeave={() => dispatch(setActiveCardId(-1))}
+      onCardItemMouseEnter={() => dispatch(appSlice.setActiveCardId(id))}
+      onCardItemMouseLeave={() => dispatch(appSlice.setActiveCardId(-1))}
     />
   );
 }

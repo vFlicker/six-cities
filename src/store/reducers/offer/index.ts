@@ -1,2 +1,2 @@
-export { fetchOffer } from './action';
+export * from './action';
 export * from './selectors';

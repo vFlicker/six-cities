@@ -1,2 +1,2 @@
-export { fetchOffersFavorite } from './action';
+export * from './action';
 export * from './selectors';

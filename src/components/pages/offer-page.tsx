@@ -2,16 +2,7 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '@/hooks';
-import {
-  fetchOffer,
-  fetchOfferNearby,
-  getOffer,
-  getOfferError,
-  getOfferLoadingStatus,
-  getOffersNearby,
-  getOffersNearbyError,
-  getOffersNearbyLoadingStatus,
-} from '@/store';
+import { offerSlice, offersNearbySlice } from '@/store';
 import { Review } from '@/types';
 
 import { CardItemNearPlaces } from '../card-item';
@@ -27,20 +18,20 @@ type OfferPageProps = {
 export function OfferPage({ reviews }: OfferPageProps): JSX.Element {
   const { id } = useParams();
 
-  const offer = useAppSelector(getOffer);
-  const offersNearby = useAppSelector(getOffersNearby);
+  const offer = useAppSelector(offerSlice.getOffer);
+  const offersNearby = useAppSelector(offersNearbySlice.getOffersNearby);
 
-  const isOfferLoading = useAppSelector(getOfferLoadingStatus);
-  const isOffersNearbyLoading = useAppSelector(getOffersNearbyLoadingStatus);
+  const isOfferLoading = useAppSelector(offerSlice.getOfferLoadingStatus);
+  const isOffersNearbyLoading = useAppSelector(offersNearbySlice.getOffersNearbyLoadingStatus);
 
-  const offerError = useAppSelector(getOfferError);
-  const offersNearbyError = useAppSelector(getOffersNearbyError);
+  const offerError = useAppSelector(offerSlice.getOfferError);
+  const offersNearbyError = useAppSelector(offersNearbySlice.getOffersNearbyError);
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(fetchOffer(Number(id)));
-    dispatch(fetchOfferNearby(Number(id)));
+    dispatch(offerSlice.fetchOffer(Number(id)));
+    dispatch(offersNearbySlice.fetchOfferNearby(Number(id)));
   }, [dispatch, id]);
 
   if (isOfferLoading || isOffersNearbyLoading) {

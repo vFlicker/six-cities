@@ -2,7 +2,7 @@ import { unstable_HistoryRouter as HistoryRouter, Route, Routes } from 'react-ro
 
 import { useAppSelector } from '@/hooks';
 import { AppRoute } from '@/constants';
-import { getAuthorizationStatus, isCheckedAuth } from '@/store';
+import { userSlice } from '@/store';
 import { Review } from '@/types';
 import { browserHistory } from '@/utils';
 
@@ -21,9 +21,9 @@ type AppProps = {
 };
 
 export function App({ reviews }: AppProps): JSX.Element {
-  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const authorizationStatus = useAppSelector(userSlice.getAuthorizationStatus);
 
-  if (isCheckedAuth(authorizationStatus)) {
+  if (userSlice.isCheckedAuth(authorizationStatus)) {
     return (
       <Spinner />
     );

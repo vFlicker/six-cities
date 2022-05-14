@@ -1,11 +1,11 @@
 import { CityName } from '@/constants';
 import { useAppDispatch, useAppSelector } from '@/hooks';
-import { changeCityName, getCurrentCityName } from '@/store';
+import { appSlice } from '@/store';
 
 import { LocationsItem } from '../locations-item';
 
 export function LocationsList(): JSX.Element {
-  const currentCityName = useAppSelector(getCurrentCityName);
+  const currentCityName = useAppSelector(appSlice.getCurrentCityName);
 
   const dispatch = useAppDispatch();
 
@@ -23,7 +23,7 @@ export function LocationsList(): JSX.Element {
                 evt.preventDefault();
 
                 if (cityName === currentCityName) return;
-                dispatch(changeCityName(cityName));
+                dispatch(appSlice.changeCityName(cityName));
               }}
             />
           </li>

@@ -1,12 +1,7 @@
 import { useLayoutEffect } from 'react';
 
 import { useAppDispatch, useAppSelector } from '@/hooks';
-import {
-  fetchOffers,
-  getOffersError,
-  getOffersLoadingStatus,
-  getSortedOffers,
-} from '@/store';
+import { offersSlice } from '@/store';
 
 import { CardItemCities } from '../card-item';
 import { CardList } from '../card-list';
@@ -21,14 +16,14 @@ import { Sorting } from '../sorting';
 import { Spinner } from '../spinner';
 
 export function SectionMain(): JSX.Element {
-  const sortedOffers = useAppSelector(getSortedOffers);
-  const isOffersLoading = useAppSelector(getOffersLoadingStatus);
-  const offersError = useAppSelector(getOffersError);
+  const sortedOffers = useAppSelector(offersSlice.getSortedOffers);
+  const isOffersLoading = useAppSelector(offersSlice.getOffersLoadingStatus);
+  const offersError = useAppSelector(offersSlice.getOffersError);
 
   const dispatch = useAppDispatch();
 
   useLayoutEffect(() => {
-    dispatch(fetchOffers());
+    dispatch(offersSlice.fetchOffers());
   }, [dispatch]);
 
   if (isOffersLoading) {

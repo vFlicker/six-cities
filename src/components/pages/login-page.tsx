@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { AppRoute } from '@/constants';
 import { useAppSelector } from '@/hooks';
-import { getCurrentCityName, getAuthorizationStatus, isUserAuthorized } from '@/store';
+import { appSlice, userSlice } from '@/store';
 
 import { LocationsItem } from '../locations-item';
 import { SectionHeader, SectionLocations, SectionLogin } from '../sections';
@@ -11,11 +11,11 @@ import { SectionHeader, SectionLocations, SectionLogin } from '../sections';
 export function LoginPage(): JSX.Element {
   const navigate = useNavigate();
 
-  const authorizationStatus = useAppSelector(getAuthorizationStatus);
-  const currentCityName = useAppSelector(getCurrentCityName);
+  const authorizationStatus = useAppSelector(userSlice.getAuthorizationStatus);
+  const currentCityName = useAppSelector(appSlice.getCurrentCityName);
 
   useEffect(() => {
-    if (isUserAuthorized(authorizationStatus)) {
+    if (userSlice.isUserAuthorized(authorizationStatus)) {
       navigate(AppRoute.ROOT);
     }
   }, [authorizationStatus, navigate]);

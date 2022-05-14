@@ -2,13 +2,13 @@ import { Link } from 'react-router-dom';
 
 import { AppRoute, AuthorizationStatus } from '@/constants';
 import { useAppDispatch, useAppSelector } from '@/hooks';
-import { logout, getAuthorizationStatus, getUser } from '@/store';
+import { userSlice } from '@/store';
 
 const USER_DEFAULT_AVATAR_URL = '../img/avatar.svg';
 
 export function HeaderNavList(): JSX.Element {
-  const authorizationStatus = useAppSelector(getAuthorizationStatus);
-  const user = useAppSelector(getUser);
+  const authorizationStatus = useAppSelector(userSlice.getAuthorizationStatus);
+  const user = useAppSelector(userSlice.getUser);
 
   const dispatch = useAppDispatch();
 
@@ -45,7 +45,7 @@ export function HeaderNavList(): JSX.Element {
         <Link
           to={AppRoute.ROOT}
           className="header__nav-link"
-          onClick={() => dispatch(logout())}
+          onClick={() => dispatch(userSlice.logout())}
         >
           <span className="header__signout">Sign out</span>
         </Link>

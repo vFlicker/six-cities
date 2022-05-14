@@ -1,2 +1,2 @@
-export { fetchOfferNearby } from './action';
+export * from './action';
 export * from './selectors';

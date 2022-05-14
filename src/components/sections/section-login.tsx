@@ -1,7 +1,7 @@
 import { FormEvent, useRef } from 'react';
 
 import { useAppDispatch } from '@/hooks';
-import { login } from '@/store';
+import { userSlice } from '@/store';
 
 export function SectionLogin(): JSX.Element {
   const emailRef = useRef<HTMLInputElement>(null);
@@ -14,7 +14,7 @@ export function SectionLogin(): JSX.Element {
 
     if (!emailRef.current || !passwordRef.current) return;
 
-    dispatch(login({
+    dispatch(userSlice.login({
       email: emailRef.current.value,
       password: passwordRef.current.value,
     }));

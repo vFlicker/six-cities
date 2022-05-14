@@ -1,11 +1,6 @@
 import { useEffect } from 'react';
 
-import {
-  fetchOffersFavorite,
-  getOffersFavorite,
-  getOffersFavoriteError,
-  getOffersFavoriteLoadingStatus,
-} from '@/store';
+import { offersFavoriteSlice } from '@/store';
 
 import { CardItemFavorites } from '../card-item';
 import { CardList } from '../card-list';
@@ -14,14 +9,16 @@ import { Spinner } from '../spinner';
 import { useAppDispatch, useAppSelector } from '@/hooks';
 
 export function SectionFavorites(): JSX.Element {
-  const offersFavorite = useAppSelector(getOffersFavorite);
-  const offersFavoriteLoadingStatus = useAppSelector(getOffersFavoriteLoadingStatus);
-  const offersFavoriteError = useAppSelector(getOffersFavoriteError);
+  const offersFavorite = useAppSelector(offersFavoriteSlice.getOffersFavorite);
+  const offersFavoriteLoadingStatus = useAppSelector(
+    offersFavoriteSlice.getOffersFavoriteLoadingStatus,
+  );
+  const offersFavoriteError = useAppSelector(offersFavoriteSlice.getOffersFavoriteError);
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(fetchOffersFavorite());
+    dispatch(offersFavoriteSlice.fetchOffersFavorite());
   }, [dispatch]);
 
   if (offersFavoriteLoadingStatus) {

@@ -2,7 +2,7 @@ import { Navigate } from 'react-router-dom';
 
 import { AppRoute } from '@/constants';
 import { useAppSelector } from '@/hooks';
-import { getAuthorizationStatus, isUserAuthorized } from '@/store';
+import { userSlice } from '@/store';
 
 type PrivateRouteProps = {
   children: JSX.Element;
@@ -10,9 +10,9 @@ type PrivateRouteProps = {
 
 // TODO: how we get token?
 export function PrivateRoute({ children }: PrivateRouteProps): JSX.Element {
-  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const authorizationStatus = useAppSelector(userSlice.getAuthorizationStatus);
 
-  return isUserAuthorized(authorizationStatus)
+  return userSlice.isUserAuthorized(authorizationStatus)
     ? children
     : <Navigate to={AppRoute.LOGIN} />;
 }
