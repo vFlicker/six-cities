@@ -4,7 +4,7 @@ import { Offers } from '@/types';
 import { ApiError } from '@/services';
 
 import { ReducerName } from '../../constants';
-import { fetchOffers } from './action';
+import { fetchOffers } from './api-actions';
 
 const initialState = {
   offers: {} as Offers,

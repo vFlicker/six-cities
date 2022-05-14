@@ -5,7 +5,7 @@ import { ApiError } from '@/services';
 import { AuthorizationStatus as TAuthorizationStatus, User } from '@/types';
 
 import { ReducerName } from '../../constants';
-import { checkAuthStatus, login, logout } from './action';
+import { checkAuthStatus, login, logout } from './api-actions';
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH as TAuthorizationStatus,

@@ -4,7 +4,7 @@ import { ApiError } from '@/services';
 import { Offer } from '@/types';
 
 import { ReducerName } from '../../constants';
-import { fetchOfferNearby } from './action';
+import { fetchOfferNearby } from './api-actions';
 
 const initialState = {
   offersNearby: [] as Offer[],

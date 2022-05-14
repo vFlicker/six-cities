@@ -4,7 +4,7 @@ import { ApiError } from '@/services';
 import { Offer } from '@/types';
 
 import { ReducerName } from '../../constants';
-import { fetchOffersFavorite } from './action';
+import { fetchOffersFavorite } from './api-actions';
 
 const initialState = {
   offersFavorite: [] as Offer[],

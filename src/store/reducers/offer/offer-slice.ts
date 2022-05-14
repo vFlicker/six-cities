@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { ApiError } from '@/services';
 import { Offer } from '@/types/';
 
-import { fetchOffer } from './action';
+import { fetchOffer } from './api-actions';
 
 const initialState = {
   offer: {} as Offer,
