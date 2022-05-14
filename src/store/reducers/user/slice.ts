@@ -1,8 +1,8 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createAction, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 // TODO: what do we use instead of the enums?
 import { AuthorizationStatus } from '@/constants';
-import { AuthorizationStatus as TAuthorizationStatus, User } from '@/types';
+import { AppRoute, AuthorizationStatus as TAuthorizationStatus, User } from '@/types';
 
 import { ReducerName } from '../../constants';
 import { checkAuthStatus, login, logout } from './api-actions';
@@ -73,5 +73,6 @@ const slice = createSlice({
   }),
 });
 
+export const redirectToRoute = createAction<AppRoute>('userData/redirectToRoute');
 export const { setAuthorizationStatus, setUserData } = slice.actions;
 export default slice;

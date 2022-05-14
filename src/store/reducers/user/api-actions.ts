@@ -11,8 +11,7 @@ import {
 } from '@/services';
 
 import { AsyncThunkOptions } from '../types';
-import { redirectToRoute } from './actions';
-import { setAuthorizationStatus } from './slice';
+import { redirectToRoute, setAuthorizationStatus } from './slice';
 
 type AuthData = {
   email: string;
