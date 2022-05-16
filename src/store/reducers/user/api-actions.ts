@@ -20,13 +20,13 @@ type AuthData = {
 
 export const checkAuthStatus = createAsyncThunk<User, undefined, AsyncThunkOptions>(
   'userData/authStatus',
-  async (_, { extra: apiService, rejectWithValue }) => {
+  async (_, { dispatch, extra: apiService, rejectWithValue }) => {
     try {
       const { data } = await apiService.get<User>(getApiRoute.login());
-      setAuthorizationStatus(AuthorizationStatus.AUTH);
+      dispatch(setAuthorizationStatus(AuthorizationStatus.AUTH));
       return Adapter.userFormServerToClient(data);
     } catch (error) {
-      setAuthorizationStatus(AuthorizationStatus.NO_AUTH);
+      dispatch(setAuthorizationStatus(AuthorizationStatus.NO_AUTH));
       errorHandler(error);
       return rejectWithValue(error);
     }
@@ -39,15 +39,14 @@ export const login = createAsyncThunk<User, AuthData, AsyncThunkOptions>(
     try {
       const { data } = await apiService.post<User>(getApiRoute.login(), authData);
       const transformedData = Adapter.userFormServerToClient(data);
-      const { token } = data;
 
-      saveToken(token);
-      setAuthorizationStatus(AuthorizationStatus.AUTH);
+      saveToken(data.token);
+      dispatch(setAuthorizationStatus(AuthorizationStatus.AUTH));
       dispatch(redirectToRoute(AppRoute.ROOT));
 
       return transformedData;
     } catch (error) {
-      setAuthorizationStatus(AuthorizationStatus.NO_AUTH);
+      dispatch(setAuthorizationStatus(AuthorizationStatus.NO_AUTH));
       errorHandler(error);
       return rejectWithValue(error);
     }
@@ -56,10 +55,10 @@ export const login = createAsyncThunk<User, AuthData, AsyncThunkOptions>(
 
 export const logout = createAsyncThunk<void, undefined, AsyncThunkOptions>(
   'userData/logout',
-  async (_, { extra: apiService, rejectWithValue }) => {
+  async (_, { dispatch, extra: apiService, rejectWithValue }) => {
     try {
       await apiService.delete(getApiRoute.logout());
-      setAuthorizationStatus(AuthorizationStatus.NO_AUTH);
+      dispatch(setAuthorizationStatus(AuthorizationStatus.NO_AUTH));
       return dropToken();
     } catch (error) {
       errorHandler(error);
