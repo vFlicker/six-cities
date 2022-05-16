@@ -1,12 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { ErrorType, Offer } from '@/types';
+import { ErrorType, Offer, Review } from '@/types';
 
-import { fetchOffer } from './api-actions';
+import { fetchComments, fetchOffer } from './api-actions';
 
 const initialState = {
-  offer: {} as Offer,
-  loading: true,
+  offer: null as unknown as Offer,
+  comments: [] as Review[],
+  loading: false,
   error: null as ErrorType,
 };
 
@@ -16,6 +17,7 @@ const slice = createSlice({
   reducers: {},
   extraReducers: ((builder) => {
     builder
+      // ----- OFFER -----
       .addCase(fetchOffer.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -26,6 +28,21 @@ const slice = createSlice({
         state.error = null;
       })
       .addCase(fetchOffer.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+
+      // ----- COMMENTS -----
+      .addCase(fetchComments.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchComments.fulfilled, (state, action) => {
+        state.comments = action.payload;
+        state.loading = false;
+        state.error = null;
+      })
+      .addCase(fetchComments.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });

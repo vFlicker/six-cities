@@ -1,9 +1,18 @@
-import { ErrorType, Offer, RootState } from '@/types';
+import {
+  ErrorType,
+  Offer,
+  Review,
+  RootState,
+} from '@/types';
 
 import { ReducerName } from '../../constants';
 
 export const getOffer = (state: RootState): Offer | null => (
   state[ReducerName.OFFER].offer
+);
+
+export const getComments = (state: RootState): Review[] => (
+  state[ReducerName.OFFER].comments
 );
 
 export const getOfferLoadingStatus = (state: RootState): boolean => (

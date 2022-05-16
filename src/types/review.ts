@@ -1,3 +1,4 @@
+import { CamelToSnakeCaseNested } from './helpers';
 import { User } from './user';
 
 export type Review = {
@@ -7,3 +8,5 @@ export type Review = {
   rating: number;
   user: User;
 };
+
+export type ReviewServer = CamelToSnakeCaseNested<Review>;

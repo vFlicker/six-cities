@@ -1,20 +1,17 @@
-import { Review } from '@/types';
+import { useAppSelector } from '@/hooks';
+import { offerSlice } from '@/store';
 
 import { ReviewsForm } from '../reviews-form';
 import { ReviewsList } from '../reviews-list';
 
-type SectionReviewsProps = {
-  reviews: Review[];
-};
+export function SectionReviews(): JSX.Element {
+  const reviews = useAppSelector(offerSlice.getComments);
 
-export function SectionReviews({ reviews }: SectionReviewsProps): JSX.Element {
-  const amount = reviews.length;
-
-  return (
+  return reviews && (
     <section className="property__reviews reviews">
       <h2 className="reviews__title">
         Reviews &middot;
-        <span className="reviews__amount">{amount}</span>
+        <span className="reviews__amount">{reviews.length}</span>
       </h2>
       <ReviewsList reviews={reviews} />
       <ReviewsForm />

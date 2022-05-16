@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 
-import { reviews } from '@/mocks';
 import { store, userSlice } from '@/store';
 import { App } from '@/components/app';
 
@@ -15,7 +14,7 @@ ReactDOM.render(
   <StrictMode>
     <Provider store={store}>
       <ToastContainer />
-      <App reviews={reviews} />
+      <App />
     </Provider>
   </StrictMode>,
   document.getElementById('root'),

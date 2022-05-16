@@ -7,7 +7,7 @@ import { fetchOfferNearby } from './api-actions';
 
 const initialState = {
   offersNearby: [] as Offer[],
-  loading: true,
+  loading: false,
   error: null as ErrorType,
 };
 

@@ -3,19 +3,14 @@ import { useParams } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '@/hooks';
 import { offerSlice, offersNearbySlice } from '@/store';
-import { Review } from '@/types';
 
 import { CardItemNearPlaces } from '../card-item';
 import { CardList } from '../card-list';
-import { NotFoundPage } from './not-found-page';
 import { SectionHeader, SectionPlaces, SectionProperty } from '../sections';
 import { Spinner } from '../spinner';
+import { ErrorPage } from './error-page';
 
-type OfferPageProps = {
-  reviews: Review[];
-};
-
-export function OfferPage({ reviews }: OfferPageProps): JSX.Element {
+export function OfferPage(): JSX.Element {
   const { id } = useParams();
 
   const offer = useAppSelector(offerSlice.getOffer);
@@ -31,6 +26,7 @@ export function OfferPage({ reviews }: OfferPageProps): JSX.Element {
 
   useEffect(() => {
     dispatch(offerSlice.fetchOffer(Number(id)));
+    dispatch(offerSlice.fetchComments(Number(id)));
     dispatch(offersNearbySlice.fetchOfferNearby(Number(id)));
   }, [dispatch, id]);
 
@@ -38,19 +34,16 @@ export function OfferPage({ reviews }: OfferPageProps): JSX.Element {
     return <Spinner />;
   }
 
-  if (offerError || offersNearbyError) {
-    return <h1>Error!</h1>;
-  }
-
-  if (!offer) {
-    return <NotFoundPage />;
+  // TODO: add Error page to all pages
+  if (!offer || offerError || offersNearbyError) {
+    return <ErrorPage />;
   }
 
   return (
     <div className="page">
       <SectionHeader />
       <main className="page__main page__main--property">
-        <SectionProperty offer={offer} reviews={reviews} />
+        <SectionProperty offer={offer} />
 
         <div className="container">
           <SectionPlaces className="near-places">

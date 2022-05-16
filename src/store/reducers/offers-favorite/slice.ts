@@ -7,7 +7,7 @@ import { fetchOffersFavorite } from './api-actions';
 
 const initialState = {
   offersFavorite: [] as Offer[],
-  loading: true,
+  loading: false,
   error: null as ErrorType,
 };
 

@@ -10,7 +10,7 @@ import { checkAuthStatus, login, logout } from './api-actions';
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH as TAuthorizationStatus,
   user: {} as User,
-  loading: true,
+  loading: false,
   error: null as unknown,
 };
 

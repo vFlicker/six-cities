@@ -7,7 +7,7 @@ import { fetchOffers } from './api-actions';
 
 const initialState = {
   offers: {} as Offers,
-  loading: true,
+  loading: false,
   error: null as ErrorType,
 };
 

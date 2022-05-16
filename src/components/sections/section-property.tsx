@@ -1,16 +1,15 @@
 import { useAppSelector } from '@/hooks';
 import { offersNearbySlice } from '@/store';
-import { Offer, Review } from '@/types';
+import { Offer } from '@/types';
 import { convertRatingToPercents } from '@/utils';
 
 import { SectionMap, SectionReviews } from './index';
 
 type OfferProps = {
   offer: Offer;
-  reviews: Review[];
-};
+}
 
-export function SectionProperty({ offer, reviews }: OfferProps): JSX.Element {
+export function SectionProperty({ offer }: OfferProps): JSX.Element {
   const offersNearby = useAppSelector(offersNearbySlice.getOffersNearby);
 
   const {
@@ -126,7 +125,7 @@ export function SectionProperty({ offer, reviews }: OfferProps): JSX.Element {
             </div>
           </div>
 
-          <SectionReviews reviews={reviews} />
+          <SectionReviews />
         </div>
       </div>
       <SectionMap className="property__map" offers={offersNearby} />
