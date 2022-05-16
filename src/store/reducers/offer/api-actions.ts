@@ -11,6 +11,12 @@ import {
 
 import { AsyncThunkOptions } from '../types';
 
+type SendCommentPayload = {
+  id: number;
+  comment: string;
+  rating: number;
+}
+
 export const fetchOffer = createAsyncThunk<Offer, number, AsyncThunkOptions>(
   'offer',
   async (id, { extra: apiService, rejectWithValue }) => {
@@ -24,11 +30,25 @@ export const fetchOffer = createAsyncThunk<Offer, number, AsyncThunkOptions>(
   },
 );
 
+// TODO: use normal naming for actions
 export const fetchComments = createAsyncThunk<Review[], number, AsyncThunkOptions>(
   'comment',
   async (id, { extra: apiService, rejectWithValue }) => {
     try {
       const { data } = await apiService.get<ReviewServer[]>(getApiRoute.comments(id));
+      return data;
+    } catch (error) {
+      errorHandler(error);
+      return rejectWithValue(error);
+    }
+  },
+);
+
+export const sendComment = createAsyncThunk<undefined, SendCommentPayload, AsyncThunkOptions>(
+  'sendComment',
+  async ({ id, comment, rating }, { extra: apiService, rejectWithValue }) => {
+    try {
+      const { data } = await apiService.post(getApiRoute.comments(id), { comment, rating });
       return data;
     } catch (error) {
       errorHandler(error);

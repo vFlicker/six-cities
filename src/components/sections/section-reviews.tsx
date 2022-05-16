@@ -1,11 +1,13 @@
+import { AuthorizationStatus } from '@/constants';
 import { useAppSelector } from '@/hooks';
-import { offerSlice } from '@/store';
+import { offerSlice, userSlice } from '@/store';
 
 import { ReviewsForm } from '../reviews-form';
 import { ReviewsList } from '../reviews-list';
 
 export function SectionReviews(): JSX.Element {
   const reviews = useAppSelector(offerSlice.getComments);
+  const authorizationStatus = useAppSelector(userSlice.getAuthorizationStatus);
 
   return reviews && (
     <section className="property__reviews reviews">
@@ -14,7 +16,7 @@ export function SectionReviews(): JSX.Element {
         <span className="reviews__amount">{reviews.length}</span>
       </h2>
       <ReviewsList reviews={reviews} />
-      <ReviewsForm />
+      {authorizationStatus === AuthorizationStatus.AUTH && <ReviewsForm />}
     </section>
   );
 }

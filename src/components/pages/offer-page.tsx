@@ -14,12 +14,11 @@ export function OfferPage(): JSX.Element {
   const { id } = useParams();
 
   const offer = useAppSelector(offerSlice.getOffer);
-  const offersNearby = useAppSelector(offersNearbySlice.getOffersNearby);
-
   const isOfferLoading = useAppSelector(offerSlice.getOfferLoadingStatus);
-  const isOffersNearbyLoading = useAppSelector(offersNearbySlice.getOffersNearbyLoadingStatus);
-
   const offerError = useAppSelector(offerSlice.getOfferError);
+
+  const offersNearby = useAppSelector(offersNearbySlice.getOffersNearby);
+  const isOffersNearbyLoading = useAppSelector(offersNearbySlice.getOffersNearbyLoadingStatus);
   const offersNearbyError = useAppSelector(offersNearbySlice.getOffersNearbyError);
 
   const dispatch = useAppDispatch();

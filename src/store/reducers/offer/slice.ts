@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { ErrorType, Offer, Review } from '@/types';
 
-import { fetchComments, fetchOffer } from './api-actions';
+import { fetchComments, fetchOffer, sendComment } from './api-actions';
 
 const initialState = {
   offer: null as unknown as Offer,
@@ -32,7 +32,7 @@ const slice = createSlice({
         state.error = action.payload;
       })
 
-      // ----- COMMENTS -----
+      // ----- LOAD COMMENTS -----
       .addCase(fetchComments.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -43,6 +43,21 @@ const slice = createSlice({
         state.error = null;
       })
       .addCase(fetchComments.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+
+      // ----- SEND COMMENT -----
+      // TODO: now when comment sending all pages are spinner
+      .addCase(sendComment.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(sendComment.fulfilled, (state) => {
+        state.loading = false;
+        state.error = null;
+      })
+      .addCase(sendComment.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });

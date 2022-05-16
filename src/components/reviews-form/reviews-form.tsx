@@ -1,4 +1,8 @@
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
+import { useParams } from 'react-router-dom';
+
+import { useAppDispatch } from '@/hooks';
+import { offerSlice } from '@/store';
 
 import { RatingList } from '../rating-list';
 
@@ -6,15 +10,29 @@ const MIN_STAR_COUNT = 1;
 const MIN_REVIEW_LENGTH = 5;
 
 export function ReviewsForm(): JSX.Element {
-  const [rating, setRating] = useState<number>(0);
-  const [review, setReview] = useState<string>('');
+  const { id } = useParams();
+
+  const [rating, setRating] = useState(0);
+  const [review, setReview] = useState('');
+
+  const dispatch = useAppDispatch();
 
   const isSubmitDisabled = review.length < MIN_REVIEW_LENGTH || rating < MIN_STAR_COUNT;
+
+  const handleFromSubmit = (evt: FormEvent<HTMLFormElement>): void => {
+    evt.preventDefault();
+
+    dispatch(offerSlice.sendComment({
+      id: Number(id),
+      rating,
+      comment: review,
+    }));
+  };
 
   return (
     <form
       className="reviews__form form"
-      onSubmit={(evt) => evt.preventDefault()}
+      onSubmit={handleFromSubmit}
     >
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <RatingList
