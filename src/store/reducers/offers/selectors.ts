@@ -13,7 +13,7 @@ const getOffers = (state: RootState): Offers | null => (
 const getFilteredOffers = createSelector(
   getOffers,
   getCurrentCityName,
-  (offers, cityName) => (offers ? offers[cityName] : null),
+  (offers, cityName) => (offers ? offers[cityName.toLocaleLowerCase()] : []),
 );
 
 export const getOffersLoadingStatus = (state: RootState): boolean => (

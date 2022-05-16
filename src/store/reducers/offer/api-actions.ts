@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { Adapter, errorHandler } from '@/services';
+import { errorHandler } from '@/services';
 import { getApiRoute } from '@/utils';
 import { Offer, OfferServer } from '@/types';
 
@@ -11,9 +11,7 @@ export const fetchOffer = createAsyncThunk<Offer, number, AsyncThunkOptions>(
   async (id, { extra: apiService, rejectWithValue }) => {
     try {
       const { data } = await apiService.get<OfferServer>(getApiRoute.offer(id));
-
-      // TODO: look at Redux normalize
-      return Adapter.offerFormServerToClient(data);
+      return data;
     } catch (error) {
       errorHandler(error);
       return rejectWithValue(error);

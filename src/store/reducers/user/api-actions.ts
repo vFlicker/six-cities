@@ -3,12 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AppRoute, AuthorizationStatus } from '@/constants';
 import { User } from '@/types';
 import { getApiRoute } from '@/utils/get-api-route';
-import {
-  Adapter,
-  dropToken,
-  saveToken,
-  errorHandler,
-} from '@/services';
+import { dropToken, saveToken, errorHandler } from '@/services';
 
 import { AsyncThunkOptions } from '../types';
 import { redirectToRoute, setAuthorizationStatus } from './slice';
@@ -24,7 +19,7 @@ export const checkAuthStatus = createAsyncThunk<User, undefined, AsyncThunkOptio
     try {
       const { data } = await apiService.get<User>(getApiRoute.login());
       dispatch(setAuthorizationStatus(AuthorizationStatus.AUTH));
-      return Adapter.userFormServerToClient(data);
+      return data;
     } catch (error) {
       dispatch(setAuthorizationStatus(AuthorizationStatus.NO_AUTH));
       errorHandler(error);
@@ -38,13 +33,10 @@ export const login = createAsyncThunk<User, AuthData, AsyncThunkOptions>(
   async (authData, { dispatch, extra: apiService, rejectWithValue }) => {
     try {
       const { data } = await apiService.post<User>(getApiRoute.login(), authData);
-      const transformedData = Adapter.userFormServerToClient(data);
-
       saveToken(data.token);
       dispatch(setAuthorizationStatus(AuthorizationStatus.AUTH));
       dispatch(redirectToRoute(AppRoute.ROOT));
-
-      return transformedData;
+      return data;
     } catch (error) {
       dispatch(setAuthorizationStatus(AuthorizationStatus.NO_AUTH));
       errorHandler(error);
