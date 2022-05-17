@@ -12,6 +12,7 @@ const MIN_REVIEW_LENGTH = 5;
 export function ReviewsForm(): JSX.Element {
   const { id } = useParams();
 
+  // TODO: move it to rating list
   const [rating, setRating] = useState(0);
   const [review, setReview] = useState('');
 

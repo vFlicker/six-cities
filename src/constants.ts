@@ -20,6 +20,11 @@ export const CityName = {
   DUSSELDORF: 'Dusseldorf',
 } as const;
 
+export const FavoriteStatus = {
+  FAVORITE: 1,
+  NOT_FAVORITE: 0,
+} as const;
+
 export const HttpCode = {
   BAD_REQUEST: 400,
   UNAUTHORIZED: 401,

@@ -1,5 +1,6 @@
-import { useAppSelector } from '@/hooks';
-import { offersNearbySlice } from '@/store';
+import { FavoriteStatus } from '@/constants';
+import { useAppDispatch, useAppSelector } from '@/hooks';
+import { offerSlice, offersNearbySlice } from '@/store';
 import { Offer } from '@/types';
 import { convertRatingToPercents } from '@/utils';
 
@@ -11,12 +12,14 @@ type OfferProps = {
 
 export function SectionProperty({ offer }: OfferProps): JSX.Element {
   const offersNearby = useAppSelector(offersNearbySlice.getOffersNearby);
+  const dispatch = useAppDispatch();
 
   const {
     bedrooms: bedroomCount,
     description,
     goods,
     host,
+    id,
     images,
     isFavorite,
     isPremium,
@@ -32,6 +35,13 @@ export function SectionProperty({ offer }: OfferProps): JSX.Element {
   const buttonFavoriteClass = isFavorite
     ? 'button property__bookmark-button  property__bookmark-button--active'
     : 'button property__bookmark-button';
+
+  const handleFavoriteButtonClick = () => {
+    dispatch(offerSlice.changeOfferFavoriteStatus({
+      id,
+      status: isFavorite ? FavoriteStatus.NOT_FAVORITE : FavoriteStatus.FAVORITE,
+    }));
+  };
 
   return (
     <section className="property">
@@ -55,7 +65,11 @@ export function SectionProperty({ offer }: OfferProps): JSX.Element {
             <h1 className="property__name">
               {title}
             </h1>
-            <button className={buttonFavoriteClass} type="button">
+            <button
+              className={buttonFavoriteClass}
+              type="button"
+              onClick={handleFavoriteButtonClick}
+            >
               <svg className="property__bookmark-icon" width="31" height="33">
                 <use xlinkHref="#icon-bookmark" />
               </svg>

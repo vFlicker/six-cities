@@ -2,7 +2,9 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { ErrorType, Offer, Review } from '@/types';
 
-import { fetchComments, fetchOffer, sendComment } from './api-actions';
+import {
+  changeOfferFavoriteStatus, fetchComments, fetchOffer, sendComment,
+} from './api-actions';
 
 const initialState = {
   offer: null as unknown as Offer,
@@ -58,6 +60,21 @@ const slice = createSlice({
         state.error = null;
       })
       .addCase(sendComment.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+
+      // ----- CHANGE OFFER FAVORITE STATUS -----
+      .addCase(changeOfferFavoriteStatus.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(changeOfferFavoriteStatus.fulfilled, (state, action) => {
+        state.offer.isFavorite = action.payload.isFavorite;
+        state.loading = false;
+        state.error = null;
+      })
+      .addCase(changeOfferFavoriteStatus.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });

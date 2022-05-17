@@ -27,7 +27,7 @@ export function OfferPage(): JSX.Element {
     dispatch(offerSlice.fetchOffer(Number(id)));
     dispatch(offerSlice.fetchComments(Number(id)));
     dispatch(offersNearbySlice.fetchOfferNearby(Number(id)));
-  }, [dispatch, id]);
+  }, [dispatch, id, offer?.isFavorite]);
 
   if (isOfferLoading || isOffersNearbyLoading) {
     return <Spinner />;

@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { AppRoute, AuthorizationStatus } from '@/constants';
 import { User } from '@/types';
-import { getApiRoute } from '@/utils/get-api-route';
+import { apiRoute } from '@/utils/get-api-route';
 import { dropToken, saveToken, errorHandler } from '@/services';
 
 import { AsyncThunkOptions } from '../types';
@@ -17,7 +17,7 @@ export const checkAuthStatus = createAsyncThunk<User, undefined, AsyncThunkOptio
   'userData/authStatus',
   async (_, { dispatch, extra: apiService, rejectWithValue }) => {
     try {
-      const { data } = await apiService.get<User>(getApiRoute.login());
+      const { data } = await apiService.get<User>(apiRoute.login());
       dispatch(setAuthorizationStatus(AuthorizationStatus.AUTH));
       return data;
     } catch (error) {
@@ -32,7 +32,7 @@ export const login = createAsyncThunk<User, AuthData, AsyncThunkOptions>(
   'userData/login',
   async (authData, { dispatch, extra: apiService, rejectWithValue }) => {
     try {
-      const { data } = await apiService.post<User>(getApiRoute.login(), authData);
+      const { data } = await apiService.post<User>(apiRoute.login(), authData);
       saveToken(data.token);
       dispatch(setAuthorizationStatus(AuthorizationStatus.AUTH));
       dispatch(redirectToRoute(AppRoute.ROOT));
@@ -49,7 +49,7 @@ export const logout = createAsyncThunk<void, undefined, AsyncThunkOptions>(
   'userData/logout',
   async (_, { dispatch, extra: apiService, rejectWithValue }) => {
     try {
-      await apiService.delete(getApiRoute.logout());
+      await apiService.delete(apiRoute.logout());
       dispatch(setAuthorizationStatus(AuthorizationStatus.NO_AUTH));
       return dropToken();
     } catch (error) {
