@@ -1,7 +1,9 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import path from 'path';
 import { Configuration as WebpackConfiguration } from 'webpack';
 import { Configuration as WebpackDevServerConfiguration } from 'webpack-dev-server';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 interface Configuration extends WebpackConfiguration {
   devServer: WebpackDevServerConfiguration;
@@ -13,8 +15,9 @@ const config: Configuration = {
   mode: 'development',
   entry: './src/index.tsx',
   output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, './public'),
+    filename: '[name].[contenthash].js',
+    path: path.resolve(__dirname, 'public'),
+    // clean: true,
   },
   module: {
     rules: [
@@ -24,8 +27,8 @@ const config: Configuration = {
         loader: 'babel-loader',
       },
       {
-        test: /\.(css)$/,
-        use: [ 'style-loader', 'css-loader'],
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.(png|jpe?g|gif|ico)$/,
@@ -36,13 +39,14 @@ const config: Configuration = {
   plugins: [
     new ForkTsCheckerWebpackPlugin({
       async: false,
-      eslint: {
-        files: './src/**/*',
-      },
+      eslint: { files: './src/**/*' },
+    }),
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, './src/index.html'),
     }),
   ],
   resolve: {
-    alias: { '@': path.resolve(__dirname, 'src/') },
+    alias: { '@': path.resolve(__dirname, './src') },
     extensions: ['.ts', '.tsx', '.js'],
   },
   devServer: {
@@ -50,7 +54,7 @@ const config: Configuration = {
     port: DEV_SERVER_PORT,
     open: true,
     historyApiFallback: true,
-  }
+  },
 };
 
 export default config;

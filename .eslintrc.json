@@ -25,6 +25,7 @@
       }
     }
   },
+  "ignorePatterns": ["*.html"],
   "rules": {
     "@typescript-eslint/no-unused-vars": "error",
     "import/extensions": ["error", "ignorePackages", {
