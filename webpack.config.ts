@@ -12,11 +12,11 @@ interface Configuration extends WebpackConfiguration {
 export const DEV_SERVER_PORT = 3000;
 
 const config: Configuration = {
-  mode: 'development',
   entry: './src/index.tsx',
   output: {
     filename: '[name].[contenthash].js',
     path: path.resolve(__dirname, 'public'),
+    // TODO: uncomment this
     // clean: true,
   },
   module: {
@@ -38,6 +38,7 @@ const config: Configuration = {
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/i,
         type: 'asset/resource',
+        generator: { filename: 'fonts/[name].[contenthash].[ext]' },
       },
     ],
   },
@@ -48,6 +49,7 @@ const config: Configuration = {
     }),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, './src/index.html'),
+      favicon: './src/assets/images/favicon.ico',
     }),
   ],
   resolve: {
@@ -57,7 +59,6 @@ const config: Configuration = {
   devServer: {
     static: path.resolve(__dirname, 'public'),
     port: DEV_SERVER_PORT,
-    open: true,
     historyApiFallback: true,
   },
 };

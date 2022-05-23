@@ -17,8 +17,6 @@ export function HeaderNavList(): JSX.Element {
     borderRadius: '50%',
   };
 
-  console.log(style);
-
   if (authorizationStatus !== AuthorizationStatus.AUTH) {
     return (
       <ul className="header__nav-list">
