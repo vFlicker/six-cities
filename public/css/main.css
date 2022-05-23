@@ -180,7 +180,7 @@ template {
   display: none
 } */
 
-@font-face {
+/* @font-face {
   font-family: rubik;
   font-style: normal;
   font-weight: 300;
@@ -210,7 +210,7 @@ template {
   font-weight: 700;
   src: url(../fonts/rubik-bold.woff2) format("woff2"), url(../fonts/rubik-bold.woff) format("woff"), url(../fonts/rubik-bold.ttf) format("truetype");
   font-display: swap
-}
+} */
 
 /* body,
 html {

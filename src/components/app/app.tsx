@@ -15,7 +15,7 @@ import {
   NotFoundPage,
   OfferPage,
 } from '../pages';
-import { normalize } from './styles';
+import { globalFonts, normalize } from './styles';
 
 export function App(): JSX.Element {
   const authorizationStatus = useAppSelector(userSlice.getAuthorizationStatus);
@@ -51,6 +51,7 @@ export function App(): JSX.Element {
 }
 
 const GlobalStyle = createGlobalStyle`
+  ${globalFonts}
   ${normalize}
 
   body,
