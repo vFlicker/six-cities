@@ -9,7 +9,7 @@ import { checkAuthStatus, login, logout } from './api-actions';
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH as TAuthorizationStatus,
-  user: {} as User,
+  user: null as User | null,
   loading: false,
   error: null as unknown,
 };
@@ -59,6 +59,7 @@ const slice = createSlice({
 
       // ----- LOGOUT -----
       .addCase(logout.pending, (state) => {
+        state.user = null;
         state.loading = true;
         state.error = null;
       })

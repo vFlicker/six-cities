@@ -31,15 +31,18 @@ const config: Configuration = {
         use: ['style-loader', 'css-loader'],
       },
       {
-        test: /\.(png|jpe?g|gif|ico)$/,
-        loader: 'file-loader',
+        test: /\.(png|svg|jpg|jpeg|ico)$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: 'images/[name].[contenthash][ext][query]',
+        },
       },
     ],
   },
   plugins: [
     new ForkTsCheckerWebpackPlugin({
       async: false,
-      eslint: { files: './src/**/*' },
+      eslint: { files: './src/**/*.{ts,tsx,js}' },
     }),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, './src/index.html'),

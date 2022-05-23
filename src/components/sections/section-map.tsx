@@ -6,26 +6,26 @@ import { appSlice } from '@/store';
 import { Offer } from '@/types';
 
 import 'leaflet/dist/leaflet.css';
+import {
+  pinActiveIcon as URL_MARKER_CURRENT,
+  pinIcon as URL_MARKER_DEFAULT,
+} from '@/assets/images';
 
 type MapProps = {
   offers: Offer[];
   className: string;
 };
 
-const MapSetting = {
-  URL_MARKER_DEFAULT: './img/pin.svg',
-  URL_MARKER_CURRENT: './img/pin-active.svg',
-  ICON_SIZE: [27, 39] as [number, number],
-};
+const ICON_SIZE: [number, number] = [27, 39];
 
 const defaultIcon = new Icon({
-  iconUrl: MapSetting.URL_MARKER_DEFAULT,
-  iconSize: MapSetting.ICON_SIZE,
+  iconUrl: URL_MARKER_DEFAULT,
+  iconSize: ICON_SIZE,
 });
 
 const currentIcon = new Icon({
-  iconUrl: MapSetting.URL_MARKER_CURRENT,
-  iconSize: MapSetting.ICON_SIZE,
+  iconUrl: URL_MARKER_CURRENT,
+  iconSize: ICON_SIZE,
 });
 
 export function SectionMap({ offers, className = '' }: MapProps): JSX.Element {
