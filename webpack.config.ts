@@ -1,11 +1,10 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import path from 'path';
-import { Configuration as WebpackConfiguration, WebpackPluginInstance } from 'webpack';
+import { Configuration as WebpackConfiguration } from 'webpack';
 import { Configuration as WebpackDevServerConfiguration } from 'webpack-dev-server';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-// eslint-disable-next-line import/no-unresolved
 import TerserPlugin from 'terser-webpack-plugin';
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 
@@ -17,12 +16,18 @@ const DEV_SERVER_PORT = 3000;
 
 const isDev = process.env.NODE_ENV === 'development';
 
-const getMinimizerConfig = (): WebpackPluginInstance[] | undefined => {
+const getOptimization = () => {
   if (!isDev) {
-    return [
-      new CssMinimizerPlugin(),
-      new TerserPlugin(),
-    ];
+    const optimization = {
+      minimizer: [
+        new CssMinimizerPlugin(),
+        new TerserPlugin(),
+        new MiniCssExtractPlugin({ filename: 'css/[name].[contenthash].css' }),
+      ],
+      minimize: true,
+    };
+
+    return optimization;
   }
 
   return undefined;
@@ -36,10 +41,7 @@ const config: Configuration = {
     // TODO: uncomment this
     // clean: true,
   },
-  optimization: {
-    minimizer: getMinimizerConfig(),
-    minimize: true,
-  },
+  optimization: getOptimization(),
   plugins: [
     new ForkTsCheckerWebpackPlugin({
       async: false,
@@ -49,9 +51,6 @@ const config: Configuration = {
       template: path.resolve(__dirname, './src/index.html'),
       minify: { collapseWhitespace: !isDev },
       favicon: './src/assets/images/favicon.ico',
-    }),
-    new MiniCssExtractPlugin({
-      filename: isDev ? '[name].css' : 'css/[name].[contenthash].css',
     }),
   ],
   module: {
@@ -71,12 +70,12 @@ const config: Configuration = {
       {
         test: /\.(png|svg|jpg|jpeg)$/i,
         type: 'asset/resource',
-        generator: { filename: 'images/[name].[contenthash][ext][query]' },
+        generator: { filename: isDev ? '[name][ext]' : 'images/[name].[contenthash][ext][query]' },
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/i,
         type: 'asset/resource',
-        generator: { filename: 'fonts/[name].[contenthash][ext]' },
+        generator: { filename: isDev ? '[name][ext]' : 'fonts/[name].[contenthash][ext]' },
       },
     ],
   },
@@ -84,7 +83,6 @@ const config: Configuration = {
     alias: { '@': path.resolve(__dirname, './src') },
     extensions: ['.ts', '.tsx', '.js'],
   },
-  devtool: isDev ? 'source-map' : false,
   devServer: {
     static: path.resolve(__dirname, 'public'),
     port: DEV_SERVER_PORT,
