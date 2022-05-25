@@ -5,6 +5,7 @@ import { useAppDispatch } from '@/hooks';
 import { offerSlice } from '@/store';
 
 import { RatingList } from '../rating-list';
+import { Button } from '../shared';
 
 const MIN_STAR_COUNT = 1;
 const MIN_REVIEW_LENGTH = 5;
@@ -59,13 +60,9 @@ export function ReviewsForm(): JSX.Element {
           <b className="reviews__text-amount">50 characters</b>
           .
         </p>
-        <button
-          className="reviews__submit form__submit button"
-          type="submit"
-          disabled={isSubmitDisabled}
-        >
+        <Button type="submit" disabled={isSubmitDisabled}>
           Submit
-        </button>
+        </Button>
       </div>
     </form>
   );

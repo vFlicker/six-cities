@@ -275,7 +275,7 @@ img {
   padding-right: 58px
 }
 
-.button {
+/* .button {
   padding: 0;
   background: 0 0;
   border: none;
@@ -289,7 +289,7 @@ img {
   overflow-wrap: break-word;
   transition: color .3s, background-color .3s;
   outline: 0
-}
+} */
 
 .page {
   background-color: #fff
@@ -1504,11 +1504,11 @@ img {
   font-weight: 700
 }
 
-.reviews__submit {
+/* .reviews__submit {
   width: 143px;
   font-size: 16px;
   line-height: 1.1875
-}
+} */
 
 .form__rating {
   display: flex;
@@ -1632,7 +1632,7 @@ img {
   color: #818181
 }
 
-.form__submit {
+/* .form__submit {
   padding: 16px 20px 13px;
   color: #fff;
   background-color: #4481c3;
@@ -1646,7 +1646,7 @@ img {
 
 .form__submit:disabled {
   background-color: #c7c7c7
-}
+} */
 
 .near-places {
   margin: 0 16px 0 12px;
@@ -1729,9 +1729,9 @@ img {
   margin-bottom: 24px
 }
 
-.login__submit {
+/* .login__submit {
   width: 100%
-}
+} */
 
 .favorites {
   padding: 0 15px 93px;

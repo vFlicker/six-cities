@@ -2,6 +2,7 @@ import { FormEvent, useRef } from 'react';
 
 import { useAppDispatch } from '@/hooks';
 import { userSlice } from '@/store';
+import { Button } from '../shared';
 
 export function SectionLogin(): JSX.Element {
   const emailRef = useRef<HTMLInputElement>(null);
@@ -53,9 +54,9 @@ export function SectionLogin(): JSX.Element {
             ref={passwordRef}
           />
         </div>
-        <button className="login__submit form__submit button" type="submit">
+        <Button type="submit" fullWidth>
           Sign in
-        </button>
+        </Button>
       </form>
     </section>
   );
