@@ -7,8 +7,8 @@ import { Offer } from '@/types';
 
 import 'leaflet/dist/leaflet.css';
 import {
-  pinActiveIcon as URL_MARKER_CURRENT,
-  pinIcon as URL_MARKER_DEFAULT,
+  pinActiveIconSrc as URL_MARKER_CURRENT,
+  pinIconSrc as URL_MARKER_DEFAULT,
 } from '@/assets/images';
 
 type MapProps = {

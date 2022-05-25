@@ -1,21 +1,21 @@
-import amsterdamIcon from './amsterdam.jpg';
-import amsterdam2xIcon from './amsterdam@2x.jpg';
-import avatarAngelinaIcon from './avatar-angelina.jpg';
-import mapBigIcon from './map-big.jpg';
-import mapBig2xIcon from './map-big@2x.jpg';
-import mapIcon from './map.jpg';
-import map2xIcon from './map@2x.jpg';
-import noPlacesIcon from './no-places.png';
-import noPlaces2xIcon from './no-places@2x.png';
+import amsterdamPhotoSrc from './amsterdam.jpg';
+import amsterdam2xPhotoSrc from './amsterdam@2x.jpg';
+import avatarAngelinaPhotoSrc from './avatar-angelina.jpg';
+import mapBigPhotoSrc from './map-big.jpg';
+import mapBig2xPhotoSrc from './map-big@2x.jpg';
+import mapPhotoSrc from './map.jpg';
+import map2xPhotoSrc from './map@2x.jpg';
+import noPlacesPhotoSrc from './no-places.png';
+import noPlaces2xPhotoSrc from './no-places@2x.png';
 
 export {
-  amsterdamIcon,
-  amsterdam2xIcon,
-  avatarAngelinaIcon,
-  mapBigIcon,
-  mapBig2xIcon,
-  mapIcon,
-  map2xIcon,
-  noPlacesIcon,
-  noPlaces2xIcon,
+  amsterdamPhotoSrc,
+  amsterdam2xPhotoSrc,
+  avatarAngelinaPhotoSrc,
+  mapBigPhotoSrc,
+  mapBig2xPhotoSrc,
+  mapPhotoSrc,
+  map2xPhotoSrc,
+  noPlacesPhotoSrc,
+  noPlaces2xPhotoSrc,
 };

@@ -4,7 +4,7 @@ import { AppRoute, AuthorizationStatus } from '@/constants';
 import { useAppDispatch, useAppSelector } from '@/hooks';
 import { userSlice } from '@/store';
 
-import { avatarIcon } from '@/assets/images';
+import { avatarIconSrc } from '@/assets/images';
 
 export function HeaderNavList(): JSX.Element {
   const authorizationStatus = useAppSelector(userSlice.getAuthorizationStatus);
@@ -13,7 +13,7 @@ export function HeaderNavList(): JSX.Element {
   const dispatch = useAppDispatch();
 
   const style = {
-    backgroundImage: user ? `url(${user.avatarUrl})` : `url(${avatarIcon})`,
+    backgroundImage: user ? `url(${user.avatarUrl})` : `url(${avatarIconSrc})`,
     borderRadius: '50%',
   };
 
