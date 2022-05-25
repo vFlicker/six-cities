@@ -27,5 +27,3 @@ export function SectionMainEmpty(): JSX.Element {
     </main>
   );
 }
-
-export default SectionMainEmpty;

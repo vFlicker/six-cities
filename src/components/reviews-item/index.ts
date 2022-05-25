@@ -1,3 +1,1 @@
-import ReviewsItem from './reviews-item';
-
-export default ReviewsItem;
+export { ReviewsItem } from './reviews-item';

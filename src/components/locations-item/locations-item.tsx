@@ -26,5 +26,3 @@ export function LocationsItem({
     </Link>
   );
 }
-
-export default LocationsItem;
