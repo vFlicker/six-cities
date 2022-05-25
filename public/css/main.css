@@ -292,6 +292,9 @@ img {
 } */
 
 .page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   background-color: #fff
 }
 
@@ -345,7 +348,16 @@ img {
   height: 100vh;
 }
 
-.page__main--not-found {
+.page__main {
+  flex-grow: 1;
+}
+
+.error__title {
+  margin: 0 auto;
+  text-align: center;
+  width: 500px;
+}
+
   display: flex;
   flex-grow: 1;
   padding-top: 11px;

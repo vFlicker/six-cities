@@ -1,5 +1,6 @@
+export * from './error-section';
 export * from './footer-section';
-export * from './section-error';
+
 export * from './section-favorites';
 export * from './section-header';
 export * from './section-locations';
