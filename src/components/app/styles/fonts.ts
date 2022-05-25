@@ -1,4 +1,4 @@
-import { css } from 'styled-components';
+import { css } from '@emotion/react';
 
 import rubikLightWoff from '@/assets/fonts/rubik-light.woff';
 import rubikLightWoff2 from '@/assets/fonts/rubik-light.woff2';

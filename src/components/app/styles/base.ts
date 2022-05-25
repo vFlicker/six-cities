@@ -1,9 +1,9 @@
-import { createGlobalStyle } from 'styled-components';
+import { css } from '@emotion/react';
 
 import { globalFonts } from './fonts';
 import { normalize } from './normalize';
 
-export const GlobalStyle = createGlobalStyle`
+export const globalStyle = css`
   ${globalFonts}
   ${normalize}
 

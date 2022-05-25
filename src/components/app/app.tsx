@@ -1,4 +1,5 @@
 import { unstable_HistoryRouter as HistoryRouter, Route, Routes } from 'react-router-dom';
+import { Global } from '@emotion/react';
 
 import { useAppSelector } from '@/hooks';
 import { AppRoute } from '@/constants';
@@ -14,7 +15,7 @@ import {
   NotFoundPage,
   OfferPage,
 } from '../pages';
-import { GlobalStyle } from './styles';
+import { globalStyle } from './styles';
 
 export function App(): JSX.Element {
   const authorizationStatus = useAppSelector(userSlice.getAuthorizationStatus);
@@ -28,7 +29,7 @@ export function App(): JSX.Element {
 
   return (
     <>
-      <GlobalStyle />
+      <Global styles={globalStyle} />
       <HistoryRouter history={browserHistory}>
         <Routes>
           <Route path={AppRoute.ROOT} element={<MainPage />} />
