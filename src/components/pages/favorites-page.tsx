@@ -1,15 +1,16 @@
-import { SectionHeader, SectionFooter, SectionFavorites } from '../sections';
+import { SectionHeader, FooterSection, SectionFavorites } from '../sections';
+import { FlexContainer } from '../shared';
 
 export function FavoritesPage(): JSX.Element {
   return (
     <div className="page">
       <SectionHeader />
       <main className="page__main page__main--favorites">
-        <div className="page__favorites-container container">
+        <FlexContainer>
           <SectionFavorites />
-        </div>
+        </FlexContainer>
       </main>
-      <SectionFooter />
+      <FooterSection />
     </div>
   );
 }

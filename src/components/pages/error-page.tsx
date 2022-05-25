@@ -1,15 +1,16 @@
-import { SectionHeader, SectionFooter, SectionError } from '../sections';
+import { SectionHeader, FooterSection, SectionError } from '../sections';
+import { FlexContainer } from '../shared';
 
 export function ErrorPage(): JSX.Element {
   return (
     <div className="page">
       <SectionHeader />
       <main className="page__main page__main--not-found">
-        <div className="page__not-found-container container">
+        <FlexContainer>
           <SectionError />
-        </div>
+        </FlexContainer>
       </main>
-      <SectionFooter />
+      <FooterSection />
     </div>
   );
 }

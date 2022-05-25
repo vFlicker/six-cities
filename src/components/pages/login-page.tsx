@@ -7,6 +7,7 @@ import { appSlice, userSlice } from '@/store';
 
 import { LocationsItem } from '../locations-item';
 import { SectionHeader, SectionLocations, SectionLogin } from '../sections';
+import { FlexContainer } from '../shared';
 
 export function LoginPage(): JSX.Element {
   const navigate = useNavigate();
@@ -24,14 +25,14 @@ export function LoginPage(): JSX.Element {
     <div className="page page--gray page--login">
       <SectionHeader />
       <main className="page__main page__main--login">
-        <div className="page__login-container container">
+        <FlexContainer>
           <SectionLogin />
           <SectionLocations className="locations--login locations--current">
             <div className="locations__item">
               <LocationsItem cityName={currentCityName} />
             </div>
           </SectionLocations>
-        </div>
+        </FlexContainer>
       </main>
     </div>
   );

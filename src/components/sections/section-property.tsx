@@ -4,6 +4,8 @@ import { offerSlice, offersNearbySlice } from '@/store';
 import { Offer } from '@/types';
 import { convertRatingToPercents } from '@/utils';
 
+import { Container } from '../shared';
+
 import { SectionMap, SectionReviews } from './index';
 
 type OfferProps = {
@@ -45,7 +47,7 @@ export function SectionProperty({ offer }: OfferProps): JSX.Element {
 
   return (
     <section className="property">
-      <div className="property__gallery-container container">
+      <Container>
         <div className="property__gallery">
           {images.map((imageUrl) => (
             <div className="property__image-wrapper" key={imageUrl}>
@@ -53,7 +55,7 @@ export function SectionProperty({ offer }: OfferProps): JSX.Element {
             </div>
           ))}
         </div>
-      </div>
+      </Container>
       <div className="property__container container">
         <div className="property__wrapper">
           {isPremium && (

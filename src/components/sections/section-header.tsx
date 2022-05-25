@@ -1,14 +1,15 @@
 import { Link } from 'react-router-dom';
 
+import { logoIcon } from '@/assets/images';
 import { AppRoute } from '@/constants';
 
 import { HeaderNavList } from '../header-nav-list';
-import { logoIcon } from '@/assets/images';
+import { Container } from '../shared';
 
 export function SectionHeader(): JSX.Element {
   return (
     <header className="header">
-      <div className="container">
+      <Container>
         <div className="header__wrapper">
           <div className="header__left">
             <Link to={AppRoute.ROOT} className="header__logo-link header__logo-link--active">
@@ -19,7 +20,7 @@ export function SectionHeader(): JSX.Element {
             <HeaderNavList />
           </nav>
         </div>
-      </div>
+      </Container>
     </header>
   );
 }
