@@ -1,5 +1,6 @@
 import { useLayoutEffect } from 'react';
 
+import { Container } from '@/components/shared';
 import { useAppDispatch, useAppSelector } from '@/hooks';
 import { offersSlice } from '@/store';
 
@@ -42,11 +43,11 @@ export function MainSection(): JSX.Element {
   return (
     <main className="page__main page__main--index">
       <h1 className="visually-hidden">Cities</h1>
-      <div className="tabs">
+      <Container>
         <SectionLocations className="container">
           <LocationsList />
         </SectionLocations>
-      </div>
+      </Container>
       <div className="cities">
         <S.MainContainer>
           <SectionPlaces className="cities__places">

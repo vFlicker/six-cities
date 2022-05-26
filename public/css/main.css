@@ -389,6 +389,7 @@ img {
 } */
 
 .page__main--property {
+  flex-direction: column;
   padding-bottom: 129px
 }
 
@@ -1048,10 +1049,10 @@ img {
   flex-grow: 1
 }
 
-.property__container {
+/* .property__container {
   position: relative;
   overflow-x: hidden
-}
+} */
 
 .property__wrapper {
   display: flex;

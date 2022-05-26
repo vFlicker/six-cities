@@ -1,3 +1,5 @@
+import styled from '@emotion/styled';
+
 import { FavoriteStatus } from '@/constants';
 import { useAppDispatch, useAppSelector } from '@/hooks';
 import { offerSlice, offersNearbySlice } from '@/store';
@@ -56,7 +58,7 @@ export function SectionProperty({ offer }: OfferProps): JSX.Element {
           ))}
         </div>
       </Container>
-      <div className="property__container container">
+      <PropertyContainer>
         <div className="property__wrapper">
           {isPremium && (
             <div className="property__mark">
@@ -143,8 +145,13 @@ export function SectionProperty({ offer }: OfferProps): JSX.Element {
 
           <SectionReviews />
         </div>
-      </div>
+      </PropertyContainer>
       <SectionMap className="property__map" offers={offersNearby} />
     </section>
   );
 }
+
+const PropertyContainer = styled(Container)`
+  position: relative;
+  overflow-x: hidden
+`;
