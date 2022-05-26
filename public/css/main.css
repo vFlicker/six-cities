@@ -342,13 +342,14 @@ img {
   background-color: #f5f5f5
 }
 
-.page--not-found {
+/* .page--not-found {
   display: flex;
   flex-direction: column;
   height: 100vh;
-}
+} */
 
 .page__main {
+  display: flex;
   flex-grow: 1;
 }
 
@@ -358,22 +359,23 @@ img {
   width: 500px;
 }
 
+/* .page__main--not-found {
   display: flex;
   flex-grow: 1;
   padding-top: 11px;
-}
+} */
 
 /* .page__not-found-container {
   display: flex;
 } */
 
-.not-found {
+/* .not-found {
   width: 100%;
   padding: 0 0 93px 38px;
   border-bottom: 2px solid rgba(222,222,222,.5);
-}
+} */
 
-.not-found__title {
+/* .not-found__title {
   width: 420px;
   margin-top: 16.7vh;
   margin-right: auto;
@@ -384,7 +386,7 @@ img {
   background-size: 60px 73px;
   background-position: center top;
   background-repeat: no-repeat;
-}
+} */
 
 .page__main--property {
   padding-bottom: 129px
@@ -541,22 +543,22 @@ img {
   overflow-y: hidden
 }
 
-.cities__places-container {
+/* .cities__places-container {
   display: flex;
   padding-right: 0
-}
+} */
 
-.cities__places-container--empty {
+/* .cities__places-container--empty {
   padding-right: 0
-}
+} */
 
-.cities__no-places {
+/* .cities__no-places {
   position: relative;
   width: 498px;
   padding-left: 18px
-}
+} */
 
-.cities__no-places::after {
+/* .cities__no-places::after {
   content: "";
   position: absolute;
   width: 12.06vh;
@@ -569,7 +571,7 @@ img {
   border-right: 6px solid #4481c3;
   -webkit-transform: skew(-6.5deg);
   transform: skew(-6.5deg)
-}
+} */
 
 .cities__places {
   width: 572px;
@@ -594,8 +596,8 @@ img {
   margin-bottom: 24px
 }
 
-.page__main--index-empty .cities__right-section {
-  background-image: url(../img/no-places@2x.png);
+/* .page__main--index-empty .cities__right-section {
+  background-image: url(../img/no-places.png);
   background-size: auto 119%;
   background-repeat: no-repeat;
   background-position: right 100%
@@ -614,7 +616,7 @@ img {
     background-position: right center;
     background-size: 100% auto
   }
-}
+} */
 
 .cities__right-section {
   display: flex;
@@ -646,7 +648,7 @@ img {
   }
 }
 
-.cities__status-wrapper {
+/* .cities__status-wrapper {
   position: relative;
   z-index: 1;
   width: auto;
@@ -659,9 +661,9 @@ img {
   background-size: 45px 47px;
   background-position: center top;
   background-repeat: no-repeat
-}
+} */
 
-.cities__status {
+/* .cities__status {
   display: block;
   margin-bottom: 5px;
   font-size: 32px;
@@ -674,7 +676,7 @@ img {
   padding: 0 45px;
   font-size: 16px;
   line-height: 1.5
-}
+} */
 
 .locations--login {
   display: flex;
@@ -1808,7 +1810,7 @@ img {
   padding-top: 1px
 }
 
-.favorites__status-wrapper {
+/* .favorites__status-wrapper {
   width: 420px;
   margin-top: 16.7vh;
   margin-right: auto;
@@ -1834,7 +1836,7 @@ img {
   padding: 0 30px;
   font-size: 16px;
   line-height: 1.5
-}
+} */
 
 /* .footer {
   display: flex;

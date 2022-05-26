@@ -1,14 +1,11 @@
-import { SectionHeader, FooterSection, SectionNotFound } from '../sections';
-import { FlexContainer } from '../shared';
+import { SectionHeader, FooterSection, NotFoundSection } from '../sections';
 
 export function NotFoundPage(): JSX.Element {
   return (
     <div className="page  page--not-found">
       <SectionHeader />
       <main className="page__main page__main--not-found">
-        <FlexContainer>
-          <SectionNotFound />
-        </FlexContainer>
+        <NotFoundSection />
       </main>
       <FooterSection />
     </div>

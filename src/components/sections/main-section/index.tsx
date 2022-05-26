@@ -3,19 +3,20 @@ import { useLayoutEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@/hooks';
 import { offersSlice } from '@/store';
 
-import { CardItemCities } from '../card-item';
-import { CardList } from '../card-list';
+import { CardItemCities } from '../../card-item';
+import { CardList } from '../../card-list';
+import { LocationsList } from '../../locations-list';
+import { Sorting } from '../../sorting';
+import { Spinner } from '../../spinner';
+import { MainEmptySection } from '../main-empty-section';
 import {
   SectionLocations,
-  SectionMainEmpty,
   SectionMap,
   SectionPlaces,
-} from './index';
-import { LocationsList } from '../locations-list';
-import { Sorting } from '../sorting';
-import { Spinner } from '../spinner';
+} from '../index';
+import * as S from './styles';
 
-export function SectionMain(): JSX.Element {
+export function MainSection(): JSX.Element {
   const sortedOffers = useAppSelector(offersSlice.getSortedOffers);
   const isOffersLoading = useAppSelector(offersSlice.getOffersLoadingStatus);
   const offersError = useAppSelector(offersSlice.getOffersError);
@@ -35,7 +36,7 @@ export function SectionMain(): JSX.Element {
   }
 
   if (!sortedOffers) {
-    return <SectionMainEmpty />;
+    return <MainEmptySection />;
   }
 
   return (
@@ -47,7 +48,7 @@ export function SectionMain(): JSX.Element {
         </SectionLocations>
       </div>
       <div className="cities">
-        <div className="cities__places-container container">
+        <S.MainContainer>
           <SectionPlaces className="cities__places">
             <h2 className="visually-hidden">Places</h2>
             <b className="places__found">
@@ -67,7 +68,7 @@ export function SectionMain(): JSX.Element {
           <div className="cities__right-section">
             <SectionMap offers={sortedOffers} className="cities__map" />
           </div>
-        </div>
+        </S.MainContainer>
       </div>
     </main>
   );

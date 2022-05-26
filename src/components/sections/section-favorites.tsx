@@ -1,12 +1,13 @@
 import { useEffect } from 'react';
 
+import { useAppDispatch, useAppSelector } from '@/hooks';
 import { offersFavoriteSlice } from '@/store';
 
 import { CardItemFavorites } from '../card-item';
 import { CardList } from '../card-list';
 import { LocationsItem } from '../locations-item';
 import { Spinner } from '../spinner';
-import { useAppDispatch, useAppSelector } from '@/hooks';
+import { FavoritesEmptySection } from './favorites-empty-section';
 
 export function SectionFavorites(): JSX.Element {
   const offersFavorite = useAppSelector(offersFavoriteSlice.getOffersFavorite);
@@ -27,6 +28,12 @@ export function SectionFavorites(): JSX.Element {
 
   if (offersFavoriteError) {
     return <h1>Error!</h1>;
+  }
+
+  if (!offersFavorite.length) {
+    return (
+      <FavoritesEmptySection />
+    );
   }
 
   return (
