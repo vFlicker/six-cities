@@ -19,6 +19,7 @@ export function ReviewsForm(): JSX.Element {
 
   const dispatch = useAppDispatch();
 
+  // TODO: add sendingInProgress
   const isSubmitDisabled = review.length < MIN_REVIEW_LENGTH || rating < MIN_STAR_COUNT;
 
   const handleFromSubmit = (evt: FormEvent<HTMLFormElement>): void => {

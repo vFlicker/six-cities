@@ -14,3 +14,5 @@ export const getCurrentSortType = (state: RootState): SortType => (
 export const getActiveCardId = (state: RootState): number => (
   state[ReducerName.APP].activeCardId
 );
+
+// TODO: crate appLoaderSelector

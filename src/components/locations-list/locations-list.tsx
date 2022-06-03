@@ -14,6 +14,7 @@ export function LocationsList(): JSX.Element {
       {Object.entries(CityName).map(([key, cityName]) => {
         const activeClass = cityName === currentCityName ? 'tabs__item--active ' : '';
 
+        // TODO: look at NavLink
         return (
           <li key={key} className="locations__item">
             <LocationsItem

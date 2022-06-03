@@ -11,6 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 store.dispatch(userSlice.checkAuthStatus());
 
 ReactDOM.render(
+  // TODO: move wrappers to APP
   <StrictMode>
     <Provider store={store}>
       <ToastContainer />

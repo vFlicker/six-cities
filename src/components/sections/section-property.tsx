@@ -41,6 +41,7 @@ export function SectionProperty({ offer }: OfferProps): JSX.Element {
     : 'button property__bookmark-button';
 
   const handleFavoriteButtonClick = () => {
+    // TODO: add favoriteInProgress
     dispatch(offerSlice.changeOfferFavoriteStatus({
       id,
       status: isFavorite ? FavoriteStatus.NOT_FAVORITE : FavoriteStatus.FAVORITE,
