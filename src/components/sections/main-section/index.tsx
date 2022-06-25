@@ -1,12 +1,10 @@
 import { useLayoutEffect } from 'react';
 
-import { Container } from '@/components/shared';
 import { useAppDispatch, useAppSelector } from '@/hooks';
 import { offersSlice } from '@/store';
 
 import { CardItemCities } from '../../card-item';
 import { CardList } from '../../card-list';
-import { LocationsList } from '../../locations-list';
 import { Sorting } from '../../sorting';
 import { Spinner } from '../../spinner';
 import { MainEmptySection } from '../main-empty-section';
@@ -43,11 +41,7 @@ export function MainSection(): JSX.Element {
   return (
     <main className="page__main page__main--index">
       <h1 className="visually-hidden">Cities</h1>
-      <Container>
-        <SectionLocations className="container">
-          <LocationsList />
-        </SectionLocations>
-      </Container>
+      <SectionLocations />
       <div className="cities">
         <S.MainContainer>
           <SectionPlaces className="cities__places">

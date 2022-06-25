@@ -5,8 +5,8 @@ import { offersFavoriteSlice } from '@/store';
 
 import { CardItemFavorites } from '../card-item';
 import { CardList } from '../card-list';
-import { LocationsItem } from '../locations-item';
 import { Spinner } from '../spinner';
+import { Container, LocationItem } from '../shared';
 import { FavoritesEmptySection } from './favorites-empty-section';
 
 export function SectionFavorites(): JSX.Element {
@@ -38,24 +38,26 @@ export function SectionFavorites(): JSX.Element {
 
   return (
     <section className="favorites">
-      <h1 className="favorites__title">Saved listing</h1>
-      <ul className="favorites__list">
-        {offersFavorite.map((offer) => (
-          <li key={offer.city.name} className="favorites__locations-items">
-            <div className="favorites__locations locations locations--current">
-              <div className="locations__item">
-                <LocationsItem cityName={offer.city.name} />
+      <Container>
+        <h1 className="favorites__title">Saved listing</h1>
+        <ul className="favorites__list">
+          {offersFavorite.map((offer) => (
+            <li key={offer.city.name} className="favorites__locations-items">
+              <div className="favorites__locations locations locations--current">
+                <div className="locations__item">
+                  <LocationItem isActive cityName={offer.city.name} />
+                </div>
               </div>
-            </div>
 
-            <CardList
-              className="favorites__places"
-              offers={offersFavorite}
-              getCardItem={(offer) => <CardItemFavorites offer={offer} />}
-            />
-          </li>
-        ))}
-      </ul>
+              <CardList
+                className="favorites__places"
+                offers={offersFavorite}
+                getCardItem={(offer) => <CardItemFavorites offer={offer} />}
+              />
+            </li>
+          ))}
+        </ul>
+      </Container>
     </section>
   );
 }

@@ -1,6 +1,5 @@
 import { noResultsIconSrc } from '@/assets/images';
 
-import { LocationsList } from '../../locations-list';
 import { NotFound } from '../../shared';
 import { SectionLocations } from '../index';
 import * as S from './styles';
@@ -10,9 +9,7 @@ export function MainEmptySection(): JSX.Element {
     <main className="page__main page__main--index page__main--index-empty">
       <h1 className="visually-hidden">Cities</h1>
       <div className="tabs">
-        <SectionLocations className="container">
-          <LocationsList />
-        </SectionLocations>
+        <SectionLocations />
       </div>
       <div className="cities">
         <S.MainEmptyContainer>

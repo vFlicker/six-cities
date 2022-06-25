@@ -349,7 +349,6 @@ img {
 } */
 
 .page__main {
-  display: flex;
   flex-grow: 1;
 }
 
@@ -399,6 +398,7 @@ img {
 }
 
 .page__main--favorites {
+  display: flex;
   padding-top: 11px
 }
 
@@ -680,29 +680,29 @@ img {
   line-height: 1.5
 } */
 
-.locations--login {
+/* .locations--login {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-grow: 1;
   padding: 0 51px 63px 130px
-}
+} */
 
-.locations--login .locations__item-link {
+/* .locations--login .locations__item-link {
   padding: 9px 21px 6px 16px
-}
+} */
 
-.locations--current .locations__item {
+/* .locations--current .locations__item {
   margin: 0
-}
+} */
 
-.locations--current .locations__item-link {
+/* .locations--current .locations__item-link {
   color: #fff;
   background-color: #4481c3;
   text-shadow: 1px 0 0, .5px 0 0, -1px 0 0
-}
+} */
 
-.locations__list {
+/* .locations__list {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -710,13 +710,13 @@ img {
   flex-wrap: wrap;
   align-items: flex-start;
   padding: 16px 3px 33px
-}
+} */
 
-.locations__item {
+/* .locations__item {
   display: block;
   margin-right: 36px;
   margin-bottom: 19px
-}
+} */
 
 .favorites__locations .locations__item-link {
   min-width: 137px;
@@ -725,7 +725,7 @@ img {
   letter-spacing: .9px
 }
 
-.locations__item-link {
+/* .locations__item-link {
   display: block;
   padding: 9px 21px 6px 11px;
   font-size: 19px;
@@ -736,24 +736,23 @@ img {
   transform: skew(-15deg);
   border-radius: 3px;
   transition: background .3s, color .3s, text-shadow .3s
-}
+} */
 
-.locations__item-link span {
+/* .locations__item-link span {
   display: block;
-  -webkit-transform: skew(15deg);
   transform: skew(15deg)
-}
+} */
 
 .locations__item-link:focus,
 .locations__item-link:hover {
   text-shadow: 1px 0 0, .5px 0 0, -1px 0 0
 }
 
-.locations__item-link.tabs__item--active {
+/* .locations__item-link.tabs__item--active {
   text-shadow: 1px 0 0, .5px 0 0, -1px 0 0;
   color: #fff;
   background-color: #4481c3
-}
+} */
 
 .places__found {
   display: block;
@@ -1750,6 +1749,7 @@ img {
 } */
 
 .favorites {
+  width: 100%;
   padding: 0 15px 93px;
   border-bottom: 2px solid rgba(222, 222, 222, .5)
 }
