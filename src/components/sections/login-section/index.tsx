@@ -2,7 +2,8 @@ import { FormEvent, useRef } from 'react';
 
 import { useAppDispatch } from '@/hooks';
 import { userSlice } from '@/store';
-import { Button } from '../shared';
+import { Button } from '../../shared';
+import * as S from './styles';
 
 export function SectionLogin(): JSX.Element {
   const emailRef = useRef<HTMLInputElement>(null);
@@ -22,42 +23,35 @@ export function SectionLogin(): JSX.Element {
   };
 
   return (
-    <section className="login">
-      <h1 className="login__title">Sign in</h1>
-      <form
-        className="login__form form"
-        action="#"
-        method="post"
-        onSubmit={handleSubmit}
-      >
-        <div className="login__input-wrapper form__input-wrapper">
-          <label htmlFor="email" className="visually-hidden">E-mail</label>
-          <input
+    <S.Section>
+      <S.Title>Sign in</S.Title>
+      <S.Form action="#" method="post" onSubmit={handleSubmit}>
+        <S.InputWrapper>
+          <S.Label htmlFor="email">E-mail</S.Label>
+          <S.Input
             id="email"
-            className="login__input form__input"
             type="email"
             name="email"
             placeholder="Email"
             required
             ref={emailRef}
           />
-        </div>
-        <div className="login__input-wrapper form__input-wrapper">
-          <label htmlFor="password" className="visually-hidden">Password</label>
-          <input
+        </S.InputWrapper>
+        <S.InputWrapper>
+          <S.Label htmlFor="password">Password</S.Label>
+          <S.Input
             id="password"
-            className="login__input form__input"
             type="password"
             name="password"
             placeholder="Password"
             required
             ref={passwordRef}
           />
-        </div>
+        </S.InputWrapper>
         <Button type="submit" fullWidth>
           Sign in
         </Button>
-      </form>
-    </section>
+      </S.Form>
+    </S.Section>
   );
 }
