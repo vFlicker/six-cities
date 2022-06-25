@@ -3,11 +3,12 @@ import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@/hooks';
 import { offersFavoriteSlice } from '@/store';
 
-import { CardItemFavorites } from '../card-item';
-import { CardList } from '../card-list';
-import { Spinner } from '../spinner';
-import { Container, LocationItem } from '../shared';
-import { FavoritesEmptySection } from './favorites-empty-section';
+import { CardItemFavorites } from '../../card-item';
+import { CardList } from '../../card-list';
+import { Spinner } from '../../spinner';
+import { Container, LocationItem } from '../../shared';
+import { FavoritesEmptySection } from '../favorites-empty-section';
+import * as S from './styles';
 
 export function SectionFavorites(): JSX.Element {
   const offersFavorite = useAppSelector(offersFavoriteSlice.getOffersFavorite);
@@ -27,7 +28,7 @@ export function SectionFavorites(): JSX.Element {
   }
 
   if (offersFavoriteError) {
-    return <h1>Error!</h1>;
+    return <S.Title>Error!</S.Title>;
   }
 
   if (!offersFavorite.length) {
@@ -37,27 +38,25 @@ export function SectionFavorites(): JSX.Element {
   }
 
   return (
-    <section className="favorites">
+    <S.Section>
       <Container>
-        <h1 className="favorites__title">Saved listing</h1>
-        <ul className="favorites__list">
+        <S.Title>Saved listing</S.Title>
+        <S.List>
           {offersFavorite.map((offer) => (
-            <li key={offer.city.name} className="favorites__locations-items">
-              <div className="favorites__locations locations locations--current">
-                <div className="locations__item">
-                  <LocationItem isActive cityName={offer.city.name} />
-                </div>
-              </div>
+            <S.Item key={offer.city.name}>
+              <S.LocationWrapper>
+                <LocationItem isActive cityName={offer.city.name} />
+              </S.LocationWrapper>
 
               <CardList
                 className="favorites__places"
                 offers={offersFavorite}
                 getCardItem={(offer) => <CardItemFavorites offer={offer} />}
               />
-            </li>
+            </S.Item>
           ))}
-        </ul>
+        </S.List>
       </Container>
-    </section>
+    </S.Section>
   );
 }
