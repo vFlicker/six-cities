@@ -1,7 +1,7 @@
 import { MutableRefObject, useEffect, useState } from 'react';
 import { latLng, Map, TileLayer } from 'leaflet';
 
-import { City } from '@/types';
+import { City } from '~/types';
 
 const LAYER_URL_TEMPLATE =
   'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png';

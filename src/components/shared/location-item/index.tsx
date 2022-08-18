@@ -1,6 +1,6 @@
 import { MouseEvent, PropsWithChildren } from 'react';
 
-import { AppRoute } from '@/constants';
+import { AppRoute } from '~/constants';
 
 import * as S from './styles';
 

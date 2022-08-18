@@ -1,5 +1,5 @@
-import { SortType } from '@/constants';
-import { Offer, SortType as TSortType } from '@/types';
+import { SortType } from '~/constants';
+import { Offer, SortType as TSortType } from '~/types';
 
 const sortByPriceHighToLow = (firstOffer: Offer, secondOffer: Offer): number =>
   secondOffer.price - firstOffer.price;

@@ -1,13 +1,13 @@
 import { css } from '@emotion/react';
 
-import rubikLightWoff from '@/assets/fonts/rubik-light.woff';
-import rubikLightWoff2 from '@/assets/fonts/rubik-light.woff2';
-import rubikRegularWoff from '@/assets/fonts/rubik-regular.woff';
-import rubikRegularWoff2 from '@/assets/fonts/rubik-regular.woff2';
-import rubikMediumWoff from '@/assets/fonts/rubik-medium.woff';
-import rubikMediumWoff2 from '@/assets/fonts/rubik-medium.woff2';
-import rubikBoldWoff from '@/assets/fonts/rubik-bold.woff';
-import rubikBoldWoff2 from '@/assets/fonts/rubik-bold.woff2';
+import rubikLightWoff from '~/assets/fonts/rubik-light.woff';
+import rubikLightWoff2 from '~/assets/fonts/rubik-light.woff2';
+import rubikRegularWoff from '~/assets/fonts/rubik-regular.woff';
+import rubikRegularWoff2 from '~/assets/fonts/rubik-regular.woff2';
+import rubikMediumWoff from '~/assets/fonts/rubik-medium.woff';
+import rubikMediumWoff2 from '~/assets/fonts/rubik-medium.woff2';
+import rubikBoldWoff from '~/assets/fonts/rubik-bold.woff';
+import rubikBoldWoff2 from '~/assets/fonts/rubik-bold.woff2';
 
 export const globalFonts = css`
   @font-face {

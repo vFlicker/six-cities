@@ -1,7 +1,7 @@
 import { useLayoutEffect } from 'react';
 
-import { useAppDispatch, useAppSelector } from '@/hooks';
-import { offersSlice } from '@/store';
+import { useAppDispatch, useAppSelector } from '~/hooks';
+import { offersSlice } from '~/store';
 
 import { CardItemCities } from '../../card-item';
 import { CardList } from '../../card-list';

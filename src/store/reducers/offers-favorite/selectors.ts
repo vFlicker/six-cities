@@ -1,4 +1,4 @@
-import { ErrorType, Offer, RootState } from '@/types';
+import { ErrorType, Offer, RootState } from '~/types';
 
 import { ReducerName } from '../../constants';
 

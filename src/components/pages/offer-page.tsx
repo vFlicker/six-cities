@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { useAppDispatch, useAppSelector } from '@/hooks';
-import { offerSlice, offersNearbySlice } from '@/store';
+import { useAppDispatch, useAppSelector } from '~/hooks';
+import { offerSlice, offersNearbySlice } from '~/store';
 
 import { CardItemNearPlaces } from '../card-item';
 import { CardList } from '../card-list';

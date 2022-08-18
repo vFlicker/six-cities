@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 
-import { AppRoute, AuthorizationStatus } from '@/constants';
-import { useAppDispatch, useAppSelector } from '@/hooks';
-import { userSlice } from '@/store';
+import { AppRoute, AuthorizationStatus } from '~/constants';
+import { useAppDispatch, useAppSelector } from '~/hooks';
+import { userSlice } from '~/store';
 
 import * as S from './styles';
 

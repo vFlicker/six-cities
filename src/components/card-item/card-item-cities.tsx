@@ -1,6 +1,6 @@
-import { useAppDispatch } from '@/hooks';
-import { Offer } from '@/types';
-import { appSlice } from '@/store';
+import { useAppDispatch } from '~/hooks';
+import { Offer } from '~/types';
+import { appSlice } from '~/store';
 
 import { CardItem } from './card-item';
 

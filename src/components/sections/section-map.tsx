@@ -1,15 +1,15 @@
 import { useEffect, useRef } from 'react';
 import { Icon, latLng, Marker } from 'leaflet';
 
-import { useAppSelector, useMap } from '@/hooks';
-import { appSlice } from '@/store';
-import { Offer } from '@/types';
+import { useAppSelector, useMap } from '~/hooks';
+import { appSlice } from '~/store';
+import { Offer } from '~/types';
 
 import 'leaflet/dist/leaflet.css';
 import {
   pinActiveIconSrc as URL_MARKER_CURRENT,
   pinIconSrc as URL_MARKER_DEFAULT,
-} from '@/assets/images';
+} from '~/assets/images';
 
 type MapProps = {
   offers: Offer[];

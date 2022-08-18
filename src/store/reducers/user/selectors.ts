@@ -1,4 +1,4 @@
-import { AuthorizationStatus, RootState, User } from '@/types';
+import { AuthorizationStatus, RootState, User } from '~/types';
 
 import { ReducerName } from '../../constants';
 

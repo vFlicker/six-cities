@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import { AppRoute } from '@/constants';
+import { AppRoute } from '~/constants';
 
 import { Container, Logo } from '../../shared';
 import { NavList } from './nav-list';

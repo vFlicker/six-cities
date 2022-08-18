@@ -1,4 +1,4 @@
-import { logoIconSrc } from '@/assets/images';
+import { logoIconSrc } from '~/assets/images';
 
 import * as S from './styles';
 

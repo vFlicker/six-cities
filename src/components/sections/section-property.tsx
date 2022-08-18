@@ -1,10 +1,10 @@
 import styled from '@emotion/styled';
 
-import { FavoriteStatus } from '@/constants';
-import { useAppDispatch, useAppSelector } from '@/hooks';
-import { offerSlice, offersNearbySlice } from '@/store';
-import { Offer } from '@/types';
-import { convertRatingToPercents } from '@/utils';
+import { FavoriteStatus } from '~/constants';
+import { useAppDispatch, useAppSelector } from '~/hooks';
+import { offerSlice, offersNearbySlice } from '~/store';
+import { Offer } from '~/types';
+import { convertRatingToPercents } from '~/utils';
 
 import { Container } from '../shared';
 

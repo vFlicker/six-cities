@@ -5,9 +5,9 @@ import {
 } from 'react-router-dom';
 import { Global } from '@emotion/react';
 
-import { useAppSelector } from '@/hooks';
-import { AppRoute } from '@/constants';
-import { userSlice } from '@/store';
+import { useAppSelector } from '~/hooks';
+import { AppRoute } from '~/constants';
+import { userSlice } from '~/store';
 
 import { Spinner } from '../spinner';
 import { PrivateRoute } from '../private-route';
@@ -19,7 +19,7 @@ import {
   OfferPage,
 } from '../pages';
 import { globalStyle } from './styles';
-import { browserHistory } from '@/utils';
+import { browserHistory } from '~/utils';
 
 export function App(): JSX.Element {
   const authorizationStatus = useAppSelector(userSlice.getAuthorizationStatus);

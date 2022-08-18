@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { LocationItem } from '@/components/shared';
+import { LocationItem } from '~/components/shared';
 
 export const Section = styled.section`
   width: 100%;

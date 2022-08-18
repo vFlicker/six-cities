@@ -1,5 +1,5 @@
-import { noResultsIconSrc } from '@/assets/images';
-import { SectionWithBorder, NotFound } from '@/components/shared';
+import { noResultsIconSrc } from '~/assets/images';
+import { SectionWithBorder, NotFound } from '~/components/shared';
 
 import * as S from './styles';
 

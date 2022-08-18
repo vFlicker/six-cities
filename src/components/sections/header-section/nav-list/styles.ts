@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { avatarIconSrc } from '@/assets/images';
+import { avatarIconSrc } from '~/assets/images';
 
 export const Nav = styled.nav`
   display: flex;

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
-import { useAppDispatch, useAppSelector } from '@/hooks';
-import { offersFavoriteSlice } from '@/store';
+import { useAppDispatch, useAppSelector } from '~/hooks';
+import { offersFavoriteSlice } from '~/store';
 
 import { CardItemFavorites } from '../../card-item';
 import { CardList } from '../../card-list';

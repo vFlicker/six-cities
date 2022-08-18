@@ -1,9 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { AppRoute, AuthorizationStatus } from '@/constants';
-import { User } from '@/types';
-import { apiRoute } from '@/utils/get-api-route';
-import { dropToken, saveToken, errorHandler } from '@/services';
+import { AppRoute, AuthorizationStatus } from '~/constants';
+import { User } from '~/types';
+import { apiRoute } from '~/utils/get-api-route';
+import { dropToken, saveToken, errorHandler } from '~/services';
 
 import { AsyncThunkOptions } from '../types';
 import { redirectToRoute, setAuthorizationStatus } from './slice';

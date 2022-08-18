@@ -1,6 +1,6 @@
 import { createSelector } from '@reduxjs/toolkit';
 
-import { ErrorType, Offers, RootState } from '@/types';
+import { ErrorType, Offers, RootState } from '~/types';
 
 import { getCurrentCityName, getCurrentSortType } from '../app';
 import { ReducerName } from '../../constants';

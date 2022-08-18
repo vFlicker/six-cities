@@ -4,8 +4,8 @@ import { Provider } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import { AnyAction } from '@reduxjs/toolkit';
 
-import { store, userSlice } from '@/store';
-import { App } from '@/components/app';
+import { store, userSlice } from './store';
+import { App } from './components/app';
 
 import 'react-toastify/dist/ReactToastify.css';
 

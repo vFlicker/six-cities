@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import { createApiService } from '@/services';
+import { createApiService } from '~/services';
 
 import { normalizePayload, redirect } from './middlewares';
 import { rootReducer } from './root-reducer';

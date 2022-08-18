@@ -1,12 +1,12 @@
 import { createAction, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 // TODO: what do we use instead of the enums?
-import { AuthorizationStatus } from '@/constants';
+import { AuthorizationStatus } from '~/constants';
 import {
   AppRoute,
   AuthorizationStatus as TAuthorizationStatus,
   User,
-} from '@/types';
+} from '~/types';
 
 import { ReducerName } from '../../constants';
 import { checkAuthStatus, login, logout } from './api-actions';

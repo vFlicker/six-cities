@@ -1,5 +1,5 @@
-import { AuthorizationStatus } from '@/constants';
-import { AuthorizationStatus as TAuthorizationStatus } from '@/types';
+import { AuthorizationStatus } from '~/constants';
+import { AuthorizationStatus as TAuthorizationStatus } from '~/types';
 
 export const isCheckedAuth = (
   authorizationStatus: TAuthorizationStatus,

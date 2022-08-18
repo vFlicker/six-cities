@@ -1,8 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { errorHandler } from '@/services';
-import { Offer, OfferServer } from '@/types';
-import { apiRoute } from '@/utils';
+import { errorHandler } from '~/services';
+import { Offer, OfferServer } from '~/types';
+import { apiRoute } from '~/utils';
 
 import { AsyncThunkOptions } from '../types';
 

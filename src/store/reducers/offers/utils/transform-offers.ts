@@ -1,4 +1,4 @@
-import { Offers, Offer } from '@/types';
+import { Offers, Offer } from '~/types';
 
 export const transformOffers = (offers: Offer[]): Offers => {
   const transformedOffers = {} as Offers;

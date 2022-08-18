@@ -97,7 +97,7 @@ const config = (env: Env): Configuration => {
       ],
     },
     resolve: {
-      alias: { '@': path.resolve(__dirname, './src') },
+      alias: { '~': path.resolve(__dirname, './src') },
       extensions: ['.ts', '.tsx', '.js'],
     },
     devServer: {

@@ -16,5 +16,10 @@
     "plugin:prettier/recommended"
   ],
   "plugins": ["react", "@typescript-eslint/eslint-plugin"],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
   "rules": {}
 }

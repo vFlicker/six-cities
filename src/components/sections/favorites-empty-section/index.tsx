@@ -1,4 +1,4 @@
-import { savedIconSrc } from '@/assets/images';
+import { savedIconSrc } from '~/assets/images';
 
 import { NotFound, SectionWithBorder } from '../../shared';
 import * as S from './styles';

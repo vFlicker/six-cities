@@ -1,4 +1,4 @@
-import { noResultsIconSrc } from '@/assets/images';
+import { noResultsIconSrc } from '~/assets/images';
 
 import { NotFound } from '../../shared';
 import { SectionLocations } from '../index';

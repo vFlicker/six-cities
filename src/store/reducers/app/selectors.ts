@@ -1,4 +1,4 @@
-import { CityName, RootState, SortType } from '@/types';
+import { CityName, RootState, SortType } from '~/types';
 
 import { ReducerName } from '../../constants';
 

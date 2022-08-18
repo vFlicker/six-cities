@@ -1,5 +1,5 @@
-import { Review } from '@/types';
-import { convertRatingToPercents } from '@/utils';
+import { Review } from '~/types';
+import { convertRatingToPercents } from '~/utils';
 
 import * as S from './styles';
 

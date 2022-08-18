@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { ErrorType, Offer, Review } from '@/types';
+import { ErrorType, Offer, Review } from '~/types';
 
 import {
   changeOfferFavoriteStatus,

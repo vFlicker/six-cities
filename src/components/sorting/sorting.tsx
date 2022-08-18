@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
-import { SortType } from '@/constants';
-import { useAppDispatch, useAppSelector } from '@/hooks';
-import { SortType as TSortType } from '@/types';
-import { appSlice } from '@/store';
+import { SortType } from '~/constants';
+import { useAppDispatch, useAppSelector } from '~/hooks';
+import { SortType as TSortType } from '~/types';
+import { appSlice } from '~/store';
 
 export function Sorting(): JSX.Element {
   const [sortMenuOpened, setSortMenuOpened] = useState(false);

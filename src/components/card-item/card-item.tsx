@@ -1,8 +1,8 @@
 import { MouseEvent, PropsWithChildren } from 'react';
 import { Link } from 'react-router-dom';
 
-import { Offer } from '@/types';
-import { convertRatingToPercents } from '@/utils/convert-rating-to-percents';
+import { Offer } from '~/types';
+import { convertRatingToPercents } from '~/utils/convert-rating-to-percents';
 
 type CardItemProps = PropsWithChildren<{
   offer: Offer;

@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { AppRoute } from '@/constants';
-import { useAppSelector } from '@/hooks';
-import { userSlice } from '@/store';
+import { AppRoute } from '~/constants';
+import { useAppSelector } from '~/hooks';
+import { userSlice } from '~/store';
 
 import { SectionHeader, LocationSection, SectionLogin } from '../sections';
 import { FlexContainer } from '../shared';

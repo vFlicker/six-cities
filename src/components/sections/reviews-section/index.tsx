@@ -1,6 +1,6 @@
-import { AuthorizationStatus } from '@/constants';
-import { useAppSelector } from '@/hooks';
-import { offerSlice, userSlice } from '@/store';
+import { AuthorizationStatus } from '~/constants';
+import { useAppSelector } from '~/hooks';
+import { offerSlice, userSlice } from '~/store';
 
 import { ReviewsForm } from './reviews-form';
 import { ReviewsList } from './reviews-list';

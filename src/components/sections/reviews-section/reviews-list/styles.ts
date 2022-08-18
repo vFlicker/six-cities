@@ -1,11 +1,11 @@
 import styled from '@emotion/styled';
 
-import { visuallyHidden } from '@/components/shared';
+import { visuallyHidden } from '~/components/shared';
 import {
   avatarIconSrc,
   starsActiveIconSrc,
   starsIconSrc,
-} from '@/assets/images';
+} from '~/assets/images';
 
 export const List = styled.ul`
   width: 100%;

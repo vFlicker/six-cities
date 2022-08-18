@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 
-import { Offer } from '@/types';
+import { Offer } from '~/types';
 
 type CardListProps = {
   className: string;

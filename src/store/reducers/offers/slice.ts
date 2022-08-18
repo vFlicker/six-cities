@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { ErrorType, Offers } from '@/types';
+import { ErrorType, Offers } from '~/types';
 
 import { ReducerName } from '../../constants';
 import { fetchOffers } from './api-actions';
