@@ -8,6 +8,7 @@ import { CardList } from '../../card-list';
 import { Spinner } from '../../spinner';
 import { Container, LocationItem } from '../../shared';
 import { FavoritesEmptySection } from '../favorites-empty-section';
+
 import * as S from './styles';
 
 export function SectionFavorites(): JSX.Element {
