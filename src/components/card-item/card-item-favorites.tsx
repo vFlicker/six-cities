@@ -3,8 +3,8 @@ import { Offer } from '@/types';
 import { CardItem } from './card-item';
 
 type CardItemFavoritesProps = {
-  offer: Offer
-}
+  offer: Offer;
+};
 
 export function CardItemFavorites(props: CardItemFavoritesProps): JSX.Element {
   return (

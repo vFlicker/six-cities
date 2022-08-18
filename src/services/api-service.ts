@@ -11,18 +11,16 @@ export const createApiService = (): AxiosInstance => {
     timeout: TIMEOUT,
   });
 
-  apiService.interceptors.request.use(
-    (config: AxiosRequestConfig) => {
-      const token = getToken();
+  apiService.interceptors.request.use((config: AxiosRequestConfig) => {
+    const token = getToken();
 
-      if (token) {
-        // eslint-disable-next-line no-param-reassign
-        config.headers = { 'x-token': token };
-      }
+    if (token) {
+      // eslint-disable-next-line no-param-reassign
+      config.headers = { 'x-token': token };
+    }
 
-      return config;
-    },
-  );
+    return config;
+  });
 
   return apiService;
 };

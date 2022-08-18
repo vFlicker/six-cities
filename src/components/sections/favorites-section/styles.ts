@@ -24,12 +24,11 @@ export const Item = styled.li`
   margin-bottom: 52px;
 
   &:last-child {
-    margin-bottom: 0
+    margin-bottom: 0;
   }
 `;
 
-export const LocationItem1 = styled(LocationItem)`
-`;
+export const LocationItem1 = styled(LocationItem)``;
 
 export const LocationWrapper = styled.div`
   margin-right: 120px;

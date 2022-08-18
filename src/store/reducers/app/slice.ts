@@ -27,5 +27,6 @@ const slice = createSlice({
   },
 });
 
-export const { changeCityName, changeSortType, setActiveCardId } = slice.actions;
+export const { changeCityName, changeSortType, setActiveCardId } =
+  slice.actions;
 export default slice;

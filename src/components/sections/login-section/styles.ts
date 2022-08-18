@@ -9,7 +9,7 @@ export const Section = styled.section`
   padding-left: 13px;
 
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     width: 12.03vh;
     min-width: 195px;

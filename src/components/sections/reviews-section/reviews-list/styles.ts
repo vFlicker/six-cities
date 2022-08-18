@@ -1,7 +1,11 @@
 import styled from '@emotion/styled';
 
 import { visuallyHidden } from '@/components/shared';
-import { avatarIconSrc, starsActiveIconSrc, starsIconSrc } from '@/assets/images';
+import {
+  avatarIconSrc,
+  starsActiveIconSrc,
+  starsIconSrc,
+} from '@/assets/images';
 
 export const List = styled.ul`
   width: 100%;
@@ -60,7 +64,7 @@ export const Stars = styled.div`
   font-size: 0;
 
   &::before {
-    content: "";
+    content: '';
     display: inline-block;
     width: 98px;
     height: 100%;
@@ -72,7 +76,7 @@ export const Stars = styled.div`
   }
 `;
 
-export const StarsItem = styled.span<{width: number}>`
+export const StarsItem = styled.span<{ width: number }>`
   position: absolute;
   top: 0;
   left: 0;
@@ -81,8 +85,8 @@ export const StarsItem = styled.span<{width: number}>`
   height: 100%;
   overflow: hidden;
 
-   &::before {
-    content: "";
+  &::before {
+    content: '';
     display: inline-block;
     width: 98px;
     height: 100%;

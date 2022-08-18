@@ -15,7 +15,7 @@ const slice = createSlice({
   name: ReducerName.OFFERS_NEARBY,
   initialState,
   reducers: {},
-  extraReducers: ((builder) => {
+  extraReducers: (builder) => {
     builder
       .addCase(fetchOfferNearby.pending, (state) => {
         state.loading = true;
@@ -30,7 +30,7 @@ const slice = createSlice({
         state.loading = false;
         state.error = action.payload;
       });
-  }),
+  },
 });
 
 export default slice;

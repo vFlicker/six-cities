@@ -12,5 +12,5 @@ export const HeaderLeft = styled.div`
 export const HeaderWrapper = styled.div`
   display: flex;
   align-items: flex-start;
-  padding: 19px 16px 0
+  padding: 19px 16px 0;
 `;

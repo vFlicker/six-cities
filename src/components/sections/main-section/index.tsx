@@ -8,11 +8,7 @@ import { CardList } from '../../card-list';
 import { Sorting } from '../../sorting';
 import { Spinner } from '../../spinner';
 import { MainEmptySection } from '../main-empty-section';
-import {
-  SectionLocations,
-  SectionMap,
-  SectionPlaces,
-} from '../index';
+import { SectionLocations, SectionMap, SectionPlaces } from '../index';
 import * as S from './styles';
 
 export function MainSection(): JSX.Element {
@@ -47,9 +43,7 @@ export function MainSection(): JSX.Element {
           <SectionPlaces className="cities__places">
             <h2 className="visually-hidden">Places</h2>
             <b className="places__found">
-              {sortedOffers.length}
-              {' '}
-              places to stay in Amsterdam
+              {sortedOffers.length} places to stay in Amsterdam
             </b>
 
             <Sorting />

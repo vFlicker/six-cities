@@ -6,9 +6,8 @@ import { getCurrentCityName, getCurrentSortType } from '../app';
 import { ReducerName } from '../../constants';
 import { sortOffers } from './utils';
 
-const getOffers = (state: RootState): Offers | null => (
-  state[ReducerName.OFFERS].offers
-);
+const getOffers = (state: RootState): Offers | null =>
+  state[ReducerName.OFFERS].offers;
 
 const getFilteredOffers = createSelector(
   getOffers,
@@ -16,13 +15,11 @@ const getFilteredOffers = createSelector(
   (offers, cityName) => (offers ? offers[cityName.toLocaleLowerCase()] : []),
 );
 
-export const getOffersLoadingStatus = (state: RootState): boolean => (
-  state[ReducerName.OFFERS].loading
-);
+export const getOffersLoadingStatus = (state: RootState): boolean =>
+  state[ReducerName.OFFERS].loading;
 
-export const getOffersError = (state: RootState): ErrorType => (
-  state[ReducerName.OFFERS].error
-);
+export const getOffersError = (state: RootState): ErrorType =>
+  state[ReducerName.OFFERS].error;
 
 export const getSortedOffers = createSelector(
   getFilteredOffers,

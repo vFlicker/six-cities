@@ -9,7 +9,13 @@ export function FooterSection(): JSX.Element {
     <footer className="footer">
       <S.FooterContainer>
         <Link to={AppRoute.ROOT} className="footer__logo-link">
-          <img className="footer__logo" src="img/logo.svg" alt="6 cities logo" width="64" height="33" />
+          <img
+            className="footer__logo"
+            src="img/logo.svg"
+            alt="6 cities logo"
+            width="64"
+            height="33"
+          />
         </Link>
       </S.FooterContainer>
     </footer>

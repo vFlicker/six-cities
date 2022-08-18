@@ -15,7 +15,9 @@ export function SectionFavorites(): JSX.Element {
   const offersFavoriteLoadingStatus = useAppSelector(
     offersFavoriteSlice.getOffersFavoriteLoadingStatus,
   );
-  const offersFavoriteError = useAppSelector(offersFavoriteSlice.getOffersFavoriteError);
+  const offersFavoriteError = useAppSelector(
+    offersFavoriteSlice.getOffersFavoriteError,
+  );
 
   const dispatch = useAppDispatch();
 
@@ -32,9 +34,7 @@ export function SectionFavorites(): JSX.Element {
   }
 
   if (!offersFavorite.length) {
-    return (
-      <FavoritesEmptySection />
-    );
+    return <FavoritesEmptySection />;
   }
 
   return (

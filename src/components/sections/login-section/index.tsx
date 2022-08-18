@@ -17,10 +17,12 @@ export function SectionLogin(): JSX.Element {
 
     if (!emailRef.current || !passwordRef.current) return;
 
-    dispatch(userSlice.login({
-      email: emailRef.current.value,
-      password: passwordRef.current.value,
-    }));
+    dispatch(
+      userSlice.login({
+        email: emailRef.current.value,
+        password: passwordRef.current.value,
+      }),
+    );
   };
 
   return (

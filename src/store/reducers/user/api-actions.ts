@@ -13,7 +13,11 @@ type AuthData = {
   password: string;
 };
 
-export const checkAuthStatus = createAsyncThunk<User, undefined, AsyncThunkOptions>(
+export const checkAuthStatus = createAsyncThunk<
+  User,
+  undefined,
+  AsyncThunkOptions
+>(
   'userData/authStatus',
   async (_, { dispatch, extra: apiService, rejectWithValue }) => {
     try {

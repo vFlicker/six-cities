@@ -13,7 +13,10 @@ export function SectionHeader(): JSX.Element {
         <S.HeaderWrapper>
           <S.HeaderLeft>
             {/* TODO: react-router-dom with styled components */}
-            <Link to={AppRoute.ROOT} className="header__logo-link header__logo-link--active">
+            <Link
+              to={AppRoute.ROOT}
+              className="header__logo-link header__logo-link--active"
+            >
               <Logo />
             </Link>
           </S.HeaderLeft>

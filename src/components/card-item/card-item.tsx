@@ -30,15 +30,7 @@ export function CardItem({
   onCardItemMouseEnter,
   onCardItemMouseLeave,
 }: CardItemProps): JSX.Element {
-  const {
-    id,
-    isPremium,
-    previewImage,
-    price,
-    rating,
-    title,
-    type,
-  } = offer;
+  const { id, isPremium, previewImage, price, rating, title, type } = offer;
 
   return (
     <article
@@ -86,9 +78,7 @@ export function CardItem({
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={createOfferLink(id)}>
-            {title}
-          </Link>
+          <Link to={createOfferLink(id)}>{title}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>

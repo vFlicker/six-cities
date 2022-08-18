@@ -48,17 +48,12 @@ export function SectionMap({ offers, className = '' }: MapProps): JSX.Element {
         const marker = new Marker(latLng(latitude, longitude));
         markers.push(marker);
 
-        marker
-          .setIcon(icon)
-          .bindPopup(title)
-          .addTo(map);
+        marker.setIcon(icon).bindPopup(title).addTo(map);
       });
     }
 
     return () => markers.forEach((marker) => marker.remove());
   }, [activeCardId, map, offers]);
 
-  return (
-    <section className={`${className}  map`} ref={mapRef} />
-  );
+  return <section className={`${className}  map`} ref={mapRef} />;
 }

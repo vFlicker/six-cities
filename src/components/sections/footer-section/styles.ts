@@ -7,5 +7,5 @@ export const FooterContainer = styled(Container)`
   justify-content: center;
   align-items: flex-start;
   padding-top: 48px;
-  padding-bottom: 52px
+  padding-bottom: 52px;
 `;

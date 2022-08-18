@@ -14,31 +14,35 @@ export const globalFonts = css`
     font-family: rubik;
     font-style: normal;
     font-weight: 300;
-    src: url(${rubikLightWoff2}) format("woff2"), url(${rubikLightWoff}) format("woff");
+    src: url(${rubikLightWoff2}) format('woff2'),
+      url(${rubikLightWoff}) format('woff');
     font-display: swap;
-  };
+  }
 
   @font-face {
     font-family: rubik;
     font-style: normal;
     font-weight: 400;
-    src: url(${rubikRegularWoff2}) format("woff2"), url(${rubikRegularWoff}) format("woff");
+    src: url(${rubikRegularWoff2}) format('woff2'),
+      url(${rubikRegularWoff}) format('woff');
     font-display: swap;
-  };
+  }
 
   @font-face {
     font-family: rubik;
     font-style: normal;
     font-weight: 500;
-    src: url(${rubikMediumWoff2}) format("woff2"), url(${rubikMediumWoff}) format("woff");
+    src: url(${rubikMediumWoff2}) format('woff2'),
+      url(${rubikMediumWoff}) format('woff');
     font-display: swap;
-  };
+  }
 
   @font-face {
     font-family: rubik;
     font-style: normal;
     font-weight: 700;
-    src: url(${rubikBoldWoff2}) format("woff2"), url(${rubikBoldWoff}) format("woff");
+    src: url(${rubikBoldWoff2}) format('woff2'),
+      url(${rubikBoldWoff}) format('woff');
     font-display: swap;
-  };
+  } ;
 `;

@@ -2,7 +2,11 @@ import { createAction, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 // TODO: what do we use instead of the enums?
 import { AuthorizationStatus } from '@/constants';
-import { AppRoute, AuthorizationStatus as TAuthorizationStatus, User } from '@/types';
+import {
+  AppRoute,
+  AuthorizationStatus as TAuthorizationStatus,
+  User,
+} from '@/types';
 
 import { ReducerName } from '../../constants';
 import { checkAuthStatus, login, logout } from './api-actions';
@@ -18,14 +22,17 @@ const slice = createSlice({
   name: ReducerName.USER,
   initialState,
   reducers: {
-    setAuthorizationStatus: (state, action: PayloadAction<TAuthorizationStatus>) => {
+    setAuthorizationStatus: (
+      state,
+      action: PayloadAction<TAuthorizationStatus>,
+    ) => {
       state.authorizationStatus = action.payload;
     },
     setUserData: (state, action: PayloadAction<User>) => {
       state.user = action.payload;
     },
   },
-  extraReducers: ((builder) => {
+  extraReducers: (builder) => {
     builder
       // ----- CHECK AUTH STATUS -----
       .addCase(checkAuthStatus.pending, (state) => {
@@ -71,9 +78,11 @@ const slice = createSlice({
         state.loading = false;
         state.error = action.payload;
       });
-  }),
+  },
 });
 
-export const redirectToRoute = createAction<AppRoute>('userData/redirectToRoute');
+export const redirectToRoute = createAction<AppRoute>(
+  'userData/redirectToRoute',
+);
 export const { setAuthorizationStatus, setUserData } = slice.actions;
 export default slice;

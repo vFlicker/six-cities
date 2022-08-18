@@ -1,21 +1,22 @@
 {
   "compilerOptions": {
     /* Basic Options */
-    "lib": ["dom", "esnext"],
+    "lib": ["dom", "esnext", "DOM.Iterable"],
     "jsx": "react-jsx",
     "noEmit": true,
-    "isolatedModules": true,
 
     /* Strict Type-Checking Options */
     "strict": true,
 
     /* Module Resolution Options */
-    "moduleResolution": "node",
+    "moduleResolution": "Node",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
 
     /* Advanced Options */
+    "isolatedModules": true,
     "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "paths": { "@/*": ["src/*"] }
   },

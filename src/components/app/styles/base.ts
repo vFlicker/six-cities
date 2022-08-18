@@ -34,7 +34,7 @@ export const globalStyle = css`
   a {
     color: inherit;
     text-decoration: none;
-    transition: color .3s, opacity .3s;
+    transition: color 0.3s, opacity 0.3s;
     cursor: pointer;
     outline: 0;
   }
@@ -67,7 +67,7 @@ export const globalStyle = css`
     word-break: break-word;
     word-wrap: normal;
     overflow-wrap: break-word;
-    transition: color .3s, background-color .3s;
+    transition: color 0.3s, background-color 0.3s;
     outline: 0;
   }
 

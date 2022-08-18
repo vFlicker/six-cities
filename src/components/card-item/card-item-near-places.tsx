@@ -3,10 +3,12 @@ import { Offer } from '@/types';
 import { CardItem } from './card-item';
 
 type CardItemNearPlacesProps = {
-  offer: Offer
-}
+  offer: Offer;
+};
 
-export function CardItemNearPlaces(props: CardItemNearPlacesProps): JSX.Element {
+export function CardItemNearPlaces(
+  props: CardItemNearPlacesProps,
+): JSX.Element {
   return (
     <CardItem
       {...props}

@@ -3,7 +3,10 @@ import { createSlice } from '@reduxjs/toolkit';
 import { ErrorType, Offer, Review } from '@/types';
 
 import {
-  changeOfferFavoriteStatus, fetchComments, fetchOffer, sendComment,
+  changeOfferFavoriteStatus,
+  fetchComments,
+  fetchOffer,
+  sendComment,
 } from './api-actions';
 
 const initialState = {
@@ -17,7 +20,7 @@ const slice = createSlice({
   name: 'offer',
   initialState,
   reducers: {},
-  extraReducers: ((builder) => {
+  extraReducers: (builder) => {
     builder
       // ----- OFFER -----
       .addCase(fetchOffer.pending, (state) => {
@@ -78,7 +81,7 @@ const slice = createSlice({
         state.loading = false;
         state.error = action.payload;
       });
-  }),
+  },
 });
 
 export default slice;

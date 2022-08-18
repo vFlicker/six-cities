@@ -10,5 +10,5 @@ export const List = styled.ul`
 export const Item = styled.li`
   display: block;
   margin-right: 36px;
-  margin-bottom: 19px
+  margin-bottom: 19px;
 `;

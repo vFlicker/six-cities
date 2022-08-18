@@ -23,8 +23,7 @@ export function Sorting(): JSX.Element {
 
   return (
     <form className="places__sorting" action="#" method="get">
-      <span className="places__sorting-caption">Sort by</span>
-      {' '}
+      <span className="places__sorting-caption">Sort by</span>{' '}
       <span
         className="places__sorting-type"
         tabIndex={0}
@@ -37,9 +36,14 @@ export function Sorting(): JSX.Element {
           <use xlinkHref="#icon-arrow-select" />
         </svg>
       </span>
-      <ul className={`places__options places__options--custom ${sortMenuOpened ? 'places__options--opened ' : ''}`}>
+      <ul
+        className={`places__options places__options--custom ${
+          sortMenuOpened ? 'places__options--opened ' : ''
+        }`}
+      >
         {Object.entries(SortType).map(([key, sortType]) => {
-          const optionClass = currentSortType === sortType ? 'places__option--active' : '';
+          const optionClass =
+            currentSortType === sortType ? 'places__option--active' : '';
           return (
             <li
               key={key}

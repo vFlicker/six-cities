@@ -20,24 +20,26 @@ export function ReviewsForm(): JSX.Element {
   const dispatch = useAppDispatch();
 
   // TODO: add sendingInProgress
-  const isSubmitDisabled = review.length < MIN_REVIEW_LENGTH || rating < MIN_STAR_COUNT;
+  const isSubmitDisabled =
+    review.length < MIN_REVIEW_LENGTH || rating < MIN_STAR_COUNT;
 
   const handleFromSubmit = (evt: FormEvent<HTMLFormElement>): void => {
     evt.preventDefault();
 
-    dispatch(offerSlice.sendComment({
-      id: Number(id),
-      rating,
-      comment: review,
-    }));
+    dispatch(
+      offerSlice.sendComment({
+        id: Number(id),
+        rating,
+        comment: review,
+      }),
+    );
   };
 
   return (
-    <form
-      className="reviews__form form"
-      onSubmit={handleFromSubmit}
-    >
-      <label className="reviews__label form__label" htmlFor="review">Your review</label>
+    <form className="reviews__form form" onSubmit={handleFromSubmit}>
+      <label className="reviews__label form__label" htmlFor="review">
+        Your review
+      </label>
       <RatingList
         rating={rating}
         onRatingToggle={(count: number) => setRating(count)}
@@ -52,14 +54,9 @@ export function ReviewsForm(): JSX.Element {
       />
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
-          To submit review please make sure to set
-          {' '}
-          <span className="reviews__star">rating</span>
-          {' '}
-          and describe your stay with at least
-          {' '}
-          <b className="reviews__text-amount">50 characters</b>
-          .
+          To submit review please make sure to set{' '}
+          <span className="reviews__star">rating</span> and describe your stay
+          with at least <b className="reviews__text-amount">50 characters</b>.
         </p>
         <Button type="submit" disabled={isSubmitDisabled}>
           Submit

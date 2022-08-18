@@ -11,9 +11,11 @@ export function NavList(): JSX.Element {
 
   return (
     <S.Nav>
-      { authorizationStatus !== AuthorizationStatus.AUTH
-        ? <NoAuthList />
-        : <AuthList /> }
+      {authorizationStatus !== AuthorizationStatus.AUTH ? (
+        <NoAuthList />
+      ) : (
+        <AuthList />
+      )}
     </S.Nav>
   );
 }
@@ -23,7 +25,10 @@ function NoAuthList(): JSX.Element {
     <S.List>
       <S.Item>
         {/* TODO: react-router-dom with styled components */}
-        <Link to={AppRoute.LOGIN} className="header__nav-link header__nav-link--profile">
+        <Link
+          to={AppRoute.LOGIN}
+          className="header__nav-link header__nav-link--profile"
+        >
           <S.Avatar />
           <S.Button>Sign in</S.Button>
         </Link>
@@ -42,7 +47,10 @@ function AuthList(): JSX.Element {
   return (
     <S.List>
       <S.Item>
-        <Link to={AppRoute.FAVORITES} className="header__nav-link header__nav-link--profile">
+        <Link
+          to={AppRoute.FAVORITES}
+          className="header__nav-link header__nav-link--profile"
+        >
           <S.Avatar avatarUrl={avatarUrl} />
           <S.Button>{email}</S.Button>
         </Link>

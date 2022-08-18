@@ -5,8 +5,8 @@ import { appSlice } from '@/store';
 import { CardItem } from './card-item';
 
 type CardItemCitiesProps = {
-  offer: Offer
-}
+  offer: Offer;
+};
 
 export function CardItemCities(props: CardItemCitiesProps): JSX.Element {
   const { offer } = props;

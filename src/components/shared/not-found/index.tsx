@@ -4,7 +4,7 @@ type NotFoundProps = {
   iconSrc: string;
   title: string;
   description: string;
-}
+};
 
 // TODO: look at this section with bg on main-empty-section
 export function NotFound({
@@ -16,9 +16,7 @@ export function NotFound({
     <S.Wrapper>
       <S.Icon src={iconSrc} />
       <S.Title>{title}</S.Title>
-      <S.Description>
-        {description}
-      </S.Description>
+      <S.Description>{description}</S.Description>
     </S.Wrapper>
   );
 }

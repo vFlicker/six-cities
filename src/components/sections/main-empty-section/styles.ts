@@ -25,19 +25,19 @@ export const RightSection = styled.section`
   background-repeat: no-repeat;
   background-position: right 100%;
 
-  @media (-webkit-min-device-pixel-ratio:1.5),
-  (min-resolution:144dpi),
-  (min-resolution:1.5dppx) {
+  @media (-webkit-min-device-pixel-ratio: 1.5),
+    (min-resolution: 144dpi),
+    (min-resolution: 1.5dppx) {
     background-image: url(${noPlaces2xPhotoSrc});
   }
 
-  @media (max-height:780px) {
+  @media (max-height: 780px) {
     background-position: right center;
     background-size: 100% auto;
   }
 
-  &::before{
-    content: "";
+  &::before {
+    content: '';
 
     position: absolute;
     bottom: 0;

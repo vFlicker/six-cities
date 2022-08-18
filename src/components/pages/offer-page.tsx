@@ -19,8 +19,12 @@ export function OfferPage(): JSX.Element {
   const offerError = useAppSelector(offerSlice.getOfferError);
 
   const offersNearby = useAppSelector(offersNearbySlice.getOffersNearby);
-  const isOffersNearbyLoading = useAppSelector(offersNearbySlice.getOffersNearbyLoadingStatus);
-  const offersNearbyError = useAppSelector(offersNearbySlice.getOffersNearbyError);
+  const isOffersNearbyLoading = useAppSelector(
+    offersNearbySlice.getOffersNearbyLoadingStatus,
+  );
+  const offersNearbyError = useAppSelector(
+    offersNearbySlice.getOffersNearbyError,
+  );
 
   const dispatch = useAppDispatch();
 
@@ -47,7 +51,9 @@ export function OfferPage(): JSX.Element {
 
         <Container>
           <SectionPlaces className="near-places">
-            <h2 className="near-places__title">Other places in the neighbourhood</h2>
+            <h2 className="near-places__title">
+              Other places in the neighbourhood
+            </h2>
 
             <CardList
               className="near-places__list places__list"

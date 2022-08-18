@@ -15,7 +15,7 @@ const slice = createSlice({
   name: ReducerName.OFFERS,
   initialState,
   reducers: {},
-  extraReducers: ((builder) => {
+  extraReducers: (builder) => {
     builder
       .addCase(fetchOffers.pending, (state) => {
         state.loading = true;
@@ -30,7 +30,7 @@ const slice = createSlice({
         state.loading = false;
         state.error = action.payload;
       });
-  }),
+  },
 });
 
 export default slice;

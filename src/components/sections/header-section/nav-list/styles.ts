@@ -26,19 +26,16 @@ export const Item = styled.li`
   }
 `;
 
-export const Avatar = styled.div<{avatarUrl?: string}>`
+export const Avatar = styled.div<{ avatarUrl?: string }>`
   width: 20px;
   height: 20px;
   margin-right: 8px;
   border-radius: 50%;
 
-  background-image: ${({ avatarUrl }) => (avatarUrl
-    ? `url(${avatarUrl})`
-    : `url(${avatarIconSrc})`
-  )};
+  background-image: ${({ avatarUrl }) =>
+    avatarUrl ? `url(${avatarUrl})` : `url(${avatarIconSrc})`};
   background-size: 100%;
   background-repeat: no-repeat;
-
 `;
 
 export const Button = styled.span`

@@ -10,4 +10,4 @@ export type AsyncThunkOptions = {
   dispatch: AppDispatch;
   extra: AxiosInstance;
   rejectValue: ErrorType;
-}
+};

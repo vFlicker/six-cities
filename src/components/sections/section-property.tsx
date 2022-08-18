@@ -12,7 +12,7 @@ import { SectionMap, SectionReviews } from './index';
 
 type OfferProps = {
   offer: Offer;
-}
+};
 
 export function SectionProperty({ offer }: OfferProps): JSX.Element {
   const offersNearby = useAppSelector(offersNearbySlice.getOffersNearby);
@@ -42,10 +42,14 @@ export function SectionProperty({ offer }: OfferProps): JSX.Element {
 
   const handleFavoriteButtonClick = () => {
     // TODO: add favoriteInProgress
-    dispatch(offerSlice.changeOfferFavoriteStatus({
-      id,
-      status: isFavorite ? FavoriteStatus.NOT_FAVORITE : FavoriteStatus.FAVORITE,
-    }));
+    dispatch(
+      offerSlice.changeOfferFavoriteStatus({
+        id,
+        status: isFavorite
+          ? FavoriteStatus.NOT_FAVORITE
+          : FavoriteStatus.FAVORITE,
+      }),
+    );
   };
 
   return (
@@ -67,9 +71,7 @@ export function SectionProperty({ offer }: OfferProps): JSX.Element {
             </div>
           )}
           <div className="property__name-wrapper">
-            <h1 className="property__name">
-              {title}
-            </h1>
+            <h1 className="property__name">{title}</h1>
             <button
               className={buttonFavoriteClass}
               type="button"
@@ -86,7 +88,9 @@ export function SectionProperty({ offer }: OfferProps): JSX.Element {
               <span style={{ width: convertRatingToPercents(rating) }} />
               <span className="visually-hidden">Rating</span>
             </div>
-            <span className="property__rating-value rating__value">{rating}</span>
+            <span className="property__rating-value rating__value">
+              {rating}
+            </span>
           </div>
           <ul className="property__features">
             <li className="property__feature property__feature--entire">
@@ -128,19 +132,11 @@ export function SectionProperty({ offer }: OfferProps): JSX.Element {
                   alt={authorName}
                 />
               </div>
-              <span className="property__user-name">
-                {authorName}
-              </span>
-              {isPro && (
-                <span className="property__user-status">
-                  Pro
-                </span>
-              )}
+              <span className="property__user-name">{authorName}</span>
+              {isPro && <span className="property__user-status">Pro</span>}
             </div>
             <div className="property__description">
-              <p className="property__text">
-                {description}
-              </p>
+              <p className="property__text">{description}</p>
             </div>
           </div>
 
@@ -154,5 +150,5 @@ export function SectionProperty({ offer }: OfferProps): JSX.Element {
 
 const PropertyContainer = styled(Container)`
   position: relative;
-  overflow-x: hidden
+  overflow-x: hidden;
 `;

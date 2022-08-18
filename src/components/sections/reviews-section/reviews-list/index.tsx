@@ -36,12 +36,7 @@ function ReviewsItem({ review }: ReviewsItemProps): JSX.Element {
     <S.Item>
       <S.User>
         <S.AvatarWrapper>
-          <S.Avatar
-            src={avatarUrl}
-            width="54"
-            height="54"
-            alt="User avatar"
-          />
+          <S.Avatar src={avatarUrl} width="54" height="54" alt="User avatar" />
         </S.AvatarWrapper>
         <S.Name>{name}</S.Name>
       </S.User>
