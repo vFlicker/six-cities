@@ -23,6 +23,7 @@ export function LoginPage(): JSX.Element {
     <div className="page page--gray page--login">
       <SectionHeader />
       <main className="page__main page__main--login">
+        {/* // TODO: <Layout grid fullWidth /> */}
         <FlexContainer>
           <SectionLogin />
           <LocationSection />

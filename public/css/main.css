@@ -509,20 +509,20 @@ img {
   border-radius: 50%
 } */
 
-.rating__stars {
+/* .rating__stars {
   position: relative;
   display: block;
   font-size: 0
-}
+} */
 
-.rating__stars::before {
+/* .rating__stars::before {
   content: "";
   display: inline-block;
   height: 100%;
   background: url(../img/stars.svg) transparent no-repeat center
-}
+} */
 
-.rating__stars span {
+/* .rating__stars span {
   position: absolute;
   top: 0;
   left: 0;
@@ -536,7 +536,7 @@ img {
   display: inline-block;
   height: 100%;
   background: url(../img/stars-active.svg) transparent no-repeat center
-}
+} */
 
 .cities {
   display: flex;
@@ -1356,10 +1356,10 @@ img {
   color: #000
 }
 
-.property__reviews {
+/* .property__reviews {
   width: 100%;
   margin-bottom: 55px
-}
+} */
 
 .property__map {
   width: 100%;
@@ -1380,7 +1380,7 @@ img {
   }
 }
 
-.reviews__title {
+/* .reviews__title {
   margin-top: 0;
   margin-bottom: 37px;
   font-size: 24px;
@@ -1389,78 +1389,78 @@ img {
   font-style: oblique;
   color: #000;
   text-align: center
-}
+} */
 
-.reviews__avatar-wrapper {
+/* .reviews__avatar-wrapper {
   min-width: 54px;
   width: 54px;
   height: 54px;
   margin-bottom: 10px
-}
+} */
 
-.reviews__avatar {
+/* .reviews__avatar {
   display: block
-}
+} */
 
-.reviews__user {
+/* .reviews__user {
   display: flex;
   flex-direction: column;
   align-items: center;
   max-width: 54px;
   margin-right: 22px
-}
+} */
 
-.reviews__user-name {
+/* .reviews__user-name {
   font-size: 14px;
   line-height: 1.2143;
   color: #000;
   word-break: break-word;
   word-wrap: break-word;
   overflow-wrap: break-word
-}
+} */
 
-.reviews__list {
+/* .reviews__list {
   margin: 0;
   padding: 0;
   list-style: none
-}
+} */
 
-.reviews__item {
+/* .reviews__item {
   display: flex;
   align-items: flex-start;
   margin-bottom: 22px
-}
+} */
 
-.reviews__text {
+/* .reviews__text {
   margin-top: 0;
   margin-bottom: 5px;
   font-size: 16px;
   line-height: 1.75;
   color: #000
-}
+} */
 
 .reviews__rating {
   margin-bottom: 7px
 }
 
-.reviews__stars {
+/* .reviews__stars {
   width: 98px;
   height: 16px
-}
+} */
 
-.reviews__stars::before {
+/* .reviews__stars::before {
   width: 98px;
   background-size: 98px 16px
-}
+} */
 
-.reviews__stars span {
+/* .reviews__stars span {
   width: 0%
-}
+} */
 
-.reviews__stars span::before {
+/* .reviews__stars span::before {
   width: 98px;
   background-size: 98px 16px
-}
+} */
 
 .reviews__time {
   font-size: 14px;

@@ -52,6 +52,7 @@ export const globalStyle = css`
   img {
     max-width: 100%;
     height: auto;
+    vertical-align: middle;
   }
 
   button {
