@@ -470,7 +470,7 @@ img {
   margin-right: 15px
 } */
 
-.header__nav-link {
+/* .header__nav-link {
   display: flex;
   align-items: center;
   font-size: 14px;
@@ -481,7 +481,7 @@ img {
 .header__nav-link:focus,
 .header__nav-link:hover {
   text-shadow: .5px 0 0, -.5px 0 0
-}
+} */
 
 /* .header__avatar-wrapper {
   width: 20px;

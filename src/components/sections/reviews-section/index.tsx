@@ -1,4 +1,4 @@
-import { AuthorizationStatus } from '~/constants';
+import { AuthStatus } from '~/constants';
 import { useAppSelector } from '~/hooks';
 import { offerSlice, userSlice } from '~/store';
 
@@ -8,7 +8,7 @@ import * as S from './styles';
 
 export function SectionReviews(): JSX.Element {
   const reviews = useAppSelector(offerSlice.getComments);
-  const authorizationStatus = useAppSelector(userSlice.getAuthorizationStatus);
+  const authStatus = useAppSelector(userSlice.getAuthStatus);
 
   return (
     reviews && (
@@ -18,7 +18,7 @@ export function SectionReviews(): JSX.Element {
           <S.Amount>{reviews.length}</S.Amount>
         </S.Title>
         <ReviewsList reviews={reviews} />
-        {authorizationStatus === AuthorizationStatus.AUTH && <ReviewsForm />}
+        {authStatus === AuthStatus.Auth && <ReviewsForm />}
       </S.Section>
     )
   );

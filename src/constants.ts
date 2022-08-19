@@ -1,15 +1,15 @@
-export const AppRoute = {
-  FAVORITES: '/favorites',
-  LOGIN: '/login',
-  OFFER: '/offers/:id',
-  ROOT: '/',
-} as const;
+export const enum AppRoute {
+  Favorites = '/favorites',
+  Login = '/login',
+  Offer = '/offers/:id',
+  Root = '/',
+}
 
-export const AuthorizationStatus = {
-  AUTH: 'AUTH',
-  NO_AUTH: 'NO_AUTH',
-  UNKNOWN: 'UNKNOWN',
-} as const;
+export const enum AuthStatus {
+  Auth = 'AUTH',
+  NoAuth = 'NO_AUTH',
+  Unknown = 'UNKNOWN',
+}
 
 export const CityName = {
   PARIS: 'Paris',

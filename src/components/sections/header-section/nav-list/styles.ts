@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { Link as RouterLink } from 'react-router-dom';
 
 import { avatarIconSrc } from '~/assets/images';
 
@@ -23,6 +24,19 @@ export const Item = styled.li`
 
   &:not(:last-child) {
     margin-right: 15px;
+  }
+`;
+
+export const Link = styled(RouterLink)`
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  line-height: 1.2143;
+  transition: text-shadow 0.3s;
+
+  &:focus,
+  &:hover {
+    text-shadow: 0.5px 0 0, -0.5px 0 0;
   }
 `;
 

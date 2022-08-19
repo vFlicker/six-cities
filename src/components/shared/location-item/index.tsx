@@ -18,7 +18,7 @@ export function LocationItem({
 }: LocationItemProps): JSX.Element {
   return (
     <S.Link
-      to={AppRoute.ROOT}
+      to={AppRoute.Root}
       isActive={isActive}
       onClick={onLocationsItemClick}
     >

@@ -8,6 +8,7 @@ import { Global } from '@emotion/react';
 import { useAppSelector } from '~/hooks';
 import { AppRoute } from '~/constants';
 import { userSlice } from '~/store';
+import { browserHistory } from '~/utils';
 
 import { Spinner } from '../spinner';
 import { PrivateRoute } from '../private-route';
@@ -19,13 +20,12 @@ import {
   OfferPage,
 } from '../pages';
 import { globalStyle } from './styles';
-import { browserHistory } from '~/utils';
 
 export function App(): JSX.Element {
-  const authorizationStatus = useAppSelector(userSlice.getAuthorizationStatus);
+  const authStatus = useAppSelector(userSlice.getAuthStatus);
   const isLoading = useAppSelector(userSlice.getLoadingStatus);
 
-  if (userSlice.isCheckedAuth(authorizationStatus) || isLoading) {
+  if (userSlice.isCheckedAuth(authStatus) || isLoading) {
     return <Spinner />;
   }
 
@@ -34,17 +34,17 @@ export function App(): JSX.Element {
       <Global styles={globalStyle} />
       <HistoryRouter history={browserHistory}>
         <Routes>
-          <Route path={AppRoute.ROOT} element={<MainPage />} />
+          <Route path={AppRoute.Root} element={<MainPage />} />
           <Route
-            path={AppRoute.FAVORITES}
+            path={AppRoute.Favorites}
             element={
               <PrivateRoute>
                 <FavoritesPage />
               </PrivateRoute>
             }
           />
-          <Route path={AppRoute.LOGIN} element={<LoginPage />} />
-          <Route path={AppRoute.OFFER} element={<OfferPage />} />
+          <Route path={AppRoute.Login} element={<LoginPage />} />
+          <Route path={AppRoute.Offer} element={<OfferPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </HistoryRouter>

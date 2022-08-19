@@ -1,9 +1,9 @@
-import { Link } from 'react-router-dom';
-
 import { AppRoute } from '~/constants';
 
-import { Container, Logo } from '../../shared';
+import { Container } from '../../shared';
+import { LogoLink } from './logo-link';
 import { NavList } from './nav-list';
+
 import * as S from './styles';
 
 export function SectionHeader(): JSX.Element {
@@ -11,15 +11,7 @@ export function SectionHeader(): JSX.Element {
     <S.Header>
       <Container>
         <S.HeaderWrapper>
-          <S.HeaderLeft>
-            {/* TODO: react-router-dom with styled components */}
-            <Link
-              to={AppRoute.ROOT}
-              className="header__logo-link header__logo-link--active"
-            >
-              <Logo />
-            </Link>
-          </S.HeaderLeft>
+          <LogoLink to={AppRoute.Root} />
           <NavList />
         </S.HeaderWrapper>
       </Container>

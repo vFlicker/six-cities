@@ -11,13 +11,13 @@ import { FlexContainer } from '../shared';
 export function LoginPage(): JSX.Element {
   const navigate = useNavigate();
 
-  const authorizationStatus = useAppSelector(userSlice.getAuthorizationStatus);
+  const authStatus = useAppSelector(userSlice.getAuthStatus);
 
   useEffect(() => {
-    if (userSlice.isUserAuthorized(authorizationStatus)) {
-      navigate(AppRoute.ROOT);
+    if (userSlice.isUserAuthorized(authStatus)) {
+      navigate(AppRoute.Root);
     }
-  }, [authorizationStatus, navigate]);
+  }, [authStatus, navigate]);
 
   return (
     <div className="page page--gray page--login">
