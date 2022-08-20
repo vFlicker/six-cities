@@ -1,23 +1,13 @@
-import { Link } from 'react-router-dom';
-
-import { AppRoute } from '~/constants';
+import { LogoLink } from '../../shared/logo-link';
 
 import * as S from './styles';
 
 export function FooterSection(): JSX.Element {
   return (
-    <footer className="footer">
+    <S.Footer>
       <S.FooterContainer>
-        <Link to={AppRoute.Root} className="footer__logo-link">
-          <img
-            className="footer__logo"
-            src="img/logo.svg"
-            alt="6 cities logo"
-            width="64"
-            height="33"
-          />
-        </Link>
+        <LogoLink width={64} height={33} />
       </S.FooterContainer>
-    </footer>
+    </S.Footer>
   );
 }

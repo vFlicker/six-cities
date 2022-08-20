@@ -6,3 +6,5 @@ export const Link = styled(RouterLink)`
     opacity: 0.5;
   }
 `;
+
+export const Logo = styled.img``;
