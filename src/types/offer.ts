@@ -1,8 +1,10 @@
+import { CityName } from '~/constants';
+
 import { CamelToSnakeCaseNested } from './helpers';
 
 export type City = {
   location: Location;
-  name: string;
+  name: CityName;
 };
 
 export type Host = {

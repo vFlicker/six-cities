@@ -1,7 +1,7 @@
 import { noResultsIconSrc } from '~/assets/images';
 
 import { NotFound } from '../../shared';
-import { SectionLocations } from '../index';
+import { LocationListSection } from '../index';
 import * as S from './styles';
 
 export function MainEmptySection(): JSX.Element {
@@ -9,7 +9,7 @@ export function MainEmptySection(): JSX.Element {
     <main className="page__main page__main--index page__main--index-empty">
       <h1 className="visually-hidden">Cities</h1>
       <div className="tabs">
-        <SectionLocations />
+        <LocationListSection />
       </div>
       <div className="cities">
         <S.MainEmptyContainer>

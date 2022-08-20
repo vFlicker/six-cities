@@ -5,7 +5,7 @@ import { AppRoute } from '~/constants';
 import { useAppSelector } from '~/hooks';
 import { userSlice } from '~/store';
 
-import { SectionHeader, LocationSection, SectionLogin } from '../sections';
+import { HeaderSection, LocationSection, SectionLogin } from '../sections';
 import { FlexContainer } from '../shared';
 
 export function LoginPage(): JSX.Element {
@@ -21,7 +21,7 @@ export function LoginPage(): JSX.Element {
 
   return (
     <div className="page page--gray page--login">
-      <SectionHeader />
+      <HeaderSection />
       <main className="page__main page__main--login">
         {/* // TODO: <Layout grid fullWidth /> */}
         <FlexContainer>

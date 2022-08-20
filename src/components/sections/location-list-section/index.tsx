@@ -1,13 +1,13 @@
 import { Container } from '../../shared';
+import { LocationList } from './location-list';
 
-import { LocationsList } from './location-list';
 import * as S from './styles';
 
-export function SectionLocations(): JSX.Element {
+export function LocationListSection(): JSX.Element {
   return (
     <S.Section>
       <Container>
-        <LocationsList />
+        <LocationList />
       </Container>
     </S.Section>
   );

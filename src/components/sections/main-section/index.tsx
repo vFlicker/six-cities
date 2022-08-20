@@ -8,7 +8,7 @@ import { CardList } from '../../card-list';
 import { Sorting } from '../../sorting';
 import { Spinner } from '../../spinner';
 import { MainEmptySection } from '../main-empty-section';
-import { SectionLocations, SectionMap, SectionPlaces } from '../index';
+import { LocationListSection, SectionMap, SectionPlaces } from '../index';
 import * as S from './styles';
 
 export function MainSection(): JSX.Element {
@@ -37,7 +37,7 @@ export function MainSection(): JSX.Element {
   return (
     <main className="page__main page__main--index">
       <h1 className="visually-hidden">Cities</h1>
-      <SectionLocations />
+      <LocationListSection />
       <div className="cities">
         <S.MainContainer>
           <SectionPlaces className="cities__places">

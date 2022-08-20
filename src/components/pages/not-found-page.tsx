@@ -1,9 +1,9 @@
-import { SectionHeader, FooterSection, NotFoundSection } from '../sections';
+import { HeaderSection, FooterSection, NotFoundSection } from '../sections';
 
 export function NotFoundPage(): JSX.Element {
   return (
     <div className="page  page--not-found">
-      <SectionHeader />
+      <HeaderSection />
       <main className="page__main page__main--not-found">
         <NotFoundSection />
       </main>

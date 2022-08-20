@@ -6,7 +6,7 @@ import { NavList } from './nav-list';
 
 import * as S from './styles';
 
-export function SectionHeader(): JSX.Element {
+export function HeaderSection(): JSX.Element {
   return (
     <S.Header>
       <Container>

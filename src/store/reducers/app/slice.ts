@@ -1,13 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { CityName, SortType } from '~/constants';
-import { CityName as TCityName, SortType as TSortType } from '~/types';
+import { SortType as TSortType } from '~/types';
 
 import { ReducerName } from '../../constants';
 
 const initialState = {
   activeCardId: -1,
-  currentCityName: CityName.AMSTERDAM as TCityName,
+  currentCityName: CityName.Amsterdam,
   currentSortType: SortType.POPULAR as TSortType,
 };
 
@@ -15,7 +15,7 @@ const slice = createSlice({
   name: ReducerName.APP,
   initialState,
   reducers: {
-    changeCityName: (state, action: PayloadAction<TCityName>) => {
+    changeCityName: (state, action: PayloadAction<CityName>) => {
       state.currentCityName = action.payload;
     },
     changeSortType: (state, action: PayloadAction<TSortType>) => {

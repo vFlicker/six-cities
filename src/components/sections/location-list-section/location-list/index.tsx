@@ -3,9 +3,10 @@ import { useAppDispatch, useAppSelector } from '~/hooks';
 import { appSlice } from '~/store';
 
 import { LocationItem } from '../../../shared/location-item';
+
 import * as S from './styles';
 
-export function LocationsList(): JSX.Element {
+export function LocationList(): JSX.Element {
   const currentCityName = useAppSelector(appSlice.getCurrentCityName);
 
   const dispatch = useAppDispatch();

@@ -1,11 +1,11 @@
 import { MouseEvent, PropsWithChildren } from 'react';
 
-import { AppRoute } from '~/constants';
+import { AppRoute, CityName } from '~/constants';
 
 import * as S from './styles';
 
 type LocationItemProps = PropsWithChildren<{
-  cityName: string;
+  cityName: CityName;
   isActive?: boolean;
 
   onLocationsItemClick?: (evt: MouseEvent) => void;
@@ -14,6 +14,7 @@ type LocationItemProps = PropsWithChildren<{
 export function LocationItem({
   cityName,
   isActive = false,
+
   onLocationsItemClick,
 }: LocationItemProps): JSX.Element {
   return (

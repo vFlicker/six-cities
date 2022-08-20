@@ -4,7 +4,7 @@ export * from './favorites-section';
 export * from './footer-section';
 export * from './header-section';
 export * from './location-section';
-export * from './locations-section';
+export * from './location-list-section';
 export * from './login-section';
 export * from './main-empty-section';
 export * from './main-section';
