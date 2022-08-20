@@ -1,9 +1,15 @@
 import styled from '@emotion/styled';
 
-import { LocationItem } from '~/components/shared';
+import { Container as BaseContainer } from '~/components/shared';
 
 export const Section = styled.section`
   width: 100%;
+`;
+
+export const Container = styled(BaseContainer)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export const Title = styled.h1`
@@ -28,8 +34,7 @@ export const Item = styled.li`
   }
 `;
 
-export const LocationItem1 = styled(LocationItem)``;
-
 export const LocationWrapper = styled.div`
+  width: 137px;
   margin-right: 120px;
 `;

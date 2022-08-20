@@ -13,6 +13,7 @@ export const Link = styled(RouterDomLink)<{ isActive: boolean }>`
   padding: 8px 20px 6px 16px;
   border-radius: 3px;
 
+  text-align: center;
   line-height: 1.211;
   font-size: 19px;
   font-weight: 300;
@@ -30,4 +31,8 @@ export const Link = styled(RouterDomLink)<{ isActive: boolean }>`
 export const Text = styled.span`
   display: block;
   transform: skew(15deg);
+
+  &::first-letter {
+    text-transform: uppercase;
+  }
 `;

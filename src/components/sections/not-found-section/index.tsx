@@ -1,12 +1,12 @@
 import { noResultsIconSrc } from '~/assets/images';
 
-import { SectionWithBorder, NotFound } from '../../shared';
+import { NotFound, NotificationSection } from '../../shared';
 
 import * as S from './styles';
 
 export function NotFoundSection(): JSX.Element {
   return (
-    <SectionWithBorder>
+    <NotificationSection>
       <S.Title>Favorites (empty)</S.Title>
       <S.Container>
         <NotFound
@@ -15,6 +15,6 @@ export function NotFoundSection(): JSX.Element {
           description="The page you are looking for does not exist"
         />
       </S.Container>
-    </SectionWithBorder>
+    </NotificationSection>
   );
 }

@@ -54,7 +54,7 @@ export function OfferPage(): JSX.Element {
             <h2 className="near-places__title">
               Other places in the neighbourhood
             </h2>
-
+            {/* TODO: remove all className */}
             <CardList
               className="near-places__list places__list"
               offers={offersNearby}

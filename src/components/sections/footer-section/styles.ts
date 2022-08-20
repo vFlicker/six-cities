@@ -10,4 +10,5 @@ export const FooterContainer = styled(Container)`
   align-items: flex-start;
   padding-top: 48px;
   padding-bottom: 52px;
+  border-top: 2px solid rgba(222, 222, 222, 0.5);
 `;

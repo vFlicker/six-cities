@@ -1,11 +1,11 @@
 import { MouseEvent, PropsWithChildren } from 'react';
 
-import { AppRoute, CityName } from '~/constants';
+import { AppRoute } from '~/constants';
 
 import * as S from './styles';
 
 type LocationItemProps = PropsWithChildren<{
-  cityName: CityName;
+  cityName: string;
   isActive?: boolean;
 
   onLocationsItemClick?: (evt: MouseEvent) => void;

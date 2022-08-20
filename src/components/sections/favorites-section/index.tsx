@@ -6,7 +6,7 @@ import { offersFavoriteSlice } from '~/store';
 import { CardItemFavorites } from '../../card-item';
 import { CardList } from '../../card-list';
 import { Spinner } from '../../spinner';
-import { Container, LocationItem } from '../../shared';
+import { LocationItem } from '../../shared';
 import { FavoritesEmptySection } from '../favorites-empty-section';
 
 import * as S from './styles';
@@ -34,30 +34,30 @@ export function SectionFavorites(): JSX.Element {
     return <S.Title>Error!</S.Title>;
   }
 
-  if (!offersFavorite.length) {
+  if (!Object.keys(offersFavorite).length) {
     return <FavoritesEmptySection />;
   }
 
   return (
     <S.Section>
-      <Container>
+      <S.Container>
         <S.Title>Saved listing</S.Title>
         <S.List>
-          {offersFavorite.map((offer) => (
-            <S.Item key={offer.city.name}>
+          {Object.entries(offersFavorite).map(([cityName, offers]) => (
+            <S.Item key={cityName}>
               <S.LocationWrapper>
-                <LocationItem isActive cityName={offer.city.name} />
+                <LocationItem isActive cityName={cityName} />
               </S.LocationWrapper>
 
               <CardList
                 className="favorites__places"
-                offers={offersFavorite}
+                offers={offers}
                 getCardItem={(offer) => <CardItemFavorites offer={offer} />}
               />
             </S.Item>
           ))}
         </S.List>
-      </Container>
+      </S.Container>
     </S.Section>
   );
 }

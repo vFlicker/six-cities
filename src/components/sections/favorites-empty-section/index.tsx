@@ -1,12 +1,12 @@
 import { savedIconSrc } from '~/assets/images';
 
-import { NotFound, SectionWithBorder } from '../../shared';
+import { NotFound, NotificationSection } from '../../shared';
 
 import * as S from './styles';
 
 export function FavoritesEmptySection(): JSX.Element {
   return (
-    <SectionWithBorder>
+    <NotificationSection>
       <S.Title>Favorites (empty)</S.Title>
       <S.Container>
         <NotFound
@@ -15,6 +15,6 @@ export function FavoritesEmptySection(): JSX.Element {
           description="Save properties to narrow down search or plan your future trips."
         />
       </S.Container>
-    </SectionWithBorder>
+    </NotificationSection>
   );
 }

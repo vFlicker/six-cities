@@ -7,25 +7,15 @@ export const Nav = styled.nav`
   display: flex;
   flex-shrink: 0;
   flex-wrap: wrap;
-  margin-top: 11px;
-  margin-left: 30px;
 `;
 
 export const List = styled.ul`
   display: flex;
   flex-shrink: 0;
   flex-wrap: wrap;
-  margin-top: 11px;
-  margin-left: 30px;
 `;
 
-export const Item = styled.li`
-  margin-bottom: 15px;
-
-  &:not(:last-child) {
-    margin-right: 15px;
-  }
-`;
+export const Item = styled.li``;
 
 export const Link = styled(RouterLink)`
   display: flex;

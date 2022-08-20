@@ -12,6 +12,6 @@ export const HeaderLeft = styled.div`
 export const HeaderWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  padding: 19px 16px 0;
+  align-items: center;
+  padding: 19px 16px 19px;
 `;

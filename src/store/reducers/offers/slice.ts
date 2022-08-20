@@ -1,12 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { ErrorType, Offers } from '~/types';
+import { ErrorType, OffersDictionary } from '~/types';
 
 import { ReducerName } from '../../constants';
 import { fetchOffers } from './api-actions';
+import { createOffersDictionary } from './utils';
 
 const initialState = {
-  offers: {} as Offers,
+  offers: {} as OffersDictionary,
   loading: false,
   error: null as ErrorType,
 };
@@ -22,7 +23,7 @@ const slice = createSlice({
         state.error = null;
       })
       .addCase(fetchOffers.fulfilled, (state, action) => {
-        state.offers = action.payload;
+        state.offers = createOffersDictionary(action.payload);
         state.loading = false;
         state.error = null;
       })
