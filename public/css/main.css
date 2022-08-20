@@ -349,6 +349,7 @@ img {
 } */
 
 .page__main {
+  display: flex;
   flex-grow: 1;
 }
 
