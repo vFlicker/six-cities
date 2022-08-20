@@ -353,11 +353,11 @@ img {
   flex-grow: 1;
 }
 
-.error__title {
+/* .error__title {
   margin: 0 auto;
   text-align: center;
   width: 500px;
-}
+} */
 
 /* .page__main--not-found {
   display: flex;

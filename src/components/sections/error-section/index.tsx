@@ -1,13 +1,13 @@
 import { Container, SectionWithBorder } from '../../shared';
 
+import * as S from './style';
+
 // TODO: Add error from API answer here
 export function ErrorSection(): JSX.Element {
   return (
     <SectionWithBorder>
       <Container>
-        <h1 className="error__title">
-          There are problems, please try again later.
-        </h1>
+        <S.Title>There are problems, please try again later.</S.Title>
       </Container>
     </SectionWithBorder>
   );
