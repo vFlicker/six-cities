@@ -1,8 +1,15 @@
 import styled from '@emotion/styled';
 
-import { Container } from '~/components/shared';
+import {
+  visuallyHidden,
+  Container as BaseContainer,
+} from '~/components/shared';
 
-export const FavoriteEmptyContainer = styled(Container)`
+export const Title = styled.h1`
+  ${visuallyHidden};
+`;
+
+export const Container = styled(BaseContainer)`
   display: flex;
   justify-content: center;
 `;
