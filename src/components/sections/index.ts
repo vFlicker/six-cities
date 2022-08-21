@@ -11,6 +11,5 @@ export * from './main-section';
 export * from './not-found-section';
 export * from './reviews-section';
 
-export * from './section-map';
 export * from './section-places';
 export * from './section-property';

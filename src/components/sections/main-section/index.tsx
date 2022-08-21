@@ -2,8 +2,9 @@ import { Offer } from '~/types';
 
 import { CardItemCities } from '../../card-item';
 import { CardList } from '../../card-list';
+import { Map } from '../../map';
 import { Sorting } from '../../sorting';
-import { SectionMap, SectionPlaces } from '../index';
+import { SectionPlaces } from '../index';
 
 import * as S from './styles';
 
@@ -31,7 +32,7 @@ export function MainSection({ offers }: MainSectionProps): JSX.Element {
       </SectionPlaces>
 
       <S.MapWrapper>
-        <SectionMap offers={offers} className="cities__map" />
+        <Map offers={offers} orientation="horizontal" />
       </S.MapWrapper>
     </S.MainContainer>
   );

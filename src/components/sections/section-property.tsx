@@ -6,16 +6,16 @@ import { offerSlice, offersNearbySlice } from '~/store';
 import { Offer } from '~/types';
 import { convertRatingToPercents } from '~/utils';
 
+import { Map } from '../map';
 import { Container } from '../shared';
-
-import { SectionMap, ReviewsSection } from './index';
+import { ReviewsSection } from './index';
 
 type OfferProps = {
   offer: Offer;
 };
 
 export function SectionProperty({ offer }: OfferProps): JSX.Element {
-  const offersNearby = useAppSelector(offersNearbySlice.getOffersNearby);
+  const offers = useAppSelector(offersNearbySlice.getOffersNearby);
   const dispatch = useAppDispatch();
 
   const {
@@ -143,7 +143,7 @@ export function SectionProperty({ offer }: OfferProps): JSX.Element {
           <ReviewsSection />
         </div>
       </PropertyContainer>
-      <SectionMap className="property__map" offers={offersNearby} />
+      <Map offers={offers} orientation="vertical" />
     </section>
   );
 }

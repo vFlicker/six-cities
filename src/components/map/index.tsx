@@ -1,34 +1,31 @@
 import { useEffect, useRef } from 'react';
 import { Icon, latLng, Marker } from 'leaflet';
 
+import { pinActiveIconSrc, pinIconSrc } from '~/assets/images';
 import { useAppSelector, useMap } from '~/hooks';
 import { appSlice } from '~/store';
 import { Offer } from '~/types';
 
+import StyledProps, * as S from './styles';
 import 'leaflet/dist/leaflet.css';
-import {
-  pinActiveIconSrc as URL_MARKER_CURRENT,
-  pinIconSrc as URL_MARKER_DEFAULT,
-} from '~/assets/images';
 
 type MapProps = {
   offers: Offer[];
-  className: string;
-};
+} & StyledProps;
 
-const ICON_SIZE: [number, number] = [27, 39];
+const ICON_SIZE = [27, 39] as [number, number];
 
 const defaultIcon = new Icon({
-  iconUrl: URL_MARKER_DEFAULT,
+  iconUrl: pinIconSrc,
   iconSize: ICON_SIZE,
 });
 
 const currentIcon = new Icon({
-  iconUrl: URL_MARKER_CURRENT,
+  iconUrl: pinActiveIconSrc,
   iconSize: ICON_SIZE,
 });
 
-export function SectionMap({ offers, className = '' }: MapProps): JSX.Element {
+export function Map({ offers, orientation }: MapProps): JSX.Element {
   const { city } = offers[0];
 
   const mapRef = useRef<HTMLElement | null>(null);
@@ -55,5 +52,5 @@ export function SectionMap({ offers, className = '' }: MapProps): JSX.Element {
     return () => markers.forEach((marker) => marker.remove());
   }, [activeCardId, map, offers]);
 
-  return <section className={`${className}  map`} ref={mapRef} />;
+  return <S.Map ref={mapRef} orientation={orientation} />;
 }
