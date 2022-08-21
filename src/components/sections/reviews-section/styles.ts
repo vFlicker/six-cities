@@ -16,4 +16,4 @@ export const Title = styled.h2`
   text-align: center;
 `;
 
-export const Amount = styled.span``;
+export const ReviewCount = styled.span``;

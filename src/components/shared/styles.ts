@@ -13,6 +13,21 @@ export const FlexContainer = styled(Container)`
   display: flex;
 `;
 
+export const Textarea = styled.textarea`
+  font-size: 16px;
+  line-height: 1.1875;
+  color: #383838;
+  background-color: #fff;
+  border: 1px solid #e6e6e6;
+  border-radius: 2px;
+
+  &::placeholder {
+    font-size: 16px;
+    line-height: 1.1875;
+    color: #9b9b9b;
+  }
+`;
+
 // TODO: look to this code
 // export const menuItemClassName = css({
 //   flexGrow: 1,

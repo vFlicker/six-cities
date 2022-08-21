@@ -28,6 +28,7 @@ function ReviewsItem({ review }: ReviewsItemProps): JSX.Element {
     rating,
     user,
   } = review;
+
   const { avatarUrl, name } = user;
   // TODO: normalize date
   // 2022-06-02T10:21:00.051Z

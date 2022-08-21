@@ -1,4 +1,4 @@
-import { HeaderSection, FooterSection, SectionFavorites } from '../sections';
+import { HeaderSection, FooterSection, FavoritesSection } from '../sections';
 import { Page } from '../shared';
 
 export function FavoritesPage(): JSX.Element {
@@ -6,7 +6,7 @@ export function FavoritesPage(): JSX.Element {
     <Page>
       <HeaderSection />
       <main className="page__main page__main--favorites">
-        <SectionFavorites />
+        <FavoritesSection />
       </main>
       <FooterSection />
     </Page>

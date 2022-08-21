@@ -11,7 +11,7 @@ import { FavoritesEmptySection } from '../favorites-empty-section';
 
 import * as S from './styles';
 
-export function SectionFavorites(): JSX.Element {
+export function FavoritesSection(): JSX.Element {
   const offersFavorite = useAppSelector(offersFavoriteSlice.getOffersFavorite);
   const offersFavoriteLoadingStatus = useAppSelector(
     offersFavoriteSlice.getOffersFavoriteLoadingStatus,

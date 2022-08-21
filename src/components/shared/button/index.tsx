@@ -10,6 +10,11 @@ type ButtonProps = PropsWithChildren<{
 export function Button({
   children,
   fullWidth = false,
+  ...props
 }: ButtonProps): JSX.Element {
-  return <S.Button data-full-width={fullWidth}>{children}</S.Button>;
+  return (
+    <S.Button data-full-width={fullWidth} {...props}>
+      {children}
+    </S.Button>
+  );
 }

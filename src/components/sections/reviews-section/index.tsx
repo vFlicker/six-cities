@@ -6,19 +6,25 @@ import { ReviewsForm } from './reviews-form';
 import { ReviewsList } from './reviews-list';
 import * as S from './styles';
 
-export function SectionReviews(): JSX.Element {
+export function ReviewsSection(): JSX.Element {
   const reviews = useAppSelector(offerSlice.getComments);
   const authStatus = useAppSelector(userSlice.getAuthStatus);
+
+  const reviewCount = reviews.length;
+  const reviewsList = !reviewCount && <ReviewsList reviews={reviews} />;
+  const reviewsForm = authStatus === AuthStatus.Auth && <ReviewsForm />;
 
   return (
     reviews && (
       <S.Section>
         <S.Title>
           Reviews &middot;
-          <S.Amount>{reviews.length}</S.Amount>
+          <S.ReviewCount>{reviewCount}</S.ReviewCount>
         </S.Title>
-        <ReviewsList reviews={reviews} />
-        {authStatus === AuthStatus.Auth && <ReviewsForm />}
+
+        {reviewsList}
+
+        {reviewsForm}
       </S.Section>
     )
   );

@@ -1,6 +1,6 @@
 import { Container, NotificationSection } from '../../shared';
 
-import * as S from './style';
+import * as S from './styles';
 
 // TODO: Add error from API answer here
 export function ErrorSection(): JSX.Element {

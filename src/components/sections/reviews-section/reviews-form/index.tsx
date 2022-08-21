@@ -7,6 +7,8 @@ import { offerSlice } from '~/store';
 import { RatingList } from '../../../rating-list';
 import { Button } from '../../../shared';
 
+import * as S from './styles';
+
 const MIN_STAR_COUNT = 1;
 const MIN_REVIEW_LENGTH = 5;
 
@@ -20,6 +22,7 @@ export function ReviewsForm(): JSX.Element {
   const dispatch = useAppDispatch();
 
   // TODO: add sendingInProgress
+
   const isSubmitDisabled =
     review.length < MIN_REVIEW_LENGTH || rating < MIN_STAR_COUNT;
 
@@ -36,15 +39,15 @@ export function ReviewsForm(): JSX.Element {
   };
 
   return (
-    <form className="reviews__form form" onSubmit={handleFromSubmit}>
-      <label className="reviews__label form__label" htmlFor="review">
-        Your review
-      </label>
+    <S.From onSubmit={handleFromSubmit}>
+      <S.Label htmlFor="review">Your review</S.Label>
+
       <RatingList
         rating={rating}
         onRatingToggle={(count: number) => setRating(count)}
       />
-      <textarea
+
+      <S.Textarea
         className="reviews__textarea form__textarea"
         id="review"
         name="review"
@@ -52,16 +55,18 @@ export function ReviewsForm(): JSX.Element {
         value={review}
         onChange={({ target }) => setReview(target.value)}
       />
-      <div className="reviews__button-wrapper">
-        <p className="reviews__help">
-          To submit review please make sure to set{' '}
-          <span className="reviews__star">rating</span> and describe your stay
-          with at least <b className="reviews__text-amount">50 characters</b>.
-        </p>
+
+      <S.Wrapper>
+        <S.HelpText>
+          To submit review please make sure to set <S.Star>rating</S.Star> and
+          describe your stay with at least{' '}
+          <S.TextAmount>50 characters</S.TextAmount>.
+        </S.HelpText>
+
         <Button type="submit" disabled={isSubmitDisabled}>
           Submit
         </Button>
-      </div>
-    </form>
+      </S.Wrapper>
+    </S.From>
   );
 }

@@ -10,7 +10,7 @@ import {
   MainSection,
 } from '../../sections';
 
-import * as S from './style';
+import * as S from './styles';
 
 export function MainPage(): JSX.Element {
   return (

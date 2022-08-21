@@ -1469,12 +1469,12 @@ img {
   color: #5d5d5d
 }
 
-.reviews__form {
+/* .reviews__form {
   margin-right: -30px;
   padding-left: 76px
-}
+} */
 
-.reviews__label {
+/* .reviews__label {
   display: inline-block;
   margin-bottom: 14px;
   font-size: 14px;
@@ -1482,43 +1482,43 @@ img {
   font-weight: 700;
   font-style: oblique;
   color: #000
-}
+} */
 
-.reviews__textarea {
+/* .reviews__textarea {
   width: 568px;
   height: 92px;
   margin-bottom: 12px;
   padding: 15px 16px
-}
+} */
 
 .reviews__rating-form {
   margin-bottom: 21px
 }
 
-.reviews__button-wrapper {
+/* .reviews__button-wrapper {
   display: flex;
   align-items: flex-start;
   justify-content: space-between
-}
+} */
 
-.reviews__help {
+/* .reviews__help {
   width: 402px;
   margin-top: 8px;
   margin-bottom: 0;
   font-size: 12px;
   line-height: 1.334
-}
+} */
 
-.reviews__star {
+/* .reviews__star {
   padding-left: 15px;
   background-image: url(../img/star-active.svg);
   background-size: 12px 11px;
   background-repeat: no-repeat
-}
+} */
 
-.reviews__text-amount {
+/* .reviews__text-amount {
   font-weight: 700
-}
+} */
 
 /* .reviews__submit {
   width: 143px;
@@ -1555,51 +1555,6 @@ img {
 .form__star-image {
   fill: #c7c7c7;
   transition: fill .3s
-}
-
-.form__textarea {
-  font-size: 16px;
-  line-height: 1.1875;
-  color: #383838;
-  background-color: #fff;
-  border: 1px solid #e6e6e6;
-  border-radius: 2px
-}
-
-.form__textarea::-webkit-input-placeholder {
-  font-size: 16px;
-  line-height: 1.1875;
-  color: #9b9b9b
-}
-
-.form__textarea::-moz-placeholder {
-  font-size: 16px;
-  line-height: 1.1875;
-  color: #9b9b9b
-}
-
-.form__textarea::-ms-input-placeholder {
-  font-size: 16px;
-  line-height: 1.1875;
-  color: #9b9b9b
-}
-
-.form__textarea:-ms-input-placeholder {
-  font-size: 16px;
-  line-height: 1.1875;
-  color: #9b9b9b
-}
-
-.form__textarea::placeholder {
-  font-size: 16px;
-  line-height: 1.1875;
-  color: #9b9b9b
-}
-
-.form__textarea::-ms-input-placeholder {
-  font-size: 16px;
-  line-height: 1.1875;
-  color: #9b9b9b
 }
 
 /* .form__input {

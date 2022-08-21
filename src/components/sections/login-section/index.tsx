@@ -6,7 +6,7 @@ import { userSlice } from '~/store';
 
 import * as S from './styles';
 
-export function SectionLogin(): JSX.Element {
+export function LoginSection(): JSX.Element {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 

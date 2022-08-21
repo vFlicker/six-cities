@@ -8,7 +8,7 @@ import { convertRatingToPercents } from '~/utils';
 
 import { Container } from '../shared';
 
-import { SectionMap, SectionReviews } from './index';
+import { SectionMap, ReviewsSection } from './index';
 
 type OfferProps = {
   offer: Offer;
@@ -140,7 +140,7 @@ export function SectionProperty({ offer }: OfferProps): JSX.Element {
             </div>
           </div>
 
-          <SectionReviews />
+          <ReviewsSection />
         </div>
       </PropertyContainer>
       <SectionMap className="property__map" offers={offersNearby} />
