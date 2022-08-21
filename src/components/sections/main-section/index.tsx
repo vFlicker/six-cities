@@ -1,64 +1,38 @@
-import { useLayoutEffect } from 'react';
-
-import { useAppDispatch, useAppSelector } from '~/hooks';
-import { offersSlice } from '~/store';
+import { Offer } from '~/types';
 
 import { CardItemCities } from '../../card-item';
 import { CardList } from '../../card-list';
 import { Sorting } from '../../sorting';
-import { Spinner } from '../../spinner';
-import { MainEmptySection } from '../main-empty-section';
-import { LocationListSection, SectionMap, SectionPlaces } from '../index';
+import { SectionMap, SectionPlaces } from '../index';
+
 import * as S from './styles';
 
-export function MainSection(): JSX.Element {
-  const sortedOffers = useAppSelector(offersSlice.getSortedOffers);
-  const isOffersLoading = useAppSelector(offersSlice.getOffersLoadingStatus);
-  const offersError = useAppSelector(offersSlice.getOffersError);
+type MainSectionProps = {
+  offers: Offer[];
+};
 
-  const dispatch = useAppDispatch();
-
-  useLayoutEffect(() => {
-    dispatch(offersSlice.fetchOffers());
-  }, [dispatch]);
-
-  if (isOffersLoading) {
-    return <Spinner />;
-  }
-
-  if (offersError) {
-    return <h1>Error</h1>;
-  }
-
-  if (!sortedOffers) {
-    return <MainEmptySection />;
-  }
-
+export function MainSection({ offers }: MainSectionProps): JSX.Element {
   return (
-    <main className="page__main page__main--index">
-      <h1 className="visually-hidden">Cities</h1>
-      <LocationListSection />
-      <div className="cities">
-        <S.MainContainer>
-          <SectionPlaces className="cities__places">
-            <h2 className="visually-hidden">Places</h2>
-            <b className="places__found">
-              {sortedOffers.length} places to stay in Amsterdam
-            </b>
+    <S.MainContainer>
+      <SectionPlaces className="cities__places">
+        <S.Title>Places</S.Title>
 
-            <Sorting />
+        <S.PlacesFound>
+          {offers.length} places to stay in Amsterdam
+        </S.PlacesFound>
 
-            <CardList
-              className="cities__places-list places__list tabs__content"
-              offers={sortedOffers}
-              getCardItem={(offer) => <CardItemCities offer={offer} />}
-            />
-          </SectionPlaces>
-          <div className="cities__right-section">
-            <SectionMap offers={sortedOffers} className="cities__map" />
-          </div>
-        </S.MainContainer>
-      </div>
-    </main>
+        <Sorting />
+
+        <CardList
+          className="cities__places-list places__list tabs__content"
+          offers={offers}
+          getCardItem={(offer) => <CardItemCities offer={offer} />}
+        />
+      </SectionPlaces>
+
+      <S.MapWrapper>
+        <SectionMap offers={offers} className="cities__map" />
+      </S.MapWrapper>
+    </S.MainContainer>
   );
 }

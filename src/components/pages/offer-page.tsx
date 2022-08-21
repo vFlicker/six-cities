@@ -9,7 +9,7 @@ import { CardList } from '../card-list';
 import { HeaderSection, SectionPlaces, SectionProperty } from '../sections';
 import { Spinner } from '../spinner';
 import { ErrorPage } from './error-page';
-import { Container } from '../shared';
+import { Container, Page } from '../shared';
 
 export function OfferPage(): JSX.Element {
   const { id } = useParams();
@@ -44,7 +44,7 @@ export function OfferPage(): JSX.Element {
   }
 
   return (
-    <div className="page">
+    <Page>
       <HeaderSection />
       <main className="page__main page__main--property">
         <SectionProperty offer={offer} />
@@ -63,6 +63,6 @@ export function OfferPage(): JSX.Element {
           </SectionPlaces>
         </Container>
       </main>
-    </div>
+    </Page>
   );
 }

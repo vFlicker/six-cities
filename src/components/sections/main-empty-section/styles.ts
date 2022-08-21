@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
 
 import { noPlaces2xPhotoSrc, noPlacesPhotoSrc } from '~/assets/images';
-import { Container } from '~/components/shared';
+import { Container as BaseContainer } from '~/components/shared';
 
-export const MainEmptyContainer = styled(Container)`
+export const Container = styled(BaseContainer)`
   display: flex;
   height: 100%;
   padding-right: 0;

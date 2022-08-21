@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
-import { visuallyHidden } from '~/components/shared/visually-hidden';
+
+import { visuallyHidden } from '../../shared';
 
 export const Section = styled.section`
   position: relative;
