@@ -1,7 +1,8 @@
 import styled from '@emotion/styled';
 
 import { starActiveIconSrc } from '~/assets/images';
-import { Textarea as TextareaBase } from '~/components/shared';
+
+import { Textarea as TextareaBase } from '../../../shared';
 
 export const From = styled.form`
   margin-right: -30px;

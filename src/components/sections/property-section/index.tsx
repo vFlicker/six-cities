@@ -15,7 +15,7 @@ type OfferProps = {
 export function PropertySection({ offer }: OfferProps): JSX.Element {
   const { images, ...props } = offer;
 
-  const offers = useAppSelector(offersNearbySlice.getOffersNearby);
+  const offers = useAppSelector(offersNearbySlice.getOffers);
 
   return (
     <S.Section>

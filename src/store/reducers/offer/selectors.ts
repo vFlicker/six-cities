@@ -8,8 +8,8 @@ export const getOffer = (state: RootState): Offer | null =>
 export const getComments = (state: RootState): Review[] =>
   state[ReducerName.OFFER].comments;
 
-export const getOfferLoadingStatus = (state: RootState): boolean =>
+export const getLoadingStatus = (state: RootState): boolean =>
   state[ReducerName.OFFER].loading;
 
-export const getOfferError = (state: RootState): ErrorType =>
+export const getError = (state: RootState): ErrorType =>
   state[ReducerName.OFFER].error;

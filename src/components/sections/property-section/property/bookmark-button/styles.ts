@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
-import { visuallyHidden } from '~/components/shared';
+
+import { visuallyHidden } from '../../../../shared';
 
 type ButtonProps = {
   isFavorite?: boolean;

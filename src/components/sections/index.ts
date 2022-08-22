@@ -8,6 +8,7 @@ export * from './location-list-section';
 export * from './login-section';
 export * from './main-empty-section';
 export * from './main-section';
+export * from './near-places-section';
 export * from './not-found-section';
 export * from './property-section';
 export * from './reviews-section';

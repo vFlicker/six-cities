@@ -16,9 +16,12 @@ export function MainPage(): JSX.Element {
   return (
     <S.Page>
       <HeaderSection />
+
       <S.PageContent>
         <S.Title>Cities</S.Title>
+
         <LocationListSection />
+
         <S.Wrapper>
           <MainPageContent />
         </S.Wrapper>

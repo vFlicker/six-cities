@@ -1,6 +1,7 @@
-import { LocationItem } from '~/components/shared';
 import { useAppSelector } from '~/hooks';
 import { appSlice } from '~/store';
+
+import { LocationItem } from '../../shared';
 
 import * as S from './styles';
 

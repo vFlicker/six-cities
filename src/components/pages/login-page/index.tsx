@@ -5,8 +5,10 @@ import { AppRoute } from '~/constants';
 import { useAppSelector } from '~/hooks';
 import { userSlice } from '~/store';
 
-import { HeaderSection, LocationSection, LoginSection } from '../sections';
-import { FlexContainer } from '../shared';
+import { PageContent } from '../../shared';
+import { HeaderSection, LocationSection, LoginSection } from '../../sections';
+
+import * as S from './styles';
 
 export function LoginPage(): JSX.Element {
   const navigate = useNavigate();
@@ -20,15 +22,16 @@ export function LoginPage(): JSX.Element {
   }, [authStatus, navigate]);
 
   return (
-    <div className="page page--gray page--login">
+    <S.Page>
       <HeaderSection />
-      <main className="page__main page__main--login">
+
+      <PageContent>
         {/* // TODO: <Layout grid fullWidth /> */}
-        <FlexContainer>
+        <S.Container>
           <LoginSection />
           <LocationSection />
-        </FlexContainer>
-      </main>
-    </div>
+        </S.Container>
+      </PageContent>
+    </S.Page>
   );
 }

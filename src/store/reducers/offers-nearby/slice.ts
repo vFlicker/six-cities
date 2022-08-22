@@ -6,7 +6,7 @@ import { ReducerName } from '../../constants';
 import { fetchOfferNearby } from './api-actions';
 
 const initialState = {
-  offersNearby: [] as Offer[],
+  offers: [] as Offer[],
   loading: false,
   error: null as ErrorType,
 };
@@ -22,7 +22,7 @@ const slice = createSlice({
         state.error = null;
       })
       .addCase(fetchOfferNearby.fulfilled, (state, action) => {
-        state.offersNearby = action.payload;
+        state.offers = action.payload;
         state.loading = false;
         state.error = null;
       })

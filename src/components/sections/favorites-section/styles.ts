@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { Container as BaseContainer } from '~/components/shared';
+import { Container as BaseContainer } from '../../shared';
 
 export const Section = styled.section`
   width: 100%;

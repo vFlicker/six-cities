@@ -1,14 +1,16 @@
-import { HeaderSection, FooterSection, NotFoundSection } from '../sections';
-import { PageContent } from '../shared';
+import { HeaderSection, FooterSection, NotFoundSection } from '../../sections';
+import { Page, PageContent } from '../../shared';
 
 export function NotFoundPage(): JSX.Element {
   return (
-    <div className="page  page--not-found">
+    <Page>
       <HeaderSection />
+
       <PageContent>
         <NotFoundSection />
       </PageContent>
+
       <FooterSection />
-    </div>
+    </Page>
   );
 }

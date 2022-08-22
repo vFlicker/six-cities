@@ -1,8 +1,9 @@
 import { FormEvent, useRef } from 'react';
 
-import { Button } from '~/components/shared';
 import { useAppDispatch } from '~/hooks';
 import { userSlice } from '~/store';
+
+import { Button } from '../../shared';
 
 import * as S from './styles';
 

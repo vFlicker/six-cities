@@ -1,12 +1,12 @@
 import styled from '@emotion/styled';
 
 import {
-  Page as PageBase,
+  Page as BasePage,
   PageContent as BasePageContent,
   visuallyHidden,
-} from '~/components/shared';
+} from '../../shared';
 
-export const Page = styled(PageBase)`
+export const Page = styled(BasePage)`
   display: flex;
   flex-direction: column;
   height: 100vh;

@@ -9,10 +9,6 @@ export const Container = styled.div`
   padding-right: 58px;
 `;
 
-export const FlexContainer = styled(Container)`
-  display: flex;
-`;
-
 export const Textarea = styled.textarea`
   font-size: 16px;
   line-height: 1.1875;
