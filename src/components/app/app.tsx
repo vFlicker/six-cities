@@ -11,7 +11,7 @@ import { userSlice } from '~/store';
 import { browserHistory } from '~/utils';
 
 import { Spinner } from '../shared';
-import { PrivateRoute } from '../private-route';
+import { PrivateRoute } from '../shared';
 import {
   FavoritesPage,
   LoginPage,

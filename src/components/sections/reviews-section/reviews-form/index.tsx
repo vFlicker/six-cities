@@ -4,8 +4,8 @@ import { useParams } from 'react-router-dom';
 import { useAppDispatch } from '~/hooks';
 import { offerSlice } from '~/store';
 
-import { RatingList } from '../../../rating-list';
 import { Button } from '../../../shared';
+import { RatingList } from './rating-list';
 
 import * as S from './styles';
 
