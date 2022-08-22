@@ -11,5 +11,3 @@ export * from './main-section';
 export * from './not-found-section';
 export * from './property-section';
 export * from './reviews-section';
-
-export * from './section-places';

@@ -6,10 +6,13 @@ import { offerSlice, offersNearbySlice } from '~/store';
 
 import { CardItemNearPlaces } from '../card-item';
 import { CardList } from '../card-list';
-import { HeaderSection, PropertySection, SectionPlaces } from '../sections';
+import { HeaderSection, PropertySection } from '../sections';
 import { Spinner } from '../spinner';
-import { ErrorPage } from './error-page';
 import { Container, Page } from '../shared';
+import { ErrorPage } from './error-page';
+
+import styled from '@emotion/styled';
+// import * as S from './styles';
 
 export function OfferPage(): JSX.Element {
   const { id } = useParams();
@@ -50,7 +53,7 @@ export function OfferPage(): JSX.Element {
         <PropertySection offer={offer} />
 
         <Container>
-          <SectionPlaces className="near-places">
+          <StyledSection>
             <h2 className="near-places__title">
               Other places in the neighbourhood
             </h2>
@@ -60,9 +63,15 @@ export function OfferPage(): JSX.Element {
               offers={offersNearby}
               getCardItem={(offer) => <CardItemNearPlaces offer={offer} />}
             />
-          </SectionPlaces>
+          </StyledSection>
         </Container>
       </main>
     </Page>
   );
 }
+
+const StyledSection = styled.section`
+  margin: 0 16px 0 12px;
+  padding-bottom: 27px;
+  border-bottom: 2px solid rgba(222, 222, 222, 0.5);
+`;

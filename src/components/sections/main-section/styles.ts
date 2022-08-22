@@ -7,7 +7,17 @@ export const MainContainer = styled(Container)`
   padding-right: 0;
 `;
 
-export const Title = styled.h2`
+export const Section = styled.section`
+  width: 572px;
+  margin-top: 2px;
+  margin-right: 2px;
+  padding-top: 29px;
+  padding-bottom: 7px;
+  padding-left: 9px;
+  overflow-y: auto;
+`;
+
+export const HiddenTitle = styled.h2`
   ${visuallyHidden}
 `;
 

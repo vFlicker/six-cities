@@ -4,7 +4,6 @@ import { CardItemCities } from '../../card-item';
 import { CardList } from '../../card-list';
 import { Map } from '../../map';
 import { Sorting } from '../../sorting';
-import { SectionPlaces } from '../index';
 
 import * as S from './styles';
 
@@ -15,8 +14,8 @@ type MainSectionProps = {
 export function MainSection({ offers }: MainSectionProps): JSX.Element {
   return (
     <S.MainContainer>
-      <SectionPlaces className="cities__places">
-        <S.Title>Places</S.Title>
+      <S.Section>
+        <S.HiddenTitle>Places</S.HiddenTitle>
 
         <S.PlacesFound>
           {offers.length} places to stay in Amsterdam
@@ -29,7 +28,7 @@ export function MainSection({ offers }: MainSectionProps): JSX.Element {
           offers={offers}
           getCardItem={(offer) => <CardItemCities offer={offer} />}
         />
-      </SectionPlaces>
+      </S.Section>
 
       <S.MapWrapper>
         <Map offers={offers} orientation="horizontal" />
