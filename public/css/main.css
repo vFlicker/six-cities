@@ -1776,7 +1776,7 @@ property__user-status
 } */
 
 
-.spinner {
+/* .spinner {
   display: inline-block;
   position: relative;
   width: 80px;
@@ -1800,38 +1800,22 @@ property__user-status
 }
 
 .spinner__item--1 {
-  -webkit-animation-delay: -0.45s;
           animation-delay: -0.45s;
 }
 
 .spinner__item--2 {
-  -webkit-animation-delay: -0.3s;
           animation-delay: -0.3s;
 }
 
 .spinner__item--3 {
-  -webkit-animation-delay: -0.15s;
           animation-delay: -0.15s;
-}
-
-@-webkit-keyframes spinner-animate {
-  0% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
-  }
 }
 
 @keyframes spinner-animate {
   0% {
-    -webkit-transform: rotate(0deg);
             transform: rotate(0deg);
   }
   100% {
-    -webkit-transform: rotate(360deg);
             transform: rotate(360deg);
   }
-}
+} */

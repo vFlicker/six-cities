@@ -1,8 +1,8 @@
 import { useLayoutEffect } from 'react';
-import { Spinner } from '~/components/spinner';
 import { useAppDispatch, useAppSelector } from '~/hooks';
 import { offersSlice } from '~/store';
 
+import { Spinner } from '../../shared';
 import {
   HeaderSection,
   LocationListSection,

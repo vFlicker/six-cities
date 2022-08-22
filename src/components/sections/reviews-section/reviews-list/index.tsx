@@ -1,6 +1,6 @@
 import { Review } from '~/types';
 
-import { StarRating } from '../../../shared/star-rating';
+import { StarRating } from '../../../shared';
 
 import * as S from './styles';
 

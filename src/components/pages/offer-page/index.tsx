@@ -9,7 +9,7 @@ import {
   NearPlacesSection,
   PropertySection,
 } from '../../sections';
-import { Spinner } from '../../spinner';
+import { Spinner } from '../../shared';
 import { Page } from '../../shared';
 import { ErrorPage } from '../error-page';
 

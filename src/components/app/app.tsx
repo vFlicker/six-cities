@@ -10,7 +10,7 @@ import { AppRoute } from '~/constants';
 import { userSlice } from '~/store';
 import { browserHistory } from '~/utils';
 
-import { Spinner } from '../spinner';
+import { Spinner } from '../shared';
 import { PrivateRoute } from '../private-route';
 import {
   FavoritesPage,

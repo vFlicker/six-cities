@@ -2,7 +2,7 @@ import { CityName } from '~/constants';
 import { useAppDispatch, useAppSelector } from '~/hooks';
 import { appSlice } from '~/store';
 
-import { LocationItem } from '../../../shared/location-item';
+import { LocationItem } from '../../../shared';
 
 import * as S from './styles';
 

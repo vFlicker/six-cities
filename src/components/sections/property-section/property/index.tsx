@@ -3,7 +3,7 @@ import { useAppDispatch } from '~/hooks';
 import { offerSlice } from '~/store';
 import { Offer } from '~/types';
 
-import { StarRating } from '../../../shared/star-rating';
+import { StarRating } from '../../../shared';
 import { ReviewsSection } from '../../index';
 import { Features } from './features';
 import { BookmarkButton } from './bookmark-button';

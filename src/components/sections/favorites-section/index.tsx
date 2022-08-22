@@ -5,7 +5,7 @@ import { offersFavoriteSlice } from '~/store';
 
 import { CardItemFavorites } from '../../card-item';
 import { CardList } from '../../card-list';
-import { Spinner } from '../../spinner';
+import { Spinner } from '../../shared';
 import { LocationItem } from '../../shared';
 import { FavoritesEmptySection } from '../favorites-empty-section';
 

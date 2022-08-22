@@ -1,4 +1,4 @@
-import { LogoLink } from '../../shared/logo-link';
+import { LogoLink } from '../../shared';
 
 import * as S from './styles';
 
