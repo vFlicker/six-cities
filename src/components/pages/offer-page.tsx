@@ -6,7 +6,7 @@ import { offerSlice, offersNearbySlice } from '~/store';
 
 import { CardItemNearPlaces } from '../card-item';
 import { CardList } from '../card-list';
-import { HeaderSection, SectionPlaces, SectionProperty } from '../sections';
+import { HeaderSection, PropertySection, SectionPlaces } from '../sections';
 import { Spinner } from '../spinner';
 import { ErrorPage } from './error-page';
 import { Container, Page } from '../shared';
@@ -47,7 +47,7 @@ export function OfferPage(): JSX.Element {
     <Page>
       <HeaderSection />
       <main className="page__main page__main--property">
-        <SectionProperty offer={offer} />
+        <PropertySection offer={offer} />
 
         <Container>
           <SectionPlaces className="near-places">

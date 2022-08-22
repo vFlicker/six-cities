@@ -4,6 +4,7 @@ import { offerSlice, userSlice } from '~/store';
 
 import { ReviewsForm } from './reviews-form';
 import { ReviewsList } from './reviews-list';
+
 import * as S from './styles';
 
 export function ReviewsSection(): JSX.Element {
@@ -11,7 +12,8 @@ export function ReviewsSection(): JSX.Element {
   const authStatus = useAppSelector(userSlice.getAuthStatus);
 
   const reviewCount = reviews.length;
-  const reviewsList = !reviewCount && <ReviewsList reviews={reviews} />;
+
+  const reviewsList = Boolean(reviewCount) && <ReviewsList reviews={reviews} />;
   const reviewsForm = authStatus === AuthStatus.Auth && <ReviewsForm />;
 
   return (

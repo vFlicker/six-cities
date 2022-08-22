@@ -39,6 +39,7 @@ export function CardItem({
       onMouseEnter={onCardItemMouseEnter}
       onMouseLeave={onCardItemMouseLeave}
     >
+      {/* TODO: look at the same mark at the property page */}
       {isPremium && (
         <div className="place-card__mark">
           <span>Premium</span>
@@ -64,6 +65,7 @@ export function CardItem({
             </b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
+          {/* TODO: look at the same btn at the property page */}
           <button className="place-card__bookmark-button button" type="button">
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark" />

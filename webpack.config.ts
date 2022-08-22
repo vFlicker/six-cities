@@ -83,7 +83,7 @@ const config = (env: Env): Configuration => {
           type: 'asset/resource',
           generator: {
             filename: isDev
-              ? '[name][ext]'
+              ? 'img/[name][ext]'
               : 'images/[name].[contenthash][ext][query]',
           },
         },

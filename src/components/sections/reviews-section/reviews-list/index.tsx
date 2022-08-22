@@ -1,5 +1,6 @@
 import { Review } from '~/types';
-import { convertRatingToPercents } from '~/utils';
+
+import { StarRating } from '../../../shared/star-rating';
 
 import * as S from './styles';
 
@@ -30,8 +31,6 @@ function ReviewsItem({ review }: ReviewsItemProps): JSX.Element {
   } = review;
 
   const { avatarUrl, name } = user;
-  // TODO: normalize date
-  // 2022-06-02T10:21:00.051Z
 
   return (
     <S.Item>
@@ -43,13 +42,11 @@ function ReviewsItem({ review }: ReviewsItemProps): JSX.Element {
       </S.User>
 
       <S.Info>
-        <S.StarsWrapper>
-          <S.Stars>
-            <S.StarsItem width={convertRatingToPercents(rating)} />
-            <S.StarsText>Rating</S.StarsText>
-          </S.Stars>
-        </S.StarsWrapper>
+        <S.StarRatingWrapper>
+          <StarRating width="98px" height="16px" rating={rating} />
+        </S.StarRatingWrapper>
         <S.Comment>{comment}</S.Comment>
+        {/* // TODO: normalize date 2022-06-02T10:21:00.051Z */}
         <S.Time dateTime="2019-04-24">April 2019</S.Time>
       </S.Info>
     </S.Item>

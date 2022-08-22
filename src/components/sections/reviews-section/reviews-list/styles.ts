@@ -1,11 +1,6 @@
 import styled from '@emotion/styled';
 
-import { visuallyHidden } from '~/components/shared';
-import {
-  avatarIconSrc,
-  starsActiveIconSrc,
-  starsIconSrc,
-} from '~/assets/images';
+import { avatarIconSrc } from '~/assets/images';
 
 export const List = styled.ul`
   width: 100%;
@@ -52,54 +47,8 @@ export const Name = styled.span`
 
 export const Info = styled.div``;
 
-export const StarsWrapper = styled.div`
+export const StarRatingWrapper = styled.div`
   margin-bottom: 7px;
-`;
-
-export const Stars = styled.div`
-  position: relative;
-  display: block;
-  width: 98px;
-  height: 16px;
-  font-size: 0;
-
-  &::before {
-    content: '';
-    display: inline-block;
-    width: 98px;
-    height: 100%;
-    background-color: transparent;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-image: url(${starsIconSrc});
-    background-size: 98px 16px;
-  }
-`;
-
-export const StarsItem = styled.span<{ width: number }>`
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: inline-block;
-  width: ${({ width }) => `${width}%`};
-  height: 100%;
-  overflow: hidden;
-
-  &::before {
-    content: '';
-    display: inline-block;
-    width: 98px;
-    height: 100%;
-    background-color: transparent;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-image: url(${starsActiveIconSrc});
-    background-size: 98px 16px;
-  }
-`;
-
-export const StarsText = styled.span`
-  ${visuallyHidden}
 `;
 
 export const Comment = styled.p`
