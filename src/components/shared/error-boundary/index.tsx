@@ -1,7 +1,5 @@
 import { Component, ReactNode } from 'react';
 
-import { ErrorIndicator } from '../error-indicator';
-
 export class ErrorBoundary extends Component {
   state = {
     hasError: false,
@@ -16,4 +14,8 @@ export class ErrorBoundary extends Component {
 
     return this.props.children;
   }
+}
+
+function ErrorIndicator(): JSX.Element {
+  return <div>Something went wrong</div>;
 }

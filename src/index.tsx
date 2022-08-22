@@ -6,7 +6,7 @@ import { AnyAction } from '@reduxjs/toolkit';
 
 import { store, userSlice } from './store';
 import { App } from './components/app';
-import { ErrorBoundary } from './components/error-boundary';
+import { ErrorBoundary } from './components/shared';
 
 import 'react-toastify/dist/ReactToastify.css';
 

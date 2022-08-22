@@ -17,5 +17,3 @@ export const Map = styled.section<StyledProps>`
     }
   }};
 `;
-
-export default StyledProps;

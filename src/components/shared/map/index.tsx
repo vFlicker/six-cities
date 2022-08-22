@@ -6,12 +6,13 @@ import { useAppSelector, useMap } from '~/hooks';
 import { appSlice } from '~/store';
 import { Offer } from '~/types';
 
-import StyledProps, * as S from './styles';
+import * as S from './styles';
 import 'leaflet/dist/leaflet.css';
 
 type MapProps = {
   offers: Offer[];
-} & StyledProps;
+  orientation: 'horizontal' | 'vertical';
+};
 
 const ICON_SIZE = [27, 39] as [number, number];
 

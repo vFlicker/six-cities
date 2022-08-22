@@ -2,7 +2,7 @@ import { useAppSelector } from '~/hooks';
 import { offersNearbySlice } from '~/store';
 import { Offer } from '~/types';
 
-import { Map } from '../../map';
+import { Map } from '../../shared';
 import { Gallery } from './gallery';
 import { Property } from './property';
 
