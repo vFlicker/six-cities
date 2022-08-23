@@ -10,31 +10,31 @@ export const StarsWrapper = styled.div`
 `;
 
 type StarsProps = {
-  width: string;
-  height: string;
+  width: number;
+  height: number;
 };
 
 type StarsItemProps = {
-  percents: string;
+  percents: number;
 } & StarsProps;
 
 export const Stars = styled.div<StarsProps>`
   position: relative;
   display: block;
-  width: ${({ width }) => width};
-  height: ${({ height }) => height};
+  width: ${({ width }) => `${width}px`};
+  height: ${({ height }) => `${height}px`};
   font-size: 0;
 
   &::before {
     content: '';
     display: inline-block;
-    width: ${({ width }) => width};
+    width: ${({ width }) => `${width}px`};
     height: 100%;
     background-color: transparent;
     background-repeat: no-repeat;
     background-position: center;
     background-image: url(${starsIconSrc});
-    background-size: ${({ width, height }) => `${width} ${height}`};
+    background-size: ${({ width, height }) => `${width}px ${height}px`};
   }
 `;
 
@@ -43,20 +43,20 @@ export const StarsItem = styled.span<StarsItemProps>`
   top: 0;
   left: 0;
   display: inline-block;
-  width: ${({ percents }) => percents};
+  width: ${({ percents }) => `${percents}%`};
   height: 100%;
   overflow: hidden;
 
   &::before {
     content: '';
     display: inline-block;
-    width: ${({ width }) => width};
+    width: ${({ width }) => `${width}px`};
     height: 100%;
     background-color: transparent;
     background-repeat: no-repeat;
     background-position: center;
     background-image: url(${starsActiveIconSrc});
-    background-size: ${({ width, height }) => `${width} ${height}`};
+    background-size: ${({ width, height }) => `${width}px ${height}px`};
   }
 `;
 

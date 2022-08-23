@@ -43,7 +43,7 @@ function ReviewsItem({ review }: ReviewsItemProps): JSX.Element {
 
       <S.Info>
         <S.StarRatingWrapper>
-          <StarRating width="98px" height="16px" rating={rating} />
+          <StarRating width={98} height={16} rating={rating} />
         </S.StarRatingWrapper>
         <S.Comment>{comment}</S.Comment>
         {/* // TODO: normalize date 2022-06-02T10:21:00.051Z */}

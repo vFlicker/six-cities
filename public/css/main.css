@@ -862,16 +862,16 @@ img {
   flex-grow: 1
 }
 
-.place-card__price-wrapper {
+/* .place-card__price-wrapper {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   margin-bottom: 5px
-}
+} */
 
-.place-card__price {
+/* .place-card__price {
   margin-right: 20px
-}
+} */
 
 .favorites__card .place-card__bookmark-button {
   margin-top: 0;
@@ -903,16 +903,16 @@ img {
   transition: fill .3s, stroke .3s
 }
 
-.place-card__price-value {
+/* .place-card__price-value {
   font-size: 20px;
   line-height: 1.2;
   font-weight: 700
-}
+} */
 
-.place-card__price-text {
+/* .place-card__price-text {
   font-size: 12px;
   line-height: 1.1667
-}
+} */
 
 .place-card__rating {
   margin-bottom: 6px
@@ -937,7 +937,7 @@ img {
   background-size: 73px 12px
 }
 
-.place-card__name {
+/* .place-card__name {
   margin-top: 0;
   margin-bottom: 4px;
   font-size: 18px;
@@ -953,14 +953,14 @@ img {
 .place-card__name a:focus,
 .place-card__name a:hover {
   opacity: .7
-}
+} */
 
-.place-card__type {
+/* .place-card__type {
   margin-top: 0;
   margin-bottom: 0;
   font-size: 12px;
   line-height: 1.1667
-}
+} */
 
 .place-card__mark {
   position: absolute;
@@ -1730,7 +1730,7 @@ property__user-status
 }
 
 .favorites__image-wrapper {
-  min-width: 80px;
+  min-width: 150px;
   margin-right: 16px;
   margin-bottom: 0
 }

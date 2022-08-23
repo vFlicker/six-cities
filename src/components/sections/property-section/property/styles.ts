@@ -16,6 +16,18 @@ export const Wrapper = styled.div`
   margin-left: auto;
 `;
 
+export const MarkWrapper = styled.div`
+  margin-bottom: 8px;
+`;
+
+export const BookmarkButtonWrapper = styled.div`
+  position: absolute;
+  top: 41px;
+  right: 93px;
+  width: 31px;
+  height: 33px;
+`;
+
 export const Title = styled.h1`
   margin-top: 0;
   margin-bottom: 7px;

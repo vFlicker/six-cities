@@ -2,7 +2,10 @@ import { MouseEvent, PropsWithChildren } from 'react';
 import { Link } from 'react-router-dom';
 
 import { Offer } from '~/types';
-import { convertRatingToPercents } from '~/utils/convert-rating-to-percents';
+
+import { BookmarkButton, Mark, StarRating } from '../../shared';
+
+import * as S from './styles';
 
 type CardItemProps = PropsWithChildren<{
   offer: Offer;
@@ -39,12 +42,10 @@ export function CardItem({
       onMouseEnter={onCardItemMouseEnter}
       onMouseLeave={onCardItemMouseLeave}
     >
-      {/* TODO: look at the same mark at the property page */}
-      {isPremium && (
-        <div className="place-card__mark">
-          <span>Premium</span>
-        </div>
-      )}
+      <S.MarkWrapper>
+        <Mark isPremium={isPremium} type="small" />
+      </S.MarkWrapper>
+
       <div className={`place-card__image-wrapper ${cardImageWrapperClass}`}>
         <Link to={createOfferLink(id)}>
           <img
@@ -56,33 +57,34 @@ export function CardItem({
           />
         </Link>
       </div>
+
       <div className={`place-card__info ${cardInfoClass}`}>
-        <div className="place-card__price-wrapper">
-          <div className="place-card__price">
-            <b className="place-card__price-value">
+        <S.PriceWrapper>
+          <S.Price>
+            <S.Value>
               &euro;
               {price}
-            </b>
-            <span className="place-card__price-text">&#47;&nbsp;night</span>
-          </div>
-          {/* TODO: look at the same btn at the property page */}
-          <button className="place-card__bookmark-button button" type="button">
-            <svg className="place-card__bookmark-icon" width="18" height="19">
-              <use xlinkHref="#icon-bookmark" />
-            </svg>
-            <span className="visually-hidden">To bookmarks</span>
-          </button>
-        </div>
-        <div className="place-card__rating rating">
-          <div className="place-card__stars rating__stars">
-            <span style={{ width: convertRatingToPercents(rating) }} />
-            <span className="visually-hidden">Rating</span>
-          </div>
-        </div>
-        <h2 className="place-card__name">
+            </S.Value>
+            <S.Text>&#47;&nbsp;night</S.Text>
+          </S.Price>
+
+          <BookmarkButton
+            width={18}
+            height={19}
+            isFavorite={false}
+            onClick={() => console.log(111)}
+          />
+        </S.PriceWrapper>
+
+        <S.StarRatingWrapper>
+          <StarRating width={73} height={12} rating={rating} />
+        </S.StarRatingWrapper>
+
+        <S.Title>
           <Link to={createOfferLink(id)}>{title}</Link>
-        </h2>
-        <p className="place-card__type">{type}</p>
+        </S.Title>
+
+        <S.Type>{type}</S.Type>
       </div>
     </article>
   );

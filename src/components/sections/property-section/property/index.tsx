@@ -3,11 +3,9 @@ import { useAppDispatch } from '~/hooks';
 import { offerSlice } from '~/store';
 import { Offer } from '~/types';
 
-import { StarRating } from '../../../shared';
+import { BookmarkButton, Mark, StarRating } from '../../../shared';
 import { ReviewsSection } from '../../index';
 import { Features } from './features';
-import { BookmarkButton } from './bookmark-button';
-import { Mark } from './mark';
 import { Price } from './price';
 import { WhatIsInside } from './what-is-inside';
 import { Host } from './host';
@@ -49,19 +47,24 @@ export function Property({
   return (
     <S.Container>
       <S.Wrapper>
-        {/* TODO: look at the same mark at the main page */}
-        <Mark isPremium={isPremium} />
+        <S.MarkWrapper>
+          <Mark isPremium={isPremium} type="big" />
+        </S.MarkWrapper>
 
         <S.Title>{title}</S.Title>
 
         {/* TODO: look at the same btn at the main page */}
-        <BookmarkButton
-          isFavorite={isFavorite}
-          onClick={handleFavoriteButtonClick}
-        />
+        <S.BookmarkButtonWrapper>
+          <BookmarkButton
+            width={31}
+            height={33}
+            isFavorite={isFavorite}
+            onClick={handleFavoriteButtonClick}
+          />
+        </S.BookmarkButtonWrapper>
 
         <S.StarRatingWrapper>
-          <StarRating width="147px" height="24px" rating={rating} hasText />
+          <StarRating width={147} height={24} rating={rating} hasText />
         </S.StarRatingWrapper>
 
         <Features

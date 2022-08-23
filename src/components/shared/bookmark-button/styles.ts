@@ -1,17 +1,12 @@
 import styled from '@emotion/styled';
 
-import { visuallyHidden } from '../../../../shared';
+import { visuallyHidden } from '../styles';
 
 type ButtonProps = {
   isFavorite?: boolean;
 };
 
 export const Button = styled.button<ButtonProps>`
-  position: absolute;
-  top: 41px;
-  right: 93px;
-  width: 31px;
-  height: 33px;
   margin-top: 2px;
 
   &:focus svg,
@@ -27,7 +22,7 @@ export const Button = styled.button<ButtonProps>`
 
 export const Svg = styled.svg`
   fill: none;
-  stroke: #b8b8b8;
+  stroke: #979797;
   stroke-width: 2;
   transition: fill 0.3s, stroke 0.3s;
 `;

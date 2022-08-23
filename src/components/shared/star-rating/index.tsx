@@ -3,8 +3,8 @@ import { convertRatingToPercents } from '~/utils';
 import * as S from './styles';
 
 type StartProps = {
-  width: string;
-  height: string;
+  width: number;
+  height: number;
   rating: number;
   hasText?: boolean;
 };
