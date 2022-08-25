@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { Offer } from '~/types';
 
-import { BookmarkButton, Mark, StarRating } from '../shared';
+import { BookmarkButton, Mark, StarRating } from '..';
 
 import * as S from './styles';
 

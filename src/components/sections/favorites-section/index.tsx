@@ -3,8 +3,7 @@ import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '~/hooks';
 import { offersFavoriteSlice } from '~/store';
 
-import { CardItem } from '../../card-item';
-import { CardList } from '../../card-list';
+import { CardItem } from '../../shared/card-item';
 import { Spinner } from '../../shared';
 import { LocationItem } from '../../shared';
 import { FavoritesEmptySection } from '../favorites-empty-section';
@@ -49,13 +48,11 @@ export function FavoritesSection(): JSX.Element {
                 <LocationItem isActive cityName={cityName} />
               </S.LocationWrapper>
 
-              <CardList
-                className="favorites__places"
-                offers={offers}
-                getCardItem={(offer) => (
-                  <CardItem offer={offer} cardType="small" />
-                )}
-              />
+              <S.CardList>
+                {offers.map((offer) => (
+                  <CardItem key={offer.id} offer={offer} cardType="small" />
+                ))}
+              </S.CardList>
             </S.Item>
           ))}
         </S.List>

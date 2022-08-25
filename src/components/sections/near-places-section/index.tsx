@@ -1,7 +1,6 @@
 import { Offer } from '~/types';
 
-import { CardItem } from '../../card-item';
-import { CardList } from '../../card-list';
+import { CardItem } from '../../shared/card-item';
 import { Container } from '../../shared';
 
 import * as S from './styles';
@@ -16,13 +15,12 @@ export function NearPlacesSection({
   return (
     <Container>
       <S.Section>
-        <S.Title>Other places in the neighbourhood</S.Title>
-        {/* TODO: remove all className */}
-        <CardList
-          className="near-places__list places__list"
-          offers={offersNearby}
-          getCardItem={(offer) => <CardItem offer={offer} cardType="big" />}
-        />
+        <S.Title>Other places in the neighborhood</S.Title>
+        <S.CardList>
+          {offersNearby.map((offer) => (
+            <CardItem key={offer.id} offer={offer} cardType="big" />
+          ))}
+        </S.CardList>
       </S.Section>
     </Container>
   );

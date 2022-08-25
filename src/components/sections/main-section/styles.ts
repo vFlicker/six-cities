@@ -31,6 +31,13 @@ export const PlacesFound = styled.b`
   font-style: oblique;
 `;
 
+export const CardList = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -8px;
+  padding-left: 5px;
+`;
+
 export const MapWrapper = styled.div`
   display: flex;
   flex-grow: 1;

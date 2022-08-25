@@ -38,3 +38,5 @@ export const LocationWrapper = styled.div`
   width: 137px;
   margin-right: 120px;
 `;
+
+export const CardList = styled.div``;

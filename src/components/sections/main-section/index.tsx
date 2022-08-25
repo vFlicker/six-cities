@@ -2,8 +2,7 @@ import { useAppDispatch } from '~/hooks';
 import { appSlice } from '~/store';
 import { Offer } from '~/types';
 
-import { CardItem } from '../../card-item';
-import { CardList } from '../../card-list';
+import { CardItem } from '../../shared/card-item';
 import { Map } from '../../shared';
 import { SortingFrom } from './sorting-form';
 
@@ -16,6 +15,16 @@ type MainSectionProps = {
 export function MainSection({ offers }: MainSectionProps): JSX.Element {
   const dispatch = useAppDispatch();
 
+  const cardList = offers.map((offer) => (
+    <CardItem
+      key={offer.id}
+      offer={offer}
+      cardType="big"
+      onCardItemMouseEnter={() => dispatch(appSlice.setActiveCardId(offer.id))}
+      onCardItemMouseLeave={() => dispatch(appSlice.setActiveCardId(-1))}
+    />
+  ));
+
   return (
     <S.MainContainer>
       <S.Section>
@@ -27,22 +36,7 @@ export function MainSection({ offers }: MainSectionProps): JSX.Element {
 
         <SortingFrom />
 
-        <CardList
-          className="cities__places-list places__list tabs__content"
-          offers={offers}
-          getCardItem={(offer) => (
-            <CardItem
-              offer={offer}
-              cardType="big"
-              onCardItemMouseEnter={() =>
-                dispatch(appSlice.setActiveCardId(offer.id))
-              }
-              onCardItemMouseLeave={() =>
-                dispatch(appSlice.setActiveCardId(-1))
-              }
-            />
-          )}
-        />
+        <S.CardList>{cardList}</S.CardList>
       </S.Section>
 
       <S.MapWrapper>
