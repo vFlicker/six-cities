@@ -1,13 +1,17 @@
-import { unstable_HistoryRouter as HistoryRouter, Route, Routes } from 'react-router-dom';
+import {
+  unstable_HistoryRouter as HistoryRouter,
+  Route,
+  Routes,
+} from 'react-router-dom';
+import { Global } from '@emotion/react';
 
-import { useAppSelector } from '@/hooks';
-import { AppRoute } from '@/constants';
-import { userSlice } from '@/store';
-import { Review } from '@/types';
-import { browserHistory } from '@/utils';
+import { useAppSelector } from '~/hooks';
+import { AppRoute } from '~/constants';
+import { userSlice } from '~/store';
+import { browserHistory } from '~/utils';
 
-import { Spinner } from '../spinner';
-import { PrivateRoute } from '../private-route';
+import { Spinner } from '../shared';
+import { PrivateRoute } from '../shared';
 import {
   FavoritesPage,
   LoginPage,
@@ -15,37 +19,35 @@ import {
   NotFoundPage,
   OfferPage,
 } from '../pages';
+import { globalStyle } from './styles';
 
-type AppProps = {
-  reviews: Review[];
-};
-
-export function App({ reviews }: AppProps): JSX.Element {
-  const authorizationStatus = useAppSelector(userSlice.getAuthorizationStatus);
+export function App(): JSX.Element {
+  const authStatus = useAppSelector(userSlice.getAuthStatus);
   const isLoading = useAppSelector(userSlice.getLoadingStatus);
 
-  if (userSlice.isCheckedAuth(authorizationStatus) || isLoading) {
-    return (
-      <Spinner />
-    );
+  if (userSlice.isCheckedAuth(authStatus) || isLoading) {
+    return <Spinner />;
   }
 
   return (
-    <HistoryRouter history={browserHistory}>
-      <Routes>
-        <Route path={AppRoute.ROOT} element={<MainPage />} />
-        <Route
-          path={AppRoute.FAVORITES}
-          element={(
-            <PrivateRoute>
-              <FavoritesPage />
-            </PrivateRoute>
-          )}
-        />
-        <Route path={AppRoute.LOGIN} element={<LoginPage />} />
-        <Route path={AppRoute.OFFER} element={<OfferPage reviews={reviews} />} />
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
-    </HistoryRouter>
+    <>
+      <Global styles={globalStyle} />
+      <HistoryRouter history={browserHistory}>
+        <Routes>
+          <Route path={AppRoute.Root} element={<MainPage />} />
+          <Route
+            path={AppRoute.Favorites}
+            element={
+              <PrivateRoute>
+                <FavoritesPage />
+              </PrivateRoute>
+            }
+          />
+          <Route path={AppRoute.Login} element={<LoginPage />} />
+          <Route path={AppRoute.Offer} element={<OfferPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </HistoryRouter>
+    </>
   );
 }

@@ -1,8 +1,10 @@
+import { CityName } from '~/constants';
+
 import { CamelToSnakeCaseNested } from './helpers';
 
 export type City = {
   location: Location;
-  name: string;
+  name: CityName;
 };
 
 export type Host = {
@@ -37,7 +39,7 @@ export type Offer = {
   type: string;
 };
 
-export type Offers = Record<string, Offer[]>;
+export type OffersDictionary = Record<string, Offer[]>;
 
 export type OfferServer = Omit<CamelToSnakeCaseNested<Offer>, 'host'> & {
   host: CamelToSnakeCaseNested<Host>;

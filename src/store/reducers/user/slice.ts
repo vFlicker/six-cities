@@ -1,16 +1,15 @@
 import { createAction, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-// TODO: what do we use instead of the enums?
-import { AuthorizationStatus } from '@/constants';
-import { AppRoute, AuthorizationStatus as TAuthorizationStatus, User } from '@/types';
+import { AppRoute, AuthStatus } from '~/constants';
+import { User } from '~/types';
 
 import { ReducerName } from '../../constants';
 import { checkAuthStatus, login, logout } from './api-actions';
 
 const initialState = {
-  authorizationStatus: AuthorizationStatus.NO_AUTH as TAuthorizationStatus,
-  user: {} as User,
-  loading: true,
+  authStatus: AuthStatus.NoAuth,
+  user: null as User | null,
+  loading: false,
   error: null as unknown,
 };
 
@@ -18,14 +17,14 @@ const slice = createSlice({
   name: ReducerName.USER,
   initialState,
   reducers: {
-    setAuthorizationStatus: (state, action: PayloadAction<TAuthorizationStatus>) => {
-      state.authorizationStatus = action.payload;
+    setAuthStatus: (state, action: PayloadAction<AuthStatus>) => {
+      state.authStatus = action.payload;
     },
     setUserData: (state, action: PayloadAction<User>) => {
       state.user = action.payload;
     },
   },
-  extraReducers: ((builder) => {
+  extraReducers: (builder) => {
     builder
       // ----- CHECK AUTH STATUS -----
       .addCase(checkAuthStatus.pending, (state) => {
@@ -59,6 +58,7 @@ const slice = createSlice({
 
       // ----- LOGOUT -----
       .addCase(logout.pending, (state) => {
+        state.user = null;
         state.loading = true;
         state.error = null;
       })
@@ -70,9 +70,11 @@ const slice = createSlice({
         state.loading = false;
         state.error = action.payload;
       });
-  }),
+  },
 });
 
-export const redirectToRoute = createAction<AppRoute>('userData/redirectToRoute');
-export const { setAuthorizationStatus, setUserData } = slice.actions;
+export const redirectToRoute = createAction<AppRoute>(
+  'userData/redirectToRoute',
+);
+export const { setAuthStatus, setUserData } = slice.actions;
 export default slice;

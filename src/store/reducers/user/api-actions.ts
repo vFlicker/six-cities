@@ -1,27 +1,31 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { AppRoute, AuthorizationStatus } from '@/constants';
-import { User } from '@/types';
-import { getApiRoute } from '@/utils/get-api-route';
-import { dropToken, saveToken, errorHandler } from '@/services';
+import { AppRoute, AuthStatus } from '~/constants';
+import { User } from '~/types';
+import { apiRoute } from '~/utils/get-api-route';
+import { dropToken, saveToken, errorHandler } from '~/services';
 
 import { AsyncThunkOptions } from '../types';
-import { redirectToRoute, setAuthorizationStatus } from './slice';
+import { redirectToRoute, setAuthStatus } from './slice';
 
 type AuthData = {
   email: string;
   password: string;
 };
 
-export const checkAuthStatus = createAsyncThunk<User, undefined, AsyncThunkOptions>(
+export const checkAuthStatus = createAsyncThunk<
+  User,
+  undefined,
+  AsyncThunkOptions
+>(
   'userData/authStatus',
   async (_, { dispatch, extra: apiService, rejectWithValue }) => {
     try {
-      const { data } = await apiService.get<User>(getApiRoute.login());
-      dispatch(setAuthorizationStatus(AuthorizationStatus.AUTH));
+      const { data } = await apiService.get<User>(apiRoute.login());
+      dispatch(setAuthStatus(AuthStatus.Auth));
       return data;
     } catch (error) {
-      dispatch(setAuthorizationStatus(AuthorizationStatus.NO_AUTH));
+      dispatch(setAuthStatus(AuthStatus.NoAuth));
       errorHandler(error);
       return rejectWithValue(error);
     }
@@ -32,13 +36,13 @@ export const login = createAsyncThunk<User, AuthData, AsyncThunkOptions>(
   'userData/login',
   async (authData, { dispatch, extra: apiService, rejectWithValue }) => {
     try {
-      const { data } = await apiService.post<User>(getApiRoute.login(), authData);
+      const { data } = await apiService.post<User>(apiRoute.login(), authData);
       saveToken(data.token);
-      dispatch(setAuthorizationStatus(AuthorizationStatus.AUTH));
-      dispatch(redirectToRoute(AppRoute.ROOT));
+      dispatch(setAuthStatus(AuthStatus.Auth));
+      dispatch(redirectToRoute(AppRoute.Root));
       return data;
     } catch (error) {
-      dispatch(setAuthorizationStatus(AuthorizationStatus.NO_AUTH));
+      dispatch(setAuthStatus(AuthStatus.NoAuth));
       errorHandler(error);
       return rejectWithValue(error);
     }
@@ -49,8 +53,8 @@ export const logout = createAsyncThunk<void, undefined, AsyncThunkOptions>(
   'userData/logout',
   async (_, { dispatch, extra: apiService, rejectWithValue }) => {
     try {
-      await apiService.delete(getApiRoute.logout());
-      dispatch(setAuthorizationStatus(AuthorizationStatus.NO_AUTH));
+      await apiService.delete(apiRoute.logout());
+      dispatch(setAuthStatus(AuthStatus.NoAuth));
       return dropToken();
     } catch (error) {
       errorHandler(error);

@@ -1,8 +1,8 @@
 import request from 'axios';
 import { toast } from 'react-toastify';
 
-import { HttpCode } from '@/constants';
-import { ErrorType } from '@/types';
+import { HttpCode } from '~/constants';
+import { ErrorType } from '~/types';
 
 export const errorHandler = (error: ErrorType): void => {
   if (!request.isAxiosError(error)) {

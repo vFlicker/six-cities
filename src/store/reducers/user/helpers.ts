@@ -1,10 +1,9 @@
-import { AuthorizationStatus } from '@/constants';
-import { AuthorizationStatus as TAuthorizationStatus } from '@/types';
+import { AuthStatus } from '~/constants';
 
-export const isCheckedAuth = (authorizationStatus: TAuthorizationStatus): boolean => (
-  authorizationStatus === AuthorizationStatus.UNKNOWN
-);
+export const isCheckedAuth = (authStatus: AuthStatus): boolean => {
+  return authStatus === AuthStatus.Unknown;
+};
 
-export const isUserAuthorized = (authorizationStatus: TAuthorizationStatus): boolean => (
-  authorizationStatus === AuthorizationStatus.AUTH
-);
+export const isUserAuthorized = (authStatus: AuthStatus): boolean => {
+  return authStatus === AuthStatus.Auth;
+};

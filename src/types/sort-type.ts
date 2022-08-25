@@ -1,3 +1,3 @@
-import { SortType } from '@/constants';
+import { SortType } from '~/constants';
 
-export type SortType = typeof SortType[keyof typeof SortType]
+export type SortType = typeof SortType[keyof typeof SortType];
