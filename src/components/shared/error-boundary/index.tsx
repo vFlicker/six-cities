@@ -1,5 +1,7 @@
 import { Component, ReactNode } from 'react';
 
+import * as S from './styles';
+
 export class ErrorBoundary extends Component {
   state = {
     hasError: false,
@@ -17,5 +19,5 @@ export class ErrorBoundary extends Component {
 }
 
 function ErrorIndicator(): JSX.Element {
-  return <div>Something went wrong</div>;
+  return <S.Text>Something went wrong</S.Text>;
 }
