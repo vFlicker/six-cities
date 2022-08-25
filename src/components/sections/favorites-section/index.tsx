@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '~/hooks';
 import { offersFavoriteSlice } from '~/store';
 
-import { CardItemFavorites } from '../../card-item';
+import { CardItem } from '../../card-item';
 import { CardList } from '../../card-list';
 import { Spinner } from '../../shared';
 import { LocationItem } from '../../shared';
@@ -52,7 +52,9 @@ export function FavoritesSection(): JSX.Element {
               <CardList
                 className="favorites__places"
                 offers={offers}
-                getCardItem={(offer) => <CardItemFavorites offer={offer} />}
+                getCardItem={(offer) => (
+                  <CardItem offer={offer} cardType="small" />
+                )}
               />
             </S.Item>
           ))}

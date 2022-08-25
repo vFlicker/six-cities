@@ -1,7 +1,7 @@
 import { Offer } from '~/types';
 
+import { CardItem } from '../../card-item';
 import { CardList } from '../../card-list';
-import { CardItemNearPlaces } from '../../card-item';
 import { Container } from '../../shared';
 
 import * as S from './styles';
@@ -21,7 +21,7 @@ export function NearPlacesSection({
         <CardList
           className="near-places__list places__list"
           offers={offersNearby}
-          getCardItem={(offer) => <CardItemNearPlaces offer={offer} />}
+          getCardItem={(offer) => <CardItem offer={offer} cardType="big" />}
         />
       </S.Section>
     </Container>

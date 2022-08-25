@@ -593,11 +593,11 @@ img {
   padding-left: 5px
 }
 
-.cities__place-card {
+/* .cities__place-card {
   width: 260px;
   margin-left: 8px;
   margin-bottom: 24px
-}
+} */
 
 /* .page__main--index-empty .cities__right-section {
   background-image: url(../img/no-places.png);
@@ -840,27 +840,27 @@ img {
   cursor: pointer
 } */
 
-.place-card {
+/* .place-card {
   position: relative
 }
 
 .place-card:hover {
   opacity: .6
-}
+} */
 
-.place-card__image-wrapper {
+/* .place-card__image-wrapper {
   min-height: 20px;
   margin-bottom: 9px
-}
+} */
 
-.place-card__image {
+/* .place-card__image {
   display: block;
   border-radius: 4px
-}
+} */
 
-.place-card__info {
+/* .place-card__info {
   flex-grow: 1
-}
+} */
 
 /* .place-card__price-wrapper {
   display: flex;
@@ -1616,11 +1616,11 @@ property__user-status
   padding-left: 3px
 }
 
-.near-places__card {
+/* .near-places__card {
   width: 260px;
   margin-left: 8px;
   margin-bottom: 24px
-}
+} */
 
 /* .login {
   position: relative;
@@ -1718,7 +1718,7 @@ property__user-status
   margin-right: 20px
 } */
 
-.favorites__card {
+/* .favorites__card {
   display: flex;
   align-items: flex-start;
   width: 421px;
@@ -1727,17 +1727,17 @@ property__user-status
 
 .favorites__card:last-child {
   margin-bottom: 0
-}
+} */
 
-.favorites__image-wrapper {
+/* .favorites__image-wrapper {
   min-width: 150px;
   margin-right: 16px;
   margin-bottom: 0
-}
+} */
 
-.favorites__card-info {
+/* .favorites__card-info {
   padding-top: 1px
-}
+} */
 
 /* .favorites__status-wrapper {
   width: 420px;

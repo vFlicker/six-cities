@@ -3,17 +3,13 @@ import { Link } from 'react-router-dom';
 
 import { Offer } from '~/types';
 
-import { BookmarkButton, Mark, StarRating } from '../../shared';
+import { BookmarkButton, Mark, StarRating } from '../shared';
 
 import * as S from './styles';
 
 type CardItemProps = PropsWithChildren<{
   offer: Offer;
-  cardClass: string;
-  cardImageWrapperClass: string;
-  cardInfoClass?: string;
-  imageWidth: number;
-  imageHeight: number;
+  cardType: 'big' | 'small';
 
   onCardItemMouseEnter?: (evt: MouseEvent) => void;
   onCardItemMouseLeave?: (evt: MouseEvent) => void;
@@ -21,14 +17,9 @@ type CardItemProps = PropsWithChildren<{
 
 const createOfferLink = (id: number): string => `/offers/${id}`;
 
-// TODO: look at the architecture of the components
 export function CardItem({
   offer,
-  cardClass,
-  cardImageWrapperClass,
-  cardInfoClass,
-  imageWidth,
-  imageHeight,
+  cardType,
 
   onCardItemMouseEnter,
   onCardItemMouseLeave,
@@ -36,9 +27,8 @@ export function CardItem({
   const { id, isPremium, previewImage, price, rating, title, type } = offer;
 
   return (
-    <article
-      // TODO: take a look at this lib https://www.npmjs.com/package/classnames
-      className={`place-card ${cardClass}`}
+    <S.Card
+      cardType={cardType}
       onMouseEnter={onCardItemMouseEnter}
       onMouseLeave={onCardItemMouseLeave}
     >
@@ -46,19 +36,13 @@ export function CardItem({
         <Mark isPremium={isPremium} type="small" />
       </S.MarkWrapper>
 
-      <div className={`place-card__image-wrapper ${cardImageWrapperClass}`}>
+      <S.ImageWrapper cardType={cardType}>
         <Link to={createOfferLink(id)}>
-          <img
-            className="place-card__image"
-            src={previewImage}
-            width={imageWidth}
-            height={imageHeight}
-            alt="Place"
-          />
+          <S.Image src={previewImage} cardType={cardType} alt="Place" />
         </Link>
-      </div>
+      </S.ImageWrapper>
 
-      <div className={`place-card__info ${cardInfoClass}`}>
+      <S.CardInfo>
         <S.PriceWrapper>
           <S.Price>
             <S.Value>
@@ -85,7 +69,7 @@ export function CardItem({
         </S.Title>
 
         <S.Type>{type}</S.Type>
-      </div>
-    </article>
+      </S.CardInfo>
+    </S.Card>
   );
 }
