@@ -2,7 +2,6 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { errorHandler } from '~/services';
 import { OfferServer } from '~/types';
-import { apiRoute } from '~/utils';
 
 import { AsyncThunkOptions } from '../types';
 
@@ -12,7 +11,7 @@ export const fetchOffers = createAsyncThunk<
   AsyncThunkOptions
 >('offers', async (_, { extra: apiService, rejectWithValue }) => {
   try {
-    const { data } = await apiService.get<OfferServer[]>(apiRoute.getOffers());
+    const { data } = await apiService.get<OfferServer[]>(`/hotels`);
     return data;
   } catch (error) {
     errorHandler(error);

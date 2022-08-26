@@ -2,7 +2,6 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { errorHandler } from '~/services';
 import { Offer, OfferServer } from '~/types';
-import { apiRoute } from '~/utils';
 
 import { AsyncThunkOptions } from '../types';
 
@@ -13,7 +12,7 @@ export const fetchOfferNearby = createAsyncThunk<
 >('offerNearby', async (id, { extra: apiService, rejectWithValue }) => {
   try {
     const { data } = await apiService.get<OfferServer[]>(
-      apiRoute.getOffersNearby(id),
+      `/hotels/${id}/nearby`,
     );
     return data;
   } catch (error) {
