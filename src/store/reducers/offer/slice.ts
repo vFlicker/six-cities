@@ -1,15 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { ErrorType, Offer, Review } from '~/types';
+import { ErrorType, Offer, OffersDictionary, Review } from '~/types';
+
+import { ReducerName } from '../../constants';
 
 import {
-  changeOfferFavoriteStatus,
+  changeFavoriteStatus,
   fetchComments,
   fetchOffer,
-  sendComment,
+  addComment,
+  fetchOffers,
 } from './api-actions';
+import { createOffersDictionary } from './utils';
 
 const initialState = {
+  offers: {} as OffersDictionary,
   offer: null as unknown as Offer,
   comments: [] as Review[],
   loading: false,
@@ -17,12 +22,27 @@ const initialState = {
 };
 
 const slice = createSlice({
-  name: 'offer',
+  name: ReducerName.OFFER,
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      // ----- OFFER -----
+      // ----- FETCH ALL OFFERS -----
+      .addCase(fetchOffers.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchOffers.fulfilled, (state, action) => {
+        state.offers = createOffersDictionary(action.payload);
+        state.loading = false;
+        state.error = null;
+      })
+      .addCase(fetchOffers.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+
+      // ----- FETCH ONE OFFER -----
       .addCase(fetchOffer.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -37,7 +57,7 @@ const slice = createSlice({
         state.error = action.payload;
       })
 
-      // ----- LOAD COMMENTS -----
+      // ----- FETCH COMMENTS -----
       .addCase(fetchComments.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -52,32 +72,32 @@ const slice = createSlice({
         state.error = action.payload;
       })
 
-      // ----- SEND COMMENT -----
+      // ----- ADD COMMENT -----
       // TODO: now when comment sending all pages are spinner
-      .addCase(sendComment.pending, (state) => {
+      .addCase(addComment.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(sendComment.fulfilled, (state) => {
+      .addCase(addComment.fulfilled, (state) => {
         state.loading = false;
         state.error = null;
       })
-      .addCase(sendComment.rejected, (state, action) => {
+      .addCase(addComment.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       })
 
-      // ----- CHANGE OFFER FAVORITE STATUS -----
-      .addCase(changeOfferFavoriteStatus.pending, (state) => {
+      // ----- CHANGE FAVORITE STATUS -----
+      .addCase(changeFavoriteStatus.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(changeOfferFavoriteStatus.fulfilled, (state, action) => {
+      .addCase(changeFavoriteStatus.fulfilled, (state, action) => {
         state.offer.isFavorite = action.payload.isFavorite;
         state.loading = false;
         state.error = null;
       })
-      .addCase(changeOfferFavoriteStatus.rejected, (state, action) => {
+      .addCase(changeFavoriteStatus.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });

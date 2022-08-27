@@ -1,15 +1,43 @@
-import { ErrorType, Offer, Review, RootState } from '~/types';
+import { createSelector } from '@reduxjs/toolkit';
+
+import { ErrorType, Offer, OffersDictionary, Review, RootState } from '~/types';
 
 import { ReducerName } from '../../constants';
+import { getCurrentCityName, getCurrentSortType } from '../app';
+import { sortOffers } from './utils';
 
-export const getOffer = (state: RootState): Offer | null =>
-  state[ReducerName.OFFER].offer;
+const getOffersDictionary = (state: RootState): OffersDictionary => {
+  return state[ReducerName.OFFER].offers;
+};
 
-export const getComments = (state: RootState): Review[] =>
-  state[ReducerName.OFFER].comments;
+const getFilteredOffers = createSelector(
+  getOffersDictionary,
+  getCurrentCityName,
+  (offers, cityName) => {
+    return offers ? offers[cityName.toLocaleLowerCase()] : [];
+  },
+);
 
-export const getLoadingStatus = (state: RootState): boolean =>
-  state[ReducerName.OFFER].loading;
+export const getOffers = createSelector(
+  getFilteredOffers,
+  getCurrentSortType,
+  (offers, sortType) => {
+    return offers ? sortOffers(offers, sortType) : null;
+  },
+);
 
-export const getError = (state: RootState): ErrorType =>
-  state[ReducerName.OFFER].error;
+export const getOffer = (state: RootState): Offer | null => {
+  return state[ReducerName.OFFER].offer;
+};
+
+export const getComments = (state: RootState): Review[] => {
+  return state[ReducerName.OFFER].comments;
+};
+
+export const getLoadingStatus = (state: RootState): boolean => {
+  return state[ReducerName.OFFER].loading;
+};
+
+export const getError = (state: RootState): ErrorType => {
+  return state[ReducerName.OFFER].error;
+};

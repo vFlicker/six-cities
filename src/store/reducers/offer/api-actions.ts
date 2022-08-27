@@ -5,19 +5,33 @@ import { Offer, OfferServer, Review, ReviewServer } from '~/types';
 
 import { AsyncThunkOptions } from '../types';
 
-type SendCommentPayload = {
+type AddCommentPayload = {
   id: number;
   comment: string;
   rating: number;
 };
 
-type changeOfferFavoriteStatusPayload = {
+type changeFavoriteStatusPayload = {
   id: number;
   status: 0 | 1;
 };
 
+export const fetchOffers = createAsyncThunk<
+  OfferServer[],
+  undefined,
+  AsyncThunkOptions
+>('offer/fetchAll', async (_, { extra: apiService, rejectWithValue }) => {
+  try {
+    const { data } = await apiService.get<OfferServer[]>(`/hotels`);
+    return data;
+  } catch (error) {
+    errorHandler(error);
+    return rejectWithValue(error);
+  }
+});
+
 export const fetchOffer = createAsyncThunk<Offer, number, AsyncThunkOptions>(
-  'offer',
+  'offer/fetchOne',
   async (id, { extra: apiService, rejectWithValue }) => {
     try {
       const { data } = await apiService.get<OfferServer>(`/hotels/${id}`);
@@ -29,12 +43,26 @@ export const fetchOffer = createAsyncThunk<Offer, number, AsyncThunkOptions>(
   },
 );
 
-export const changeOfferFavoriteStatus = createAsyncThunk<
+export const fetchComments = createAsyncThunk<
+  Review[],
+  number,
+  AsyncThunkOptions
+>('offer/fetchComments', async (id, { extra: apiService, rejectWithValue }) => {
+  try {
+    const { data } = await apiService.get<ReviewServer[]>(`/comments/${id}`);
+    return data;
+  } catch (error) {
+    errorHandler(error);
+    return rejectWithValue(error);
+  }
+});
+
+export const changeFavoriteStatus = createAsyncThunk<
   Offer,
-  changeOfferFavoriteStatusPayload,
+  changeFavoriteStatusPayload,
   AsyncThunkOptions
 >(
-  'offerFavoriteStatus',
+  'offer/changeFavoriteStatus',
   async ({ id, status }, { extra: apiService, rejectWithValue }) => {
     try {
       const { data } = await apiService.post<OfferServer>(
@@ -49,27 +77,12 @@ export const changeOfferFavoriteStatus = createAsyncThunk<
   },
 );
 
-// TODO: use normal naming for actions
-export const fetchComments = createAsyncThunk<
-  Review[],
+export const addComment = createAsyncThunk<
   number,
-  AsyncThunkOptions
->('comment', async (id, { extra: apiService, rejectWithValue }) => {
-  try {
-    const { data } = await apiService.get<ReviewServer[]>(`/comments/${id}`);
-    return data;
-  } catch (error) {
-    errorHandler(error);
-    return rejectWithValue(error);
-  }
-});
-
-export const sendComment = createAsyncThunk<
-  number,
-  SendCommentPayload,
+  AddCommentPayload,
   AsyncThunkOptions
 >(
-  'sendComment',
+  'offer/addComment',
   async ({ id, comment, rating }, { extra: apiService, rejectWithValue }) => {
     try {
       // TODO: data is any

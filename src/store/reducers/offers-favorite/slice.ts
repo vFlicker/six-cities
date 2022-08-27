@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { ErrorType, OffersDictionary } from '~/types';
 
 import { ReducerName } from '../../constants';
-import { createOffersDictionary } from '../offers/utils';
+import { createOffersDictionary } from '../offer/utils';
 import { fetchOffersFavorite } from './api-actions';
 
 const initialState = {

@@ -30,7 +30,7 @@ export function ReviewsForm(): JSX.Element {
     evt.preventDefault();
 
     dispatch(
-      offerSlice.sendComment({
+      offerSlice.addComment({
         id: Number(id),
         rating,
         comment: review,

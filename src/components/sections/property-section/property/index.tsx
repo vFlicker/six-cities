@@ -35,7 +35,7 @@ export function Property({
   const handleFavoriteButtonClick = () => {
     // TODO: add favoriteInProgress
     dispatch(
-      offerSlice.changeOfferFavoriteStatus({
+      offerSlice.changeFavoriteStatus({
         id,
         status: isFavorite
           ? FavoriteStatus.NOT_FAVORITE

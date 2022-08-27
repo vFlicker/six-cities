@@ -1,6 +1,6 @@
 import { useLayoutEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '~/hooks';
-import { offersSlice } from '~/store';
+import { offerSlice } from '~/store';
 
 import { Spinner } from '../../shared';
 import {
@@ -31,22 +31,22 @@ export function MainPage(): JSX.Element {
 }
 
 function MainPageContent(): JSX.Element {
-  const offers = useAppSelector(offersSlice.getSortedOffers);
-  const isOffersLoading = useAppSelector(offersSlice.getOffersLoadingStatus);
-  const offersError = useAppSelector(offersSlice.getOffersError);
+  const offers = useAppSelector(offerSlice.getOffers);
+  const isLoading = useAppSelector(offerSlice.getLoadingStatus);
+  const error = useAppSelector(offerSlice.getError);
 
   const dispatch = useAppDispatch();
 
   // TODO: add loading error component
   useLayoutEffect(() => {
-    dispatch(offersSlice.fetchOffers());
+    dispatch(offerSlice.fetchOffers());
   }, [dispatch]);
 
-  if (isOffersLoading) {
+  if (isLoading) {
     return <Spinner />;
   }
 
-  if (offersError) {
+  if (error) {
     return <h1>Error</h1>;
   }
 
