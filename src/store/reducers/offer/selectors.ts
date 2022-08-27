@@ -30,6 +30,10 @@ export const getOffer = (state: RootState): Offer | null => {
   return state[ReducerName.OFFER].offer;
 };
 
+export const getFavorites = (state: RootState): OffersDictionary => {
+  return state[ReducerName.OFFER].favorites;
+};
+
 export const getComments = (state: RootState): Review[] => {
   return state[ReducerName.OFFER].comments;
 };

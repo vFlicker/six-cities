@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 import { useAppDispatch, useAppSelector } from '~/hooks';
-import { offersFavoriteSlice } from '~/store';
+import { offerSlice } from '~/store';
 
 import { CardItem } from '../../shared/card-item';
 import { Spinner } from '../../shared';
@@ -11,18 +11,16 @@ import { FavoritesEmptySection } from '../favorites-empty-section';
 import * as S from './styles';
 
 export function FavoritesSection(): JSX.Element {
-  const offersFavorite = useAppSelector(offersFavoriteSlice.getOffersFavorite);
+  const offersFavorite = useAppSelector(offerSlice.getFavorites);
   const offersFavoriteLoadingStatus = useAppSelector(
-    offersFavoriteSlice.getOffersFavoriteLoadingStatus,
+    offerSlice.getLoadingStatus,
   );
-  const offersFavoriteError = useAppSelector(
-    offersFavoriteSlice.getOffersFavoriteError,
-  );
+  const offersFavoriteError = useAppSelector(offerSlice.getError);
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(offersFavoriteSlice.fetchOffersFavorite());
+    dispatch(offerSlice.fetchFavorites());
   }, [dispatch]);
 
   if (offersFavoriteLoadingStatus) {

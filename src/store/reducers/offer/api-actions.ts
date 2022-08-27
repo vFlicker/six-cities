@@ -43,6 +43,20 @@ export const fetchOffer = createAsyncThunk<Offer, number, AsyncThunkOptions>(
   },
 );
 
+export const fetchFavorites = createAsyncThunk<
+  Offer[],
+  undefined,
+  AsyncThunkOptions
+>('offer/fetchFavorites', async (_, { extra: apiService, rejectWithValue }) => {
+  try {
+    const { data } = await apiService.get<OfferServer[]>(`/favorite`);
+    return data;
+  } catch (error) {
+    errorHandler(error);
+    return rejectWithValue(error);
+  }
+});
+
 export const fetchComments = createAsyncThunk<
   Review[],
   number,

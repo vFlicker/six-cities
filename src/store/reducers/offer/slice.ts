@@ -10,12 +10,14 @@ import {
   fetchOffer,
   addComment,
   fetchOffers,
+  fetchFavorites,
 } from './api-actions';
 import { createOffersDictionary } from './utils';
 
 const initialState = {
   offers: {} as OffersDictionary,
   offer: null as unknown as Offer,
+  favorites: {} as OffersDictionary,
   comments: [] as Review[],
   loading: false,
   error: null as ErrorType,
@@ -53,6 +55,21 @@ const slice = createSlice({
         state.error = null;
       })
       .addCase(fetchOffer.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+
+      // ----- FETCH FAVORITES -----
+      .addCase(fetchFavorites.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchFavorites.fulfilled, (state, action) => {
+        state.favorites = createOffersDictionary(action.payload);
+        state.loading = false;
+        state.error = null;
+      })
+      .addCase(fetchFavorites.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       })
