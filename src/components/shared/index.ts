@@ -1,5 +1,6 @@
 export * from './bookmark-button';
 export * from './button';
+export * from './card-item';
 export * from './error-boundary';
 export * from './location-item';
 export * from './logo-link';

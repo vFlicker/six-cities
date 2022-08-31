@@ -3,9 +3,7 @@ import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '~/hooks';
 import { offerSlice } from '~/store';
 
-import { CardItem } from '../../shared/card-item';
-import { Spinner } from '../../shared';
-import { LocationItem } from '../../shared';
+import { CardItem, LocationItem, Spinner } from '../../shared';
 import { FavoritesEmptySection } from '../favorites-empty-section';
 
 import * as S from './styles';
@@ -20,7 +18,7 @@ export function FavoritesSection(): JSX.Element {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(offerSlice.fetchFavorites());
+    dispatch(offerSlice.fetchFavoriteOffers());
   }, [dispatch]);
 
   if (offersFavoriteLoadingStatus) {

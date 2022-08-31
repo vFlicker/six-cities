@@ -2,8 +2,7 @@ import { useAppDispatch } from '~/hooks';
 import { appSlice } from '~/store';
 import { Offer } from '~/types';
 
-import { CardItem } from '../../shared/card-item';
-import { Map } from '../../shared';
+import { CardItem, Map } from '../../shared';
 import { SortingFrom } from './sorting-form';
 
 import * as S from './styles';

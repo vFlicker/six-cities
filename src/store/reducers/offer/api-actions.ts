@@ -43,13 +43,29 @@ export const fetchOffer = createAsyncThunk<Offer, number, AsyncThunkOptions>(
   },
 );
 
-export const fetchFavorites = createAsyncThunk<
+export const fetchFavoriteOffers = createAsyncThunk<
   Offer[],
   undefined,
   AsyncThunkOptions
 >('offer/fetchFavorites', async (_, { extra: apiService, rejectWithValue }) => {
   try {
     const { data } = await apiService.get<OfferServer[]>(`/favorite`);
+    return data;
+  } catch (error) {
+    errorHandler(error);
+    return rejectWithValue(error);
+  }
+});
+
+export const fetchOffersNearby = createAsyncThunk<
+  Offer[],
+  number,
+  AsyncThunkOptions
+>('offer/fetchNearby', async (id, { extra: apiService, rejectWithValue }) => {
+  try {
+    const { data } = await apiService.get<OfferServer[]>(
+      `/hotels/${id}/nearby`,
+    );
     return data;
   } catch (error) {
     errorHandler(error);

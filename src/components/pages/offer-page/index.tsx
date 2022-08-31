@@ -2,15 +2,14 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '~/hooks';
-import { offerSlice, offersNearbySlice } from '~/store';
+import { offerSlice } from '~/store';
 
 import {
   HeaderSection,
   NearPlacesSection,
   PropertySection,
 } from '../../sections';
-import { Spinner } from '../../shared';
-import { Page } from '../../shared';
+import { Page, Spinner } from '../../shared';
 import { ErrorPage } from '../error-page';
 
 import * as S from './styles';
@@ -19,29 +18,25 @@ export function OfferPage(): JSX.Element {
   const { id } = useParams();
 
   const offer = useAppSelector(offerSlice.getOffer);
-  const isOfferLoading = useAppSelector(offerSlice.getLoadingStatus);
-  const offerError = useAppSelector(offerSlice.getError);
-
-  const offersNearby = useAppSelector(offersNearbySlice.getOffers);
-  const isOffersNearbyLoading = useAppSelector(
-    offersNearbySlice.getLoadingStatus,
-  );
-  const offersNearbyError = useAppSelector(offersNearbySlice.getError);
+  const isLoading = useAppSelector(offerSlice.getLoadingStatus);
+  const error = useAppSelector(offerSlice.getError);
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(offerSlice.fetchOffer(Number(id)));
     dispatch(offerSlice.fetchComments(Number(id)));
-    dispatch(offersNearbySlice.fetchOfferNearby(Number(id)));
-  }, [dispatch, id, offer?.isFavorite]);
+    dispatch(offerSlice.fetchOffersNearby(Number(id)));
+  }, [dispatch, id]);
 
-  if (isOfferLoading || isOffersNearbyLoading) {
+  console.log(isLoading);
+
+  if (isLoading || !offer) {
     return <Spinner />;
   }
 
   // TODO: add Error page to all pages
-  if (!offer || offerError || offersNearbyError) {
+  if (error) {
     return <ErrorPage />;
   }
 
@@ -51,7 +46,7 @@ export function OfferPage(): JSX.Element {
 
       <S.PageContent>
         <PropertySection offer={offer} />
-        <NearPlacesSection offersNearby={offersNearby} />
+        <NearPlacesSection />
       </S.PageContent>
     </Page>
   );
