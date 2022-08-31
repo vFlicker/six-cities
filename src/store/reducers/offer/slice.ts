@@ -1,7 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { ErrorType, Offer, OffersDictionary, Review } from '~/types';
-
 import { ReducerName } from '../../constants';
 
 import {
@@ -13,17 +11,8 @@ import {
   fetchFavoriteOffers,
   fetchOffersNearby,
 } from './api-actions';
-import { createOffersDictionary } from './utils';
-
-type State = {
-  offers: OffersDictionary;
-  offer: Offer | null;
-  favorites: OffersDictionary;
-  nearby: Offer[];
-  comments: Review[];
-  loading: boolean[];
-  error: ErrorType;
-};
+import { State } from './types';
+import { createOffersDictionary, updateOffer } from './utils';
 
 const initialState: State = {
   offers: {},
@@ -136,7 +125,7 @@ const slice = createSlice({
         state.error = null;
       })
       .addCase(changeFavoriteStatus.fulfilled, (state, action) => {
-        state.offer = action.payload;
+        updateOffer(state, action.payload);
         state.loading.pop();
         state.error = null;
       })

@@ -1,6 +1,10 @@
 import { MouseEvent, PropsWithChildren } from 'react';
 import { Link } from 'react-router-dom';
 
+import { FavoriteStatus } from '~/constants';
+import { useAppDispatch } from '~/hooks';
+import { offerSlice } from '~/store';
+
 import { Offer } from '~/types';
 
 import { BookmarkButton, Mark, StarRating } from '..';
@@ -35,6 +39,20 @@ export function CardItem({
     type,
   } = offer;
 
+  const dispatch = useAppDispatch();
+
+  const handleFavoriteButtonClick = () => {
+    // TODO: add favoriteInProgress
+    dispatch(
+      offerSlice.changeFavoriteStatus({
+        id,
+        status: isFavorite
+          ? FavoriteStatus.NotFavorite
+          : FavoriteStatus.Favorite,
+      }),
+    );
+  };
+
   return (
     <S.Card
       cardType={cardType}
@@ -65,8 +83,7 @@ export function CardItem({
             width={18}
             height={19}
             isFavorite={isFavorite}
-            onClick={() => console.log(111)}
-            // onClick={handleFavoriteButtonClick}
+            onClick={handleFavoriteButtonClick}
           />
         </S.PriceWrapper>
 
