@@ -2,7 +2,6 @@ import { useState } from 'react';
 
 import { SortType } from '~/constants';
 import { useAppDispatch, useAppSelector } from '~/hooks';
-import { SortType as TSortType } from '~/types';
 import { appSlice } from '~/store';
 
 import * as S from './styles';
@@ -16,7 +15,7 @@ export function SortingFrom(): JSX.Element {
 
   const toggleSortMenu = () => setSortMenuOpened((prevState) => !prevState);
 
-  const handleOptionClick = (sortType: TSortType) => {
+  const handleOptionClick = (sortType: SortType) => {
     if (sortType === currentSortType) return;
 
     dispatch(appSlice.changeSortType(sortType));

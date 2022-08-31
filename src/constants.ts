@@ -20,20 +20,20 @@ export enum CityName {
   Dusseldorf = 'Dusseldorf',
 }
 
-export const FavoriteStatus = {
-  FAVORITE: 1,
-  NOT_FAVORITE: 0,
-} as const;
+export const enum FavoriteStatus {
+  Favorite = 1,
+  NotFavorite = 0,
+}
 
-export const HttpCode = {
-  BAD_REQUEST: 400,
-  UNAUTHORIZED: 401,
-  NOT_FOUND: 404,
-};
+export const enum HttpCode {
+  BadRequest = 400,
+  Unauthorized = 401,
+  NotFound = 404,
+}
 
-export const SortType = {
-  POPULAR: 'Popular',
-  PRICE_HIGH_TO_LOW: 'Price: high to low',
-  PRICE_LOW_TO_HIGH: 'Price: low to high',
-  TOP_RATED_FIRST: 'Top rated first',
-} as const;
+export enum SortType {
+  Popular = 'Popular',
+  PriceHighToLow = 'Price: high to low',
+  PriceLowToHigh = 'Price: low to high',
+  TopRatedFirst = 'Top rated first',
+}

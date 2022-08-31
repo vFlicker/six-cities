@@ -38,8 +38,8 @@ export function Property({
       offerSlice.changeFavoriteStatus({
         id,
         status: isFavorite
-          ? FavoriteStatus.NOT_FAVORITE
-          : FavoriteStatus.FAVORITE,
+          ? FavoriteStatus.NotFavorite
+          : FavoriteStatus.Favorite,
       }),
     );
   };

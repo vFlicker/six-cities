@@ -1,16 +1,23 @@
 import { createAction, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { AppRoute, AuthStatus } from '~/constants';
-import { User } from '~/types';
+import { ErrorType, User } from '~/types';
 
 import { ReducerName } from '../../constants';
 import { checkAuthStatus, login, logout } from './api-actions';
 
-const initialState = {
+type State = {
+  authStatus: AuthStatus;
+  user: User | null;
+  loading: boolean;
+  error: ErrorType;
+};
+
+const initialState: State = {
   authStatus: AuthStatus.NoAuth,
-  user: null as User | null,
+  user: null,
   loading: false,
-  error: null as unknown,
+  error: null,
 };
 
 const slice = createSlice({

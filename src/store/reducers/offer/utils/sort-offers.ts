@@ -1,5 +1,5 @@
 import { SortType } from '~/constants';
-import { Offer, SortType as TSortType } from '~/types';
+import { Offer } from '~/types';
 
 const sortByPriceHighToLow = (firstOffer: Offer, secondOffer: Offer): number =>
   secondOffer.price - firstOffer.price;
@@ -12,16 +12,16 @@ const topRatedFirst = (firstOffer: Offer, secondOffer: Offer): number =>
 
 export const sortOffers = (
   offers: Offer[],
-  currentSortType: TSortType,
+  currentSortType: SortType,
 ): Offer[] => {
   const clonedOffers = [...offers];
 
   switch (currentSortType) {
-    case SortType.PRICE_HIGH_TO_LOW:
+    case SortType.PriceHighToLow:
       return clonedOffers.sort(sortByPriceHighToLow);
-    case SortType.PRICE_LOW_TO_HIGH:
+    case SortType.PriceLowToHigh:
       return clonedOffers.sort(sortByPriceLowToHigh);
-    case SortType.TOP_RATED_FIRST:
+    case SortType.TopRatedFirst:
       return clonedOffers.sort(topRatedFirst);
     default:
       return clonedOffers;

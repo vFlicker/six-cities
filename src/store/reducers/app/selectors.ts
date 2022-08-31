@@ -1,5 +1,6 @@
-import { CityName } from '~/constants';
-import { RootState, SortType } from '~/types';
+import { CityName, SortType } from '~/constants';
+
+import { RootState } from '~/types';
 
 import { ReducerName } from '../../constants';
 
