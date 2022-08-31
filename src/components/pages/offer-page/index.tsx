@@ -29,8 +29,6 @@ export function OfferPage(): JSX.Element {
     dispatch(offerSlice.fetchOffersNearby(Number(id)));
   }, [dispatch, id]);
 
-  console.log(isLoading);
-
   if (isLoading || !offer) {
     return <Spinner />;
   }

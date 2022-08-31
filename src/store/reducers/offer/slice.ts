@@ -15,14 +15,24 @@ import {
 } from './api-actions';
 import { createOffersDictionary } from './utils';
 
-const initialState = {
-  offers: {} as OffersDictionary,
-  offer: null as unknown as Offer,
-  favorites: {} as OffersDictionary,
-  nearby: [] as Offer[],
-  comments: [] as Review[],
-  loading: [] as boolean[],
-  error: null as ErrorType,
+type State = {
+  offers: OffersDictionary;
+  offer: Offer | null;
+  favorites: OffersDictionary;
+  nearby: Offer[];
+  comments: Review[];
+  loading: boolean[];
+  error: ErrorType;
+};
+
+const initialState: State = {
+  offers: {},
+  offer: null,
+  favorites: {},
+  nearby: [],
+  comments: [],
+  loading: [],
+  error: null,
 };
 
 const slice = createSlice({
@@ -126,7 +136,7 @@ const slice = createSlice({
         state.error = null;
       })
       .addCase(changeFavoriteStatus.fulfilled, (state, action) => {
-        state.offer.isFavorite = action.payload.isFavorite;
+        state.offer = action.payload;
         state.loading.pop();
         state.error = null;
       })

@@ -24,7 +24,16 @@ export function CardItem({
   onCardItemMouseEnter,
   onCardItemMouseLeave,
 }: CardItemProps): JSX.Element {
-  const { id, isPremium, previewImage, price, rating, title, type } = offer;
+  const {
+    id,
+    isFavorite,
+    isPremium,
+    previewImage,
+    price,
+    rating,
+    title,
+    type,
+  } = offer;
 
   return (
     <S.Card
@@ -55,8 +64,9 @@ export function CardItem({
           <BookmarkButton
             width={18}
             height={19}
-            isFavorite={false}
+            isFavorite={isFavorite}
             onClick={() => console.log(111)}
+            // onClick={handleFavoriteButtonClick}
           />
         </S.PriceWrapper>
 

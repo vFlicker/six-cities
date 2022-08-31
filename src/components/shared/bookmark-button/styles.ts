@@ -14,9 +14,9 @@ export const Button = styled.button<ButtonProps>`
     stroke: #4481c3;
   }
 
-  .property__bookmark-button--active svg {
-    stroke: #4481c3;
-    fill: #4481c3;
+  svg {
+    stroke: ${({ isFavorite }) => (isFavorite ? '#4481c3' : '#979797')};
+    fill: ${({ isFavorite }) => (isFavorite ? '#4481c3' : '')};
   }
 `;
 
