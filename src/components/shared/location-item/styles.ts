@@ -2,7 +2,11 @@ import { Link as RouterDomLink } from 'react-router-dom';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
-export const Link = styled(RouterDomLink)<{ isActive: boolean }>`
+type LinkProps = { isActive: boolean };
+
+export const Link = styled(RouterDomLink, {
+  shouldForwardProp: (prop) => prop !== 'isActive',
+})<LinkProps>`
   ${({ isActive }) => css`
     background-color: ${isActive ? '#4481c3' : ''};
     text-shadow: ${isActive ? '1px 0 0, .5px 0 0, -1px 0 0' : ''};

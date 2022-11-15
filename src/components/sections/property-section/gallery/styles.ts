@@ -51,7 +51,7 @@ export const ImageWrapper = styled.div`
   height: 200px;
   overflow: hidden;
 
-  &:nth-child(3n) {
+  &:nth-of-type(3n) {
     margin-right: 0;
   }
 `;
