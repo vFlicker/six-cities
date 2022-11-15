@@ -1,5 +1,3 @@
-import { convertRatingToPercents } from '~/utils';
-
 import * as S from './styles';
 
 type StartProps = {
@@ -7,6 +5,13 @@ type StartProps = {
   height: number;
   rating: number;
   hasText?: boolean;
+};
+
+const MAX_PERCENT = 100;
+const TOTAL_RATING = 5;
+
+const convertRatingToPercents = (rating: number): number => {
+  return (MAX_PERCENT * rating) / TOTAL_RATING;
 };
 
 export function StarRating({

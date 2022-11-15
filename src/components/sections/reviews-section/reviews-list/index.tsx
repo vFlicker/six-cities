@@ -1,4 +1,5 @@
 import { Review } from '~/types';
+import { getFullMonthDate, getScreenReaderDate } from '~/utils';
 
 import { StarRating } from '../../../shared';
 
@@ -23,13 +24,7 @@ export function ReviewsList({ reviews }: ReviewsListProps): JSX.Element {
 }
 
 function ReviewsItem({ review }: ReviewsItemProps): JSX.Element {
-  const {
-    comment,
-    // date,
-    rating,
-    user,
-  } = review;
-
+  const { comment, date, rating, user } = review;
   const { avatarUrl, name } = user;
 
   return (
@@ -46,8 +41,9 @@ function ReviewsItem({ review }: ReviewsItemProps): JSX.Element {
           <StarRating width={98} height={16} rating={rating} />
         </S.StarRatingWrapper>
         <S.Comment>{comment}</S.Comment>
-        {/* // TODO: normalize date 2022-06-02T10:21:00.051Z */}
-        <S.Time dateTime="2019-04-24">April 2019</S.Time>
+        <S.Time dateTime={getScreenReaderDate(date)}>
+          {getFullMonthDate(date)}
+        </S.Time>
       </S.Info>
     </S.Item>
   );
