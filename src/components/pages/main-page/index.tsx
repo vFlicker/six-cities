@@ -1,4 +1,5 @@
 import { useLayoutEffect } from 'react';
+
 import { useAppDispatch, useAppSelector } from '~/hooks';
 import { offerSlice } from '~/store';
 
@@ -9,6 +10,7 @@ import {
   MainEmptySection,
   MainSection,
 } from '../../sections';
+import { ErrorPage } from '../error-page';
 
 import * as S from './styles';
 
@@ -37,7 +39,6 @@ function MainPageContent(): JSX.Element {
 
   const dispatch = useAppDispatch();
 
-  // TODO: add loading error component
   useLayoutEffect(() => {
     dispatch(offerSlice.fetchOffers());
   }, [dispatch]);
@@ -47,7 +48,7 @@ function MainPageContent(): JSX.Element {
   }
 
   if (error) {
-    return <h1>Error</h1>;
+    return <ErrorPage />;
   }
 
   if (!offers || !offers.length) {

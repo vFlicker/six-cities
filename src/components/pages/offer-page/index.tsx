@@ -33,7 +33,6 @@ export function OfferPage(): JSX.Element {
     return <Spinner />;
   }
 
-  // TODO: add Error page to all pages
   if (error) {
     return <ErrorPage />;
   }
