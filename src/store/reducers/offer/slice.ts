@@ -110,7 +110,8 @@ const slice = createSlice({
         state.loading.push(true);
         state.error = null;
       })
-      .addCase(addComment.fulfilled, (state) => {
+      .addCase(addComment.fulfilled, (state, action) => {
+        state.comments = action.payload;
         state.loading.pop();
         state.error = null;
       })

@@ -52,7 +52,7 @@ export const logout = createAsyncThunk<void, undefined, AsyncThunkOptions>(
   'userData/logout',
   async (_, { dispatch, extra: apiService, rejectWithValue }) => {
     try {
-      await apiService.delete(`logout`);
+      await apiService.delete<void>(`logout`);
       dispatch(setAuthStatus(AuthStatus.NoAuth));
       return dropToken();
     } catch (error) {

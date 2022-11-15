@@ -108,18 +108,18 @@ export const changeFavoriteStatus = createAsyncThunk<
 );
 
 export const addComment = createAsyncThunk<
-  number,
+  Review[],
   AddCommentPayload,
   AsyncThunkOptions
 >(
   'offer/addComment',
-  async ({ id, comment, rating }, { extra: apiService, rejectWithValue }) => {
+  async ({ id, ...payload }, { extra: apiService, rejectWithValue }) => {
     try {
-      // TODO: data is any
-      const { data } = await apiService.post(`/comments/${id}`, {
-        comment,
-        rating,
-      });
+      const { data } = await apiService.post<ReviewServer[]>(
+        `/comments/${id}`,
+        payload,
+      );
+
       return data;
     } catch (error) {
       errorHandler(error);
