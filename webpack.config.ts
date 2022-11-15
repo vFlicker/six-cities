@@ -7,13 +7,13 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import TerserPlugin from 'terser-webpack-plugin';
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 
-interface Configuration extends WebpackConfiguration {
+type Configuration = {
   devServer: WebpackDevServerConfiguration;
-}
+} & WebpackConfiguration;
 
 type Env = {
   WEBPACK_SERVE: boolean;
-  mode: 'development' | 'production' | undefined;
+  mode?: 'development' | 'production';
 };
 
 const DEV_SERVER_PORT = 3000;
@@ -49,8 +49,7 @@ const config = (env: Env): Configuration => {
     output: {
       filename: isDev ? '[name].js' : '[name].[contenthash].js',
       path: path.resolve(__dirname, 'public'),
-      // TODO: uncomment this
-      // clean: true,
+      clean: true,
     },
     optimization: getOptimization(),
     plugins: [
