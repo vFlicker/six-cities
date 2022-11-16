@@ -15,8 +15,9 @@ import { State } from './types';
 import { createOffersDictionary, updateOffer } from './utils';
 
 const initialState: State = {
-  offers: {},
+  offers: null,
   offer: null,
+  // TODO: use null instead
   favorites: {},
   nearby: [],
   comments: [],

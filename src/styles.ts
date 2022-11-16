@@ -46,6 +46,12 @@ export const globalStyle = css`
     font-display: swap;
   }
 
+  *,
+  ::after,
+  ::before {
+    box-sizing: inherit;
+  }
+
   body,
   html {
     width: 100%;
@@ -62,12 +68,6 @@ export const globalStyle = css`
     -webkit-font-smoothing: antialiased;
     font-smoothing: antialiased;
     box-sizing: border-box;
-  }
-
-  *,
-  ::after,
-  ::before {
-    box-sizing: inherit;
   }
 
   a {
@@ -108,20 +108,5 @@ export const globalStyle = css`
     overflow-wrap: break-word;
     transition: color 0.3s, background-color 0.3s;
     outline: 0;
-  }
-
-  // TODO: remove this, use emotion instead
-  .visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    margin: -1px;
-    border: 0;
-    padding: 0;
-    white-space: nowrap;
-    -webkit-clip-path: inset(100%);
-    clip-path: inset(100%);
-    clip: rect(0 0 0 0);
-    overflow: hidden;
   }
 `;

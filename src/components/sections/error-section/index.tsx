@@ -2,12 +2,16 @@ import { Container, NotificationSection } from '../../shared';
 
 import * as S from './styles';
 
-// TODO: Add error from API answer here
-export function ErrorSection(): JSX.Element {
+export type ErrorSectionProps = {
+  errorMessage?: string;
+};
+
+export function ErrorSection({ errorMessage }: ErrorSectionProps): JSX.Element {
+  const error = errorMessage ?? 'There are problems, please try again later.';
   return (
     <NotificationSection>
       <Container>
-        <S.Title>There are problems, please try again later.</S.Title>
+        <S.Title>{error}</S.Title>
       </Container>
     </NotificationSection>
   );

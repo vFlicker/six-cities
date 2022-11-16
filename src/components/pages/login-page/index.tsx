@@ -26,7 +26,6 @@ export function LoginPage(): JSX.Element {
       <HeaderSection />
 
       <PageContent>
-        {/* // TODO: <Layout grid fullWidth /> */}
         <S.Container>
           <LoginSection />
           <LocationSection />

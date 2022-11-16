@@ -1,9 +1,9 @@
 import { useLayoutEffect } from 'react';
 
 import { useAppDispatch, useAppSelector } from '~/hooks';
+import { Spinner } from '../../shared';
 import { offerSlice } from '~/store';
 
-import { Spinner } from '../../shared';
 import {
   HeaderSection,
   LocationListSection,
@@ -32,6 +32,30 @@ export function MainPage(): JSX.Element {
   );
 }
 
+type QueryResultProps = {
+  // TODO: error is unknown
+  error: unknown;
+  isLoading: boolean;
+  hasData: boolean;
+  children: JSX.Element;
+};
+
+// TODO: move to shared dir
+export function QueryResult({
+  isLoading,
+  error,
+  hasData,
+  children,
+}: QueryResultProps): JSX.Element {
+  if (error) return <ErrorPage errorMessage={'Some Error'} />;
+
+  if (isLoading) return <Spinner />;
+
+  if (!hasData) return <MainEmptySection />;
+
+  return children;
+}
+
 function MainPageContent(): JSX.Element {
   const offers = useAppSelector(offerSlice.getOffers);
   const isLoading = useAppSelector(offerSlice.getLoadingStatus);
@@ -43,17 +67,13 @@ function MainPageContent(): JSX.Element {
     dispatch(offerSlice.fetchOffers());
   }, [dispatch]);
 
-  if (isLoading) {
-    return <Spinner />;
-  }
-
-  if (error) {
-    return <ErrorPage />;
-  }
-
-  if (!offers || !offers.length) {
-    return <MainEmptySection />;
-  }
-
-  return <MainSection offers={offers} />;
+  return (
+    <QueryResult
+      isLoading={isLoading}
+      error={error}
+      hasData={Boolean(offers.length)}
+    >
+      <MainSection offers={offers} />
+    </QueryResult>
+  );
 }

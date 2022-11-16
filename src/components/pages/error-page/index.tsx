@@ -1,13 +1,20 @@
-import { HeaderSection, FooterSection, ErrorSection } from '../../sections';
+import {
+  HeaderSection,
+  FooterSection,
+  ErrorSection,
+  ErrorSectionProps,
+} from '../../sections';
 import { Page, PageContent } from '../../shared';
 
-export function ErrorPage(): JSX.Element {
+type ErrorPageProps = ErrorSectionProps;
+
+export function ErrorPage({ errorMessage }: ErrorPageProps): JSX.Element {
   return (
     <Page>
       <HeaderSection />
 
       <PageContent>
-        <ErrorSection />
+        <ErrorSection errorMessage={errorMessage} />
       </PageContent>
 
       <FooterSection />

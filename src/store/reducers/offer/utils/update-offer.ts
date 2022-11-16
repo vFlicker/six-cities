@@ -16,7 +16,7 @@ export const updateOffer = (state: State, newOffer: Offer): void => {
     update(favorites[city], newOffer);
   }
 
-  if (offers[city]) {
+  if (offers && offers[city]) {
     update(offers[city], newOffer);
   }
 

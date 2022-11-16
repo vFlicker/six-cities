@@ -15,8 +15,6 @@ export const Page = styled(BasePage)`
 `;
 
 export const PageContent = styled(BasePageContent)`
-  display: flex;
-  flex-grow: 1;
   flex-direction: column;
   overflow-y: hidden;
 `;

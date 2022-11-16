@@ -6,7 +6,7 @@ import { ReducerName } from '../../constants';
 import { getCurrentCityName, getCurrentSortType } from '../app';
 import { sortOffers } from './utils';
 
-const getOffersDictionary = (state: RootState): OffersDictionary => {
+const getOffersDictionary = (state: RootState): OffersDictionary | null => {
   return state[ReducerName.OFFER].offers;
 };
 
@@ -22,7 +22,7 @@ export const getOffers = createSelector(
   getFilteredOffers,
   getCurrentSortType,
   (offers, sortType) => {
-    return offers ? sortOffers(offers, sortType) : null;
+    return offers.length ? sortOffers(offers, sortType) : [];
   },
 );
 
