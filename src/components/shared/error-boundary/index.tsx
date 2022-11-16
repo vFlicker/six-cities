@@ -12,6 +12,7 @@ export class ErrorBoundary extends Component {
   }
 
   render(): ReactNode {
+    // TODO: use ErrorPage
     if (this.state.hasError) return <ErrorIndicator />;
 
     return this.props.children;

@@ -11,6 +11,7 @@ import {
 } from '../../sections';
 import { Page, Spinner } from '../../shared';
 import { ErrorPage } from '../error-page';
+import { NotFoundPage } from '../not-found-page';
 
 import * as S from './styles';
 
@@ -29,12 +30,16 @@ export function OfferPage(): JSX.Element {
     dispatch(offerSlice.fetchOffersNearby(Number(id)));
   }, [dispatch, id]);
 
-  if (isLoading || !offer) {
+  if (isLoading) {
     return <Spinner />;
   }
 
   if (error) {
     return <ErrorPage />;
+  }
+
+  if (!offer) {
+    return <NotFoundPage />;
   }
 
   return (

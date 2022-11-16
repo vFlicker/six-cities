@@ -14,3 +14,7 @@ export const getUser = (state: RootState): User | null => {
 export const getLoadingStatus = (state: RootState): boolean => {
   return state[ReducerName.USER].loading;
 };
+
+export const getError = (state: RootState): unknown => {
+  return state[ReducerName.USER].error;
+};
