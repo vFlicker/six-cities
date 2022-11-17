@@ -2,7 +2,7 @@ import { useLayoutEffect } from 'react';
 
 import { useAppDispatch, useAppSelector } from '~/hooks';
 import { Spinner } from '../../shared';
-import { offerSlice } from '~/store';
+import { offersSlice } from '~/store';
 
 import {
   HeaderSection,
@@ -57,14 +57,14 @@ export function QueryResult({
 }
 
 function MainPageContent(): JSX.Element {
-  const offers = useAppSelector(offerSlice.getOffers);
-  const isLoading = useAppSelector(offerSlice.getLoadingStatus);
-  const error = useAppSelector(offerSlice.getError);
+  const offers = useAppSelector(offersSlice.getOffers);
+  const isLoading = useAppSelector(offersSlice.getLoadingStatus);
+  const error = useAppSelector(offersSlice.getError);
 
   const dispatch = useAppDispatch();
 
   useLayoutEffect(() => {
-    dispatch(offerSlice.fetchOffers());
+    dispatch(offersSlice.fetchOffers());
   }, [dispatch]);
 
   return (

@@ -12,7 +12,7 @@ export const fetchOffers = createAsyncThunk<
   OfferServer[],
   undefined,
   AsyncThunkOptions
->('offer/fetchAll', async (_, { extra: apiService, rejectWithValue }) => {
+>('offers/fetchAll', async (_, { extra: apiService, rejectWithValue }) => {
   try {
     const { data } = await apiService.get<OfferServer[]>(`/hotels`);
     return data;
@@ -22,11 +22,15 @@ export const fetchOffers = createAsyncThunk<
   }
 });
 
-export const fetchOffer = createAsyncThunk<Offer, number, AsyncThunkOptions>(
-  'offer/fetchOne',
-  async (id, { extra: apiService, rejectWithValue }) => {
+export const fetchFavoriteOffers = createAsyncThunk<
+  Offer[],
+  undefined,
+  AsyncThunkOptions
+>(
+  'offers/fetchFavorites',
+  async (_, { extra: apiService, rejectWithValue }) => {
     try {
-      const { data } = await apiService.get<OfferServer>(`/hotels/${id}`);
+      const { data } = await apiService.get<OfferServer[]>(`/favorite`);
       return data;
     } catch (error) {
       errorHandler(error);
@@ -35,25 +39,11 @@ export const fetchOffer = createAsyncThunk<Offer, number, AsyncThunkOptions>(
   },
 );
 
-export const fetchFavoriteOffers = createAsyncThunk<
-  Offer[],
-  undefined,
-  AsyncThunkOptions
->('offer/fetchFavorites', async (_, { extra: apiService, rejectWithValue }) => {
-  try {
-    const { data } = await apiService.get<OfferServer[]>(`/favorite`);
-    return data;
-  } catch (error) {
-    errorHandler(error);
-    return rejectWithValue(error);
-  }
-});
-
 export const fetchOffersNearby = createAsyncThunk<
   Offer[],
   number,
   AsyncThunkOptions
->('offer/fetchNearby', async (id, { extra: apiService, rejectWithValue }) => {
+>('offers/fetchNearby', async (id, { extra: apiService, rejectWithValue }) => {
   try {
     const { data } = await apiService.get<OfferServer[]>(
       `/hotels/${id}/nearby`,
@@ -70,7 +60,7 @@ export const changeFavoriteStatus = createAsyncThunk<
   changeFavoriteStatusPayload,
   AsyncThunkOptions
 >(
-  'offer/changeFavoriteStatus',
+  'offers/changeFavoriteStatus',
   async ({ id, status }, { extra: apiService, rejectWithValue }) => {
     try {
       const { data } = await apiService.post<OfferServer>(

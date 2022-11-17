@@ -8,7 +8,7 @@ const update = (offers: Offer[], newOffer: Offer): void => {
 };
 
 export const updateOffer = (state: State, newOffer: Offer): void => {
-  const { favorites, nearby, offer, offers } = state;
+  const { favorites, nearby, offers } = state;
 
   const city = newOffer.city.name.toLocaleLowerCase();
 
@@ -22,9 +22,5 @@ export const updateOffer = (state: State, newOffer: Offer): void => {
 
   if (nearby.length) {
     update(nearby, newOffer);
-  }
-
-  if (offer) {
-    state.offer = newOffer;
   }
 };

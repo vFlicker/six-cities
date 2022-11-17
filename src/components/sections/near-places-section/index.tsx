@@ -1,12 +1,12 @@
 import { useAppSelector } from '~/hooks';
-import { offerSlice } from '~/store';
+import { offersSlice } from '~/store';
 
 import { CardItem, Container, Map } from '../../shared';
 
 import * as S from './styles';
 
 export function NearPlacesSection(): JSX.Element {
-  const offersNearby = useAppSelector(offerSlice.getNearby);
+  const offersNearby = useAppSelector(offersSlice.getNearby);
 
   return (
     <>
