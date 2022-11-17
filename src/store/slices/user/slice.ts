@@ -32,7 +32,7 @@ const slice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      // ----- CHECK AUTH STATUS -----
+      /* CHECK AUTH STATUS */
       .addCase(checkAuthStatus.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -47,7 +47,7 @@ const slice = createSlice({
         state.error = action.payload;
       })
 
-      // ----- LOGIN -----
+      /* LOGIN */
       .addCase(login.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -62,7 +62,7 @@ const slice = createSlice({
         state.error = action.payload;
       })
 
-      // ----- LOGOUT -----
+      /* LOGOUT */
       .addCase(logout.pending, (state) => {
         state.user = null;
         state.loading = true;
@@ -82,5 +82,7 @@ const slice = createSlice({
 export const redirectToRoute = createAction<AppRoute>(
   'userData/redirectToRoute',
 );
+
 export const { setAuthStatus, setUserData } = slice.actions;
+
 export default slice;

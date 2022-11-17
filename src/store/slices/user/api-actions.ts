@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { AppRoute, AuthStatus } from '~/constants';
+import { AppRoute, AuthStatus, Reducer } from '~/constants';
 import { AsyncThunkOptions, User } from '~/types';
 import { dropToken, saveToken, errorHandler } from '~/services';
 
@@ -16,7 +16,7 @@ export const checkAuthStatus = createAsyncThunk<
   undefined,
   AsyncThunkOptions
 >(
-  'userData/authStatus',
+  `${Reducer.User}/authStatus`,
   async (_, { dispatch, extra: apiService, rejectWithValue }) => {
     try {
       const { data } = await apiService.get<User>(`/login`);
@@ -31,7 +31,7 @@ export const checkAuthStatus = createAsyncThunk<
 );
 
 export const login = createAsyncThunk<User, AuthData, AsyncThunkOptions>(
-  'userData/login',
+  `${Reducer.User}/login`,
   async (authData, { dispatch, extra: apiService, rejectWithValue }) => {
     try {
       const { data } = await apiService.post<User>(`/login`, authData);
@@ -48,7 +48,7 @@ export const login = createAsyncThunk<User, AuthData, AsyncThunkOptions>(
 );
 
 export const logout = createAsyncThunk<void, undefined, AsyncThunkOptions>(
-  'userData/logout',
+  `${Reducer.User}/logout`,
   async (_, { dispatch, extra: apiService, rejectWithValue }) => {
     try {
       await apiService.delete<void>(`logout`);

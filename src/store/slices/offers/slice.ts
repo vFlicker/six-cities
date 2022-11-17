@@ -2,8 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { Reducer } from '~/constants';
 
+import { changeFavoriteStatus } from '../offer';
 import {
-  changeFavoriteStatus,
   fetchOffers,
   fetchFavoriteOffers,
   fetchOffersNearby,
@@ -26,7 +26,7 @@ const slice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      // ----- FETCH ALL OFFERS -----
+      /* FETCH ALL OFFERS */
       .addCase(fetchOffers.pending, (state) => {
         state.loading.push(true);
         state.error = null;
@@ -41,7 +41,7 @@ const slice = createSlice({
         state.error = action.payload;
       })
 
-      // ----- FETCH FAVORITES -----
+      /* FETCH FAVORITES */
       .addCase(fetchFavoriteOffers.pending, (state) => {
         state.loading.push(true);
         state.error = null;
@@ -70,7 +70,7 @@ const slice = createSlice({
         state.error = action.payload;
       })
 
-      // ----- CHANGE FAVORITE STATUS -----
+      /* CHANGE FAVORITE STATUS */
       .addCase(changeFavoriteStatus.pending, (state) => {
         state.loading.push(true);
         state.error = null;

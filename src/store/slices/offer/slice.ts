@@ -23,7 +23,7 @@ const slice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      // ----- FETCH ONE OFFER -----
+      /* FETCH ONE OFFER */
       .addCase(fetchOffer.pending, (state) => {
         state.loading = true;
         state.error = null;
