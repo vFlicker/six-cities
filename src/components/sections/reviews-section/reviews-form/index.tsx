@@ -2,7 +2,7 @@ import { FormEvent, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { useAppDispatch } from '~/hooks';
-import { offerSlice } from '~/store';
+import { commentsSlice } from '~/store';
 
 import { Button } from '../../../shared';
 import { RatingList } from './rating-list';
@@ -30,7 +30,7 @@ export function ReviewsForm(): JSX.Element {
     evt.preventDefault();
 
     dispatch(
-      offerSlice.addComment({
+      commentsSlice.addComment({
         id: Number(id),
         rating,
         comment: review,

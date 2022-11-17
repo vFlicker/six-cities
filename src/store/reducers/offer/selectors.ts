@@ -1,6 +1,6 @@
 import { createSelector } from '@reduxjs/toolkit';
 
-import { ErrorType, Offer, OffersDictionary, Review, RootState } from '~/types';
+import { ErrorType, Offer, OffersDictionary, RootState } from '~/types';
 
 import { ReducerName } from '../../constants';
 import { getCurrentCityName, getCurrentSortType } from '../app';
@@ -36,10 +36,6 @@ export const getFavorites = (state: RootState): OffersDictionary => {
 
 export const getNearby = (state: RootState): Offer[] => {
   return state[ReducerName.OFFER].nearby;
-};
-
-export const getComments = (state: RootState): Review[] => {
-  return state[ReducerName.OFFER].comments;
 };
 
 export const getLoadingStatus = (state: RootState): boolean => {

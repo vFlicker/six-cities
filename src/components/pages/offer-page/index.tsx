@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '~/hooks';
-import { offerSlice } from '~/store';
+import { offerSlice, commentsSlice } from '~/store';
 
 import {
   HeaderSection,
@@ -26,7 +26,7 @@ export function OfferPage(): JSX.Element {
 
   useEffect(() => {
     dispatch(offerSlice.fetchOffer(Number(id)));
-    dispatch(offerSlice.fetchComments(Number(id)));
+    dispatch(commentsSlice.fetchComments(Number(id)));
     dispatch(offerSlice.fetchOffersNearby(Number(id)));
   }, [dispatch, id]);
 

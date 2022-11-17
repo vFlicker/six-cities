@@ -1,6 +1,6 @@
 import { AuthStatus } from '~/constants';
 import { useAppSelector } from '~/hooks';
-import { offerSlice, userSlice } from '~/store';
+import { commentsSlice, userSlice } from '~/store';
 
 import { ReviewsForm } from './reviews-form';
 import { ReviewsList } from './reviews-list';
@@ -8,7 +8,7 @@ import { ReviewsList } from './reviews-list';
 import * as S from './styles';
 
 export function ReviewsSection(): JSX.Element {
-  const reviews = useAppSelector(offerSlice.getComments);
+  const reviews = useAppSelector(commentsSlice.getComments);
   const authStatus = useAppSelector(userSlice.getAuthStatus);
 
   const reviewCount = reviews.length;

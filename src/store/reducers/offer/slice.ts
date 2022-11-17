@@ -4,9 +4,7 @@ import { ReducerName } from '../../constants';
 
 import {
   changeFavoriteStatus,
-  fetchComments,
   fetchOffer,
-  addComment,
   fetchOffers,
   fetchFavoriteOffers,
   fetchOffersNearby,
@@ -20,7 +18,6 @@ const initialState: State = {
   // TODO: use null instead
   favorites: {},
   nearby: [],
-  comments: [],
   loading: [],
   error: null,
 };
@@ -86,37 +83,6 @@ const slice = createSlice({
         state.error = null;
       })
       .addCase(fetchOffersNearby.rejected, (state, action) => {
-        state.loading = [];
-        state.error = action.payload;
-      })
-
-      // ----- FETCH COMMENTS -----
-      .addCase(fetchComments.pending, (state) => {
-        state.loading.push(true);
-        state.error = null;
-      })
-      .addCase(fetchComments.fulfilled, (state, action) => {
-        state.comments = action.payload;
-        state.loading.pop();
-        state.error = null;
-      })
-      .addCase(fetchComments.rejected, (state, action) => {
-        state.loading = [];
-        state.error = action.payload;
-      })
-
-      // ----- ADD COMMENT -----
-      // TODO: now when comment sending all pages are spinner
-      .addCase(addComment.pending, (state) => {
-        state.loading.push(true);
-        state.error = null;
-      })
-      .addCase(addComment.fulfilled, (state, action) => {
-        state.comments = action.payload;
-        state.loading.pop();
-        state.error = null;
-      })
-      .addCase(addComment.rejected, (state, action) => {
         state.loading = [];
         state.error = action.payload;
       })

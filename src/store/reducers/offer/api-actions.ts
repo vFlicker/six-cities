@@ -1,15 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { errorHandler } from '~/services';
-import { Offer, OfferServer, Review, ReviewServer } from '~/types';
+import { Offer, OfferServer } from '~/types';
 
 import { AsyncThunkOptions } from '../types';
-
-type AddCommentPayload = {
-  id: number;
-  comment: string;
-  rating: number;
-};
 
 type changeFavoriteStatusPayload = {
   id: number;
@@ -73,20 +67,6 @@ export const fetchOffersNearby = createAsyncThunk<
   }
 });
 
-export const fetchComments = createAsyncThunk<
-  Review[],
-  number,
-  AsyncThunkOptions
->('offer/fetchComments', async (id, { extra: apiService, rejectWithValue }) => {
-  try {
-    const { data } = await apiService.get<ReviewServer[]>(`/comments/${id}`);
-    return data;
-  } catch (error) {
-    errorHandler(error);
-    return rejectWithValue(error);
-  }
-});
-
 export const changeFavoriteStatus = createAsyncThunk<
   Offer,
   changeFavoriteStatusPayload,
@@ -97,27 +77,6 @@ export const changeFavoriteStatus = createAsyncThunk<
     try {
       const { data } = await apiService.post<OfferServer>(
         `/favorite/${id}/${status}`,
-      );
-
-      return data;
-    } catch (error) {
-      errorHandler(error);
-      return rejectWithValue(error);
-    }
-  },
-);
-
-export const addComment = createAsyncThunk<
-  Review[],
-  AddCommentPayload,
-  AsyncThunkOptions
->(
-  'offer/addComment',
-  async ({ id, ...payload }, { extra: apiService, rejectWithValue }) => {
-    try {
-      const { data } = await apiService.post<ReviewServer[]>(
-        `/comments/${id}`,
-        payload,
       );
 
       return data;
