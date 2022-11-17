@@ -1,9 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { errorHandler } from '~/services';
-import { Offer, OfferServer } from '~/types';
-
-import { AsyncThunkOptions } from '../types';
+import { AsyncThunkOptions, Offer, OfferServer } from '~/types';
 
 type changeFavoriteStatusPayload = {
   id: number;

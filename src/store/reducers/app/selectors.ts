@@ -1,19 +1,18 @@
 import { CityName, SortType } from '~/constants';
 
+import { Reducer } from '~/constants';
 import { RootState } from '~/types';
-
-import { ReducerName } from '../../constants';
 
 // TODO: use appSelector
 export const getCurrentCityName = (state: RootState): CityName => {
-  return state[ReducerName.APP].currentCityName;
+  return state[Reducer.App].currentCityName;
 };
 
 export const getCurrentSortType = (state: RootState): SortType => {
-  return state[ReducerName.APP].currentSortType;
+  return state[Reducer.App].currentSortType;
 };
 export const getActiveCardId = (state: RootState): number => {
-  return state[ReducerName.APP].activeCardId;
+  return state[Reducer.App].activeCardId;
 };
 
 // TODO: crate appLoaderSelector

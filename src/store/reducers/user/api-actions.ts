@@ -1,10 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { AppRoute, AuthStatus } from '~/constants';
-import { User } from '~/types';
+import { AsyncThunkOptions, User } from '~/types';
 import { dropToken, saveToken, errorHandler } from '~/services';
 
-import { AsyncThunkOptions } from '../types';
 import { redirectToRoute, setAuthStatus } from './slice';
 
 type AuthData = {

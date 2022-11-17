@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { ReducerName } from '../../constants';
+import { Reducer } from '~/constants';
 
 import {
   changeFavoriteStatus,
@@ -23,7 +23,7 @@ const initialState: State = {
 };
 
 const slice = createSlice({
-  name: ReducerName.OFFER,
+  name: Reducer.Offer,
   initialState,
   reducers: {},
   extraReducers: (builder) => {

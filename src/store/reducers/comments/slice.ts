@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import { Reducer } from '~/constants';
 import { ErrorType, Review } from '~/types';
 
-import { ReducerName } from '../../constants';
 import { addComment, fetchComments } from './api-actions';
 
 type State = {
@@ -18,7 +18,7 @@ const initialState: State = {
 };
 
 const slice = createSlice({
-  name: ReducerName.OFFER,
+  name: Reducer.Comments,
   initialState,
   reducers: {},
   extraReducers: (builder) => {

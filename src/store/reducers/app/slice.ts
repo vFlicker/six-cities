@@ -1,8 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { CityName, SortType } from '~/constants';
-
-import { ReducerName } from '../../constants';
+import { CityName, Reducer, SortType } from '~/constants';
 
 type State = {
   activeCardId: number;
@@ -17,7 +15,7 @@ const initialState: State = {
 };
 
 const slice = createSlice({
-  name: ReducerName.APP,
+  name: Reducer.App,
   initialState,
   reducers: {
     changeCityName: (state, action: PayloadAction<CityName>) => {

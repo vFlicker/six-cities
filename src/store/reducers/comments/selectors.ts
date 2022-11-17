@@ -1,15 +1,14 @@
+import { Reducer } from '~/constants';
 import { ErrorType, Review, RootState } from '~/types';
 
-import { ReducerName } from '../../constants';
-
 export const getComments = (state: RootState): Review[] => {
-  return state[ReducerName.COMMENTS].comments;
+  return state[Reducer.Comments].comments;
 };
 
 export const getLoadingStatus = (state: RootState): boolean => {
-  return state[ReducerName.COMMENTS].loading;
+  return state[Reducer.Comments].loading;
 };
 
 export const getError = (state: RootState): ErrorType => {
-  return state[ReducerName.COMMENTS].error;
+  return state[Reducer.Comments].error;
 };

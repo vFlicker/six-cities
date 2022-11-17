@@ -1,9 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { errorHandler } from '~/services';
-import { Review, ReviewServer } from '~/types';
-
-import { AsyncThunkOptions } from '../types';
+import { AsyncThunkOptions, Review, ReviewServer } from '~/types';
 
 type AddCommentPayload = {
   id: number;

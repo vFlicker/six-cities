@@ -1,13 +1,13 @@
 import { createSelector } from '@reduxjs/toolkit';
 
+import { Reducer } from '~/constants';
 import { ErrorType, Offer, OffersDictionary, RootState } from '~/types';
 
-import { ReducerName } from '../../constants';
 import { getCurrentCityName, getCurrentSortType } from '../app';
 import { sortOffers } from './utils';
 
 const getOffersDictionary = (state: RootState): OffersDictionary | null => {
-  return state[ReducerName.OFFER].offers;
+  return state[Reducer.Offer].offers;
 };
 
 const getFilteredOffers = createSelector(
@@ -27,21 +27,21 @@ export const getOffers = createSelector(
 );
 
 export const getOffer = (state: RootState): Offer | null => {
-  return state[ReducerName.OFFER].offer;
+  return state[Reducer.Offer].offer;
 };
 
 export const getFavorites = (state: RootState): OffersDictionary => {
-  return state[ReducerName.OFFER].favorites;
+  return state[Reducer.Offer].favorites;
 };
 
 export const getNearby = (state: RootState): Offer[] => {
-  return state[ReducerName.OFFER].nearby;
+  return state[Reducer.Offer].nearby;
 };
 
 export const getLoadingStatus = (state: RootState): boolean => {
-  return state[ReducerName.OFFER].loading.length !== 0;
+  return state[Reducer.Offer].loading.length !== 0;
 };
 
 export const getError = (state: RootState): ErrorType => {
-  return state[ReducerName.OFFER].error;
+  return state[Reducer.Offer].error;
 };

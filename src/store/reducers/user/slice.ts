@@ -1,9 +1,8 @@
 import { createAction, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { AppRoute, AuthStatus } from '~/constants';
+import { AppRoute, AuthStatus, Reducer } from '~/constants';
 import { ErrorType, User } from '~/types';
 
-import { ReducerName } from '../../constants';
 import { checkAuthStatus, login, logout } from './api-actions';
 
 type State = {
@@ -21,7 +20,7 @@ const initialState: State = {
 };
 
 const slice = createSlice({
-  name: ReducerName.USER,
+  name: Reducer.User,
   initialState,
   reducers: {
     setAuthStatus: (state, action: PayloadAction<AuthStatus>) => {

@@ -37,3 +37,10 @@ export enum SortType {
   PriceLowToHigh = 'Price: low to high',
   TopRatedFirst = 'Top rated first',
 }
+
+export const enum Reducer {
+  App = 'APP',
+  Comments = 'COMMENTS',
+  Offer = 'OFFER',
+  User = 'USER',
+}
