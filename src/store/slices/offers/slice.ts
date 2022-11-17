@@ -23,7 +23,7 @@ const initialState: State = {
 };
 
 const slice = createSlice({
-  name: Reducer.Offer,
+  name: Reducer.Offers,
   initialState,
   reducers: {},
   extraReducers: (builder) => {

@@ -41,6 +41,6 @@ export enum SortType {
 export const enum Reducer {
   App = 'APP',
   Comments = 'COMMENTS',
-  Offer = 'OFFER',
+  Offers = 'OFFERS',
   User = 'USER',
 }

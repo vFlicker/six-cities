@@ -7,7 +7,7 @@ import { getCurrentCityName, getCurrentSortType } from '../app';
 import { sortOffers } from './utils';
 
 const getOffersDictionary = (state: RootState): OffersDictionary | null => {
-  return state[Reducer.Offer].offers;
+  return state[Reducer.Offers].offers;
 };
 
 const getFilteredOffers = createSelector(
@@ -27,21 +27,21 @@ export const getOffers = createSelector(
 );
 
 export const getOffer = (state: RootState): Offer | null => {
-  return state[Reducer.Offer].offer;
+  return state[Reducer.Offers].offer;
 };
 
 export const getFavorites = (state: RootState): OffersDictionary => {
-  return state[Reducer.Offer].favorites;
+  return state[Reducer.Offers].favorites;
 };
 
 export const getNearby = (state: RootState): Offer[] => {
-  return state[Reducer.Offer].nearby;
+  return state[Reducer.Offers].nearby;
 };
 
 export const getLoadingStatus = (state: RootState): boolean => {
-  return state[Reducer.Offer].loading.length !== 0;
+  return state[Reducer.Offers].loading.length !== 0;
 };
 
 export const getError = (state: RootState): ErrorType => {
-  return state[Reducer.Offer].error;
+  return state[Reducer.Offers].error;
 };

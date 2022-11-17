@@ -1,3 +1,3 @@
-export * from './reducers';
+export * from './slices';
 export * from './root-reducer';
 export * from './store';
