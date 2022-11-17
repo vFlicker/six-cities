@@ -1,6 +1,6 @@
 import { CityName } from '~/constants';
 
-import { CamelToSnakeCaseNested } from './helpers';
+import { CamelToSnakeCaseNested } from '../util-types';
 
 export type City = {
   location: Location;

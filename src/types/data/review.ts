@@ -1,4 +1,4 @@
-import { CamelToSnakeCaseNested } from './helpers';
+import { CamelToSnakeCaseNested } from '../util-types';
 import { User } from './user';
 
 export type Review = {

@@ -1,14 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { Reducer } from '~/constants';
-import { ErrorType, Review } from '~/types';
+import { Error, Review } from '~/types';
 
 import { addComment, fetchComments } from './api-actions';
 
 type State = {
   comments: Review[];
   loading: boolean;
-  error: ErrorType;
+  error: Error;
 };
 
 const initialState: State = {

@@ -1,7 +1,7 @@
 import { createAction, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { AppRoute, AuthStatus, Reducer } from '~/constants';
-import { ErrorType, User } from '~/types';
+import { Error, User } from '~/types';
 
 import { checkAuthStatus, login, logout } from './api-actions';
 
@@ -9,7 +9,7 @@ type State = {
   authStatus: AuthStatus;
   user: User | null;
   loading: boolean;
-  error: ErrorType;
+  error: Error;
 };
 
 const initialState: State = {

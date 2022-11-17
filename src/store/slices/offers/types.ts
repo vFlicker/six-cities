@@ -1,4 +1,4 @@
-import { ErrorType, Offer, OffersDictionary } from '~/types';
+import { Error, Offer, OffersDictionary } from '~/types';
 
 export type State = {
   offers: OffersDictionary | null;
@@ -6,5 +6,5 @@ export type State = {
   favorites: OffersDictionary;
   nearby: Offer[];
   loading: boolean[];
-  error: ErrorType;
+  error: Error;
 };
