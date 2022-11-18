@@ -1,2 +1,2 @@
-export { normalizePayload } from './normalize-payload';
-export { redirect } from './redirect';
+export * from './normalize-payload';
+export * from './redirect';

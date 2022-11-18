@@ -4,7 +4,7 @@ import { Reducer } from '~/constants';
 import { errorHandler } from '~/services';
 import { AsyncThunkOptions, Review, ReviewServer } from '~/types';
 
-type AddCommentPayload = {
+type PostCommentPayload = {
   id: number;
   comment: string;
   rating: number;
@@ -27,12 +27,12 @@ export const fetchComments = createAsyncThunk<
   },
 );
 
-export const addComment = createAsyncThunk<
+export const postComment = createAsyncThunk<
   Review[],
-  AddCommentPayload,
+  PostCommentPayload,
   AsyncThunkOptions
 >(
-  `${Reducer.Comments}/addComment`,
+  `${Reducer.Comments}/postComment`,
   async ({ id, ...payload }, { extra: apiService, rejectWithValue }) => {
     try {
       const { data } = await apiService.post<ReviewServer[]>(

@@ -2,7 +2,7 @@ import { FormEvent, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { useAppDispatch } from '~/hooks';
-import { commentsSlice } from '~/store';
+import { apiActions } from '~/store';
 
 import { Button } from '../../../shared';
 import { RatingList } from './rating-list';
@@ -30,7 +30,7 @@ export function ReviewsForm(): JSX.Element {
     evt.preventDefault();
 
     dispatch(
-      commentsSlice.addComment({
+      apiActions.postComment({
         id: Number(id),
         rating,
         comment: review,

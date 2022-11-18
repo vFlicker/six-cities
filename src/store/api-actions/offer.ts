@@ -4,7 +4,7 @@ import { Reducer } from '~/constants';
 import { errorHandler } from '~/services';
 import { AsyncThunkOptions, Offer, OfferServer } from '~/types';
 
-type changeFavoriteStatusPayload = {
+type toggleFavoriteStatusPayload = {
   id: number;
   status: 0 | 1;
 };
@@ -22,12 +22,12 @@ export const fetchOffer = createAsyncThunk<Offer, number, AsyncThunkOptions>(
   },
 );
 
-export const changeFavoriteStatus = createAsyncThunk<
+export const toggleFavoriteStatus = createAsyncThunk<
   Offer,
-  changeFavoriteStatusPayload,
+  toggleFavoriteStatusPayload,
   AsyncThunkOptions
 >(
-  `${Reducer.Offer}/changeFavoriteStatus`,
+  `${Reducer.Offer}/toggleFavoriteStatus`,
   async ({ id, status }, { extra: apiService, rejectWithValue }) => {
     try {
       const { data } = await apiService.post<OfferServer>(

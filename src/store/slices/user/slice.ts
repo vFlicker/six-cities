@@ -1,9 +1,9 @@
-import { createAction, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { AppRoute, AuthStatus, Reducer } from '~/constants';
+import { AuthStatus, Reducer } from '~/constants';
 import { Error, User } from '~/types';
 
-import { checkAuthStatus, login, logout } from './api-actions';
+import { checkAuthStatus, login, logout } from '../../api-actions';
 
 type State = {
   authStatus: AuthStatus;
@@ -78,10 +78,6 @@ const slice = createSlice({
       });
   },
 });
-
-export const redirectToRoute = createAction<AppRoute>(
-  'userData/redirectToRoute',
-);
 
 export const { setAuthStatus, setUserData } = slice.actions;
 

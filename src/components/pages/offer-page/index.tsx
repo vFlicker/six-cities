@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '~/hooks';
-import { offerSlice, offersSlice, commentsSlice } from '~/store';
+import { offerSlice, offersSlice, apiActions } from '~/store';
 
 import {
   HeaderSection,
@@ -25,9 +25,9 @@ export function OfferPage(): JSX.Element {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(offerSlice.fetchOffer(Number(id)));
-    dispatch(commentsSlice.fetchComments(Number(id)));
-    dispatch(offersSlice.fetchOffersNearby(Number(id)));
+    dispatch(apiActions.fetchOffer(Number(id)));
+    dispatch(apiActions.fetchComments(Number(id)));
+    dispatch(apiActions.fetchOffersNearby(Number(id)));
   }, [dispatch, id]);
 
   if (isLoading) {

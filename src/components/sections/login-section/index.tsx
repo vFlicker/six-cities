@@ -1,7 +1,7 @@
 import { FormEvent, useRef } from 'react';
 
 import { useAppDispatch } from '~/hooks';
-import { userSlice } from '~/store';
+import { apiActions } from '~/store';
 
 import { Button } from '../../shared';
 
@@ -19,7 +19,7 @@ export function LoginSection(): JSX.Element {
     if (!emailRef.current || !passwordRef.current) return;
 
     dispatch(
-      userSlice.login({
+      apiActions.login({
         email: emailRef.current.value,
         password: passwordRef.current.value,
       }),

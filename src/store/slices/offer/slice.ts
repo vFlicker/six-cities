@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { Reducer } from '~/constants';
 import { Offer } from '~/types';
 
-import { fetchOffer } from './api-actions';
+import { fetchOffer } from '../../api-actions';
 
 type State = {
   offer: Offer | null;
@@ -23,7 +23,7 @@ const slice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      /* FETCH ONE OFFER */
+      /* FETCH OFFER */
       .addCase(fetchOffer.pending, (state) => {
         state.loading = true;
         state.error = null;

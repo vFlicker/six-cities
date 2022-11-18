@@ -45,3 +45,5 @@ export const enum Reducer {
   Offers = 'OFFERS',
   User = 'USER',
 }
+
+export const REDIRECT_TO_ROUTE_TYPE = `${Reducer.App}/redirectToRoute`;

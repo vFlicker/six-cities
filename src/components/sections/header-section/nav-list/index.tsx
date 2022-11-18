@@ -1,6 +1,6 @@
 import { AppRoute, AuthStatus } from '~/constants';
 import { useAppDispatch, useAppSelector } from '~/hooks';
-import { userSlice } from '~/store';
+import { apiActions, userSlice } from '~/store';
 
 import * as S from './styles';
 
@@ -33,7 +33,10 @@ function AuthList(): JSX.Element {
         </S.Link>
       </S.Item>
       <S.Item>
-        <S.Link to={AppRoute.Root} onClick={() => dispatch(userSlice.logout())}>
+        <S.Link
+          to={AppRoute.Root}
+          onClick={() => dispatch(apiActions.logout())}
+        >
           <S.Button>Sign out</S.Button>
         </S.Link>
       </S.Item>

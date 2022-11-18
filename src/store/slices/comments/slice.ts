@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { Reducer } from '~/constants';
 import { Error, Review } from '~/types';
 
-import { addComment, fetchComments } from './api-actions';
+import { postComment, fetchComments } from '../../api-actions/';
 
 type State = {
   comments: Review[];
@@ -38,18 +38,18 @@ const slice = createSlice({
         state.error = action.payload;
       })
 
-      /* ADD COMMENT */
+      /* POST COMMENT */
       // TODO: now when comment sending all pages are spinner
-      .addCase(addComment.pending, (state) => {
+      .addCase(postComment.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(addComment.fulfilled, (state, action) => {
+      .addCase(postComment.fulfilled, (state, action) => {
         state.comments = action.payload;
         state.loading = false;
         state.error = null;
       })
-      .addCase(addComment.rejected, (state, action) => {
+      .addCase(postComment.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });

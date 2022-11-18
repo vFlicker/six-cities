@@ -2,12 +2,12 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { Reducer } from '~/constants';
 
-import { changeFavoriteStatus } from '../offer';
 import {
   fetchOffers,
   fetchFavoriteOffers,
   fetchOffersNearby,
-} from './api-actions';
+  toggleFavoriteStatus,
+} from '../../api-actions';
 import { State } from './types';
 import { createOffersDictionary, updateOffer } from './utils';
 
@@ -26,7 +26,7 @@ const slice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      /* FETCH ALL OFFERS */
+      /* FETCH OFFERS */
       .addCase(fetchOffers.pending, (state) => {
         state.loading.push(true);
         state.error = null;
@@ -41,7 +41,7 @@ const slice = createSlice({
         state.error = action.payload;
       })
 
-      /* FETCH FAVORITES */
+      /* FETCH FAVORITES OFFERS */
       .addCase(fetchFavoriteOffers.pending, (state) => {
         state.loading.push(true);
         state.error = null;
@@ -56,6 +56,7 @@ const slice = createSlice({
         state.error = action.payload;
       })
 
+      /* FETCH OFFERS NEARBY */
       .addCase(fetchOffersNearby.pending, (state) => {
         state.loading.push(true);
         state.error = null;
@@ -70,17 +71,17 @@ const slice = createSlice({
         state.error = action.payload;
       })
 
-      /* CHANGE FAVORITE STATUS */
-      .addCase(changeFavoriteStatus.pending, (state) => {
+      /* TOGGLE FAVORITE STATUS */
+      .addCase(toggleFavoriteStatus.pending, (state) => {
         state.loading.push(true);
         state.error = null;
       })
-      .addCase(changeFavoriteStatus.fulfilled, (state, action) => {
+      .addCase(toggleFavoriteStatus.fulfilled, (state, action) => {
         updateOffer(state, action.payload);
         state.loading.pop();
         state.error = null;
       })
-      .addCase(changeFavoriteStatus.rejected, (state, action) => {
+      .addCase(toggleFavoriteStatus.rejected, (state, action) => {
         state.loading = [];
         state.error = action.payload;
       });

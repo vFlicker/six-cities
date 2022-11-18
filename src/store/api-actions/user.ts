@@ -4,7 +4,8 @@ import { AppRoute, AuthStatus, Reducer } from '~/constants';
 import { AsyncThunkOptions, User } from '~/types';
 import { dropToken, saveToken, errorHandler } from '~/services';
 
-import { redirectToRoute, setAuthStatus } from './slice';
+import { redirectToRoute } from '../slices/app';
+import { setAuthStatus } from '../slices/user';
 
 type AuthData = {
   email: string;

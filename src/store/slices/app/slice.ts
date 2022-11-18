@@ -1,6 +1,12 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createAction, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { CityName, Reducer, SortType } from '~/constants';
+import {
+  AppRoute,
+  CityName,
+  REDIRECT_TO_ROUTE_TYPE,
+  Reducer,
+  SortType,
+} from '~/constants';
 
 type State = {
   activeCardId: number;
@@ -30,6 +36,9 @@ const slice = createSlice({
   },
 });
 
+export const redirectToRoute = createAction<AppRoute>(REDIRECT_TO_ROUTE_TYPE);
+
 export const { changeCityName, changeSortType, setActiveCardId } =
   slice.actions;
+
 export default slice;

@@ -1,6 +1,6 @@
 import { FavoriteStatus } from '~/constants';
 import { useAppDispatch } from '~/hooks';
-import { offerSlice } from '~/store';
+import { apiActions } from '~/store';
 import { Offer } from '~/types';
 
 import { BookmarkButton, Mark, StarRating } from '../../../shared';
@@ -35,7 +35,7 @@ export function Property({
   const handleFavoriteButtonClick = () => {
     // TODO: add favoriteInProgress
     dispatch(
-      offerSlice.changeFavoriteStatus({
+      apiActions.toggleFavoriteStatus({
         id,
         status: isFavorite
           ? FavoriteStatus.NotFavorite
