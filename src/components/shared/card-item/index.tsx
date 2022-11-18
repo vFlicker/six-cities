@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { FavoriteStatus } from '~/constants';
 import { useAppDispatch } from '~/hooks';
-import { apiActions } from '~/store';
+import { offersSlice } from '~/store';
 
 import { Offer } from '~/types';
 
@@ -44,7 +44,7 @@ export function CardItem({
   const handleFavoriteButtonClick = () => {
     // TODO: add favoriteInProgress
     dispatch(
-      apiActions.toggleFavoriteStatus({
+      offersSlice.toggleFavoriteStatus({
         id,
         status: isFavorite
           ? FavoriteStatus.NotFavorite

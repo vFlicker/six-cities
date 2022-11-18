@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { Reducer } from '~/constants';
 import { Offer } from '~/types';
 
-import { fetchOffer } from '../../api-actions';
+import { fetchOffer } from '../../api-actions/offer';
 
 type State = {
   offer: Offer | null;
@@ -39,5 +39,7 @@ const slice = createSlice({
       });
   },
 });
+
+export { fetchOffer };
 
 export default slice;

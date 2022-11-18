@@ -1,9 +1,9 @@
 import { useLayoutEffect } from 'react';
 
 import { useAppDispatch, useAppSelector } from '~/hooks';
-import { Spinner } from '../../shared';
-import { apiActions, offersSlice } from '~/store';
+import { offersSlice } from '~/store';
 
+import { Spinner } from '../../shared';
 import {
   HeaderSection,
   LocationListSection,
@@ -64,7 +64,7 @@ function MainPageContent(): JSX.Element {
   const dispatch = useAppDispatch();
 
   useLayoutEffect(() => {
-    dispatch(apiActions.fetchOffers());
+    dispatch(offersSlice.fetchOffers());
   }, [dispatch]);
 
   return (

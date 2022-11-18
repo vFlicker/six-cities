@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AuthStatus, Reducer } from '~/constants';
 import { Error, User } from '~/types';
 
-import { checkAuthStatus, login, logout } from '../../api-actions';
+import { checkAuthStatus, login, logout } from '../../api-actions/user';
 
 type State = {
   authStatus: AuthStatus;
@@ -78,6 +78,8 @@ const slice = createSlice({
       });
   },
 });
+
+export { checkAuthStatus, login, logout };
 
 export const { setAuthStatus, setUserData } = slice.actions;
 

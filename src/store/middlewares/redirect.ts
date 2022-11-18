@@ -1,8 +1,9 @@
 import { Middleware } from 'redux';
 
-import { REDIRECT_TO_ROUTE_TYPE } from '~/constants';
 import { RootState } from '~/types';
 import { browserHistory } from '~/utils';
+
+import { REDIRECT_TO_ROUTE_TYPE } from '../actions/app';
 
 export const redirect: Middleware<unknown, RootState> =
   () => (next) => (action) => {

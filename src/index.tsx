@@ -6,13 +6,13 @@ import { Global } from '@emotion/react';
 
 import { App } from './components/app';
 import { ErrorBoundary } from './components/shared';
-import { store, apiActions } from './store';
+import { store, userSlice } from './store';
 
 import { globalStyle } from './styles';
 
 import 'react-toastify/dist/ReactToastify.css';
 
-store.dispatch(apiActions.checkAuthStatus());
+store.dispatch(userSlice.checkAuthStatus());
 
 ReactDOM.render(
   <StrictMode>

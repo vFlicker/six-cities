@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { Reducer } from '~/constants';
 import { Error, Review } from '~/types';
 
-import { postComment, fetchComments } from '../../api-actions/';
+import { postComment, fetchComments } from '../../api-actions/comments';
 
 type State = {
   comments: Review[];
@@ -55,5 +55,7 @@ const slice = createSlice({
       });
   },
 });
+
+export { fetchComments, postComment };
 
 export default slice;
