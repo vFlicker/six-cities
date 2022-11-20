@@ -29,7 +29,7 @@ export function FavoritesSection(): JSX.Element {
     return <S.Title>Error!</S.Title>;
   }
 
-  if (!Object.keys(offersFavorite).length) {
+  if (!offersFavorite) {
     return <FavoritesEmptySection />;
   }
 

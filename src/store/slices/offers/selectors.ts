@@ -26,7 +26,7 @@ export const getOffers = createSelector(
   },
 );
 
-export const getFavorites = (state: State): OffersDictionary => {
+export const getFavorites = (state: State): OffersDictionary | null => {
   return state[Reducer.Offers].favorites;
 };
 

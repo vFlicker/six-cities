@@ -9,7 +9,11 @@ import {
   fetchOffersNearby,
 } from '../../api-actions/offers';
 import { State } from './types';
-import { createOffersDictionary, updateOffer } from './utils';
+import {
+  createOffersDictionary,
+  updateOffersDictionary,
+  updateOffers,
+} from './utils';
 
 const initialState: State = {
   offers: null,
@@ -72,16 +76,21 @@ const slice = createSlice({
       })
 
       /* TOGGLE FAVORITE STATUS */
-      .addCase(toggleFavoriteStatus.pending, (state) => {
+      .addCase(toggleFavorite.pending, (state) => {
         state.loading.push(true);
         state.error = null;
       })
-      .addCase(toggleFavoriteStatus.fulfilled, (state, action) => {
-        updateOffer(state, action.payload);
+      .addCase(toggleFavorite.fulfilled, (state, action) => {
+        state.offers = updateOffersDictionary(state.offers, action.payload);
+        state.favorites = updateOffersDictionary(
+          state.favorites,
+          action.payload,
+        );
+        state.nearby = updateOffers(state.nearby, action.payload);
         state.loading.pop();
         state.error = null;
       })
-      .addCase(toggleFavoriteStatus.rejected, (state, action) => {
+      .addCase(toggleFavorite.rejected, (state, action) => {
         state.loading = [];
         state.error = action.payload;
       });

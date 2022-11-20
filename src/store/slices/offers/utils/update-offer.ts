@@ -1,26 +1,29 @@
-import { Offer } from '~/types';
+import { Offer, OffersDictionary } from '~/types';
 
-import { State } from '../types';
+export const updateOffers = (offers: Offer[], updatedOffer: Offer): Offer[] => {
+  const index = offers.findIndex(({ id }) => updatedOffer.id === id);
 
-const update = (offers: Offer[], newOffer: Offer): void => {
-  const index = offers.findIndex(({ id }) => id === newOffer.id);
-  offers.splice(index, 1, newOffer);
+  const updatedOffers = [
+    ...offers.slice(0, index),
+    updatedOffer,
+    ...offers.slice(index + 1),
+  ];
+
+  return updatedOffers;
 };
 
-export const updateOffer = (state: State, newOffer: Offer): void => {
-  const { favorites, nearby, offers } = state;
+export const updateOffersDictionary = (
+  offers: OffersDictionary | null,
+  updatedOffer: Offer,
+): OffersDictionary | null => {
+  const cityName = updatedOffer.city.name;
+  const key = cityName.toLocaleLowerCase();
+  const offersByKey = offers && offers[key];
 
-  const city = newOffer.city.name.toLocaleLowerCase();
+  if (!offersByKey) return offers;
 
-  if (favorites[city]) {
-    update(favorites[city], newOffer);
-  }
-
-  if (offers && offers[city]) {
-    update(offers[city], newOffer);
-  }
-
-  if (nearby.length) {
-    update(nearby, newOffer);
-  }
+  return {
+    ...offers,
+    [key]: updateOffers(offersByKey, updatedOffer),
+  };
 };
