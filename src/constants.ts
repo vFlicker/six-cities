@@ -21,8 +21,8 @@ export enum CityName {
 }
 
 export const enum FavoriteStatus {
-  Favorite = 1,
-  NotFavorite = 0,
+  Add = 1,
+  Remove = 0,
 }
 
 export const enum HttpCode {
@@ -41,6 +41,7 @@ export enum SortType {
 export const enum Reducer {
   App = 'APP',
   Comments = 'COMMENTS',
+  Favorites = 'FAVORITES',
   Offer = 'OFFER',
   Offers = 'OFFERS',
   User = 'USER',

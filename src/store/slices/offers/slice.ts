@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { Reducer } from '~/constants';
 
-import { toggleFavoriteStatus } from '../../api-actions/offer';
+import { toggleFavorite } from '../../api-actions/favorites';
 import {
   fetchOffers,
   fetchFavoriteOffers,
@@ -97,11 +97,6 @@ const slice = createSlice({
   },
 });
 
-export {
-  fetchOffers,
-  fetchFavoriteOffers,
-  fetchOffersNearby,
-  toggleFavoriteStatus,
-};
+export { fetchOffers, fetchFavoriteOffers, fetchOffersNearby };
 
 export default slice;

@@ -1,6 +1,6 @@
 import { FavoriteStatus } from '~/constants';
 import { useAppDispatch } from '~/hooks';
-import { offersSlice } from '~/store';
+import { favoritesSlice } from '~/store';
 import { Offer } from '~/types';
 
 import { BookmarkButton, Mark, StarRating } from '../../../shared';
@@ -35,11 +35,9 @@ export function Property({
   const handleFavoriteButtonClick = () => {
     // TODO: add favoriteInProgress
     dispatch(
-      offersSlice.toggleFavoriteStatus({
+      favoritesSlice.toggleFavorite({
         id,
-        status: isFavorite
-          ? FavoriteStatus.NotFavorite
-          : FavoriteStatus.Favorite,
+        status: isFavorite ? FavoriteStatus.Remove : FavoriteStatus.Add,
       }),
     );
   };
