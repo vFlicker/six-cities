@@ -1,9 +1,9 @@
 import { Middleware } from 'redux';
 import { camelizeKeys } from 'humps';
 
-import { RootState } from '~/types';
+import { State } from '~/types';
 
-export const normalizePayload: Middleware<unknown, RootState> =
+export const normalizePayload: Middleware<unknown, State> =
   () => (next) => (action) => {
     if (action.meta?.requestStatus === 'fulfilled' && action.payload) {
       const payload = camelizeKeys(action.payload);

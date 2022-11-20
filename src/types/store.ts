@@ -4,10 +4,11 @@ import { rootReducer, store } from '~/store';
 
 import { Error } from './error';
 
-export type RootState = ReturnType<typeof rootReducer>;
+export type State = ReturnType<typeof rootReducer>;
 export type AppDispatch = typeof store.dispatch;
 
 export type AsyncThunkOptions = {
+  state: State;
   dispatch: AppDispatch;
   extra: AxiosInstance;
   rejectValue: Error;
