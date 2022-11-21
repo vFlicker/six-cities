@@ -1,5 +1,5 @@
 import { FavoriteStatus } from '~/constants';
-import { useAppDispatch } from '~/hooks';
+import { useAppDispatch, useAppSelector } from '~/hooks';
 import { favoritesSlice } from '~/store';
 import { Offer } from '~/types';
 
@@ -28,12 +28,15 @@ export function Property({
   title,
   type,
 }: OfferProps): JSX.Element {
-  const dispatch = useAppDispatch();
-
   const { avatarUrl, isPro, name: authorName } = host;
 
+  const favoritesInProgress = useAppSelector(
+    favoritesSlice.getFavoritesInProgress,
+  );
+
+  const dispatch = useAppDispatch();
+
   const handleFavoriteButtonClick = () => {
-    // TODO: add favoriteInProgress
     dispatch(
       favoritesSlice.toggleFavorite({
         id,
@@ -57,6 +60,7 @@ export function Property({
             width={31}
             height={33}
             isFavorite={isFavorite}
+            isLoading={favoritesInProgress.includes(id)}
             onClick={handleFavoriteButtonClick}
           />
         </S.BookmarkButtonWrapper>

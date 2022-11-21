@@ -17,10 +17,9 @@ import {
 
 const initialState: State = {
   offers: null,
-  // TODO: use null instead
-  favorites: {},
+  favorites: null,
   nearby: [],
-  loading: [],
+  loading: false,
   error: null,
 };
 
@@ -32,54 +31,50 @@ const slice = createSlice({
     builder
       /* FETCH OFFERS */
       .addCase(fetchOffers.pending, (state) => {
-        state.loading.push(true);
+        state.loading = true;
         state.error = null;
       })
       .addCase(fetchOffers.fulfilled, (state, action) => {
         state.offers = createOffersDictionary(action.payload);
-        state.loading.pop();
+        state.loading = false;
         state.error = null;
       })
       .addCase(fetchOffers.rejected, (state, action) => {
-        state.loading = [];
+        state.loading = false;
         state.error = action.payload;
       })
 
       /* FETCH FAVORITES OFFERS */
       .addCase(fetchFavoriteOffers.pending, (state) => {
-        state.loading.push(true);
+        state.loading = true;
         state.error = null;
       })
       .addCase(fetchFavoriteOffers.fulfilled, (state, action) => {
         state.favorites = createOffersDictionary(action.payload);
-        state.loading.pop();
+        state.loading = false;
         state.error = null;
       })
       .addCase(fetchFavoriteOffers.rejected, (state, action) => {
-        state.loading = [];
+        state.loading = false;
         state.error = action.payload;
       })
 
       /* FETCH OFFERS NEARBY */
       .addCase(fetchOffersNearby.pending, (state) => {
-        state.loading.push(true);
+        state.loading = true;
         state.error = null;
       })
       .addCase(fetchOffersNearby.fulfilled, (state, action) => {
         state.nearby = action.payload;
-        state.loading.pop();
+        state.loading = false;
         state.error = null;
       })
       .addCase(fetchOffersNearby.rejected, (state, action) => {
-        state.loading = [];
+        state.loading = false;
         state.error = action.payload;
       })
 
       /* TOGGLE FAVORITE STATUS */
-      .addCase(toggleFavorite.pending, (state) => {
-        state.loading.push(true);
-        state.error = null;
-      })
       .addCase(toggleFavorite.fulfilled, (state, action) => {
         state.offers = updateOffersDictionary(state.offers, action.payload);
         state.favorites = updateOffersDictionary(
@@ -87,12 +82,6 @@ const slice = createSlice({
           action.payload,
         );
         state.nearby = updateOffers(state.nearby, action.payload);
-        state.loading.pop();
-        state.error = null;
-      })
-      .addCase(toggleFavorite.rejected, (state, action) => {
-        state.loading = [];
-        state.error = action.payload;
       });
   },
 });

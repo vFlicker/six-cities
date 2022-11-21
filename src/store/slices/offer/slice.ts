@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { Reducer } from '~/constants';
 import { Offer } from '~/types';
 
+import { toggleFavorite } from '../../api-actions/favorites';
 import { fetchOffer } from '../../api-actions/offer';
 
 type State = {
@@ -36,6 +37,11 @@ const slice = createSlice({
       .addCase(fetchOffer.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload as Error;
+      })
+
+      /* TOGGLE FAVORITE */
+      .addCase(toggleFavorite.fulfilled, (state, action) => {
+        state.offer = action.payload;
       });
   },
 });

@@ -35,7 +35,7 @@ export const getNearby = (state: State): Offer[] => {
 };
 
 export const getLoadingStatus = (state: State): boolean => {
-  return state[Reducer.Offers].loading.length !== 0;
+  return state[Reducer.Offers].loading;
 };
 
 export const getError = (state: State): Error => {

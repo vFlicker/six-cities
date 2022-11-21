@@ -9,6 +9,10 @@ type ButtonProps = {
 export const Button = styled.button<ButtonProps>`
   margin-top: 2px;
 
+  &:disabled {
+    opacity: 0.3;
+  }
+
   &:focus svg,
   &:hover svg {
     stroke: #4481c3;

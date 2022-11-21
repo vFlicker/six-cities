@@ -2,7 +2,7 @@ import { MouseEvent, PropsWithChildren } from 'react';
 import { Link } from 'react-router-dom';
 
 import { FavoriteStatus } from '~/constants';
-import { useAppDispatch } from '~/hooks';
+import { useAppDispatch, useAppSelector } from '~/hooks';
 import { favoritesSlice } from '~/store';
 
 import { Offer } from '~/types';
@@ -39,10 +39,13 @@ export function CardItem({
     type,
   } = offer;
 
+  const favoritesInProgress = useAppSelector(
+    favoritesSlice.getFavoritesInProgress,
+  );
+
   const dispatch = useAppDispatch();
 
   const handleFavoriteButtonClick = () => {
-    // TODO: add favoriteInProgress
     dispatch(
       favoritesSlice.toggleFavorite({
         id,
@@ -81,6 +84,7 @@ export function CardItem({
             width={18}
             height={19}
             isFavorite={isFavorite}
+            isLoading={favoritesInProgress.includes(id)}
             onClick={handleFavoriteButtonClick}
           />
         </S.PriceWrapper>
