@@ -8,8 +8,8 @@ import { ReviewsList } from './reviews-list';
 import * as S from './styles';
 
 export function ReviewsSection(): JSX.Element {
-  const reviews = useAppSelector(commentsSlice.getComments);
-  const authStatus = useAppSelector(userSlice.getAuthStatus);
+  const reviews = useAppSelector(commentsSlice.selectComments);
+  const authStatus = useAppSelector(userSlice.selectAuthStatus);
 
   const reviewCount = reviews.length;
 

@@ -18,7 +18,7 @@ function NoAuthList(): JSX.Element {
 }
 
 function AuthList(): JSX.Element {
-  const user = useAppSelector(userSlice.getUser);
+  const user = useAppSelector(userSlice.selectUser);
 
   const dispatch = useAppDispatch();
 
@@ -42,7 +42,7 @@ function AuthList(): JSX.Element {
 }
 
 export function NavList(): JSX.Element {
-  const authStatus = useAppSelector(userSlice.getAuthStatus);
+  const authStatus = useAppSelector(userSlice.selectAuthStatus);
   const list = authStatus !== AuthStatus.Auth ? <NoAuthList /> : <AuthList />;
 
   return <S.Nav>{list}</S.Nav>;

@@ -13,7 +13,7 @@ import * as S from './styles';
 export function LoginPage(): JSX.Element {
   const navigate = useNavigate();
 
-  const authStatus = useAppSelector(userSlice.getAuthStatus);
+  const authStatus = useAppSelector(userSlice.selectAuthStatus);
 
   useEffect(() => {
     if (userSlice.isUserAuthorized(authStatus)) {

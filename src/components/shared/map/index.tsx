@@ -30,7 +30,7 @@ export function Map({ offers, orientation }: MapProps): JSX.Element {
   const { city } = offers[0];
 
   const mapRef = useRef<HTMLElement | null>(null);
-  const activeCardId = useAppSelector(appSlice.getActiveCardId);
+  const activeCardId = useAppSelector(appSlice.selectActiveCardId);
   const map = useMap(mapRef, city);
 
   useEffect(() => {

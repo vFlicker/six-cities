@@ -40,7 +40,7 @@ export function CardItem({
   } = offer;
 
   const favoritesInProgress = useAppSelector(
-    favoritesSlice.getFavoritesInProgress,
+    favoritesSlice.selectFavoritesInProgress,
   );
 
   const dispatch = useAppDispatch();

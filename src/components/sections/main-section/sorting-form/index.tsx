@@ -9,7 +9,7 @@ import * as S from './styles';
 export function SortingFrom(): JSX.Element {
   const [sortMenuOpened, setSortMenuOpened] = useState(false);
 
-  const currentSortType = useAppSelector(appSlice.getCurrentSortType);
+  const currentSortType = useAppSelector(appSlice.selectCurrentSortType);
 
   const dispatch = useAppDispatch();
 

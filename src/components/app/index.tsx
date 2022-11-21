@@ -6,8 +6,8 @@ import { Pages } from '../pages';
 import { Spinner } from '../shared';
 
 export function App(): JSX.Element {
-  const authStatus = useAppSelector(userSlice.getAuthStatus);
-  const isLoading = useAppSelector(userSlice.getLoadingStatus);
+  const authStatus = useAppSelector(userSlice.selectAuthStatus);
+  const isLoading = useAppSelector(userSlice.selectLoadingStatus);
   // const error = useAppSelector(userSlice.getError);
 
   if (userSlice.isCheckedAuth(authStatus) || isLoading) {

@@ -3,41 +3,41 @@ import { createSelector } from '@reduxjs/toolkit';
 import { Reducer } from '~/constants';
 import { Error, Offer, OffersDictionary, State } from '~/types';
 
-import { getCurrentCityName, getCurrentSortType } from '../app';
+import { selectCurrentCityName, selectCurrentSortType } from '../app';
 import { sortOffers } from './utils';
 
-const getOffersDictionary = (state: State): OffersDictionary | null => {
+const selectOffersDictionary = (state: State): OffersDictionary | null => {
   return state[Reducer.Offers].offers;
 };
 
-const getFilteredOffers = createSelector(
-  getOffersDictionary,
-  getCurrentCityName,
+const selectFilteredOffers = createSelector(
+  selectOffersDictionary,
+  selectCurrentCityName,
   (offers, cityName) => {
     return offers ? offers[cityName.toLocaleLowerCase()] : [];
   },
 );
 
-export const getOffers = createSelector(
-  getFilteredOffers,
-  getCurrentSortType,
+export const selectOffers = createSelector(
+  selectFilteredOffers,
+  selectCurrentSortType,
   (offers, sortType) => {
     return offers.length ? sortOffers(offers, sortType) : [];
   },
 );
 
-export const getFavorites = (state: State): OffersDictionary | null => {
+export const selectFavorites = (state: State): OffersDictionary | null => {
   return state[Reducer.Offers].favorites;
 };
 
-export const getNearby = (state: State): Offer[] => {
+export const selectNearby = (state: State): Offer[] => {
   return state[Reducer.Offers].nearby;
 };
 
-export const getLoadingStatus = (state: State): boolean => {
+export const selectLoadingStatus = (state: State): boolean => {
   return state[Reducer.Offers].loading;
 };
 
-export const getError = (state: State): Error => {
+export const selectError = (state: State): Error => {
   return state[Reducer.Offers].error;
 };

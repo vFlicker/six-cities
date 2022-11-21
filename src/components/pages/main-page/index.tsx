@@ -57,9 +57,9 @@ export function QueryResult({
 }
 
 function MainPageContent(): JSX.Element {
-  const offers = useAppSelector(offersSlice.getOffers);
-  const isLoading = useAppSelector(offersSlice.getLoadingStatus);
-  const error = useAppSelector(offersSlice.getError);
+  const offers = useAppSelector(offersSlice.selectOffers);
+  const isLoading = useAppSelector(offersSlice.selectLoadingStatus);
+  const error = useAppSelector(offersSlice.selectError);
 
   const dispatch = useAppDispatch();
 

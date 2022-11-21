@@ -7,7 +7,7 @@ import { LocationItem } from '../../../shared';
 import * as S from './styles';
 
 export function LocationList(): JSX.Element {
-  const currentCityName = useAppSelector(appSlice.getCurrentCityName);
+  const currentCityName = useAppSelector(appSlice.selectCurrentCityName);
 
   const dispatch = useAppDispatch();
 

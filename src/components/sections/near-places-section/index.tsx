@@ -6,7 +6,7 @@ import { CardItem, Container, Map } from '../../shared';
 import * as S from './styles';
 
 export function NearPlacesSection(): JSX.Element {
-  const offersNearby = useAppSelector(offersSlice.getNearby);
+  const offersNearby = useAppSelector(offersSlice.selectNearby);
 
   return (
     <>

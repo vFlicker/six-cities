@@ -13,7 +13,7 @@ const MIN_STAR_COUNT = 1;
 const MIN_REVIEW_LENGTH = 5;
 
 export function ReviewsForm(): JSX.Element {
-  const isLoading = useAppSelector(commentsSlice.getLoadingStatus);
+  const isLoading = useAppSelector(commentsSlice.selectLoadingStatus);
 
   const dispatch = useAppDispatch();
 

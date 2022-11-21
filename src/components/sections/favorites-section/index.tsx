@@ -9,11 +9,11 @@ import { FavoritesEmptySection } from '../favorites-empty-section';
 import * as S from './styles';
 
 export function FavoritesSection(): JSX.Element {
-  const offersFavorite = useAppSelector(offersSlice.getFavorites);
+  const offersFavorite = useAppSelector(offersSlice.selectFavorites);
   const offersFavoriteLoadingStatus = useAppSelector(
-    offersSlice.getLoadingStatus,
+    offersSlice.selectLoadingStatus,
   );
-  const offersFavoriteError = useAppSelector(offersSlice.getError);
+  const offersFavoriteError = useAppSelector(offersSlice.selectError);
 
   const dispatch = useAppDispatch();
 

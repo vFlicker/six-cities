@@ -18,9 +18,9 @@ import * as S from './styles';
 export function OfferPage(): JSX.Element {
   const { id } = useParams();
 
-  const offer = useAppSelector(offerSlice.getOffer);
-  const isLoading = useAppSelector(offersSlice.getLoadingStatus);
-  const error = useAppSelector(offersSlice.getError);
+  const offer = useAppSelector(offerSlice.selectOffer);
+  const isLoading = useAppSelector(offersSlice.selectLoadingStatus);
+  const error = useAppSelector(offersSlice.selectError);
 
   const dispatch = useAppDispatch();
 

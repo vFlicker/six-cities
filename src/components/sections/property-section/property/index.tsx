@@ -31,7 +31,7 @@ export function Property({
   const { avatarUrl, isPro, name: authorName } = host;
 
   const favoritesInProgress = useAppSelector(
-    favoritesSlice.getFavoritesInProgress,
+    favoritesSlice.selectFavoritesInProgress,
   );
 
   const dispatch = useAppDispatch();
