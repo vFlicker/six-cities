@@ -54,7 +54,6 @@ export function Property({
 
         <S.Title>{title}</S.Title>
 
-        {/* TODO: look at the same btn at the main page */}
         <S.BookmarkButtonWrapper>
           <BookmarkButton
             width={31}

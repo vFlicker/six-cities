@@ -33,11 +33,11 @@ export const postComment = createAsyncThunk<
   AsyncThunkOptions
 >(
   `${Reducer.Comments}/postComment`,
-  async ({ id, ...payload }, { extra: apiService, rejectWithValue }) => {
+  async ({ id, ...review }, { extra: apiService, rejectWithValue }) => {
     try {
       const { data } = await apiService.post<ReviewServer[]>(
         `/comments/${id}`,
-        payload,
+        review,
       );
 
       return data;

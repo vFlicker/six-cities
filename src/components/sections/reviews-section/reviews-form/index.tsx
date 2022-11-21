@@ -1,7 +1,7 @@
 import { FormEvent, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { useAppDispatch } from '~/hooks';
+import { useAppDispatch, useAppSelector } from '~/hooks';
 import { commentsSlice } from '~/store';
 
 import { Button } from '../../../shared';
@@ -13,18 +13,17 @@ const MIN_STAR_COUNT = 1;
 const MIN_REVIEW_LENGTH = 5;
 
 export function ReviewsForm(): JSX.Element {
-  const { id } = useParams();
-
-  // TODO: move it to rating list
-  const [rating, setRating] = useState(0);
-  const [review, setReview] = useState('');
+  const isLoading = useAppSelector(commentsSlice.getLoadingStatus);
 
   const dispatch = useAppDispatch();
 
-  // TODO: add sendingInProgress
+  const { id } = useParams();
+
+  const [rating, setRating] = useState(0);
+  const [review, setReview] = useState('');
 
   const isSubmitDisabled =
-    review.length < MIN_REVIEW_LENGTH || rating < MIN_STAR_COUNT;
+    review.length < MIN_REVIEW_LENGTH || rating < MIN_STAR_COUNT || isLoading;
 
   const handleFromSubmit = (evt: FormEvent<HTMLFormElement>): void => {
     evt.preventDefault();
@@ -35,7 +34,10 @@ export function ReviewsForm(): JSX.Element {
         rating,
         comment: review,
       }),
-    );
+    ).then(() => {
+      setRating(0);
+      setReview('');
+    });
   };
 
   return (
