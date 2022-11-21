@@ -5,8 +5,8 @@ import {
 } from 'react-router-dom';
 
 import { AppRoute } from '~/constants';
-import { browserHistory } from '~/utils';
 
+import { browserHistory } from '../../browser-history';
 import { PrivateRoute } from '../shared';
 import { FavoritesPage } from './favorites-page';
 import { LoginPage } from './login-page';

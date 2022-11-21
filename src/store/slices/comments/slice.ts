@@ -39,7 +39,6 @@ const slice = createSlice({
       })
 
       /* POST COMMENT */
-      // TODO: now when comment sending all pages are spinner
       .addCase(postComment.pending, (state) => {
         state.loading = true;
         state.error = null;
