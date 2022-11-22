@@ -1,8 +1,20 @@
 import { Component, ReactNode } from 'react';
 
-import * as S from './styles';
+import { GlobalError } from './global-error';
 
-export class ErrorBoundary extends Component {
+type ErrorBoundaryProps = {
+  children: ReactNode;
+  errorComponent?: JSX.Element;
+};
+
+type ErrorBoundaryState = {
+  hasError: boolean;
+};
+
+export class ErrorBoundary extends Component<
+  ErrorBoundaryProps,
+  ErrorBoundaryState
+> {
   state = {
     hasError: false,
   };
@@ -12,13 +24,10 @@ export class ErrorBoundary extends Component {
   }
 
   render(): ReactNode {
-    // TODO: use ErrorPage
-    if (this.state.hasError) return <ErrorIndicator />;
+    const { hasError } = this.state;
+    const { errorComponent } = this.props;
 
+    if (hasError) return errorComponent || <GlobalError />;
     return this.props.children;
   }
-}
-
-function ErrorIndicator(): JSX.Element {
-  return <S.Text>Something went wrong</S.Text>;
 }

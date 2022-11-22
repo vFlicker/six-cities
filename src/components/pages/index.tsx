@@ -4,7 +4,7 @@ import { AppRoute } from '~/constants';
 
 import { browserHistory } from '../../browser-history';
 import { PrivateRoute } from '../shared';
-import { HistoryRouter } from '../shared/HistoryRouter';
+import { HistoryRouter } from '../shared/history-router';
 import { FavoritesPage } from './favorites-page';
 import { LoginPage } from './login-page';
 import { MainPage } from './main-page';

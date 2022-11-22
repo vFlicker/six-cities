@@ -6,7 +6,6 @@ type NotFoundProps = {
   description: string;
 };
 
-// TODO: look at this section with bg on main-empty-section
 export function NotFound({
   iconSrc,
   title,

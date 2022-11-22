@@ -2,6 +2,7 @@ export * from './bookmark-button';
 export * from './button';
 export * from './card-item';
 export * from './error-boundary';
+export * from './history-router';
 export * from './location-item';
 export * from './logo-link';
 export * from './map';
