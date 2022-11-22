@@ -36,6 +36,7 @@ const slice = createSlice({
   },
   extraReducers(builder) {
     builder
+      /* INITIALIZE */
       .addCase(initializeApp.pending, (state) => {
         state.initialize = AppStatus.Pending;
       })

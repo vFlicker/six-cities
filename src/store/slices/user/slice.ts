@@ -23,9 +23,6 @@ const slice = createSlice({
   name: Reducer.User,
   initialState,
   reducers: {
-    setAuthStatus: (state, action: PayloadAction<AuthStatus>) => {
-      state.authStatus = action.payload;
-    },
     setUserData: (state, action: PayloadAction<User>) => {
       state.user = action.payload;
     },
@@ -38,11 +35,13 @@ const slice = createSlice({
         state.error = null;
       })
       .addCase(checkAuthStatus.fulfilled, (state, action) => {
+        state.authStatus = AuthStatus.Auth;
         state.user = action.payload;
         state.loading = false;
         state.error = null;
       })
       .addCase(checkAuthStatus.rejected, (state, action) => {
+        state.authStatus = AuthStatus.NoAuth;
         state.loading = false;
         state.error = action.payload;
       })
@@ -53,11 +52,13 @@ const slice = createSlice({
         state.error = null;
       })
       .addCase(login.fulfilled, (state, action) => {
+        state.authStatus = AuthStatus.Auth;
         state.user = action.payload;
         state.loading = false;
         state.error = null;
       })
       .addCase(login.rejected, (state, action) => {
+        state.authStatus = AuthStatus.NoAuth;
         state.loading = false;
         state.error = action.payload;
       })
@@ -69,6 +70,7 @@ const slice = createSlice({
         state.error = null;
       })
       .addCase(logout.fulfilled, (state) => {
+        state.authStatus = AuthStatus.Auth;
         state.loading = false;
         state.error = null;
       })
@@ -81,6 +83,6 @@ const slice = createSlice({
 
 export { checkAuthStatus, login, logout };
 
-export const { setAuthStatus, setUserData } = slice.actions;
+export const { setUserData } = slice.actions;
 
 export default slice;
