@@ -8,11 +8,12 @@ type PrivateRouteProps = {
   children: JSX.Element;
 };
 
-// TODO: how we get token?
 export function PrivateRoute({ children }: PrivateRouteProps): JSX.Element {
   const authStatus = useAppSelector(userSlice.selectAuthStatus);
 
-  if (userSlice.isUserAuthorized(authStatus)) return children;
+  if (!userSlice.isUserAuthorized(authStatus)) {
+    return <Navigate to={AppRoute.Login} />;
+  }
 
-  return <Navigate to={AppRoute.Login} />;
+  return children;
 }

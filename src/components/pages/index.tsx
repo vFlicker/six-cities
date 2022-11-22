@@ -1,13 +1,10 @@
-import {
-  unstable_HistoryRouter as HistoryRouter,
-  Route,
-  Routes,
-} from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
 import { AppRoute } from '~/constants';
 
 import { browserHistory } from '../../browser-history';
 import { PrivateRoute } from '../shared';
+import { HistoryRouter } from '../shared/HistoryRouter';
 import { FavoritesPage } from './favorites-page';
 import { LoginPage } from './login-page';
 import { MainPage } from './main-page';
