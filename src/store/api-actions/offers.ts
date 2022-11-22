@@ -2,12 +2,12 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { Reducer } from '~/constants';
 import { errorHandler } from '~/services';
-import { AsyncThunkOptions, Offer, OfferServer } from '~/types';
+import { ThunkOptions, Offer, OfferServer } from '~/types';
 
 export const fetchOffers = createAsyncThunk<
   OfferServer[],
   undefined,
-  AsyncThunkOptions
+  ThunkOptions
 >(
   `${Reducer.Offers}/fetchAll`,
   async (_, { extra: apiService, rejectWithValue }) => {
@@ -24,7 +24,7 @@ export const fetchOffers = createAsyncThunk<
 export const fetchFavoriteOffers = createAsyncThunk<
   Offer[],
   undefined,
-  AsyncThunkOptions
+  ThunkOptions
 >(
   `${Reducer.Offers}/fetchFavorites`,
   async (_, { extra: apiService, rejectWithValue }) => {
@@ -41,7 +41,7 @@ export const fetchFavoriteOffers = createAsyncThunk<
 export const fetchOffersNearby = createAsyncThunk<
   Offer[],
   number,
-  AsyncThunkOptions
+  ThunkOptions
 >(
   `${Reducer.Offers}/fetchNearby`,
   async (id, { extra: apiService, rejectWithValue }) => {

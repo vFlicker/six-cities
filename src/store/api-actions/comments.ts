@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { Reducer } from '~/constants';
 import { errorHandler } from '~/services';
-import { AsyncThunkOptions, Review, ReviewServer } from '~/types';
+import { ThunkOptions, Review, ReviewServer } from '~/types';
 
 type PostCommentPayload = {
   id: number;
@@ -10,11 +10,7 @@ type PostCommentPayload = {
   rating: number;
 };
 
-export const fetchComments = createAsyncThunk<
-  Review[],
-  number,
-  AsyncThunkOptions
->(
+export const fetchComments = createAsyncThunk<Review[], number, ThunkOptions>(
   `${Reducer.Comments}/fetchComments`,
   async (id, { extra: apiService, rejectWithValue }) => {
     try {
@@ -30,7 +26,7 @@ export const fetchComments = createAsyncThunk<
 export const postComment = createAsyncThunk<
   Review[],
   PostCommentPayload,
-  AsyncThunkOptions
+  ThunkOptions
 >(
   `${Reducer.Comments}/postComment`,
   async ({ id, ...review }, { extra: apiService, rejectWithValue }) => {

@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { FavoriteStatus, Reducer } from '~/constants';
 import { errorHandler } from '~/services';
-import { AsyncThunkOptions, Offer, OfferServer } from '~/types';
+import { ThunkOptions, Offer, OfferServer } from '~/types';
 
 type ToggleFavoritePayload = {
   id: number;
@@ -12,7 +12,7 @@ type ToggleFavoritePayload = {
 export const toggleFavorite = createAsyncThunk<
   Offer,
   ToggleFavoritePayload,
-  AsyncThunkOptions
+  ThunkOptions
 >(
   `${Reducer.Favorites}/toggleFavoriteStatus`,
   async ({ id, status }, { extra: apiService, rejectWithValue }) => {

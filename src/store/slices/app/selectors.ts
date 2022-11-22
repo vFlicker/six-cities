@@ -12,5 +12,3 @@ export const selectCurrentSortType = (state: State): SortType => {
 export const selectActiveCardId = (state: State): number => {
   return state[Reducer.App].activeCardId;
 };
-
-// TODO: theory init app

@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { AppRoute, AuthStatus, Reducer } from '~/constants';
-import { AsyncThunkOptions, User } from '~/types';
+import { ThunkOptions, User } from '~/types';
 import { dropToken, saveToken, errorHandler } from '~/services';
 
 import { redirectToRoute } from '../slices/app';
@@ -12,11 +12,7 @@ type AuthData = {
   password: string;
 };
 
-export const checkAuthStatus = createAsyncThunk<
-  User,
-  undefined,
-  AsyncThunkOptions
->(
+export const checkAuthStatus = createAsyncThunk<User, undefined, ThunkOptions>(
   `${Reducer.User}/authStatus`,
   async (_, { dispatch, extra: apiService, rejectWithValue }) => {
     try {
@@ -31,7 +27,7 @@ export const checkAuthStatus = createAsyncThunk<
   },
 );
 
-export const login = createAsyncThunk<User, AuthData, AsyncThunkOptions>(
+export const login = createAsyncThunk<User, AuthData, ThunkOptions>(
   `${Reducer.User}/login`,
   async (authData, { dispatch, extra: apiService, rejectWithValue }) => {
     try {
@@ -48,7 +44,7 @@ export const login = createAsyncThunk<User, AuthData, AsyncThunkOptions>(
   },
 );
 
-export const logout = createAsyncThunk<void, undefined, AsyncThunkOptions>(
+export const logout = createAsyncThunk<void, undefined, ThunkOptions>(
   `${Reducer.User}/logout`,
   async (_, { dispatch, extra: apiService, rejectWithValue }) => {
     try {
