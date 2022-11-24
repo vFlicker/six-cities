@@ -9,7 +9,7 @@ import { FavoritesEmptySection } from '../favorites-empty-section';
 import * as S from './styles';
 
 export function FavoritesSection(): JSX.Element {
-  const offersFavorite = useAppSelector(offersSlice.selectFavorites);
+  const favoritesByCity = useAppSelector(offersSlice.selectFavoritesByCity);
   const offersFavoriteLoadingStatus = useAppSelector(
     offersSlice.selectLoadingStatus,
   );
@@ -29,7 +29,7 @@ export function FavoritesSection(): JSX.Element {
     return <S.Title>Error!</S.Title>;
   }
 
-  if (!offersFavorite) {
+  if (!favoritesByCity) {
     return <FavoritesEmptySection />;
   }
 
@@ -38,7 +38,7 @@ export function FavoritesSection(): JSX.Element {
       <S.Container>
         <S.Title>Saved listing</S.Title>
         <S.List>
-          {Object.entries(offersFavorite).map(([cityName, offers]) => (
+          {Object.entries(favoritesByCity).map(([cityName, offers]) => (
             <S.Item key={cityName}>
               <S.LocationWrapper>
                 <LocationItem isActive cityName={cityName} />

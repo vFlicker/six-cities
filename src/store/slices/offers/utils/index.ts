@@ -1,3 +1,3 @@
-export * from './create-offers-dictionary';
+export * from './create-favorites-by-city';
 export * from './sort-offers';
-export * from './update-offer';
+export * from './offers';

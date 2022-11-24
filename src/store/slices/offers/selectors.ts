@@ -1,34 +1,43 @@
 import { createSelector } from '@reduxjs/toolkit';
 
 import { Reducer } from '~/constants';
-import { Error, Offer, OffersDictionary, State } from '~/types';
+import { Error, Offer, PartialOffersByCity, State } from '~/types';
 
 import { selectCurrentCityName, selectCurrentSortType } from '../app';
-import { sortOffers } from './utils';
+import { createFavoritesByCity, sortOffers } from './utils';
 
-const selectOffersDictionary = (state: State): OffersDictionary | null => {
+const selectAllOffers = (state: State): Offer[] => {
   return state[Reducer.Offers].offers;
 };
 
-const selectFilteredOffers = createSelector(
-  selectOffersDictionary,
-  selectCurrentCityName,
-  (offers, cityName) => {
-    return offers ? offers[cityName.toLocaleLowerCase()] : [];
-  },
-);
-
-export const selectOffers = createSelector(
-  selectFilteredOffers,
-  selectCurrentSortType,
-  (offers, sortType) => {
-    return offers.length ? sortOffers(offers, sortType) : [];
-  },
-);
-
-export const selectFavorites = (state: State): OffersDictionary | null => {
+const selectFavorites = (state: State): Offer[] => {
   return state[Reducer.Offers].favorites;
 };
+
+const selectFilteredOffers = createSelector(
+  selectAllOffers,
+  selectCurrentCityName,
+  (offers, filterType): Offer[] => {
+    return offers.filter((offer) => offer.city.name === filterType);
+  },
+);
+
+export const selectSortedOffers = createSelector(
+  selectFilteredOffers,
+  selectCurrentSortType,
+  (filteredOffers, sortType): Offer[] => {
+    return sortOffers(filteredOffers, sortType);
+  },
+);
+
+export const selectFavoritesByCity = createSelector(
+  selectFavorites,
+  (favorites): PartialOffersByCity | null => {
+    if (!favorites.length) return null;
+
+    return createFavoritesByCity(favorites);
+  },
+);
 
 export const selectNearby = (state: State): Offer[] => {
   return state[Reducer.Offers].nearby;

@@ -39,7 +39,9 @@ export type Offer = {
   type: string;
 };
 
-export type OffersDictionary = Record<string, Offer[]>;
+export type OffersByCity = Record<CityName, Offer[]>;
+
+export type PartialOffersByCity = Partial<OffersByCity>;
 
 export type OfferServer = Omit<CamelToSnakeCaseNested<Offer>, 'host'> & {
   host: CamelToSnakeCaseNested<Host>;

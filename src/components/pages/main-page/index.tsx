@@ -57,7 +57,7 @@ export function QueryResult({
 }
 
 function MainPageContent(): JSX.Element {
-  const offers = useAppSelector(offersSlice.selectOffers);
+  const sortedOffers = useAppSelector(offersSlice.selectSortedOffers);
   const isLoading = useAppSelector(offersSlice.selectLoadingStatus);
   const error = useAppSelector(offersSlice.selectError);
 
@@ -71,9 +71,9 @@ function MainPageContent(): JSX.Element {
     <QueryResult
       isLoading={isLoading}
       error={error}
-      hasData={Boolean(offers.length)}
+      hasData={Boolean(sortedOffers.length)}
     >
-      <MainSection offers={offers} />
+      <MainSection offers={sortedOffers} />
     </QueryResult>
   );
 }

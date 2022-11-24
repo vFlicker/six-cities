@@ -1,8 +1,8 @@
-import { Error, Offer, OffersDictionary } from '~/types';
+import { Error, Offer } from '~/types';
 
 export type State = {
-  offers: OffersDictionary | null;
-  favorites: OffersDictionary | null;
+  offers: Offer[];
+  favorites: Offer[];
   nearby: Offer[];
   loading: boolean;
   error: Error;

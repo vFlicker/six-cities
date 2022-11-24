@@ -9,15 +9,11 @@ import {
   fetchOffersNearby,
 } from '../../api-actions/offers';
 import { State } from './types';
-import {
-  createOffersDictionary,
-  updateOffersDictionary,
-  updateOffers,
-} from './utils';
+import { updateOffers } from './utils';
 
 const initialState: State = {
-  offers: null,
-  favorites: null,
+  offers: [],
+  favorites: [],
   nearby: [],
   loading: false,
   error: null,
@@ -35,7 +31,7 @@ const slice = createSlice({
         state.error = null;
       })
       .addCase(fetchOffers.fulfilled, (state, action) => {
-        state.offers = createOffersDictionary(action.payload);
+        state.offers = action.payload;
         state.loading = false;
         state.error = null;
       })
@@ -50,7 +46,7 @@ const slice = createSlice({
         state.error = null;
       })
       .addCase(fetchFavoriteOffers.fulfilled, (state, action) => {
-        state.favorites = createOffersDictionary(action.payload);
+        state.favorites = action.payload;
         state.loading = false;
         state.error = null;
       })
@@ -76,11 +72,8 @@ const slice = createSlice({
 
       /* TOGGLE FAVORITE STATUS */
       .addCase(toggleFavorite.fulfilled, (state, action) => {
-        state.offers = updateOffersDictionary(state.offers, action.payload);
-        state.favorites = updateOffersDictionary(
-          state.favorites,
-          action.payload,
-        );
+        state.offers = updateOffers(state.offers, action.payload);
+        state.favorites = updateOffers(state.favorites, action.payload);
         state.nearby = updateOffers(state.nearby, action.payload);
       });
   },
