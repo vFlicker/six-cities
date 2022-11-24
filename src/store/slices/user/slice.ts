@@ -70,7 +70,7 @@ const slice = createSlice({
         state.error = null;
       })
       .addCase(logout.fulfilled, (state) => {
-        state.authStatus = AuthStatus.Auth;
+        state.authStatus = AuthStatus.NoAuth;
         state.loading = false;
         state.error = null;
       })
