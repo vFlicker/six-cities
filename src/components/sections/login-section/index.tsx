@@ -1,4 +1,4 @@
-import { FormEvent, useRef } from 'react';
+import { SyntheticEvent, useRef } from 'react';
 
 import { useAppDispatch } from '~/hooks';
 import { userSlice } from '~/store';
@@ -8,20 +8,22 @@ import { Button } from '../../shared';
 import * as S from './styles';
 
 export function LoginSection(): JSX.Element {
-  const emailRef = useRef<HTMLInputElement>(null);
-  const passwordRef = useRef<HTMLInputElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
 
   const dispatch = useAppDispatch();
 
-  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (evt: SyntheticEvent) => {
     evt.preventDefault();
 
-    if (!emailRef.current || !passwordRef.current) return;
+    const target = evt.target as typeof evt.target & {
+      email: { value: string };
+      password: { value: string };
+    };
 
     dispatch(
       userSlice.login({
-        email: emailRef.current.value,
-        password: passwordRef.current.value,
+        email: target.email.value,
+        password: target.password.value,
       }),
     );
   };
@@ -29,7 +31,7 @@ export function LoginSection(): JSX.Element {
   return (
     <S.Section>
       <S.Title>Sign in</S.Title>
-      <S.Form action="#" method="post" onSubmit={handleSubmit}>
+      <S.Form action="#" method="post" onSubmit={handleSubmit} ref={formRef}>
         <S.InputWrapper>
           <S.Label htmlFor="email">E-mail</S.Label>
           <S.Input
@@ -38,7 +40,6 @@ export function LoginSection(): JSX.Element {
             name="email"
             placeholder="Email"
             required
-            ref={emailRef}
           />
         </S.InputWrapper>
         <S.InputWrapper>
@@ -49,7 +50,6 @@ export function LoginSection(): JSX.Element {
             name="password"
             placeholder="Password"
             required
-            ref={passwordRef}
           />
         </S.InputWrapper>
         <Button type="submit" fullWidth>
