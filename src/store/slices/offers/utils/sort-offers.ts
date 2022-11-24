@@ -1,28 +1,30 @@
 import { SortType } from '~/constants';
 import { Offer } from '~/types';
 
-const sortByPriceHighToLow = (firstOffer: Offer, secondOffer: Offer): number =>
-  secondOffer.price - firstOffer.price;
+const sortBy = {
+  priceHighToLow: (firstOffer: Offer, secondOffer: Offer): number => {
+    return secondOffer.price - firstOffer.price;
+  },
 
-const sortByPriceLowToHigh = (firstOffer: Offer, secondOffer: Offer): number =>
-  firstOffer.price - secondOffer.price;
+  priceLowToHigh: (firstOffer: Offer, secondOffer: Offer): number => {
+    return firstOffer.price - secondOffer.price;
+  },
 
-const topRatedFirst = (firstOffer: Offer, secondOffer: Offer): number =>
-  secondOffer.rating - firstOffer.rating;
+  topRatedFirst: (firstOffer: Offer, secondOffer: Offer): number => {
+    return secondOffer.rating - firstOffer.rating;
+  },
+};
 
-export const sortOffers = (
-  offers: Offer[],
-  currentSortType: SortType,
-): Offer[] => {
+export const sortOffers = (offers: Offer[], sortType: SortType): Offer[] => {
   const clonedOffers = [...offers];
 
-  switch (currentSortType) {
+  switch (sortType) {
     case SortType.PriceHighToLow:
-      return clonedOffers.sort(sortByPriceHighToLow);
+      return clonedOffers.sort(sortBy.priceHighToLow);
     case SortType.PriceLowToHigh:
-      return clonedOffers.sort(sortByPriceLowToHigh);
+      return clonedOffers.sort(sortBy.priceLowToHigh);
     case SortType.TopRatedFirst:
-      return clonedOffers.sort(topRatedFirst);
+      return clonedOffers.sort(sortBy.topRatedFirst);
     default:
       return clonedOffers;
   }
