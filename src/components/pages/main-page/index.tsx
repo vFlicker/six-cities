@@ -1,7 +1,7 @@
 import { useLayoutEffect } from 'react';
 
 import { useAppDispatch, useAppSelector } from '~/hooks';
-import { offersSlice } from '~/store';
+import { appSlice, offersSlice } from '~/store';
 
 import { Spinner } from '../../shared';
 import {
@@ -57,6 +57,7 @@ export function QueryResult({
 }
 
 function MainPageContent(): JSX.Element {
+  const currentCityName = useAppSelector(appSlice.selectCurrentCityName);
   const sortedOffers = useAppSelector(offersSlice.selectSortedOffers);
   const isLoading = useAppSelector(offersSlice.selectLoadingStatus);
   const error = useAppSelector(offersSlice.selectError);
@@ -73,7 +74,7 @@ function MainPageContent(): JSX.Element {
       error={error}
       hasData={Boolean(sortedOffers.length)}
     >
-      <MainSection offers={sortedOffers} />
+      <MainSection offers={sortedOffers} cityName={currentCityName} />
     </QueryResult>
   );
 }

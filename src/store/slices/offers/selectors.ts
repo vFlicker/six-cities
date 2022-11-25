@@ -7,7 +7,7 @@ import { selectCurrentCityName, selectCurrentSortType } from '../app';
 import { createFavoritesByCity, sortOffers } from './utils';
 
 const selectAllOffers = (state: State): Offer[] => {
-  return state[Reducer.Offers].offers;
+  return state[Reducer.Offers].all;
 };
 
 const selectFilteredOffers = createSelector(

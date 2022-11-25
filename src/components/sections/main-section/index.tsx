@@ -1,3 +1,4 @@
+import { CityName } from '~/constants';
 import { useAppDispatch } from '~/hooks';
 import { appSlice } from '~/store';
 import { Offer } from '~/types';
@@ -9,9 +10,13 @@ import * as S from './styles';
 
 type MainSectionProps = {
   offers: Offer[];
+  cityName: CityName;
 };
 
-export function MainSection({ offers }: MainSectionProps): JSX.Element {
+export function MainSection({
+  offers,
+  cityName,
+}: MainSectionProps): JSX.Element {
   const dispatch = useAppDispatch();
 
   const cardList = offers.map((offer) => (
@@ -30,7 +35,7 @@ export function MainSection({ offers }: MainSectionProps): JSX.Element {
         <S.HiddenTitle>Places</S.HiddenTitle>
 
         <S.PlacesFound>
-          {offers.length} places to stay in Amsterdam
+          {offers.length} places to stay in {cityName}
         </S.PlacesFound>
 
         <SortingFrom />

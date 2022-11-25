@@ -13,7 +13,7 @@ import { State } from './types';
 import { updateFavorites, updateOffers } from './utils';
 
 const initialState: State = {
-  offers: [],
+  all: [],
   favorites: [],
   nearby: [],
   loading: false,
@@ -32,7 +32,7 @@ const slice = createSlice({
         state.error = null;
       })
       .addCase(fetchOffers.fulfilled, (state, action) => {
-        state.offers = action.payload;
+        state.all = action.payload;
         state.loading = false;
         state.error = null;
       })
@@ -73,7 +73,7 @@ const slice = createSlice({
 
       /* TOGGLE FAVORITE STATUS */
       .addCase(toggleFavorite.fulfilled, (state, action) => {
-        state.offers = updateOffers(state.offers, action.payload);
+        state.all = updateOffers(state.all, action.payload);
         state.favorites = updateFavorites(state.favorites, action.payload);
         state.nearby = updateOffers(state.nearby, action.payload);
       })
