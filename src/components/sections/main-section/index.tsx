@@ -1,9 +1,8 @@
 import { useAppDispatch, useAppSelector } from '~/hooks';
 import { appSlice, offersSlice } from '~/store';
 
-import { CardItem, Map, Spinner } from '../../shared';
-import { ErrorSection } from '../error-section';
-import { MainEmptySection } from '../main-empty-section';
+import { CardItem, ErrorMessage, Map, Spinner } from '../../shared';
+import { MainEmptySection } from './main-empty-section';
 import { SortingFrom } from './sorting-form';
 
 import * as S from './styles';
@@ -26,7 +25,7 @@ export function MainSection(): JSX.Element {
     />
   ));
 
-  if (error) return <ErrorSection />;
+  if (error) return <ErrorMessage />;
 
   if (isLoading) return <Spinner />;
 

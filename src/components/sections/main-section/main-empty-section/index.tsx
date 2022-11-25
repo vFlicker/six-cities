@@ -2,7 +2,7 @@ import { noResultsIconSrc } from '~/assets/images';
 import { useAppSelector } from '~/hooks';
 import { appSlice } from '~/store';
 
-import { NotFound } from '../../shared';
+import { NotFound } from '../../../shared';
 
 import * as S from './styles';
 

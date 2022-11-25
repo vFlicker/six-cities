@@ -5,8 +5,7 @@ import { AuthStatus } from '~/constants';
 import { useAppDispatch, useAppSelector } from '~/hooks';
 import { commentsSlice, userSlice } from '~/store';
 
-import { Spinner } from '../../shared';
-import { ErrorSection } from '../error-section';
+import { ErrorMessage, Spinner } from '../../shared';
 import { ReviewsForm } from './reviews-form';
 import { ReviewsList } from './reviews-list';
 
@@ -34,7 +33,7 @@ export function ReviewsSection(): JSX.Element {
 
   if (isLoading) return <Spinner />;
 
-  if (error) return <ErrorSection />;
+  if (error) return <ErrorMessage />;
 
   return (
     <S.Section>

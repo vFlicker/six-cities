@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { visuallyHidden, Container as BaseContainer } from '../../shared';
+import { visuallyHidden, Container as BaseContainer } from '../../../shared';
 
 export const Title = styled.h1`
   ${visuallyHidden};

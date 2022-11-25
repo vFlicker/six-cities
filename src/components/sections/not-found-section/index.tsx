@@ -7,7 +7,6 @@ import * as S from './styles';
 export function NotFoundSection(): JSX.Element {
   return (
     <NotificationSection>
-      <S.Title>Favorites (empty)</S.Title>
       <S.Container>
         <NotFound
           iconSrc={noResultsIconSrc}

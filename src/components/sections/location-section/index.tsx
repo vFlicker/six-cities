@@ -1,7 +1,7 @@
 import { useAppSelector } from '~/hooks';
 import { appSlice } from '~/store';
 
-import { LocationItem } from '../../shared';
+import { Location } from '../../shared';
 
 import * as S from './styles';
 
@@ -10,7 +10,7 @@ export function LocationSection(): JSX.Element {
 
   return (
     <S.Section>
-      <LocationItem isActive cityName={cityName} />
+      <Location isActive cityName={cityName} />
     </S.Section>
   );
 }

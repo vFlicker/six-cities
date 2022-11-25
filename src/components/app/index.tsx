@@ -2,8 +2,7 @@ import { useAppSelector } from '~/hooks';
 import { userSlice } from '~/store';
 
 import { Pages } from '../pages';
-import { ErrorSection } from '../sections';
-import { Spinner } from '../shared';
+import { ErrorMessage, Spinner } from '../shared';
 
 export function App(): JSX.Element {
   const authStatus = useAppSelector(userSlice.selectAuthStatus);
@@ -14,7 +13,7 @@ export function App(): JSX.Element {
     return <Spinner />;
   }
 
-  if (error) return <ErrorSection />;
+  if (error) return <ErrorMessage />;
 
   return <Pages />;
 }

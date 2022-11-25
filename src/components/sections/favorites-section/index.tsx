@@ -1,9 +1,8 @@
 import { useAppSelector } from '~/hooks';
 import { offersSlice } from '~/store';
 
-import { CardItem, LocationItem, Spinner } from '../../shared';
-import { ErrorSection } from '../error-section';
-import { FavoritesEmptySection } from '../favorites-empty-section';
+import { CardItem, ErrorMessage, Location, Spinner } from '../../shared';
+import { FavoritesEmptySection } from './favorites-empty-section';
 
 import * as S from './styles';
 
@@ -14,7 +13,7 @@ export function FavoritesSection(): JSX.Element {
 
   if (isLoading) return <Spinner />;
 
-  if (error) return <ErrorSection />;
+  if (error) return <ErrorMessage />;
 
   if (!favoritesByCity) return <FavoritesEmptySection />;
 
@@ -26,7 +25,7 @@ export function FavoritesSection(): JSX.Element {
           {Object.entries(favoritesByCity).map(([cityName, offers]) => (
             <S.Item key={cityName}>
               <S.LocationWrapper>
-                <LocationItem isActive cityName={cityName} />
+                <Location isActive cityName={cityName} />
               </S.LocationWrapper>
 
               <S.CardList>

@@ -1,6 +1,6 @@
 import { savedIconSrc } from '~/assets/images';
 
-import { NotFound, NotificationSection } from '../../shared';
+import { NotFound, NotificationSection } from '../../../shared';
 
 import * as S from './styles';
 

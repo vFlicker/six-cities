@@ -4,8 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '~/hooks';
 import { offersSlice } from '~/store';
 
-import { CardItem, Container, Map, Spinner } from '../../shared';
-import { ErrorSection } from '../error-section';
+import { CardItem, Container, ErrorMessage, Map, Spinner } from '../../shared';
 
 import * as S from './styles';
 
@@ -24,7 +23,7 @@ export function NearPlacesSection(): JSX.Element | null {
 
   if (isLoading) return <Spinner />;
 
-  if (error) return <ErrorSection />;
+  if (error) return <ErrorMessage />;
 
   if (!offersNearby.length) return null;
 

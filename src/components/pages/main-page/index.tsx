@@ -1,8 +1,4 @@
-import {
-  HeaderSection,
-  LocationListSection,
-  MainSection,
-} from '../../sections';
+import { HeaderSection, FilterSection, MainSection } from '../../sections';
 
 import * as S from './styles';
 
@@ -14,7 +10,7 @@ export function MainPage(): JSX.Element {
       <S.PageContent>
         <S.Title>Cities</S.Title>
 
-        <LocationListSection />
+        <FilterSection />
 
         <S.Wrapper>
           <MainSection />

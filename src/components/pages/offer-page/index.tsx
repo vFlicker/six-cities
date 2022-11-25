@@ -5,13 +5,12 @@ import { useAppDispatch, useAppSelector } from '~/hooks';
 import { offerSlice, offersSlice } from '~/store';
 
 import {
-  ErrorSection,
   HeaderSection,
   NearPlacesSection,
   NotFoundSection,
   PropertySection,
 } from '../../sections';
-import { Page, Spinner } from '../../shared';
+import { ErrorMessage, Page, Spinner } from '../../shared';
 
 import * as S from './styles';
 
@@ -40,7 +39,7 @@ function OfferContent(): JSX.Element {
 
   if (isLoading) return <Spinner />;
 
-  if (error) return <ErrorSection />;
+  if (error) return <ErrorMessage />;
 
   if (!offer) return <NotFoundSection />;
 
