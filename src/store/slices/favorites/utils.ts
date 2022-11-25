@@ -1,11 +1,11 @@
 import { FavoritesInProgress } from './types';
 
-export const addProgress = (
+export const addToInProgress = (
   data: FavoritesInProgress,
   id: number,
 ): FavoritesInProgress => [...data, id];
 
-export const removeProgress = (
+export const removeFromInProgress = (
   data: FavoritesInProgress,
   id: number,
 ): FavoritesInProgress => {

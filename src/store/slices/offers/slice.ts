@@ -8,8 +8,9 @@ import {
   fetchFavoriteOffers,
   fetchOffersNearby,
 } from '../../api-actions/offers';
+import { logout } from '../../api-actions/user';
 import { State } from './types';
-import { updateOffers } from './utils';
+import { updateFavorites, updateOffers } from './utils';
 
 const initialState: State = {
   offers: [],
@@ -73,8 +74,13 @@ const slice = createSlice({
       /* TOGGLE FAVORITE STATUS */
       .addCase(toggleFavorite.fulfilled, (state, action) => {
         state.offers = updateOffers(state.offers, action.payload);
-        state.favorites = updateOffers(state.favorites, action.payload);
+        state.favorites = updateFavorites(state.favorites, action.payload);
         state.nearby = updateOffers(state.nearby, action.payload);
+      })
+
+      /* LOGOUT */
+      .addCase(logout.fulfilled, (state) => {
+        state.favorites = [];
       });
   },
 });

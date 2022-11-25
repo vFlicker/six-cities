@@ -1,6 +1,4 @@
-import { useEffect } from 'react';
-
-import { useAppDispatch, useAppSelector } from '~/hooks';
+import { useAppSelector } from '~/hooks';
 import { offersSlice } from '~/store';
 
 import { CardItem, LocationItem, Spinner } from '../../shared';
@@ -14,12 +12,6 @@ export function FavoritesSection(): JSX.Element {
     offersSlice.selectLoadingStatus,
   );
   const offersFavoriteError = useAppSelector(offersSlice.selectError);
-
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(offersSlice.fetchFavoriteOffers());
-  }, [dispatch]);
 
   if (offersFavoriteLoadingStatus) {
     return <Spinner />;

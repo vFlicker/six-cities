@@ -4,7 +4,7 @@ import { Reducer } from '~/constants';
 
 import { toggleFavorite } from '../../api-actions/favorites';
 import { State } from './types';
-import { addProgress, removeProgress } from './utils';
+import { addToInProgress, removeFromInProgress } from './utils';
 
 const initialState: State = {
   favoritesInProgress: [],
@@ -19,7 +19,7 @@ const slice = createSlice({
     builder
       /* TOGGLE FAVORITE STATUS */
       .addCase(toggleFavorite.pending, (state, { meta }) => {
-        state.favoritesInProgress = addProgress(
+        state.favoritesInProgress = addToInProgress(
           state.favoritesInProgress,
           meta.arg.id,
         );
@@ -27,7 +27,7 @@ const slice = createSlice({
         state.error = null;
       })
       .addCase(toggleFavorite.fulfilled, (state, { meta }) => {
-        state.favoritesInProgress = removeProgress(
+        state.favoritesInProgress = removeFromInProgress(
           state.favoritesInProgress,
           meta.arg.id,
         );
@@ -35,7 +35,7 @@ const slice = createSlice({
         state.error = null;
       })
       .addCase(toggleFavorite.rejected, (state, { payload, meta }) => {
-        state.favoritesInProgress = removeProgress(
+        state.favoritesInProgress = removeFromInProgress(
           state.favoritesInProgress,
           meta.arg.id,
         );

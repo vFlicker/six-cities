@@ -33,13 +33,28 @@ export const Link = styled(RouterLink)`
 export const Avatar = styled.div<{ avatarUrl?: string }>`
   width: 20px;
   height: 20px;
-  margin-right: 8px;
+  margin-right: 6px;
   border-radius: 50%;
 
   background-image: ${({ avatarUrl }) =>
     avatarUrl ? `url(${avatarUrl})` : `url(${avatarIconSrc})`};
   background-size: 100%;
   background-repeat: no-repeat;
+`;
+
+export const Counter = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  margin-right: 6px;
+
+  color: #ffffff;
+  line-height: 1;
+  background-color: #4481c3;
 `;
 
 export const Button = styled.span`

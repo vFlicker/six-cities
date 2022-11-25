@@ -10,10 +10,6 @@ const selectAllOffers = (state: State): Offer[] => {
   return state[Reducer.Offers].offers;
 };
 
-const selectFavorites = (state: State): Offer[] => {
-  return state[Reducer.Offers].favorites;
-};
-
 const selectFilteredOffers = createSelector(
   selectAllOffers,
   selectCurrentCityName,
@@ -29,6 +25,10 @@ export const selectSortedOffers = createSelector(
     return sortOffers(filteredOffers, sortType);
   },
 );
+
+export const selectFavorites = (state: State): Offer[] => {
+  return state[Reducer.Offers].favorites;
+};
 
 export const selectFavoritesByCity = createSelector(
   selectFavorites,
