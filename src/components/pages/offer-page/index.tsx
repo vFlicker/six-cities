@@ -2,54 +2,52 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '~/hooks';
-import { commentsSlice, offerSlice, offersSlice } from '~/store';
+import { offerSlice, offersSlice } from '~/store';
 
 import {
+  ErrorSection,
   HeaderSection,
   NearPlacesSection,
+  NotFoundSection,
   PropertySection,
 } from '../../sections';
 import { Page, Spinner } from '../../shared';
-import { ErrorPage } from '../error-page';
-import { NotFoundPage } from '../not-found-page';
 
 import * as S from './styles';
 
 export function OfferPage(): JSX.Element {
+  return (
+    <Page>
+      <HeaderSection />
+      <OfferContent />
+    </Page>
+  );
+}
+
+function OfferContent(): JSX.Element {
   const { id } = useParams();
 
   const offer = useAppSelector(offerSlice.selectOffer);
-  const isLoading = useAppSelector(offersSlice.selectLoadingStatus);
-  const error = useAppSelector(offersSlice.selectError);
+  const isLoading = useAppSelector(offerSlice.selectLoadingStatus);
+  const error = useAppSelector(offerSlice.selectError);
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(offerSlice.fetchOffer(Number(id)));
-    dispatch(commentsSlice.fetchComments(Number(id)));
     dispatch(offersSlice.fetchOffersNearby(Number(id)));
   }, [dispatch, id]);
 
-  if (isLoading) {
-    return <Spinner />;
-  }
+  if (isLoading) return <Spinner />;
 
-  if (error) {
-    return <ErrorPage />;
-  }
+  if (error) return <ErrorSection />;
 
-  if (!offer) {
-    return <NotFoundPage />;
-  }
+  if (!offer) return <NotFoundSection />;
 
   return (
-    <Page>
-      <HeaderSection />
-
-      <S.PageContent>
-        <PropertySection offer={offer} />
-        <NearPlacesSection />
-      </S.PageContent>
-    </Page>
+    <S.PageContent>
+      <PropertySection offer={offer} />
+      <NearPlacesSection />
+    </S.PageContent>
   );
 }

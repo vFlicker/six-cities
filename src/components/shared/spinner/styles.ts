@@ -7,10 +7,14 @@ const spinnerAnimate = keyframes`
 `;
 
 export const Spinner = styled.div`
-  display: inline-block;
   position: relative;
-  width: 80px;
-  height: 80px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100px;
+  height: 100px;
   margin: auto;
 `;
 

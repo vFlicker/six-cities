@@ -11,6 +11,7 @@ export const Nav = styled.nav`
 
 export const List = styled.ul`
   display: flex;
+  align-items: center;
   flex-shrink: 0;
   flex-wrap: wrap;
 `;
@@ -31,9 +32,9 @@ export const Link = styled(RouterLink)`
 `;
 
 export const Avatar = styled.div<{ avatarUrl?: string }>`
-  width: 20px;
-  height: 20px;
-  margin-right: 6px;
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
   border-radius: 50%;
 
   background-image: ${({ avatarUrl }) =>
@@ -43,18 +44,18 @@ export const Avatar = styled.div<{ avatarUrl?: string }>`
 `;
 
 export const Counter = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  margin-right: 6px;
-
-  color: #ffffff;
-  line-height: 1;
-  background-color: #4481c3;
+  display: inline-block;
+  min-width: 40px;
+  height: 25px;
+  margin-right: 10px;
+  padding: 5px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 16px;
+  text-align: center;
+  color: #fff;
+  background: #4481c3;
+  border-radius: 15px;
 `;
 
 export const Button = styled.span`

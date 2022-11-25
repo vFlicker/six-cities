@@ -12,7 +12,7 @@ import { Host } from './host';
 
 import * as S from './styles';
 
-type OfferProps = Omit<Offer, 'images'>;
+type PropertyProps = Offer;
 
 export function Property({
   bedrooms,
@@ -27,7 +27,7 @@ export function Property({
   rating,
   title,
   type,
-}: OfferProps): JSX.Element {
+}: PropertyProps): JSX.Element {
   const { avatarUrl, isPro, name: authorName } = host;
 
   const favoritesInProgress = useAppSelector(

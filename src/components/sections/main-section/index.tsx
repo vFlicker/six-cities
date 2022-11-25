@@ -1,25 +1,22 @@
-import { CityName } from '~/constants';
-import { useAppDispatch } from '~/hooks';
-import { appSlice } from '~/store';
-import { Offer } from '~/types';
+import { useAppDispatch, useAppSelector } from '~/hooks';
+import { appSlice, offersSlice } from '~/store';
 
-import { CardItem, Map } from '../../shared';
+import { CardItem, Map, Spinner } from '../../shared';
+import { ErrorSection } from '../error-section';
+import { MainEmptySection } from '../main-empty-section';
 import { SortingFrom } from './sorting-form';
 
 import * as S from './styles';
 
-type MainSectionProps = {
-  offers: Offer[];
-  cityName: CityName;
-};
+export function MainSection(): JSX.Element {
+  const cityName = useAppSelector(appSlice.selectCurrentCityName);
+  const sortedOffers = useAppSelector(offersSlice.selectSortedOffers);
+  const isLoading = useAppSelector(offersSlice.selectLoadingStatus);
+  const error = useAppSelector(offersSlice.selectError);
 
-export function MainSection({
-  offers,
-  cityName,
-}: MainSectionProps): JSX.Element {
   const dispatch = useAppDispatch();
 
-  const cardList = offers.map((offer) => (
+  const cardList = sortedOffers.map((offer) => (
     <CardItem
       key={offer.id}
       offer={offer}
@@ -29,13 +26,19 @@ export function MainSection({
     />
   ));
 
+  if (error) return <ErrorSection />;
+
+  if (isLoading) return <Spinner />;
+
+  if (!sortedOffers.length) return <MainEmptySection />;
+
   return (
     <S.MainContainer>
       <S.Section>
         <S.HiddenTitle>Places</S.HiddenTitle>
 
         <S.PlacesFound>
-          {offers.length} places to stay in {cityName}
+          {sortedOffers.length} places to stay in {cityName}
         </S.PlacesFound>
 
         <SortingFrom />
@@ -44,7 +47,7 @@ export function MainSection({
       </S.Section>
 
       <S.MapWrapper>
-        <Map offers={offers} orientation="horizontal" />
+        <Map offers={sortedOffers} orientation="horizontal" />
       </S.MapWrapper>
     </S.MainContainer>
   );

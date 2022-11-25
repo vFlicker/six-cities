@@ -5,18 +5,15 @@ import { Property } from './property';
 
 import * as S from './styles';
 
-type OfferProps = {
+type PropertySectionProps = {
   offer: Offer;
 };
 
-export function PropertySection({ offer }: OfferProps): JSX.Element {
-  const { images, ...props } = offer;
-
+export function PropertySection({ offer }: PropertySectionProps): JSX.Element {
   return (
     <S.Section>
-      <Gallery images={images} />
-
-      <Property {...props} />
+      <Gallery images={offer.images} />
+      <Property {...offer} />
     </S.Section>
   );
 }

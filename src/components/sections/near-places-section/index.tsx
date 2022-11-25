@@ -1,12 +1,32 @@
-import { useAppSelector } from '~/hooks';
+import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+
+import { useAppDispatch, useAppSelector } from '~/hooks';
 import { offersSlice } from '~/store';
 
-import { CardItem, Container, Map } from '../../shared';
+import { CardItem, Container, Map, Spinner } from '../../shared';
+import { ErrorSection } from '../error-section';
 
 import * as S from './styles';
 
-export function NearPlacesSection(): JSX.Element {
+export function NearPlacesSection(): JSX.Element | null {
+  const { id } = useParams();
+
   const offersNearby = useAppSelector(offersSlice.selectNearby);
+  const isLoading = useAppSelector(offersSlice.selectLoadingStatus);
+  const error = useAppSelector(offersSlice.selectError);
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(offersSlice.fetchOffersNearby(Number(id)));
+  }, [dispatch, id]);
+
+  if (isLoading) return <Spinner />;
+
+  if (error) return <ErrorSection />;
+
+  if (!offersNearby.length) return null;
 
   return (
     <>

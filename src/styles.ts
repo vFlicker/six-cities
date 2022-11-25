@@ -109,4 +109,11 @@ export const globalStyle = css`
     transition: color 0.3s, background-color 0.3s;
     outline: 0;
   }
+
+  #root {
+    display: flex;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+  }
 `;

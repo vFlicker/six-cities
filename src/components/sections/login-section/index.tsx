@@ -8,7 +8,7 @@ import { Button } from '../../shared';
 import * as S from './styles';
 
 export function LoginSection(): JSX.Element {
-  const formRef = useRef<HTMLFormElement>(null);
+  const formRef = useRef<HTMLFormElement | null>(null);
 
   const dispatch = useAppDispatch();
 

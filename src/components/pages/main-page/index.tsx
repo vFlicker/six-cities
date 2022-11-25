@@ -1,16 +1,8 @@
-import { useLayoutEffect } from 'react';
-
-import { useAppDispatch, useAppSelector } from '~/hooks';
-import { appSlice, offersSlice } from '~/store';
-
-import { Spinner } from '../../shared';
 import {
   HeaderSection,
   LocationListSection,
-  MainEmptySection,
   MainSection,
 } from '../../sections';
-import { ErrorPage } from '../error-page';
 
 import * as S from './styles';
 
@@ -25,56 +17,9 @@ export function MainPage(): JSX.Element {
         <LocationListSection />
 
         <S.Wrapper>
-          <MainPageContent />
+          <MainSection />
         </S.Wrapper>
       </S.PageContent>
     </S.Page>
-  );
-}
-
-type QueryResultProps = {
-  // TODO: error is unknown
-  error: unknown;
-  isLoading: boolean;
-  hasData: boolean;
-  children: JSX.Element;
-};
-
-// TODO: move to shared dir
-export function QueryResult({
-  isLoading,
-  error,
-  hasData,
-  children,
-}: QueryResultProps): JSX.Element {
-  if (error) return <ErrorPage errorMessage={'Some Error'} />;
-
-  if (isLoading) return <Spinner />;
-
-  if (!hasData) return <MainEmptySection />;
-
-  return children;
-}
-
-function MainPageContent(): JSX.Element {
-  const currentCityName = useAppSelector(appSlice.selectCurrentCityName);
-  const sortedOffers = useAppSelector(offersSlice.selectSortedOffers);
-  const isLoading = useAppSelector(offersSlice.selectLoadingStatus);
-  const error = useAppSelector(offersSlice.selectError);
-
-  const dispatch = useAppDispatch();
-
-  useLayoutEffect(() => {
-    dispatch(offersSlice.fetchOffers());
-  }, [dispatch]);
-
-  return (
-    <QueryResult
-      isLoading={isLoading}
-      error={error}
-      hasData={Boolean(sortedOffers.length)}
-    >
-      <MainSection offers={sortedOffers} cityName={currentCityName} />
-    </QueryResult>
   );
 }

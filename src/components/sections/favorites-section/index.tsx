@@ -2,28 +2,21 @@ import { useAppSelector } from '~/hooks';
 import { offersSlice } from '~/store';
 
 import { CardItem, LocationItem, Spinner } from '../../shared';
+import { ErrorSection } from '../error-section';
 import { FavoritesEmptySection } from '../favorites-empty-section';
 
 import * as S from './styles';
 
 export function FavoritesSection(): JSX.Element {
   const favoritesByCity = useAppSelector(offersSlice.selectFavoritesByCity);
-  const offersFavoriteLoadingStatus = useAppSelector(
-    offersSlice.selectLoadingStatus,
-  );
-  const offersFavoriteError = useAppSelector(offersSlice.selectError);
+  const isLoading = useAppSelector(offersSlice.selectLoadingStatus);
+  const error = useAppSelector(offersSlice.selectError);
 
-  if (offersFavoriteLoadingStatus) {
-    return <Spinner />;
-  }
+  if (isLoading) return <Spinner />;
 
-  if (offersFavoriteError) {
-    return <S.Title>Error!</S.Title>;
-  }
+  if (error) return <ErrorSection />;
 
-  if (!favoritesByCity) {
-    return <FavoritesEmptySection />;
-  }
+  if (!favoritesByCity) return <FavoritesEmptySection />;
 
   return (
     <S.Section>
