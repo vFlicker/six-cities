@@ -4,7 +4,7 @@ import { GlobalError } from './global-error';
 
 type ErrorBoundaryProps = {
   children: ReactNode;
-  errorComponent?: JSX.Element;
+  errorComponent?: ReactNode;
 };
 
 type ErrorBoundaryState = {
