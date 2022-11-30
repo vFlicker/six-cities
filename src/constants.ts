@@ -5,6 +5,13 @@ export const enum AppRoute {
   Root = '/',
 }
 
+export const enum AppStatus {
+  Idle = 'idle',
+  Pending = 'pending',
+  Succeeded = 'succeeded',
+  Failed = 'failed',
+}
+
 export const enum AuthStatus {
   Auth = 'AUTH',
   NoAuth = 'NO_AUTH',

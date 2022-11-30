@@ -15,8 +15,8 @@ export const fetchOffers = createAsyncThunk<
       const { data } = await apiService.get<OfferServer[]>(`/hotels`);
       return data;
     } catch (error) {
-      errorHandler(error);
-      return rejectWithValue(error);
+      errorHandler(error as Error);
+      return rejectWithValue(error as Error);
     }
   },
 );
@@ -32,8 +32,8 @@ export const fetchFavoriteOffers = createAsyncThunk<
       const { data } = await apiService.get<OfferServer[]>(`/favorite`);
       return data;
     } catch (error) {
-      errorHandler(error);
-      return rejectWithValue(error);
+      errorHandler(error as Error);
+      return rejectWithValue(error as Error);
     }
   },
 );
@@ -51,8 +51,8 @@ export const fetchOffersNearby = createAsyncThunk<
       );
       return data;
     } catch (error) {
-      errorHandler(error);
-      return rejectWithValue(error);
+      errorHandler(error as Error);
+      return rejectWithValue(error as Error);
     }
   },
 );

@@ -1,9 +1,7 @@
 import { Offer } from '~/types';
 
 export type State = {
-  all: Offer[];
-  favorites: Offer[];
-  nearby: Offer[];
+  offer: Offer | null;
   loading: boolean;
   error: Error | null;
 };

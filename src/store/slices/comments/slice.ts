@@ -1,15 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { Reducer } from '~/constants';
-import { Error, Review } from '~/types';
 
 import { postComment, fetchComments } from '../../api-actions/comments';
-
-type State = {
-  comments: Review[];
-  loading: boolean;
-  error: Error;
-};
+import { State } from './types';
 
 const initialState: State = {
   comments: [],
@@ -35,7 +29,7 @@ const slice = createSlice({
       })
       .addCase(fetchComments.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
+        state.error = action.payload as Error;
       })
 
       /* POST COMMENT */
@@ -50,7 +44,7 @@ const slice = createSlice({
       })
       .addCase(postComment.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
+        state.error = action.payload as Error;
       });
   },
 });

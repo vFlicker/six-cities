@@ -18,8 +18,8 @@ export const checkAuthStatus = createAsyncThunk<User, undefined, ThunkOptions>(
       const { data } = await apiService.get<User>(`/login`);
       return data;
     } catch (error) {
-      errorHandler(error);
-      return rejectWithValue(error);
+      errorHandler(error as Error);
+      return rejectWithValue(error as Error);
     }
   },
 );
@@ -33,8 +33,8 @@ export const login = createAsyncThunk<User, AuthData, ThunkOptions>(
       dispatch(redirectToRoute(AppRoute.Root));
       return data;
     } catch (error) {
-      errorHandler(error);
-      return rejectWithValue(error);
+      errorHandler(error as Error);
+      return rejectWithValue(error as Error);
     }
   },
 );
@@ -46,8 +46,8 @@ export const logout = createAsyncThunk<void, undefined, ThunkOptions>(
       await apiService.delete<void>(`logout`);
       dropToken();
     } catch (error) {
-      errorHandler(error);
-      return rejectWithValue(error);
+      errorHandler(error as Error);
+      return rejectWithValue(error as Error);
     }
   },
 );

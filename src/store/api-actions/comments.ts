@@ -17,8 +17,8 @@ export const fetchComments = createAsyncThunk<Review[], number, ThunkOptions>(
       const { data } = await apiService.get<ReviewServer[]>(`/comments/${id}`);
       return data;
     } catch (error) {
-      errorHandler(error);
-      return rejectWithValue(error);
+      errorHandler(error as Error);
+      return rejectWithValue(error as Error);
     }
   },
 );
@@ -38,8 +38,8 @@ export const postComment = createAsyncThunk<
 
       return data;
     } catch (error) {
-      errorHandler(error);
-      return rejectWithValue(error);
+      errorHandler(error as Error);
+      return rejectWithValue(error as Error);
     }
   },
 );

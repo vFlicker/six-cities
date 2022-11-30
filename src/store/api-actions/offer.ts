@@ -11,8 +11,8 @@ export const fetchOffer = createAsyncThunk<Offer, number, ThunkOptions>(
       const { data } = await apiService.get<OfferServer>(`/hotels/${id}`);
       return data;
     } catch (error) {
-      errorHandler(error);
-      return rejectWithValue(error);
+      errorHandler(error as Error);
+      return rejectWithValue(error as Error);
     }
   },
 );

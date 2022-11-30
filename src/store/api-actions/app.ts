@@ -26,8 +26,8 @@ export const initializeApp = createAsyncThunk<void, undefined, ThunkOptions>(
         await dispatch(fetchFavoriteOffers());
       }
     } catch (error) {
-      errorHandler(error);
-      return rejectWithValue(error);
+      errorHandler(error as Error);
+      return rejectWithValue(error as Error);
     }
   },
 );
@@ -51,8 +51,8 @@ export const toggleFavorite = createAsyncThunk<
 
       return data;
     } catch (error) {
-      errorHandler(error);
-      return rejectWithValue(error);
+      errorHandler(error as Error);
+      return rejectWithValue(error as Error);
     }
   },
 );

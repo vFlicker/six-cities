@@ -1,21 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { CityName, Reducer, SortType } from '~/constants';
-import { OfferID } from '~/types';
-import { AppStatus } from '~/types/app';
+import { AppStatus, CityName, Reducer, SortType } from '~/constants';
 
 import { redirectToRoute } from '../../actions/app';
 import { initializeApp, toggleFavorite } from '../../api-actions/app';
+import { State } from './types';
 import { addToInProgress, removeFromInProgress } from './utils';
-
-type State = {
-  initialize: AppStatus;
-  activeCardId: number;
-  currentCityName: CityName;
-  currentSortType: SortType;
-  favoriteIDsInProgress: OfferID[];
-  error: Error | null;
-};
 
 const initialState: State = {
   initialize: AppStatus.Idle,

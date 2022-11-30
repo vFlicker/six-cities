@@ -1,7 +1,7 @@
 import { createSelector } from '@reduxjs/toolkit';
 
 import { Reducer } from '~/constants';
-import { Error, Offer, PartialOffersByCity, State } from '~/types';
+import { Offer, PartialOffersByCity, State } from '~/types';
 
 import { selectCurrentCityName, selectCurrentSortType } from '../app';
 import { createFavoritesByCity, sortOffers } from './utils';
@@ -47,6 +47,6 @@ export const selectIsLoading = (state: State): boolean => {
   return state[Reducer.Offers].loading;
 };
 
-export const selectError = (state: State): Error => {
+export const selectError = (state: State): Error | null => {
   return state[Reducer.Offers].error;
 };

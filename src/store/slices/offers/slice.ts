@@ -38,7 +38,7 @@ const slice = createSlice({
       })
       .addCase(fetchOffers.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
+        state.error = action.payload as Error;
       })
 
       /* FETCH FAVORITES OFFERS */
@@ -53,7 +53,7 @@ const slice = createSlice({
       })
       .addCase(fetchFavoriteOffers.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
+        state.error = action.payload as Error;
       })
 
       /* FETCH OFFERS NEARBY */
@@ -68,7 +68,7 @@ const slice = createSlice({
       })
       .addCase(fetchOffersNearby.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
+        state.error = action.payload as Error;
       })
 
       /* TOGGLE FAVORITE STATUS */

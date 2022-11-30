@@ -1,16 +1,9 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 import { AuthStatus, Reducer } from '~/constants';
-import { Error, User } from '~/types';
 
 import { checkAuthStatus, login, logout } from '../../api-actions/user';
-
-type State = {
-  authStatus: AuthStatus;
-  user: User | null;
-  loading: boolean;
-  error: Error;
-};
+import { State } from './types';
 
 const initialState: State = {
   authStatus: AuthStatus.Unknown,
@@ -22,11 +15,7 @@ const initialState: State = {
 const slice = createSlice({
   name: Reducer.User,
   initialState,
-  reducers: {
-    setUserData: (state, action: PayloadAction<User>) => {
-      state.user = action.payload;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       /* CHECK AUTH STATUS */
@@ -43,7 +32,7 @@ const slice = createSlice({
       .addCase(checkAuthStatus.rejected, (state, action) => {
         state.authStatus = AuthStatus.NoAuth;
         state.loading = false;
-        state.error = action.payload;
+        state.error = action.payload as Error;
       })
 
       /* LOGIN */
@@ -60,7 +49,7 @@ const slice = createSlice({
       .addCase(login.rejected, (state, action) => {
         state.authStatus = AuthStatus.NoAuth;
         state.loading = false;
-        state.error = action.payload;
+        state.error = action.payload as Error;
       })
 
       /* LOGOUT */
@@ -76,13 +65,11 @@ const slice = createSlice({
       })
       .addCase(logout.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
+        state.error = action.payload as Error;
       });
   },
 });
 
 export { checkAuthStatus, login, logout };
-
-export const { setUserData } = slice.actions;
 
 export default slice;

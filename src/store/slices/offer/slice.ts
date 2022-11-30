@@ -1,16 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { Reducer } from '~/constants';
-import { Offer } from '~/types';
 
 import { toggleFavorite } from '../../api-actions/app';
 import { fetchOffer } from '../../api-actions/offer';
-
-type State = {
-  offer: Offer | null;
-  loading: boolean;
-  error: Error | null;
-};
+import { State } from './types';
 
 const initialState: State = {
   offer: null,
