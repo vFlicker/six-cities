@@ -1,5 +1,5 @@
 import { StrictMode } from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import { Global } from '@emotion/react';
@@ -14,7 +14,10 @@ import 'react-toastify/dist/ReactToastify.css';
 
 store.dispatch(appSlice.initializeApp());
 
-ReactDOM.render(
+const container = document.getElementById('root') as HTMLElement;
+const root = createRoot(container);
+
+root.render(
   <StrictMode>
     <Provider store={store}>
       <ErrorBoundary>
@@ -24,5 +27,4 @@ ReactDOM.render(
       </ErrorBoundary>
     </Provider>
   </StrictMode>,
-  document.getElementById('root'),
 );
