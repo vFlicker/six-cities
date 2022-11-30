@@ -27,7 +27,7 @@ function OfferContent(): JSX.Element {
   const { id } = useParams();
 
   const offer = useAppSelector(offerSlice.selectOffer);
-  const isLoading = useAppSelector(offerSlice.selectLoadingStatus);
+  const isLoading = useAppSelector(offerSlice.selectIsLoading);
   const error = useAppSelector(offerSlice.selectError);
 
   const dispatch = useAppDispatch();

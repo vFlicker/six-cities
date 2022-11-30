@@ -5,7 +5,7 @@ export const selectOffer = (state: State): Offer | null => {
   return state[Reducer.Offer].offer;
 };
 
-export const selectLoadingStatus = (state: State): boolean => {
+export const selectIsLoading = (state: State): boolean => {
   return state[Reducer.Offer].loading;
 };
 

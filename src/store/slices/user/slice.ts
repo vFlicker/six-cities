@@ -13,7 +13,7 @@ type State = {
 };
 
 const initialState: State = {
-  authStatus: AuthStatus.NoAuth,
+  authStatus: AuthStatus.Unknown,
   user: null,
   loading: false,
   error: null,

@@ -9,9 +9,9 @@ type PrivateRouteProps = {
 };
 
 export function PrivateRoute({ children }: PrivateRouteProps): JSX.Element {
-  const authStatus = useAppSelector(userSlice.selectAuthStatus);
+  const isUserAuthorized = useAppSelector(userSlice.selectIsUserAuthorized);
 
-  if (!userSlice.isUserAuthorized(authStatus)) {
+  if (!isUserAuthorized) {
     return <Navigate to={AppRoute.Login} />;
   }
 

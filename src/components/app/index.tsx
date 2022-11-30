@@ -5,11 +5,11 @@ import { Pages } from '../pages';
 import { Spinner } from '../shared';
 
 export function App(): JSX.Element {
-  const authStatus = useAppSelector(userSlice.selectAuthStatus);
-  const isLoading = useAppSelector(userSlice.selectLoadingStatus);
+  const isAuthChecked = useAppSelector(userSlice.selectIsAuthChecked);
+  const isLoading = useAppSelector(userSlice.selectIsLoading);
   // const error = useAppSelector(userSlice.selectError);
 
-  if (userSlice.isCheckedAuth(authStatus) || isLoading) {
+  if (!isAuthChecked || isLoading) {
     return <Spinner />;
   }
 

@@ -13,13 +13,13 @@ import * as S from './styles';
 export function LoginPage(): JSX.Element {
   const navigate = useNavigate();
 
-  const authStatus = useAppSelector(userSlice.selectAuthStatus);
+  const isUserAuthorized = useAppSelector(userSlice.selectIsUserAuthorized);
 
   useEffect(() => {
-    if (userSlice.isUserAuthorized(authStatus)) {
+    if (isUserAuthorized) {
       navigate(AppRoute.Root);
     }
-  }, [authStatus, navigate]);
+  }, [isUserAuthorized, navigate]);
 
   return (
     <S.Page>

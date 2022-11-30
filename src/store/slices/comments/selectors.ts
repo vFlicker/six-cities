@@ -5,7 +5,7 @@ export const selectComments = (state: State): Review[] => {
   return state[Reducer.Comments].comments;
 };
 
-export const selectLoadingStatus = (state: State): boolean => {
+export const selectIsLoading = (state: State): boolean => {
   return state[Reducer.Comments].loading;
 };
 

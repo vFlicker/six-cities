@@ -12,7 +12,7 @@ export function NearPlacesSection(): JSX.Element | null {
   const { id } = useParams();
 
   const offersNearby = useAppSelector(offersSlice.selectNearby);
-  const isLoading = useAppSelector(offersSlice.selectLoadingStatus);
+  const isLoading = useAppSelector(offersSlice.selectIsLoading);
   const error = useAppSelector(offersSlice.selectError);
 
   const dispatch = useAppDispatch();

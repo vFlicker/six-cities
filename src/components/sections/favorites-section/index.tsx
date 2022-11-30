@@ -8,7 +8,7 @@ import * as S from './styles';
 
 export function FavoritesSection(): JSX.Element {
   const favoritesByCity = useAppSelector(offersSlice.selectFavoritesByCity);
-  const isLoading = useAppSelector(offersSlice.selectLoadingStatus);
+  const isLoading = useAppSelector(offersSlice.selectIsLoading);
   const error = useAppSelector(offersSlice.selectError);
 
   if (isLoading) return <Spinner />;

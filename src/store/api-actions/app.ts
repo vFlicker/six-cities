@@ -5,11 +5,7 @@ import { errorHandler } from '~/services';
 import { ThunkOptions } from '~/types';
 
 import { fetchFavoriteOffers, fetchOffers } from '../slices/offers';
-import {
-  checkAuthStatus,
-  isUserAuthorized,
-  selectAuthStatus,
-} from '../slices/user';
+import { checkAuthStatus, selectIsUserAuthorized } from '../slices/user';
 
 /**
  * Thunk that call thunks for init application.
@@ -24,9 +20,9 @@ export const initializeApp = createAsyncThunk<void, undefined, ThunkOptions>(
       await Promise.all([checkAuthStatusPromise, fetchOffersPromise]);
 
       const state = getState();
-      const authStatus = selectAuthStatus(state);
+      const isUserAuthorized = selectIsUserAuthorized(state);
 
-      if (isUserAuthorized(authStatus)) {
+      if (isUserAuthorized) {
         await dispatch(fetchFavoriteOffers());
       }
     } catch (error) {

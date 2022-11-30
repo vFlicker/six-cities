@@ -1,4 +1,4 @@
-import { AppRoute, AuthStatus } from '~/constants';
+import { AppRoute } from '~/constants';
 import { useAppDispatch, useAppSelector } from '~/hooks';
 import { offersSlice, userSlice } from '~/store';
 
@@ -46,8 +46,8 @@ function AuthList(): JSX.Element {
 }
 
 export function NavList(): JSX.Element {
-  const authStatus = useAppSelector(userSlice.selectAuthStatus);
-  const list = authStatus !== AuthStatus.Auth ? <NoAuthList /> : <AuthList />;
+  const isUserAuthorized = useAppSelector(userSlice.selectIsUserAuthorized);
+  const list = isUserAuthorized ? <AuthList /> : <NoAuthList />;
 
   return <S.Nav>{list}</S.Nav>;
 }

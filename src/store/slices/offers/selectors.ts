@@ -43,7 +43,7 @@ export const selectNearby = (state: State): Offer[] => {
   return state[Reducer.Offers].nearby;
 };
 
-export const selectLoadingStatus = (state: State): boolean => {
+export const selectIsLoading = (state: State): boolean => {
   return state[Reducer.Offers].loading;
 };
 

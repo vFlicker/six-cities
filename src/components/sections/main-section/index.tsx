@@ -10,7 +10,7 @@ import * as S from './styles';
 export function MainSection(): JSX.Element {
   const cityName = useAppSelector(appSlice.selectCurrentCityName);
   const sortedOffers = useAppSelector(offersSlice.selectSortedOffers);
-  const isLoading = useAppSelector(offersSlice.selectLoadingStatus);
+  const isLoading = useAppSelector(offersSlice.selectIsLoading);
   const error = useAppSelector(offersSlice.selectError);
 
   const dispatch = useAppDispatch();

@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { AuthStatus } from '~/constants';
 import { useAppDispatch, useAppSelector } from '~/hooks';
 import { commentsSlice, userSlice } from '~/store';
 
@@ -15,10 +14,10 @@ export function ReviewsSection(): JSX.Element {
   const { id } = useParams();
 
   const reviews = useAppSelector(commentsSlice.selectComments);
-  const isLoading = useAppSelector(commentsSlice.selectLoadingStatus);
+  const isLoading = useAppSelector(commentsSlice.selectIsLoading);
   const error = useAppSelector(commentsSlice.selectError);
 
-  const authStatus = useAppSelector(userSlice.selectAuthStatus);
+  const isUserAuthorized = useAppSelector(userSlice.selectIsUserAuthorized);
 
   const dispatch = useAppDispatch();
 
@@ -29,7 +28,7 @@ export function ReviewsSection(): JSX.Element {
   const reviewCount = reviews.length;
 
   const reviewsList = Boolean(reviewCount) && <ReviewsList reviews={reviews} />;
-  const reviewsForm = authStatus === AuthStatus.Auth && <ReviewsForm />;
+  const reviewsForm = isUserAuthorized && <ReviewsForm />;
 
   if (isLoading) return <Spinner />;
 
