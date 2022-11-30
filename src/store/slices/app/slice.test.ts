@@ -3,7 +3,9 @@ import { AppStatus, CityName, SortType } from '~/constants';
 import appSlice, {
   changeCityName,
   changeSortType,
+  initializeApp,
   setActiveCardId,
+  toggleFavorite,
 } from './slice';
 import { State } from './types';
 
@@ -59,5 +61,223 @@ describe('Slice: app', () => {
     expect(appSlice.reducer(initialState, setActiveCardId(newId))).toEqual(
       updatedState,
     );
+  });
+
+  describe('initializeApp', () => {
+    it('should update initialize to "pending" if initializeApp pending', () => {
+      const ACTION_TYPE = { type: initializeApp.pending.type };
+
+      const updatedState: State = {
+        ...initialState,
+        initialize: AppStatus.Pending,
+      };
+
+      expect(appSlice.reducer(initialState, ACTION_TYPE)).toEqual(updatedState);
+    });
+
+    it('should update initialize to "succeeded" if initializeApp fulfilled', () => {
+      const ACTION_TYPE = { type: initializeApp.fulfilled.type };
+
+      const updatedState: State = {
+        ...initialState,
+        initialize: AppStatus.Succeeded,
+      };
+
+      expect(appSlice.reducer(initialState, ACTION_TYPE)).toEqual(updatedState);
+    });
+
+    it('should update initialize to "failed" if initializeApp rejected', () => {
+      const ACTION_TYPE = { type: initializeApp.rejected.type };
+
+      const updatedState: State = {
+        ...initialState,
+        initialize: AppStatus.Failed,
+      };
+
+      expect(appSlice.reducer(initialState, ACTION_TYPE)).toEqual(updatedState);
+    });
+  });
+
+  describe('toggleFavorite', () => {
+    it('should add id to favoriteIDsInProgress if toggleFavorite pending', () => {
+      const ACTION_TYPE_WITH_META_1 = {
+        type: toggleFavorite.pending.type,
+        meta: {
+          arg: { id: 1 },
+        },
+      };
+
+      const updatedState1: State = {
+        ...initialState,
+        favoriteIDsInProgress: [1],
+      };
+
+      expect(appSlice.reducer(initialState, ACTION_TYPE_WITH_META_1)).toEqual(
+        updatedState1,
+      );
+
+      const ACTION_TYPE_WITH_META_2 = {
+        type: toggleFavorite.pending.type,
+        meta: {
+          arg: { id: 2 },
+        },
+      };
+
+      const updatedState2: State = {
+        ...initialState,
+        favoriteIDsInProgress: [1, 2],
+      };
+
+      expect(appSlice.reducer(updatedState1, ACTION_TYPE_WITH_META_2)).toEqual(
+        updatedState2,
+      );
+    });
+
+    it('should remove id from favoriteIDsInProgress if toggleFavorite fulfilled', () => {
+      const initialState1: State = {
+        initialize: AppStatus.Idle,
+        activeCardId: -1,
+        currentCityName: CityName.Amsterdam,
+        currentSortType: SortType.Popular,
+        favoriteIDsInProgress: [1, 2],
+        error: null,
+      };
+
+      const ACTION_TYPE_WITH_META_1 = {
+        type: toggleFavorite.fulfilled.type,
+        meta: {
+          arg: { id: 1 },
+        },
+      };
+
+      const updatedState1: State = {
+        ...initialState1,
+        favoriteIDsInProgress: [2],
+      };
+
+      expect(appSlice.reducer(initialState1, ACTION_TYPE_WITH_META_1)).toEqual(
+        updatedState1,
+      );
+
+      const initialState2: State = {
+        initialize: AppStatus.Idle,
+        activeCardId: -1,
+        currentCityName: CityName.Amsterdam,
+        currentSortType: SortType.Popular,
+        favoriteIDsInProgress: [2],
+        error: null,
+      };
+
+      const ACTION_TYPE_WITH_META_2 = {
+        type: toggleFavorite.fulfilled.type,
+        meta: {
+          arg: { id: 2 },
+        },
+      };
+
+      const updatedState2: State = {
+        ...initialState2,
+        favoriteIDsInProgress: [],
+      };
+
+      expect(appSlice.reducer(initialState2, ACTION_TYPE_WITH_META_2)).toEqual(
+        updatedState2,
+      );
+    });
+
+    it('should remove id from favoriteIDsInProgress if toggleFavorite rejected', () => {
+      const initialState1: State = {
+        initialize: AppStatus.Idle,
+        activeCardId: -1,
+        currentCityName: CityName.Amsterdam,
+        currentSortType: SortType.Popular,
+        favoriteIDsInProgress: [1, 2],
+        error: null,
+      };
+
+      const ACTION_TYPE_WITH_META_1 = {
+        type: toggleFavorite.rejected.type,
+        meta: {
+          arg: { id: 1 },
+        },
+        payload: new Error('Error'),
+      };
+
+      const updatedState1: State = {
+        ...initialState1,
+        favoriteIDsInProgress: [2],
+        error: new Error('Error'),
+      };
+
+      expect(appSlice.reducer(initialState1, ACTION_TYPE_WITH_META_1)).toEqual(
+        updatedState1,
+      );
+
+      const initialState2: State = {
+        initialize: AppStatus.Idle,
+        activeCardId: -1,
+        currentCityName: CityName.Amsterdam,
+        currentSortType: SortType.Popular,
+        favoriteIDsInProgress: [2],
+        error: null,
+      };
+
+      const ACTION_TYPE_WITH_META_2 = {
+        type: toggleFavorite.rejected.type,
+        meta: {
+          arg: { id: 2 },
+        },
+        payload: new Error('Error'),
+      };
+
+      const updatedState2: State = {
+        ...initialState2,
+        favoriteIDsInProgress: [],
+        error: new Error('Error'),
+      };
+
+      expect(appSlice.reducer(initialState2, ACTION_TYPE_WITH_META_2)).toEqual(
+        updatedState2,
+      );
+    });
+
+    it('should remove error from state if toggleFavorite pending or fulfilled', () => {
+      const initialState: State = {
+        initialize: AppStatus.Idle,
+        activeCardId: -1,
+        currentCityName: CityName.Amsterdam,
+        currentSortType: SortType.Popular,
+        favoriteIDsInProgress: [],
+        error: new Error('Error'),
+      };
+
+      const PENDING_ACTION_TYPE_WITH_META = {
+        type: toggleFavorite.pending.type,
+        meta: {
+          arg: { id: 1 },
+        },
+      };
+
+      const FULFILLED_ACTION_TYPE_WITH_META = {
+        type: toggleFavorite.pending.type,
+        meta: {
+          arg: { id: 1 },
+        },
+      };
+
+      const updatedState: State = {
+        ...initialState,
+        favoriteIDsInProgress: [1],
+        error: null,
+      };
+
+      expect(
+        appSlice.reducer(initialState, PENDING_ACTION_TYPE_WITH_META),
+      ).toEqual(updatedState);
+
+      expect(
+        appSlice.reducer(initialState, FULFILLED_ACTION_TYPE_WITH_META),
+      ).toEqual(updatedState);
+    });
   });
 });

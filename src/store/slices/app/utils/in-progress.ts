@@ -12,5 +12,5 @@ export const removeFromInProgress = (
   favoriteIDs: OfferID[],
   favoriteID: OfferID,
 ): OfferID[] => {
-  return favoriteIDs.filter((id) => favoriteID === id);
+  return favoriteIDs.filter((id) => favoriteID !== id);
 };
