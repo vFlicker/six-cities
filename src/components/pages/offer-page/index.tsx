@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '~/hooks';
-import { offerSlice, offersSlice } from '~/store';
+import { offerSlice } from '~/store';
 
 import {
   HeaderSection,
@@ -34,7 +34,6 @@ function OfferContent(): JSX.Element {
 
   useEffect(() => {
     dispatch(offerSlice.fetchOffer(Number(id)));
-    dispatch(offersSlice.fetchOffersNearby(Number(id)));
   }, [dispatch, id]);
 
   if (isLoading) return <Spinner />;

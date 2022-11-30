@@ -25,9 +25,9 @@ export function MainSection(): JSX.Element {
     />
   ));
 
-  if (error) return <ErrorMessage />;
-
   if (isLoading) return <Spinner />;
+
+  if (error) return <ErrorMessage />;
 
   if (!sortedOffers.length) return <MainEmptySection />;
 
