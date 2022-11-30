@@ -20,8 +20,10 @@ export type Location = {
   zoom: number;
 };
 
+export type OfferID = number;
+
 export type Offer = {
-  id: number;
+  id: OfferID;
   bedrooms: number;
   city: City;
   description: string;

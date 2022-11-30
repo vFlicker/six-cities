@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { FavoriteStatus } from '~/constants';
 import { useAppDispatch, useAppSelector } from '~/hooks';
-import { favoritesSlice } from '~/store';
+import { appSlice } from '~/store';
 
 import { Offer } from '~/types';
 
@@ -39,15 +39,15 @@ export function CardItem({
     type,
   } = offer;
 
-  const favoritesInProgress = useAppSelector(
-    favoritesSlice.selectFavoritesInProgress,
+  const favoriteIDsInProgress = useAppSelector(
+    appSlice.selectFavoriteIDsInProgress,
   );
 
   const dispatch = useAppDispatch();
 
   const handleFavoriteButtonClick = () => {
     dispatch(
-      favoritesSlice.toggleFavorite({
+      appSlice.toggleFavorite({
         id,
         status: isFavorite ? FavoriteStatus.Remove : FavoriteStatus.Add,
       }),
@@ -84,7 +84,7 @@ export function CardItem({
             width={18}
             height={19}
             isFavorite={isFavorite}
-            isLoading={favoritesInProgress.includes(id)}
+            isLoading={favoriteIDsInProgress.includes(id)}
             onClick={handleFavoriteButtonClick}
           />
         </S.PriceWrapper>

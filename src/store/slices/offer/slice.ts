@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { Reducer } from '~/constants';
 import { Offer } from '~/types';
 
-import { toggleFavorite } from '../../api-actions/favorites';
+import { toggleFavorite } from '../../api-actions/app';
 import { fetchOffer } from '../../api-actions/offer';
 
 type State = {

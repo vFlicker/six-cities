@@ -1,6 +1,6 @@
 import { FavoriteStatus } from '~/constants';
 import { useAppDispatch, useAppSelector } from '~/hooks';
-import { favoritesSlice } from '~/store';
+import { appSlice } from '~/store';
 import { Offer } from '~/types';
 
 import { BookmarkButton, Mark, StarRating } from '../../../shared';
@@ -30,15 +30,15 @@ export function Property({
 }: PropertyProps): JSX.Element {
   const { avatarUrl, isPro, name: authorName } = host;
 
-  const favoritesInProgress = useAppSelector(
-    favoritesSlice.selectFavoritesInProgress,
+  const favoriteIDsInProgress = useAppSelector(
+    appSlice.selectFavoriteIDsInProgress,
   );
 
   const dispatch = useAppDispatch();
 
   const handleFavoriteButtonClick = () => {
     dispatch(
-      favoritesSlice.toggleFavorite({
+      appSlice.toggleFavorite({
         id,
         status: isFavorite ? FavoriteStatus.Remove : FavoriteStatus.Add,
       }),
@@ -59,7 +59,7 @@ export function Property({
             width={31}
             height={33}
             isFavorite={isFavorite}
-            isLoading={favoritesInProgress.includes(id)}
+            isLoading={favoriteIDsInProgress.includes(id)}
             onClick={handleFavoriteButtonClick}
           />
         </S.BookmarkButtonWrapper>

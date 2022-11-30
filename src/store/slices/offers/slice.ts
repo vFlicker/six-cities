@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { Reducer } from '~/constants';
 
-import { toggleFavorite } from '../../api-actions/favorites';
+import { toggleFavorite } from '../../api-actions/app';
 import {
   fetchOffers,
   fetchFavoriteOffers,
