@@ -1,7 +1,7 @@
 import { CamelToSnakeCaseNested } from '../util-types';
 import { User } from './user';
 
-type ReviewUser = Omit<User, 'token' | 'email'>;
+export type ReviewUser = Omit<User, 'token' | 'email'>;
 
 export type Review = {
   id: number;
