@@ -37,6 +37,7 @@ const slice = createSlice({
 
       /* LOGIN */
       .addCase(login.pending, (state) => {
+        state.user = null;
         state.loading = true;
         state.error = null;
       })
@@ -54,12 +55,12 @@ const slice = createSlice({
 
       /* LOGOUT */
       .addCase(logout.pending, (state) => {
-        state.user = null;
         state.loading = true;
         state.error = null;
       })
       .addCase(logout.fulfilled, (state) => {
         state.authStatus = AuthStatus.NoAuth;
+        state.user = null;
         state.loading = false;
         state.error = null;
       })

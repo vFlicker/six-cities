@@ -1,14 +1,16 @@
 import { faker } from '@faker-js/faker/locale/en_US';
 
 import { CityName } from '~/constants';
-import { City, Host, Location, Offer, Review, ReviewUser } from '~/types';
+import { City, Host, Location, Offer, Review, ReviewUser, User } from '~/types';
 
-const makeUser = (): ReviewUser => ({
-  id: faker.datatype.number(),
-  name: faker.name.firstName(),
-  avatarUrl: faker.image.imageUrl(),
-  isPro: faker.datatype.boolean(),
-});
+const makeReviewUser = (): ReviewUser => {
+  const user = makeUser() as Partial<User>;
+
+  delete user.token;
+  delete user.email;
+
+  return user as ReviewUser;
+};
 
 const makeLocation = (): Location => ({
   latitude: Number(faker.address.latitude()),
@@ -28,12 +30,14 @@ const makeHost = (): Host => ({
   isPro: faker.datatype.boolean(),
 });
 
+export const makeError = (): Error => new Error('Same error...');
+
 export const makeComment = (): Review => ({
   comment: faker.lorem.paragraph(),
   date: faker.datatype.datetime(),
   id: faker.datatype.number(),
   rating: faker.datatype.number({ min: 1, max: 5 }),
-  user: makeUser(),
+  user: makeReviewUser(),
 });
 
 export const makeOffer = (): Offer => ({
@@ -57,4 +61,13 @@ export const makeOffer = (): Offer => ({
   isPremium: faker.datatype.boolean(),
   maxAdults: faker.datatype.number({ min: 1, max: 4 }),
   previewImage: faker.image.imageUrl(),
+});
+
+export const makeUser = (): User => ({
+  id: faker.datatype.number(),
+  name: faker.name.firstName(),
+  avatarUrl: faker.image.imageUrl(),
+  isPro: faker.datatype.boolean(),
+  email: faker.internet.email(),
+  token: faker.datatype.string(32),
 });

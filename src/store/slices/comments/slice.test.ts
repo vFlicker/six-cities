@@ -1,4 +1,4 @@
-import { makeComment } from '~/utils';
+import { makeError, makeComment } from '~/utils';
 
 import commentSlice, { fetchComments, postComment } from './slice';
 import { State } from './types';
@@ -13,7 +13,7 @@ const firstComment = makeComment();
 const secondComment = makeComment();
 const comments = [firstComment, secondComment];
 
-const errorPayload = new Error('Same error...');
+const error = makeError();
 
 describe('Slice: comments', () => {
   it('without additional parameters should return initial state', () => {
@@ -61,13 +61,13 @@ describe('Slice: comments', () => {
     it('should add error to error property if fetchComments rejected', () => {
       const ACTION_TYPE = {
         type: fetchComments.rejected.type,
-        payload: errorPayload,
+        payload: error,
       };
 
       const updatedState: State = {
         ...initialState,
         loading: false,
-        error: errorPayload,
+        error: error,
       };
 
       expect(commentSlice.reducer(initialState, ACTION_TYPE)).toEqual(
@@ -79,7 +79,7 @@ describe('Slice: comments', () => {
       const initialState: State = {
         comments: [],
         loading: false,
-        error: errorPayload,
+        error: error,
       };
 
       const PENDING_ACTION_TYPE = {
@@ -153,13 +153,13 @@ describe('Slice: comments', () => {
     it('should add error to error property if postComment rejected', () => {
       const ACTION_TYPE = {
         type: postComment.rejected.type,
-        payload: errorPayload,
+        payload: error,
       };
 
       const updatedState: State = {
         ...initialState,
         loading: false,
-        error: errorPayload,
+        error: error,
       };
 
       expect(commentSlice.reducer(initialState, ACTION_TYPE)).toEqual(
@@ -171,7 +171,7 @@ describe('Slice: comments', () => {
       const initialState: State = {
         comments: [],
         loading: false,
-        error: errorPayload,
+        error: error,
       };
 
       const PENDING_ACTION_TYPE = {

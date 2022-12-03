@@ -1,4 +1,5 @@
 import { AppStatus, CityName, SortType } from '~/constants';
+import { makeError } from '~/utils';
 
 import appSlice, {
   changeCityName,
@@ -18,7 +19,7 @@ const initialState: State = {
   error: null,
 };
 
-const errorPayload = new Error('Some error...');
+const error = makeError();
 
 describe('Slice: app', () => {
   it('without additional parameters should return initial state', () => {
@@ -220,13 +221,13 @@ describe('Slice: app', () => {
         meta: {
           arg: { id: 1 },
         },
-        payload: errorPayload,
+        payload: error,
       };
 
       const updatedState1: State = {
         ...initialState1,
         favoriteIDsInProgress: [2],
-        error: errorPayload,
+        error: error,
       };
 
       expect(appSlice.reducer(initialState1, ACTION_TYPE_1)).toEqual(
@@ -247,13 +248,13 @@ describe('Slice: app', () => {
         meta: {
           arg: { id: 2 },
         },
-        payload: errorPayload,
+        payload: error,
       };
 
       const updatedState2: State = {
         ...initialState2,
         favoriteIDsInProgress: [],
-        error: errorPayload,
+        error: error,
       };
 
       expect(appSlice.reducer(initialState2, ACTION_TYPE_2)).toEqual(
@@ -268,7 +269,7 @@ describe('Slice: app', () => {
         currentCityName: CityName.Amsterdam,
         currentSortType: SortType.Popular,
         favoriteIDsInProgress: [],
-        error: errorPayload,
+        error: error,
       };
 
       const PENDING_ACTION_TYPE = {

@@ -1,4 +1,4 @@
-import { makeOffer } from '~/utils';
+import { makeError, makeOffer } from '~/utils';
 
 import { toggleFavorite } from '../../api-actions/app';
 import offerSlice, { fetchOffer } from './slice';
@@ -11,8 +11,7 @@ const initialState: State = {
 };
 
 const offer = makeOffer();
-
-const errorPayload = new Error('Same error...');
+const error = makeError();
 
 describe('Slice: offer', () => {
   it('without additional parameters should return initial state', () => {
@@ -60,13 +59,13 @@ describe('Slice: offer', () => {
     it('should add error to error property if fetchOffer rejected', () => {
       const ACTION_TYPE = {
         type: fetchOffer.rejected.type,
-        payload: errorPayload,
+        payload: error,
       };
 
       const updatedState: State = {
         ...initialState,
         loading: false,
-        error: errorPayload,
+        error: error,
       };
 
       expect(offerSlice.reducer(initialState, ACTION_TYPE)).toEqual(
@@ -78,7 +77,7 @@ describe('Slice: offer', () => {
       const initialState: State = {
         offer: null,
         loading: false,
-        error: errorPayload,
+        error: error,
       };
 
       const PENDING_ACTION_TYPE = {
