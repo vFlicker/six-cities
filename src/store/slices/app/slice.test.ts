@@ -18,6 +18,8 @@ const initialState: State = {
   error: null,
 };
 
+const errorPayload = new Error('Some error...');
+
 describe('Slice: app', () => {
   it('without additional parameters should return initial state', () => {
     const UNKNOWN_TYPE = { type: 'UNKNOWN_ACTION' };
@@ -100,7 +102,16 @@ describe('Slice: app', () => {
 
   describe('toggleFavorite', () => {
     it('should add id to favoriteIDsInProgress if toggleFavorite pending', () => {
-      const ACTION_TYPE_WITH_META_1 = {
+      const initialState1: State = {
+        initialize: AppStatus.Idle,
+        activeCardId: -1,
+        currentCityName: CityName.Amsterdam,
+        currentSortType: SortType.Popular,
+        favoriteIDsInProgress: [],
+        error: null,
+      };
+
+      const ACTION_TYPE_1 = {
         type: toggleFavorite.pending.type,
         meta: {
           arg: { id: 1 },
@@ -108,15 +119,24 @@ describe('Slice: app', () => {
       };
 
       const updatedState1: State = {
-        ...initialState,
+        ...initialState1,
         favoriteIDsInProgress: [1],
       };
 
-      expect(appSlice.reducer(initialState, ACTION_TYPE_WITH_META_1)).toEqual(
+      expect(appSlice.reducer(initialState1, ACTION_TYPE_1)).toEqual(
         updatedState1,
       );
 
-      const ACTION_TYPE_WITH_META_2 = {
+      const initialState2: State = {
+        initialize: AppStatus.Idle,
+        activeCardId: -1,
+        currentCityName: CityName.Amsterdam,
+        currentSortType: SortType.Popular,
+        favoriteIDsInProgress: [1],
+        error: null,
+      };
+
+      const ACTION_TYPE_2 = {
         type: toggleFavorite.pending.type,
         meta: {
           arg: { id: 2 },
@@ -124,11 +144,11 @@ describe('Slice: app', () => {
       };
 
       const updatedState2: State = {
-        ...initialState,
+        ...initialState2,
         favoriteIDsInProgress: [1, 2],
       };
 
-      expect(appSlice.reducer(updatedState1, ACTION_TYPE_WITH_META_2)).toEqual(
+      expect(appSlice.reducer(initialState2, ACTION_TYPE_2)).toEqual(
         updatedState2,
       );
     });
@@ -143,7 +163,7 @@ describe('Slice: app', () => {
         error: null,
       };
 
-      const ACTION_TYPE_WITH_META_1 = {
+      const ACTION_TYPE_1 = {
         type: toggleFavorite.fulfilled.type,
         meta: {
           arg: { id: 1 },
@@ -155,7 +175,7 @@ describe('Slice: app', () => {
         favoriteIDsInProgress: [2],
       };
 
-      expect(appSlice.reducer(initialState1, ACTION_TYPE_WITH_META_1)).toEqual(
+      expect(appSlice.reducer(initialState1, ACTION_TYPE_1)).toEqual(
         updatedState1,
       );
 
@@ -168,7 +188,7 @@ describe('Slice: app', () => {
         error: null,
       };
 
-      const ACTION_TYPE_WITH_META_2 = {
+      const ACTION_TYPE_2 = {
         type: toggleFavorite.fulfilled.type,
         meta: {
           arg: { id: 2 },
@@ -180,7 +200,7 @@ describe('Slice: app', () => {
         favoriteIDsInProgress: [],
       };
 
-      expect(appSlice.reducer(initialState2, ACTION_TYPE_WITH_META_2)).toEqual(
+      expect(appSlice.reducer(initialState2, ACTION_TYPE_2)).toEqual(
         updatedState2,
       );
     });
@@ -195,21 +215,21 @@ describe('Slice: app', () => {
         error: null,
       };
 
-      const ACTION_TYPE_WITH_META_1 = {
+      const ACTION_TYPE_1 = {
         type: toggleFavorite.rejected.type,
         meta: {
           arg: { id: 1 },
         },
-        payload: new Error('Error'),
+        payload: errorPayload,
       };
 
       const updatedState1: State = {
         ...initialState1,
         favoriteIDsInProgress: [2],
-        error: new Error('Error'),
+        error: errorPayload,
       };
 
-      expect(appSlice.reducer(initialState1, ACTION_TYPE_WITH_META_1)).toEqual(
+      expect(appSlice.reducer(initialState1, ACTION_TYPE_1)).toEqual(
         updatedState1,
       );
 
@@ -222,21 +242,21 @@ describe('Slice: app', () => {
         error: null,
       };
 
-      const ACTION_TYPE_WITH_META_2 = {
+      const ACTION_TYPE_2 = {
         type: toggleFavorite.rejected.type,
         meta: {
           arg: { id: 2 },
         },
-        payload: new Error('Error'),
+        payload: errorPayload,
       };
 
       const updatedState2: State = {
         ...initialState2,
         favoriteIDsInProgress: [],
-        error: new Error('Error'),
+        error: errorPayload,
       };
 
-      expect(appSlice.reducer(initialState2, ACTION_TYPE_WITH_META_2)).toEqual(
+      expect(appSlice.reducer(initialState2, ACTION_TYPE_2)).toEqual(
         updatedState2,
       );
     });
@@ -248,17 +268,17 @@ describe('Slice: app', () => {
         currentCityName: CityName.Amsterdam,
         currentSortType: SortType.Popular,
         favoriteIDsInProgress: [],
-        error: new Error('Error'),
+        error: errorPayload,
       };
 
-      const PENDING_ACTION_TYPE_WITH_META = {
+      const PENDING_ACTION_TYPE = {
         type: toggleFavorite.pending.type,
         meta: {
           arg: { id: 1 },
         },
       };
 
-      const FULFILLED_ACTION_TYPE_WITH_META = {
+      const FULFILLED_ACTION_TYPE = {
         type: toggleFavorite.pending.type,
         meta: {
           arg: { id: 1 },
@@ -271,13 +291,13 @@ describe('Slice: app', () => {
         error: null,
       };
 
-      expect(
-        appSlice.reducer(initialState, PENDING_ACTION_TYPE_WITH_META),
-      ).toEqual(updatedState);
+      expect(appSlice.reducer(initialState, PENDING_ACTION_TYPE)).toEqual(
+        updatedState,
+      );
 
-      expect(
-        appSlice.reducer(initialState, FULFILLED_ACTION_TYPE_WITH_META),
-      ).toEqual(updatedState);
+      expect(appSlice.reducer(initialState, FULFILLED_ACTION_TYPE)).toEqual(
+        updatedState,
+      );
     });
   });
 });
