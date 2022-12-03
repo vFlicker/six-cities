@@ -25,6 +25,8 @@ export const initializeApp = createAsyncThunk<void, undefined, ThunkOptions>(
       if (isUserAuthorized) {
         await dispatch(fetchFavoriteOffers());
       }
+
+      return;
     } catch (error) {
       errorHandler(error as Error);
       return rejectWithValue(error as Error);

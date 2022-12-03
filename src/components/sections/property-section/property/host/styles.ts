@@ -57,6 +57,8 @@ export const AvatarWrapper = styled.div<AvatarWrapperProps>`
           background-repeat: no-repeat;
         `;
       }
+
+      return css``;
     }}
   }
 `;

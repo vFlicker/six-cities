@@ -44,7 +44,7 @@ export const logout = createAsyncThunk<void, undefined, ThunkOptions>(
   async (_, { extra: apiService, rejectWithValue }) => {
     try {
       await apiService.delete<void>(`logout`);
-      dropToken();
+      return dropToken();
     } catch (error) {
       errorHandler(error as Error);
       return rejectWithValue(error as Error);

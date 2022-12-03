@@ -57,6 +57,8 @@ export const ImageWrapper = styled.div<Card>`
         margin-bottom: 0;
       `;
     }
+
+    return css``;
   }}
 `;
 
