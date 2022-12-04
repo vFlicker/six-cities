@@ -14,9 +14,8 @@ export const createApiService = (): AxiosInstance => {
   apiService.interceptors.request.use((config: AxiosRequestConfig) => {
     const token = getToken();
 
-    if (token) {
-      // eslint-disable-next-line no-param-reassign
-      config.headers = { 'x-token': token };
+    if (token && config.headers) {
+      config.headers['x-token'] = token;
     }
 
     return config;
