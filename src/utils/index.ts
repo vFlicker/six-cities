@@ -1,2 +1,2 @@
 export * from './date';
-export * from './mocks';
+export * from './mock-data';
