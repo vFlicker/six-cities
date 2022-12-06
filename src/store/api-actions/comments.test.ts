@@ -19,10 +19,10 @@ describe('Async actions: comments', () => {
   >(middlewares);
 
   describe('fetchComments', () => {
+    const id = 1;
+
     it('should dispatch fetchComments when GET /comments/:hotel_id and server return 200', async () => {
       const store = mockStore();
-
-      const id = 1;
 
       mockApiService.onGet(`/comments/${id}`).reply(200, []);
 
@@ -40,8 +40,6 @@ describe('Async actions: comments', () => {
 
     it('should dispatch fetchComments when GET /comments/:hotel_id and server return 400', async () => {
       const store = mockStore();
-
-      const id = 1;
 
       mockApiService.onGet(`/comments/${id}`).reply(400, []);
 
