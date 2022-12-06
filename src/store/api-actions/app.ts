@@ -4,23 +4,31 @@ import { FavoriteStatus, Reducer } from '~/constants';
 import { errorHandler } from '~/services';
 import { Offer, OfferID, OfferServer, ThunkOptions } from '~/types';
 
-import { fetchFavoriteOffers, fetchOffers } from '../slices/offers';
-import { checkAuthStatus, selectIsUserAuthorized } from '../slices/user';
+import { fetchFavoriteOffers, fetchAllOffers } from '../slices/offers';
+import { checkAuthStatus } from '../slices/user';
+
+type ToggleFavoritePayload = {
+  id: OfferID;
+  status: FavoriteStatus;
+};
 
 /**
  * Thunk that call thunks for init application.
  */
 export const initializeApp = createAsyncThunk<void, undefined, ThunkOptions>(
   `${Reducer.App}/initialize`,
-  async (_, { getState, dispatch, rejectWithValue }) => {
+  async (_, { dispatch, rejectWithValue }) => {
     try {
+      const fetchAllOffersPromise = dispatch(fetchAllOffers());
       const checkAuthStatusPromise = dispatch(checkAuthStatus());
-      const fetchOffersPromise = dispatch(fetchOffers());
 
-      await Promise.all([checkAuthStatusPromise, fetchOffersPromise]);
+      const [checkAuthStatusPayload] = await Promise.all([
+        checkAuthStatusPromise,
+        fetchAllOffersPromise,
+      ]);
 
-      const state = getState();
-      const isUserAuthorized = selectIsUserAuthorized(state);
+      const isUserAuthorized =
+        checkAuthStatusPayload.type === checkAuthStatus.fulfilled.type;
 
       if (isUserAuthorized) {
         await dispatch(fetchFavoriteOffers());
@@ -33,11 +41,6 @@ export const initializeApp = createAsyncThunk<void, undefined, ThunkOptions>(
     }
   },
 );
-
-type ToggleFavoritePayload = {
-  id: OfferID;
-  status: FavoriteStatus;
-};
 
 export const toggleFavorite = createAsyncThunk<
   Offer,

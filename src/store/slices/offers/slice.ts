@@ -4,7 +4,7 @@ import { Reducer } from '~/constants';
 
 import { toggleFavorite } from '../../api-actions/app';
 import {
-  fetchOffers,
+  fetchAllOffers,
   fetchFavoriteOffers,
   fetchOffersNearby,
 } from '../../api-actions/offers';
@@ -27,16 +27,16 @@ const slice = createSlice({
   extraReducers: (builder) => {
     builder
       /* FETCH OFFERS */
-      .addCase(fetchOffers.pending, (state) => {
+      .addCase(fetchAllOffers.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(fetchOffers.fulfilled, (state, action) => {
+      .addCase(fetchAllOffers.fulfilled, (state, action) => {
         state.all = action.payload;
         state.loading = false;
         state.error = null;
       })
-      .addCase(fetchOffers.rejected, (state, action) => {
+      .addCase(fetchAllOffers.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload as Error;
       })
@@ -85,6 +85,6 @@ const slice = createSlice({
   },
 });
 
-export { fetchOffers, fetchFavoriteOffers, fetchOffersNearby };
+export { fetchAllOffers, fetchFavoriteOffers, fetchOffersNearby };
 
 export default slice;

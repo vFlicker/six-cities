@@ -4,12 +4,12 @@ import { Reducer } from '~/constants';
 import { errorHandler } from '~/services';
 import { ThunkOptions, Offer, OfferServer } from '~/types';
 
-export const fetchOffers = createAsyncThunk<
+export const fetchAllOffers = createAsyncThunk<
   OfferServer[],
   undefined,
   ThunkOptions
 >(
-  `${Reducer.Offers}/fetchAll`,
+  `${Reducer.Offers}/fetchAllOffers`,
   async (_, { extra: apiService, rejectWithValue }) => {
     try {
       const { data } = await apiService.get<OfferServer[]>(`/hotels`);
@@ -26,7 +26,7 @@ export const fetchFavoriteOffers = createAsyncThunk<
   undefined,
   ThunkOptions
 >(
-  `${Reducer.Offers}/fetchFavorites`,
+  `${Reducer.Offers}/fetchFavoriteOffers`,
   async (_, { extra: apiService, rejectWithValue }) => {
     try {
       const { data } = await apiService.get<OfferServer[]>(`/favorite`);
@@ -43,7 +43,7 @@ export const fetchOffersNearby = createAsyncThunk<
   number,
   ThunkOptions
 >(
-  `${Reducer.Offers}/fetchNearby`,
+  `${Reducer.Offers}/fetchOffersNearby`,
   async (id, { extra: apiService, rejectWithValue }) => {
     try {
       const { data } = await apiService.get<OfferServer[]>(

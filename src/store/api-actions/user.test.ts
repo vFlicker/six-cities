@@ -5,11 +5,8 @@ import thunk, { ThunkDispatch } from 'redux-thunk';
 
 import { createApiService } from '~/services';
 import { State } from '~/types';
-import { makeUser } from '~/utils';
 
 import { checkAuthStatus } from './user';
-
-const user = makeUser();
 
 describe('Async actions: user', () => {
   const apiService = createApiService();
@@ -21,20 +18,39 @@ describe('Async actions: user', () => {
     ThunkDispatch<State, typeof apiService, Action>
   >(middlewares);
 
-  it('should authorization status is «AUTH» when server return 200', async () => {
-    const store = mockStore();
+  describe('checkAuthStatus', () => {
+    it('should dispatch checkAuthStatus when GET /login and server return 200', async () => {
+      const store = mockStore();
 
-    mockApiService.onGet('/login').reply(200, user);
+      mockApiService.onGet('/login').reply(200, {});
 
-    expect(store.getActions()).toEqual([]);
+      expect(store.getActions()).toEqual([]);
 
-    await store.dispatch(checkAuthStatus());
+      await store.dispatch(checkAuthStatus());
 
-    const actions = store.getActions().map(({ type }) => type);
+      const actions = store.getActions().map(({ type }) => type);
 
-    expect(actions).toEqual([
-      checkAuthStatus.pending.type,
-      checkAuthStatus.fulfilled.type,
-    ]);
+      expect(actions).toEqual([
+        checkAuthStatus.pending.type,
+        checkAuthStatus.fulfilled.type,
+      ]);
+    });
+
+    it('should dispatch checkAuthStatus when GET /login and server return 401', async () => {
+      const store = mockStore();
+
+      mockApiService.onGet('/login').reply(401, {});
+
+      expect(store.getActions()).toEqual([]);
+
+      await store.dispatch(checkAuthStatus());
+
+      const actions = store.getActions().map(({ type }) => type);
+
+      expect(actions).toEqual([
+        checkAuthStatus.pending.type,
+        checkAuthStatus.rejected.type,
+      ]);
+    });
   });
 });
