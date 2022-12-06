@@ -72,11 +72,11 @@ describe('Async actions: app', () => {
   });
 
   describe('toggleFavorite', () => {
-    it('should dispatch toggleFavorite when POST /favorite/1/1 and server return 200', async () => {
-      const store = mockStore();
+    const id = 1;
+    const status = FavoriteStatus.Add;
 
-      const id = 1;
-      const status = FavoriteStatus.Add;
+    it('should dispatch toggleFavorite when POST /favorite/:hotel_id/:status and server return 200', async () => {
+      const store = mockStore();
 
       mockApiService.onPost(`/favorite/${id}/${status}`).reply(200, {});
 
@@ -92,11 +92,8 @@ describe('Async actions: app', () => {
       ]);
     });
 
-    it('should dispatch toggleFavorite when POST /favorite/1/1 and server return 401', async () => {
+    it('should dispatch toggleFavorite when POST /favorite/:hotel_id/:status and server return 401', async () => {
       const store = mockStore();
-
-      const id = 1;
-      const status = FavoriteStatus.Add;
 
       mockApiService.onPost(`/favorite/${id}/${status}`).reply(401, {});
 

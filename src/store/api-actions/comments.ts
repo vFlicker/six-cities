@@ -4,7 +4,7 @@ import { Reducer } from '~/constants';
 import { errorHandler } from '~/services';
 import { ThunkOptions, Review, ReviewServer } from '~/types';
 
-type PostCommentPayload = {
+export type PostCommentPayload = {
   id: number;
   comment: string;
   rating: number;
