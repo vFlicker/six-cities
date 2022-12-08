@@ -3,6 +3,13 @@ import { faker } from '@faker-js/faker/locale/en_US';
 import { CityName } from '~/constants';
 import { City, Host, Location, Offer, Review, ReviewUser, User } from '~/types';
 
+type MakeOfferArgs = Partial<{
+  cityName: CityName;
+  price: number;
+  rating: number;
+  isFavorite: boolean;
+}>;
+
 const makeReviewUser = (): ReviewUser => {
   const user = makeUser() as Partial<User>;
 
@@ -18,9 +25,9 @@ const makeLocation = (): Location => ({
   zoom: faker.datatype.number({ min: 1, max: 10 }),
 });
 
-const makeCity = (): City => ({
+const makeCity = (cityName?: CityName): City => ({
   location: makeLocation(),
-  name: CityName.Amsterdam,
+  name: cityName ?? CityName.Amsterdam,
 });
 
 const makeHost = (): Host => ({
@@ -40,9 +47,14 @@ export const makeComment = (): Review => ({
   user: makeReviewUser(),
 });
 
-export const makeOffer = (): Offer => ({
+export const makeOffer = ({
+  cityName,
+  price,
+  rating,
+  isFavorite,
+}: MakeOfferArgs = {}): Offer => ({
   bedrooms: faker.datatype.number({ min: 1, max: 4 }),
-  city: makeCity(),
+  city: makeCity(cityName),
   description: faker.lorem.paragraph(),
   goods: faker.helpers.uniqueArray(faker.random.words, 5),
   host: makeHost(),
@@ -53,11 +65,11 @@ export const makeOffer = (): Offer => ({
     faker.image.imageUrl(),
   ],
   location: makeLocation(),
-  price: faker.datatype.number({ min: 10, max: 1000 }),
-  rating: faker.datatype.number({ min: 1, max: 5 }),
+  price: price ?? faker.datatype.number({ min: 10, max: 1000 }),
+  rating: rating ?? faker.datatype.number({ min: 1, max: 5 }),
   title: faker.lorem.paragraph(),
   type: faker.lorem.word(),
-  isFavorite: faker.datatype.boolean(),
+  isFavorite: isFavorite ?? faker.datatype.boolean(),
   isPremium: faker.datatype.boolean(),
   maxAdults: faker.datatype.number({ min: 1, max: 4 }),
   previewImage: faker.image.imageUrl(),

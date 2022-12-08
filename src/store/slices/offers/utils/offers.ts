@@ -1,12 +1,14 @@
 import { Offer } from '~/types';
 
-const addOffers = (offers: Offer[], updatedOffer: Offer): Offer[] => {
+const addOffer = (offers: Offer[], updatedOffer: Offer): Offer[] => {
   const updatedOffers = [...offers, updatedOffer];
   return updatedOffers;
 };
 
-const removeOffers = (offers: Offer[], updatedOffer: Offer): Offer[] => {
+const removeOffer = (offers: Offer[], updatedOffer: Offer): Offer[] => {
   const index = offers.findIndex(({ id }) => id === updatedOffer.id);
+
+  if (index === -1) throw new Error("Can't remove unexisting offer");
 
   const updatedOffers = [...offers.slice(0, index), ...offers.slice(index + 1)];
   return updatedOffers;
@@ -14,6 +16,8 @@ const removeOffers = (offers: Offer[], updatedOffer: Offer): Offer[] => {
 
 export const updateOffers = (offers: Offer[], updatedOffer: Offer): Offer[] => {
   const index = offers.findIndex(({ id }) => id === updatedOffer.id);
+
+  if (index === -1) throw new Error("Can't update unexisting offer");
 
   const updatedOffers = [
     ...offers.slice(0, index),
@@ -29,8 +33,8 @@ export const updateFavorites = (
   updatedOffer: Offer,
 ): Offer[] => {
   const updatedOffers = updatedOffer.isFavorite
-    ? addOffers(offers, updatedOffer)
-    : removeOffers(offers, updatedOffer);
+    ? addOffer(offers, updatedOffer)
+    : removeOffer(offers, updatedOffer);
 
   return updatedOffers;
 };
