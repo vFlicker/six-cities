@@ -56,8 +56,7 @@ export function Property({
 
         <S.BookmarkButtonWrapper>
           <BookmarkButton
-            width={31}
-            height={33}
+            size="large"
             isFavorite={isFavorite}
             isLoading={favoriteIDsInProgress.includes(id)}
             onClick={handleFavoriteButtonClick}

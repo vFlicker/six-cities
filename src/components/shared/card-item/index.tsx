@@ -81,8 +81,7 @@ export function CardItem({
           </S.Price>
 
           <BookmarkButton
-            width={18}
-            height={19}
+            size="small"
             isFavorite={isFavorite}
             isLoading={favoriteIDsInProgress.includes(id)}
             onClick={handleFavoriteButtonClick}
