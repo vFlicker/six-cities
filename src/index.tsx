@@ -12,6 +12,7 @@ import { globalStyle } from './styles';
 
 import 'react-toastify/dist/ReactToastify.css';
 
+// TODO: move it to app.jsx?
 store.dispatch(appSlice.initializeApp());
 
 const container = document.getElementById('root') as HTMLElement;

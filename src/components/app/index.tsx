@@ -1,8 +1,9 @@
+import { browserHistory } from '~/browser-history';
 import { useAppSelector } from '~/hooks';
 import { userSlice } from '~/store';
 
 import { Pages } from '../pages';
-import { Spinner } from '../shared';
+import { HistoryRouter, Spinner } from '../shared';
 
 export function App(): JSX.Element {
   const isAuthChecked = useAppSelector(userSlice.selectIsAuthChecked);
@@ -16,5 +17,9 @@ export function App(): JSX.Element {
   // TODO: Error 401
   // if (error) return <ErrorMessage />;
 
-  return <Pages />;
+  return (
+    <HistoryRouter history={browserHistory}>
+      <Pages />
+    </HistoryRouter>
+  );
 }

@@ -5,6 +5,7 @@ import { City, Host, Location, Offer, Review, ReviewUser, User } from '~/types';
 
 type MakeOfferArgs = Partial<{
   cityName: CityName;
+  id: number;
   price: number;
   rating: number;
   isFavorite: boolean;
@@ -49,6 +50,7 @@ export const makeComment = (): Review => ({
 
 export const makeOffer = ({
   cityName,
+  id,
   price,
   rating,
   isFavorite,
@@ -58,7 +60,7 @@ export const makeOffer = ({
   description: faker.lorem.paragraph(),
   goods: faker.helpers.uniqueArray(faker.random.words, 5),
   host: makeHost(),
-  id: faker.datatype.number(),
+  id: id ?? faker.datatype.number(),
   images: [
     faker.image.imageUrl(),
     faker.image.imageUrl(),
