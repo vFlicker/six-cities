@@ -5,14 +5,19 @@ import '@testing-library/jest-dom';
 import { Button } from './index';
 
 describe('Component: Button', () => {
-  it('should render correctly,', async () => {
-    const mockCallback = jest.fn();
+  it('should render correctly,', () => {
+    render(<Button>Test text</Button>);
 
-    render(<Button onClick={mockCallback}>Test text</Button>);
+    expect(screen.getByText('Test text'));
+  });
+
+  it('handleClick should be called', async () => {
+    const handleClick = jest.fn();
+
+    render(<Button onClick={handleClick}>Test text</Button>);
 
     await userEvent.click(screen.getByRole('button'));
 
-    expect(mockCallback.mock.calls.length).toBe(1);
-    expect(screen.getByText(/Test text/i));
+    expect(handleClick).toBeCalledTimes(1);
   });
 });

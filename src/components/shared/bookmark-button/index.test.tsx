@@ -5,37 +5,49 @@ import '@testing-library/jest-dom';
 import { BookmarkButton } from './index';
 
 describe('Component: BookmarkButton', () => {
-  it('should render correctly,', async () => {
-    const mockCallback = jest.fn();
-
+  it('should render correctly,', () => {
     render(
       <BookmarkButton
         size="large"
         isLoading={false}
         isFavorite={false}
-        onClick={mockCallback}
+        onClick={jest.fn()}
       />,
+    );
+
+    expect(screen.getByText('To bookmarks'));
+  });
+
+  it('handleClick should be called', async () => {
+    const handleClick = jest.fn();
+
+    render(
+      <BookmarkButton
+        size="small"
+        isLoading={false}
+        isFavorite={false}
+        onClick={handleClick}
+      />,
+      {},
     );
 
     const button = screen.getByRole('button');
 
     await userEvent.click(button);
 
-    // TODO: check color and size
     expect(button).toBeEnabled();
-    expect(mockCallback.mock.calls.length).toBe(1);
-    expect(screen.getByText(/To bookmarks/i));
+    expect(handleClick).toBeCalledTimes(1);
   });
 
-  it('should render correctly', async () => {
-    const mockCallback = jest.fn();
+  it("handleClick should'n be called", async () => {
+    const handleClick = jest.fn();
 
     render(
       <BookmarkButton
         size="small"
         isLoading={true}
-        isFavorite={true}
-        onClick={mockCallback}
+        isFavorite={false}
+        onClick={handleClick}
       />,
       {},
     );
@@ -45,9 +57,6 @@ describe('Component: BookmarkButton', () => {
     await userEvent.click(button);
 
     expect(button).toBeDisabled();
-    // TODO: check color and size
-    // expect(screen.getByRole('svg')).toHaveStyle('#979797');
-    expect(mockCallback.mock.calls.length).toBe(0);
-    expect(screen.getByText(/To bookmarks/i));
+    expect(handleClick).toBeCalledTimes(0);
   });
 });

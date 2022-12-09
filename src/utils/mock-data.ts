@@ -3,13 +3,9 @@ import { faker } from '@faker-js/faker/locale/en_US';
 import { CityName } from '~/constants';
 import { City, Host, Location, Offer, Review, ReviewUser, User } from '~/types';
 
-type MakeOfferArgs = Partial<{
-  cityName: CityName;
-  id: number;
-  price: number;
-  rating: number;
-  isFavorite: boolean;
-}>;
+type MakeOfferArgs = Partial<Offer> & {
+  cityName?: CityName;
+};
 
 const makeReviewUser = (): ReviewUser => {
   const user = makeUser() as Partial<User>;
@@ -54,6 +50,8 @@ export const makeOffer = ({
   price,
   rating,
   isFavorite,
+  title,
+  isPremium,
 }: MakeOfferArgs = {}): Offer => ({
   bedrooms: faker.datatype.number({ min: 1, max: 4 }),
   city: makeCity(cityName),
@@ -69,10 +67,10 @@ export const makeOffer = ({
   location: makeLocation(),
   price: price ?? faker.datatype.number({ min: 10, max: 1000 }),
   rating: rating ?? faker.datatype.number({ min: 1, max: 5 }),
-  title: faker.lorem.paragraph(),
+  title: title ?? faker.lorem.paragraph(),
   type: faker.lorem.word(),
   isFavorite: isFavorite ?? faker.datatype.boolean(),
-  isPremium: faker.datatype.boolean(),
+  isPremium: isPremium ?? faker.datatype.boolean(),
   maxAdults: faker.datatype.number({ min: 1, max: 4 }),
   previewImage: faker.image.imageUrl(),
 });
