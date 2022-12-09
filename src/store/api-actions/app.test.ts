@@ -22,7 +22,7 @@ describe('Async actions: app', () => {
   >(middlewares);
 
   describe('initializeApp', () => {
-    it('should dispatch initializeApp, checkAuthStatus, fetchAllOffers, fetchFavoriteOffers when POST /login and server return 200', async () => {
+    it('should dispatch initializeApp, checkAuthStatus, fetchAllOffers, fetchFavoriteOffers when POST "/login" and server return 200', async () => {
       const store = mockStore({
         [Reducer.User]: { authStatus: AuthStatus.Auth },
       });
@@ -49,7 +49,7 @@ describe('Async actions: app', () => {
       ]);
     });
 
-    it('should dispatch initializeApp, checkAuthStatus, fetchAllOffers when POST /login and server return 401', async () => {
+    it('should dispatch initializeApp, checkAuthStatus, fetchAllOffers when POST "/login" and server return 401', async () => {
       const store = mockStore({
         [Reducer.User]: { authStatus: AuthStatus.Unknown },
       });
@@ -79,7 +79,7 @@ describe('Async actions: app', () => {
     const id = 1;
     const status = FavoriteStatus.Add;
 
-    it('should dispatch toggleFavorite when POST /favorite/:hotel_id/:status and server return 200', async () => {
+    it('should dispatch toggleFavorite when POST "/favorite/:hotel_id/:status" and server return 200', async () => {
       const store = mockStore();
 
       mockApiService.onPost(`/favorite/${id}/${status}`).reply(200, {});
@@ -96,7 +96,7 @@ describe('Async actions: app', () => {
       ]);
     });
 
-    it('should dispatch toggleFavorite when POST /favorite/:hotel_id/:status and server return 401', async () => {
+    it('should dispatch toggleFavorite when POST "/favorite/:hotel_id/:status" and server return 401', async () => {
       const store = mockStore();
 
       mockApiService.onPost(`/favorite/${id}/${status}`).reply(401, {});

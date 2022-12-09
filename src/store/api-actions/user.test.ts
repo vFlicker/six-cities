@@ -19,7 +19,7 @@ describe('Async actions: user', () => {
   >(middlewares);
 
   describe('checkAuthStatus', () => {
-    it('should dispatch checkAuthStatus when GET /login and server return 200', async () => {
+    it('should dispatch checkAuthStatus when GET "/login" and server return 200', async () => {
       const store = mockStore();
 
       mockApiService.onGet('/login').reply(200, {});
@@ -36,7 +36,7 @@ describe('Async actions: user', () => {
       ]);
     });
 
-    it('should dispatch checkAuthStatus when GET /login and server return 401', async () => {
+    it('should dispatch checkAuthStatus when GET "/login" and server return 401', async () => {
       const store = mockStore();
 
       mockApiService.onGet('/login').reply(401, {});

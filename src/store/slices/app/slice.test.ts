@@ -67,7 +67,7 @@ describe('Slice: app', () => {
   });
 
   describe('initializeApp', () => {
-    it('should update initialize to "pending" if initializeApp pending', () => {
+    it('should update initialize to "pending" when initializeApp is pending', () => {
       const ACTION_TYPE = { type: initializeApp.pending.type };
 
       const updatedState: State = {
@@ -78,7 +78,7 @@ describe('Slice: app', () => {
       expect(appSlice.reducer(initialState, ACTION_TYPE)).toEqual(updatedState);
     });
 
-    it('should update initialize to "succeeded" if initializeApp fulfilled', () => {
+    it('should update initialize to "succeeded" when initializeApp is fulfilled', () => {
       const ACTION_TYPE = { type: initializeApp.fulfilled.type };
 
       const updatedState: State = {
@@ -89,7 +89,7 @@ describe('Slice: app', () => {
       expect(appSlice.reducer(initialState, ACTION_TYPE)).toEqual(updatedState);
     });
 
-    it('should update initialize to "failed" if initializeApp rejected', () => {
+    it('should update initialize to "failed" when initializeApp is rejected', () => {
       const ACTION_TYPE = { type: initializeApp.rejected.type };
 
       const updatedState: State = {
@@ -102,7 +102,7 @@ describe('Slice: app', () => {
   });
 
   describe('toggleFavorite', () => {
-    it('should add id to favoriteIDsInProgress if toggleFavorite pending', () => {
+    it('should add id to favoriteIDsInProgress when toggleFavorite is pending', () => {
       const initialState1: State = {
         initialize: AppStatus.Idle,
         activeCardId: -1,
@@ -154,7 +154,7 @@ describe('Slice: app', () => {
       );
     });
 
-    it('should remove id from favoriteIDsInProgress if toggleFavorite fulfilled', () => {
+    it('should remove id from favoriteIDsInProgress when toggleFavorite is fulfilled', () => {
       const initialState1: State = {
         initialize: AppStatus.Idle,
         activeCardId: -1,
@@ -206,7 +206,7 @@ describe('Slice: app', () => {
       );
     });
 
-    it('should remove id from favoriteIDsInProgress if toggleFavorite rejected', () => {
+    it('should remove id from favoriteIDsInProgress when toggleFavorite is rejected', () => {
       const initialState1: State = {
         initialize: AppStatus.Idle,
         activeCardId: -1,
@@ -262,7 +262,7 @@ describe('Slice: app', () => {
       );
     });
 
-    it('should remove error from state if toggleFavorite pending or fulfilled', () => {
+    it('should remove error from state when toggleFavorite is pending or fulfilled', () => {
       const initialState: State = {
         initialize: AppStatus.Idle,
         activeCardId: -1,

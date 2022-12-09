@@ -8,7 +8,7 @@ import { State } from '~/types';
 
 import { fetchOffer } from './offer';
 
-describe('Async actions: fetchOffer', () => {
+describe('Async actions: offer', () => {
   const apiService = createApiService();
   const mockApiService = new MockAdapter(apiService);
   const middlewares = [thunk.withExtraArgument(apiService)];
@@ -21,7 +21,7 @@ describe('Async actions: fetchOffer', () => {
   describe('fetchOffer', () => {
     const id = 1;
 
-    it('should dispatch fetchOffer when GET /hotels/:id and server return 200', async () => {
+    it('should dispatch fetchOffer when GET "/hotels/:id" and server return 200', async () => {
       const store = mockStore();
 
       mockApiService.onGet(`/hotels/${id}`).reply(200, {});
@@ -38,7 +38,7 @@ describe('Async actions: fetchOffer', () => {
       ]);
     });
 
-    it('should dispatch fetchOffer when GET /hotels/:id and server return 404', async () => {
+    it('should dispatch fetchOffer when GET "/hotels/:id" and server return 404', async () => {
       const store = mockStore();
 
       mockApiService.onGet(`/hotels/${id}`).reply(404, {});

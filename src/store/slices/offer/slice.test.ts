@@ -20,7 +20,7 @@ describe('Slice: offer', () => {
   });
 
   describe('fetchOffer', () => {
-    it('should update loading to "true" if fetchOffer pending', () => {
+    it('should update loading to "true" when fetchOffer pending', () => {
       const ACTION_TYPE = { type: fetchOffer.pending.type };
 
       const updatedState: State = {
@@ -33,7 +33,7 @@ describe('Slice: offer', () => {
       );
     });
 
-    it('should update loading to "false" and add offer if fetchOffer fulfilled', () => {
+    it('should update loading to "false" and add offer when fetchOffer is fulfilled', () => {
       const ACTION_TYPE = {
         type: fetchOffer.fulfilled.type,
         payload: offer,
@@ -56,7 +56,7 @@ describe('Slice: offer', () => {
       );
     });
 
-    it('should add error to error property if fetchOffer rejected', () => {
+    it('should add error to state when fetchOffer is rejected', () => {
       const ACTION_TYPE = {
         type: fetchOffer.rejected.type,
         payload: error,
@@ -73,7 +73,7 @@ describe('Slice: offer', () => {
       );
     });
 
-    it('should remove error from state if fetchOffer pending or fulfilled', () => {
+    it('should remove error from state when fetchOffer is pending or fulfilled', () => {
       const initialState: State = {
         offer: null,
         loading: false,
@@ -112,7 +112,7 @@ describe('Slice: offer', () => {
   });
 
   describe('toggleFavorite', () => {
-    it('should update offer when toggleFavorite fulfilled', () => {
+    it('should update offer when toggleFavorite is fulfilled', () => {
       const ACTION_TYPE = {
         type: toggleFavorite.fulfilled.type,
         payload: offer,

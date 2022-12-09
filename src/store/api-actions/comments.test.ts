@@ -21,7 +21,7 @@ describe('Async actions: comments', () => {
   describe('fetchComments', () => {
     const id = 1;
 
-    it('should dispatch fetchComments when GET /comments/:hotel_id and server return 200', async () => {
+    it('should dispatch fetchComments when GET "/comments/:hotel_id" and server return 200', async () => {
       const store = mockStore();
 
       mockApiService.onGet(`/comments/${id}`).reply(200, []);
@@ -38,7 +38,7 @@ describe('Async actions: comments', () => {
       ]);
     });
 
-    it('should dispatch fetchComments when GET /comments/:hotel_id and server return 400', async () => {
+    it('should dispatch fetchComments when GET "/comments/:hotel_id" and server return 400', async () => {
       const store = mockStore();
 
       mockApiService.onGet(`/comments/${id}`).reply(400, []);
@@ -63,7 +63,7 @@ describe('Async actions: comments', () => {
       rating: 1,
     };
 
-    it('should dispatch postComment when POST /comments/:hotel_id and server return 200', async () => {
+    it('should dispatch postComment when POST "/comments/:hotel_id" and server return 200', async () => {
       const store = mockStore();
 
       mockApiService.onPost(`/comments/${comment.id}`).reply(200, []);
@@ -80,7 +80,7 @@ describe('Async actions: comments', () => {
       ]);
     });
 
-    it('should dispatch postComment when POST /comments/:hotel_id and server return 400', async () => {
+    it('should dispatch postComment when POST "/comments/:hotel_id" and server return 400', async () => {
       const store = mockStore();
 
       mockApiService.onPost(`/comments/${comment.id}`).reply(400, []);
@@ -97,7 +97,7 @@ describe('Async actions: comments', () => {
       ]);
     });
 
-    it('should dispatch postComment when POST /comments/:hotel_id and server return 401', async () => {
+    it('should dispatch postComment when POST "/comments/:hotel_id" and server return 401', async () => {
       const store = mockStore();
 
       mockApiService.onPost(`/comments/${comment.id}`).reply(401, []);

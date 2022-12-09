@@ -22,7 +22,7 @@ describe('Slice: comments', () => {
   });
 
   describe('fetchComments', () => {
-    it('should update loading to "true" if fetchComments pending', () => {
+    it('should update loading to "true" when fetchComments is pending', () => {
       const ACTION_TYPE = { type: fetchComments.pending.type };
 
       const updatedState: State = {
@@ -35,7 +35,7 @@ describe('Slice: comments', () => {
       );
     });
 
-    it('should update loading to "false" and add comments if fetchComments fulfilled', () => {
+    it('should update loading to "false" and add comments when fetchComments is fulfilled', () => {
       const ACTION_TYPE = {
         type: fetchComments.fulfilled.type,
         payload: comments,
@@ -58,7 +58,7 @@ describe('Slice: comments', () => {
       );
     });
 
-    it('should add error to error property if fetchComments rejected', () => {
+    it('should add error to state when fetchComments is rejected', () => {
       const ACTION_TYPE = {
         type: fetchComments.rejected.type,
         payload: error,
@@ -75,7 +75,7 @@ describe('Slice: comments', () => {
       );
     });
 
-    it('should remove error from state if fetchComments pending or fulfilled', () => {
+    it('should remove error from state when fetchComments is pending or fulfilled', () => {
       const initialState: State = {
         comments: [],
         loading: false,
@@ -114,7 +114,7 @@ describe('Slice: comments', () => {
   });
 
   describe('postComment', () => {
-    it('should update loading to "true" if postComment pending', () => {
+    it('should update loading to "true" when postComment is pending', () => {
       const ACTION_TYPE = { type: postComment.pending.type };
 
       const updatedState: State = {
@@ -127,7 +127,7 @@ describe('Slice: comments', () => {
       );
     });
 
-    it('should update loading to "false" and add comments if postComment fulfilled', () => {
+    it('should update loading to "false" and add comments when postComment is fulfilled', () => {
       const ACTION_TYPE = {
         type: postComment.fulfilled.type,
         payload: comments,
@@ -150,7 +150,7 @@ describe('Slice: comments', () => {
       );
     });
 
-    it('should add error to error property if postComment rejected', () => {
+    it('should add error to state when postComment is rejected', () => {
       const ACTION_TYPE = {
         type: postComment.rejected.type,
         payload: error,
@@ -167,7 +167,7 @@ describe('Slice: comments', () => {
       );
     });
 
-    it('should remove error from state if postComment pending or fulfilled', () => {
+    it('should remove error from state when postComment is pending or fulfilled', () => {
       const initialState: State = {
         comments: [],
         loading: false,

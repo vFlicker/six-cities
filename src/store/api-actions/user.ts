@@ -24,6 +24,7 @@ export const checkAuthStatus = createAsyncThunk<User, undefined, ThunkOptions>(
   },
 );
 
+// TODO: add test
 export const login = createAsyncThunk<User, AuthData, ThunkOptions>(
   `${Reducer.User}/login`,
   async (authData, { dispatch, extra: apiService, rejectWithValue }) => {
@@ -39,6 +40,7 @@ export const login = createAsyncThunk<User, AuthData, ThunkOptions>(
   },
 );
 
+// TODO: add test
 export const logout = createAsyncThunk<void, undefined, ThunkOptions>(
   `${Reducer.User}/logout`,
   async (_, { extra: apiService, rejectWithValue }) => {

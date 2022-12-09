@@ -21,7 +21,7 @@ describe('Slice: user', () => {
   });
 
   describe('checkAuthStatus', () => {
-    it('should update loading to "true" if checkAuthStatus pending', () => {
+    it('should update loading to "true" when checkAuthStatus is pending', () => {
       const ACTION_TYPE = { type: checkAuthStatus.pending.type };
 
       const updatedState: State = {
@@ -34,7 +34,7 @@ describe('Slice: user', () => {
       );
     });
 
-    it('should update loading to "false", set authStatus to "Auth" and add user if checkAuthStatus fulfilled', () => {
+    it('should update loading to "false", set authStatus to "Auth" and add user when checkAuthStatus is fulfilled', () => {
       const ACTION_TYPE = {
         type: checkAuthStatus.fulfilled.type,
         payload: user,
@@ -59,7 +59,7 @@ describe('Slice: user', () => {
       );
     });
 
-    it('should add error to error property if checkAuthStatus rejected', () => {
+    it('should add error to state when checkAuthStatus is rejected', () => {
       const ACTION_TYPE = {
         type: checkAuthStatus.rejected.type,
         payload: error,
@@ -77,7 +77,7 @@ describe('Slice: user', () => {
       );
     });
 
-    it('should remove error from state if checkAuthStatus pending or fulfilled', () => {
+    it('should remove error from state when checkAuthStatus is pending or fulfilled', () => {
       const initialState: State = {
         authStatus: AuthStatus.NoAuth,
         user: null,
@@ -118,7 +118,7 @@ describe('Slice: user', () => {
   });
 
   describe('login', () => {
-    it('should update loading to "true" if login pending', () => {
+    it('should update loading to "true" when login is pending', () => {
       const ACTION_TYPE = { type: login.pending.type };
 
       const updatedState: State = {
@@ -132,7 +132,7 @@ describe('Slice: user', () => {
       );
     });
 
-    it('should update loading to "false", set authStatus to "Auth" and add user if login fulfilled', () => {
+    it('should update loading to "false", set authStatus to "Auth" and add user when login is fulfilled', () => {
       const ACTION_TYPE = {
         type: login.fulfilled.type,
         payload: user,
@@ -157,7 +157,7 @@ describe('Slice: user', () => {
       );
     });
 
-    it('should add error to error property if login rejected', () => {
+    it('should add error to state when login is rejected', () => {
       const ACTION_TYPE = {
         type: login.rejected.type,
         payload: error,
@@ -175,7 +175,7 @@ describe('Slice: user', () => {
       );
     });
 
-    it('should remove error from state if login pending or fulfilled', () => {
+    it('should remove error from state when login is pending or fulfilled', () => {
       const initialState: State = {
         authStatus: AuthStatus.NoAuth,
         user: null,
@@ -216,7 +216,7 @@ describe('Slice: user', () => {
   });
 
   describe('logout', () => {
-    it('should update loading to "true" if logout pending', () => {
+    it('should update loading to "true" when logout pending', () => {
       const ACTION_TYPE = { type: logout.pending.type };
 
       const updatedState: State = {
@@ -229,7 +229,7 @@ describe('Slice: user', () => {
       );
     });
 
-    it('should update loading to "false", set authStatus to "NoAuth" and remove user if logout fulfilled', () => {
+    it('should update loading to "false", set authStatus to "NoAuth" and remove user when logout is fulfilled', () => {
       const ACTION_TYPE = {
         type: logout.fulfilled.type,
       };
@@ -253,7 +253,7 @@ describe('Slice: user', () => {
       );
     });
 
-    it('should add error to error property if logout rejected', () => {
+    it('should add error to state when logout is rejected', () => {
       const ACTION_TYPE = {
         type: logout.rejected.type,
         payload: error,
@@ -270,7 +270,7 @@ describe('Slice: user', () => {
       );
     });
 
-    it('should remove error from state if logout pending or fulfilled', () => {
+    it('should remove error from state when logout is pending or fulfilled', () => {
       const initialState: State = {
         authStatus: AuthStatus.NoAuth,
         user: null,
