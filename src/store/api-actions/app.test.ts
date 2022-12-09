@@ -3,7 +3,7 @@ import MockAdapter from 'axios-mock-adapter';
 import configureMockStore from 'redux-mock-store';
 import thunk, { ThunkDispatch } from 'redux-thunk';
 
-import { FavoriteStatus } from '~/constants';
+import { AuthStatus, FavoriteStatus, Reducer } from '~/constants';
 import { createApiService } from '~/services';
 import { State } from '~/types';
 
@@ -17,13 +17,15 @@ describe('Async actions: app', () => {
   const middlewares = [thunk.withExtraArgument(apiService)];
 
   const mockStore = configureMockStore<
-    State,
+    unknown,
     ThunkDispatch<State, typeof apiService, Action>
   >(middlewares);
 
   describe('initializeApp', () => {
     it('should dispatch initializeApp, checkAuthStatus, fetchAllOffers, fetchFavoriteOffers when POST /login and server return 200', async () => {
-      const store = mockStore();
+      const store = mockStore({
+        [Reducer.User]: { authStatus: AuthStatus.Auth },
+      });
 
       mockApiService.onGet('/login').reply(200, {});
       mockApiService.onGet('/hotels').reply(200, []);
@@ -48,7 +50,9 @@ describe('Async actions: app', () => {
     });
 
     it('should dispatch initializeApp, checkAuthStatus, fetchAllOffers when POST /login and server return 401', async () => {
-      const store = mockStore();
+      const store = mockStore({
+        [Reducer.User]: { authStatus: AuthStatus.Unknown },
+      });
 
       mockApiService.onGet('/login').reply(401, {});
       mockApiService.onGet('/hotels').reply(200, []);

@@ -5,7 +5,7 @@ import { errorHandler } from '~/services';
 import { Offer, OfferID, OfferServer, ThunkOptions } from '~/types';
 
 import { fetchFavoriteOffers, fetchAllOffers } from '../slices/offers';
-import { checkAuthStatus } from '../slices/user';
+import { checkAuthStatus, selectIsUserAuthorized } from '../slices/user';
 
 type ToggleFavoritePayload = {
   id: OfferID;
@@ -17,18 +17,14 @@ type ToggleFavoritePayload = {
  */
 export const initializeApp = createAsyncThunk<void, undefined, ThunkOptions>(
   `${Reducer.App}/initialize`,
-  async (_, { dispatch, rejectWithValue }) => {
+  async (_, { getState, dispatch, rejectWithValue }) => {
     try {
       const fetchAllOffersPromise = dispatch(fetchAllOffers());
       const checkAuthStatusPromise = dispatch(checkAuthStatus());
 
-      const [checkAuthStatusPayload] = await Promise.all([
-        checkAuthStatusPromise,
-        fetchAllOffersPromise,
-      ]);
+      await Promise.all([checkAuthStatusPromise, fetchAllOffersPromise]);
 
-      const isUserAuthorized =
-        checkAuthStatusPayload.type === checkAuthStatus.fulfilled.type;
+      const isUserAuthorized = selectIsUserAuthorized(getState());
 
       if (isUserAuthorized) {
         await dispatch(fetchFavoriteOffers());
