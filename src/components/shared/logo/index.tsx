@@ -5,12 +5,12 @@ import { AppRoute } from '~/constants';
 
 import * as S from './styles';
 
-type LogoLinkProps = {
+type LogoProps = {
   width: number;
   height: number;
 };
 
-export function LogoLink({ ...props }: LogoLinkProps): JSX.Element {
+export function Logo({ ...props }: LogoProps): JSX.Element {
   const location = useLocation();
   const logoAlt = '6 cities logo';
 
