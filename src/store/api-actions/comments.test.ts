@@ -1,23 +1,7 @@
-import { Action } from '@reduxjs/toolkit';
-import MockAdapter from 'axios-mock-adapter';
-import configureMockStore from 'redux-mock-store';
-import thunk, { ThunkDispatch } from 'redux-thunk';
-
-import { createApiService } from '~/services';
-import { State } from '~/types';
-
 import { fetchComments, postComment, PostCommentPayload } from './comments';
+import { mockApiService, mockStore } from './test-helpers';
 
 describe('Async actions: comments', () => {
-  const apiService = createApiService();
-  const mockApiService = new MockAdapter(apiService);
-  const middlewares = [thunk.withExtraArgument(apiService)];
-
-  const mockStore = configureMockStore<
-    State,
-    ThunkDispatch<State, typeof apiService, Action>
-  >(middlewares);
-
   describe('fetchComments', () => {
     const id = 1;
 
