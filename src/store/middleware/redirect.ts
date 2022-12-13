@@ -1,8 +1,8 @@
 import { Middleware } from 'redux';
 
+import { browserHistory } from '~/browser-history';
 import { State } from '~/types';
 
-import { browserHistory } from '../../browser-history';
 import { REDIRECT_TO_ROUTE } from '../actions/app';
 
 export const redirect: Middleware<unknown, State> =
