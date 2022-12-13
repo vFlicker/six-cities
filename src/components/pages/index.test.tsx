@@ -52,8 +52,8 @@ describe('Application Routing', () => {
 
   //   render(fakeApp);
 
-  //   expect(screen.getAllByText('Sign in').length).toBe(3);
-  //   expect(screen.getByText('Amsterdam')).toBeInTheDocument();
+  //   expect(screen.getAllByText(/Sign in/i).length).toBe(3);
+  //   expect(screen.getByText(/Amsterdam/i)).toBeInTheDocument();
   // });
 
   it('should render "FavoritesPage" when user navigate to "/favorites"', () => {
@@ -78,10 +78,10 @@ describe('Application Routing', () => {
 
     render(fakeApp);
 
-    expect(screen.getByText('Nothing yet saved')).toBeInTheDocument();
+    expect(screen.getByText(/Nothing yet saved/i)).toBeInTheDocument();
     expect(
       screen.getByText(
-        'Save properties to narrow down search or plan your future trips.',
+        /Save properties to narrow down search or plan your future trips/i,
       ),
     ).toBeInTheDocument();
   });
@@ -108,8 +108,8 @@ describe('Application Routing', () => {
 
     render(fakeApp);
 
-    expect(screen.getAllByText('Sign in').length).toBe(3);
-    expect(screen.getByText('Amsterdam')).toBeInTheDocument();
+    expect(screen.getAllByText(/Sign in/i).length).toBe(3);
+    expect(screen.getByText(/Amsterdam/i)).toBeInTheDocument();
   });
 
   // it('should render "OfferPage" when user navigate to "/offers/:id"', () => {
@@ -148,9 +148,9 @@ describe('Application Routing', () => {
 
   //   render(fakeApp);
 
-  //   expect(screen.getByText('9999')).toBeInTheDocument();
-  //   expect(screen.getByText("What's inside")).toBeInTheDocument();
-  //   expect(screen.getByText('Reviews')).toBeInTheDocument();
+  //   expect(screen.getByText(/9999/i)).toBeInTheDocument();
+  //   expect(screen.getByText(/What's inside/i)).toBeInTheDocument();
+  //   expect(screen.getByText(/Reviews/i)).toBeInTheDocument();
   // });
 
   it('should render "NotFoundPage" when user navigate to unknown route', () => {
@@ -172,9 +172,9 @@ describe('Application Routing', () => {
 
     render(fakeApp);
 
-    expect(screen.getByText('Page not found')).toBeInTheDocument();
+    expect(screen.getByText(/Page not found/i)).toBeInTheDocument();
     expect(
-      screen.getByText('The page you are looking for does not exist'),
+      screen.getByText(/The page you are looking for does not exist/i),
     ).toBeInTheDocument();
   });
 });

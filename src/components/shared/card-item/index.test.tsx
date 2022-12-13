@@ -42,9 +42,9 @@ describe('Component: CardItem', () => {
       </Provider>,
     );
 
-    expect(screen.queryByText('Premium')).not.toBeInTheDocument();
+    expect(screen.queryByText(/Premium/i)).not.toBeInTheDocument();
     expect(screen.getByText(/999/i));
-    expect(screen.getByText('mock-title'));
+    expect(screen.getByText(/mock-title/i));
   });
 
   it('Mark should rendered,', () => {
@@ -63,7 +63,7 @@ describe('Component: CardItem', () => {
       </Provider>,
     );
 
-    expect(screen.getByText('Premium'));
+    expect(screen.getByText(/Premium/i));
   });
 
   it('mouse move handlers should be called', async () => {

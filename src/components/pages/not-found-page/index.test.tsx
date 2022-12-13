@@ -35,9 +35,9 @@ describe('Component: NotFoundPage', () => {
 
     // TODO: count in header
 
-    expect(screen.getByText('Page not found')).toBeInTheDocument();
+    expect(screen.getByText(/Page not found/i)).toBeInTheDocument();
     expect(
-      screen.getByText('The page you are looking for does not exist'),
+      screen.getByText(/The page you are looking for does not exist/i),
     ).toBeInTheDocument();
   });
 });

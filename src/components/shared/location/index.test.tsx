@@ -18,7 +18,7 @@ describe('Component: Location', () => {
       </HistoryRouter>,
     );
 
-    expect(screen.getByText('Brussels'));
+    expect(screen.getByText(/Brussels/i));
   });
 
   it('handleClick should be called', async () => {

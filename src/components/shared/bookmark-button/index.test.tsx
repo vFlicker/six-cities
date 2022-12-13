@@ -15,7 +15,7 @@ describe('Component: BookmarkButton', () => {
       />,
     );
 
-    expect(screen.getByText('To bookmarks'));
+    expect(screen.getByText(/To bookmarks/i));
   });
 
   it('handleClick should be called', async () => {

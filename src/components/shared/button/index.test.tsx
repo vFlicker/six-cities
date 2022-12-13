@@ -8,7 +8,7 @@ describe('Component: Button', () => {
   it('should render correctly,', () => {
     render(<Button>Test text</Button>);
 
-    expect(screen.getByText('Test text'));
+    expect(screen.getByText(/Test text/i));
   });
 
   it('handleClick should be called', async () => {

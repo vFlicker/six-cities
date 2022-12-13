@@ -21,7 +21,7 @@ describe('Component: Logo', () => {
       </HistoryRouter>,
     );
 
-    expect(screen.getByAltText('6 cities logo')).toBeInTheDocument();
+    expect(screen.getByAltText(/6 cities logo/i)).toBeInTheDocument();
     expect(screen.getByRole('link')).toBeInTheDocument();
   });
 
@@ -34,8 +34,8 @@ describe('Component: Logo', () => {
       </HistoryRouter>,
     );
 
-    expect(screen.getByAltText('6 cities logo')).toBeInTheDocument();
-    expect(screen.queryByText('link')).not.toBeInTheDocument();
+    expect(screen.getByAltText(/6 cities logo/i)).toBeInTheDocument();
+    expect(screen.queryByRole('link')).not.toBeInTheDocument();
   });
 
   it('should redirect to root url when user clicked to link', async () => {
@@ -50,10 +50,10 @@ describe('Component: Logo', () => {
       </HistoryRouter>,
     );
 
-    expect(screen.queryByText('This is main page')).not.toBeInTheDocument();
+    expect(screen.queryByText(/This is main page/i)).not.toBeInTheDocument();
 
     await userEvent.click(screen.getByRole('link'));
 
-    expect(screen.queryByText('This is main page')).toBeInTheDocument();
+    expect(screen.queryByText(/This is main page/i)).toBeInTheDocument();
   });
 });
