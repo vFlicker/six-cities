@@ -1,3 +1,4 @@
+import { NO_ACTIVE_CARD } from '~/constants';
 import { useAppDispatch, useAppSelector } from '~/hooks';
 import { appSlice, offersSlice } from '~/store';
 
@@ -21,7 +22,9 @@ export function MainSection(): JSX.Element {
       offer={offer}
       cardType="big"
       onCardItemMouseEnter={() => dispatch(appSlice.setActiveCardId(offer.id))}
-      onCardItemMouseLeave={() => dispatch(appSlice.setActiveCardId(-1))}
+      onCardItemMouseLeave={() =>
+        dispatch(appSlice.setActiveCardId(NO_ACTIVE_CARD))
+      }
     />
   ));
 

@@ -38,6 +38,8 @@ export const enum HttpCode {
   NotFound = 404,
 }
 
+export const NO_ACTIVE_CARD = -1;
+
 export enum SortType {
   Popular = 'Popular',
   PriceHighToLow = 'Price: high to low',

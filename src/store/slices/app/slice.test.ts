@@ -1,4 +1,4 @@
-import { AppStatus, CityName, SortType } from '~/constants';
+import { AppStatus, CityName, NO_ACTIVE_CARD, SortType } from '~/constants';
 import { makeError } from '~/utils';
 
 import appSlice, {
@@ -12,7 +12,7 @@ import { State } from './types';
 
 const initialState: State = {
   initialize: AppStatus.Idle,
-  activeCardId: -1,
+  activeCardId: NO_ACTIVE_CARD,
   currentCityName: CityName.Amsterdam,
   currentSortType: SortType.Popular,
   favoriteIDsInProgress: [],
@@ -105,7 +105,7 @@ describe('Slice: app', () => {
     it('should add id to favoriteIDsInProgress when toggleFavorite is pending', () => {
       const initialState1: State = {
         initialize: AppStatus.Idle,
-        activeCardId: -1,
+        activeCardId: NO_ACTIVE_CARD,
         currentCityName: CityName.Amsterdam,
         currentSortType: SortType.Popular,
         favoriteIDsInProgress: [],
@@ -130,7 +130,7 @@ describe('Slice: app', () => {
 
       const initialState2: State = {
         initialize: AppStatus.Idle,
-        activeCardId: -1,
+        activeCardId: NO_ACTIVE_CARD,
         currentCityName: CityName.Amsterdam,
         currentSortType: SortType.Popular,
         favoriteIDsInProgress: [1],
@@ -157,7 +157,7 @@ describe('Slice: app', () => {
     it('should remove id from favoriteIDsInProgress when toggleFavorite is fulfilled', () => {
       const initialState1: State = {
         initialize: AppStatus.Idle,
-        activeCardId: -1,
+        activeCardId: NO_ACTIVE_CARD,
         currentCityName: CityName.Amsterdam,
         currentSortType: SortType.Popular,
         favoriteIDsInProgress: [1, 2],
@@ -182,7 +182,7 @@ describe('Slice: app', () => {
 
       const initialState2: State = {
         initialize: AppStatus.Idle,
-        activeCardId: -1,
+        activeCardId: NO_ACTIVE_CARD,
         currentCityName: CityName.Amsterdam,
         currentSortType: SortType.Popular,
         favoriteIDsInProgress: [2],
@@ -209,7 +209,7 @@ describe('Slice: app', () => {
     it('should remove id from favoriteIDsInProgress when toggleFavorite is rejected', () => {
       const initialState1: State = {
         initialize: AppStatus.Idle,
-        activeCardId: -1,
+        activeCardId: NO_ACTIVE_CARD,
         currentCityName: CityName.Amsterdam,
         currentSortType: SortType.Popular,
         favoriteIDsInProgress: [1, 2],
@@ -236,7 +236,7 @@ describe('Slice: app', () => {
 
       const initialState2: State = {
         initialize: AppStatus.Idle,
-        activeCardId: -1,
+        activeCardId: NO_ACTIVE_CARD,
         currentCityName: CityName.Amsterdam,
         currentSortType: SortType.Popular,
         favoriteIDsInProgress: [2],
@@ -265,7 +265,7 @@ describe('Slice: app', () => {
     it('should remove error from state when toggleFavorite is pending or fulfilled', () => {
       const initialState: State = {
         initialize: AppStatus.Idle,
-        activeCardId: -1,
+        activeCardId: NO_ACTIVE_CARD,
         currentCityName: CityName.Amsterdam,
         currentSortType: SortType.Popular,
         favoriteIDsInProgress: [],

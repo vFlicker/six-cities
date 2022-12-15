@@ -68,7 +68,7 @@ export const makeOffer = ({
   price: price ?? faker.datatype.number({ min: 10, max: 1000 }),
   rating: rating ?? faker.datatype.number({ min: 1, max: 5 }),
   title: title ?? faker.lorem.paragraph(),
-  type: faker.lorem.word(),
+  type: faker.random.word(),
   isFavorite: isFavorite ?? faker.datatype.boolean(),
   isPremium: isPremium ?? faker.datatype.boolean(),
   maxAdults: faker.datatype.number({ min: 1, max: 4 }),

@@ -7,7 +7,7 @@ import { Offer, OfferID, OfferServer, ThunkOptions } from '~/types';
 import { fetchFavoriteOffers, fetchAllOffers } from '../slices/offers';
 import { checkAuthStatus, selectIsUserAuthorized } from '../slices/user';
 
-type ToggleFavoritePayload = {
+export type ToggleFavoritePayload = {
   id: OfferID;
   status: FavoriteStatus;
 };

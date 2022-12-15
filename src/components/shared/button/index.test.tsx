@@ -5,7 +5,7 @@ import '@testing-library/jest-dom';
 import { Button } from './index';
 
 describe('Component: Button', () => {
-  it('should render correctly,', () => {
+  it('should render correctly', () => {
     render(<Button>Test text</Button>);
 
     expect(screen.getByText(/Test text/i));

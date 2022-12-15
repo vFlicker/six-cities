@@ -5,7 +5,7 @@ import '@testing-library/jest-dom';
 import { BookmarkButton } from './index';
 
 describe('Component: BookmarkButton', () => {
-  it('should render correctly,', () => {
+  it('should render correctly', () => {
     render(
       <BookmarkButton
         size="large"
@@ -28,7 +28,6 @@ describe('Component: BookmarkButton', () => {
         isFavorite={false}
         onClick={handleClick}
       />,
-      {},
     );
 
     const button = screen.getByRole('button');
@@ -49,7 +48,6 @@ describe('Component: BookmarkButton', () => {
         isFavorite={false}
         onClick={handleClick}
       />,
-      {},
     );
 
     const button = screen.getByRole('button');

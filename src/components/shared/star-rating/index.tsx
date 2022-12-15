@@ -27,6 +27,7 @@ export function StarRating({
           width={width}
           height={height}
           percents={convertRatingToPercents(rating)}
+          data-testid="star"
         />
         <S.HiddenText>Rating</S.HiddenText>
       </S.Stars>
