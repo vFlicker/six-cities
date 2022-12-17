@@ -10,6 +10,7 @@ export function NotFoundSection(): JSX.Element {
       <S.Container>
         <NotFound
           iconSrc={noResultsIconSrc}
+          alt="No results icon"
           title="Page not found"
           description="The page you are looking for does not exist"
         />

@@ -8,6 +8,10 @@ type HistoryRouterProps = {
   children?: ReactNode;
 };
 
+/**
+ * Use this component while there is no stable
+ * implementation in "react-router-dom".
+ */
 export function HistoryRouter({
   basename,
   children,

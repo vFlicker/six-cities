@@ -18,7 +18,9 @@ describe('Component: Location', () => {
       </HistoryRouter>,
     );
 
-    expect(screen.getByText(/Brussels/i));
+    expect(
+      screen.getByText(new RegExp(CityName.Brussels, 'i')),
+    ).toBeInTheDocument();
   });
 
   it('handleClick should be called', async () => {
@@ -30,7 +32,7 @@ describe('Component: Location', () => {
       </HistoryRouter>,
     );
 
-    await userEvent.click(screen.getByRole('link', { name: 'Brussels' }));
+    await userEvent.click(screen.getByRole(new RegExp(CityName.Brussels, 'i')));
 
     expect(handleClick).toBeCalledTimes(1);
   });

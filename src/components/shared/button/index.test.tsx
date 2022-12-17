@@ -8,7 +8,7 @@ describe('Component: Button', () => {
   it('should render correctly', () => {
     render(<Button>Test text</Button>);
 
-    expect(screen.getByText(/Test text/i));
+    expect(screen.getByText(/Test text/i)).toBeInTheDocument();
   });
 
   it('handleClick should be called', async () => {
@@ -16,7 +16,7 @@ describe('Component: Button', () => {
 
     render(<Button onClick={handleClick}>Test text</Button>);
 
-    await userEvent.click(screen.getByRole('button'));
+    await userEvent.click(screen.getByText(/Test text/i));
 
     expect(handleClick).toBeCalledTimes(1);
   });

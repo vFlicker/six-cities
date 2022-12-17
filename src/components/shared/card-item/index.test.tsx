@@ -12,11 +12,24 @@ import { ToggleFavoritePayload } from '~/store/api-actions/app';
 import { HistoryRouter } from '../history-router';
 import { CardItem } from './index';
 
+const mockToggleFavorite = (payload: ToggleFavoritePayload) => ({
+  type: 'mockToggleFavorite',
+  payload,
+});
+
+jest.mock('~/store', () => {
+  const originalModule = jest.requireActual('~/store');
+
+  return {
+    ...originalModule,
+    appSlice: {
+      ...originalModule.appSlice,
+      toggleFavorite: mockToggleFavorite,
+    },
+  };
+});
+
 const mockStore = configureMockStore();
-
-const offer = makeOffer({ isPremium: true, isFavorite: true });
-
-const history = createMemoryHistory();
 
 const store = mockStore({
   [Reducer.App]: {
@@ -24,21 +37,9 @@ const store = mockStore({
   },
 });
 
-jest.mock('~/store', () => {
-  const originalModule = jest.requireActual('~/store');
+const history = createMemoryHistory();
 
-  return {
-    __esModule: true,
-    ...originalModule,
-    appSlice: {
-      ...originalModule.appSlice,
-      toggleFavorite: (payload: ToggleFavoritePayload) => ({
-        type: 'mock_toggle_favorite',
-        payload,
-      }),
-    },
-  };
-});
+const offer = makeOffer({ isPremium: true, isFavorite: true });
 
 describe('Component: CardItem', () => {
   it('should render correctly', () => {
@@ -58,10 +59,12 @@ describe('Component: CardItem', () => {
     );
 
     expect(screen.getByText(/Premium/i)).toBeInTheDocument();
-    expect(screen.getByText(new RegExp(`${price}`, 'i')));
+    expect(
+      screen.getByText(new RegExp(price.toString(), 'i')),
+    ).toBeInTheDocument();
     expect(screen.getByTestId('star')).toBeInTheDocument();
-    expect(screen.getByText(new RegExp(`${title}`, 'i')));
-    expect(screen.getByText(new RegExp(`${type}`, 'i')));
+    expect(screen.getByText(new RegExp(title, 'i'))).toBeInTheDocument();
+    expect(screen.getByText(new RegExp(type, 'i'))).toBeInTheDocument();
   });
 
   it('mouse move handlers should be called', async () => {
@@ -106,19 +109,14 @@ describe('Component: CardItem', () => {
       </Provider>,
     );
 
-    const bookmarkButton = screen.getByRole('button', {
-      name: /To bookmarks/i,
-    });
-
-    expect(store.getActions()).toEqual([]);
+    const bookmarkButton = screen.getByText(/To bookmarks/i);
 
     await userEvent.click(bookmarkButton);
 
-    expect(store.getActions()).toEqual([
-      {
-        type: 'mock_toggle_favorite',
-        payload: { id: offer.id, status: FavoriteStatus.Remove },
-      },
-    ]);
+    const [firstAction] = store.getActions();
+    expect(firstAction).toEqual({
+      type: 'mockToggleFavorite',
+      payload: { id: offer.id, status: FavoriteStatus.Remove },
+    });
   });
 });

@@ -18,5 +18,5 @@ export function Map({ offers, orientation }: MapProps): JSX.Element {
 
   useMapWithPins(offers, activeCardId, mapRef);
 
-  return <S.Map ref={mapRef} orientation={orientation} />;
+  return <S.Map ref={mapRef} orientation={orientation} data-testid="map" />;
 }

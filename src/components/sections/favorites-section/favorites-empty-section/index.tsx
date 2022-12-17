@@ -11,6 +11,7 @@ export function FavoritesEmptySection(): JSX.Element {
       <S.Container>
         <NotFound
           iconSrc={savedIconSrc}
+          alt="Save icon"
           title="Nothing yet saved"
           description="Save properties to narrow down search or plan your future trips."
         />

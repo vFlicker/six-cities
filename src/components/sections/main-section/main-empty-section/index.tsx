@@ -14,6 +14,7 @@ export function MainEmptySection(): JSX.Element {
       <S.LeftSection>
         <NotFound
           iconSrc={noResultsIconSrc}
+          alt="No results icon"
           title="No places to stay available"
           description={`We could not find any property available at the moment in ${cityName}`}
         />

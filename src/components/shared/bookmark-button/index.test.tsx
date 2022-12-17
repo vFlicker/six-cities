@@ -15,7 +15,7 @@ describe('Component: BookmarkButton', () => {
       />,
     );
 
-    expect(screen.getByText(/To bookmarks/i));
+    expect(screen.getByText(/To bookmarks/i)).toBeInTheDocument();
   });
 
   it('handleClick should be called', async () => {
@@ -30,7 +30,7 @@ describe('Component: BookmarkButton', () => {
       />,
     );
 
-    const button = screen.getByRole('button');
+    const button = screen.getByText(/To bookmarks/i);
 
     await userEvent.click(button);
 
@@ -50,7 +50,7 @@ describe('Component: BookmarkButton', () => {
       />,
     );
 
-    const button = screen.getByRole('button');
+    const button = screen.getByText(/To bookmarks/i);
 
     await userEvent.click(button);
 
