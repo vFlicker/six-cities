@@ -12,11 +12,6 @@ import { ToggleFavoritePayload } from '~/store/api-actions/app';
 import { HistoryRouter } from '../history-router';
 import { CardItem } from './index';
 
-const mockToggleFavorite = (payload: ToggleFavoritePayload) => ({
-  type: 'MOCK_TOGGLE_FAVORITE_ACTION',
-  payload,
-});
-
 jest.mock('~/store', () => {
   const originalModule = jest.requireActual('~/store');
 
@@ -24,7 +19,10 @@ jest.mock('~/store', () => {
     ...originalModule,
     appSlice: {
       ...originalModule.appSlice,
-      toggleFavorite: mockToggleFavorite,
+      toggleFavorite: (payload: ToggleFavoritePayload) => ({
+        type: 'MOCK_TOGGLE_FAVORITE_ACTION',
+        payload,
+      }),
     },
   };
 });
@@ -109,7 +107,9 @@ describe('Component: CardItem', () => {
       </Provider>,
     );
 
-    const bookmarkButton = screen.getByText(/To bookmarks/i);
+    const bookmarkButton = screen.getByRole('button', {
+      name: /To bookmarks/i,
+    });
 
     await userEvent.click(bookmarkButton);
 

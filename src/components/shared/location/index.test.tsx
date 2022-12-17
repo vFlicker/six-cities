@@ -32,7 +32,7 @@ describe('Component: Location', () => {
       </HistoryRouter>,
     );
 
-    await userEvent.click(screen.getByRole(new RegExp(CityName.Brussels, 'i')));
+    await userEvent.click(screen.getByText(new RegExp(CityName.Brussels, 'i')));
 
     expect(handleClick).toBeCalledTimes(1);
   });
