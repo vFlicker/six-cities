@@ -13,7 +13,7 @@ import { HistoryRouter } from '../history-router';
 import { CardItem } from './index';
 
 const mockToggleFavorite = (payload: ToggleFavoritePayload) => ({
-  type: 'mockToggleFavorite',
+  type: 'MOCK_TOGGLE_FAVORITE_ACTION',
   payload,
 });
 
@@ -115,7 +115,7 @@ describe('Component: CardItem', () => {
 
     const [firstAction] = store.getActions();
     expect(firstAction).toEqual({
-      type: 'mockToggleFavorite',
+      type: 'MOCK_TOGGLE_FAVORITE_ACTION',
       payload: { id: offer.id, status: FavoriteStatus.Remove },
     });
   });

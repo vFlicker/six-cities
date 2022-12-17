@@ -1,5 +1,21 @@
+import { Action } from '@reduxjs/toolkit';
+import MockAdapter from 'axios-mock-adapter';
+import configureMockStore from 'redux-mock-store';
+import thunk, { ThunkDispatch } from 'redux-thunk';
+
+import { createApiService } from '~/services';
+import { State } from '~/types';
+
 import { fetchComments, postComment, PostCommentPayload } from './comments';
-import { mockApiService, mockStore } from './test-helpers';
+
+const apiService = createApiService();
+const mockApiService = new MockAdapter(apiService);
+const middlewares = [thunk.withExtraArgument(apiService)];
+
+const mockStore = configureMockStore<
+  unknown,
+  ThunkDispatch<State, typeof apiService, Action>
+>(middlewares);
 
 describe('Async actions: comments', () => {
   describe('fetchComments', () => {
@@ -9,8 +25,6 @@ describe('Async actions: comments', () => {
       const store = mockStore();
 
       mockApiService.onGet(`/comments/${id}`).reply(200, []);
-
-      expect(store.getActions()).toEqual([]);
 
       await store.dispatch(fetchComments(id));
 
@@ -26,8 +40,6 @@ describe('Async actions: comments', () => {
       const store = mockStore();
 
       mockApiService.onGet(`/comments/${id}`).reply(400, []);
-
-      expect(store.getActions()).toEqual([]);
 
       await store.dispatch(fetchComments(id));
 
@@ -52,8 +64,6 @@ describe('Async actions: comments', () => {
 
       mockApiService.onPost(`/comments/${comment.id}`).reply(200, []);
 
-      expect(store.getActions()).toEqual([]);
-
       await store.dispatch(postComment(comment));
 
       const actions = store.getActions().map(({ type }) => type);
@@ -69,8 +79,6 @@ describe('Async actions: comments', () => {
 
       mockApiService.onPost(`/comments/${comment.id}`).reply(400, []);
 
-      expect(store.getActions()).toEqual([]);
-
       await store.dispatch(postComment(comment));
 
       const actions = store.getActions().map(({ type }) => type);
@@ -85,8 +93,6 @@ describe('Async actions: comments', () => {
       const store = mockStore();
 
       mockApiService.onPost(`/comments/${comment.id}`).reply(401, []);
-
-      expect(store.getActions()).toEqual([]);
 
       await store.dispatch(postComment(comment));
 

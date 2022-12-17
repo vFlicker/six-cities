@@ -1,4 +1,10 @@
-import { mockApiService, mockStore } from './test-helpers';
+import { Action } from '@reduxjs/toolkit';
+import MockAdapter from 'axios-mock-adapter';
+import configureMockStore from 'redux-mock-store';
+import thunk, { ThunkDispatch } from 'redux-thunk';
+
+import { createApiService } from '~/services';
+import { State } from '~/types';
 
 import {
   fetchAllOffers,
@@ -6,14 +12,21 @@ import {
   fetchOffersNearby,
 } from './offers';
 
+const apiService = createApiService();
+const mockApiService = new MockAdapter(apiService);
+const middlewares = [thunk.withExtraArgument(apiService)];
+
+const mockStore = configureMockStore<
+  unknown,
+  ThunkDispatch<State, typeof apiService, Action>
+>(middlewares);
+
 describe('Async actions: offers', () => {
   describe('fetchAllOffers', () => {
     it('should dispatch fetchAllOffers when GET "/hotels" and server return 200', async () => {
       const store = mockStore();
 
       mockApiService.onGet('/hotels').reply(200, []);
-
-      expect(store.getActions()).toEqual([]);
 
       await store.dispatch(fetchAllOffers());
 
@@ -29,8 +42,6 @@ describe('Async actions: offers', () => {
       const store = mockStore();
 
       mockApiService.onGet('/hotels').reply(404, []);
-
-      expect(store.getActions()).toEqual([]);
 
       await store.dispatch(fetchAllOffers());
 
@@ -49,8 +60,6 @@ describe('Async actions: offers', () => {
 
       mockApiService.onGet('/favorite').reply(200, []);
 
-      expect(store.getActions()).toEqual([]);
-
       await store.dispatch(fetchFavoriteOffers());
 
       const actions = store.getActions().map(({ type }) => type);
@@ -65,8 +74,6 @@ describe('Async actions: offers', () => {
       const store = mockStore();
 
       mockApiService.onGet('/favorite').reply(401, []);
-
-      expect(store.getActions()).toEqual([]);
 
       await store.dispatch(fetchFavoriteOffers());
 
@@ -86,8 +93,6 @@ describe('Async actions: offers', () => {
 
       mockApiService.onGet(`/hotels/${id}/nearby`).reply(200, []);
 
-      expect(store.getActions()).toEqual([]);
-
       await store.dispatch(fetchOffersNearby(id));
 
       const actions = store.getActions().map(({ type }) => type);
@@ -103,8 +108,6 @@ describe('Async actions: offers', () => {
       const id = 1;
 
       mockApiService.onGet(`/hotels/${id}/nearby`).reply(401, []);
-
-      expect(store.getActions()).toEqual([]);
 
       await store.dispatch(fetchOffersNearby(id));
 

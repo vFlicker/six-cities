@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { Reducer } from '~/constants';
 
+import { Reducer } from '~/constants';
 import { errorHandler } from '~/services';
 import { ThunkOptions, Offer, OfferServer } from '~/types';
 

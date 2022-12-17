@@ -34,7 +34,7 @@ describe('Middleware: redirect', () => {
 
   it('should\'t be redirect to "/login" when bad action', () => {
     const store = mockStore();
-    const action = { type: 'bad_action', payload: AppRoute.Login };
+    const action = { type: 'BAD_ACTION', payload: AppRoute.Login };
 
     store.dispatch(action);
 

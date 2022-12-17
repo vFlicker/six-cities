@@ -1,9 +1,24 @@
+import { Action } from '@reduxjs/toolkit';
+import MockAdapter from 'axios-mock-adapter';
+import configureMockStore from 'redux-mock-store';
+import thunk, { ThunkDispatch } from 'redux-thunk';
+
 import { AuthStatus, FavoriteStatus, Reducer } from '~/constants';
+import { createApiService } from '~/services';
+import { State } from '~/types';
 
 import { fetchFavoriteOffers, fetchAllOffers } from '../slices/offers';
 import { checkAuthStatus } from '../slices/user';
 import { initializeApp, toggleFavorite } from './app';
-import { mockApiService, mockStore } from './test-helpers';
+
+const apiService = createApiService();
+const mockApiService = new MockAdapter(apiService);
+const middlewares = [thunk.withExtraArgument(apiService)];
+
+const mockStore = configureMockStore<
+  unknown,
+  ThunkDispatch<State, typeof apiService, Action>
+>(middlewares);
 
 describe('Async actions: app', () => {
   describe('initializeApp', () => {
@@ -15,8 +30,6 @@ describe('Async actions: app', () => {
       mockApiService.onGet('/login').reply(200, {});
       mockApiService.onGet('/hotels').reply(200, []);
       mockApiService.onGet('/favorite').reply(200, []);
-
-      expect(store.getActions()).toEqual([]);
 
       await store.dispatch(initializeApp());
 
@@ -43,8 +56,6 @@ describe('Async actions: app', () => {
       mockApiService.onGet('/hotels').reply(200, []);
       mockApiService.onGet('/favorite').reply(200, []);
 
-      expect(store.getActions()).toEqual([]);
-
       await store.dispatch(initializeApp());
 
       const actions = store.getActions().map(({ type }) => type);
@@ -69,8 +80,6 @@ describe('Async actions: app', () => {
 
       mockApiService.onPost(`/favorite/${id}/${status}`).reply(200, {});
 
-      expect(store.getActions()).toEqual([]);
-
       await store.dispatch(toggleFavorite({ id, status }));
 
       const actions = store.getActions().map(({ type }) => type);
@@ -85,8 +94,6 @@ describe('Async actions: app', () => {
       const store = mockStore();
 
       mockApiService.onPost(`/favorite/${id}/${status}`).reply(401, {});
-
-      expect(store.getActions()).toEqual([]);
 
       await store.dispatch(toggleFavorite({ id, status }));
 
