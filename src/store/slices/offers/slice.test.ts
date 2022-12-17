@@ -1,5 +1,7 @@
 import { makeError, makeOffer } from '~/utils';
 
+import { toggleFavorite } from '../app';
+import { logout } from '../user';
 import offersSlice, {
   fetchAllOffers,
   fetchFavoriteOffers,
@@ -308,6 +310,65 @@ describe('Slice: offers', () => {
 
       expect(offersSlice.reducer(initialState, FULFILLED_ACTION_TYPE)).toEqual(
         fulfilledUpdatedState,
+      );
+    });
+  });
+
+  describe('toggleFavorite', () => {
+    it('should update offers when toggleFavorite is fulfilled', () => {
+      const firstOffer = makeOffer({ isFavorite: false });
+      const secondOffer = makeOffer({ isFavorite: false });
+      const offers = [firstOffer, secondOffer];
+      const updatedSecondOffer = { ...secondOffer, isFavorite: true };
+      const updatedOffers = [firstOffer, updatedSecondOffer];
+
+      const initialState: State = {
+        all: offers,
+        favorites: [],
+        nearby: offers,
+        loading: false,
+        error: null,
+      };
+
+      const ACTION_TYPE = {
+        type: toggleFavorite.fulfilled.type,
+        payload: updatedSecondOffer,
+      };
+
+      const updatedState: State = {
+        ...initialState,
+        all: updatedOffers,
+        favorites: [updatedSecondOffer],
+        nearby: updatedOffers,
+      };
+
+      expect(offersSlice.reducer(initialState, ACTION_TYPE)).toEqual(
+        updatedState,
+      );
+    });
+  });
+
+  describe('logout', () => {
+    it('should remove favorites when action logout is fulfilled', () => {
+      const offers = [makeOffer({ isFavorite: true })];
+
+      const initialState: State = {
+        all: offers,
+        favorites: offers,
+        nearby: offers,
+        loading: false,
+        error: null,
+      };
+
+      const ACTION_TYPE = { type: logout.fulfilled.type };
+
+      const updatedState: State = {
+        ...initialState,
+        favorites: [],
+      };
+
+      expect(offersSlice.reducer(initialState, ACTION_TYPE)).toEqual(
+        updatedState,
       );
     });
   });
