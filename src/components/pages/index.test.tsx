@@ -5,56 +5,83 @@ import { createMemoryHistory } from 'history';
 import '@testing-library/jest-dom';
 
 import { AppRoute, AuthStatus, CityName, Reducer } from '~/constants';
-// import { makeComment, makeOffer } from '~/utils';
+import { makeOffer } from '~/utils';
 
 import { HistoryRouter } from '../shared';
 import { Pages } from '.';
 
+jest.mock('~/assets/images', () => ({
+  pinActiveIconSrc: '~/assets/images/icons/pin-active.svg',
+  pinIconSrc: '~/assets/images/icons/pin.svg',
+}));
+
+jest.mock('~/store', () => {
+  const originalModule = jest.requireActual('~/store');
+
+  return {
+    ...originalModule,
+    commentsSlice: {
+      ...originalModule.commentsSlice,
+      fetchComments: jest.fn(() => ({
+        type: 'test',
+        payload: [],
+      })),
+    },
+    offerSlice: {
+      ...originalModule.offerSlice,
+      fetchOffer: jest.fn(() => ({
+        type: 'test',
+        payload: [],
+      })),
+    },
+    offersSlice: {
+      ...originalModule.offersSlice,
+      fetchOffersNearby: jest.fn(() => ({
+        type: 'test',
+        payload: [],
+      })),
+    },
+  };
+});
+
 const mockStore = configureMockStore();
 
-// const offer = makeOffer({ id: 1, price: 99999 });
-// const comment = makeComment();
+const offer = makeOffer({ id: 1, price: 99999 });
+const offers = [offer];
 
 const history = createMemoryHistory();
 
 describe('Application Routing', () => {
-  // it('should render "MainPage" when user navigate to "/"', () => {
-  //   // TODO:
-  // const store = mockStore({
-  //   [Reducer.App]: {
-  //     currentCityName: CityName.Amsterdam,
-  //     favoriteIDsInProgress: [],
-  //   },
-  //   [Reducer.Comments]: {
-  //     comments: [comment],
-  //   },
-  //   [Reducer.Offer]: {
-  //     offer,
-  //   },
-  //   [Reducer.Offers]: {
-  //     favorites: [offer],
-  //     nearby: [offer],
-  //   },
-  //   [Reducer.User]: {
-  //     authStatus: AuthStatus.Auth,
-  //   },
-  // });
+  it('should render "MainPage" when user navigate to "/"', () => {
+    const store = mockStore({
+      [Reducer.App]: {
+        currentCityName: CityName.Amsterdam,
+        favoriteIDsInProgress: [],
+      },
+      [Reducer.Offers]: {
+        all: offers,
+        favorites: [],
+      },
+      [Reducer.User]: {
+        authStatus: AuthStatus.Auth,
+      },
+    });
 
-  // const fakeApp = (
-  //   <Provider store={store}>
-  //     <HistoryRouter history={history}>
-  //       <Pages />
-  //     </HistoryRouter>
-  //   </Provider>
-  // );
+    const fakeApp = (
+      <Provider store={store}>
+        <HistoryRouter history={history}>
+          <Pages />
+        </HistoryRouter>
+      </Provider>
+    );
 
-  //   history.push(AppRoute.Root);
+    history.push(AppRoute.Root);
 
-  //   render(fakeApp);
+    render(fakeApp);
 
-  //   expect(screen.getAllByText(/Sign in/i).length).toBe(3);
-  //   expect(screen.getByText(/Amsterdam/i)).toBeInTheDocument();
-  // });
+    expect(screen.getByText('Places')).toBeInTheDocument();
+    expect(screen.getByText(/places to stay in/i)).toBeInTheDocument();
+  });
 
   it('should render "FavoritesPage" when user navigate to "/favorites"', () => {
     const store = mockStore({
@@ -112,46 +139,43 @@ describe('Application Routing', () => {
     expect(screen.getByText(/Amsterdam/i)).toBeInTheDocument();
   });
 
-  // it('should render "OfferPage" when user navigate to "/offers/:id"', () => {
-  //   // TODO:
+  it('should render "OfferPage" when user navigate to "/offers/:id"', () => {
+    const store = mockStore({
+      [Reducer.App]: {
+        currentCityName: CityName.Amsterdam,
+        favoriteIDsInProgress: [],
+      },
+      [Reducer.Comments]: {
+        comments: [],
+      },
+      [Reducer.Offer]: {
+        offer,
+      },
+      [Reducer.Offers]: {
+        favorites: [],
+        nearby: [],
+      },
+      [Reducer.User]: {
+        authStatus: AuthStatus.Auth,
+      },
+    });
 
-  // const store = mockStore({
-  //   [Reducer.App]: {
-  //     currentCityName: CityName.Amsterdam,
-  //     favoriteIDsInProgress: [],
-  //   },
-  //   [Reducer.Comments]: {
-  //     comments: [comment],
-  //   },
-  //   [Reducer.Offer]: {
-  //     offer,
-  //   },
-  //   [Reducer.Offers]: {
-  //     favorites: [offer],
-  //     nearby: [offer],
-  //   },
-  //   [Reducer.User]: {
-  //     authStatus: AuthStatus.Auth,
-  //   },
-  // });
+    const fakeApp = (
+      <Provider store={store}>
+        <HistoryRouter history={history}>
+          <Pages />
+        </HistoryRouter>
+      </Provider>
+    );
 
-  // const fakeApp = (
-  //   <Provider store={store}>
-  //     <HistoryRouter history={history}>
-  //       <Pages />
-  //     </HistoryRouter>
-  //   </Provider>
-  // );
+    history.push(`/offers/${offer.id}`);
 
-  //   const id = 1;
-  //   history.push(`/offers/${id}`);
+    render(fakeApp);
 
-  //   render(fakeApp);
-
-  //   expect(screen.getByText(/9999/i)).toBeInTheDocument();
-  //   expect(screen.getByText(/What's inside/i)).toBeInTheDocument();
-  //   expect(screen.getByText(/Reviews/i)).toBeInTheDocument();
-  // });
+    expect(screen.getByText(new RegExp(offer.title, 'i'))).toBeInTheDocument();
+    expect(screen.getByText(/Meet the host/i)).toBeInTheDocument();
+    expect(screen.getByText(/Reviews/i)).toBeInTheDocument();
+  });
 
   it('should render "NotFoundPage" when user navigate to unknown route', () => {
     const store = mockStore({
