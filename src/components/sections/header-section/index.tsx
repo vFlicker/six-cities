@@ -8,7 +8,7 @@ export function HeaderSection(): JSX.Element {
     <S.Header>
       <Container>
         <S.HeaderWrapper>
-          <Logo width={81} height={41} />
+          <Logo />
           <NavList />
         </S.HeaderWrapper>
       </Container>

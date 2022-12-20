@@ -17,7 +17,7 @@ describe('Component: Logo', () => {
 
     render(
       <HistoryRouter history={history}>
-        <Logo width={64} height={33} />
+        <Logo />
       </HistoryRouter>,
     );
 
@@ -30,7 +30,7 @@ describe('Component: Logo', () => {
 
     render(
       <HistoryRouter history={history}>
-        <Logo width={64} height={33} />
+        <Logo />
       </HistoryRouter>,
     );
 
@@ -45,7 +45,7 @@ describe('Component: Logo', () => {
       <HistoryRouter history={history}>
         <Routes>
           <Route path="/" element={<h1>This is main page</h1>} />
-          <Route path="*" element={<Logo width={64} height={33} />} />
+          <Route path="*" element={<Logo />} />
         </Routes>
       </HistoryRouter>,
     );

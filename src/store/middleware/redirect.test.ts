@@ -17,6 +17,7 @@ jest.mock('~/browser-history.ts', () => ({
 
 const middlewares = [redirect];
 const mockStore = configureMockStore(middlewares);
+const store = mockStore();
 
 describe('Middleware: redirect', () => {
   beforeEach(() => {
@@ -24,8 +25,6 @@ describe('Middleware: redirect', () => {
   });
 
   it('should be redirect to "/login"', () => {
-    const store = mockStore();
-
     store.dispatch(redirectToRoute(AppRoute.Login));
 
     expect(fakeHistory.location.pathname).toBe(AppRoute.Login);
@@ -33,12 +32,8 @@ describe('Middleware: redirect', () => {
   });
 
   it('should\'t be redirect to "/login" when bad action', () => {
-    const store = mockStore();
-    const action = { type: 'BAD_ACTION', payload: AppRoute.Login };
-
-    store.dispatch(action);
+    store.dispatch({ type: 'BAD_ACTION', payload: AppRoute.Login });
 
     expect(fakeHistory.location.pathname).not.toBe(AppRoute.Login);
-    expect(store.getActions()).toEqual([action]);
   });
 });
