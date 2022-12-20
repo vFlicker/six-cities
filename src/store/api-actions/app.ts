@@ -1,16 +1,16 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { FavoriteStatus, Reducer } from '~/constants';
+import { Reducer } from '~/constants';
 import { errorHandler } from '~/services';
-import { Offer, OfferID, OfferServer, ThunkOptions } from '~/types';
+import {
+  Offer,
+  OfferServer,
+  ThunkOptions,
+  ToggleFavoritePayload,
+} from '~/types';
 
 import { fetchFavoriteOffers, fetchAllOffers } from '../slices/offers';
 import { checkAuthStatus, selectIsUserAuthorized } from '../slices/user';
-
-export type ToggleFavoritePayload = {
-  id: OfferID;
-  status: FavoriteStatus;
-};
 
 /**
  * Thunk that call thunks for init application.

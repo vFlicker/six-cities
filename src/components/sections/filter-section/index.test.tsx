@@ -53,8 +53,7 @@ describe('Component: FilterSection', () => {
 
     await userEvent.click(screen.getByText(new RegExp(CityName.Brussels, 'i')));
 
-    expect(store.getActions()).toEqual([
-      appSlice.changeCityName(CityName.Brussels),
-    ]);
+    const [firstAction] = store.getActions();
+    expect(firstAction).toEqual(appSlice.changeCityName(CityName.Brussels));
   });
 });

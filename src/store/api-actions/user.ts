@@ -1,15 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { AppRoute, Reducer } from '~/constants';
-import { ThunkOptions, User } from '~/types';
+import { AuthData, ThunkOptions, User } from '~/types';
 import { token, errorHandler } from '~/services';
 
 import { redirectToRoute } from '../slices/app';
-
-export type AuthData = {
-  email: string;
-  password: string;
-};
 
 export const checkAuthStatus = createAsyncThunk<User, undefined, ThunkOptions>(
   `${Reducer.User}/authStatus`,

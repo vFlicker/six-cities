@@ -1,6 +1,11 @@
-import { CityName } from '~/constants';
+import { CityName, FavoriteStatus } from '~/constants';
 
 import { CamelToSnakeCaseNested } from '../util-types';
+
+export type ToggleFavoritePayload = {
+  id: OfferID;
+  status: FavoriteStatus;
+};
 
 export type City = {
   location: Location;

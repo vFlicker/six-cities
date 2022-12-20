@@ -1,5 +1,10 @@
 import { CamelToSnakeCaseNested } from '../util-types';
 
+export type AuthData = {
+  email: string;
+  password: string;
+};
+
 export type User = {
   avatarUrl?: string;
   email: string;

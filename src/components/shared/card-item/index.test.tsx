@@ -6,8 +6,8 @@ import { createMemoryHistory } from 'history';
 import '@testing-library/jest-dom';
 
 import { FavoriteStatus, Reducer } from '~/constants';
+import { ToggleFavoritePayload } from '~/types';
 import { makeOffer } from '~/utils';
-import { ToggleFavoritePayload } from '~/store/api-actions/app';
 
 import { HistoryRouter } from '../history-router';
 import { CardItem } from './index';

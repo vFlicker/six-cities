@@ -5,10 +5,10 @@ import thunk, { ThunkDispatch } from 'redux-thunk';
 
 import { createApiService } from '~/services';
 import { token } from '~/services';
-import { State } from '~/types';
+import { AuthData, State } from '~/types';
 import { redirectToRoute } from '../slices/app';
 
-import { AuthData, checkAuthStatus, login, logout } from './user';
+import { checkAuthStatus, login, logout } from './user';
 
 const apiService = createApiService();
 const mockApiService = new MockAdapter(apiService);

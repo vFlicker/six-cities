@@ -51,7 +51,7 @@ describe('Component: AuthList', () => {
 
     expect(screen.queryByText(/Sign in/i)).not.toBeInTheDocument();
     expect(screen.getByText(/Sign out/i)).toBeInTheDocument();
-    expect(screen.getByTestId(/counter/i)).toBeInTheDocument();
+    expect(screen.getByTestId('counter')).toBeInTheDocument();
     expect(screen.getAllByRole('link')).toHaveLength(2);
     expect(screen.getByText(user.email)).toBeInTheDocument();
   });
