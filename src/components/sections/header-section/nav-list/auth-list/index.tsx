@@ -2,22 +2,9 @@ import { AppRoute } from '~/constants';
 import { useAppDispatch, useAppSelector } from '~/hooks';
 import { offersSlice, userSlice } from '~/store';
 
-import * as S from './styles';
+import * as S from '../styles';
 
-function NoAuthList(): JSX.Element {
-  return (
-    <S.List>
-      <S.Item>
-        <S.Link to={AppRoute.Login}>
-          <S.Avatar />
-          <S.Button>Sign in</S.Button>
-        </S.Link>
-      </S.Item>
-    </S.List>
-  );
-}
-
-function AuthList(): JSX.Element {
+export function AuthList(): JSX.Element | null {
   const user = useAppSelector(userSlice.selectUser);
   const favoriteOffers = useAppSelector(offersSlice.selectFavorites);
 
@@ -32,22 +19,17 @@ function AuthList(): JSX.Element {
       <S.Item>
         <S.Link to={AppRoute.Favorites}>
           <S.Avatar avatarUrl={avatarUrl} />
-          {Boolean(favoriteCount) && <S.Counter>{favoriteCount}</S.Counter>}
-          <S.Button>{email}</S.Button>
+          {Boolean(favoriteCount) && (
+            <S.Counter data-testid="counter">{favoriteCount}</S.Counter>
+          )}
+          <S.LinkText>{email}</S.LinkText>
         </S.Link>
       </S.Item>
       <S.Item>
         <S.Link to={AppRoute.Root} onClick={() => dispatch(userSlice.logout())}>
-          <S.Button>Sign out</S.Button>
+          <S.LinkText>Sign out</S.LinkText>
         </S.Link>
       </S.Item>
     </S.List>
   );
-}
-
-export function NavList(): JSX.Element {
-  const isUserAuthorized = useAppSelector(userSlice.selectIsUserAuthorized);
-  const list = isUserAuthorized ? <AuthList /> : <NoAuthList />;
-
-  return <S.Nav>{list}</S.Nav>;
 }

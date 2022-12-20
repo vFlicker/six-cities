@@ -3,12 +3,6 @@ import { Link as RouterLink } from 'react-router-dom';
 
 import { avatarIconSrc } from '~/assets/images';
 
-export const Nav = styled.nav`
-  display: flex;
-  flex-shrink: 0;
-  flex-wrap: wrap;
-`;
-
 export const List = styled.ul`
   display: flex;
   align-items: center;
@@ -58,7 +52,7 @@ export const Counter = styled.div`
   border-radius: 15px;
 `;
 
-export const Button = styled.span`
+export const LinkText = styled.span`
   padding-top: 2px;
   padding-right: 8px;
 `;

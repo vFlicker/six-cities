@@ -15,3 +15,9 @@ export const HeaderWrapper = styled.div`
   align-items: center;
   padding: 19px 16px 19px;
 `;
+
+export const Nav = styled.nav`
+  display: flex;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+`;
