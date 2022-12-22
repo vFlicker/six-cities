@@ -13,8 +13,8 @@ describe('Component: NotFound', () => {
       <NotFound iconSrc="" alt={alt} description={description} title={title} />,
     );
 
-    expect(screen.getByAltText(alt)).toBeInTheDocument();
-    expect(screen.getByText(description)).toBeInTheDocument();
-    expect(screen.getByText(title)).toBeInTheDocument();
+    expect(screen.getByAltText(new RegExp(alt, 'i'))).toBeInTheDocument();
+    expect(screen.getByText(new RegExp(description, 'i'))).toBeInTheDocument();
+    expect(screen.getByText(new RegExp(title, 'i'))).toBeInTheDocument();
   });
 });

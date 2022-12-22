@@ -4,88 +4,104 @@ import configureMockStore from 'redux-mock-store';
 import { createMemoryHistory } from 'history';
 import '@testing-library/jest-dom';
 
-import { AuthStatus, CityName, Reducer } from '~/constants';
+import { CityName, Reducer, SortType } from '~/constants';
 import { makeOffer } from '~/utils';
 
 import { HistoryRouter } from '../../shared';
-import { FavoritesSection } from './index';
+import { MainSection } from './index';
+
+jest.mock('~/assets/images', () => ({
+  pinActiveIconSrc: '~/assets/images/icons/pin-active.svg',
+  pinIconSrc: '~/assets/images/icons/pin.svg',
+}));
 
 const mockStore = configureMockStore();
 
-const offer = makeOffer();
-
 const history = createMemoryHistory();
 
-describe('Component: FavoritesSection', () => {
+const offer = makeOffer();
+const offers = [offer];
+
+describe('Component: MainSection', () => {
   it('should render correctly', () => {
     const store = mockStore({
       [Reducer.App]: {
+        currentCityName: CityName.Amsterdam,
+        currentSortType: SortType.Popular,
         favoriteIDsInProgress: [],
       },
       [Reducer.Offers]: {
-        favorites: [offer],
+        all: offers,
         loading: false,
         error: null,
-      },
-      [Reducer.User]: {
-        authStatus: AuthStatus.Auth,
       },
     });
 
     render(
       <Provider store={store}>
         <HistoryRouter history={history}>
-          <FavoritesSection />
+          <MainSection />
         </HistoryRouter>
       </Provider>,
     );
 
-    expect(screen.getByText(/Saved listing/i)).toBeInTheDocument();
-    expect(
-      screen.getByText(new RegExp(CityName.Amsterdam, 'i')),
-    ).toBeInTheDocument();
-    expect(screen.getByText(offer.title)).toBeInTheDocument();
+    expect(screen.getByText(/places to stay in Amsterdam/i)).toHaveTextContent(
+      offers.length.toString(),
+    );
+
+    expect(screen.getByText(/places to stay in Amsterdam/i)).toHaveTextContent(
+      CityName.Amsterdam,
+    );
+
+    expect(screen.getByText(new RegExp(offer.title))).toBeInTheDocument();
+    expect(screen.getByTestId('map')).toBeInTheDocument();
   });
 
-  it('should render FavoritesEmptySection', () => {
+  it('should render MainSectionEmptySection', () => {
     const store = mockStore({
+      [Reducer.App]: {
+        currentCityName: CityName.Amsterdam,
+        currentSortType: SortType.Popular,
+        favoriteIDsInProgress: [],
+      },
       [Reducer.Offers]: {
-        favorites: [],
+        all: [],
         loading: false,
         error: null,
-      },
-      [Reducer.User]: {
-        authStatus: AuthStatus.Auth,
       },
     });
 
     render(
       <Provider store={store}>
         <HistoryRouter history={history}>
-          <FavoritesSection />
+          <MainSection />
         </HistoryRouter>
       </Provider>,
     );
 
-    expect(screen.getByText(/Nothing yet saved/i)).toBeInTheDocument();
+    expect(
+      screen.getByText(/No places to stay available/i),
+    ).toBeInTheDocument();
   });
 
   it('should render Loader', () => {
     const store = mockStore({
+      [Reducer.App]: {
+        currentCityName: CityName.Amsterdam,
+        currentSortType: SortType.Popular,
+        favoriteIDsInProgress: [],
+      },
       [Reducer.Offers]: {
-        favorites: [],
+        all: [],
         loading: true,
         error: null,
-      },
-      [Reducer.User]: {
-        authStatus: AuthStatus.Auth,
       },
     });
 
     render(
       <Provider store={store}>
         <HistoryRouter history={history}>
-          <FavoritesSection />
+          <MainSection />
         </HistoryRouter>
       </Provider>,
     );
@@ -95,20 +111,22 @@ describe('Component: FavoritesSection', () => {
 
   it('should render Error', () => {
     const store = mockStore({
+      [Reducer.App]: {
+        currentCityName: CityName.Amsterdam,
+        currentSortType: SortType.Popular,
+        favoriteIDsInProgress: [],
+      },
       [Reducer.Offers]: {
-        favorites: [],
+        all: [],
         loading: false,
         error: true,
-      },
-      [Reducer.User]: {
-        authStatus: AuthStatus.Auth,
       },
     });
 
     render(
       <Provider store={store}>
         <HistoryRouter history={history}>
-          <FavoritesSection />
+          <MainSection />
         </HistoryRouter>
       </Provider>,
     );

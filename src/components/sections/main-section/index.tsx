@@ -4,7 +4,7 @@ import { appSlice, offersSlice } from '~/store';
 
 import { CardItem, ErrorMessage, Map, Spinner } from '../../shared';
 import { MainEmptySection } from './main-empty-section';
-import { SortingFrom } from './sorting-form';
+import { SortSelect } from './sort-select';
 
 import * as S from './styles';
 
@@ -43,7 +43,7 @@ export function MainSection(): JSX.Element {
           {sortedOffers.length} places to stay in {cityName}
         </S.PlacesFound>
 
-        <SortingFrom />
+        <SortSelect />
 
         <S.CardList>{cardList}</S.CardList>
       </S.Section>

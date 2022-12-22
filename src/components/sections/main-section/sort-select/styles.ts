@@ -1,14 +1,16 @@
 import styled from '@emotion/styled';
 
-type ListProps = {
-  isOpen: boolean;
+import { arrowSelectIconSrc } from '~/assets/images';
+
+type ButtonProps = {
+  isActive: boolean;
 };
 
 type ItemProps = {
   isActive: boolean;
 };
 
-export const From = styled.form`
+export const Select = styled.div`
   position: relative;
   margin-bottom: 33px;
   padding-left: 5px;
@@ -20,30 +22,36 @@ export const Caption = styled.span`
   font-weight: 700;
 `;
 
-export const Type = styled.span`
+export const Button = styled.button<ButtonProps>`
   position: relative;
   display: inline-block;
   padding-right: 12px;
   font-size: 12px;
   line-height: 1.167;
   cursor: pointer;
+
+  &::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 55%;
+
+    transform: ${({ isActive }) =>
+      isActive ? 'translateY(-50%) scaleY(-1)' : 'translateY(-50%)'};
+
+    width: 7px;
+    height: 4px;
+
+    background-image: url(${arrowSelectIconSrc});
+  }
 `;
 
-export const Arrow = styled.svg`
-  position: absolute;
-  top: 55%;
-  -webkit-transform: translateY(-50%);
-  transform: translateY(-50%);
-  right: 0;
-  fill: #0d0d0d;
-`;
-
-export const List = styled.ul<ListProps>`
+export const List = styled.ul`
   position: absolute;
   top: calc(100% + 1px);
   left: 52px;
   z-index: 1;
-  display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
+  display: block;
 
   margin: 0;
   padding: 0;
