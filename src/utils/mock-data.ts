@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker/locale/en_US';
 
 import { CityName } from '~/constants';
-import { City, Host, Location, Offer, Review, ReviewUser, User } from '~/types';
+import { Host, Location, Offer, Review, ReviewUser, User } from '~/types';
 
 type MakeOfferArgs = Partial<Offer> & {
   cityName?: CityName;
@@ -18,11 +18,6 @@ const makeLocation = (): Location => ({
   latitude: Number(faker.address.latitude()),
   longitude: Number(faker.address.longitude()),
   zoom: faker.datatype.number({ min: 1, max: 10 }),
-});
-
-const makeCity = (cityName?: CityName): City => ({
-  location: makeLocation(),
-  name: cityName ?? CityName.Amsterdam,
 });
 
 const makeHost = (): Host => ({
@@ -52,7 +47,10 @@ export const makeOffer = ({
   isPremium,
 }: MakeOfferArgs = {}): Offer => ({
   bedrooms: faker.datatype.number({ min: 1, max: 4 }),
-  city: makeCity(cityName),
+  city: {
+    location: makeLocation(),
+    name: cityName ?? CityName.Amsterdam,
+  },
   description: faker.lorem.paragraph(),
   goods: faker.helpers.uniqueArray(faker.random.words, 5),
   host: makeHost(),

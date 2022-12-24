@@ -17,14 +17,11 @@ describe('Component: Features', () => {
       />,
     );
 
-    expect(
-      screen.getByText(new RegExp(bedrooms.toString(), 'i')),
-    ).toBeInTheDocument();
+    expect(screen.getByText(/bedrooms/i)).toHaveTextContent(
+      bedrooms.toString(),
+    );
 
     expect(screen.getByText(new RegExp(type, 'i'))).toBeInTheDocument();
-
-    expect(
-      screen.getByText(new RegExp(maxAdults.toString(), 'i')),
-    ).toBeInTheDocument();
+    expect(screen.getByText(/adults/i)).toHaveTextContent(maxAdults.toString());
   });
 });

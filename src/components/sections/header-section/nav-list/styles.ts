@@ -3,6 +3,10 @@ import { Link as RouterLink } from 'react-router-dom';
 
 import { avatarIconSrc } from '~/assets/images';
 
+type AvatarProps = {
+  avatarUrl?: string;
+};
+
 export const List = styled.ul`
   display: flex;
   align-items: center;
@@ -25,7 +29,7 @@ export const Link = styled(RouterLink)`
   }
 `;
 
-export const Avatar = styled.div<{ avatarUrl?: string }>`
+export const Avatar = styled.div<AvatarProps>`
   width: 24px;
   height: 24px;
   margin-right: 10px;

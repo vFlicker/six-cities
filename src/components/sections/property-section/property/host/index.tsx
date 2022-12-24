@@ -3,8 +3,8 @@ import * as S from './styles';
 type HostProps = {
   authorName: string;
   description: string;
-  avatarUrl?: string;
-  isPro?: boolean;
+  avatarUrl: string;
+  isPro: boolean;
 };
 
 export function Host({

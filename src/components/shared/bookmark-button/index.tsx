@@ -5,7 +5,7 @@ import { getButtonSize, Size } from './utils';
 type BookmarkButtonProps = {
   size: Size;
   isLoading: boolean;
-  isFavorite?: boolean;
+  isFavorite: boolean;
 
   onClick: () => void;
 };

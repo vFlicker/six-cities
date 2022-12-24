@@ -56,9 +56,11 @@ export function CardItem({
       onMouseEnter={onCardItemMouseEnter}
       onMouseLeave={onCardItemMouseLeave}
     >
-      <S.MarkWrapper>
-        <Mark isPremium={isPremium} type="small" />
-      </S.MarkWrapper>
+      {isPremium && (
+        <S.MarkWrapper>
+          <Mark type="small" />
+        </S.MarkWrapper>
+      )}
 
       <S.ImageWrapper cardType={cardType}>
         <Link to={createOfferLink(id)}>

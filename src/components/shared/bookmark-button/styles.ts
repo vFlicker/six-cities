@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { visuallyHidden } from '../styles';
 
 type ButtonProps = {
-  isFavorite?: boolean;
+  isFavorite: boolean;
 };
 
 export const Button = styled.button<ButtonProps>`

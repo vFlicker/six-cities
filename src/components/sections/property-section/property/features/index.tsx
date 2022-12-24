@@ -3,7 +3,7 @@ import * as S from './styles';
 type FeaturesProps = {
   type: string;
   bedroomCount: number;
-  maxAdultsCount?: number;
+  maxAdultsCount: number;
 };
 
 export function Features({

@@ -4,7 +4,7 @@ import { css } from '@emotion/react';
 import { avatarIconSrc, starWhiteIconSrc } from '~/assets/images';
 
 type AvatarWrapperProps = {
-  isPro?: boolean;
+  isPro: boolean;
 };
 
 export const Wrapper = styled.div``;

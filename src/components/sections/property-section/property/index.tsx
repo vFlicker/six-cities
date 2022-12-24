@@ -44,9 +44,11 @@ export function Property({
   return (
     <S.Container>
       <S.Wrapper>
-        <S.MarkWrapper>
-          <Mark isPremium={isPremium} type="big" />
-        </S.MarkWrapper>
+        {isPremium && (
+          <S.MarkWrapper>
+            <Mark type="big" />
+          </S.MarkWrapper>
+        )}
 
         <S.Title>{title}</S.Title>
 
