@@ -44,7 +44,7 @@ function OfferContent(): JSX.Element {
 
   return (
     <S.PageContent>
-      <PropertySection offer={offer} />
+      <PropertySection {...offer} />
       <NearPlacesSection />
     </S.PageContent>
   );

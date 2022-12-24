@@ -3,91 +3,63 @@ import { makeOffer } from '~/utils';
 
 import { updateFavorites, updateOffers } from './offers';
 
-const offer1 = makeOffer();
-const offer2 = makeOffer();
-const offer3 = makeOffer();
-
 describe('Module: offers', () => {
   describe('updateOffers', () => {
-    it('should update offers by a given new offer', () => {
-      const offers = [offer1, offer2, offer3];
+    const firstOffer = makeOffer({ isFavorite: false });
+    const secondOffer = makeOffer({ isFavorite: false });
+    const updatedFirstOffer: Offer = { ...firstOffer, isFavorite: true };
+    const updatedSecondOffer: Offer = { ...secondOffer, isFavorite: true };
 
-      const updatedOffer1: Offer = {
-        ...offer1,
-        description: 'fake_description',
-      };
+    it('should update offers when given a updated offer', () => {
+      expect(
+        updateOffers([firstOffer, secondOffer], updatedFirstOffer),
+      ).toEqual([updatedFirstOffer, secondOffer]);
 
-      const updatedOffer2: Offer = {
-        ...offer2,
-        description: 'fake_description',
-      };
-
-      const updatedOffer3: Offer = {
-        ...offer3,
-        description: 'fake_description',
-      };
-
-      expect(updateOffers(offers, updatedOffer1)).toEqual([
-        updatedOffer1,
-        offer2,
-        offer3,
-      ]);
-
-      expect(updateOffers(offers, updatedOffer2)).toEqual([
-        offer1,
-        updatedOffer2,
-        offer3,
-      ]);
-
-      expect(updateOffers(offers, updatedOffer3)).toEqual([
-        offer1,
-        offer2,
-        updatedOffer3,
-      ]);
+      expect(
+        updateOffers([firstOffer, secondOffer], updatedSecondOffer),
+      ).toEqual([firstOffer, updatedSecondOffer]);
     });
 
-    it('should throw error if offer is unexisting', () => {
-      expect(() => updateOffers([offer1, offer2], offer3)).toThrow(
-        "Can't update unexisting offer",
-      );
-
-      expect(() => updateOffers([], offer1)).toThrow(
-        "Can't update unexisting offer",
-      );
+    it('should return no updated offers when given a unknown offer', () => {
+      expect(updateOffers([firstOffer], secondOffer)).toEqual([firstOffer]);
+      expect(updateOffers([], firstOffer)).toEqual([]);
     });
   });
 
   describe('updateFavorites', () => {
-    it('should add offer to favorites', () => {
-      const offer3 = makeOffer({ isFavorite: true });
+    const truthyFirstOffer = makeOffer({ isFavorite: true });
+    const falsyFirstOffer: Offer = { ...truthyFirstOffer, isFavorite: false };
+    const truthySecondOffer = makeOffer({ isFavorite: true });
+    const falsySecondOffer: Offer = { ...truthySecondOffer, isFavorite: false };
 
-      expect(updateFavorites([offer1, offer2], offer3)).toEqual([
-        offer1,
-        offer2,
-        offer3,
+    it('should add offer when status isFavorite change to true', () => {
+      expect(updateFavorites([], truthyFirstOffer)).toEqual([truthyFirstOffer]);
+
+      expect(updateFavorites([truthyFirstOffer], truthySecondOffer)).toEqual([
+        truthyFirstOffer,
+        truthySecondOffer,
       ]);
-
-      expect(updateFavorites([], offer3)).toEqual([offer3]);
     });
 
     it('should remove offer from favorites', () => {
-      const offer3 = makeOffer({ isFavorite: true });
-      const offers: Offer[] = [offer1, offer2, offer3];
-      const updatedOffer3: Offer = { ...offer3, isFavorite: false };
+      expect(
+        updateFavorites([truthyFirstOffer, truthySecondOffer], falsyFirstOffer),
+      ).toEqual([truthySecondOffer]);
 
-      expect(updateFavorites(offers, updatedOffer3)).toEqual([offer1, offer2]);
+      expect(
+        updateFavorites(
+          [truthyFirstOffer, truthySecondOffer],
+          falsySecondOffer,
+        ),
+      ).toEqual([truthyFirstOffer]);
     });
 
-    it('should throw error instead of removing if offer is unexisting', () => {
-      const offer3 = makeOffer({ isFavorite: false });
+    it('should return no updated offers when given a unknown falsy offer', () => {
+      expect(updateFavorites([truthyFirstOffer], falsySecondOffer)).toEqual([
+        truthyFirstOffer,
+      ]);
 
-      expect(() => updateFavorites([offer1, offer2], offer3)).toThrow(
-        "Can't remove unexisting offer",
-      );
-
-      expect(() => updateFavorites([], offer3)).toThrow(
-        "Can't remove unexisting offer",
-      );
+      expect(updateFavorites([], falsySecondOffer)).toEqual([]);
     });
   });
 });

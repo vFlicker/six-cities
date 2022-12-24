@@ -57,7 +57,7 @@ describe('Component: PropertySection', () => {
 
     render(
       <Provider store={store}>
-        <PropertySection offer={offer} />
+        <PropertySection {...offer} />
       </Provider>,
     );
 
@@ -71,7 +71,7 @@ describe('Component: PropertySection', () => {
   it('handleFavoriteButtonClick should work correctly', async () => {
     render(
       <Provider store={store}>
-        <PropertySection offer={offer} />
+        <PropertySection {...offer} />
       </Provider>,
     );
 

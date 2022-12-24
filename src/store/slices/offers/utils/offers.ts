@@ -1,4 +1,3 @@
-import { NO_ACTIVE_CARD } from '~/constants';
 import { Offer } from '~/types';
 
 const addOffer = (offers: Offer[], updatedOffer: Offer): Offer[] => {
@@ -9,9 +8,7 @@ const addOffer = (offers: Offer[], updatedOffer: Offer): Offer[] => {
 const removeOffer = (offers: Offer[], updatedOffer: Offer): Offer[] => {
   const index = offers.findIndex(({ id }) => id === updatedOffer.id);
 
-  if (index === NO_ACTIVE_CARD) {
-    throw new Error("Can't remove unexisting offer");
-  }
+  if (index === -1) return offers;
 
   const updatedOffers = [...offers.slice(0, index), ...offers.slice(index + 1)];
   return updatedOffers;
@@ -20,9 +17,7 @@ const removeOffer = (offers: Offer[], updatedOffer: Offer): Offer[] => {
 export const updateOffers = (offers: Offer[], updatedOffer: Offer): Offer[] => {
   const index = offers.findIndex(({ id }) => id === updatedOffer.id);
 
-  if (index === NO_ACTIVE_CARD) {
-    throw new Error("Can't update unexisting offer");
-  }
+  if (index === -1) return offers;
 
   const updatedOffers = [
     ...offers.slice(0, index),
