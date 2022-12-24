@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from '~/hooks';
 import { commentsSlice } from '~/store';
 
 import { Button } from '../../../shared';
-import { RatingList } from './rating-list';
+import { ReviewRating } from '../review-rating';
 
 import * as S from './styles';
 
@@ -44,7 +44,7 @@ export function ReviewForm(): JSX.Element {
     <S.From onSubmit={handleFromSubmit}>
       <S.Label htmlFor="review">Your review</S.Label>
 
-      <RatingList
+      <ReviewRating
         rating={rating}
         onRatingToggle={(count: number) => setRating(count)}
       />
