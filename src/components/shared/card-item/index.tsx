@@ -47,7 +47,6 @@ export function CardItem({
 
   const handleFavoriteButtonClick = () => {
     const status = isFavorite ? FavoriteStatus.Remove : FavoriteStatus.Add;
-
     dispatch(appSlice.toggleFavorite({ id, status }));
   };
 

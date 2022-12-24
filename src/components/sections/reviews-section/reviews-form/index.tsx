@@ -20,10 +20,10 @@ export function ReviewsForm(): JSX.Element {
   const { id } = useParams();
 
   const [rating, setRating] = useState(0);
-  const [review, setReview] = useState('');
+  const [comment, setComment] = useState('');
 
   const isSubmitDisabled =
-    review.length < MIN_REVIEW_LENGTH || rating < MIN_STAR_COUNT || isLoading;
+    comment.length < MIN_REVIEW_LENGTH || rating < MIN_STAR_COUNT || isLoading;
 
   const handleFromSubmit = (evt: FormEvent<HTMLFormElement>): void => {
     evt.preventDefault();
@@ -32,11 +32,11 @@ export function ReviewsForm(): JSX.Element {
       commentsSlice.postComment({
         id: Number(id),
         rating,
-        comment: review,
+        comment,
       }),
     ).then(() => {
       setRating(0);
-      setReview('');
+      setComment('');
     });
   };
 
@@ -54,8 +54,8 @@ export function ReviewsForm(): JSX.Element {
         id="review"
         name="review"
         placeholder="Tell how was your stay, what you like and what can be improved"
-        value={review}
-        onChange={({ target }) => setReview(target.value)}
+        value={comment}
+        onChange={({ target }) => setComment(target.value)}
       />
 
       <S.Wrapper>

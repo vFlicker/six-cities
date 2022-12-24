@@ -7,14 +7,12 @@ type MakeOfferArgs = Partial<Offer> & {
   cityName?: CityName;
 };
 
-const makeReviewUser = (): ReviewUser => {
-  const user = makeUser() as Partial<User>;
-
-  delete user.token;
-  delete user.email;
-
-  return user as ReviewUser;
-};
+export const makeReviewUser = (): ReviewUser => ({
+  id: faker.datatype.number(),
+  name: faker.name.firstName(),
+  avatarUrl: faker.image.imageUrl(),
+  isPro: faker.datatype.boolean(),
+});
 
 const makeLocation = (): Location => ({
   latitude: Number(faker.address.latitude()),

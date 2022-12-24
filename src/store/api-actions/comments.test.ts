@@ -1,21 +1,16 @@
-import { Action } from '@reduxjs/toolkit';
 import MockAdapter from 'axios-mock-adapter';
 import configureMockStore from 'redux-mock-store';
-import thunk, { ThunkDispatch } from 'redux-thunk';
+import thunk from 'redux-thunk';
 
-import { createApiService } from '~/services';
-import { State } from '~/types';
+import { httpClient } from '~/services';
+import { AppDispatch, PostReview } from '~/types';
 
-import { fetchComments, postComment, PostCommentPayload } from './comments';
+import { fetchComments, postComment } from './comments';
 
-const apiService = createApiService();
-const mockApiService = new MockAdapter(apiService);
-const middlewares = [thunk.withExtraArgument(apiService)];
+const mockApiService = new MockAdapter(httpClient);
+const middlewares = [thunk];
 
-const mockStore = configureMockStore<
-  unknown,
-  ThunkDispatch<State, typeof apiService, Action>
->(middlewares);
+const mockStore = configureMockStore<unknown, AppDispatch>(middlewares);
 
 describe('Async actions: comments', () => {
   describe('fetchComments', () => {
@@ -53,7 +48,7 @@ describe('Async actions: comments', () => {
   });
 
   describe('postComment', () => {
-    const comment: PostCommentPayload = {
+    const comment: PostReview = {
       comment: 'fake_comment',
       id: 1,
       rating: 1,

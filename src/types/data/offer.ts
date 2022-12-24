@@ -1,7 +1,5 @@
 import { CityName, FavoriteStatus } from '~/constants';
 
-import { CamelToSnakeCaseNested } from '../util-types';
-
 export type ToggleFavoritePayload = {
   id: OfferID;
   status: FavoriteStatus;
@@ -49,7 +47,3 @@ export type Offer = {
 export type OffersByCity = Record<CityName, Offer[]>;
 
 export type PartialOffersByCity = Partial<OffersByCity>;
-
-export type OfferServer = Omit<CamelToSnakeCaseNested<Offer>, 'host'> & {
-  host: CamelToSnakeCaseNested<Host>;
-};

@@ -1,23 +1,17 @@
-import { Action } from '@reduxjs/toolkit';
 import MockAdapter from 'axios-mock-adapter';
 import configureMockStore from 'redux-mock-store';
-import thunk, { ThunkDispatch } from 'redux-thunk';
+import thunk from 'redux-thunk';
 
-import { createApiService } from '~/services';
-import { token } from '~/services';
-import { AuthData, State } from '~/types';
+import { httpClient, token } from '~/services';
+import { AppDispatch, AuthData, State } from '~/types';
 import { redirectToRoute } from '../slices/app';
 
 import { checkAuthStatus, login, logout } from './user';
 
-const apiService = createApiService();
-const mockApiService = new MockAdapter(apiService);
-const middlewares = [thunk.withExtraArgument(apiService)];
+const mockApiService = new MockAdapter(httpClient);
+const middlewares = [thunk];
 
-const mockStore = configureMockStore<
-  unknown,
-  ThunkDispatch<State, typeof apiService, Action>
->(middlewares);
+const mockStore = configureMockStore<State, AppDispatch>(middlewares);
 
 const authData: AuthData = {
   email: 'mock-email@gmail.com',

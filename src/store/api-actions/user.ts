@@ -2,47 +2,51 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { AppRoute, Reducer } from '~/constants';
 import { AuthData, ThunkOptions, User } from '~/types';
-import { token, errorHandler } from '~/services';
+import { token, errorHandler, authApiService } from '~/services';
 
 import { redirectToRoute } from '../slices/app';
 
 export const checkAuthStatus = createAsyncThunk<User, undefined, ThunkOptions>(
   `${Reducer.User}/authStatus`,
-  async (_, { extra: apiService, rejectWithValue }) => {
+  async (_, { rejectWithValue }) => {
     try {
-      const { data } = await apiService.get<User>(`/login`);
-      return data;
-    } catch (error) {
-      errorHandler(error as Error);
-      return rejectWithValue(error as Error);
+      const user = await authApiService.checkStatus();
+      return user;
+    } catch (err) {
+      errorHandler(err as Error);
+      return rejectWithValue(err as Error);
     }
   },
 );
 
 export const login = createAsyncThunk<User, AuthData, ThunkOptions>(
   `${Reducer.User}/login`,
-  async (authData, { dispatch, extra: apiService, rejectWithValue }) => {
+  async (data, { dispatch, rejectWithValue }) => {
     try {
-      const { data } = await apiService.post<User>(`/login`, authData);
-      token.saveToken(data.token);
+      const user = await authApiService.login(data);
+
+      token.saveToken(user.token);
+
       dispatch(redirectToRoute(AppRoute.Root));
-      return data;
-    } catch (error) {
-      errorHandler(error as Error);
-      return rejectWithValue(error as Error);
+
+      return user;
+    } catch (err) {
+      errorHandler(err as Error);
+      return rejectWithValue(err as Error);
     }
   },
 );
 
 export const logout = createAsyncThunk<void, undefined, ThunkOptions>(
   `${Reducer.User}/logout`,
-  async (_, { extra: apiService, rejectWithValue }) => {
+  async (_, { rejectWithValue }) => {
     try {
-      await apiService.delete<void>(`logout`);
+      await authApiService.logout();
+
       return token.dropToken();
-    } catch (error) {
-      errorHandler(error as Error);
-      return rejectWithValue(error as Error);
+    } catch (err) {
+      errorHandler(err as Error);
+      return rejectWithValue(err as Error);
     }
   },
 );

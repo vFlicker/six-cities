@@ -1,10 +1,9 @@
-import { Action } from '@reduxjs/toolkit';
 import MockAdapter from 'axios-mock-adapter';
 import configureMockStore from 'redux-mock-store';
-import thunk, { ThunkDispatch } from 'redux-thunk';
+import thunk from 'redux-thunk';
 
-import { createApiService } from '~/services';
-import { State } from '~/types';
+import { httpClient } from '~/services';
+import { AppDispatch } from '~/types';
 
 import {
   fetchAllOffers,
@@ -12,14 +11,10 @@ import {
   fetchOffersNearby,
 } from './offers';
 
-const apiService = createApiService();
-const mockApiService = new MockAdapter(apiService);
-const middlewares = [thunk.withExtraArgument(apiService)];
+const mockApiService = new MockAdapter(httpClient);
+const middlewares = [thunk];
 
-const mockStore = configureMockStore<
-  unknown,
-  ThunkDispatch<State, typeof apiService, Action>
->(middlewares);
+const mockStore = configureMockStore<unknown, AppDispatch>(middlewares);
 
 describe('Async actions: offers', () => {
   describe('fetchAllOffers', () => {

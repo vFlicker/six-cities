@@ -1,5 +1,10 @@
-import { CamelToSnakeCaseNested } from '../util-types';
 import { User } from './user';
+
+export type PostReview = {
+  id: number;
+  comment: string;
+  rating: number;
+};
 
 export type ReviewUser = Omit<User, 'token' | 'email'>;
 
@@ -10,5 +15,3 @@ export type Review = {
   rating: number;
   user: ReviewUser;
 };
-
-export type ReviewServer = CamelToSnakeCaseNested<Review>;

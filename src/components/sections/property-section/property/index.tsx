@@ -37,12 +37,8 @@ export function Property({
   const dispatch = useAppDispatch();
 
   const handleFavoriteButtonClick = () => {
-    dispatch(
-      appSlice.toggleFavorite({
-        id,
-        status: isFavorite ? FavoriteStatus.Remove : FavoriteStatus.Add,
-      }),
-    );
+    const status = isFavorite ? FavoriteStatus.Remove : FavoriteStatus.Add;
+    dispatch(appSlice.toggleFavorite({ id, status }));
   };
 
   return (

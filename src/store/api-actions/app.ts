@@ -1,13 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { Reducer } from '~/constants';
-import { errorHandler } from '~/services';
-import {
-  Offer,
-  OfferServer,
-  ThunkOptions,
-  ToggleFavoritePayload,
-} from '~/types';
+import { errorHandler, favoriteApiService } from '~/services';
+import { Offer, ThunkOptions, ToggleFavoritePayload } from '~/types';
 
 import { fetchFavoriteOffers, fetchAllOffers } from '../slices/offers';
 import { checkAuthStatus, selectIsUserAuthorized } from '../slices/user';
@@ -31,9 +26,9 @@ export const initializeApp = createAsyncThunk<void, undefined, ThunkOptions>(
       }
 
       return;
-    } catch (error) {
-      errorHandler(error as Error);
-      return rejectWithValue(error as Error);
+    } catch (err) {
+      errorHandler(err as Error);
+      return rejectWithValue(err as Error);
     }
   },
 );
@@ -44,16 +39,13 @@ export const toggleFavorite = createAsyncThunk<
   ThunkOptions
 >(
   `${Reducer.App}/toggleFavoriteStatus`,
-  async ({ id, status }, { extra: apiService, rejectWithValue }) => {
+  async ({ id, status }, { rejectWithValue }) => {
     try {
-      const { data } = await apiService.post<OfferServer>(
-        `/favorite/${id}/${status}`,
-      );
-
-      return data;
-    } catch (error) {
-      errorHandler(error as Error);
-      return rejectWithValue(error as Error);
+      const hotel = await favoriteApiService.toggleStatus(id, status);
+      return hotel;
+    } catch (err) {
+      errorHandler(err as Error);
+      return rejectWithValue(err as Error);
     }
   },
 );

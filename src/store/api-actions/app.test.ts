@@ -1,30 +1,27 @@
-import { Action } from '@reduxjs/toolkit';
 import MockAdapter from 'axios-mock-adapter';
 import configureMockStore from 'redux-mock-store';
-import thunk, { ThunkDispatch } from 'redux-thunk';
+import thunk from 'redux-thunk';
 
 import { AuthStatus, FavoriteStatus, Reducer } from '~/constants';
-import { createApiService } from '~/services';
-import { State } from '~/types';
+import { httpClient } from '~/services';
+import { AppDispatch } from '~/types';
 
 import { fetchFavoriteOffers, fetchAllOffers } from '../slices/offers';
 import { checkAuthStatus } from '../slices/user';
 import { initializeApp, toggleFavorite } from './app';
 
-const apiService = createApiService();
-const mockApiService = new MockAdapter(apiService);
-const middlewares = [thunk.withExtraArgument(apiService)];
+const mockApiService = new MockAdapter(httpClient);
+const middlewares = [thunk];
 
-const mockStore = configureMockStore<
-  unknown,
-  ThunkDispatch<State, typeof apiService, Action>
->(middlewares);
+const mockStore = configureMockStore<unknown, AppDispatch>(middlewares);
 
 describe('Async actions: app', () => {
   describe('initializeApp', () => {
     it('should dispatch initializeApp, checkAuthStatus, fetchAllOffers, fetchFavoriteOffers when POST "/login" and server return 200', async () => {
       const store = mockStore({
-        [Reducer.User]: { authStatus: AuthStatus.Auth },
+        [Reducer.User]: {
+          authStatus: AuthStatus.Auth,
+        },
       });
 
       mockApiService.onGet('/login').reply(200, {});

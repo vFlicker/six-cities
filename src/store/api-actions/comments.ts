@@ -1,45 +1,31 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { Reducer } from '~/constants';
-import { errorHandler } from '~/services';
-import { ThunkOptions, Review, ReviewServer } from '~/types';
-
-export type PostCommentPayload = {
-  id: number;
-  comment: string;
-  rating: number;
-};
+import { errorHandler, reviewApiService } from '~/services';
+import { ThunkOptions, Review, PostReview } from '~/types';
 
 export const fetchComments = createAsyncThunk<Review[], number, ThunkOptions>(
   `${Reducer.Comments}/fetchComments`,
-  async (id, { extra: apiService, rejectWithValue }) => {
+  async (id, { rejectWithValue }) => {
     try {
-      const { data } = await apiService.get<ReviewServer[]>(`/comments/${id}`);
-      return data;
-    } catch (error) {
-      errorHandler(error as Error);
-      return rejectWithValue(error as Error);
+      const reviews = await reviewApiService.findAllById(id);
+      return reviews;
+    } catch (err) {
+      errorHandler(err as Error);
+      return rejectWithValue(err as Error);
     }
   },
 );
 
-export const postComment = createAsyncThunk<
-  Review[],
-  PostCommentPayload,
-  ThunkOptions
->(
+export const postComment = createAsyncThunk<Review[], PostReview, ThunkOptions>(
   `${Reducer.Comments}/postComment`,
-  async ({ id, ...review }, { extra: apiService, rejectWithValue }) => {
+  async (data, { rejectWithValue }) => {
     try {
-      const { data } = await apiService.post<ReviewServer[]>(
-        `/comments/${id}`,
-        review,
-      );
-
-      return data;
-    } catch (error) {
-      errorHandler(error as Error);
-      return rejectWithValue(error as Error);
+      const reviews = reviewApiService.create(data);
+      return reviews;
+    } catch (err) {
+      errorHandler(err as Error);
+      return rejectWithValue(err as Error);
     }
   },
 );
