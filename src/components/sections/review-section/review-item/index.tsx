@@ -5,33 +5,21 @@ import { StarRating } from '../../../shared';
 
 import * as S from './styles';
 
-type ReviewsListProps = {
-  reviews: Review[];
-};
+type ReviewsItemProps = Review;
 
-type ReviewsItemProps = {
-  review: Review;
-};
-
-export function ReviewsList({ reviews }: ReviewsListProps): JSX.Element {
-  return (
-    <S.List>
-      {reviews.map((review) => (
-        <ReviewsItem key={review.id} review={review} />
-      ))}
-    </S.List>
-  );
-}
-
-function ReviewsItem({ review }: ReviewsItemProps): JSX.Element {
-  const { comment, date, rating, user } = review;
+export function ReviewItem({
+  comment,
+  date,
+  rating,
+  user,
+}: ReviewsItemProps): JSX.Element {
   const { avatarUrl, name } = user;
 
   return (
-    <S.Item>
+    <S.Item date-testid="reviews-item">
       <S.User>
         <S.AvatarWrapper>
-          <S.Avatar src={avatarUrl} width="54" height="54" alt="User avatar" />
+          <S.Avatar src={avatarUrl} width="54" height="54" alt={name} />
         </S.AvatarWrapper>
         <S.Name>{name}</S.Name>
       </S.User>

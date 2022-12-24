@@ -22,7 +22,7 @@ describe('Component: Host', () => {
     );
 
     expect(screen.getByText(/Meet the host/i)).toBeInTheDocument();
-    expect(screen.getByAltText(name)).toBeInTheDocument();
+    expect(screen.getByAltText(new RegExp(name, 'i'))).toBeInTheDocument();
     expect(screen.getByText(new RegExp(name, 'i'))).toBeInTheDocument();
     expect(screen.getByText(new RegExp(description, 'i'))).toBeInTheDocument();
   });

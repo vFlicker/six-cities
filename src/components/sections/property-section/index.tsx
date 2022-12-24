@@ -4,7 +4,7 @@ import { appSlice } from '~/store';
 import { Offer } from '~/types';
 
 import { BookmarkButton, Mark, StarRating } from '../../shared';
-import { ReviewsSection } from '../index';
+import { ReviewSection } from '../review-section';
 import { Gallery } from './gallery';
 import { Features } from './features';
 import { Price } from './price';
@@ -87,7 +87,7 @@ export function PropertySection({
             isPro={isPro}
           />
 
-          <ReviewsSection />
+          <ReviewSection />
         </S.Wrapper>
       </S.Container>
     </S.Section>

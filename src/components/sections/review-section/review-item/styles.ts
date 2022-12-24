@@ -2,12 +2,7 @@ import styled from '@emotion/styled';
 
 import { avatarIconSrc } from '~/assets/images';
 
-export const List = styled.ul`
-  width: 100%;
-  margin-bottom: 55px;
-`;
-
-export const Item = styled.li`
+export const Item = styled.div`
   display: flex;
   align-items: flex-start;
   margin-bottom: 22px;

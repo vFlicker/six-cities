@@ -5,12 +5,12 @@ import { useAppDispatch, useAppSelector } from '~/hooks';
 import { commentsSlice, userSlice } from '~/store';
 
 import { ErrorMessage, Spinner } from '../../shared';
-import { ReviewsForm } from './reviews-form';
-import { ReviewsList } from './reviews-list';
+import { ReviewForm } from './review-form';
+import { ReviewList } from './review-list';
 
 import * as S from './styles';
 
-export function ReviewsSection(): JSX.Element {
+export function ReviewSection(): JSX.Element {
   const { id } = useParams();
 
   const reviews = useAppSelector(commentsSlice.selectComments);
@@ -25,14 +25,11 @@ export function ReviewsSection(): JSX.Element {
     dispatch(commentsSlice.fetchComments(Number(id)));
   }, [dispatch, id]);
 
-  const reviewCount = reviews.length;
-
-  const reviewsList = Boolean(reviewCount) && <ReviewsList reviews={reviews} />;
-  const reviewsForm = isUserAuthorized && <ReviewsForm />;
-
   if (isLoading) return <Spinner />;
 
   if (error) return <ErrorMessage />;
+
+  const reviewCount = reviews.length;
 
   return (
     <S.Section>
@@ -41,9 +38,9 @@ export function ReviewsSection(): JSX.Element {
         <S.ReviewCount>{reviewCount}</S.ReviewCount>
       </S.Title>
 
-      {reviewsList}
+      {reviewCount && <ReviewList reviews={reviews} />}
 
-      {reviewsForm}
+      {isUserAuthorized && <ReviewForm />}
     </S.Section>
   );
 }

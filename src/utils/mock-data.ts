@@ -3,6 +3,8 @@ import { faker } from '@faker-js/faker/locale/en_US';
 import { CityName } from '~/constants';
 import { Host, Location, Offer, Review, ReviewUser, User } from '~/types';
 
+type MakeReviewArgs = Partial<Review>;
+
 type MakeOfferArgs = Partial<Offer> & {
   cityName?: CityName;
 };
@@ -29,9 +31,9 @@ const makeHost = (): Host => ({
 
 export const makeError = (): Error => new Error('Same error...');
 
-export const makeComment = (): Review => ({
+export const makeReview = ({ date }: MakeReviewArgs = {}): Review => ({
   comment: faker.lorem.paragraph(),
-  date: faker.datatype.datetime(),
+  date: date ?? faker.datatype.datetime(),
   id: faker.datatype.number(),
   rating: faker.datatype.number({ min: 1, max: 5 }),
   user: makeReviewUser(),

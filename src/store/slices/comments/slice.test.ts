@@ -1,4 +1,4 @@
-import { makeError, makeComment } from '~/utils';
+import { makeError, makeReview } from '~/utils';
 
 import commentSlice, { fetchComments, postComment } from './slice';
 import { State } from './types';
@@ -9,8 +9,8 @@ const initialState: State = {
   error: null,
 };
 
-const firstComment = makeComment();
-const secondComment = makeComment();
+const firstComment = makeReview();
+const secondComment = makeReview();
 const comments = [firstComment, secondComment];
 
 const error = makeError();

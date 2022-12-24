@@ -12,7 +12,7 @@ import * as S from './styles';
 const MIN_STAR_COUNT = 1;
 const MIN_REVIEW_LENGTH = 5;
 
-export function ReviewsForm(): JSX.Element {
+export function ReviewForm(): JSX.Element {
   const isLoading = useAppSelector(commentsSlice.selectIsLoading);
 
   const dispatch = useAppDispatch();
