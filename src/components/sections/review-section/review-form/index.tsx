@@ -2,7 +2,7 @@ import { FormEvent, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '~/hooks';
-import { commentsSlice } from '~/store';
+import { reviewSlice } from '~/store';
 
 import { Button } from '../../../shared';
 import { ReviewRating } from '../review-rating';
@@ -10,35 +10,37 @@ import { ReviewRating } from '../review-rating';
 import * as S from './styles';
 
 const MIN_STAR_COUNT = 1;
-const MIN_REVIEW_LENGTH = 5;
+const MIN_REVIEW_LENGTH = 50;
 
 export function ReviewForm(): JSX.Element {
-  const isLoading = useAppSelector(commentsSlice.selectIsLoading);
-
-  const dispatch = useAppDispatch();
-
   const { id } = useParams();
 
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState('');
 
-  const isSubmitDisabled =
-    comment.length < MIN_REVIEW_LENGTH || rating < MIN_STAR_COUNT || isLoading;
+  const isLoading = useAppSelector(reviewSlice.selectIsLoading);
 
-  const handleFromSubmit = (evt: FormEvent<HTMLFormElement>): void => {
+  const dispatch = useAppDispatch();
+
+  const handleFromSubmit = async (
+    evt: FormEvent<HTMLFormElement>,
+  ): Promise<void> => {
     evt.preventDefault();
 
-    dispatch(
-      commentsSlice.postComment({
+    await dispatch(
+      reviewSlice.postReview({
         id: Number(id),
         rating,
         comment,
       }),
-    ).then(() => {
-      setRating(0);
-      setComment('');
-    });
+    );
+
+    setRating(0);
+    setComment('');
   };
+
+  const isSubmitDisabled =
+    comment.length < MIN_REVIEW_LENGTH || rating < MIN_STAR_COUNT || isLoading;
 
   return (
     <S.From onSubmit={handleFromSubmit}>
@@ -56,6 +58,7 @@ export function ReviewForm(): JSX.Element {
         placeholder="Tell how was your stay, what you like and what can be improved"
         value={comment}
         onChange={({ target }) => setComment(target.value)}
+        data-testid="review-textarea"
       />
 
       <S.Wrapper>

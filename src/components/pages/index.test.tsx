@@ -20,9 +20,9 @@ jest.mock('~/store', () => {
 
   return {
     ...originalModule,
-    commentsSlice: {
-      ...originalModule.commentsSlice,
-      fetchComments: jest.fn(() => ({
+    reviewSlice: {
+      ...originalModule.reviewSlice,
+      fetchReviews: jest.fn(() => ({
         type: 'test',
         payload: [],
       })),
@@ -145,8 +145,8 @@ describe('Application Routing', () => {
         currentCityName: CityName.Amsterdam,
         favoriteIDsInProgress: [],
       },
-      [Reducer.Comments]: {
-        comments: [],
+      [Reducer.Review]: {
+        reviews: [],
       },
       [Reducer.Offer]: {
         offer,

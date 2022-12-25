@@ -4,8 +4,8 @@ import { Reducer } from '~/constants';
 import { errorHandler, reviewApiService } from '~/services';
 import { ThunkOptions, Review, PostReview } from '~/types';
 
-export const fetchComments = createAsyncThunk<Review[], number, ThunkOptions>(
-  `${Reducer.Comments}/fetchComments`,
+export const fetchReviews = createAsyncThunk<Review[], number, ThunkOptions>(
+  `${Reducer.Review}/fetchReviews`,
   async (id, { rejectWithValue }) => {
     try {
       const reviews = await reviewApiService.findAllById(id);
@@ -17,8 +17,8 @@ export const fetchComments = createAsyncThunk<Review[], number, ThunkOptions>(
   },
 );
 
-export const postComment = createAsyncThunk<Review[], PostReview, ThunkOptions>(
-  `${Reducer.Comments}/postComment`,
+export const postReview = createAsyncThunk<Review[], PostReview, ThunkOptions>(
+  `${Reducer.Review}/postReview`,
   async (data, { rejectWithValue }) => {
     try {
       const reviews = reviewApiService.create(data);

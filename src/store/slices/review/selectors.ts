@@ -1,14 +1,14 @@
 import { Reducer } from '~/constants';
 import { Review, State } from '~/types';
 
-export const selectComments = (state: State): Review[] => {
-  return state[Reducer.Comments].comments;
+export const selectReviews = (state: State): Review[] => {
+  return state[Reducer.Review].reviews;
 };
 
 export const selectIsLoading = (state: State): boolean => {
-  return state[Reducer.Comments].loading;
+  return state[Reducer.Review].loading;
 };
 
 export const selectError = (state: State): Error | null => {
-  return state[Reducer.Comments].error;
+  return state[Reducer.Review].error;
 };

@@ -2,53 +2,53 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { Reducer } from '~/constants';
 
-import { postComment, fetchComments } from '../../api-actions/comments';
+import { postReview, fetchReviews } from '../../api-actions/review';
 import { State } from './types';
 
 const initialState: State = {
-  comments: [],
+  reviews: [],
   loading: false,
   error: null,
 };
 
 const slice = createSlice({
-  name: Reducer.Comments,
+  name: Reducer.Review,
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      /* FETCH COMMENT */
-      .addCase(fetchComments.pending, (state) => {
+      /* FETCH REVIEW */
+      .addCase(fetchReviews.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(fetchComments.fulfilled, (state, action) => {
-        state.comments = action.payload;
+      .addCase(fetchReviews.fulfilled, (state, action) => {
+        state.reviews = action.payload;
         state.loading = false;
         state.error = null;
       })
-      .addCase(fetchComments.rejected, (state, action) => {
+      .addCase(fetchReviews.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload as Error;
       })
 
-      /* POST COMMENT */
-      .addCase(postComment.pending, (state) => {
+      /* POST REVIEW */
+      .addCase(postReview.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(postComment.fulfilled, (state, action) => {
-        state.comments = action.payload;
+      .addCase(postReview.fulfilled, (state, action) => {
+        state.reviews = action.payload;
         state.loading = false;
         state.error = null;
       })
-      .addCase(postComment.rejected, (state, action) => {
+      .addCase(postReview.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload as Error;
       });
   },
 });
 
-export { fetchComments, postComment };
+export { fetchReviews, postReview };
 
 export default slice;

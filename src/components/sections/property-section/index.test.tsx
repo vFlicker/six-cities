@@ -22,10 +22,10 @@ jest.mock('~/store', () => {
         payload,
       }),
     },
-    commentsSlice: {
-      ...originalModule.commentsSlice,
-      fetchComments: () => ({
-        type: 'MOCK_FETCH_COMMENTS_ACTION',
+    reviewSlice: {
+      ...originalModule.reviewSlice,
+      fetchReviews: () => ({
+        type: 'MOCK_FETCH_REVIEWS_ACTION',
       }),
     },
   };
@@ -37,8 +37,8 @@ const store = mockStore({
   [Reducer.App]: {
     favoriteIDsInProgress: [],
   },
-  [Reducer.Comments]: {
-    comments: [],
+  [Reducer.Review]: {
+    reviews: [],
   },
   [Reducer.User]: {
     authStatus: AuthStatus.NoAuth,
@@ -86,7 +86,7 @@ describe('Component: PropertySection', () => {
     console.log(store.getActions());
 
     expect(firstAction).toEqual({
-      type: 'MOCK_FETCH_COMMENTS_ACTION',
+      type: 'MOCK_FETCH_REVIEWS_ACTION',
     });
 
     expect(secondAction).toEqual({

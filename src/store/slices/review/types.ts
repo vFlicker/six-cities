@@ -1,7 +1,7 @@
 import { Review } from '~/types';
 
 export type State = {
-  comments: Review[];
+  reviews: Review[];
   loading: boolean;
   error: Error | null;
 };

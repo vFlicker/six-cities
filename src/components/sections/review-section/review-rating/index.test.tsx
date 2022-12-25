@@ -16,10 +16,10 @@ describe('Component: ReviewRating', () => {
 
     render(<ReviewRating rating={0} onRatingToggle={handleRatingToggle} />);
 
-    const radioButtonElement = screen.getAllByTestId('rating-item').reverse();
+    const radioButtonElements = screen.getAllByTestId('rating-item').reverse();
 
-    await userEvent.click(radioButtonElement[0]);
-    await userEvent.click(radioButtonElement[2]);
+    await userEvent.click(radioButtonElements[0]);
+    await userEvent.click(radioButtonElements[2]);
 
     expect(handleRatingToggle).toBeCalledTimes(2);
     expect(handleRatingToggle).toHaveBeenNthCalledWith(1, 1);

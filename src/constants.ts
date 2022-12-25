@@ -40,17 +40,17 @@ export const enum HttpCode {
 
 export const NO_ACTIVE_CARD = -1;
 
+export const enum Reducer {
+  App = 'APP',
+  Review = 'REVIEW',
+  Offer = 'OFFER',
+  Offers = 'OFFERS',
+  User = 'USER',
+}
+
 export enum SortType {
   Popular = 'Popular',
   PriceHighToLow = 'Price: high to low',
   PriceLowToHigh = 'Price: low to high',
   TopRatedFirst = 'Top rated first',
-}
-
-export const enum Reducer {
-  App = 'APP',
-  Comments = 'COMMENTS',
-  Offer = 'OFFER',
-  Offers = 'OFFERS',
-  User = 'USER',
 }
