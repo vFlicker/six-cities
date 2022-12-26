@@ -120,7 +120,7 @@ describe('Component: ReviewRating', () => {
     expect(getValues()).toEqual(expectedThirdRadioButtonClicked);
   });
 
-  it('submit button should be active when written comment and established rating', async () => {
+  it('submit button should be active when written comment and setted rating', async () => {
     const comment = Array.from({ length: 50 }, () => 'A').join('');
 
     render(

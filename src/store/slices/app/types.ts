@@ -6,6 +6,6 @@ export type State = {
   activeCardId: number;
   currentCityName: CityName;
   currentSortType: SortType;
-  favoriteIDsInProgress: OfferID[];
+  favoriteIdsInProgress: OfferID[];
   error: Error | null;
 };

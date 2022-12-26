@@ -32,8 +32,8 @@ export function PropertySection({
 }: PropertySectionProps): JSX.Element {
   const { avatarUrl, isPro, name: authorName } = host;
 
-  const favoriteIDsInProgress = useAppSelector(
-    appSlice.selectFavoriteIDsInProgress,
+  const favoriteIdsInProgress = useAppSelector(
+    appSlice.selectfavoriteIdsInProgress,
   );
 
   const dispatch = useAppDispatch();
@@ -61,7 +61,7 @@ export function PropertySection({
             <BookmarkButton
               size="large"
               isFavorite={isFavorite}
-              isLoading={favoriteIDsInProgress.includes(id)}
+              isLoading={favoriteIdsInProgress.includes(id)}
               onClick={handleFavoriteButtonClick}
             />
           </S.BookmarkButtonWrapper>

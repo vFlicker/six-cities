@@ -15,7 +15,7 @@ const initialState: State = {
   activeCardId: NO_ACTIVE_CARD,
   currentCityName: CityName.Amsterdam,
   currentSortType: SortType.Popular,
-  favoriteIDsInProgress: [],
+  favoriteIdsInProgress: [],
   error: null,
 };
 
@@ -27,7 +27,7 @@ describe('Slice: app', () => {
     expect(appSlice.reducer(undefined, UNKNOWN_TYPE)).toEqual(initialState);
   });
 
-  it('should change currentCityName property by a given new cite name', () => {
+  it('should change "currentCityName" by a given new cite name', () => {
     const newCityName = CityName.Brussels;
 
     const updatedState: State = {
@@ -102,13 +102,13 @@ describe('Slice: app', () => {
   });
 
   describe('toggleFavorite', () => {
-    it('should add id to favoriteIDsInProgress when toggleFavorite is pending', () => {
+    it('should add id to favoriteIdsInProgress when toggleFavorite is pending', () => {
       const initialState1: State = {
         initialize: AppStatus.Idle,
         activeCardId: NO_ACTIVE_CARD,
         currentCityName: CityName.Amsterdam,
         currentSortType: SortType.Popular,
-        favoriteIDsInProgress: [],
+        favoriteIdsInProgress: [],
         error: null,
       };
 
@@ -121,7 +121,7 @@ describe('Slice: app', () => {
 
       const updatedState1: State = {
         ...initialState1,
-        favoriteIDsInProgress: [1],
+        favoriteIdsInProgress: [1],
       };
 
       expect(appSlice.reducer(initialState1, ACTION_TYPE_1)).toEqual(
@@ -133,7 +133,7 @@ describe('Slice: app', () => {
         activeCardId: NO_ACTIVE_CARD,
         currentCityName: CityName.Amsterdam,
         currentSortType: SortType.Popular,
-        favoriteIDsInProgress: [1],
+        favoriteIdsInProgress: [1],
         error: null,
       };
 
@@ -146,7 +146,7 @@ describe('Slice: app', () => {
 
       const updatedState2: State = {
         ...initialState2,
-        favoriteIDsInProgress: [1, 2],
+        favoriteIdsInProgress: [1, 2],
       };
 
       expect(appSlice.reducer(initialState2, ACTION_TYPE_2)).toEqual(
@@ -154,13 +154,13 @@ describe('Slice: app', () => {
       );
     });
 
-    it('should remove id from favoriteIDsInProgress when toggleFavorite is fulfilled', () => {
+    it('should remove id from favoriteIdsInProgress when toggleFavorite is fulfilled', () => {
       const initialState1: State = {
         initialize: AppStatus.Idle,
         activeCardId: NO_ACTIVE_CARD,
         currentCityName: CityName.Amsterdam,
         currentSortType: SortType.Popular,
-        favoriteIDsInProgress: [1, 2],
+        favoriteIdsInProgress: [1, 2],
         error: null,
       };
 
@@ -173,7 +173,7 @@ describe('Slice: app', () => {
 
       const updatedState1: State = {
         ...initialState1,
-        favoriteIDsInProgress: [2],
+        favoriteIdsInProgress: [2],
       };
 
       expect(appSlice.reducer(initialState1, ACTION_TYPE_1)).toEqual(
@@ -185,7 +185,7 @@ describe('Slice: app', () => {
         activeCardId: NO_ACTIVE_CARD,
         currentCityName: CityName.Amsterdam,
         currentSortType: SortType.Popular,
-        favoriteIDsInProgress: [2],
+        favoriteIdsInProgress: [2],
         error: null,
       };
 
@@ -198,7 +198,7 @@ describe('Slice: app', () => {
 
       const updatedState2: State = {
         ...initialState2,
-        favoriteIDsInProgress: [],
+        favoriteIdsInProgress: [],
       };
 
       expect(appSlice.reducer(initialState2, ACTION_TYPE_2)).toEqual(
@@ -206,13 +206,13 @@ describe('Slice: app', () => {
       );
     });
 
-    it('should remove id from favoriteIDsInProgress when toggleFavorite is rejected', () => {
+    it('should remove id from favoriteIdsInProgress when toggleFavorite is rejected', () => {
       const initialState1: State = {
         initialize: AppStatus.Idle,
         activeCardId: NO_ACTIVE_CARD,
         currentCityName: CityName.Amsterdam,
         currentSortType: SortType.Popular,
-        favoriteIDsInProgress: [1, 2],
+        favoriteIdsInProgress: [1, 2],
         error: null,
       };
 
@@ -226,7 +226,7 @@ describe('Slice: app', () => {
 
       const updatedState1: State = {
         ...initialState1,
-        favoriteIDsInProgress: [2],
+        favoriteIdsInProgress: [2],
         error: error,
       };
 
@@ -239,7 +239,7 @@ describe('Slice: app', () => {
         activeCardId: NO_ACTIVE_CARD,
         currentCityName: CityName.Amsterdam,
         currentSortType: SortType.Popular,
-        favoriteIDsInProgress: [2],
+        favoriteIdsInProgress: [2],
         error: null,
       };
 
@@ -253,7 +253,7 @@ describe('Slice: app', () => {
 
       const updatedState2: State = {
         ...initialState2,
-        favoriteIDsInProgress: [],
+        favoriteIdsInProgress: [],
         error: error,
       };
 
@@ -268,7 +268,7 @@ describe('Slice: app', () => {
         activeCardId: NO_ACTIVE_CARD,
         currentCityName: CityName.Amsterdam,
         currentSortType: SortType.Popular,
-        favoriteIDsInProgress: [],
+        favoriteIdsInProgress: [],
         error: error,
       };
 
@@ -288,7 +288,7 @@ describe('Slice: app', () => {
 
       const updatedState: State = {
         ...initialState,
-        favoriteIDsInProgress: [1],
+        favoriteIdsInProgress: [1],
         error: null,
       };
 

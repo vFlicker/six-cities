@@ -55,7 +55,7 @@ describe('Component: NearPlacesSection', () => {
   it('should render correctly', () => {
     const store = mockStore({
       [Reducer.App]: {
-        favoriteIDsInProgress: [],
+        favoriteIdsInProgress: [],
       },
       [Reducer.Offers]: {
         nearby: offers,
@@ -81,7 +81,7 @@ describe('Component: NearPlacesSection', () => {
   it('should dispatch fetchOffersNearby on component loaded', () => {
     const store = mockStore({
       [Reducer.App]: {
-        favoriteIDsInProgress: [],
+        favoriteIdsInProgress: [],
       },
       [Reducer.Offers]: {
         nearby: offers,
@@ -108,7 +108,7 @@ describe('Component: NearPlacesSection', () => {
   it("should't be render", () => {
     const store = mockStore({
       [Reducer.App]: {
-        favoriteIDsInProgress: [],
+        favoriteIdsInProgress: [],
       },
       [Reducer.Offers]: {
         nearby: [],
@@ -133,7 +133,7 @@ describe('Component: NearPlacesSection', () => {
   it('should render Loader', () => {
     const store = mockStore({
       [Reducer.App]: {
-        favoriteIDsInProgress: [],
+        favoriteIdsInProgress: [],
       },
       [Reducer.Offers]: {
         nearby: [],
@@ -156,7 +156,7 @@ describe('Component: NearPlacesSection', () => {
   it('should render Error', () => {
     const store = mockStore({
       [Reducer.App]: {
-        favoriteIDsInProgress: [],
+        favoriteIdsInProgress: [],
       },
       [Reducer.Offers]: {
         nearby: [],

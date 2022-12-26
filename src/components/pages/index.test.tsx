@@ -56,7 +56,7 @@ describe('Application Routing', () => {
     const store = mockStore({
       [Reducer.App]: {
         currentCityName: CityName.Amsterdam,
-        favoriteIDsInProgress: [],
+        favoriteIdsInProgress: [],
       },
       [Reducer.Offers]: {
         all: offers,
@@ -143,7 +143,7 @@ describe('Application Routing', () => {
     const store = mockStore({
       [Reducer.App]: {
         currentCityName: CityName.Amsterdam,
-        favoriteIDsInProgress: [],
+        favoriteIdsInProgress: [],
       },
       [Reducer.Review]: {
         reviews: [],

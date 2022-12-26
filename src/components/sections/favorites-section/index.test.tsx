@@ -20,7 +20,7 @@ describe('Component: FavoritesSection', () => {
   it('should render correctly', () => {
     const store = mockStore({
       [Reducer.App]: {
-        favoriteIDsInProgress: [],
+        favoriteIdsInProgress: [],
       },
       [Reducer.Offers]: {
         favorites: [offer],

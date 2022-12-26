@@ -35,7 +35,7 @@ const mockStore = configureMockStore();
 
 const store = mockStore({
   [Reducer.App]: {
-    favoriteIDsInProgress: [],
+    favoriteIdsInProgress: [],
   },
   [Reducer.Review]: {
     reviews: [],

@@ -28,7 +28,7 @@ describe('Component: MainSection', () => {
       [Reducer.App]: {
         currentCityName: CityName.Amsterdam,
         currentSortType: SortType.Popular,
-        favoriteIDsInProgress: [],
+        favoriteIdsInProgress: [],
       },
       [Reducer.Offers]: {
         all: offers,
@@ -62,7 +62,7 @@ describe('Component: MainSection', () => {
       [Reducer.App]: {
         currentCityName: CityName.Amsterdam,
         currentSortType: SortType.Popular,
-        favoriteIDsInProgress: [],
+        favoriteIdsInProgress: [],
       },
       [Reducer.Offers]: {
         all: [],
@@ -89,7 +89,7 @@ describe('Component: MainSection', () => {
       [Reducer.App]: {
         currentCityName: CityName.Amsterdam,
         currentSortType: SortType.Popular,
-        favoriteIDsInProgress: [],
+        favoriteIdsInProgress: [],
       },
       [Reducer.Offers]: {
         all: [],
@@ -114,7 +114,7 @@ describe('Component: MainSection', () => {
       [Reducer.App]: {
         currentCityName: CityName.Amsterdam,
         currentSortType: SortType.Popular,
-        favoriteIDsInProgress: [],
+        favoriteIdsInProgress: [],
       },
       [Reducer.Offers]: {
         all: [],

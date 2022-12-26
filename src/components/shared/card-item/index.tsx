@@ -39,8 +39,8 @@ export function CardItem({
     type,
   } = offer;
 
-  const favoriteIDsInProgress = useAppSelector(
-    appSlice.selectFavoriteIDsInProgress,
+  const favoriteIdsInProgress = useAppSelector(
+    appSlice.selectfavoriteIdsInProgress,
   );
 
   const dispatch = useAppDispatch();
@@ -81,7 +81,7 @@ export function CardItem({
           <BookmarkButton
             size="small"
             isFavorite={isFavorite}
-            isLoading={favoriteIDsInProgress.includes(id)}
+            isLoading={favoriteIdsInProgress.includes(id)}
             onClick={handleFavoriteButtonClick}
           />
         </S.PriceWrapper>

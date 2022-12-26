@@ -1,16 +1,15 @@
 import { OfferID } from '~/types';
 
-export const addToInProgress = (
-  favoriteIDs: OfferID[],
-  favoriteID: OfferID,
+export const addIdToInIdsProgress = (
+  ids: OfferID[],
+  id: OfferID,
 ): OfferID[] => {
-  const updatedFavoriteIDs = [...favoriteIDs, favoriteID];
-  return updatedFavoriteIDs;
+  return [...ids, id];
 };
 
-export const removeFromInProgress = (
-  favoriteIDs: OfferID[],
-  favoriteID: OfferID,
+export const removeIdFromInIdsProgress = (
+  ids: OfferID[],
+  id: OfferID,
 ): OfferID[] => {
-  return favoriteIDs.filter((id) => favoriteID !== id);
+  return ids.filter((currentId) => currentId !== id);
 };

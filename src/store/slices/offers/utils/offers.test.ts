@@ -5,24 +5,21 @@ import { updateFavorites, updateOffers } from './offers';
 
 describe('Module: offers', () => {
   describe('updateOffers', () => {
-    const firstOffer = makeOffer({ isFavorite: false });
-    const secondOffer = makeOffer({ isFavorite: false });
-    const updatedFirstOffer: Offer = { ...firstOffer, isFavorite: true };
-    const updatedSecondOffer: Offer = { ...secondOffer, isFavorite: true };
+    const firstOffer = makeOffer({ description: 'description 1' });
+    const secondOffer = makeOffer({ description: 'description 2' });
+    const updatedFirstOffer: Offer = {
+      ...firstOffer,
+      description: 'updated description 1',
+    };
 
     it('should update offers when given a updated offer', () => {
-      expect(
-        updateOffers([firstOffer, secondOffer], updatedFirstOffer),
-      ).toEqual([updatedFirstOffer, secondOffer]);
-
-      expect(
-        updateOffers([firstOffer, secondOffer], updatedSecondOffer),
-      ).toEqual([firstOffer, updatedSecondOffer]);
+      const result = updateOffers([firstOffer, secondOffer], updatedFirstOffer);
+      expect(result).toEqual([updatedFirstOffer, secondOffer]);
     });
 
     it('should return no updated offers when given a unknown offer', () => {
-      expect(updateOffers([firstOffer], secondOffer)).toEqual([firstOffer]);
-      expect(updateOffers([], firstOffer)).toEqual([]);
+      const result = updateOffers([firstOffer], secondOffer);
+      expect(result).toEqual([firstOffer]);
     });
   });
 
@@ -32,34 +29,23 @@ describe('Module: offers', () => {
     const truthySecondOffer = makeOffer({ isFavorite: true });
     const falsySecondOffer: Offer = { ...truthySecondOffer, isFavorite: false };
 
-    it('should add offer when status isFavorite change to true', () => {
-      expect(updateFavorites([], truthyFirstOffer)).toEqual([truthyFirstOffer]);
-
-      expect(updateFavorites([truthyFirstOffer], truthySecondOffer)).toEqual([
-        truthyFirstOffer,
-        truthySecondOffer,
-      ]);
+    it('should add offer when property "isFavorite" change to "true"', () => {
+      const result = updateFavorites([], truthyFirstOffer);
+      expect(result).toEqual([truthyFirstOffer]);
     });
 
-    it('should remove offer from favorites', () => {
-      expect(
-        updateFavorites([truthyFirstOffer, truthySecondOffer], falsyFirstOffer),
-      ).toEqual([truthySecondOffer]);
+    it('should remove offer when property "isFavorite" change to "false"', () => {
+      const result = updateFavorites(
+        [truthyFirstOffer, truthySecondOffer],
+        falsyFirstOffer,
+      );
 
-      expect(
-        updateFavorites(
-          [truthyFirstOffer, truthySecondOffer],
-          falsySecondOffer,
-        ),
-      ).toEqual([truthyFirstOffer]);
+      expect(result).toEqual([truthySecondOffer]);
     });
 
-    it('should return no updated offers when given a unknown falsy offer', () => {
-      expect(updateFavorites([truthyFirstOffer], falsySecondOffer)).toEqual([
-        truthyFirstOffer,
-      ]);
-
-      expect(updateFavorites([], falsySecondOffer)).toEqual([]);
+    it('should noе update offers when given a unknown offer with property "isFavorite" setted to "false"', () => {
+      const result = updateFavorites([truthyFirstOffer], falsySecondOffer);
+      expect(result).toEqual([truthyFirstOffer]);
     });
   });
 });

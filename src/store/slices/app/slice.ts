@@ -11,14 +11,14 @@ import {
 import { redirectToRoute } from '../../actions/app';
 import { initializeApp, toggleFavorite } from '../../api-actions/app';
 import { State } from './types';
-import { addToInProgress, removeFromInProgress } from './utils';
+import { addIdToInIdsProgress, removeIdFromInIdsProgress } from './utils';
 
 const initialState: State = {
   initialize: AppStatus.Idle,
   activeCardId: NO_ACTIVE_CARD,
   currentCityName: CityName.Amsterdam,
   currentSortType: SortType.Popular,
-  favoriteIDsInProgress: [],
+  favoriteIdsInProgress: [],
   error: null,
 };
 
@@ -51,24 +51,24 @@ const slice = createSlice({
 
       /* TOGGLE FAVORITE STATUS */
       .addCase(toggleFavorite.pending, (state, { meta }) => {
-        state.favoriteIDsInProgress = addToInProgress(
-          state.favoriteIDsInProgress,
+        state.favoriteIdsInProgress = addIdToInIdsProgress(
+          state.favoriteIdsInProgress,
           meta.arg.id,
         );
 
         state.error = null;
       })
       .addCase(toggleFavorite.fulfilled, (state, { meta }) => {
-        state.favoriteIDsInProgress = removeFromInProgress(
-          state.favoriteIDsInProgress,
+        state.favoriteIdsInProgress = removeIdFromInIdsProgress(
+          state.favoriteIdsInProgress,
           meta.arg.id,
         );
 
         state.error = null;
       })
       .addCase(toggleFavorite.rejected, (state, { payload, meta }) => {
-        state.favoriteIDsInProgress = removeFromInProgress(
-          state.favoriteIDsInProgress,
+        state.favoriteIdsInProgress = removeIdFromInIdsProgress(
+          state.favoriteIdsInProgress,
           meta.arg.id,
         );
 
