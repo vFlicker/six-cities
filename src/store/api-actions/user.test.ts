@@ -4,8 +4,8 @@ import thunk from 'redux-thunk';
 
 import { httpClient, token } from '~/services';
 import { AppDispatch, AuthData, State } from '~/types';
-import { redirectToRoute } from '../slices/app';
 
+import { redirectToRoute } from '../actions/app';
 import { checkAuthStatus, login, logout } from './user';
 
 const mockApiService = new MockAdapter(httpClient);

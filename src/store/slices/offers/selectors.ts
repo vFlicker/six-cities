@@ -3,7 +3,7 @@ import { createSelector } from '@reduxjs/toolkit';
 import { Reducer } from '~/constants';
 import { Offer, PartialOffersByCity, State } from '~/types';
 
-import { selectCurrentCityName, selectCurrentSortType } from '../app';
+import { selectCurrentCityName, selectCurrentSortType } from '../app/selectors';
 import { createFavoritesByCity, sortOffers } from './utils';
 
 const selectAllOffers = (state: State): Offer[] => {

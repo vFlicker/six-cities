@@ -1,7 +1,7 @@
 import { makeError, makeOffer } from '~/utils';
 
-import { toggleFavorite } from '../app';
-import { logout } from '../user';
+import { toggleFavorite } from '../../api-actions/app';
+import { logout } from '../../api-actions/user';
 import offersReducer, {
   fetchAllOffers,
   fetchFavoriteOffers,

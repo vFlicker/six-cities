@@ -4,7 +4,7 @@ import { AppRoute, Reducer } from '~/constants';
 import { AuthData, ThunkOptions, User } from '~/types';
 import { token, errorHandler, authApiService } from '~/services';
 
-import { redirectToRoute } from '../slices/app';
+import { redirectToRoute } from '../actions/app';
 
 export const checkAuthStatus = createAsyncThunk<User, undefined, ThunkOptions>(
   `${Reducer.User}/authStatus`,
