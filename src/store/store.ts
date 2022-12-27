@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import { redirect } from './middleware';
+import { redirect } from './middlewares';
 import { rootReducer } from './root-reducer';
 
 export const store = configureStore({
