@@ -1,17 +1,15 @@
-import { AppStatus, CityName, NO_ACTIVE_CARD, SortType } from '~/constants';
+import { CityName, NO_ACTIVE_CARD, SortType } from '~/constants';
 import { makeError } from '~/utils';
 
 import appReducer, {
   changeCityName,
   changeSortType,
-  initializeApp,
   setActiveCardId,
   toggleFavorite,
 } from './slice';
 import { State } from './types';
 
 const initialState: State = {
-  initialize: AppStatus.Idle,
   activeCardId: NO_ACTIVE_CARD,
   currentCityName: CityName.Amsterdam,
   currentSortType: SortType.Popular,
@@ -66,45 +64,9 @@ describe('Slice: app', () => {
     );
   });
 
-  describe('initializeApp', () => {
-    it('should update initialize to "pending" when initializeApp is pending', () => {
-      const ACTION_TYPE = { type: initializeApp.pending.type };
-
-      const updatedState: State = {
-        ...initialState,
-        initialize: AppStatus.Pending,
-      };
-
-      expect(appReducer(initialState, ACTION_TYPE)).toEqual(updatedState);
-    });
-
-    it('should update initialize to "succeeded" when initializeApp is fulfilled', () => {
-      const ACTION_TYPE = { type: initializeApp.fulfilled.type };
-
-      const updatedState: State = {
-        ...initialState,
-        initialize: AppStatus.Succeeded,
-      };
-
-      expect(appReducer(initialState, ACTION_TYPE)).toEqual(updatedState);
-    });
-
-    it('should update initialize to "failed" when initializeApp is rejected', () => {
-      const ACTION_TYPE = { type: initializeApp.rejected.type };
-
-      const updatedState: State = {
-        ...initialState,
-        initialize: AppStatus.Failed,
-      };
-
-      expect(appReducer(initialState, ACTION_TYPE)).toEqual(updatedState);
-    });
-  });
-
   describe('toggleFavorite', () => {
     it('should add id to favoriteIdsInProgress when toggleFavorite is pending', () => {
       const initialState1: State = {
-        initialize: AppStatus.Idle,
         activeCardId: NO_ACTIVE_CARD,
         currentCityName: CityName.Amsterdam,
         currentSortType: SortType.Popular,
@@ -127,7 +89,6 @@ describe('Slice: app', () => {
       expect(appReducer(initialState1, ACTION_TYPE_1)).toEqual(updatedState1);
 
       const initialState2: State = {
-        initialize: AppStatus.Idle,
         activeCardId: NO_ACTIVE_CARD,
         currentCityName: CityName.Amsterdam,
         currentSortType: SortType.Popular,
@@ -152,7 +113,6 @@ describe('Slice: app', () => {
 
     it('should remove id from favoriteIdsInProgress when toggleFavorite is fulfilled', () => {
       const initialState1: State = {
-        initialize: AppStatus.Idle,
         activeCardId: NO_ACTIVE_CARD,
         currentCityName: CityName.Amsterdam,
         currentSortType: SortType.Popular,
@@ -175,7 +135,6 @@ describe('Slice: app', () => {
       expect(appReducer(initialState1, ACTION_TYPE_1)).toEqual(updatedState1);
 
       const initialState2: State = {
-        initialize: AppStatus.Idle,
         activeCardId: NO_ACTIVE_CARD,
         currentCityName: CityName.Amsterdam,
         currentSortType: SortType.Popular,
@@ -200,7 +159,6 @@ describe('Slice: app', () => {
 
     it('should remove id from favoriteIdsInProgress when toggleFavorite is rejected', () => {
       const initialState1: State = {
-        initialize: AppStatus.Idle,
         activeCardId: NO_ACTIVE_CARD,
         currentCityName: CityName.Amsterdam,
         currentSortType: SortType.Popular,
@@ -225,7 +183,6 @@ describe('Slice: app', () => {
       expect(appReducer(initialState1, ACTION_TYPE_1)).toEqual(updatedState1);
 
       const initialState2: State = {
-        initialize: AppStatus.Idle,
         activeCardId: NO_ACTIVE_CARD,
         currentCityName: CityName.Amsterdam,
         currentSortType: SortType.Popular,
@@ -252,7 +209,6 @@ describe('Slice: app', () => {
 
     it('should remove error from state when toggleFavorite is pending or fulfilled', () => {
       const initialState: State = {
-        initialize: AppStatus.Idle,
         activeCardId: NO_ACTIVE_CARD,
         currentCityName: CityName.Amsterdam,
         currentSortType: SortType.Popular,

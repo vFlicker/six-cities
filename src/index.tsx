@@ -6,14 +6,10 @@ import { Global } from '@emotion/react';
 
 import { App } from './components/app';
 import { ErrorBoundary } from './components/shared';
-import { appSlice, store } from './store';
-
+import { store } from './store';
 import { globalStyle } from './styles';
 
 import 'react-toastify/dist/ReactToastify.css';
-
-// TODO: move it to app.jsx?
-store.dispatch(appSlice.initializeApp());
 
 const container = document.getElementById('root') as HTMLElement;
 const root = createRoot(container);

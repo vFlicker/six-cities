@@ -1,20 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import {
-  AppStatus,
-  CityName,
-  NO_ACTIVE_CARD,
-  Reducer,
-  SortType,
-} from '~/constants';
+import { CityName, NO_ACTIVE_CARD, Reducer, SortType } from '~/constants';
 
 import { redirectToRoute } from '../../actions/app';
-import { initializeApp, toggleFavorite } from '../../api-actions/app';
+import { toggleFavorite } from '../../api-actions/app';
 import { State } from './types';
 import { addIdToInIdsProgress, removeIdFromInIdsProgress } from './utils';
 
 const initialState: State = {
-  initialize: AppStatus.Idle,
   activeCardId: NO_ACTIVE_CARD,
   currentCityName: CityName.Amsterdam,
   currentSortType: SortType.Popular,
@@ -38,17 +31,6 @@ const slice = createSlice({
   },
   extraReducers(builder) {
     builder
-      /* INITIALIZE */
-      .addCase(initializeApp.pending, (state) => {
-        state.initialize = AppStatus.Pending;
-      })
-      .addCase(initializeApp.fulfilled, (state) => {
-        state.initialize = AppStatus.Succeeded;
-      })
-      .addCase(initializeApp.rejected, (state) => {
-        state.initialize = AppStatus.Failed;
-      })
-
       /* TOGGLE FAVORITE STATUS */
       .addCase(toggleFavorite.pending, (state, { meta }) => {
         state.favoriteIdsInProgress = addIdToInIdsProgress(
@@ -82,6 +64,6 @@ export { redirectToRoute };
 export const { changeCityName, changeSortType, setActiveCardId } =
   slice.actions;
 
-export { initializeApp, toggleFavorite };
+export { toggleFavorite };
 
 export default slice.reducer;
