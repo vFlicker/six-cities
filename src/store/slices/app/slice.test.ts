@@ -1,7 +1,7 @@
 import { AppStatus, CityName, NO_ACTIVE_CARD, SortType } from '~/constants';
 import { makeError } from '~/utils';
 
-import appSlice, {
+import appReducer, {
   changeCityName,
   changeSortType,
   initializeApp,
@@ -24,7 +24,7 @@ const error = makeError();
 describe('Slice: app', () => {
   it('without additional parameters should return initial state', () => {
     const UNKNOWN_TYPE = { type: 'UNKNOWN_ACTION' };
-    expect(appSlice.reducer(undefined, UNKNOWN_TYPE)).toEqual(initialState);
+    expect(appReducer(undefined, UNKNOWN_TYPE)).toEqual(initialState);
   });
 
   it('should change "currentCityName" by a given new cite name', () => {
@@ -35,7 +35,7 @@ describe('Slice: app', () => {
       currentCityName: newCityName,
     };
 
-    expect(appSlice.reducer(initialState, changeCityName(newCityName))).toEqual(
+    expect(appReducer(initialState, changeCityName(newCityName))).toEqual(
       updatedState,
     );
   });
@@ -48,7 +48,7 @@ describe('Slice: app', () => {
       currentSortType: newSortType,
     };
 
-    expect(appSlice.reducer(initialState, changeSortType(newSortType))).toEqual(
+    expect(appReducer(initialState, changeSortType(newSortType))).toEqual(
       updatedState,
     );
   });
@@ -61,7 +61,7 @@ describe('Slice: app', () => {
       activeCardId: newId,
     };
 
-    expect(appSlice.reducer(initialState, setActiveCardId(newId))).toEqual(
+    expect(appReducer(initialState, setActiveCardId(newId))).toEqual(
       updatedState,
     );
   });
@@ -75,7 +75,7 @@ describe('Slice: app', () => {
         initialize: AppStatus.Pending,
       };
 
-      expect(appSlice.reducer(initialState, ACTION_TYPE)).toEqual(updatedState);
+      expect(appReducer(initialState, ACTION_TYPE)).toEqual(updatedState);
     });
 
     it('should update initialize to "succeeded" when initializeApp is fulfilled', () => {
@@ -86,7 +86,7 @@ describe('Slice: app', () => {
         initialize: AppStatus.Succeeded,
       };
 
-      expect(appSlice.reducer(initialState, ACTION_TYPE)).toEqual(updatedState);
+      expect(appReducer(initialState, ACTION_TYPE)).toEqual(updatedState);
     });
 
     it('should update initialize to "failed" when initializeApp is rejected', () => {
@@ -97,7 +97,7 @@ describe('Slice: app', () => {
         initialize: AppStatus.Failed,
       };
 
-      expect(appSlice.reducer(initialState, ACTION_TYPE)).toEqual(updatedState);
+      expect(appReducer(initialState, ACTION_TYPE)).toEqual(updatedState);
     });
   });
 
@@ -124,9 +124,7 @@ describe('Slice: app', () => {
         favoriteIdsInProgress: [1],
       };
 
-      expect(appSlice.reducer(initialState1, ACTION_TYPE_1)).toEqual(
-        updatedState1,
-      );
+      expect(appReducer(initialState1, ACTION_TYPE_1)).toEqual(updatedState1);
 
       const initialState2: State = {
         initialize: AppStatus.Idle,
@@ -149,9 +147,7 @@ describe('Slice: app', () => {
         favoriteIdsInProgress: [1, 2],
       };
 
-      expect(appSlice.reducer(initialState2, ACTION_TYPE_2)).toEqual(
-        updatedState2,
-      );
+      expect(appReducer(initialState2, ACTION_TYPE_2)).toEqual(updatedState2);
     });
 
     it('should remove id from favoriteIdsInProgress when toggleFavorite is fulfilled', () => {
@@ -176,9 +172,7 @@ describe('Slice: app', () => {
         favoriteIdsInProgress: [2],
       };
 
-      expect(appSlice.reducer(initialState1, ACTION_TYPE_1)).toEqual(
-        updatedState1,
-      );
+      expect(appReducer(initialState1, ACTION_TYPE_1)).toEqual(updatedState1);
 
       const initialState2: State = {
         initialize: AppStatus.Idle,
@@ -201,9 +195,7 @@ describe('Slice: app', () => {
         favoriteIdsInProgress: [],
       };
 
-      expect(appSlice.reducer(initialState2, ACTION_TYPE_2)).toEqual(
-        updatedState2,
-      );
+      expect(appReducer(initialState2, ACTION_TYPE_2)).toEqual(updatedState2);
     });
 
     it('should remove id from favoriteIdsInProgress when toggleFavorite is rejected', () => {
@@ -230,9 +222,7 @@ describe('Slice: app', () => {
         error: error,
       };
 
-      expect(appSlice.reducer(initialState1, ACTION_TYPE_1)).toEqual(
-        updatedState1,
-      );
+      expect(appReducer(initialState1, ACTION_TYPE_1)).toEqual(updatedState1);
 
       const initialState2: State = {
         initialize: AppStatus.Idle,
@@ -257,9 +247,7 @@ describe('Slice: app', () => {
         error: error,
       };
 
-      expect(appSlice.reducer(initialState2, ACTION_TYPE_2)).toEqual(
-        updatedState2,
-      );
+      expect(appReducer(initialState2, ACTION_TYPE_2)).toEqual(updatedState2);
     });
 
     it('should remove error from state when toggleFavorite is pending or fulfilled', () => {
@@ -292,11 +280,11 @@ describe('Slice: app', () => {
         error: null,
       };
 
-      expect(appSlice.reducer(initialState, PENDING_ACTION_TYPE)).toEqual(
+      expect(appReducer(initialState, PENDING_ACTION_TYPE)).toEqual(
         updatedState,
       );
 
-      expect(appSlice.reducer(initialState, FULFILLED_ACTION_TYPE)).toEqual(
+      expect(appReducer(initialState, FULFILLED_ACTION_TYPE)).toEqual(
         updatedState,
       );
     });

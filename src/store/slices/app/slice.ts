@@ -84,4 +84,4 @@ export const { changeCityName, changeSortType, setActiveCardId } =
 
 export { initializeApp, toggleFavorite };
 
-export default slice;
+export default slice.reducer;

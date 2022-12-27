@@ -2,7 +2,7 @@ import { makeError, makeOffer } from '~/utils';
 
 import { toggleFavorite } from '../app';
 import { logout } from '../user';
-import offersSlice, {
+import offersReducer, {
   fetchAllOffers,
   fetchFavoriteOffers,
   fetchOffersNearby,
@@ -23,7 +23,7 @@ const error = makeError();
 describe('Slice: offers', () => {
   it('without additional parameters should return initial state', () => {
     const UNKNOWN_TYPE = { type: 'UNKNOWN_ACTION' };
-    expect(offersSlice.reducer(undefined, UNKNOWN_TYPE)).toEqual(initialState);
+    expect(offersReducer(undefined, UNKNOWN_TYPE)).toEqual(initialState);
   });
 
   describe('fetchAllOffers', () => {
@@ -35,9 +35,7 @@ describe('Slice: offers', () => {
         loading: true,
       };
 
-      expect(offersSlice.reducer(initialState, ACTION_TYPE)).toEqual(
-        updatedState,
-      );
+      expect(offersReducer(initialState, ACTION_TYPE)).toEqual(updatedState);
     });
 
     it('should update loading to "false" and add offers when fetchAllOffers is fulfilled', () => {
@@ -60,9 +58,7 @@ describe('Slice: offers', () => {
         loading: false,
       };
 
-      expect(offersSlice.reducer(initialState, ACTION_TYPE)).toEqual(
-        updatedState,
-      );
+      expect(offersReducer(initialState, ACTION_TYPE)).toEqual(updatedState);
     });
 
     it('should add error to state when fetchAllOffers is rejected', () => {
@@ -77,9 +73,7 @@ describe('Slice: offers', () => {
         error: error,
       };
 
-      expect(offersSlice.reducer(initialState, ACTION_TYPE)).toEqual(
-        updatedState,
-      );
+      expect(offersReducer(initialState, ACTION_TYPE)).toEqual(updatedState);
     });
 
     it('should remove error from state when fetchAllOffers is pending or fulfilled', () => {
@@ -101,7 +95,7 @@ describe('Slice: offers', () => {
         error: null,
       };
 
-      expect(offersSlice.reducer(initialState, PENDING_ACTION_TYPE)).toEqual(
+      expect(offersReducer(initialState, PENDING_ACTION_TYPE)).toEqual(
         pendingUpdatedState,
       );
 
@@ -116,7 +110,7 @@ describe('Slice: offers', () => {
         error: null,
       };
 
-      expect(offersSlice.reducer(initialState, FULFILLED_ACTION_TYPE)).toEqual(
+      expect(offersReducer(initialState, FULFILLED_ACTION_TYPE)).toEqual(
         fulfilledUpdatedState,
       );
     });
@@ -131,9 +125,7 @@ describe('Slice: offers', () => {
         loading: true,
       };
 
-      expect(offersSlice.reducer(initialState, ACTION_TYPE)).toEqual(
-        updatedState,
-      );
+      expect(offersReducer(initialState, ACTION_TYPE)).toEqual(updatedState);
     });
 
     it('should update loading to "false" and add offers when fetchFavoriteOffers is fulfilled', () => {
@@ -156,9 +148,7 @@ describe('Slice: offers', () => {
         loading: false,
       };
 
-      expect(offersSlice.reducer(initialState, ACTION_TYPE)).toEqual(
-        updatedState,
-      );
+      expect(offersReducer(initialState, ACTION_TYPE)).toEqual(updatedState);
     });
 
     it('should add error to state when fetchFavoriteOffers is rejected', () => {
@@ -173,9 +163,7 @@ describe('Slice: offers', () => {
         error: error,
       };
 
-      expect(offersSlice.reducer(initialState, ACTION_TYPE)).toEqual(
-        updatedState,
-      );
+      expect(offersReducer(initialState, ACTION_TYPE)).toEqual(updatedState);
     });
 
     it('should remove error from state when fetchFavoriteOffers is pending or fulfilled', () => {
@@ -197,7 +185,7 @@ describe('Slice: offers', () => {
         error: null,
       };
 
-      expect(offersSlice.reducer(initialState, PENDING_ACTION_TYPE)).toEqual(
+      expect(offersReducer(initialState, PENDING_ACTION_TYPE)).toEqual(
         pendingUpdatedState,
       );
 
@@ -212,7 +200,7 @@ describe('Slice: offers', () => {
         error: null,
       };
 
-      expect(offersSlice.reducer(initialState, FULFILLED_ACTION_TYPE)).toEqual(
+      expect(offersReducer(initialState, FULFILLED_ACTION_TYPE)).toEqual(
         fulfilledUpdatedState,
       );
     });
@@ -227,9 +215,7 @@ describe('Slice: offers', () => {
         loading: true,
       };
 
-      expect(offersSlice.reducer(initialState, ACTION_TYPE)).toEqual(
-        updatedState,
-      );
+      expect(offersReducer(initialState, ACTION_TYPE)).toEqual(updatedState);
     });
 
     it('should update loading to "false" and add offers when fetchOffersNearby is fulfilled', () => {
@@ -252,9 +238,7 @@ describe('Slice: offers', () => {
         loading: false,
       };
 
-      expect(offersSlice.reducer(initialState, ACTION_TYPE)).toEqual(
-        updatedState,
-      );
+      expect(offersReducer(initialState, ACTION_TYPE)).toEqual(updatedState);
     });
 
     it('should add error to state when fetchOffersNearby is rejected', () => {
@@ -269,9 +253,7 @@ describe('Slice: offers', () => {
         error: error,
       };
 
-      expect(offersSlice.reducer(initialState, ACTION_TYPE)).toEqual(
-        updatedState,
-      );
+      expect(offersReducer(initialState, ACTION_TYPE)).toEqual(updatedState);
     });
 
     it('should remove error from state when fetchOffersNearby is pending or fulfilled', () => {
@@ -293,7 +275,7 @@ describe('Slice: offers', () => {
         error: null,
       };
 
-      expect(offersSlice.reducer(initialState, PENDING_ACTION_TYPE)).toEqual(
+      expect(offersReducer(initialState, PENDING_ACTION_TYPE)).toEqual(
         pendingUpdatedState,
       );
 
@@ -308,7 +290,7 @@ describe('Slice: offers', () => {
         error: null,
       };
 
-      expect(offersSlice.reducer(initialState, FULFILLED_ACTION_TYPE)).toEqual(
+      expect(offersReducer(initialState, FULFILLED_ACTION_TYPE)).toEqual(
         fulfilledUpdatedState,
       );
     });
@@ -342,9 +324,7 @@ describe('Slice: offers', () => {
         nearby: updatedOffers,
       };
 
-      expect(offersSlice.reducer(initialState, ACTION_TYPE)).toEqual(
-        updatedState,
-      );
+      expect(offersReducer(initialState, ACTION_TYPE)).toEqual(updatedState);
     });
   });
 
@@ -367,9 +347,7 @@ describe('Slice: offers', () => {
         favorites: [],
       };
 
-      expect(offersSlice.reducer(initialState, ACTION_TYPE)).toEqual(
-        updatedState,
-      );
+      expect(offersReducer(initialState, ACTION_TYPE)).toEqual(updatedState);
     });
   });
 });

@@ -1,7 +1,7 @@
 import { makeError, makeOffer } from '~/utils';
 
 import { toggleFavorite } from '../../api-actions/app';
-import offerSlice, { fetchOffer } from './slice';
+import offerReducer, { fetchOffer } from './slice';
 import { State } from './types';
 
 const initialState: State = {
@@ -16,7 +16,7 @@ const error = makeError();
 describe('Slice: offer', () => {
   it('without additional parameters should return initial state', () => {
     const UNKNOWN_TYPE = { type: 'UNKNOWN_ACTION' };
-    expect(offerSlice.reducer(undefined, UNKNOWN_TYPE)).toEqual(initialState);
+    expect(offerReducer(undefined, UNKNOWN_TYPE)).toEqual(initialState);
   });
 
   describe('fetchOffer', () => {
@@ -28,9 +28,7 @@ describe('Slice: offer', () => {
         loading: true,
       };
 
-      expect(offerSlice.reducer(initialState, ACTION_TYPE)).toEqual(
-        updatedState,
-      );
+      expect(offerReducer(initialState, ACTION_TYPE)).toEqual(updatedState);
     });
 
     it('should update loading to "false" and add offer when fetchOffer is fulfilled', () => {
@@ -51,9 +49,7 @@ describe('Slice: offer', () => {
         loading: false,
       };
 
-      expect(offerSlice.reducer(initialState, ACTION_TYPE)).toEqual(
-        updatedState,
-      );
+      expect(offerReducer(initialState, ACTION_TYPE)).toEqual(updatedState);
     });
 
     it('should add error to state when fetchOffer is rejected', () => {
@@ -68,9 +64,7 @@ describe('Slice: offer', () => {
         error: error,
       };
 
-      expect(offerSlice.reducer(initialState, ACTION_TYPE)).toEqual(
-        updatedState,
-      );
+      expect(offerReducer(initialState, ACTION_TYPE)).toEqual(updatedState);
     });
 
     it('should remove error from state when fetchOffer is pending or fulfilled', () => {
@@ -90,7 +84,7 @@ describe('Slice: offer', () => {
         error: null,
       };
 
-      expect(offerSlice.reducer(initialState, PENDING_ACTION_TYPE)).toEqual(
+      expect(offerReducer(initialState, PENDING_ACTION_TYPE)).toEqual(
         pendingUpdatedState,
       );
 
@@ -105,7 +99,7 @@ describe('Slice: offer', () => {
         error: null,
       };
 
-      expect(offerSlice.reducer(initialState, FULFILLED_ACTION_TYPE)).toEqual(
+      expect(offerReducer(initialState, FULFILLED_ACTION_TYPE)).toEqual(
         fulfilledUpdatedState,
       );
     });
@@ -124,9 +118,7 @@ describe('Slice: offer', () => {
         loading: false,
       };
 
-      expect(offerSlice.reducer(initialState, ACTION_TYPE)).toEqual(
-        updatedState,
-      );
+      expect(offerReducer(initialState, ACTION_TYPE)).toEqual(updatedState);
     });
   });
 });

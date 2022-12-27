@@ -1,7 +1,7 @@
 import { AuthStatus } from '~/constants';
 import { makeError, makeUser } from '~/utils';
 
-import userSlice, { checkAuthStatus, login, logout } from './slice';
+import userReducer, { checkAuthStatus, login, logout } from './slice';
 import { State } from './types';
 
 const initialState: State = {
@@ -17,7 +17,7 @@ const error = makeError();
 describe('Slice: user', () => {
   it('without additional parameters should return initial state', () => {
     const UNKNOWN_TYPE = { type: 'UNKNOWN_ACTION' };
-    expect(userSlice.reducer(undefined, UNKNOWN_TYPE)).toEqual(initialState);
+    expect(userReducer(undefined, UNKNOWN_TYPE)).toEqual(initialState);
   });
 
   describe('checkAuthStatus', () => {
@@ -29,9 +29,7 @@ describe('Slice: user', () => {
         loading: true,
       };
 
-      expect(userSlice.reducer(initialState, ACTION_TYPE)).toEqual(
-        updatedState,
-      );
+      expect(userReducer(initialState, ACTION_TYPE)).toEqual(updatedState);
     });
 
     it('should update loading to "false", set authStatus to "Auth" and add user when checkAuthStatus is fulfilled', () => {
@@ -54,9 +52,7 @@ describe('Slice: user', () => {
         loading: false,
       };
 
-      expect(userSlice.reducer(initialState, ACTION_TYPE)).toEqual(
-        updatedState,
-      );
+      expect(userReducer(initialState, ACTION_TYPE)).toEqual(updatedState);
     });
 
     it('should add error to state when checkAuthStatus is rejected', () => {
@@ -72,9 +68,7 @@ describe('Slice: user', () => {
         error: error,
       };
 
-      expect(userSlice.reducer(initialState, ACTION_TYPE)).toEqual(
-        updatedState,
-      );
+      expect(userReducer(initialState, ACTION_TYPE)).toEqual(updatedState);
     });
 
     it('should remove error from state when checkAuthStatus is pending or fulfilled', () => {
@@ -95,7 +89,7 @@ describe('Slice: user', () => {
         error: null,
       };
 
-      expect(userSlice.reducer(initialState, PENDING_ACTION_TYPE)).toEqual(
+      expect(userReducer(initialState, PENDING_ACTION_TYPE)).toEqual(
         pendingUpdatedState,
       );
 
@@ -111,7 +105,7 @@ describe('Slice: user', () => {
         error: null,
       };
 
-      expect(userSlice.reducer(initialState, FULFILLED_ACTION_TYPE)).toEqual(
+      expect(userReducer(initialState, FULFILLED_ACTION_TYPE)).toEqual(
         fulfilledUpdatedState,
       );
     });
@@ -127,9 +121,7 @@ describe('Slice: user', () => {
         loading: true,
       };
 
-      expect(userSlice.reducer(initialState, ACTION_TYPE)).toEqual(
-        updatedState,
-      );
+      expect(userReducer(initialState, ACTION_TYPE)).toEqual(updatedState);
     });
 
     it('should update loading to "false", set authStatus to "Auth" and add user when login is fulfilled', () => {
@@ -152,9 +144,7 @@ describe('Slice: user', () => {
         loading: false,
       };
 
-      expect(userSlice.reducer(initialState, ACTION_TYPE)).toEqual(
-        updatedState,
-      );
+      expect(userReducer(initialState, ACTION_TYPE)).toEqual(updatedState);
     });
 
     it('should add error to state when login is rejected', () => {
@@ -170,9 +160,7 @@ describe('Slice: user', () => {
         error: error,
       };
 
-      expect(userSlice.reducer(initialState, ACTION_TYPE)).toEqual(
-        updatedState,
-      );
+      expect(userReducer(initialState, ACTION_TYPE)).toEqual(updatedState);
     });
 
     it('should remove error from state when login is pending or fulfilled', () => {
@@ -193,7 +181,7 @@ describe('Slice: user', () => {
         error: null,
       };
 
-      expect(userSlice.reducer(initialState, PENDING_ACTION_TYPE)).toEqual(
+      expect(userReducer(initialState, PENDING_ACTION_TYPE)).toEqual(
         pendingUpdatedState,
       );
 
@@ -209,7 +197,7 @@ describe('Slice: user', () => {
         error: null,
       };
 
-      expect(userSlice.reducer(initialState, FULFILLED_ACTION_TYPE)).toEqual(
+      expect(userReducer(initialState, FULFILLED_ACTION_TYPE)).toEqual(
         fulfilledUpdatedState,
       );
     });
@@ -224,9 +212,7 @@ describe('Slice: user', () => {
         loading: true,
       };
 
-      expect(userSlice.reducer(initialState, ACTION_TYPE)).toEqual(
-        updatedState,
-      );
+      expect(userReducer(initialState, ACTION_TYPE)).toEqual(updatedState);
     });
 
     it('should update loading to "false", set authStatus to "NoAuth" and remove user when logout is fulfilled', () => {
@@ -248,9 +234,7 @@ describe('Slice: user', () => {
         loading: false,
       };
 
-      expect(userSlice.reducer(initialState, ACTION_TYPE)).toEqual(
-        updatedState,
-      );
+      expect(userReducer(initialState, ACTION_TYPE)).toEqual(updatedState);
     });
 
     it('should add error to state when logout is rejected', () => {
@@ -265,9 +249,7 @@ describe('Slice: user', () => {
         error: error,
       };
 
-      expect(userSlice.reducer(initialState, ACTION_TYPE)).toEqual(
-        updatedState,
-      );
+      expect(userReducer(initialState, ACTION_TYPE)).toEqual(updatedState);
     });
 
     it('should remove error from state when logout is pending or fulfilled', () => {
@@ -288,7 +270,7 @@ describe('Slice: user', () => {
         error: null,
       };
 
-      expect(userSlice.reducer(initialState, PENDING_ACTION_TYPE)).toEqual(
+      expect(userReducer(initialState, PENDING_ACTION_TYPE)).toEqual(
         pendingUpdatedState,
       );
 
@@ -304,7 +286,7 @@ describe('Slice: user', () => {
         error: null,
       };
 
-      expect(userSlice.reducer(initialState, FULFILLED_ACTION_TYPE)).toEqual(
+      expect(userReducer(initialState, FULFILLED_ACTION_TYPE)).toEqual(
         fulfilledUpdatedState,
       );
     });

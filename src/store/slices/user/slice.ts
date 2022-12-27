@@ -73,4 +73,4 @@ const slice = createSlice({
 
 export { checkAuthStatus, login, logout };
 
-export default slice;
+export default slice.reducer;

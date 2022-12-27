@@ -1,6 +1,6 @@
 import { makeError, makeReview } from '~/utils';
 
-import reviewSlice, { fetchReviews, postReview } from './slice';
+import reviewReducer, { fetchReviews, postReview } from './slice';
 import { State } from './types';
 
 const initialState: State = {
@@ -18,7 +18,7 @@ const error = makeError();
 describe('Slice: reviews', () => {
   it('without additional parameters should return initial state', () => {
     const UNKNOWN_TYPE = { type: 'UNKNOWN_ACTION' };
-    expect(reviewSlice.reducer(undefined, UNKNOWN_TYPE)).toEqual(initialState);
+    expect(reviewReducer(undefined, UNKNOWN_TYPE)).toEqual(initialState);
   });
 
   describe('fetchReviews', () => {
@@ -30,9 +30,7 @@ describe('Slice: reviews', () => {
         loading: true,
       };
 
-      expect(reviewSlice.reducer(initialState, ACTION_TYPE)).toEqual(
-        updatedState,
-      );
+      expect(reviewReducer(initialState, ACTION_TYPE)).toEqual(updatedState);
     });
 
     it('should update loading to "false" and add reviews when fetchReviews is fulfilled', () => {
@@ -53,9 +51,7 @@ describe('Slice: reviews', () => {
         loading: false,
       };
 
-      expect(reviewSlice.reducer(initialState, ACTION_TYPE)).toEqual(
-        updatedState,
-      );
+      expect(reviewReducer(initialState, ACTION_TYPE)).toEqual(updatedState);
     });
 
     it('should add error to state when fetchReviews is rejected', () => {
@@ -70,9 +66,7 @@ describe('Slice: reviews', () => {
         error: error,
       };
 
-      expect(reviewSlice.reducer(initialState, ACTION_TYPE)).toEqual(
-        updatedState,
-      );
+      expect(reviewReducer(initialState, ACTION_TYPE)).toEqual(updatedState);
     });
 
     it('should remove error from state when fetchReviews is pending or fulfilled', () => {
@@ -92,7 +86,7 @@ describe('Slice: reviews', () => {
         error: null,
       };
 
-      expect(reviewSlice.reducer(initialState, PENDING_ACTION_TYPE)).toEqual(
+      expect(reviewReducer(initialState, PENDING_ACTION_TYPE)).toEqual(
         pendingUpdatedState,
       );
 
@@ -107,7 +101,7 @@ describe('Slice: reviews', () => {
         error: null,
       };
 
-      expect(reviewSlice.reducer(initialState, FULFILLED_ACTION_TYPE)).toEqual(
+      expect(reviewReducer(initialState, FULFILLED_ACTION_TYPE)).toEqual(
         fulfilledUpdatedState,
       );
     });
@@ -122,9 +116,7 @@ describe('Slice: reviews', () => {
         loading: true,
       };
 
-      expect(reviewSlice.reducer(initialState, ACTION_TYPE)).toEqual(
-        updatedState,
-      );
+      expect(reviewReducer(initialState, ACTION_TYPE)).toEqual(updatedState);
     });
 
     it('should update loading to "false" and add reviews when postReview is fulfilled', () => {
@@ -145,9 +137,7 @@ describe('Slice: reviews', () => {
         loading: false,
       };
 
-      expect(reviewSlice.reducer(initialState, ACTION_TYPE)).toEqual(
-        updatedState,
-      );
+      expect(reviewReducer(initialState, ACTION_TYPE)).toEqual(updatedState);
     });
 
     it('should add error to state when postReview is rejected', () => {
@@ -162,9 +152,7 @@ describe('Slice: reviews', () => {
         error: error,
       };
 
-      expect(reviewSlice.reducer(initialState, ACTION_TYPE)).toEqual(
-        updatedState,
-      );
+      expect(reviewReducer(initialState, ACTION_TYPE)).toEqual(updatedState);
     });
 
     it('should remove error from state when postReview is pending or fulfilled', () => {
@@ -184,7 +172,7 @@ describe('Slice: reviews', () => {
         error: null,
       };
 
-      expect(reviewSlice.reducer(initialState, PENDING_ACTION_TYPE)).toEqual(
+      expect(reviewReducer(initialState, PENDING_ACTION_TYPE)).toEqual(
         pendingUpdatedState,
       );
 
@@ -199,7 +187,7 @@ describe('Slice: reviews', () => {
         error: null,
       };
 
-      expect(reviewSlice.reducer(initialState, FULFILLED_ACTION_TYPE)).toEqual(
+      expect(reviewReducer(initialState, FULFILLED_ACTION_TYPE)).toEqual(
         fulfilledUpdatedState,
       );
     });

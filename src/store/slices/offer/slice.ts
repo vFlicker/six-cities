@@ -42,4 +42,4 @@ const slice = createSlice({
 
 export { fetchOffer };
 
-export default slice;
+export default slice.reducer;
