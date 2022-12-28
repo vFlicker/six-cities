@@ -19,11 +19,11 @@ const middlewares = [redirect];
 const mockStore = configureMockStore(middlewares);
 const store = mockStore();
 
-describe('Middleware: redirect', () => {
-  beforeEach(() => {
-    fakeHistory.push('');
-  });
+beforeEach(() => {
+  fakeHistory.push('');
+});
 
+describe('Middleware: redirect', () => {
   it('should be redirect to "/login"', () => {
     store.dispatch(redirectToRoute(AppRoute.Login));
 
@@ -31,7 +31,7 @@ describe('Middleware: redirect', () => {
     expect(store.getActions()).toEqual([redirectToRoute(AppRoute.Login)]);
   });
 
-  it('should\'t be redirect to "/login" when bad action', () => {
+  it('should not be redirect to "/login" when bad action', () => {
     store.dispatch({ type: 'BAD_ACTION', payload: AppRoute.Login });
 
     expect(fakeHistory.location.pathname).not.toBe(AppRoute.Login);
