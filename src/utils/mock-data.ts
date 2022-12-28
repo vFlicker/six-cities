@@ -9,6 +9,8 @@ type MakeOfferArgs = Partial<Offer> & {
   cityName?: CityName;
 };
 
+export const error = new Error('Same error...');
+
 export const makeReviewUser = (): ReviewUser => ({
   id: faker.datatype.number(),
   name: faker.name.firstName(),
@@ -28,8 +30,6 @@ const makeHost = (): Host => ({
   name: faker.name.firstName(),
   isPro: faker.datatype.boolean(),
 });
-
-export const makeError = (): Error => new Error('Same error...');
 
 export const makeReview = ({ date }: MakeReviewArgs = {}): Review => ({
   comment: faker.lorem.paragraph(),

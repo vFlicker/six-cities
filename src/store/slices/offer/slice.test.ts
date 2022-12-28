@@ -1,4 +1,4 @@
-import { makeError, makeOffer } from '~/utils';
+import { error, makeOffer } from '~/utils';
 
 import { toggleFavorite } from '../../api-actions/app';
 import offerReducer, { fetchOffer } from './slice';
@@ -10,115 +10,91 @@ const initialState: State = {
   error: null,
 };
 
+const loadingState: State = {
+  ...initialState,
+  loading: true,
+};
+
+const rejectedState: State = {
+  ...initialState,
+  error,
+};
+
 const offer = makeOffer();
-const error = makeError();
 
 describe('Slice: offer', () => {
   it('without additional parameters should return initial state', () => {
-    const UNKNOWN_TYPE = { type: 'UNKNOWN_ACTION' };
-    expect(offerReducer(undefined, UNKNOWN_TYPE)).toEqual(initialState);
+    const actionType = { type: 'UNKNOWN_ACTION' };
+    expect(offerReducer(undefined, actionType)).toEqual(initialState);
   });
 
   describe('fetchOffer', () => {
-    it('should update loading to "true" when fetchOffer pending', () => {
-      const ACTION_TYPE = { type: fetchOffer.pending.type };
+    it('should return a state with updated the loading status when fetchOffer is pending', () => {
+      const actionType = { type: fetchOffer.pending.type };
 
-      const updatedState: State = {
-        ...initialState,
-        loading: true,
-      };
-
-      expect(offerReducer(initialState, ACTION_TYPE)).toEqual(updatedState);
+      const result = offerReducer(initialState, actionType);
+      expect(result.loading).toBeTruthy();
     });
 
-    it('should update loading to "false" and add offer when fetchOffer is fulfilled', () => {
-      const ACTION_TYPE = {
+    it('should return a state with updated the loading status when fetchOffer is fulfilled', () => {
+      const actionType = {
         type: fetchOffer.fulfilled.type,
         payload: offer,
       };
 
-      const initialState: State = {
-        offer: null,
-        loading: true,
-        error: null,
-      };
-
-      const updatedState: State = {
-        ...initialState,
-        offer: offer,
-        loading: false,
-      };
-
-      expect(offerReducer(initialState, ACTION_TYPE)).toEqual(updatedState);
+      const result = offerReducer(loadingState, actionType);
+      expect(result.loading).toBeFalsy();
     });
 
-    it('should add error to state when fetchOffer is rejected', () => {
-      const ACTION_TYPE = {
+    it('should return a state with updated offer when fetchOffer is fulfilled', () => {
+      const actionType = {
+        type: fetchOffer.fulfilled.type,
+        payload: offer,
+      };
+
+      const result = offerReducer(loadingState, actionType);
+      expect(result.offer).toEqual(offer);
+    });
+
+    it('should return a state with added error when fetchOffer is rejected', () => {
+      const actionType = {
         type: fetchOffer.rejected.type,
         payload: error,
       };
 
-      const updatedState: State = {
-        ...initialState,
-        loading: false,
-        error: error,
-      };
-
-      expect(offerReducer(initialState, ACTION_TYPE)).toEqual(updatedState);
+      const result = offerReducer(initialState, actionType);
+      expect(result.error).toEqual(error);
     });
 
-    it('should remove error from state when fetchOffer is pending or fulfilled', () => {
-      const initialState: State = {
-        offer: null,
-        loading: false,
-        error: error,
-      };
-
-      const PENDING_ACTION_TYPE = {
+    it('should return a state with removed error when fetchOffer is pending', () => {
+      const actionType = {
         type: fetchOffer.pending.type,
       };
 
-      const pendingUpdatedState: State = {
-        ...initialState,
-        loading: true,
-        error: null,
-      };
+      const result = offerReducer(rejectedState, actionType);
+      expect(result.error).toBeNull();
+    });
 
-      expect(offerReducer(initialState, PENDING_ACTION_TYPE)).toEqual(
-        pendingUpdatedState,
-      );
-
-      const FULFILLED_ACTION_TYPE = {
+    it('should return a state with removed error when fetchOffer is fulfilled', () => {
+      const actionType = {
         type: fetchOffer.fulfilled.type,
         payload: offer,
       };
 
-      const fulfilledUpdatedState: State = {
-        ...initialState,
-        offer: offer,
-        error: null,
-      };
-
-      expect(offerReducer(initialState, FULFILLED_ACTION_TYPE)).toEqual(
-        fulfilledUpdatedState,
-      );
+      const result = offerReducer(rejectedState, actionType);
+      expect(result.error).toBeNull();
     });
   });
 
   describe('toggleFavorite', () => {
-    it('should update offer when toggleFavorite is fulfilled', () => {
-      const ACTION_TYPE = {
+    it('should return a state with updated offer when toggleFavorite is fulfilled', () => {
+      const actionType = {
         type: toggleFavorite.fulfilled.type,
         payload: offer,
       };
 
-      const updatedState: State = {
-        ...initialState,
-        offer: offer,
-        loading: false,
-      };
-
-      expect(offerReducer(initialState, ACTION_TYPE)).toEqual(updatedState);
+      const result = offerReducer(initialState, actionType);
+      expect(result.offer).toEqual(offer);
     });
   });
 });

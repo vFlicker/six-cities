@@ -1,5 +1,5 @@
 import { AuthStatus } from '~/constants';
-import { makeError, makeUser } from '~/utils';
+import { error, makeUser } from '~/utils';
 
 import userReducer, { checkAuthStatus, login, logout } from './slice';
 import { State } from './types';
@@ -11,284 +11,228 @@ const initialState: State = {
   error: null,
 };
 
+const loadingState = {
+  ...initialState,
+  loading: true,
+};
+
+const rejectedState: State = {
+  ...initialState,
+  error: error,
+};
+
 const user = makeUser();
-const error = makeError();
 
 describe('Slice: user', () => {
   it('without additional parameters should return initial state', () => {
-    const UNKNOWN_TYPE = { type: 'UNKNOWN_ACTION' };
-    expect(userReducer(undefined, UNKNOWN_TYPE)).toEqual(initialState);
+    const actionType = { type: 'UNKNOWN_ACTION' };
+    expect(userReducer(undefined, actionType)).toEqual(initialState);
   });
 
   describe('checkAuthStatus', () => {
-    it('should update loading to "true" when checkAuthStatus is pending', () => {
-      const ACTION_TYPE = { type: checkAuthStatus.pending.type };
+    it('should return a state with updated the loading status when checkAuthStatus is pending', () => {
+      const actionType = { type: checkAuthStatus.pending.type };
 
-      const updatedState: State = {
-        ...initialState,
-        loading: true,
-      };
-
-      expect(userReducer(initialState, ACTION_TYPE)).toEqual(updatedState);
+      const result = userReducer(initialState, actionType);
+      expect(result.loading).toBeTruthy();
     });
 
-    it('should update loading to "false", set authStatus to "Auth" and add user when checkAuthStatus is fulfilled', () => {
-      const ACTION_TYPE = {
+    it('should return a state with updated the loading status when checkAuthStatus is fulfilled', () => {
+      const actionType = {
         type: checkAuthStatus.fulfilled.type,
         payload: user,
       };
 
-      const initialState: State = {
-        authStatus: AuthStatus.Unknown,
-        user: null,
-        loading: true,
-        error: null,
-      };
-
-      const updatedState: State = {
-        ...initialState,
-        authStatus: AuthStatus.Auth,
-        user: user,
-        loading: false,
-      };
-
-      expect(userReducer(initialState, ACTION_TYPE)).toEqual(updatedState);
+      const result = userReducer(loadingState, actionType);
+      expect(result.loading).toBeFalsy();
     });
 
-    it('should add error to state when checkAuthStatus is rejected', () => {
-      const ACTION_TYPE = {
+    it('should return a state with added user when checkAuthStatus is fulfilled', () => {
+      const actionType = {
+        type: checkAuthStatus.fulfilled.type,
+        payload: user,
+      };
+
+      const result = userReducer(loadingState, actionType);
+      expect(result.user).toEqual(user);
+    });
+
+    it('should return a state with updated auth status when checkAuthStatus is fulfilled', () => {
+      const actionType = {
+        type: checkAuthStatus.fulfilled.type,
+        payload: user,
+      };
+
+      const result = userReducer(loadingState, actionType);
+      expect(result.authStatus).toBe(AuthStatus.Auth);
+    });
+
+    it('should return a state with added error when checkAuthStatus is rejected', () => {
+      const actionType = {
         type: checkAuthStatus.rejected.type,
         payload: error,
       };
 
-      const updatedState: State = {
-        ...initialState,
-        authStatus: AuthStatus.NoAuth,
-        loading: false,
-        error: error,
-      };
-
-      expect(userReducer(initialState, ACTION_TYPE)).toEqual(updatedState);
+      const result = userReducer(initialState, actionType);
+      expect(result.error).toEqual(error);
     });
 
-    it('should remove error from state when checkAuthStatus is pending or fulfilled', () => {
-      const initialState: State = {
-        authStatus: AuthStatus.NoAuth,
-        user: null,
-        loading: false,
-        error: error,
-      };
-
-      const PENDING_ACTION_TYPE = {
+    it('should return a state with removed error when checkAuthStatus is pending', () => {
+      const actionType = {
         type: checkAuthStatus.pending.type,
       };
 
-      const pendingUpdatedState: State = {
-        ...initialState,
-        loading: true,
-        error: null,
-      };
+      const result = userReducer(rejectedState, actionType);
+      expect(result.error).toBeNull();
+    });
 
-      expect(userReducer(initialState, PENDING_ACTION_TYPE)).toEqual(
-        pendingUpdatedState,
-      );
-
-      const FULFILLED_ACTION_TYPE = {
+    it('should return a state with removed error when checkAuthStatus is fulfilled', () => {
+      const actionType = {
         type: checkAuthStatus.fulfilled.type,
         payload: user,
       };
 
-      const fulfilledUpdatedState: State = {
-        ...initialState,
-        authStatus: AuthStatus.Auth,
-        user: user,
-        error: null,
-      };
-
-      expect(userReducer(initialState, FULFILLED_ACTION_TYPE)).toEqual(
-        fulfilledUpdatedState,
-      );
+      const result = userReducer(rejectedState, actionType);
+      expect(result.error).toBeNull();
     });
   });
 
   describe('login', () => {
-    it('should update loading to "true" when login is pending', () => {
-      const ACTION_TYPE = { type: login.pending.type };
+    it('should return a state with updated the loading status when login is pending', () => {
+      const actionType = { type: login.pending.type };
 
-      const updatedState: State = {
-        ...initialState,
-        user: null,
-        loading: true,
-      };
-
-      expect(userReducer(initialState, ACTION_TYPE)).toEqual(updatedState);
+      const result = userReducer(initialState, actionType);
+      expect(result.loading).toBeTruthy();
     });
 
-    it('should update loading to "false", set authStatus to "Auth" and add user when login is fulfilled', () => {
-      const ACTION_TYPE = {
+    it('should return a state with updated the loading status when login is fulfilled', () => {
+      const actionType = {
         type: login.fulfilled.type,
         payload: user,
       };
 
-      const initialState: State = {
-        authStatus: AuthStatus.Unknown,
-        user: null,
-        loading: true,
-        error: null,
-      };
-
-      const updatedState: State = {
-        ...initialState,
-        authStatus: AuthStatus.Auth,
-        user: user,
-        loading: false,
-      };
-
-      expect(userReducer(initialState, ACTION_TYPE)).toEqual(updatedState);
+      const result = userReducer(loadingState, actionType);
+      expect(result.loading).toBeFalsy();
     });
 
-    it('should add error to state when login is rejected', () => {
-      const ACTION_TYPE = {
+    it('should return a state with added user when login is fulfilled', () => {
+      const actionType = {
+        type: login.fulfilled.type,
+        payload: user,
+      };
+
+      const result = userReducer(loadingState, actionType);
+      expect(result.user).toEqual(user);
+    });
+
+    it('should return a state with updated auth status when login is fulfilled', () => {
+      const actionType = {
+        type: login.fulfilled.type,
+        payload: user,
+      };
+
+      const result = userReducer(loadingState, actionType);
+      expect(result.authStatus).toBe(AuthStatus.Auth);
+    });
+
+    it('should return a state with added error when login is rejected', () => {
+      const actionType = {
         type: login.rejected.type,
         payload: error,
       };
 
-      const updatedState: State = {
-        ...initialState,
-        authStatus: AuthStatus.NoAuth,
-        loading: false,
-        error: error,
-      };
-
-      expect(userReducer(initialState, ACTION_TYPE)).toEqual(updatedState);
+      const result = userReducer(initialState, actionType);
+      expect(result.error).toEqual(error);
     });
 
-    it('should remove error from state when login is pending or fulfilled', () => {
-      const initialState: State = {
-        authStatus: AuthStatus.NoAuth,
-        user: null,
-        loading: false,
-        error: error,
-      };
-
-      const PENDING_ACTION_TYPE = {
+    it('should return a state with removed error when login is pending', () => {
+      const actionType = {
         type: login.pending.type,
       };
 
-      const pendingUpdatedState: State = {
-        ...initialState,
-        loading: true,
-        error: null,
-      };
+      const result = userReducer(rejectedState, actionType);
+      expect(result.error).toBeNull();
+    });
 
-      expect(userReducer(initialState, PENDING_ACTION_TYPE)).toEqual(
-        pendingUpdatedState,
-      );
-
-      const FULFILLED_ACTION_TYPE = {
+    it('should return a state with removed error when login is fulfilled', () => {
+      const actionType = {
         type: login.fulfilled.type,
         payload: user,
       };
 
-      const fulfilledUpdatedState: State = {
-        ...initialState,
-        authStatus: AuthStatus.Auth,
-        user: user,
-        error: null,
-      };
-
-      expect(userReducer(initialState, FULFILLED_ACTION_TYPE)).toEqual(
-        fulfilledUpdatedState,
-      );
+      const result = userReducer(rejectedState, actionType);
+      expect(result.error).toBeNull();
     });
   });
 
   describe('logout', () => {
-    it('should update loading to "true" when logout pending', () => {
-      const ACTION_TYPE = { type: logout.pending.type };
+    it('should return a state with updated the loading status when logout is pending', () => {
+      const actionType = { type: logout.pending.type };
 
-      const updatedState: State = {
-        ...initialState,
-        loading: true,
-      };
-
-      expect(userReducer(initialState, ACTION_TYPE)).toEqual(updatedState);
+      const result = userReducer(initialState, actionType);
+      expect(result.loading).toBeTruthy();
     });
 
-    it('should update loading to "false", set authStatus to "NoAuth" and remove user when logout is fulfilled', () => {
-      const ACTION_TYPE = {
-        type: logout.fulfilled.type,
-      };
+    it('should return a state with updated the loading status when logout is fulfilled', () => {
+      const actionType = { type: logout.fulfilled.type };
 
-      const initialState: State = {
+      const result = userReducer(loadingState, actionType);
+      expect(result.loading).toBeFalsy();
+    });
+
+    it('should return a state with removed user when logout is fulfilled', () => {
+      const actionType = { type: logout.fulfilled.type };
+
+      const stateWithAuthUser: State = {
+        ...initialState,
         authStatus: AuthStatus.Auth,
-        user: user,
-        loading: true,
-        error: null,
+        user,
       };
 
-      const updatedState: State = {
-        ...initialState,
-        authStatus: AuthStatus.NoAuth,
-        user: null,
-        loading: false,
-      };
-
-      expect(userReducer(initialState, ACTION_TYPE)).toEqual(updatedState);
+      const result = userReducer(stateWithAuthUser, actionType);
+      expect(result.user).toBeNull();
     });
 
-    it('should add error to state when logout is rejected', () => {
-      const ACTION_TYPE = {
+    it('should return a state with updated auth status when logout is fulfilled', () => {
+      const actionType = { type: logout.fulfilled.type };
+
+      const stateWithAuthUser: State = {
+        ...initialState,
+        authStatus: AuthStatus.Auth,
+        user,
+      };
+
+      const result = userReducer(stateWithAuthUser, actionType);
+      expect(result.authStatus).toBe(AuthStatus.NoAuth);
+    });
+
+    it('should return a state with added error when logout is rejected', () => {
+      const actionType = {
         type: logout.rejected.type,
         payload: error,
       };
 
-      const updatedState: State = {
-        ...initialState,
-        loading: false,
-        error: error,
-      };
-
-      expect(userReducer(initialState, ACTION_TYPE)).toEqual(updatedState);
+      const result = userReducer(initialState, actionType);
+      expect(result.error).toEqual(error);
     });
 
-    it('should remove error from state when logout is pending or fulfilled', () => {
-      const initialState: State = {
-        authStatus: AuthStatus.NoAuth,
-        user: null,
-        loading: false,
-        error: error,
-      };
-
-      const PENDING_ACTION_TYPE = {
+    it('should return a state with removed error when logout is pending', () => {
+      const actionType = {
         type: logout.pending.type,
       };
 
-      const pendingUpdatedState: State = {
-        ...initialState,
-        loading: true,
-        error: null,
-      };
+      const result = userReducer(rejectedState, actionType);
+      expect(result.error).toBeNull();
+    });
 
-      expect(userReducer(initialState, PENDING_ACTION_TYPE)).toEqual(
-        pendingUpdatedState,
-      );
-
-      const FULFILLED_ACTION_TYPE = {
+    it('should return a state with removed error when logout is fulfilled', () => {
+      const actionType = {
         type: logout.fulfilled.type,
         payload: user,
       };
 
-      const fulfilledUpdatedState: State = {
-        ...initialState,
-        authStatus: AuthStatus.NoAuth,
-        user: null,
-        error: null,
-      };
-
-      expect(userReducer(initialState, FULFILLED_ACTION_TYPE)).toEqual(
-        fulfilledUpdatedState,
-      );
+      const result = userReducer(rejectedState, actionType);
+      expect(result.error).toBeNull();
     });
   });
 });
