@@ -1,15 +1,14 @@
-import { Provider } from 'react-redux';
-import configureMockStore from 'redux-mock-store';
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { createMemoryHistory } from 'history';
-import '@testing-library/jest-dom';
-
-import { FavoriteStatus, Reducer } from '~/constants';
+import {
+  CityName,
+  FavoriteStatus,
+  NO_ACTIVE_CARD,
+  Reducer,
+  SortType,
+} from '~/constants';
+import { render, screen, userEvent } from '~/tests';
 import { ToggleFavoritePayload } from '~/types';
 import { makeOffer } from '~/utils';
 
-import { HistoryRouter } from '../history-router';
 import { CardItem } from './index';
 
 jest.mock('~/store', () => {
@@ -27,33 +26,32 @@ jest.mock('~/store', () => {
   };
 });
 
-const mockStore = configureMockStore();
-
-const store = mockStore({
-  [Reducer.App]: {
-    favoriteIdsInProgress: [],
-  },
-});
-
-const history = createMemoryHistory();
-
 const offer = makeOffer({ isPremium: true, isFavorite: true });
+
+const preloadedState = {
+  [Reducer.App]: {
+    activeCardId: NO_ACTIVE_CARD,
+    currentCityName: CityName.Amsterdam,
+    currentSortType: SortType.Popular,
+    favoriteIdsInProgress: [],
+    error: null,
+  },
+};
 
 describe('Component: CardItem', () => {
   it('should render correctly', () => {
     const { price, title, type } = offer;
 
     render(
-      <Provider store={store}>
-        <HistoryRouter history={history}>
-          <CardItem
-            cardType="big"
-            offer={offer}
-            onCardItemMouseEnter={jest.fn()}
-            onCardItemMouseLeave={jest.fn()}
-          />
-        </HistoryRouter>
-      </Provider>,
+      <CardItem
+        cardType="big"
+        offer={offer}
+        onCardItemMouseEnter={jest.fn()}
+        onCardItemMouseLeave={jest.fn()}
+      />,
+      {
+        preloadedState,
+      },
     );
 
     expect(screen.getByText(/Premium/i)).toBeInTheDocument();
@@ -70,16 +68,15 @@ describe('Component: CardItem', () => {
     const handleCardItemMouseLeave = jest.fn();
 
     render(
-      <Provider store={store}>
-        <HistoryRouter history={history}>
-          <CardItem
-            cardType="big"
-            offer={offer}
-            onCardItemMouseEnter={handleCardItemMouseEnter}
-            onCardItemMouseLeave={handleCardItemMouseLeave}
-          />
-        </HistoryRouter>
-      </Provider>,
+      <CardItem
+        cardType="big"
+        offer={offer}
+        onCardItemMouseEnter={handleCardItemMouseEnter}
+        onCardItemMouseLeave={handleCardItemMouseLeave}
+      />,
+      {
+        preloadedState,
+      },
     );
 
     const card = screen.getByRole('article');
@@ -94,17 +91,16 @@ describe('Component: CardItem', () => {
   });
 
   it('handleFavoriteButtonClick should work correctly', async () => {
-    render(
-      <Provider store={store}>
-        <HistoryRouter history={history}>
-          <CardItem
-            cardType="big"
-            offer={offer}
-            onCardItemMouseEnter={jest.fn()}
-            onCardItemMouseLeave={jest.fn()}
-          />
-        </HistoryRouter>
-      </Provider>,
+    const { store } = render(
+      <CardItem
+        cardType="big"
+        offer={offer}
+        onCardItemMouseEnter={jest.fn()}
+        onCardItemMouseLeave={jest.fn()}
+      />,
+      {
+        preloadedState,
+      },
     );
 
     const bookmarkButton = screen.getByRole('button', {
