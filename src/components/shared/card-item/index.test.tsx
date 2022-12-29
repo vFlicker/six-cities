@@ -1,11 +1,5 @@
-import {
-  CityName,
-  FavoriteStatus,
-  NO_ACTIVE_CARD,
-  Reducer,
-  SortType,
-} from '~/constants';
-import { render, screen, userEvent } from '~/tests';
+import { FavoriteStatus, Reducer } from '~/constants';
+import { appStore, render, screen, userEvent } from '~/tests';
 import { ToggleFavoritePayload } from '~/types';
 import { makeOffer } from '~/utils';
 
@@ -28,13 +22,9 @@ jest.mock('~/store', () => {
 
 const offer = makeOffer({ isPremium: true, isFavorite: true });
 
-const preloadedState = {
-  [Reducer.App]: {
-    activeCardId: NO_ACTIVE_CARD,
-    currentCityName: CityName.Amsterdam,
-    currentSortType: SortType.Popular,
-    favoriteIdsInProgress: [],
-    error: null,
+const renderOptions = {
+  preloadedState: {
+    [Reducer.App]: appStore.initialState,
   },
 };
 
@@ -49,9 +39,7 @@ describe('Component: CardItem', () => {
         onCardItemMouseEnter={jest.fn()}
         onCardItemMouseLeave={jest.fn()}
       />,
-      {
-        preloadedState,
-      },
+      renderOptions,
     );
 
     expect(screen.getByText(/Premium/i)).toBeInTheDocument();
@@ -74,9 +62,7 @@ describe('Component: CardItem', () => {
         onCardItemMouseEnter={handleCardItemMouseEnter}
         onCardItemMouseLeave={handleCardItemMouseLeave}
       />,
-      {
-        preloadedState,
-      },
+      renderOptions,
     );
 
     const card = screen.getByRole('article');
@@ -98,9 +84,7 @@ describe('Component: CardItem', () => {
         onCardItemMouseEnter={jest.fn()}
         onCardItemMouseLeave={jest.fn()}
       />,
-      {
-        preloadedState,
-      },
+      renderOptions,
     );
 
     const bookmarkButton = screen.getByRole('button', {

@@ -1,13 +1,10 @@
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import '@testing-library/jest-dom';
+import { render, screen, userEvent } from '~/tests';
 
 import { Button } from './index';
 
 describe('Component: Button', () => {
   it('should render correctly', () => {
     render(<Button>Test text</Button>);
-
     expect(screen.getByText(/Test text/i)).toBeInTheDocument();
   });
 

@@ -1,5 +1,4 @@
-import { render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
+import { render, screen } from '~/tests';
 
 import { ErrorMessage } from './index';
 
@@ -14,7 +13,6 @@ describe('Component: ErrorMessage', () => {
 
   it('should render correctly with props', () => {
     render(<ErrorMessage errorMessage="Mock text" />);
-
     expect(screen.getByText(/Mock text/i)).toBeInTheDocument();
   });
 });

@@ -1,4 +1,5 @@
-import { CityName, NO_ACTIVE_CARD, SortType } from '~/constants';
+import { CityName, SortType } from '~/constants';
+import { appStore } from '~/tests';
 import { error } from '~/utils';
 
 import appReducer, {
@@ -7,25 +8,8 @@ import appReducer, {
   setActiveCardId,
   toggleFavorite,
 } from './slice';
-import { State } from './types';
 
-const initialState: State = {
-  activeCardId: NO_ACTIVE_CARD,
-  currentCityName: CityName.Amsterdam,
-  currentSortType: SortType.Popular,
-  favoriteIdsInProgress: [],
-  error: null,
-};
-
-const loadingState: State = {
-  ...initialState,
-  favoriteIdsInProgress: [1],
-};
-
-const rejectedState: State = {
-  ...initialState,
-  error,
-};
+const { initialState, loadingState, rejectedState } = appStore;
 
 describe('Slice: app', () => {
   it('without additional parameters should return initial state', () => {

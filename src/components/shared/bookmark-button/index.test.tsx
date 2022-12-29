@@ -1,6 +1,4 @@
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import '@testing-library/jest-dom';
+import { render, screen, userEvent } from '~/tests';
 
 import { BookmarkButton } from './index';
 
@@ -36,7 +34,6 @@ describe('Component: BookmarkButton', () => {
 
     await userEvent.click(button);
 
-    expect(button).toBeEnabled();
     expect(handleClick).toBeCalledTimes(1);
   });
 
@@ -56,7 +53,6 @@ describe('Component: BookmarkButton', () => {
 
     await userEvent.click(button);
 
-    expect(button).toBeDisabled();
     expect(handleClick).toBeCalledTimes(0);
   });
 });
