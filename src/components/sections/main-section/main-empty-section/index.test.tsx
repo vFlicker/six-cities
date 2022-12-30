@@ -1,36 +1,22 @@
-import { Provider } from 'react-redux';
-import configureMockStore from 'redux-mock-store';
-import { render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
-
 import { CityName, Reducer } from '~/constants';
+import { appStore, render, RenderOptions, screen } from '~/tests';
 
 import { MainEmptySection } from './index';
 
-const mockStore = configureMockStore();
-
-const store = mockStore({
-  [Reducer.App]: {
-    currentCityName: CityName.Paris,
-  },
-});
-
 describe('Component: MainEmptySection', () => {
   it('should render correctly', () => {
-    const alt = 'No results icon';
-    const description = 'No places to stay available';
-    const title = 'We could not find any property available at the moment in';
+    const renderOptions: RenderOptions = {
+      preloadedState: {
+        [Reducer.App]: appStore.initialState,
+      },
+    };
 
-    render(
-      <Provider store={store}>
-        <MainEmptySection />
-      </Provider>,
-    );
+    render(<MainEmptySection />, renderOptions);
 
-    expect(screen.getByAltText(new RegExp(alt, 'i'))).toBeInTheDocument();
-    expect(screen.getByText(new RegExp(description, 'i'))).toBeInTheDocument();
-    expect(screen.getByText(new RegExp(title, 'i'))).toHaveTextContent(
-      CityName.Paris,
+    expect(screen.getByAltText(/No results icon/i)).toBeInTheDocument();
+    expect(screen.getByText(/No places/i)).toBeInTheDocument();
+    expect(screen.getByText(/We could not find/i)).toHaveTextContent(
+      CityName.Amsterdam,
     );
   });
 });

@@ -8,15 +8,15 @@ jest.mock('~/assets/images', () => ({
   pinIconSrc: '~/assets/images/icons/pin.svg',
 }));
 
-const renderOptions: RenderOptions = {
-  preloadedState: {
-    [Reducer.App]: appStore.initialState,
-  },
-};
-
 describe('Component: Map', () => {
   it('should render correctly', () => {
     const offers = offersStore.stateWithOffers.all;
+
+    const renderOptions: RenderOptions = {
+      preloadedState: {
+        [Reducer.App]: appStore.initialState,
+      },
+    };
 
     render(<Map offers={offers} orientation="horizontal" />, renderOptions);
     expect(screen.getByTestId('map')).toBeInTheDocument();

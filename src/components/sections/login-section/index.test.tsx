@@ -1,13 +1,6 @@
-import { createMemoryHistory } from 'history';
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { Provider } from 'react-redux';
-import configureMockStore from 'redux-mock-store';
-import '@testing-library/jest-dom';
-
+import { render, screen, userEvent } from '~/tests';
 import { AuthData } from '~/types';
 
-import { HistoryRouter } from '../../shared/history-router';
 import { LoginSection } from './index';
 
 jest.mock('~/store', () => {
@@ -25,21 +18,12 @@ jest.mock('~/store', () => {
   };
 });
 
-const mockStore = configureMockStore();
-
-const store = mockStore({});
-
-const history = createMemoryHistory();
+const mockEmail = 'test@gmail.com';
+const mockPassword = 'password';
 
 describe('Component: LoginSection', () => {
   it('should render correctly', () => {
-    render(
-      <Provider store={store}>
-        <HistoryRouter history={history}>
-          <LoginSection />
-        </HistoryRouter>
-      </Provider>,
-    );
+    render(<LoginSection />);
 
     expect(screen.getByLabelText(/E-mail/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/Password/i)).toBeInTheDocument();
@@ -48,46 +32,51 @@ describe('Component: LoginSection', () => {
     expect(screen.getAllByText(/Sign in/i)).toHaveLength(2);
   });
 
-  it('form should work correctly', async () => {
-    const EMAIL = 'test@gmail.com';
-    const PASSWORD = 'secret';
+  it('form inputs should work correctly', async () => {
+    render(<LoginSection />);
 
-    render(
-      <Provider store={store}>
-        <HistoryRouter history={history}>
-          <LoginSection />
-        </HistoryRouter>
-      </Provider>,
-    );
+    const emailInput = screen.getByTestId('email');
+    const passwordInput = screen.getByTestId('password');
 
-    const emailElement = screen.getByTestId('email');
-    const passwordElement = screen.getByTestId('password');
-    const submitElement = screen.getByRole('button', { name: /Sign in/i });
-
-    await userEvent.click(submitElement);
-
-    // TODO: toBeUndefined
-    expect(store.getActions()).toEqual([]);
-
-    await userEvent.type(emailElement, EMAIL);
-    await userEvent.type(passwordElement, PASSWORD);
+    await userEvent.type(emailInput, mockEmail);
+    await userEvent.type(passwordInput, mockPassword);
 
     expect(
-      screen.getByDisplayValue(new RegExp(EMAIL, 'i')),
+      screen.getByDisplayValue(new RegExp(mockEmail, 'i')),
     ).toBeInTheDocument();
 
     expect(
-      screen.getByDisplayValue(new RegExp(PASSWORD, 'i')),
+      screen.getByDisplayValue(new RegExp(mockPassword, 'i')),
     ).toBeInTheDocument();
+  });
 
-    await userEvent.click(submitElement);
+  it('form should not be sended when inputs are empty', async () => {
+    const { store } = render(<LoginSection />);
+
+    const button = screen.getByRole('button', { name: /Sign in/i });
+    await userEvent.click(button);
+
+    const [firstAction] = store.getActions();
+    expect(firstAction).toBeUndefined();
+  });
+
+  it('form should be sended', async () => {
+    const { store } = render(<LoginSection />);
+
+    const emailInput = screen.getByTestId('email');
+    const passwordInput = screen.getByTestId('password');
+    const button = screen.getByRole('button', { name: /Sign in/i });
+
+    await userEvent.type(emailInput, mockEmail);
+    await userEvent.type(passwordInput, mockPassword);
+    await userEvent.click(button);
 
     const [firstAction] = store.getActions();
     expect(firstAction).toEqual({
       type: 'MOCK_LOGIN_ACTION',
       payload: {
-        email: EMAIL,
-        password: PASSWORD,
+        email: mockEmail,
+        password: mockPassword,
       },
     });
   });
