@@ -1,27 +1,10 @@
 import { AuthStatus } from '~/constants';
-import { error, makeUser } from '~/utils';
+import { userStore } from '~/tests';
+import { error } from '~/utils';
 
 import userReducer, { checkAuthStatus, login, logout } from './slice';
-import { State } from './types';
 
-const initialState: State = {
-  authStatus: AuthStatus.Unknown,
-  user: null,
-  loading: false,
-  error: null,
-};
-
-const loadingState = {
-  ...initialState,
-  loading: true,
-};
-
-const rejectedState: State = {
-  ...initialState,
-  error: error,
-};
-
-const user = makeUser();
+const { initialState, loadingState, rejectedState, authState } = userStore;
 
 describe('Slice: user', () => {
   it('without additional parameters should return initial state', () => {
@@ -40,7 +23,7 @@ describe('Slice: user', () => {
     it('should return a state with updated the loading status when checkAuthStatus is fulfilled', () => {
       const actionType = {
         type: checkAuthStatus.fulfilled.type,
-        payload: user,
+        payload: authState.user,
       };
 
       const result = userReducer(loadingState, actionType);
@@ -50,17 +33,17 @@ describe('Slice: user', () => {
     it('should return a state with added user when checkAuthStatus is fulfilled', () => {
       const actionType = {
         type: checkAuthStatus.fulfilled.type,
-        payload: user,
+        payload: authState.user,
       };
 
       const result = userReducer(loadingState, actionType);
-      expect(result.user).toEqual(user);
+      expect(result.user).toEqual(authState.user);
     });
 
     it('should return a state with updated auth status when checkAuthStatus is fulfilled', () => {
       const actionType = {
         type: checkAuthStatus.fulfilled.type,
-        payload: user,
+        payload: authState.user,
       };
 
       const result = userReducer(loadingState, actionType);
@@ -89,7 +72,7 @@ describe('Slice: user', () => {
     it('should return a state with removed error when checkAuthStatus is fulfilled', () => {
       const actionType = {
         type: checkAuthStatus.fulfilled.type,
-        payload: user,
+        payload: authState.user,
       };
 
       const result = userReducer(rejectedState, actionType);
@@ -108,7 +91,7 @@ describe('Slice: user', () => {
     it('should return a state with updated the loading status when login is fulfilled', () => {
       const actionType = {
         type: login.fulfilled.type,
-        payload: user,
+        payload: authState.user,
       };
 
       const result = userReducer(loadingState, actionType);
@@ -118,17 +101,17 @@ describe('Slice: user', () => {
     it('should return a state with added user when login is fulfilled', () => {
       const actionType = {
         type: login.fulfilled.type,
-        payload: user,
+        payload: authState.user,
       };
 
       const result = userReducer(loadingState, actionType);
-      expect(result.user).toEqual(user);
+      expect(result.user).toEqual(authState.user);
     });
 
     it('should return a state with updated auth status when login is fulfilled', () => {
       const actionType = {
         type: login.fulfilled.type,
-        payload: user,
+        payload: authState.user,
       };
 
       const result = userReducer(loadingState, actionType);
@@ -157,7 +140,7 @@ describe('Slice: user', () => {
     it('should return a state with removed error when login is fulfilled', () => {
       const actionType = {
         type: login.fulfilled.type,
-        payload: user,
+        payload: authState.user,
       };
 
       const result = userReducer(rejectedState, actionType);
@@ -169,7 +152,7 @@ describe('Slice: user', () => {
     it('should return a state with updated the loading status when logout is pending', () => {
       const actionType = { type: logout.pending.type };
 
-      const result = userReducer(initialState, actionType);
+      const result = userReducer(authState, actionType);
       expect(result.loading).toBeTruthy();
     });
 
@@ -183,26 +166,14 @@ describe('Slice: user', () => {
     it('should return a state with removed user when logout is fulfilled', () => {
       const actionType = { type: logout.fulfilled.type };
 
-      const stateWithAuthUser: State = {
-        ...initialState,
-        authStatus: AuthStatus.Auth,
-        user,
-      };
-
-      const result = userReducer(stateWithAuthUser, actionType);
+      const result = userReducer(authState, actionType);
       expect(result.user).toBeNull();
     });
 
     it('should return a state with updated auth status when logout is fulfilled', () => {
       const actionType = { type: logout.fulfilled.type };
 
-      const stateWithAuthUser: State = {
-        ...initialState,
-        authStatus: AuthStatus.Auth,
-        user,
-      };
-
-      const result = userReducer(stateWithAuthUser, actionType);
+      const result = userReducer(authState, actionType);
       expect(result.authStatus).toBe(AuthStatus.NoAuth);
     });
 
@@ -212,7 +183,7 @@ describe('Slice: user', () => {
         payload: error,
       };
 
-      const result = userReducer(initialState, actionType);
+      const result = userReducer(authState, actionType);
       expect(result.error).toEqual(error);
     });
 
@@ -228,7 +199,7 @@ describe('Slice: user', () => {
     it('should return a state with removed error when logout is fulfilled', () => {
       const actionType = {
         type: logout.fulfilled.type,
-        payload: user,
+        payload: authState.user,
       };
 
       const result = userReducer(rejectedState, actionType);

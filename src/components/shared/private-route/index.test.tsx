@@ -1,16 +1,10 @@
-import { Provider } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
-import { render, screen } from '@testing-library/react';
-import configureMockStore from 'redux-mock-store';
-import '@testing-library/jest-dom';
 
-import { AppRoute, AuthStatus, Reducer } from '~/constants';
+import { AppRoute, Reducer } from '~/constants';
+import { render, RenderOptions, screen, userStore } from '~/tests';
 
-import { HistoryRouter } from '../history-router';
 import { PrivateRoute } from './index';
-
-const mockStore = configureMockStore();
 
 const history = createMemoryHistory();
 
@@ -20,28 +14,26 @@ describe('Component: PrivateRoute', () => {
   });
 
   it('should render login page when user not authorized,', () => {
-    const store = mockStore({
-      [Reducer.User]: {
-        authStatus: AuthStatus.NoAuth,
+    const renderOption: RenderOptions = {
+      history,
+      preloadedState: {
+        [Reducer.User]: userStore.noAuthState,
       },
-    });
+    };
 
     render(
-      <Provider store={store}>
-        <HistoryRouter history={history}>
-          <Routes>
-            <Route path={AppRoute.Login} element={<h1>Login page</h1>} />
-            <Route
-              path="/private"
-              element={
-                <PrivateRoute>
-                  <h1>Private page</h1>
-                </PrivateRoute>
-              }
-            />
-          </Routes>
-        </HistoryRouter>
-      </Provider>,
+      <Routes>
+        <Route path={AppRoute.Login} element={<h1>Login page</h1>} />
+        <Route
+          path="/private"
+          element={
+            <PrivateRoute>
+              <h1>Private page</h1>
+            </PrivateRoute>
+          }
+        />
+      </Routes>,
+      renderOption,
     );
 
     expect(screen.getByText(/Login page/i)).toBeInTheDocument();
@@ -49,28 +41,26 @@ describe('Component: PrivateRoute', () => {
   });
 
   it('should render secret page when user authorized,', () => {
-    const store = mockStore({
-      [Reducer.User]: {
-        authStatus: AuthStatus.Auth,
+    const renderOption: RenderOptions = {
+      history,
+      preloadedState: {
+        [Reducer.User]: userStore.authState,
       },
-    });
+    };
 
     render(
-      <Provider store={store}>
-        <HistoryRouter history={history}>
-          <Routes>
-            <Route path={AppRoute.Login} element={<h1>Login route</h1>} />
-            <Route
-              path="/private"
-              element={
-                <PrivateRoute>
-                  <h1>Private route</h1>
-                </PrivateRoute>
-              }
-            />
-          </Routes>
-        </HistoryRouter>
-      </Provider>,
+      <Routes>
+        <Route path={AppRoute.Login} element={<h1>Login route</h1>} />
+        <Route
+          path="/private"
+          element={
+            <PrivateRoute>
+              <h1>Private route</h1>
+            </PrivateRoute>
+          }
+        />
+      </Routes>,
+      renderOption,
     );
 
     expect(screen.getByText(/Private route/i)).toBeInTheDocument();

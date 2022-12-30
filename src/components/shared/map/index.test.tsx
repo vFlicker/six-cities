@@ -1,9 +1,5 @@
-import { Provider } from 'react-redux';
-import configureMockStore from 'redux-mock-store';
-import { render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
-
 import { Reducer } from '~/constants';
+import { appStore, render, RenderOptions, screen } from '~/tests';
 import { makeOffer } from '~/utils';
 
 import { Map } from './index';
@@ -13,24 +9,17 @@ jest.mock('~/assets/images', () => ({
   pinIconSrc: '~/assets/images/icons/pin.svg',
 }));
 
-const offers = [makeOffer(), makeOffer()];
+const offers = [makeOffer()];
 
-const mockStore = configureMockStore();
-
-const store = mockStore({
-  [Reducer.App]: {
-    activeCardId: offers[0].id,
+const renderOptions: RenderOptions = {
+  preloadedState: {
+    [Reducer.App]: appStore.initialState,
   },
-});
+};
 
 describe('Component: Map', () => {
   it('should render correctly', () => {
-    render(
-      <Provider store={store}>
-        <Map offers={offers} orientation="horizontal" />
-      </Provider>,
-    );
-
+    render(<Map offers={offers} orientation="horizontal" />, renderOptions);
     expect(screen.getByTestId('map')).toBeInTheDocument();
   });
 });

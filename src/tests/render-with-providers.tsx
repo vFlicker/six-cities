@@ -1,7 +1,10 @@
 import { PreloadedState } from '@reduxjs/toolkit';
 import configureMockStore from 'redux-mock-store';
-import { render, RenderOptions } from '@testing-library/react';
-import { createMemoryHistory } from 'history';
+import {
+  render,
+  RenderOptions as RTKRenderOptions,
+} from '@testing-library/react';
+import { createMemoryHistory, MemoryHistory } from 'history';
 import { PropsWithChildren, ReactElement } from 'react';
 import { Provider } from 'react-redux';
 import '@testing-library/jest-dom';
@@ -9,18 +12,22 @@ import '@testing-library/jest-dom';
 import { HistoryRouter } from '~/components/shared';
 import { State } from '~/types';
 
-interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
+export interface RenderOptions extends Omit<RTKRenderOptions, 'queries'> {
   preloadedState?: PreloadedState<State>;
+  history?: MemoryHistory;
 }
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 const renderWithProviders = (
   ui: ReactElement,
-  { preloadedState = {}, ...renderOptions }: ExtendedRenderOptions = {},
+  {
+    history = createMemoryHistory(),
+    preloadedState = {},
+    ...renderOptions
+  }: RenderOptions = {},
 ) => {
   const mockStore = configureMockStore();
   const store = mockStore(preloadedState);
-  const history = createMemoryHistory();
 
   function Wrapper({ children }: PropsWithChildren): JSX.Element {
     return (

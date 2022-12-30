@@ -1,5 +1,5 @@
 import { FavoriteStatus, Reducer } from '~/constants';
-import { appStore, render, screen, userEvent } from '~/tests';
+import { appStore, render, RenderOptions, screen, userEvent } from '~/tests';
 import { ToggleFavoritePayload } from '~/types';
 import { makeOffer } from '~/utils';
 
@@ -22,7 +22,7 @@ jest.mock('~/store', () => {
 
 const offer = makeOffer({ isPremium: true, isFavorite: true });
 
-const renderOptions = {
+const renderOptions: RenderOptions = {
   preloadedState: {
     [Reducer.App]: appStore.initialState,
   },

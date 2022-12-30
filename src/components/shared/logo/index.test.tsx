@@ -1,38 +1,27 @@
 import { Route, Routes } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import '@testing-library/jest-dom';
 
 import { AppRoute } from '~/constants';
+import { render, screen, userEvent } from '~/tests';
 
-import { HistoryRouter } from '../history-router';
 import { Logo } from './index';
 
 const history = createMemoryHistory();
 
 describe('Component: Logo', () => {
-  it("should render link when user are't on root url", () => {
+  it('should render link when user are not on root url', () => {
     history.push('/fake');
 
-    render(
-      <HistoryRouter history={history}>
-        <Logo />
-      </HistoryRouter>,
-    );
+    render(<Logo />, { history });
 
     expect(screen.getByAltText(/6 cities logo/i)).toBeInTheDocument();
     expect(screen.getByRole('link')).toBeInTheDocument();
   });
 
-  it("should't render link when user are on root url", () => {
+  it('should not render link when user are on root url', () => {
     history.push(AppRoute.Root);
 
-    render(
-      <HistoryRouter history={history}>
-        <Logo />
-      </HistoryRouter>,
-    );
+    render(<Logo />, { history });
 
     expect(screen.getByAltText(/6 cities logo/i)).toBeInTheDocument();
     expect(screen.queryByRole('link')).not.toBeInTheDocument();
@@ -42,12 +31,11 @@ describe('Component: Logo', () => {
     history.push('/fake');
 
     render(
-      <HistoryRouter history={history}>
-        <Routes>
-          <Route path="/" element={<h1>This is main page</h1>} />
-          <Route path="*" element={<Logo />} />
-        </Routes>
-      </HistoryRouter>,
+      <Routes>
+        <Route path="/" element={<h1>This is main page</h1>} />
+        <Route path="*" element={<Logo />} />
+      </Routes>,
+      { history },
     );
 
     expect(screen.queryByText(/This is main page/i)).not.toBeInTheDocument();
