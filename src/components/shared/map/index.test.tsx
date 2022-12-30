@@ -16,7 +16,7 @@ const renderOptions: RenderOptions = {
 
 describe('Component: Map', () => {
   it('should render correctly', () => {
-    const { offers } = offersStore;
+    const offers = offersStore.stateWithOffers.all;
 
     render(<Map offers={offers} orientation="horizontal" />, renderOptions);
     expect(screen.getByTestId('map')).toBeInTheDocument();

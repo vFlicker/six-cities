@@ -2,10 +2,10 @@ import { State } from '~/store/slices/offers/types';
 import { Offer } from '~/types';
 import { error, makeOffer } from '~/utils';
 
-export const offer = makeOffer();
-export const updatedOffer: Offer = { ...offer, title: 'Updated title' };
-export const offers: Offer[] = [offer];
-export const updatedOffers: Offer[] = [updatedOffer];
+const offer = makeOffer();
+const updatedOffer: Offer = { ...offer, title: 'Updated title' };
+const offers: Offer[] = [offer];
+const updatedOffers: Offer[] = [updatedOffer];
 
 export const initialState: State = {
   all: [],

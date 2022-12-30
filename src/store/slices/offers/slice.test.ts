@@ -14,8 +14,9 @@ const {
   stateWitUpdatedOffers,
   loadingState,
   rejectedState,
-  updatedOffer,
 } = offersStore;
+
+const [updatedOffer] = stateWitUpdatedOffers.all;
 
 describe('Slice: offers', () => {
   it('without additional parameters should return initial state', () => {
@@ -24,14 +25,14 @@ describe('Slice: offers', () => {
   });
 
   describe('fetchAllOffers', () => {
-    it('should return a state with updated the loading status when fetchAllOffers is pending', () => {
+    it('should return a state with the loading status "true" when fetchAllOffers is pending', () => {
       const actionType = { type: fetchAllOffers.pending.type };
 
       const result = offersReducer(initialState, actionType);
       expect(result.loading).toBeTruthy();
     });
 
-    it('should return a state with updated the loading status when fetchAllOffers is fulfilled', () => {
+    it('should return a state with the loading status "false" when fetchAllOffers is fulfilled', () => {
       const actionType = {
         type: fetchAllOffers.fulfilled.type,
         payload: stateWithOffers.all,
@@ -82,14 +83,14 @@ describe('Slice: offers', () => {
   });
 
   describe('fetchFavoriteOffers', () => {
-    it('should return a state with updated the loading status when fetchFavoriteOffers is pending', () => {
+    it('should return a state with the loading status "true" when fetchFavoriteOffers is pending', () => {
       const actionType = { type: fetchFavoriteOffers.pending.type };
 
       const result = offersReducer(initialState, actionType);
       expect(result.loading).toBeTruthy();
     });
 
-    it('should return a state with updated the loading status when fetchFavoriteOffers is fulfilled', () => {
+    it('should return a state with the loading status "false" when fetchFavoriteOffers is fulfilled', () => {
       const actionType = {
         type: fetchFavoriteOffers.fulfilled.type,
         payload: stateWithOffers.favorites,
@@ -140,14 +141,14 @@ describe('Slice: offers', () => {
   });
 
   describe('fetchOffersNearby', () => {
-    it('should return a state with updated the loading status when fetchOffersNearby is pending', () => {
+    it('should return a state with the loading status "true" when fetchOffersNearby is pending', () => {
       const actionType = { type: fetchOffersNearby.pending.type };
 
       const result = offersReducer(initialState, actionType);
       expect(result.loading).toBeTruthy();
     });
 
-    it('should return a state with updated the loading status when fetchOffersNearby is fulfilled', () => {
+    it('should return a state with the loading status "false" when fetchOffersNearby is fulfilled', () => {
       const actionType = {
         type: fetchOffersNearby.fulfilled.type,
         payload: stateWithOffers.nearby,

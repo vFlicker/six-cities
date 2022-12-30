@@ -12,14 +12,14 @@ describe('Slice: user', () => {
   });
 
   describe('checkAuthStatus', () => {
-    it('should return a state with updated the loading status when checkAuthStatus is pending', () => {
+    it('should return a state with the loading status "true" when checkAuthStatus is pending', () => {
       const actionType = { type: checkAuthStatus.pending.type };
 
       const result = userReducer(initialState, actionType);
       expect(result.loading).toBeTruthy();
     });
 
-    it('should return a state with updated the loading status when checkAuthStatus is fulfilled', () => {
+    it('should return a state with the loading status "false" when checkAuthStatus is fulfilled', () => {
       const actionType = {
         type: checkAuthStatus.fulfilled.type,
         payload: authState.user,
@@ -80,14 +80,14 @@ describe('Slice: user', () => {
   });
 
   describe('login', () => {
-    it('should return a state with updated the loading status when login is pending', () => {
+    it('should return a state with the loading status "true" when login is pending', () => {
       const actionType = { type: login.pending.type };
 
       const result = userReducer(initialState, actionType);
       expect(result.loading).toBeTruthy();
     });
 
-    it('should return a state with updated the loading status when login is fulfilled', () => {
+    it('should return a state with the loading status "false" when login is fulfilled', () => {
       const actionType = {
         type: login.fulfilled.type,
         payload: authState.user,
@@ -148,14 +148,14 @@ describe('Slice: user', () => {
   });
 
   describe('logout', () => {
-    it('should return a state with updated the loading status when logout is pending', () => {
+    it('should return a state with the loading status "true" when logout is pending', () => {
       const actionType = { type: logout.pending.type };
 
       const result = userReducer(authState, actionType);
       expect(result.loading).toBeTruthy();
     });
 
-    it('should return a state with updated the loading status when logout is fulfilled', () => {
+    it('should return a state with the loading status "false" when logout is fulfilled', () => {
       const actionType = { type: logout.fulfilled.type };
 
       const result = userReducer(loadingState, actionType);

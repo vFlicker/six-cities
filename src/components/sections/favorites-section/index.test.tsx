@@ -12,6 +12,8 @@ import { FavoritesSection } from './index';
 
 describe('Component: FavoritesSection', () => {
   it('should render correctly', () => {
+    const [offer] = offersStore.stateWithOffers.all;
+
     const renderOptions: RenderOptions = {
       preloadedState: {
         [Reducer.App]: appStore.initialState,
@@ -26,7 +28,7 @@ describe('Component: FavoritesSection', () => {
     expect(
       screen.getByText(new RegExp(CityName.Amsterdam, 'i')),
     ).toBeInTheDocument();
-    expect(screen.getByText(offersStore.offer.title)).toBeInTheDocument();
+    expect(screen.getByText(offer.title)).toBeInTheDocument();
   });
 
   it('should render FavoritesEmptySection', () => {

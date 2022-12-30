@@ -26,7 +26,7 @@ jest.mock('~/store', () => {
   };
 });
 
-const { offer } = offerStore;
+const { offer } = offerStore.stateWithOffer;
 
 const renderOptions: RenderOptions = {
   preloadedState: {

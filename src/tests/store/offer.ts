@@ -2,7 +2,9 @@ import { State } from '~/store/slices/offer/types';
 import { Offer } from '~/types';
 import { error, makeOffer } from '~/utils';
 
-export const offer = makeOffer({ isPremium: true, isFavorite: true });
+type StateWithOffer = State & { offer: Offer };
+
+const offer = makeOffer({ isPremium: true, isFavorite: true });
 const updatedOffer: Offer = { ...offer, isPremium: false, isFavorite: false };
 
 export const initialState: State = {
@@ -11,12 +13,12 @@ export const initialState: State = {
   error: null,
 };
 
-export const stateWithOffer: State = {
+export const stateWithOffer: StateWithOffer = {
   ...initialState,
   offer,
 };
 
-export const stateWithUpdatedOffer: State = {
+export const stateWithUpdatedOffer: StateWithOffer = {
   ...initialState,
   offer: updatedOffer,
 };

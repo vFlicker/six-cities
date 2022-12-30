@@ -18,14 +18,14 @@ describe('Slice: offer', () => {
   });
 
   describe('fetchOffer', () => {
-    it('should return a state with updated the loading status when fetchOffer is pending', () => {
+    it('should return a state with the loading status "true" when fetchOffer is pending', () => {
       const actionType = { type: fetchOffer.pending.type };
 
       const result = offerReducer(initialState, actionType);
       expect(result.loading).toBeTruthy();
     });
 
-    it('should return a state with updated the loading status when fetchOffer is fulfilled', () => {
+    it('should return a state with loading status "false" when fetchOffer is fulfilled', () => {
       const actionType = {
         type: fetchOffer.fulfilled.type,
         payload: stateWithOffer.offer,

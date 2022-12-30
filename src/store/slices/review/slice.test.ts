@@ -1,27 +1,9 @@
-import { error, makeReview } from '~/utils';
+import { reviewStore } from '~/tests';
 
 import reviewReducer, { fetchReviews, postReview } from './slice';
-import { State } from './types';
 
-const initialState: State = {
-  reviews: [],
-  loading: false,
-  error: null,
-};
-
-const loadingState = {
-  ...initialState,
-  loading: true,
-};
-
-const rejectedState: State = {
-  ...initialState,
-  error: error,
-};
-
-const firstReview = makeReview();
-const secondReview = makeReview();
-const reviews = [firstReview, secondReview];
+const { initialState, loadingState, rejectedState, stateWithReviews } =
+  reviewStore;
 
 describe('Slice: reviews', () => {
   it('without additional parameters should return initial state', () => {
@@ -30,17 +12,17 @@ describe('Slice: reviews', () => {
   });
 
   describe('fetchReviews', () => {
-    it('should return a state with updated the loading status when fetchReviews is pending', () => {
+    it('should return a state with the loading status "true" when fetchReviews is pending', () => {
       const actionType = { type: fetchReviews.pending.type };
 
       const result = reviewReducer(initialState, actionType);
       expect(result.loading).toBeTruthy();
     });
 
-    it('should return a state with updated the loading status when fetchReviews is fulfilled', () => {
+    it('should return a state with the loading status "false" when fetchReviews is fulfilled', () => {
       const actionType = {
         type: fetchReviews.fulfilled.type,
-        payload: reviews,
+        payload: stateWithReviews.reviews,
       };
 
       const result = reviewReducer(loadingState, actionType);
@@ -50,21 +32,21 @@ describe('Slice: reviews', () => {
     it('should return a state with updated reviews when fetchReviews is fulfilled', () => {
       const actionType = {
         type: fetchReviews.fulfilled.type,
-        payload: reviews,
+        payload: stateWithReviews.reviews,
       };
 
       const result = reviewReducer(loadingState, actionType);
-      expect(result.reviews).toEqual(reviews);
+      expect(result.reviews).toEqual(stateWithReviews.reviews);
     });
 
     it('should return a state with added error when fetchReviews is rejected', () => {
       const actionType = {
         type: fetchReviews.rejected.type,
-        payload: error,
+        payload: rejectedState.error,
       };
 
       const result = reviewReducer(initialState, actionType);
-      expect(result.error).toEqual(error);
+      expect(result.error).toEqual(rejectedState.error);
     });
 
     it('should return a state with removed error when fetchReviews is pending', () => {
@@ -79,7 +61,7 @@ describe('Slice: reviews', () => {
     it('should return a state with removed error when fetchAllOffers is fulfilled', () => {
       const actionType = {
         type: fetchReviews.fulfilled.type,
-        payload: reviews,
+        payload: stateWithReviews.reviews,
       };
 
       const result = reviewReducer(rejectedState, actionType);
@@ -88,17 +70,17 @@ describe('Slice: reviews', () => {
   });
 
   describe('postReview', () => {
-    it('should return a state with updated the loading status when postReview is pending', () => {
+    it('should return a state with the loading status "true" when postReview is pending', () => {
       const actionType = { type: postReview.pending.type };
 
       const result = reviewReducer(initialState, actionType);
       expect(result.loading).toBeTruthy();
     });
 
-    it('should return a state with updated the loading status when postReview is fulfilled', () => {
+    it('should return a state with the loading status "false" when postReview is fulfilled', () => {
       const actionType = {
         type: postReview.fulfilled.type,
-        payload: reviews,
+        payload: stateWithReviews.reviews,
       };
 
       const result = reviewReducer(loadingState, actionType);
@@ -108,21 +90,21 @@ describe('Slice: reviews', () => {
     it('should return a state with updated reviews when postReview is fulfilled', () => {
       const actionType = {
         type: postReview.fulfilled.type,
-        payload: reviews,
+        payload: stateWithReviews.reviews,
       };
 
       const result = reviewReducer(loadingState, actionType);
-      expect(result.reviews).toEqual(reviews);
+      expect(result.reviews).toEqual(stateWithReviews.reviews);
     });
 
     it('should return a state with added error when postReview is rejected', () => {
       const actionType = {
         type: postReview.rejected.type,
-        payload: error,
+        payload: rejectedState.error,
       };
 
       const result = reviewReducer(initialState, actionType);
-      expect(result.error).toEqual(error);
+      expect(result.error).toEqual(rejectedState.error);
     });
 
     it('should return a state with removed error when postReview is pending', () => {
@@ -137,7 +119,7 @@ describe('Slice: reviews', () => {
     it('should return a state with removed error when postReview is fulfilled', () => {
       const actionType = {
         type: postReview.fulfilled.type,
-        payload: reviews,
+        payload: stateWithReviews.reviews,
       };
 
       const result = reviewReducer(rejectedState, actionType);
