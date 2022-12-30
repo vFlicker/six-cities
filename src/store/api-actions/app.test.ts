@@ -9,40 +9,39 @@ import { AppDispatch } from '~/types';
 import { toggleFavorite } from './app';
 
 const mockApiService = new MockAdapter(httpClient);
-const middlewares = [thunk];
 
+const middlewares = [thunk];
 const mockStore = configureMockStore<unknown, AppDispatch>(middlewares);
+const store = mockStore();
+
+const mockId = 1;
+const status = FavoriteStatus.Add;
+
+beforeEach(() => {
+  store.clearActions();
+});
 
 describe('Async actions: app', () => {
   describe('toggleFavorite', () => {
-    const id = 1;
-    const status = FavoriteStatus.Add;
-
     it('should dispatch toggleFavorite when POST "/favorite/:hotel_id/:status" and server return 200', async () => {
-      const store = mockStore();
+      mockApiService.onPost(`/favorite/${mockId}/${status}`).reply(200, {});
 
-      mockApiService.onPost(`/favorite/${id}/${status}`).reply(200, {});
+      await store.dispatch(toggleFavorite({ id: mockId, status }));
 
-      await store.dispatch(toggleFavorite({ id, status }));
-
-      const actions = store.getActions().map(({ type }) => type);
-
-      expect(actions).toEqual([
+      const actionTypes = store.getActions().map(({ type }) => type);
+      expect(actionTypes).toEqual([
         toggleFavorite.pending.type,
         toggleFavorite.fulfilled.type,
       ]);
     });
 
     it('should dispatch toggleFavorite when POST "/favorite/:hotel_id/:status" and server return 401', async () => {
-      const store = mockStore();
+      mockApiService.onPost(`/favorite/${mockId}/${status}`).reply(401, {});
 
-      mockApiService.onPost(`/favorite/${id}/${status}`).reply(401, {});
+      await store.dispatch(toggleFavorite({ id: mockId, status }));
 
-      await store.dispatch(toggleFavorite({ id, status }));
-
-      const actions = store.getActions().map(({ type }) => type);
-
-      expect(actions).toEqual([
+      const actionTypes = store.getActions().map(({ type }) => type);
+      expect(actionTypes).toEqual([
         toggleFavorite.pending.type,
         toggleFavorite.rejected.type,
       ]);

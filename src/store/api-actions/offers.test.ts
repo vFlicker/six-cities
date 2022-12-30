@@ -12,37 +12,38 @@ import {
 } from './offers';
 
 const mockApiService = new MockAdapter(httpClient);
-const middlewares = [thunk];
 
+const middlewares = [thunk];
 const mockStore = configureMockStore<unknown, AppDispatch>(middlewares);
+const store = mockStore();
+
+const mockId = 1;
+
+beforeEach(() => {
+  store.clearActions();
+});
 
 describe('Async actions: offers', () => {
   describe('fetchAllOffers', () => {
     it('should dispatch fetchAllOffers when GET "/hotels" and server return 200', async () => {
-      const store = mockStore();
-
       mockApiService.onGet('/hotels').reply(200, []);
 
       await store.dispatch(fetchAllOffers());
 
-      const actions = store.getActions().map(({ type }) => type);
-
-      expect(actions).toEqual([
+      const actionTypes = store.getActions().map(({ type }) => type);
+      expect(actionTypes).toEqual([
         fetchAllOffers.pending.type,
         fetchAllOffers.fulfilled.type,
       ]);
     });
 
     it('should dispatch fetchAllOffers when GET "/hotels" and server return 404', async () => {
-      const store = mockStore();
-
       mockApiService.onGet('/hotels').reply(404, []);
 
       await store.dispatch(fetchAllOffers());
 
-      const actions = store.getActions().map(({ type }) => type);
-
-      expect(actions).toEqual([
+      const actionTypes = store.getActions().map(({ type }) => type);
+      expect(actionTypes).toEqual([
         fetchAllOffers.pending.type,
         fetchAllOffers.rejected.type,
       ]);
@@ -51,30 +52,24 @@ describe('Async actions: offers', () => {
 
   describe('fetchFavoriteOffers', () => {
     it('should dispatch fetchFavoriteOffers when GET "/favorite" and server return 200', async () => {
-      const store = mockStore();
-
       mockApiService.onGet('/favorite').reply(200, []);
 
       await store.dispatch(fetchFavoriteOffers());
 
-      const actions = store.getActions().map(({ type }) => type);
-
-      expect(actions).toEqual([
+      const actionTypes = store.getActions().map(({ type }) => type);
+      expect(actionTypes).toEqual([
         fetchFavoriteOffers.pending.type,
         fetchFavoriteOffers.fulfilled.type,
       ]);
     });
 
     it('should dispatch fetchFavoriteOffers when GET "/favorite" and server return 401', async () => {
-      const store = mockStore();
-
       mockApiService.onGet('/favorite').reply(401, []);
 
       await store.dispatch(fetchFavoriteOffers());
 
-      const actions = store.getActions().map(({ type }) => type);
-
-      expect(actions).toEqual([
+      const actionTypes = store.getActions().map(({ type }) => type);
+      expect(actionTypes).toEqual([
         fetchFavoriteOffers.pending.type,
         fetchFavoriteOffers.rejected.type,
       ]);
@@ -83,15 +78,11 @@ describe('Async actions: offers', () => {
 
   describe('fetchOffersNearby', () => {
     it('should dispatch fetchOffersNearby when GET "/hotels/:hotel_id/nearby" and server return 200', async () => {
-      const store = mockStore();
-      const id = 1;
+      mockApiService.onGet(`/hotels/${mockId}/nearby`).reply(200, []);
 
-      mockApiService.onGet(`/hotels/${id}/nearby`).reply(200, []);
-
-      await store.dispatch(fetchOffersNearby(id));
+      await store.dispatch(fetchOffersNearby(mockId));
 
       const actions = store.getActions().map(({ type }) => type);
-
       expect(actions).toEqual([
         fetchOffersNearby.pending.type,
         fetchOffersNearby.fulfilled.type,
@@ -99,15 +90,11 @@ describe('Async actions: offers', () => {
     });
 
     it('should dispatch fetchOffersNearby when GET "/hotels/:hotel_id/nearby" and server return 401', async () => {
-      const store = mockStore();
-      const id = 1;
+      mockApiService.onGet(`/hotels/${mockId}/nearby`).reply(401, []);
 
-      mockApiService.onGet(`/hotels/${id}/nearby`).reply(401, []);
-
-      await store.dispatch(fetchOffersNearby(id));
+      await store.dispatch(fetchOffersNearby(mockId));
 
       const actions = store.getActions().map(({ type }) => type);
-
       expect(actions).toEqual([
         fetchOffersNearby.pending.type,
         fetchOffersNearby.rejected.type,
