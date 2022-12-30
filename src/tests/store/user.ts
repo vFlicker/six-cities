@@ -22,7 +22,7 @@ export const noAuthState: State = {
   authStatus: AuthStatus.NoAuth,
 };
 
-export const loadingState = {
+export const loadingState: State = {
   ...initialState,
   loading: true,
 };

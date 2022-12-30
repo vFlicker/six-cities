@@ -1,6 +1,5 @@
 import { AuthStatus } from '~/constants';
 import { userStore } from '~/tests';
-import { error } from '~/utils';
 
 import userReducer, { checkAuthStatus, login, logout } from './slice';
 
@@ -53,11 +52,11 @@ describe('Slice: user', () => {
     it('should return a state with added error when checkAuthStatus is rejected', () => {
       const actionType = {
         type: checkAuthStatus.rejected.type,
-        payload: error,
+        payload: rejectedState.error,
       };
 
       const result = userReducer(initialState, actionType);
-      expect(result.error).toEqual(error);
+      expect(result.error).toEqual(rejectedState.error);
     });
 
     it('should return a state with removed error when checkAuthStatus is pending', () => {
@@ -121,11 +120,11 @@ describe('Slice: user', () => {
     it('should return a state with added error when login is rejected', () => {
       const actionType = {
         type: login.rejected.type,
-        payload: error,
+        payload: rejectedState.error,
       };
 
       const result = userReducer(initialState, actionType);
-      expect(result.error).toEqual(error);
+      expect(result.error).toEqual(rejectedState.error);
     });
 
     it('should return a state with removed error when login is pending', () => {
@@ -180,11 +179,11 @@ describe('Slice: user', () => {
     it('should return a state with added error when logout is rejected', () => {
       const actionType = {
         type: logout.rejected.type,
-        payload: error,
+        payload: rejectedState.error,
       };
 
       const result = userReducer(authState, actionType);
-      expect(result.error).toEqual(error);
+      expect(result.error).toEqual(rejectedState.error);
     });
 
     it('should return a state with removed error when logout is pending', () => {
