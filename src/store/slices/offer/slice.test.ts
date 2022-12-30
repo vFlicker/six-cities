@@ -1,26 +1,15 @@
-import { error, makeOffer } from '~/utils';
+import { offerStore } from '~/tests';
 
 import { toggleFavorite } from '../../api-actions/app';
 import offerReducer, { fetchOffer } from './slice';
-import { State } from './types';
 
-const initialState: State = {
-  offer: null,
-  loading: false,
-  error: null,
-};
-
-const loadingState: State = {
-  ...initialState,
-  loading: true,
-};
-
-const rejectedState: State = {
-  ...initialState,
-  error,
-};
-
-const offer = makeOffer();
+const {
+  initialState,
+  loadingState,
+  rejectedState,
+  stateWithOffer,
+  stateWithUpdatedOffer,
+} = offerStore;
 
 describe('Slice: offer', () => {
   it('without additional parameters should return initial state', () => {
@@ -39,7 +28,7 @@ describe('Slice: offer', () => {
     it('should return a state with updated the loading status when fetchOffer is fulfilled', () => {
       const actionType = {
         type: fetchOffer.fulfilled.type,
-        payload: offer,
+        payload: stateWithOffer.offer,
       };
 
       const result = offerReducer(loadingState, actionType);
@@ -49,21 +38,21 @@ describe('Slice: offer', () => {
     it('should return a state with updated offer when fetchOffer is fulfilled', () => {
       const actionType = {
         type: fetchOffer.fulfilled.type,
-        payload: offer,
+        payload: stateWithOffer.offer,
       };
 
       const result = offerReducer(loadingState, actionType);
-      expect(result.offer).toEqual(offer);
+      expect(result.offer).toEqual(stateWithOffer.offer);
     });
 
     it('should return a state with added error when fetchOffer is rejected', () => {
       const actionType = {
         type: fetchOffer.rejected.type,
-        payload: error,
+        payload: rejectedState.error,
       };
 
       const result = offerReducer(initialState, actionType);
-      expect(result.error).toEqual(error);
+      expect(result.error).toEqual(rejectedState.error);
     });
 
     it('should return a state with removed error when fetchOffer is pending', () => {
@@ -78,7 +67,7 @@ describe('Slice: offer', () => {
     it('should return a state with removed error when fetchOffer is fulfilled', () => {
       const actionType = {
         type: fetchOffer.fulfilled.type,
-        payload: offer,
+        payload: stateWithOffer.offer,
       };
 
       const result = offerReducer(rejectedState, actionType);
@@ -90,11 +79,11 @@ describe('Slice: offer', () => {
     it('should return a state with updated offer when toggleFavorite is fulfilled', () => {
       const actionType = {
         type: toggleFavorite.fulfilled.type,
-        payload: offer,
+        payload: stateWithUpdatedOffer.offer,
       };
 
-      const result = offerReducer(initialState, actionType);
-      expect(result.offer).toEqual(offer);
+      const result = offerReducer(stateWithOffer, actionType);
+      expect(result.offer).toEqual(stateWithUpdatedOffer.offer);
     });
   });
 });

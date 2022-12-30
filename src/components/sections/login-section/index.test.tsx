@@ -66,6 +66,7 @@ describe('Component: LoginSection', () => {
 
     await userEvent.click(submitElement);
 
+    // TODO: toBeUndefined
     expect(store.getActions()).toEqual([]);
 
     await userEvent.type(emailElement, EMAIL);

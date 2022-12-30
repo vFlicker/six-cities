@@ -1,57 +1,40 @@
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { Provider } from 'react-redux';
-import configureMockStore from 'redux-mock-store';
-import { createMemoryHistory } from 'history';
-import '@testing-library/jest-dom';
-
 import { CityName, Reducer } from '~/constants';
 import { appSlice } from '~/store';
+import { appStore, render, RenderOptions, screen, userEvent } from '~/tests';
 
-import { HistoryRouter } from '../../shared';
 import { FilterSection } from './index';
 
-const mockStore = configureMockStore();
-
-const store = mockStore({
-  [Reducer.App]: {
-    currentCityName: CityName.Amsterdam,
+const renderOptions: RenderOptions = {
+  preloadedState: {
+    [Reducer.App]: appStore.initialState,
   },
-});
-
-const history = createMemoryHistory();
+};
 
 describe('Component: FilterSection', () => {
   it('should render correctly', async () => {
-    render(
-      <Provider store={store}>
-        <HistoryRouter history={history}>
-          <FilterSection />
-        </HistoryRouter>
-      </Provider>,
-    );
+    render(<FilterSection />, renderOptions);
 
-    expect(screen.getAllByRole('link')).toHaveLength(
-      Object.values(CityName).length,
-    );
+    const renderedLinks = screen.getAllByRole('link');
+    const { length } = Object.values(CityName);
+
+    expect(renderedLinks).toHaveLength(length);
   });
 
-  it('handleClick logic should work correctly', async () => {
-    render(
-      <Provider store={store}>
-        <HistoryRouter history={history}>
-          <FilterSection />
-        </HistoryRouter>
-      </Provider>,
-    );
+  it('should not dispatch changeCityName when an active link is clicked', async () => {
+    const { store } = render(<FilterSection />, renderOptions);
 
-    await userEvent.click(
-      screen.getByText(new RegExp(CityName.Amsterdam, 'i')),
-    );
+    const activeLink = screen.getByText(new RegExp(CityName.Amsterdam, 'i'));
+    await userEvent.click(activeLink);
 
-    expect(store.getActions()).toEqual([]);
+    const [firstAction] = store.getActions();
+    expect(firstAction).toBeUndefined();
+  });
 
-    await userEvent.click(screen.getByText(new RegExp(CityName.Brussels, 'i')));
+  it('should dispatch changeCityName when an inactive link is clicked', async () => {
+    const { store } = render(<FilterSection />, renderOptions);
+
+    const inactiveLink = screen.getByText(new RegExp(CityName.Brussels, 'i'));
+    await userEvent.click(inactiveLink);
 
     const [firstAction] = store.getActions();
     expect(firstAction).toEqual(appSlice.changeCityName(CityName.Brussels));

@@ -23,11 +23,9 @@ describe('Component: FavoritesSection', () => {
     render(<FavoritesSection />, renderOptions);
 
     expect(screen.getByText(/Saved listing/i)).toBeInTheDocument();
-
     expect(
       screen.getByText(new RegExp(CityName.Amsterdam, 'i')),
     ).toBeInTheDocument();
-
     expect(screen.getByText(offersStore.offer.title)).toBeInTheDocument();
   });
 

@@ -2,8 +2,10 @@ import { State } from '~/store/slices/offers/types';
 import { Offer } from '~/types';
 import { error, makeOffer } from '~/utils';
 
-export const offer = makeOffer({ isFavorite: true });
-export const updatedOffer: Offer = { ...offer, isFavorite: false };
+export const offer = makeOffer();
+export const updatedOffer: Offer = { ...offer, title: 'Updated title' };
+export const offers: Offer[] = [offer];
+export const updatedOffers: Offer[] = [updatedOffer];
 
 export const initialState: State = {
   all: [],
@@ -15,16 +17,16 @@ export const initialState: State = {
 
 export const stateWithOffers: State = {
   ...initialState,
-  all: [offer],
-  favorites: [offer],
-  nearby: [offer],
+  all: offers,
+  favorites: offers,
+  nearby: offers,
 };
 
 export const stateWitUpdatedOffers: State = {
   ...stateWithOffers,
-  all: [updatedOffer],
+  all: updatedOffers,
   favorites: [],
-  nearby: [updatedOffer],
+  nearby: updatedOffers,
 };
 
 export const loadingState: State = {

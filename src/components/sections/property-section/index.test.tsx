@@ -83,8 +83,6 @@ describe('Component: PropertySection', () => {
 
     const [firstAction, secondAction] = store.getActions();
 
-    console.log(store.getActions());
-
     expect(firstAction).toEqual({
       type: 'MOCK_FETCH_REVIEWS_ACTION',
     });

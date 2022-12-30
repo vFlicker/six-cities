@@ -1,7 +1,13 @@
 import { FavoriteStatus, Reducer } from '~/constants';
-import { appStore, render, RenderOptions, screen, userEvent } from '~/tests';
+import {
+  appStore,
+  offerStore,
+  render,
+  RenderOptions,
+  screen,
+  userEvent,
+} from '~/tests';
 import { ToggleFavoritePayload } from '~/types';
-import { makeOffer } from '~/utils';
 
 import { CardItem } from './index';
 
@@ -20,7 +26,7 @@ jest.mock('~/store', () => {
   };
 });
 
-const offer = makeOffer({ isPremium: true, isFavorite: true });
+const { offer } = offerStore;
 
 const renderOptions: RenderOptions = {
   preloadedState: {
@@ -68,11 +74,9 @@ describe('Component: CardItem', () => {
     const card = screen.getByRole('article');
 
     await userEvent.hover(card);
-
-    expect(handleCardItemMouseEnter).toBeCalledTimes(1);
-
     await userEvent.unhover(card);
 
+    expect(handleCardItemMouseEnter).toBeCalledTimes(1);
     expect(handleCardItemMouseLeave).toBeCalledTimes(1);
   });
 
