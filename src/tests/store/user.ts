@@ -1,6 +1,9 @@
 import { AuthStatus } from '~/constants';
 import { State } from '~/store/slices/user/types';
+import { User } from '~/types';
 import { error, makeUser } from '~/utils';
+
+type AuthState = State & { user: User };
 
 const user = makeUser();
 
@@ -11,7 +14,7 @@ export const initialState: State = {
   error: null,
 };
 
-export const authState: State = {
+export const authState: AuthState = {
   ...initialState,
   authStatus: AuthStatus.Auth,
   user,

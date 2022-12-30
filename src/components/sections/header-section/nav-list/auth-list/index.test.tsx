@@ -1,14 +1,13 @@
-import { Provider } from 'react-redux';
-import configureMockStore from 'redux-mock-store';
-import userEvent from '@testing-library/user-event';
-import { createMemoryHistory } from 'history';
-import { render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
-
 import { Reducer } from '~/constants';
-import { makeOffer, makeUser } from '~/utils';
+import {
+  offersStore,
+  render,
+  RenderOptions,
+  screen,
+  userEvent,
+  userStore,
+} from '~/tests';
 
-import { HistoryRouter } from '../../../../shared';
 import { AuthList } from './index';
 
 jest.mock('~/store', () => {
@@ -23,77 +22,48 @@ jest.mock('~/store', () => {
   };
 });
 
-const mockStore = configureMockStore();
-
-const history = createMemoryHistory();
-
-const offer = makeOffer();
-const user = makeUser();
-
 describe('Component: AuthList', () => {
   it('should render correctly', () => {
-    const store = mockStore({
-      [Reducer.User]: {
-        user,
+    const renderOptions: RenderOptions = {
+      preloadedState: {
+        [Reducer.Offers]: offersStore.stateWithOffers,
+        [Reducer.User]: userStore.authState,
       },
-      [Reducer.Offers]: {
-        favorites: [offer],
-      },
-    });
+    };
 
-    render(
-      <Provider store={store}>
-        <HistoryRouter history={history}>
-          <AuthList />
-        </HistoryRouter>
-      </Provider>,
-    );
+    render(<AuthList />, renderOptions);
 
     expect(screen.queryByText(/Sign in/i)).not.toBeInTheDocument();
     expect(screen.getByText(/Sign out/i)).toBeInTheDocument();
     expect(screen.getByTestId('counter')).toBeInTheDocument();
     expect(screen.getAllByRole('link')).toHaveLength(2);
-    expect(screen.getByText(user.email)).toBeInTheDocument();
+    expect(
+      screen.getByText(userStore.authState.user.email),
+    ).toBeInTheDocument();
   });
 
-  it("should't render counter when there are 0 favorite offers", () => {
-    const store = mockStore({
-      [Reducer.User]: {
-        user,
+  it('should not render the counter when favorite is empty', () => {
+    const renderOptions: RenderOptions = {
+      preloadedState: {
+        [Reducer.Offers]: offersStore.initialState,
+        [Reducer.User]: userStore.authState,
       },
-      [Reducer.Offers]: {
-        favorites: [],
-      },
-    });
+    };
 
-    render(
-      <Provider store={store}>
-        <HistoryRouter history={history}>
-          <AuthList />
-        </HistoryRouter>
-      </Provider>,
-    );
+    render(<AuthList />, renderOptions);
 
     expect(screen.queryByTestId(/counter/i)).not.toBeInTheDocument();
   });
 
-  it('handleClick logic should work correctly', async () => {
-    const store = mockStore({
-      [Reducer.User]: {
-        user,
+  it('should dispatch logout when click on logout', async () => {
+    const renderOptions: RenderOptions = {
+      preloadedState: {
+        [Reducer.Offers]: offersStore.initialState,
+        [Reducer.User]: userStore.authState,
       },
-      [Reducer.Offers]: {
-        favorites: [],
-      },
-    });
+    };
 
-    render(
-      <Provider store={store}>
-        <HistoryRouter history={history}>
-          <AuthList />
-        </HistoryRouter>
-      </Provider>,
-    );
+    const { store } = render(<AuthList />, renderOptions);
 
     await userEvent.click(screen.getByText(/Sign out/i));
 
