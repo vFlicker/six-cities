@@ -1,12 +1,15 @@
-import { Provider } from 'react-redux';
-import configureMockStore from 'redux-mock-store';
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import '@testing-library/jest-dom';
-
-import { AuthStatus, FavoriteStatus, Reducer } from '~/constants';
+import { FavoriteStatus, Reducer } from '~/constants';
+import {
+  appStore,
+  offerStore,
+  render,
+  RenderOptions,
+  reviewStore,
+  screen,
+  userEvent,
+  userStore,
+} from '~/tests';
 import { ToggleFavoritePayload } from '~/types';
-import { makeOffer } from '~/utils';
 
 import { PropertySection } from './index';
 
@@ -31,35 +34,21 @@ jest.mock('~/store', () => {
   };
 });
 
-const mockStore = configureMockStore();
+const { offer } = offerStore.stateWithOffer;
 
-const store = mockStore({
-  [Reducer.App]: {
-    favoriteIdsInProgress: [],
+const renderOptions: RenderOptions = {
+  preloadedState: {
+    [Reducer.App]: appStore.initialState,
+    [Reducer.Review]: reviewStore.stateWithReviews,
+    [Reducer.User]: userStore.noAuthState,
   },
-  [Reducer.Review]: {
-    reviews: [],
-  },
-  [Reducer.User]: {
-    authStatus: AuthStatus.NoAuth,
-  },
-});
-
-const offer = makeOffer({ isPremium: true, isFavorite: true });
+};
 
 describe('Component: PropertySection', () => {
-  afterEach(() => {
-    store.clearActions();
-  });
-
   it('should render correctly', () => {
     const { images, title } = offer;
 
-    render(
-      <Provider store={store}>
-        <PropertySection {...offer} />
-      </Provider>,
-    );
+    render(<PropertySection {...offer} />, renderOptions);
 
     expect(screen.getAllByAltText('Studio')).toHaveLength(images.length);
     expect(screen.getByText(new RegExp(title, 'i'))).toBeInTheDocument();
@@ -68,12 +57,18 @@ describe('Component: PropertySection', () => {
     expect(screen.getByText(/Reviews/i)).toBeInTheDocument();
   });
 
-  it('handleFavoriteButtonClick should work correctly', async () => {
-    render(
-      <Provider store={store}>
-        <PropertySection {...offer} />
-      </Provider>,
-    );
+  it('should dispatch fetchReviews when component loaded', async () => {
+    const { store } = render(<PropertySection {...offer} />, renderOptions);
+
+    const [firstAction] = store.getActions();
+
+    expect(firstAction).toEqual({
+      type: 'MOCK_FETCH_REVIEWS_ACTION',
+    });
+  });
+
+  it('should dispatch toggleFavorite when click on button "To bookmark"', async () => {
+    const { store } = render(<PropertySection {...offer} />, renderOptions);
 
     const bookmarkButton = screen.getByRole('button', {
       name: /To bookmarks/i,
@@ -81,11 +76,7 @@ describe('Component: PropertySection', () => {
 
     await userEvent.click(bookmarkButton);
 
-    const [firstAction, secondAction] = store.getActions();
-
-    expect(firstAction).toEqual({
-      type: 'MOCK_FETCH_REVIEWS_ACTION',
-    });
+    const [, secondAction] = store.getActions();
 
     expect(secondAction).toEqual({
       type: 'MOCK_TOGGLE_FAVORITE_ACTION',

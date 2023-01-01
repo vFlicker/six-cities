@@ -1,16 +1,12 @@
-import { render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
-
-import { makeOffer } from '~/utils';
+import { offerStore, render, screen } from '~/tests';
 
 import { Gallery } from './index';
 
-const { images } = makeOffer();
-
 describe('Component: NearPlacesSection', () => {
   it('should render correctly', () => {
-    render(<Gallery images={images} />);
+    const { images } = offerStore.stateWithOffer.offer;
 
+    render(<Gallery images={images} />);
     expect(screen.getAllByAltText('Studio')).toHaveLength(images.length);
   });
 });

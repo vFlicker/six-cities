@@ -2,8 +2,8 @@ import { State } from '~/store/slices/offers/types';
 import { Offer } from '~/types';
 import { error, makeOffer } from '~/utils';
 
-const offer = makeOffer();
-const updatedOffer: Offer = { ...offer, title: 'Updated title' };
+const offer = makeOffer({ isFavorite: true });
+const updatedOffer: Offer = { ...offer, isFavorite: false };
 const offers: Offer[] = [offer];
 const updatedOffers: Offer[] = [updatedOffer];
 

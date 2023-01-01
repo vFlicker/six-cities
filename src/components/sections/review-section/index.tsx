@@ -26,17 +26,9 @@ export function ReviewSection(): JSX.Element {
 
   if (error) return <ErrorMessage />;
 
-  const reviewCount = reviews.length;
-
   return (
     <S.Section>
-      <S.Title>
-        Reviews &middot;
-        <S.ReviewCount>{reviewCount}</S.ReviewCount>
-      </S.Title>
-
-      {reviewCount && <ReviewList reviews={reviews} />}
-
+      <ReviewList reviews={reviews} />
       {isUserAuthorized && <ReviewForm />}
     </S.Section>
   );

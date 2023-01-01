@@ -1,13 +1,9 @@
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import '@testing-library/jest-dom';
-
+import { render, screen, userEvent } from '~/tests';
 import { ReviewRating } from './index';
 
 describe('Component: ReviewRating', () => {
   it('should render correctly', () => {
-    render(<ReviewRating rating={5} onRatingToggle={jest.fn()} />);
-
+    render(<ReviewRating rating={0} onRatingToggle={jest.fn()} />);
     expect(screen.getAllByTestId('rating-item')).toHaveLength(5);
   });
 
@@ -16,10 +12,12 @@ describe('Component: ReviewRating', () => {
 
     render(<ReviewRating rating={0} onRatingToggle={handleRatingToggle} />);
 
-    const radioButtonElements = screen.getAllByTestId('rating-item').reverse();
+    const [firstButton, , thirdRadioButton] = screen
+      .getAllByTestId('rating-item')
+      .reverse();
 
-    await userEvent.click(radioButtonElements[0]);
-    await userEvent.click(radioButtonElements[2]);
+    await userEvent.click(firstButton);
+    await userEvent.click(thirdRadioButton);
 
     expect(handleRatingToggle).toBeCalledTimes(2);
     expect(handleRatingToggle).toHaveBeenNthCalledWith(1, 1);

@@ -16,8 +16,6 @@ const {
   rejectedState,
 } = offersStore;
 
-const [updatedOffer] = stateWitUpdatedOffers.all;
-
 describe('Slice: offers', () => {
   it('without additional parameters should return initial state', () => {
     const actionType = { type: 'UNKNOWN_ACTION' };
@@ -200,6 +198,8 @@ describe('Slice: offers', () => {
 
   describe('toggleFavorite', () => {
     it('should return a state with updated all offers when toggleFavorite is fulfilled', () => {
+      const [updatedOffer] = stateWitUpdatedOffers.all;
+
       const actionType = {
         type: toggleFavorite.fulfilled.type,
         payload: updatedOffer,
@@ -210,6 +210,8 @@ describe('Slice: offers', () => {
     });
 
     it('should return a state with updated favorite offers when toggleFavorite is fulfilled', () => {
+      const [updatedOffer] = stateWitUpdatedOffers.favorites;
+
       const actionType = {
         type: toggleFavorite.fulfilled.type,
         payload: updatedOffer,
@@ -220,6 +222,8 @@ describe('Slice: offers', () => {
     });
 
     it('should return a state with updated offers nearby when toggleFavorite is fulfilled', () => {
+      const [updatedOffer] = stateWitUpdatedOffers.nearby;
+
       const actionType = {
         type: toggleFavorite.fulfilled.type,
         payload: updatedOffer,

@@ -1,14 +1,11 @@
-import { render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
-
+import { render, screen } from '~/tests';
 import { makeReview } from '~/utils';
 
 import { ReviewItem } from './index';
 
-const review = makeReview({ date: new Date('2022-06-02T10:21:00.051Z') });
-
 describe('Component: ReviewItem', () => {
   it('should render correctly', () => {
+    const review = makeReview({ date: new Date('2022-06-02T10:21:00.051Z') });
     const { comment, user } = review;
     const { name } = user;
 

@@ -1,17 +1,12 @@
-import { render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
-
-import { makeOffer } from '~/utils';
+import { offerStore, render, screen } from '~/tests';
 
 import { Host } from './index';
 
-const {
-  description,
-  host: { avatarUrl, isPro, name },
-} = makeOffer();
-
 describe('Component: Host', () => {
   it('should render correctly', () => {
+    const { description, host } = offerStore.stateWithOffer.offer;
+    const { name, avatarUrl, isPro } = host;
+
     render(
       <Host
         authorName={name}

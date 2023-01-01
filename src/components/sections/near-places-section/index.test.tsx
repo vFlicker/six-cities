@@ -1,14 +1,6 @@
-import { render, screen } from '@testing-library/react';
-import { Provider } from 'react-redux';
-
-import configureMockStore from 'redux-mock-store';
-import { createMemoryHistory } from 'history';
-import '@testing-library/jest-dom';
-
 import { Reducer } from '~/constants';
-import { makeOffer } from '~/utils';
+import { appStore, offersStore, render, RenderOptions, screen } from '~/tests';
 
-import { HistoryRouter } from '../../shared';
 import { NearPlacesSection } from './index';
 
 const PAGE_ID = '10';
@@ -44,59 +36,35 @@ jest.mock('~/store', () => {
   };
 });
 
-const mockStore = configureMockStore();
-
-const history = createMemoryHistory();
-
-const offer = makeOffer();
-const offers = [offer];
-
 describe('Component: NearPlacesSection', () => {
   it('should render correctly', () => {
-    const store = mockStore({
-      [Reducer.App]: {
-        favoriteIdsInProgress: [],
-      },
-      [Reducer.Offers]: {
-        nearby: offers,
-        loading: false,
-        error: null,
-      },
-    });
+    const [offer] = offersStore.stateWithOffers.nearby;
 
-    render(
-      <Provider store={store}>
-        <HistoryRouter history={history}>
-          <NearPlacesSection />
-        </HistoryRouter>
-      </Provider>,
-    );
+    const renderOptions: RenderOptions = {
+      preloadedState: {
+        [Reducer.App]: appStore.initialState,
+        [Reducer.Offers]: offersStore.stateWithOffers,
+      },
+    };
 
-    expect(screen.getByText(/Other places in the neighborhood/i))
-      .toBeInTheDocument;
+    render(<NearPlacesSection />, renderOptions);
+
+    expect(
+      screen.getByText(/Other places in the neighborhood/i),
+    ).toBeInTheDocument();
 
     expect(screen.getByText(new RegExp(offer.title))).toBeInTheDocument();
   });
 
-  it('should dispatch fetchOffersNearby on component loaded', () => {
-    const store = mockStore({
-      [Reducer.App]: {
-        favoriteIdsInProgress: [],
+  it('should dispatch fetchOffersNearby when component loaded', () => {
+    const renderOptions: RenderOptions = {
+      preloadedState: {
+        [Reducer.App]: appStore.initialState,
+        [Reducer.Offers]: offersStore.stateWithOffers,
       },
-      [Reducer.Offers]: {
-        nearby: offers,
-        loading: false,
-        error: null,
-      },
-    });
+    };
 
-    render(
-      <Provider store={store}>
-        <HistoryRouter history={history}>
-          <NearPlacesSection />
-        </HistoryRouter>
-      </Provider>,
-    );
+    const { store } = render(<NearPlacesSection />, renderOptions);
 
     const [firstAction] = store.getActions();
     expect(firstAction).toEqual({
@@ -105,25 +73,15 @@ describe('Component: NearPlacesSection', () => {
     });
   });
 
-  it("should't be render", () => {
-    const store = mockStore({
-      [Reducer.App]: {
-        favoriteIdsInProgress: [],
+  it('should not be render', () => {
+    const renderOptions: RenderOptions = {
+      preloadedState: {
+        [Reducer.App]: appStore.initialState,
+        [Reducer.Offers]: offersStore.initialState,
       },
-      [Reducer.Offers]: {
-        nearby: [],
-        loading: false,
-        error: null,
-      },
-    });
+    };
 
-    render(
-      <Provider store={store}>
-        <HistoryRouter history={history}>
-          <NearPlacesSection />
-        </HistoryRouter>
-      </Provider>,
-    );
+    render(<NearPlacesSection />, renderOptions);
 
     expect(
       screen.queryByText(/No places to stay available/i),
@@ -131,47 +89,27 @@ describe('Component: NearPlacesSection', () => {
   });
 
   it('should render Loader', () => {
-    const store = mockStore({
-      [Reducer.App]: {
-        favoriteIdsInProgress: [],
+    const renderOptions: RenderOptions = {
+      preloadedState: {
+        [Reducer.App]: appStore.initialState,
+        [Reducer.Offers]: offersStore.loadingState,
       },
-      [Reducer.Offers]: {
-        nearby: [],
-        loading: true,
-        error: null,
-      },
-    });
+    };
 
-    render(
-      <Provider store={store}>
-        <HistoryRouter history={history}>
-          <NearPlacesSection />
-        </HistoryRouter>
-      </Provider>,
-    );
+    render(<NearPlacesSection />, renderOptions);
 
     expect(screen.getByTestId('spinner')).toBeInTheDocument();
   });
 
   it('should render Error', () => {
-    const store = mockStore({
-      [Reducer.App]: {
-        favoriteIdsInProgress: [],
+    const renderOptions: RenderOptions = {
+      preloadedState: {
+        [Reducer.App]: appStore.rejectedState,
+        [Reducer.Offers]: offersStore.rejectedState,
       },
-      [Reducer.Offers]: {
-        nearby: [],
-        loading: false,
-        error: true,
-      },
-    });
+    };
 
-    render(
-      <Provider store={store}>
-        <HistoryRouter history={history}>
-          <NearPlacesSection />
-        </HistoryRouter>
-      </Provider>,
-    );
+    render(<NearPlacesSection />, renderOptions);
 
     expect(
       screen.getByText(/There are problems, please try again later/i),

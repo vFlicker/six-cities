@@ -1,19 +1,23 @@
-import { render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
-
-import { makeReview } from '~/utils';
+import { render, reviewStore, screen } from '~/tests';
 
 import { ReviewList } from './index';
 
-const reviews = [makeReview(), makeReview(), makeReview()];
-
 describe('Component: ReviewList', () => {
   it('should render correctly', () => {
-    const { comment } = reviews[0];
+    const { reviews } = reviewStore.stateWithReviews;
+    const reviewCount = reviews.length;
 
     render(<ReviewList reviews={reviews} />);
 
-    expect(screen.getAllByRole('listitem')).toHaveLength(reviews.length);
-    expect(screen.getByText(new RegExp(comment))).toBeInTheDocument();
+    expect(screen.getByText(/Reviews/i)).toBeInTheDocument();
+    expect(screen.getByText(/Reviews/i)).toHaveTextContent(
+      reviewCount.toString(),
+    );
+    expect(screen.getAllByRole('listitem')).toHaveLength(reviewCount);
+  });
+
+  it('should not render', () => {
+    render(<ReviewList reviews={[]} />);
+    expect(screen.queryAllByRole('listitem')).toHaveLength(0);
   });
 });
