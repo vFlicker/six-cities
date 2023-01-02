@@ -1,20 +1,20 @@
-import { CityName, Reducer } from '~/constants';
+import { cityNames, Reducer } from '~/constants';
 import { appStore, render, RenderOptions, screen } from '~/tests';
 
 import { LocationSection } from './index';
 
 describe('Component: LocationSection', () => {
   it('should render correctly', () => {
+    const cityNameStub = cityNames[1];
+
     const renderOptions: RenderOptions = {
       preloadedState: {
         [Reducer.App]: appStore.initialState,
       },
     };
 
-    render(<LocationSection />, renderOptions);
+    render(<LocationSection cityName={cityNameStub} />, renderOptions);
 
-    expect(
-      screen.getByText(new RegExp(CityName.Amsterdam, 'i')),
-    ).toBeInTheDocument();
+    expect(screen.getByText(new RegExp(cityNameStub, 'i'))).toBeInTheDocument();
   });
 });

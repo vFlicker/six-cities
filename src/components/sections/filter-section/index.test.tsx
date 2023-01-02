@@ -1,4 +1,4 @@
-import { CityName, Reducer } from '~/constants';
+import { CityName, cityNames, Reducer } from '~/constants';
 import { appSlice } from '~/store';
 import { appStore, render, RenderOptions, screen, userEvent } from '~/tests';
 
@@ -15,7 +15,7 @@ describe('Component: FilterSection', () => {
     render(<FilterSection />, renderOptions);
 
     const renderedLinks = screen.getAllByRole('link');
-    const filterCount = Object.values(CityName).length;
+    const filterCount = cityNames.length;
 
     expect(renderedLinks).toHaveLength(filterCount);
   });

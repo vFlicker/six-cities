@@ -27,13 +27,15 @@ describe('Component: SortSelect', () => {
   it('should toggle menu when click on button', async () => {
     render(<SortSelect />, renderOptions);
 
-    const button = screen.getByRole('button');
+    const menuToggler = screen.getByRole('button');
 
-    await userEvent.click(button);
+    expect(screen.queryAllByTestId('select-item')).toHaveLength(0);
+
+    await userEvent.click(menuToggler);
 
     expect(screen.queryAllByTestId('select-item')).toHaveLength(listItemCount);
 
-    await userEvent.click(button);
+    await userEvent.click(menuToggler);
 
     expect(screen.queryAllByTestId('select-item')).toHaveLength(0);
   });

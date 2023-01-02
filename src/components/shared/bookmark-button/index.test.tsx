@@ -37,7 +37,7 @@ describe('Component: BookmarkButton', () => {
     expect(handleClick).toBeCalledTimes(1);
   });
 
-  it("handleClick should'n be called", async () => {
+  it('handleClick should not be called', async () => {
     const handleClick = jest.fn();
 
     render(

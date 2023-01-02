@@ -20,6 +20,8 @@ export enum CityName {
   Dusseldorf = 'Dusseldorf',
 }
 
+export const cityNames = Object.values(CityName);
+
 export const enum FavoriteStatus {
   Add = 1,
   Remove = 0,
