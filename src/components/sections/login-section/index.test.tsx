@@ -1,22 +1,6 @@
 import { render, screen, userEvent } from '~/tests';
-import { AuthData } from '~/types';
 
 import { LoginSection } from './index';
-
-jest.mock('~/store', () => {
-  const originalModule = jest.requireActual('~/store');
-
-  return {
-    ...originalModule,
-    userSlice: {
-      ...originalModule.userSlice,
-      login: (payload: AuthData) => ({
-        type: 'MOCK_LOGIN_ACTION',
-        payload,
-      }),
-    },
-  };
-});
 
 const mockEmail = 'test@gmail.com';
 const mockPassword = 'password';

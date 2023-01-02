@@ -1,6 +1,7 @@
 import { Reducer } from '~/constants';
 import {
   appStore,
+  mockPageId,
   offersStore,
   offerStore,
   render,
@@ -9,62 +10,8 @@ import {
   screen,
   userStore,
 } from '~/tests';
-import { ToggleFavoritePayload } from '~/types';
 
 import { OfferPage } from './index';
-
-const PAGE_ID = '10';
-
-jest.mock('~/assets/images', () => ({
-  pinActiveIconSrc: '~/assets/images/icons/pin-active.svg',
-  pinIconSrc: '~/assets/images/icons/pin.svg',
-}));
-
-jest.mock('react-router-dom', () => {
-  const originalModule = jest.requireActual('react-router-dom');
-
-  return {
-    ...originalModule,
-    useParams: () => ({
-      id: PAGE_ID,
-    }),
-  };
-});
-
-jest.mock('~/store', () => {
-  const originalModule = jest.requireActual('~/store');
-
-  return {
-    ...originalModule,
-    appSlice: {
-      ...originalModule.appSlice,
-      toggleFavorite: (payload: ToggleFavoritePayload) => ({
-        type: 'MOCK_TOGGLE_FAVORITE_ACTION',
-        payload,
-      }),
-    },
-    offerSlice: {
-      ...originalModule.offerSlice,
-      fetchOffer: (id: number) => ({
-        type: 'MOCK_FETCH_OFFER_ACTION',
-        payload: id,
-      }),
-    },
-    offersSlice: {
-      ...originalModule.offersSlice,
-      fetchOffersNearby: (id: number) => ({
-        type: 'MOCK_FETCH_OFFERS_NEARBY_ACTION',
-        payload: id,
-      }),
-    },
-    reviewSlice: {
-      ...originalModule.reviewSlice,
-      fetchReviews: () => ({
-        type: 'MOCK_FETCH_REVIEWS_ACTION',
-      }),
-    },
-  };
-});
 
 describe('Component: OfferPage', () => {
   it('should render correctly', () => {
@@ -107,7 +54,7 @@ describe('Component: OfferPage', () => {
 
     expect(action).toEqual({
       type: 'MOCK_FETCH_OFFER_ACTION',
-      payload: Number(PAGE_ID),
+      payload: Number(mockPageId),
     });
   });
 

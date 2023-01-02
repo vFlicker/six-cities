@@ -10,18 +10,6 @@ import {
 
 import { AuthList } from './index';
 
-jest.mock('~/store', () => {
-  const originalModule = jest.requireActual('~/store');
-
-  return {
-    ...originalModule,
-    userSlice: {
-      ...originalModule.userSlice,
-      logout: () => ({ type: 'MOCK_LOGOUT_ACTION' }),
-    },
-  };
-});
-
 describe('Component: AuthList', () => {
   it('should render correctly', () => {
     const favoritesCount =

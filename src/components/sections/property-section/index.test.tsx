@@ -1,6 +1,7 @@
 import { FavoriteStatus, Reducer } from '~/constants';
 import {
   appStore,
+  mockPageId,
   offerStore,
   render,
   RenderOptions,
@@ -9,30 +10,8 @@ import {
   userEvent,
   userStore,
 } from '~/tests';
-import { ToggleFavoritePayload } from '~/types';
 
 import { PropertySection } from './index';
-
-jest.mock('~/store', () => {
-  const originalModule = jest.requireActual('~/store');
-
-  return {
-    ...originalModule,
-    appSlice: {
-      ...originalModule.appSlice,
-      toggleFavorite: (payload: ToggleFavoritePayload) => ({
-        type: 'MOCK_TOGGLE_FAVORITE_ACTION',
-        payload,
-      }),
-    },
-    reviewSlice: {
-      ...originalModule.reviewSlice,
-      fetchReviews: () => ({
-        type: 'MOCK_FETCH_REVIEWS_ACTION',
-      }),
-    },
-  };
-});
 
 const { offer } = offerStore.stateWithOffer;
 
@@ -64,6 +43,7 @@ describe('Component: PropertySection', () => {
 
     expect(firstAction).toEqual({
       type: 'MOCK_FETCH_REVIEWS_ACTION',
+      payload: mockPageId,
     });
   });
 

@@ -14,40 +14,6 @@ import {
 
 import { Pages } from './index';
 
-jest.mock('~/assets/images', () => ({
-  pinActiveIconSrc: '~/assets/images/icons/pin-active.svg',
-  pinIconSrc: '~/assets/images/icons/pin.svg',
-}));
-
-jest.mock('~/store', () => {
-  const originalModule = jest.requireActual('~/store');
-
-  return {
-    ...originalModule,
-    reviewSlice: {
-      ...originalModule.reviewSlice,
-      fetchReviews: jest.fn(() => ({
-        type: 'test',
-        payload: [],
-      })),
-    },
-    offerSlice: {
-      ...originalModule.offerSlice,
-      fetchOffer: jest.fn(() => ({
-        type: 'test',
-        payload: [],
-      })),
-    },
-    offersSlice: {
-      ...originalModule.offersSlice,
-      fetchOffersNearby: jest.fn(() => ({
-        type: 'test',
-        payload: [],
-      })),
-    },
-  };
-});
-
 const history = createMemoryHistory();
 
 describe('Application Routing', () => {
@@ -73,6 +39,7 @@ describe('Application Routing', () => {
     const renderOptions: RenderOptions = {
       history,
       preloadedState: {
+        [Reducer.App]: appStore.initialState,
         [Reducer.Offers]: offersStore.stateWithOffers,
         [Reducer.User]: userStore.authState,
       },

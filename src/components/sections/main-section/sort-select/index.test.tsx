@@ -4,21 +4,6 @@ import { appStore, render, RenderOptions, screen, userEvent } from '~/tests';
 
 import { SortSelect } from './index';
 
-jest.mock('~/store', () => {
-  const originalModule = jest.requireActual('~/store');
-
-  return {
-    ...originalModule,
-    appSlice: {
-      ...originalModule.appSlice,
-      changeSortType: (sortType: SortType) => ({
-        type: 'MOCK_CHANGE_SORT_TYPE_ACTION',
-        payload: sortType,
-      }),
-    },
-  };
-});
-
 const renderOptions: RenderOptions = {
   preloadedState: {
     [Reducer.App]: appStore.initialState,

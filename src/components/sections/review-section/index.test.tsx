@@ -1,40 +1,14 @@
 import { Reducer } from '~/constants';
-import { render, RenderOptions, reviewStore, screen, userStore } from '~/tests';
-import { PostReview } from '~/types';
+import {
+  mockPageId,
+  render,
+  RenderOptions,
+  reviewStore,
+  screen,
+  userStore,
+} from '~/tests';
 
 import { ReviewSection } from './index';
-
-const PAGE_ID = 10;
-
-jest.mock('react-router-dom', () => {
-  const originalModule = jest.requireActual('react-router-dom');
-
-  return {
-    ...originalModule,
-    useParams: () => ({
-      id: PAGE_ID,
-    }),
-  };
-});
-
-jest.mock('~/store', () => {
-  const originalModule = jest.requireActual('~/store');
-
-  return {
-    ...originalModule,
-    reviewSlice: {
-      ...originalModule.reviewSlice,
-      fetchReviews: (payload: number) => ({
-        type: 'MOCK_FETCH_REVIEWS_ACTION',
-        payload,
-      }),
-      postReview: (payload: PostReview) => ({
-        type: 'MOCK_POST_REVIEW_ACTION',
-        payload,
-      }),
-    },
-  };
-});
 
 describe('Component: ReviewSection', () => {
   it('should render correctly', () => {
@@ -107,7 +81,7 @@ describe('Component: ReviewSection', () => {
     const [firstAction] = store.getActions();
     expect(firstAction).toEqual({
       type: 'MOCK_FETCH_REVIEWS_ACTION',
-      payload: PAGE_ID,
+      payload: mockPageId,
     });
   });
 });

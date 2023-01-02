@@ -3,11 +3,6 @@ import { appStore, offersStore, render, RenderOptions, screen } from '~/tests';
 
 import { MainSection } from './index';
 
-jest.mock('~/assets/images', () => ({
-  pinActiveIconSrc: '~/assets/images/icons/pin-active.svg',
-  pinIconSrc: '~/assets/images/icons/pin.svg',
-}));
-
 describe('Component: MainSection', () => {
   it('should render correctly', () => {
     const renderOptions: RenderOptions = {

@@ -1,37 +1,10 @@
 import { Reducer } from '~/constants';
 import { render, RenderOptions, reviewStore, screen, userEvent } from '~/tests';
-import { PostReview } from '~/types';
 
 import { ReviewForm } from './index';
 
 const MIN_REVIEW_LENGTH = 50;
 const PAGE_ID = 10;
-
-jest.mock('react-router-dom', () => {
-  const originalModule = jest.requireActual('react-router-dom');
-
-  return {
-    ...originalModule,
-    useParams: () => ({
-      id: PAGE_ID,
-    }),
-  };
-});
-
-jest.mock('~/store', () => {
-  const originalModule = jest.requireActual('~/store');
-
-  return {
-    ...originalModule,
-    reviewSlice: {
-      ...originalModule.reviewSlice,
-      postReview: (payload: PostReview) => ({
-        type: 'MOCK_POST_REVIEW_ACTION',
-        payload,
-      }),
-    },
-  };
-});
 
 const renderOptions: RenderOptions = {
   preloadedState: {

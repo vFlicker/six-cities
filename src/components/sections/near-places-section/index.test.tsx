@@ -1,40 +1,14 @@
 import { Reducer } from '~/constants';
-import { appStore, offersStore, render, RenderOptions, screen } from '~/tests';
+import {
+  appStore,
+  mockPageId,
+  offersStore,
+  render,
+  RenderOptions,
+  screen,
+} from '~/tests';
 
 import { NearPlacesSection } from './index';
-
-const PAGE_ID = '10';
-
-jest.mock('react-router-dom', () => {
-  const originalModule = jest.requireActual('react-router-dom');
-
-  return {
-    ...originalModule,
-    useParams: () => ({
-      id: PAGE_ID,
-    }),
-  };
-});
-
-jest.mock('~/assets/images', () => ({
-  pinActiveIconSrc: '~/assets/images/icons/pin-active.svg',
-  pinIconSrc: '~/assets/images/icons/pin.svg',
-}));
-
-jest.mock('~/store', () => {
-  const originalModule = jest.requireActual('~/store');
-
-  return {
-    ...originalModule,
-    offersSlice: {
-      ...originalModule.offersSlice,
-      fetchOffersNearby: (id: number) => ({
-        type: 'MOCK_FETCH_OFFERS_NEARBY_ACTION',
-        payload: id,
-      }),
-    },
-  };
-});
 
 describe('Component: NearPlacesSection', () => {
   it('should render correctly', () => {
@@ -69,7 +43,7 @@ describe('Component: NearPlacesSection', () => {
     const [firstAction] = store.getActions();
     expect(firstAction).toEqual({
       type: 'MOCK_FETCH_OFFERS_NEARBY_ACTION',
-      payload: Number(PAGE_ID),
+      payload: Number(mockPageId),
     });
   });
 

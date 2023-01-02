@@ -7,24 +7,8 @@ import {
   screen,
   userEvent,
 } from '~/tests';
-import { ToggleFavoritePayload } from '~/types';
 
 import { CardItem } from './index';
-
-jest.mock('~/store', () => {
-  const originalModule = jest.requireActual('~/store');
-
-  return {
-    ...originalModule,
-    appSlice: {
-      ...originalModule.appSlice,
-      toggleFavorite: (payload: ToggleFavoritePayload) => ({
-        type: 'MOCK_TOGGLE_FAVORITE_ACTION',
-        payload,
-      }),
-    },
-  };
-});
 
 const { offer } = offerStore.stateWithOffer;
 

@@ -14,11 +14,6 @@ import {
 
 import { MainPage } from './index';
 
-jest.mock('~/assets/images', () => ({
-  pinActiveIconSrc: '~/assets/images/icons/pin-active.svg',
-  pinIconSrc: '~/assets/images/icons/pin.svg',
-}));
-
 const history = createMemoryHistory();
 
 beforeEach(() => {
