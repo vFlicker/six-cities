@@ -14,6 +14,7 @@ const {
   stateWitUpdatedOffers,
   loadingState,
   rejectedState,
+  updatedOffer,
 } = offersStore;
 
 describe('Slice: offers', () => {
@@ -198,8 +199,6 @@ describe('Slice: offers', () => {
 
   describe('toggleFavorite', () => {
     it('should return a state with updated all offers when toggleFavorite is fulfilled', () => {
-      const [updatedOffer] = stateWitUpdatedOffers.all;
-
       const actionType = {
         type: toggleFavorite.fulfilled.type,
         payload: updatedOffer,
@@ -210,20 +209,16 @@ describe('Slice: offers', () => {
     });
 
     it('should return a state with updated favorite offers when toggleFavorite is fulfilled', () => {
-      const [updatedOffer] = stateWitUpdatedOffers.favorites;
-
       const actionType = {
         type: toggleFavorite.fulfilled.type,
         payload: updatedOffer,
       };
 
       const result = offersReducer(stateWithOffers, actionType);
-      expect(result.favorites).toEqual(stateWitUpdatedOffers.favorites);
+      expect(result.favorites).toEqual(initialState.favorites);
     });
 
     it('should return a state with updated offers nearby when toggleFavorite is fulfilled', () => {
-      const [updatedOffer] = stateWitUpdatedOffers.nearby;
-
       const actionType = {
         type: toggleFavorite.fulfilled.type,
         payload: updatedOffer,

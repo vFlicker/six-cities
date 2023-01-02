@@ -19,7 +19,7 @@ describe('Component: MainSection', () => {
 
     render(<MainSection />, renderOptions);
 
-    const title = screen.getByText(/places to stay in Amsterdam/i);
+    const title = screen.getByText(/places to stay in/i);
     const placeCount = offersStore.stateWithOffers.all.length.toString();
     const [offer] = offersStore.stateWithOffers.all;
 

@@ -3,7 +3,7 @@ import { Offer } from '~/types';
 import { error, makeOffer } from '~/utils';
 
 const offer = makeOffer({ isFavorite: true });
-const updatedOffer: Offer = { ...offer, isFavorite: false };
+export const updatedOffer: Offer = { ...offer, isFavorite: false };
 const offers: Offer[] = [offer];
 const updatedOffers: Offer[] = [updatedOffer];
 

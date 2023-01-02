@@ -15,9 +15,9 @@ describe('Component: FilterSection', () => {
     render(<FilterSection />, renderOptions);
 
     const renderedLinks = screen.getAllByRole('link');
-    const { length } = Object.values(CityName);
+    const filterCount = Object.values(CityName).length;
 
-    expect(renderedLinks).toHaveLength(length);
+    expect(renderedLinks).toHaveLength(filterCount);
   });
 
   it('should not dispatch changeCityName when an active link is clicked', async () => {

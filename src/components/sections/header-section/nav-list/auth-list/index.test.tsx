@@ -24,6 +24,9 @@ jest.mock('~/store', () => {
 
 describe('Component: AuthList', () => {
   it('should render correctly', () => {
+    const favoritesCount =
+      offersStore.stateWithOffers.favorites.length.toString();
+
     const renderOptions: RenderOptions = {
       preloadedState: {
         [Reducer.Offers]: offersStore.stateWithOffers,
@@ -36,6 +39,7 @@ describe('Component: AuthList', () => {
     expect(screen.queryByText(/Sign in/i)).not.toBeInTheDocument();
     expect(screen.getByText(/Sign out/i)).toBeInTheDocument();
     expect(screen.getByTestId('counter')).toBeInTheDocument();
+    expect(screen.getByTestId('counter')).toHaveTextContent(favoritesCount);
     expect(screen.getAllByRole('link')).toHaveLength(2);
     expect(
       screen.getByText(userStore.authState.user.email),

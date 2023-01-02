@@ -8,11 +8,11 @@ import { PrivateRoute } from './index';
 
 const history = createMemoryHistory();
 
-describe('Component: PrivateRoute', () => {
-  beforeEach(() => {
-    history.push('/private');
-  });
+beforeEach(() => {
+  history.push('/private');
+});
 
+describe('Component: PrivateRoute', () => {
   it('should render login page when user not authorized,', () => {
     const renderOption: RenderOptions = {
       history,
