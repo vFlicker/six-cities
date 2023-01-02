@@ -1,19 +1,10 @@
-import { createMemoryHistory } from 'history';
-import { render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
+import { render, screen } from '~/tests';
 
-import { HistoryRouter } from '../../shared/history-router';
 import { FooterSection } from './index';
-
-const history = createMemoryHistory();
 
 describe('Component: FooterSection', () => {
   it('should render correctly', () => {
-    render(
-      <HistoryRouter history={history}>
-        <FooterSection />
-      </HistoryRouter>,
-    );
+    render(<FooterSection />);
 
     expect(screen.getByAltText(/6 cities logo/i)).toBeInTheDocument();
   });
