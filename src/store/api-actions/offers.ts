@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { Reducer } from '~/constants';
-import { favoriteApiService, hotelApiService } from '~/services';
+import { apiService } from '~/services';
 import { ThunkOptions, Offer } from '~/types';
 import { errorHandler } from '~/utils';
 
@@ -11,8 +11,8 @@ export const fetchAllOffers = createAsyncThunk<
   ThunkOptions
 >(`${Reducer.Offers}/fetchAllOffers`, async (_, { rejectWithValue }) => {
   try {
-    const hotels = await hotelApiService.findAll();
-    return hotels;
+    const offers = await apiService.findAllOffers();
+    return offers;
   } catch (error) {
     return rejectWithValue(errorHandler(error as Error));
   }
@@ -24,8 +24,8 @@ export const fetchFavoriteOffers = createAsyncThunk<
   ThunkOptions
 >(`${Reducer.Offers}/fetchFavoriteOffers`, async (_, { rejectWithValue }) => {
   try {
-    const favoriteHotels = await favoriteApiService.findAll();
-    return favoriteHotels;
+    const favoriteOffers = await apiService.findFavoriteOffers();
+    return favoriteOffers;
   } catch (error) {
     return rejectWithValue(errorHandler(error as Error));
   }
@@ -37,8 +37,8 @@ export const fetchOffersNearby = createAsyncThunk<
   ThunkOptions
 >(`${Reducer.Offers}/fetchOffersNearby`, async (id, { rejectWithValue }) => {
   try {
-    const hotelsNearby = await hotelApiService.findAllNearby(id);
-    return hotelsNearby;
+    const offersNearby = await apiService.findOffersNearby(id);
+    return offersNearby;
   } catch (error) {
     return rejectWithValue(errorHandler(error as Error));
   }
