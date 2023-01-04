@@ -2,7 +2,7 @@ import MockAdapter from 'axios-mock-adapter';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
-import { httpClient, token } from '~/services';
+import { AUTH_TOKEN_KEY_NAME, httpClient } from '~/services';
 import { AppDispatch, AuthData, State } from '~/types';
 
 import { redirectToRoute } from '../actions/app';
@@ -72,7 +72,7 @@ describe('Async actions: user', () => {
       await store.dispatch(login(mockAuthData));
 
       expect(localStorage.setItem).toHaveBeenLastCalledWith(
-        token.AUTH_TOKEN_KEY_NAME,
+        AUTH_TOKEN_KEY_NAME,
         mockData.token,
       );
     });
@@ -103,7 +103,7 @@ describe('Async actions: user', () => {
       await store.dispatch(logout());
 
       expect(localStorage.removeItem).toHaveBeenLastCalledWith(
-        token.AUTH_TOKEN_KEY_NAME,
+        AUTH_TOKEN_KEY_NAME,
       );
     });
 
