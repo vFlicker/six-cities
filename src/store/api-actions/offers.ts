@@ -13,7 +13,13 @@ export const fetchAllOffers = createAsyncThunk<
     const offers = await apiService.findAllOffers();
     return offers;
   } catch (error) {
-    if (error instanceof ApiError) return rejectWithValue(error);
+    if (error instanceof ApiError) {
+      return rejectWithValue({
+        message: error.message,
+        statusCode: error.status,
+      });
+    }
+
     throw error;
   }
 });
@@ -27,7 +33,13 @@ export const fetchFavoriteOffers = createAsyncThunk<
     const favoriteOffers = await apiService.findFavoriteOffers();
     return favoriteOffers;
   } catch (error) {
-    if (error instanceof ApiError) return rejectWithValue(error);
+    if (error instanceof ApiError) {
+      return rejectWithValue({
+        message: error.message,
+        statusCode: error.status,
+      });
+    }
+
     throw error;
   }
 });
@@ -41,7 +53,13 @@ export const fetchOffersNearby = createAsyncThunk<
     const offersNearby = await apiService.findOffersNearby(id);
     return offersNearby;
   } catch (error) {
-    if (error instanceof ApiError) return rejectWithValue(error);
+    if (error instanceof ApiError) {
+      return rejectWithValue({
+        message: error.message,
+        statusCode: error.status,
+      });
+    }
+
     throw error;
   }
 });

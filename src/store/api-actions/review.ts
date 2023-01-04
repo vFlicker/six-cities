@@ -11,7 +11,13 @@ export const fetchReviews = createAsyncThunk<Review[], number, ThunkOptions>(
       const reviews = await apiService.findAllReviewsByOfferId(id);
       return reviews;
     } catch (error) {
-      if (error instanceof ApiError) return rejectWithValue(error);
+      if (error instanceof ApiError) {
+        return rejectWithValue({
+          message: error.message,
+          statusCode: error.status,
+        });
+      }
+
       throw error;
     }
   },
@@ -24,7 +30,13 @@ export const postReview = createAsyncThunk<Review[], PostReview, ThunkOptions>(
       const reviews = apiService.createNewReview(data);
       return reviews;
     } catch (error) {
-      if (error instanceof ApiError) return rejectWithValue(error);
+      if (error instanceof ApiError) {
+        return rejectWithValue({
+          message: error.message,
+          statusCode: error.status,
+        });
+      }
+
       throw error;
     }
   },

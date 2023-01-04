@@ -11,7 +11,13 @@ export const fetchOffer = createAsyncThunk<Offer, number, ThunkOptions>(
       const offer = await apiService.findOneOfferById(id);
       return offer;
     } catch (error) {
-      if (error instanceof ApiError) return rejectWithValue(error);
+      if (error instanceof ApiError) {
+        return rejectWithValue({
+          message: error.message,
+          statusCode: error.status,
+        });
+      }
+
       throw error;
     }
   },

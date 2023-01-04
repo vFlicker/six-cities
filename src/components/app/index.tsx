@@ -13,7 +13,6 @@ export function App(): JSX.Element {
   const isAuthChecked = useAppSelector(userSlice.selectIsAuthChecked);
   const isUserAuthorized = useAppSelector(userSlice.selectIsUserAuthorized);
   const isLoading = useAppSelector(userSlice.selectIsLoading);
-  // const error = useAppSelector(userSlice.selectError);
 
   useEffect(() => {
     dispatch(offersSlice.fetchAllOffers());
@@ -29,9 +28,6 @@ export function App(): JSX.Element {
   if (!isAuthChecked || isLoading) {
     return <Spinner />;
   }
-
-  // TODO: Error 401
-  // if (error) return <ErrorMessage />;
 
   return (
     <HistoryRouter history={browserHistory}>

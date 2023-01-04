@@ -13,7 +13,13 @@ export const checkAuthStatus = createAsyncThunk<User, undefined, ThunkOptions>(
       const user = await apiService.checkAuthStatus();
       return user;
     } catch (error) {
-      if (error instanceof ApiError) return rejectWithValue(error);
+      if (error instanceof ApiError) {
+        return rejectWithValue({
+          message: error.message,
+          statusCode: error.status,
+        });
+      }
+
       throw error;
     }
   },
@@ -31,7 +37,13 @@ export const login = createAsyncThunk<User, AuthData, ThunkOptions>(
 
       return user;
     } catch (error) {
-      if (error instanceof ApiError) return rejectWithValue(error);
+      if (error instanceof ApiError) {
+        return rejectWithValue({
+          message: error.message,
+          statusCode: error.status,
+        });
+      }
+
       throw error;
     }
   },
@@ -45,7 +57,13 @@ export const logout = createAsyncThunk<void, undefined, ThunkOptions>(
 
       return dropToken();
     } catch (error) {
-      if (error instanceof ApiError) return rejectWithValue(error);
+      if (error instanceof ApiError) {
+        return rejectWithValue({
+          message: error.message,
+          statusCode: error.status,
+        });
+      }
+
       throw error;
     }
   },
