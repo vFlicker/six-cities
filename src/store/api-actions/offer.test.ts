@@ -1,4 +1,5 @@
 import MockAdapter from 'axios-mock-adapter';
+import { StatusCodes } from 'http-status-codes';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
@@ -21,8 +22,8 @@ beforeEach(() => {
 
 describe('Async actions: offer', () => {
   describe('fetchOffer', () => {
-    it('should dispatch fetchOffer when GET "/hotels/:id" and server return 200', async () => {
-      mockApiService.onGet(`/hotels/${mockId}`).reply(200, {});
+    it('should dispatch fetchOffer when GET "/hotels/:id" and server return "OK"', async () => {
+      mockApiService.onGet(`/hotels/${mockId}`).reply(StatusCodes.OK, {});
 
       await store.dispatch(fetchOffer(mockId));
 
@@ -33,8 +34,10 @@ describe('Async actions: offer', () => {
       ]);
     });
 
-    it('should dispatch fetchOffer when GET "/hotels/:id" and server return 404', async () => {
-      mockApiService.onGet(`/hotels/${mockId}`).reply(404, {});
+    it('should dispatch fetchOffer when GET "/hotels/:id" and server return "NOT_FOUND"', async () => {
+      mockApiService
+        .onGet(`/hotels/${mockId}`)
+        .reply(StatusCodes.NOT_FOUND, {});
 
       await store.dispatch(fetchOffer(mockId));
 

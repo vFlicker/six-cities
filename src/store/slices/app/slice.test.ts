@@ -1,5 +1,6 @@
 import { CityName, SortType } from '~/constants';
 import { appStore } from '~/tests';
+import { error } from '~/utils';
 
 import appReducer, {
   changeCityName,
@@ -81,11 +82,11 @@ describe('Slice: app', () => {
         meta: {
           arg: { id: 1 },
         },
-        payload: rejectedState.error,
+        payload: error,
       };
 
       const result = appReducer(loadingState, actionType);
-      expect(result.error).toEqual(rejectedState.error);
+      expect(result.error).toEqual(error.message);
     });
 
     it('should return state with removed error when toggleFavorite is pending', () => {

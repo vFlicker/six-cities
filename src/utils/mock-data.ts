@@ -1,7 +1,16 @@
 import { faker } from '@faker-js/faker/locale/en_US';
+import { StatusCodes } from 'http-status-codes';
 
 import { CityName } from '~/constants';
-import { Host, Location, Offer, Review, ReviewUser, User } from '~/types';
+import {
+  Error,
+  Host,
+  Location,
+  Offer,
+  Review,
+  ReviewUser,
+  User,
+} from '~/types';
 
 type MakeReviewArgs = Partial<Review>;
 
@@ -9,7 +18,10 @@ type MakeOfferArgs = Partial<Offer> & {
   cityName?: CityName;
 };
 
-export const error = 'Same error...';
+export const error: Error = {
+  message: 'Same error...',
+  statusCode: StatusCodes.BAD_REQUEST,
+};
 
 export const makeReviewUser = (): ReviewUser => ({
   id: faker.datatype.number(),

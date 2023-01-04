@@ -1,4 +1,5 @@
 import MockAdapter from 'axios-mock-adapter';
+import { StatusCodes } from 'http-status-codes';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
@@ -25,8 +26,8 @@ beforeEach(() => {
 
 describe('Async actions: user', () => {
   describe('checkAuthStatus', () => {
-    it('should dispatch checkAuthStatus when GET "/login" and server return 200', async () => {
-      mockApiService.onGet('/login').reply(200, {});
+    it('should dispatch checkAuthStatus when GET "/login" and server return "OK"', async () => {
+      mockApiService.onGet('/login').reply(StatusCodes.OK, {});
 
       await store.dispatch(checkAuthStatus());
 
@@ -37,8 +38,8 @@ describe('Async actions: user', () => {
       ]);
     });
 
-    it('should dispatch checkAuthStatus when GET "/login" and server return 401', async () => {
-      mockApiService.onGet('/login').reply(401, {});
+    it('should dispatch checkAuthStatus when GET "/login" and server return "UNAUTHORIZED"', async () => {
+      mockApiService.onGet('/login').reply(StatusCodes.UNAUTHORIZED, {});
 
       await store.dispatch(checkAuthStatus());
 
@@ -51,8 +52,8 @@ describe('Async actions: user', () => {
   });
 
   describe('login', () => {
-    it('should dispatch login when POST "/login" and server return 200', async () => {
-      mockApiService.onPost('/login').reply(200, {});
+    it('should dispatch login when POST "/login" and server return "OK"', async () => {
+      mockApiService.onPost('/login').reply(StatusCodes.OK, {});
 
       await store.dispatch(login(mockAuthData));
 
@@ -64,10 +65,10 @@ describe('Async actions: user', () => {
       ]);
     });
 
-    it('should save token when POST "/login" and server return 200', async () => {
+    it('should save token when POST "/login" and server return "OK"', async () => {
       const mockData = { token: 'test-token' };
 
-      mockApiService.onPost('/login').reply(200, mockData);
+      mockApiService.onPost('/login').reply(StatusCodes.OK, mockData);
 
       await store.dispatch(login(mockAuthData));
 
@@ -77,8 +78,8 @@ describe('Async actions: user', () => {
       );
     });
 
-    it('should dispatch login when POST "/login" and server return 400', async () => {
-      mockApiService.onPost('/login').reply(400, {});
+    it('should dispatch login when POST "/login" and server return "BAD_REQUEST', async () => {
+      mockApiService.onPost('/login').reply(StatusCodes.BAD_REQUEST, {});
 
       await store.dispatch(login(mockAuthData));
 
@@ -88,8 +89,8 @@ describe('Async actions: user', () => {
   });
 
   describe('logout', () => {
-    it('should dispatch logout when DELETE "/logout" and server return 204', async () => {
-      mockApiService.onDelete('/logout').reply(204);
+    it('should dispatch logout when DELETE "/logout" and server return "NO_CONTENT"', async () => {
+      mockApiService.onDelete('/logout').reply(StatusCodes.NO_CONTENT);
 
       await store.dispatch(logout());
 
@@ -97,8 +98,8 @@ describe('Async actions: user', () => {
       expect(actionTypes).toEqual([logout.pending.type, logout.fulfilled.type]);
     });
 
-    it('should remove token when DELETE "/logout" and server return 204', async () => {
-      mockApiService.onDelete('/logout').reply(204);
+    it('should remove token when DELETE "/logout" and server return "NO_CONTENT"', async () => {
+      mockApiService.onDelete('/logout').reply(StatusCodes.NO_CONTENT);
 
       await store.dispatch(logout());
 
@@ -107,8 +108,8 @@ describe('Async actions: user', () => {
       );
     });
 
-    it('should dispatch logout when POST "/logout" and server return 400', async () => {
-      mockApiService.onDelete('/logout').reply(400, {});
+    it('should dispatch logout when POST "/logout" and server return "BAD_REQUEST"', async () => {
+      mockApiService.onDelete('/logout').reply(StatusCodes.BAD_REQUEST, {});
 
       await store.dispatch(logout());
 

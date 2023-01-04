@@ -1,4 +1,5 @@
 import MockAdapter from 'axios-mock-adapter';
+import { StatusCodes } from 'http-status-codes';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
@@ -25,8 +26,8 @@ beforeEach(() => {
 
 describe('Async actions: offers', () => {
   describe('fetchAllOffers', () => {
-    it('should dispatch fetchAllOffers when GET "/hotels" and server return 200', async () => {
-      mockApiService.onGet('/hotels').reply(200, []);
+    it('should dispatch fetchAllOffers when GET "/hotels" and server return "OK"', async () => {
+      mockApiService.onGet('/hotels').reply(StatusCodes.OK, []);
 
       await store.dispatch(fetchAllOffers());
 
@@ -37,8 +38,8 @@ describe('Async actions: offers', () => {
       ]);
     });
 
-    it('should dispatch fetchAllOffers when GET "/hotels" and server return 404', async () => {
-      mockApiService.onGet('/hotels').reply(404, []);
+    it('should dispatch fetchAllOffers when GET "/hotels" and server return "NOT_FOUND"', async () => {
+      mockApiService.onGet('/hotels').reply(StatusCodes.NOT_FOUND, []);
 
       await store.dispatch(fetchAllOffers());
 
@@ -51,8 +52,8 @@ describe('Async actions: offers', () => {
   });
 
   describe('fetchFavoriteOffers', () => {
-    it('should dispatch fetchFavoriteOffers when GET "/favorite" and server return 200', async () => {
-      mockApiService.onGet('/favorite').reply(200, []);
+    it('should dispatch fetchFavoriteOffers when GET "/favorite" and server return "OK"', async () => {
+      mockApiService.onGet('/favorite').reply(StatusCodes.OK, []);
 
       await store.dispatch(fetchFavoriteOffers());
 
@@ -63,8 +64,8 @@ describe('Async actions: offers', () => {
       ]);
     });
 
-    it('should dispatch fetchFavoriteOffers when GET "/favorite" and server return 401', async () => {
-      mockApiService.onGet('/favorite').reply(401, []);
+    it('should dispatch fetchFavoriteOffers when GET "/favorite" and server return "UNAUTHORIZED"', async () => {
+      mockApiService.onGet('/favorite').reply(StatusCodes.UNAUTHORIZED, []);
 
       await store.dispatch(fetchFavoriteOffers());
 
@@ -77,8 +78,10 @@ describe('Async actions: offers', () => {
   });
 
   describe('fetchOffersNearby', () => {
-    it('should dispatch fetchOffersNearby when GET "/hotels/:hotel_id/nearby" and server return 200', async () => {
-      mockApiService.onGet(`/hotels/${mockId}/nearby`).reply(200, []);
+    it('should dispatch fetchOffersNearby when GET "/hotels/:hotel_id/nearby" and server return "OK"', async () => {
+      mockApiService
+        .onGet(`/hotels/${mockId}/nearby`)
+        .reply(StatusCodes.OK, []);
 
       await store.dispatch(fetchOffersNearby(mockId));
 
@@ -89,8 +92,10 @@ describe('Async actions: offers', () => {
       ]);
     });
 
-    it('should dispatch fetchOffersNearby when GET "/hotels/:hotel_id/nearby" and server return 401', async () => {
-      mockApiService.onGet(`/hotels/${mockId}/nearby`).reply(401, []);
+    it('should dispatch fetchOffersNearby when GET "/hotels/:hotel_id/nearby" and server return "UNAUTHORIZED"', async () => {
+      mockApiService
+        .onGet(`/hotels/${mockId}/nearby`)
+        .reply(StatusCodes.UNAUTHORIZED, []);
 
       await store.dispatch(fetchOffersNearby(mockId));
 

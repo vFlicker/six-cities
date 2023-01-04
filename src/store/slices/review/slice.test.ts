@@ -1,4 +1,5 @@
 import { reviewStore } from '~/tests';
+import { error } from '~/utils';
 
 import reviewReducer, { fetchReviews, postReview } from './slice';
 
@@ -42,11 +43,11 @@ describe('Slice: reviews', () => {
     it('should return a state with added error when fetchReviews is rejected', () => {
       const actionType = {
         type: fetchReviews.rejected.type,
-        payload: rejectedState.error,
+        payload: error,
       };
 
       const result = reviewReducer(initialState, actionType);
-      expect(result.error).toEqual(rejectedState.error);
+      expect(result.error).toEqual(error.message);
     });
 
     it('should return a state with removed error when fetchReviews is pending', () => {
@@ -100,11 +101,11 @@ describe('Slice: reviews', () => {
     it('should return a state with added error when postReview is rejected', () => {
       const actionType = {
         type: postReview.rejected.type,
-        payload: rejectedState.error,
+        payload: error,
       };
 
       const result = reviewReducer(initialState, actionType);
-      expect(result.error).toEqual(rejectedState.error);
+      expect(result.error).toEqual(error.message);
     });
 
     it('should return a state with removed error when postReview is pending', () => {

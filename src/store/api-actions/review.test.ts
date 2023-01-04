@@ -1,4 +1,5 @@
 import MockAdapter from 'axios-mock-adapter';
+import { StatusCodes } from 'http-status-codes';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
@@ -27,8 +28,8 @@ beforeEach(() => {
 
 describe('Async actions: reviews', () => {
   describe('fetchReviews', () => {
-    it('should dispatch fetchReviews when GET "/comments/:hotel_id" and server return 200', async () => {
-      mockApiService.onGet(`/comments/${mockId}`).reply(200, []);
+    it('should dispatch fetchReviews when GET "/comments/:hotel_id" and server return "OK"', async () => {
+      mockApiService.onGet(`/comments/${mockId}`).reply(StatusCodes.OK, []);
 
       await store.dispatch(fetchReviews(mockId));
 
@@ -39,8 +40,10 @@ describe('Async actions: reviews', () => {
       ]);
     });
 
-    it('should dispatch fetchReviews when GET "/comments/:hotel_id" and server return 400', async () => {
-      mockApiService.onGet(`/comments/${mockId}`).reply(400, []);
+    it('should dispatch fetchReviews when GET "/comments/:hotel_id" and server return "BAD_REQUEST"', async () => {
+      mockApiService
+        .onGet(`/comments/${mockId}`)
+        .reply(StatusCodes.BAD_REQUEST, []);
 
       await store.dispatch(fetchReviews(mockId));
 
@@ -53,8 +56,8 @@ describe('Async actions: reviews', () => {
   });
 
   describe('postReview', () => {
-    it('should dispatch postReview when POST "/comments/:hotel_id" and server return 200', async () => {
-      mockApiService.onPost(`/comments/${mockId}`).reply(200, []);
+    it('should dispatch postReview when POST "/comments/:hotel_id" and server return "OK"', async () => {
+      mockApiService.onPost(`/comments/${mockId}`).reply(StatusCodes.OK, []);
 
       await store.dispatch(postReview(mockReview));
 
@@ -65,8 +68,10 @@ describe('Async actions: reviews', () => {
       ]);
     });
 
-    it('should dispatch postReview when POST "/comments/:hotel_id" and server return 400', async () => {
-      mockApiService.onPost(`/comments/${mockId}`).reply(400, []);
+    it('should dispatch postReview when POST "/comments/:hotel_id" and server return "BAD_REQUEST"', async () => {
+      mockApiService
+        .onPost(`/comments/${mockId}`)
+        .reply(StatusCodes.BAD_REQUEST, []);
 
       await store.dispatch(postReview(mockReview));
 
@@ -77,8 +82,10 @@ describe('Async actions: reviews', () => {
       ]);
     });
 
-    it('should dispatch postReview when POST "/comments/:hotel_id" and server return 401', async () => {
-      mockApiService.onPost(`/comments/${mockId}`).reply(401, []);
+    it('should dispatch postReview when POST "/comments/:hotel_id" and server return "UNAUTHORIZED"', async () => {
+      mockApiService
+        .onPost(`/comments/${mockId}`)
+        .reply(StatusCodes.UNAUTHORIZED, []);
 
       await store.dispatch(postReview(mockReview));
 

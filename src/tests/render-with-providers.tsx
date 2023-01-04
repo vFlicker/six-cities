@@ -59,6 +59,13 @@ jest.mock('~/store', () => {
     },
     offersSlice: {
       ...originalModule.offersSlice,
+      fetchAllOffers: () => ({
+        type: 'MOCK_FETCH_ALL_OFFERS_ACTION',
+      }),
+      fetchFavoriteOffers: (id: number) => ({
+        type: 'MOCK_FETCH_FAVORITE_OFFERS_ACTION',
+        payload: id,
+      }),
       fetchOffersNearby: (id: number) => ({
         type: 'MOCK_FETCH_OFFERS_NEARBY_ACTION',
         payload: id,
@@ -77,6 +84,9 @@ jest.mock('~/store', () => {
     },
     userSlice: {
       ...originalModule.userSlice,
+      checkAuthStatus: () => ({
+        type: 'MOCK_CHECK_AUTH_STATUS_ACTION',
+      }),
       login: (payload: AuthData) => ({
         type: 'MOCK_LOGIN_ACTION',
         payload,

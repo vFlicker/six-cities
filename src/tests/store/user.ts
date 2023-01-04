@@ -32,5 +32,5 @@ export const loadingState: State = {
 
 export const rejectedState: State = {
   ...initialState,
-  error,
+  error: error.message,
 };

@@ -1,4 +1,5 @@
 import { offersStore } from '~/tests';
+import { error } from '~/utils';
 
 import { toggleFavorite } from '../../api-actions/app';
 import { logout } from '../../api-actions/user';
@@ -54,11 +55,11 @@ describe('Slice: offers', () => {
     it('should return a state with added error when fetchAllOffers is rejected', () => {
       const actionType = {
         type: fetchAllOffers.rejected.type,
-        payload: rejectedState.error,
+        payload: error,
       };
 
       const result = offersReducer(initialState, actionType);
-      expect(result.error).toEqual(rejectedState.error);
+      expect(result.error).toEqual(error.message);
     });
 
     it('should return a state with removed error when fetchAllOffers is pending', () => {
@@ -112,11 +113,11 @@ describe('Slice: offers', () => {
     it('should return a state with added error when fetchFavoriteOffers is rejected', () => {
       const actionType = {
         type: fetchFavoriteOffers.rejected.type,
-        payload: rejectedState.error,
+        payload: error,
       };
 
       const result = offersReducer(initialState, actionType);
-      expect(result.error).toEqual(rejectedState.error);
+      expect(result.error).toEqual(error.message);
     });
 
     it('should return a state with removed error when fetchFavoriteOffers is pending', () => {
@@ -170,11 +171,11 @@ describe('Slice: offers', () => {
     it('should return a state with added error when fetchOffersNearby is rejected', () => {
       const actionType = {
         type: fetchOffersNearby.rejected.type,
-        payload: rejectedState.error,
+        payload: error,
       };
 
       const result = offersReducer(initialState, actionType);
-      expect(result.error).toEqual(rejectedState.error);
+      expect(result.error).toEqual(error.message);
     });
 
     it('should return a state with removed error when fetchOffersNearby is pending', () => {

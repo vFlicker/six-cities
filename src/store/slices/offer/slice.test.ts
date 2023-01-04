@@ -1,4 +1,5 @@
 import { offerStore } from '~/tests';
+import { error } from '~/utils';
 
 import { toggleFavorite } from '../../api-actions/app';
 import offerReducer, { fetchOffer } from './slice';
@@ -48,11 +49,11 @@ describe('Slice: offer', () => {
     it('should return a state with added error when fetchOffer is rejected', () => {
       const actionType = {
         type: fetchOffer.rejected.type,
-        payload: rejectedState.error,
+        payload: error,
       };
 
       const result = offerReducer(initialState, actionType);
-      expect(result.error).toEqual(rejectedState.error);
+      expect(result.error).toEqual(error.message);
     });
 
     it('should return a state with removed error when fetchOffer is pending', () => {

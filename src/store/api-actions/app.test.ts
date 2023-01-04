@@ -1,4 +1,5 @@
 import MockAdapter from 'axios-mock-adapter';
+import { StatusCodes } from 'http-status-codes';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
@@ -23,8 +24,10 @@ beforeEach(() => {
 
 describe('Async actions: app', () => {
   describe('toggleFavorite', () => {
-    it('should dispatch toggleFavorite when POST "/favorite/:hotel_id/:status" and server return 200', async () => {
-      mockApiService.onPost(`/favorite/${mockId}/${status}`).reply(200, {});
+    it('should dispatch toggleFavorite when POST "/favorite/:hotel_id/:status" and server return "OK"', async () => {
+      mockApiService
+        .onPost(`/favorite/${mockId}/${status}`)
+        .reply(StatusCodes.OK, {});
 
       await store.dispatch(toggleFavorite({ id: mockId, status }));
 
@@ -35,8 +38,10 @@ describe('Async actions: app', () => {
       ]);
     });
 
-    it('should dispatch toggleFavorite when POST "/favorite/:hotel_id/:status" and server return 401', async () => {
-      mockApiService.onPost(`/favorite/${mockId}/${status}`).reply(401, {});
+    it('should dispatch toggleFavorite when POST "/favorite/:hotel_id/:status" and server return "UNAUTHORIZED"', async () => {
+      mockApiService
+        .onPost(`/favorite/${mockId}/${status}`)
+        .reply(StatusCodes.UNAUTHORIZED, {});
 
       await store.dispatch(toggleFavorite({ id: mockId, status }));
 
