@@ -1,8 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { Reducer } from '~/constants';
-import { errorHandler, favoriteApiService } from '~/services';
+import { favoriteApiService } from '~/services';
 import { Offer, ThunkOptions, ToggleFavoritePayload } from '~/types';
+import { errorHandler } from '~/utils';
 
 export const toggleFavorite = createAsyncThunk<
   Offer,
@@ -14,9 +15,8 @@ export const toggleFavorite = createAsyncThunk<
     try {
       const hotel = await favoriteApiService.toggleStatus(id, status);
       return hotel;
-    } catch (err) {
-      errorHandler(err as Error);
-      return rejectWithValue(err as Error);
+    } catch (error) {
+      return rejectWithValue(errorHandler(error as Error));
     }
   },
 );

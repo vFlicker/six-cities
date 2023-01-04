@@ -9,7 +9,7 @@ type MakeOfferArgs = Partial<Offer> & {
   cityName?: CityName;
 };
 
-export const error = new Error('Same error...');
+export const error = 'Same error...';
 
 export const makeReviewUser = (): ReviewUser => ({
   id: faker.datatype.number(),

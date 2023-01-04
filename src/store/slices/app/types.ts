@@ -6,5 +6,5 @@ export type State = {
   currentCityName: CityName;
   currentSortType: SortType;
   favoriteIdsInProgress: OfferID[];
-  error: Error | null;
+  error: string | null;
 };

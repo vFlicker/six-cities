@@ -5,5 +5,5 @@ export type State = {
   favorites: Offer[];
   nearby: Offer[];
   loading: boolean;
-  error: Error | null;
+  error: string | null;
 };

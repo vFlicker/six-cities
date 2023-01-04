@@ -28,9 +28,9 @@ const slice = createSlice({
         state.loading = false;
         state.error = null;
       })
-      .addCase(fetchOffer.rejected, (state, action) => {
+      .addCase(fetchOffer.rejected, (state, { payload }) => {
         state.loading = false;
-        state.error = action.payload as Error;
+        if (payload) state.error = payload;
       })
 
       /* TOGGLE FAVORITE */

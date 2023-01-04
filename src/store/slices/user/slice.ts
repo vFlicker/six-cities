@@ -29,10 +29,10 @@ const slice = createSlice({
         state.loading = false;
         state.error = null;
       })
-      .addCase(checkAuthStatus.rejected, (state, action) => {
+      .addCase(checkAuthStatus.rejected, (state, { payload }) => {
         state.authStatus = AuthStatus.NoAuth;
         state.loading = false;
-        state.error = action.payload as Error;
+        if (payload) state.error = payload;
       })
 
       /* LOGIN */
@@ -47,10 +47,10 @@ const slice = createSlice({
         state.loading = false;
         state.error = null;
       })
-      .addCase(login.rejected, (state, action) => {
+      .addCase(login.rejected, (state, { payload }) => {
         state.authStatus = AuthStatus.NoAuth;
         state.loading = false;
-        state.error = action.payload as Error;
+        if (payload) state.error = payload;
       })
 
       /* LOGOUT */
@@ -64,9 +64,9 @@ const slice = createSlice({
         state.loading = false;
         state.error = null;
       })
-      .addCase(logout.rejected, (state, action) => {
+      .addCase(logout.rejected, (state, { payload }) => {
         state.loading = false;
-        state.error = action.payload as Error;
+        if (payload) state.error = payload;
       });
   },
 });

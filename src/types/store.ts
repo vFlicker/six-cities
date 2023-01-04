@@ -6,5 +6,5 @@ export type AppDispatch = typeof store.dispatch;
 export type ThunkOptions = {
   state: State;
   dispatch: AppDispatch;
-  rejectValue: Error;
+  rejectValue: string | null;
 };

@@ -27,9 +27,9 @@ const slice = createSlice({
         state.loading = false;
         state.error = null;
       })
-      .addCase(fetchReviews.rejected, (state, action) => {
+      .addCase(fetchReviews.rejected, (state, { payload }) => {
         state.loading = false;
-        state.error = action.payload as Error;
+        if (payload) state.error = payload;
       })
 
       /* POST REVIEW */
@@ -42,9 +42,9 @@ const slice = createSlice({
         state.loading = false;
         state.error = null;
       })
-      .addCase(postReview.rejected, (state, action) => {
+      .addCase(postReview.rejected, (state, { payload }) => {
         state.loading = false;
-        state.error = action.payload as Error;
+        if (payload) state.error = payload;
       });
   },
 });

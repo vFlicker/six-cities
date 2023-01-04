@@ -17,6 +17,6 @@ export const selectfavoriteIdsInProgress = (state: State): OfferID[] => {
   return state[Reducer.App].favoriteIdsInProgress;
 };
 
-export const selectError = (state: State): Error | null => {
+export const selectError = (state: State): string | null => {
   return state[Reducer.App].error;
 };

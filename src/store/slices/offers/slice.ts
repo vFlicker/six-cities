@@ -36,9 +36,9 @@ const slice = createSlice({
         state.loading = false;
         state.error = null;
       })
-      .addCase(fetchAllOffers.rejected, (state, action) => {
+      .addCase(fetchAllOffers.rejected, (state, { payload }) => {
         state.loading = false;
-        state.error = action.payload as Error;
+        if (payload) state.error = payload;
       })
 
       /* FETCH FAVORITES OFFERS */
@@ -51,9 +51,9 @@ const slice = createSlice({
         state.loading = false;
         state.error = null;
       })
-      .addCase(fetchFavoriteOffers.rejected, (state, action) => {
+      .addCase(fetchFavoriteOffers.rejected, (state, { payload }) => {
         state.loading = false;
-        state.error = action.payload as Error;
+        if (payload) state.error = payload;
       })
 
       /* FETCH OFFERS NEARBY */
@@ -66,9 +66,9 @@ const slice = createSlice({
         state.loading = false;
         state.error = null;
       })
-      .addCase(fetchOffersNearby.rejected, (state, action) => {
+      .addCase(fetchOffersNearby.rejected, (state, { payload }) => {
         state.loading = false;
-        state.error = action.payload as Error;
+        if (payload) state.error = payload;
       })
 
       /* TOGGLE FAVORITE STATUS */

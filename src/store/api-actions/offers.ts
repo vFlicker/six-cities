@@ -1,8 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { Reducer } from '~/constants';
-import { errorHandler, favoriteApiService, hotelApiService } from '~/services';
+import { favoriteApiService, hotelApiService } from '~/services';
 import { ThunkOptions, Offer } from '~/types';
+import { errorHandler } from '~/utils';
 
 export const fetchAllOffers = createAsyncThunk<
   Offer[],
@@ -12,9 +13,8 @@ export const fetchAllOffers = createAsyncThunk<
   try {
     const hotels = await hotelApiService.findAll();
     return hotels;
-  } catch (err) {
-    errorHandler(err as Error);
-    return rejectWithValue(err as Error);
+  } catch (error) {
+    return rejectWithValue(errorHandler(error as Error));
   }
 });
 
@@ -26,9 +26,8 @@ export const fetchFavoriteOffers = createAsyncThunk<
   try {
     const favoriteHotels = await favoriteApiService.findAll();
     return favoriteHotels;
-  } catch (err) {
-    errorHandler(err as Error);
-    return rejectWithValue(err as Error);
+  } catch (error) {
+    return rejectWithValue(errorHandler(error as Error));
   }
 });
 
@@ -40,8 +39,7 @@ export const fetchOffersNearby = createAsyncThunk<
   try {
     const hotelsNearby = await hotelApiService.findAllNearby(id);
     return hotelsNearby;
-  } catch (err) {
-    errorHandler(err as Error);
-    return rejectWithValue(err as Error);
+  } catch (error) {
+    return rejectWithValue(errorHandler(error as Error));
   }
 });

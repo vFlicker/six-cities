@@ -47,6 +47,6 @@ export const selectIsLoading = (state: State): boolean => {
   return state[Reducer.Offers].loading;
 };
 
-export const selectError = (state: State): Error | null => {
+export const selectError = (state: State): string | null => {
   return state[Reducer.Offers].error;
 };

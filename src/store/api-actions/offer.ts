@@ -1,8 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { Reducer } from '~/constants';
-import { errorHandler, hotelApiService } from '~/services';
+import { hotelApiService } from '~/services';
 import { ThunkOptions, Offer } from '~/types';
+import { errorHandler } from '~/utils';
 
 export const fetchOffer = createAsyncThunk<Offer, number, ThunkOptions>(
   `${Reducer.Offer}/fetchOne`,
@@ -10,9 +11,8 @@ export const fetchOffer = createAsyncThunk<Offer, number, ThunkOptions>(
     try {
       const hotel = await hotelApiService.findOneById(id);
       return hotel;
-    } catch (err) {
-      errorHandler(err as Error);
-      return rejectWithValue(err as Error);
+    } catch (error) {
+      return rejectWithValue(errorHandler(error as Error));
     }
   },
 );

@@ -5,5 +5,5 @@ export type State = {
   authStatus: AuthStatus;
   user: User | null;
   loading: boolean;
-  error: Error | null;
+  error: string | null;
 };
