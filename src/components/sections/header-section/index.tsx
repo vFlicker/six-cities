@@ -1,15 +1,21 @@
-import { Container, LogoLink } from '../../shared';
-import { NavList } from './nav-list';
+import { useAppSelector } from '~/hooks';
+import { userSlice } from '~/store';
+
+import { Container, Logo } from '../../shared';
+import { AuthList, NoAuthList } from './nav-list';
 
 import * as S from './styles';
 
 export function HeaderSection(): JSX.Element {
+  const isUserAuthorized = useAppSelector(userSlice.selectIsUserAuthorized);
+  const navList = isUserAuthorized ? <AuthList /> : <NoAuthList />;
+
   return (
     <S.Header>
       <Container>
         <S.HeaderWrapper>
-          <LogoLink width={81} height={41} />
-          <NavList />
+          <Logo />
+          <S.Nav>{navList}</S.Nav>
         </S.HeaderWrapper>
       </Container>
     </S.Header>

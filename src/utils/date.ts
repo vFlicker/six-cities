@@ -1,13 +1,11 @@
-type ISOString = string;
+const toUTCString = (date: Date) => new Date(date);
 
-const toUTCString = (date: ISOString) => new Date(date);
-
-export const getScreenReaderDate = (date: ISOString): string => {
+export const getScreenReaderDate = (date: Date): string => {
   const utcDate = toUTCString(date);
   return new Intl.DateTimeFormat('en-US').format(utcDate);
 };
 
-export const getFullMonthDate = (date: ISOString): string => {
+export const getFullMonthDate = (date: Date): string => {
   const utcDate = toUTCString(date);
   return new Intl.DateTimeFormat('en-US', {
     month: 'long',

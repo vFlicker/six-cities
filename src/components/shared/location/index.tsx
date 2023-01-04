@@ -18,7 +18,12 @@ export function Location({
   onClick,
 }: LocationProps): JSX.Element {
   return (
-    <S.Link to={AppRoute.Root} isActive={isActive} onClick={onClick}>
+    <S.Link
+      to={AppRoute.Root}
+      isActive={isActive}
+      onClick={onClick}
+      data-testid="location"
+    >
       <S.Text>{cityName}</S.Text>
     </S.Link>
   );

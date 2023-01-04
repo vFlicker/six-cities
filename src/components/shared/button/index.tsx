@@ -13,7 +13,7 @@ export function Button({
   ...props
 }: ButtonProps): JSX.Element {
   return (
-    <S.Button data-full-width={fullWidth} {...props}>
+    <S.Button fullWidth={fullWidth} {...props}>
       {children}
     </S.Button>
   );

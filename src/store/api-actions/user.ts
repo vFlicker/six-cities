@@ -1,53 +1,70 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { AppRoute, Reducer } from '~/constants';
-import { ThunkOptions, User } from '~/types';
-import { dropToken, saveToken, errorHandler } from '~/services';
+import { AuthData, ThunkOptions, User } from '~/types';
+import { ApiError, apiService, dropToken, saveToken } from '~/services';
 
-import { redirectToRoute } from '../slices/app';
-
-type AuthData = {
-  email: string;
-  password: string;
-};
+import { redirectToRoute } from '../actions/app';
 
 export const checkAuthStatus = createAsyncThunk<User, undefined, ThunkOptions>(
-  `${Reducer.User}/authStatus`,
-  async (_, { extra: apiService, rejectWithValue }) => {
+  `${Reducer.User}/checkAuthStatus`,
+  async (_, { rejectWithValue }) => {
     try {
-      const { data } = await apiService.get<User>(`/login`);
-      return data;
+      const user = await apiService.checkAuthStatus();
+      return user;
     } catch (error) {
-      errorHandler(error);
-      return rejectWithValue(error);
+      if (error instanceof ApiError) {
+        return rejectWithValue({
+          message: error.message,
+          statusCode: error.status,
+        });
+      }
+
+      throw error;
     }
   },
 );
 
 export const login = createAsyncThunk<User, AuthData, ThunkOptions>(
   `${Reducer.User}/login`,
-  async (authData, { dispatch, extra: apiService, rejectWithValue }) => {
+  async (data, { dispatch, rejectWithValue }) => {
     try {
-      const { data } = await apiService.post<User>(`/login`, authData);
-      saveToken(data.token);
+      const user = await apiService.login(data);
+
+      saveToken(user.token);
+
       dispatch(redirectToRoute(AppRoute.Root));
-      return data;
+
+      return user;
     } catch (error) {
-      errorHandler(error);
-      return rejectWithValue(error);
+      if (error instanceof ApiError) {
+        return rejectWithValue({
+          message: error.message,
+          statusCode: error.status,
+        });
+      }
+
+      throw error;
     }
   },
 );
 
 export const logout = createAsyncThunk<void, undefined, ThunkOptions>(
   `${Reducer.User}/logout`,
-  async (_, { extra: apiService, rejectWithValue }) => {
+  async (_, { rejectWithValue }) => {
     try {
-      await apiService.delete<void>(`logout`);
-      dropToken();
+      await apiService.logout();
+
+      return dropToken();
     } catch (error) {
-      errorHandler(error);
-      return rejectWithValue(error);
+      if (error instanceof ApiError) {
+        return rejectWithValue({
+          message: error.message,
+          statusCode: error.status,
+        });
+      }
+
+      throw error;
     }
   },
 );

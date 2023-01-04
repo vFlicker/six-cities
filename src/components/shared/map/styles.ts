@@ -15,5 +15,7 @@ export const Map = styled.section<StyledProps>`
         margin-bottom: 50px;
       `;
     }
+
+    return css``;
   }};
 `;

@@ -2,9 +2,9 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { Reducer } from '~/constants';
 
-import { toggleFavorite } from '../../api-actions/favorites';
+import { toggleFavorite } from '../../api-actions/app';
 import {
-  fetchOffers,
+  fetchAllOffers,
   fetchFavoriteOffers,
   fetchOffersNearby,
 } from '../../api-actions/offers';
@@ -27,18 +27,18 @@ const slice = createSlice({
   extraReducers: (builder) => {
     builder
       /* FETCH OFFERS */
-      .addCase(fetchOffers.pending, (state) => {
+      .addCase(fetchAllOffers.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(fetchOffers.fulfilled, (state, action) => {
+      .addCase(fetchAllOffers.fulfilled, (state, action) => {
         state.all = action.payload;
         state.loading = false;
         state.error = null;
       })
-      .addCase(fetchOffers.rejected, (state, action) => {
+      .addCase(fetchAllOffers.rejected, (state, { payload }) => {
         state.loading = false;
-        state.error = action.payload;
+        if (payload) state.error = payload.message;
       })
 
       /* FETCH FAVORITES OFFERS */
@@ -51,9 +51,9 @@ const slice = createSlice({
         state.loading = false;
         state.error = null;
       })
-      .addCase(fetchFavoriteOffers.rejected, (state, action) => {
+      .addCase(fetchFavoriteOffers.rejected, (state, { payload }) => {
         state.loading = false;
-        state.error = action.payload;
+        if (payload) state.error = payload.message;
       })
 
       /* FETCH OFFERS NEARBY */
@@ -66,9 +66,9 @@ const slice = createSlice({
         state.loading = false;
         state.error = null;
       })
-      .addCase(fetchOffersNearby.rejected, (state, action) => {
+      .addCase(fetchOffersNearby.rejected, (state, { payload }) => {
         state.loading = false;
-        state.error = action.payload;
+        if (payload) state.error = payload.message;
       })
 
       /* TOGGLE FAVORITE STATUS */
@@ -85,6 +85,6 @@ const slice = createSlice({
   },
 });
 
-export { fetchOffers, fetchFavoriteOffers, fetchOffersNearby };
+export { fetchAllOffers, fetchFavoriteOffers, fetchOffersNearby };
 
-export default slice;
+export default slice.reducer;

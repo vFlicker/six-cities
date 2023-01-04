@@ -1,23 +1,18 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { CityName, Reducer, SortType } from '~/constants';
-import { AppStatus } from '~/types/app';
+import { CityName, NO_ACTIVE_CARD, Reducer, SortType } from '~/constants';
 
 import { redirectToRoute } from '../../actions/app';
-import { initializeApp } from '../../api-actions/app';
-
-type State = {
-  initialize: AppStatus;
-  activeCardId: number;
-  currentCityName: CityName;
-  currentSortType: SortType;
-};
+import { toggleFavorite } from '../../api-actions/app';
+import { State } from './types';
+import { addIdToInIdsProgress, removeIdFromInIdsProgress } from './utils';
 
 const initialState: State = {
-  initialize: AppStatus.Idle,
-  activeCardId: -1,
+  activeCardId: NO_ACTIVE_CARD,
   currentCityName: CityName.Amsterdam,
   currentSortType: SortType.Popular,
+  favoriteIdsInProgress: [],
+  error: null,
 };
 
 const slice = createSlice({
@@ -36,15 +31,30 @@ const slice = createSlice({
   },
   extraReducers(builder) {
     builder
-      /* INITIALIZE */
-      .addCase(initializeApp.pending, (state) => {
-        state.initialize = AppStatus.Pending;
+      /* TOGGLE FAVORITE STATUS */
+      .addCase(toggleFavorite.pending, (state, { meta }) => {
+        state.favoriteIdsInProgress = addIdToInIdsProgress(
+          state.favoriteIdsInProgress,
+          meta.arg.id,
+        );
+
+        state.error = null;
       })
-      .addCase(initializeApp.fulfilled, (state) => {
-        state.initialize = AppStatus.Succeeded;
+      .addCase(toggleFavorite.fulfilled, (state, { meta }) => {
+        state.favoriteIdsInProgress = removeIdFromInIdsProgress(
+          state.favoriteIdsInProgress,
+          meta.arg.id,
+        );
+
+        state.error = null;
       })
-      .addCase(initializeApp.rejected, (state) => {
-        state.initialize = AppStatus.Failed;
+      .addCase(toggleFavorite.rejected, (state, { payload, meta }) => {
+        state.favoriteIdsInProgress = removeIdFromInIdsProgress(
+          state.favoriteIdsInProgress,
+          meta.arg.id,
+        );
+
+        if (payload) state.error = payload.message;
       });
   },
 });
@@ -54,6 +64,6 @@ export { redirectToRoute };
 export const { changeCityName, changeSortType, setActiveCardId } =
   slice.actions;
 
-export { initializeApp };
+export { toggleFavorite };
 
-export default slice;
+export default slice.reducer;

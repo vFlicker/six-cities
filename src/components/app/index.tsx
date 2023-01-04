@@ -1,19 +1,37 @@
-import { useAppSelector } from '~/hooks';
-import { userSlice } from '~/store';
+import { useEffect } from 'react';
+
+import { browserHistory } from '~/browser-history';
+import { useAppDispatch, useAppSelector } from '~/hooks';
+import { offersSlice, userSlice } from '~/store';
 
 import { Pages } from '../pages';
-import { ErrorMessage, Spinner } from '../shared';
+import { HistoryRouter, Spinner } from '../shared';
 
 export function App(): JSX.Element {
-  const authStatus = useAppSelector(userSlice.selectAuthStatus);
-  const isLoading = useAppSelector(userSlice.selectLoadingStatus);
-  const error = useAppSelector(userSlice.selectError);
+  const dispatch = useAppDispatch();
 
-  if (userSlice.isCheckedAuth(authStatus) || isLoading) {
+  const isAuthChecked = useAppSelector(userSlice.selectIsAuthChecked);
+  const isUserAuthorized = useAppSelector(userSlice.selectIsUserAuthorized);
+  const isLoading = useAppSelector(userSlice.selectIsLoading);
+
+  useEffect(() => {
+    dispatch(offersSlice.fetchAllOffers());
+    dispatch(userSlice.checkAuthStatus());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (isUserAuthorized) {
+      dispatch(offersSlice.fetchFavoriteOffers());
+    }
+  }, [dispatch, isUserAuthorized]);
+
+  if (!isAuthChecked || isLoading) {
     return <Spinner />;
   }
 
-  if (error) return <ErrorMessage />;
-
-  return <Pages />;
+  return (
+    <HistoryRouter history={browserHistory}>
+      <Pages />
+    </HistoryRouter>
+  );
 }

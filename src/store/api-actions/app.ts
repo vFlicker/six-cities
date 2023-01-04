@@ -1,37 +1,28 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { Reducer } from '~/constants';
-import { errorHandler } from '~/services';
-import { ThunkOptions } from '~/types';
+import { ApiError, apiService } from '~/services';
+import { Offer, ThunkOptions, ToggleFavoritePayload } from '~/types';
 
-import { fetchFavoriteOffers, fetchOffers } from '../slices/offers';
-import {
-  checkAuthStatus,
-  isUserAuthorized,
-  selectAuthStatus,
-} from '../slices/user';
-
-/**
- * Thunk that call thunks for init application.
- */
-export const initializeApp = createAsyncThunk<void, undefined, ThunkOptions>(
-  `${Reducer.App}/initialize`,
-  async (_, { getState, dispatch, rejectWithValue }) => {
+export const toggleFavorite = createAsyncThunk<
+  Offer,
+  ToggleFavoritePayload,
+  ThunkOptions
+>(
+  `${Reducer.App}/toggleFavoriteStatus`,
+  async ({ id, status }, { rejectWithValue }) => {
     try {
-      const checkAuthStatusPromise = dispatch(checkAuthStatus());
-      const fetchOffersPromise = dispatch(fetchOffers());
-
-      await Promise.all([checkAuthStatusPromise, fetchOffersPromise]);
-
-      const state = getState();
-      const authStatus = selectAuthStatus(state);
-
-      if (isUserAuthorized(authStatus)) {
-        await dispatch(fetchFavoriteOffers());
-      }
+      const offer = await apiService.toggleFavoriteStatus(id, status);
+      return offer;
     } catch (error) {
-      errorHandler(error);
-      return rejectWithValue(error);
+      if (error instanceof ApiError) {
+        return rejectWithValue({
+          message: error.message,
+          statusCode: error.status,
+        });
+      }
+
+      throw error;
     }
   },
 );

@@ -23,12 +23,13 @@ export function StarRating({
   return (
     <S.StarsWrapper>
       <S.Stars width={width} height={height}>
+        <S.HiddenText>Rating</S.HiddenText>
         <S.StarsItem
           width={width}
           height={height}
           percents={convertRatingToPercents(rating)}
+          data-testid="star"
         />
-        <S.HiddenText>Rating</S.HiddenText>
       </S.Stars>
 
       {hasText && <S.Text>{rating}</S.Text>}

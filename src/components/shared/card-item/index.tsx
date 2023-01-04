@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { FavoriteStatus } from '~/constants';
 import { useAppDispatch, useAppSelector } from '~/hooks';
-import { favoritesSlice } from '~/store';
+import { appSlice } from '~/store';
 
 import { Offer } from '~/types';
 
@@ -39,19 +39,15 @@ export function CardItem({
     type,
   } = offer;
 
-  const favoritesInProgress = useAppSelector(
-    favoritesSlice.selectFavoritesInProgress,
+  const favoriteIdsInProgress = useAppSelector(
+    appSlice.selectFavoriteIdsInProgress,
   );
 
   const dispatch = useAppDispatch();
 
   const handleFavoriteButtonClick = () => {
-    dispatch(
-      favoritesSlice.toggleFavorite({
-        id,
-        status: isFavorite ? FavoriteStatus.Remove : FavoriteStatus.Add,
-      }),
-    );
+    const status = isFavorite ? FavoriteStatus.Remove : FavoriteStatus.Add;
+    dispatch(appSlice.toggleFavorite({ id, status }));
   };
 
   return (
@@ -60,9 +56,11 @@ export function CardItem({
       onMouseEnter={onCardItemMouseEnter}
       onMouseLeave={onCardItemMouseLeave}
     >
-      <S.MarkWrapper>
-        <Mark isPremium={isPremium} type="small" />
-      </S.MarkWrapper>
+      {isPremium && (
+        <S.MarkWrapper>
+          <Mark type="small" />
+        </S.MarkWrapper>
+      )}
 
       <S.ImageWrapper cardType={cardType}>
         <Link to={createOfferLink(id)}>
@@ -81,10 +79,9 @@ export function CardItem({
           </S.Price>
 
           <BookmarkButton
-            width={18}
-            height={19}
+            size="small"
             isFavorite={isFavorite}
-            isLoading={favoritesInProgress.includes(id)}
+            isLoading={favoriteIdsInProgress.includes(id)}
             onClick={handleFavoriteButtonClick}
           />
         </S.PriceWrapper>

@@ -3,11 +3,9 @@ import { Link as RouterLink } from 'react-router-dom';
 
 import { avatarIconSrc } from '~/assets/images';
 
-export const Nav = styled.nav`
-  display: flex;
-  flex-shrink: 0;
-  flex-wrap: wrap;
-`;
+type AvatarProps = {
+  avatarUrl?: string;
+};
 
 export const List = styled.ul`
   display: flex;
@@ -31,7 +29,7 @@ export const Link = styled(RouterLink)`
   }
 `;
 
-export const Avatar = styled.div<{ avatarUrl?: string }>`
+export const Avatar = styled.div<AvatarProps>`
   width: 24px;
   height: 24px;
   margin-right: 10px;
@@ -58,7 +56,7 @@ export const Counter = styled.div`
   border-radius: 15px;
 `;
 
-export const Button = styled.span`
+export const LinkText = styled.span`
   padding-top: 2px;
   padding-right: 8px;
 `;

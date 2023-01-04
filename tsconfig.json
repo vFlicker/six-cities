@@ -1,12 +1,17 @@
 {
   "compilerOptions": {
     /* Basic Options */
-    "lib": ["dom", "esnext", "DOM.Iterable"],
+    "lib": ["DOM", "ESNext"],
     "jsx": "react-jsx",
     "noEmit": true,
 
     /* Strict Type-Checking Options */
     "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "suppressImplicitAnyIndexErrors": true,
 
     /* Module Resolution Options */
     "moduleResolution": "Node",
@@ -20,8 +25,5 @@
     "baseUrl": ".",
     "paths": { "~/*": ["src/*"] }
   },
-  "exclude": [
-    "node_modules",
-    "dist"
-  ]
+  "exclude": ["node_modules", "build"]
 }

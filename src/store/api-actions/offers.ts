@@ -1,58 +1,65 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { Reducer } from '~/constants';
-import { errorHandler } from '~/services';
-import { ThunkOptions, Offer, OfferServer } from '~/types';
+import { ApiError, apiService } from '~/services';
+import { ThunkOptions, Offer } from '~/types';
 
-export const fetchOffers = createAsyncThunk<
-  OfferServer[],
+export const fetchAllOffers = createAsyncThunk<
+  Offer[],
   undefined,
   ThunkOptions
->(
-  `${Reducer.Offers}/fetchAll`,
-  async (_, { extra: apiService, rejectWithValue }) => {
-    try {
-      const { data } = await apiService.get<OfferServer[]>(`/hotels`);
-      return data;
-    } catch (error) {
-      errorHandler(error);
-      return rejectWithValue(error);
+>(`${Reducer.Offers}/fetchAllOffers`, async (_, { rejectWithValue }) => {
+  try {
+    const offers = await apiService.findAllOffers();
+    return offers;
+  } catch (error) {
+    if (error instanceof ApiError) {
+      return rejectWithValue({
+        message: error.message,
+        statusCode: error.status,
+      });
     }
-  },
-);
+
+    throw error;
+  }
+});
 
 export const fetchFavoriteOffers = createAsyncThunk<
   Offer[],
   undefined,
   ThunkOptions
->(
-  `${Reducer.Offers}/fetchFavorites`,
-  async (_, { extra: apiService, rejectWithValue }) => {
-    try {
-      const { data } = await apiService.get<OfferServer[]>(`/favorite`);
-      return data;
-    } catch (error) {
-      errorHandler(error);
-      return rejectWithValue(error);
+>(`${Reducer.Offers}/fetchFavoriteOffers`, async (_, { rejectWithValue }) => {
+  try {
+    const favoriteOffers = await apiService.findFavoriteOffers();
+    return favoriteOffers;
+  } catch (error) {
+    if (error instanceof ApiError) {
+      return rejectWithValue({
+        message: error.message,
+        statusCode: error.status,
+      });
     }
-  },
-);
+
+    throw error;
+  }
+});
 
 export const fetchOffersNearby = createAsyncThunk<
   Offer[],
   number,
   ThunkOptions
->(
-  `${Reducer.Offers}/fetchNearby`,
-  async (id, { extra: apiService, rejectWithValue }) => {
-    try {
-      const { data } = await apiService.get<OfferServer[]>(
-        `/hotels/${id}/nearby`,
-      );
-      return data;
-    } catch (error) {
-      errorHandler(error);
-      return rejectWithValue(error);
+>(`${Reducer.Offers}/fetchOffersNearby`, async (id, { rejectWithValue }) => {
+  try {
+    const offersNearby = await apiService.findOffersNearby(id);
+    return offersNearby;
+  } catch (error) {
+    if (error instanceof ApiError) {
+      return rejectWithValue({
+        message: error.message,
+        statusCode: error.status,
+      });
     }
-  },
-);
+
+    throw error;
+  }
+});

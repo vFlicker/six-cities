@@ -1,5 +1,5 @@
 import { CityName, Reducer, SortType } from '~/constants';
-import { State } from '~/types';
+import { OfferID, State } from '~/types';
 
 export const selectCurrentCityName = (state: State): CityName => {
   return state[Reducer.App].currentCityName;
@@ -11,4 +11,12 @@ export const selectCurrentSortType = (state: State): SortType => {
 
 export const selectActiveCardId = (state: State): number => {
   return state[Reducer.App].activeCardId;
+};
+
+export const selectFavoriteIdsInProgress = (state: State): OfferID[] => {
+  return state[Reducer.App].favoriteIdsInProgress;
+};
+
+export const selectError = (state: State): string | null => {
+  return state[Reducer.App].error;
 };

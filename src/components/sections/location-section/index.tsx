@@ -1,16 +1,30 @@
-import { useAppSelector } from '~/hooks';
+import { CityName, cityNames } from '~/constants';
+import { useAppDispatch } from '~/hooks';
 import { appSlice } from '~/store';
+import { pickRandomItem } from '~/utils';
 
 import { Location } from '../../shared';
 
 import * as S from './styles';
 
-export function LocationSection(): JSX.Element {
-  const cityName = useAppSelector(appSlice.selectCurrentCityName);
+type LocationSectionProps = {
+  cityName?: CityName;
+};
+
+const defaultCityName = pickRandomItem(cityNames);
+
+export function LocationSection({
+  cityName = defaultCityName,
+}: LocationSectionProps): JSX.Element {
+  const dispatch = useAppDispatch();
+
+  const handleLocationClick = () => {
+    dispatch(appSlice.changeCityName(cityName));
+  };
 
   return (
     <S.Section>
-      <Location isActive cityName={cityName} />
+      <Location isActive cityName={cityName} onClick={handleLocationClick} />
     </S.Section>
   );
 }

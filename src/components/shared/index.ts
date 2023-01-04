@@ -5,7 +5,7 @@ export * from './error-boundary';
 export * from './error-message';
 export * from './history-router';
 export * from './location';
-export * from './logo-link';
+export * from './logo';
 export * from './map';
 export * from './mark';
 export * from './not-found';

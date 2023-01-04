@@ -1,6 +1,9 @@
-import { CityName } from '~/constants';
+import { CityName, FavoriteStatus } from '~/constants';
 
-import { CamelToSnakeCaseNested } from '../util-types';
+export type ToggleFavoritePayload = {
+  id: OfferID;
+  status: FavoriteStatus;
+};
 
 export type City = {
   location: Location;
@@ -9,8 +12,8 @@ export type City = {
 
 export type Host = {
   id: number;
-  avatarUrl?: string;
-  isPro?: boolean;
+  avatarUrl: string;
+  isPro: boolean;
   name: string;
 };
 
@@ -20,19 +23,21 @@ export type Location = {
   zoom: number;
 };
 
+export type OfferID = number;
+
 export type Offer = {
-  id: number;
+  id: OfferID;
   bedrooms: number;
   city: City;
   description: string;
   goods: string[];
   host: Host;
   images: string[];
-  isFavorite?: boolean;
-  isPremium?: boolean;
+  isFavorite: boolean;
+  isPremium: boolean;
   location: Location;
-  maxAdults?: number;
-  previewImage?: string;
+  maxAdults: number;
+  previewImage: string;
   price: number;
   rating: number;
   title: string;
@@ -42,7 +47,3 @@ export type Offer = {
 export type OffersByCity = Record<CityName, Offer[]>;
 
 export type PartialOffersByCity = Partial<OffersByCity>;
-
-export type OfferServer = Omit<CamelToSnakeCaseNested<Offer>, 'host'> & {
-  host: CamelToSnakeCaseNested<Host>;
-};

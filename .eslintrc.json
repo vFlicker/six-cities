@@ -8,6 +8,7 @@
   "parserOptions": {
     "sourceType": "module"
   },
+  "plugins": ["react", "@typescript-eslint/eslint-plugin"],
   "extends": [
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
@@ -15,7 +16,6 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended"
   ],
-  "plugins": ["react", "@typescript-eslint/eslint-plugin"],
   "settings": {
     "react": {
       "version": "detect"

@@ -1,16 +1,17 @@
+import { NO_ACTIVE_CARD } from '~/constants';
 import { useAppDispatch, useAppSelector } from '~/hooks';
 import { appSlice, offersSlice } from '~/store';
 
 import { CardItem, ErrorMessage, Map, Spinner } from '../../shared';
 import { MainEmptySection } from './main-empty-section';
-import { SortingFrom } from './sorting-form';
+import { SortSelect } from './sort-select';
 
 import * as S from './styles';
 
 export function MainSection(): JSX.Element {
   const cityName = useAppSelector(appSlice.selectCurrentCityName);
   const sortedOffers = useAppSelector(offersSlice.selectSortedOffers);
-  const isLoading = useAppSelector(offersSlice.selectLoadingStatus);
+  const isLoading = useAppSelector(offersSlice.selectIsLoading);
   const error = useAppSelector(offersSlice.selectError);
 
   const dispatch = useAppDispatch();
@@ -21,13 +22,15 @@ export function MainSection(): JSX.Element {
       offer={offer}
       cardType="big"
       onCardItemMouseEnter={() => dispatch(appSlice.setActiveCardId(offer.id))}
-      onCardItemMouseLeave={() => dispatch(appSlice.setActiveCardId(-1))}
+      onCardItemMouseLeave={() =>
+        dispatch(appSlice.setActiveCardId(NO_ACTIVE_CARD))
+      }
     />
   ));
 
-  if (error) return <ErrorMessage />;
-
   if (isLoading) return <Spinner />;
+
+  if (error) return <ErrorMessage />;
 
   if (!sortedOffers.length) return <MainEmptySection />;
 
@@ -40,7 +43,7 @@ export function MainSection(): JSX.Element {
           {sortedOffers.length} places to stay in {cityName}
         </S.PlacesFound>
 
-        <SortingFrom />
+        <SortSelect />
 
         <S.CardList>{cardList}</S.CardList>
       </S.Section>

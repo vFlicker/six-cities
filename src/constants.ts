@@ -20,15 +20,21 @@ export enum CityName {
   Dusseldorf = 'Dusseldorf',
 }
 
+export const cityNames = Object.values(CityName);
+
 export const enum FavoriteStatus {
   Add = 1,
   Remove = 0,
 }
 
-export const enum HttpCode {
-  BadRequest = 400,
-  Unauthorized = 401,
-  NotFound = 404,
+export const NO_ACTIVE_CARD = -1;
+
+export const enum Reducer {
+  App = 'APP',
+  Review = 'REVIEW',
+  Offer = 'OFFER',
+  Offers = 'OFFERS',
+  User = 'USER',
 }
 
 export enum SortType {
@@ -36,13 +42,4 @@ export enum SortType {
   PriceHighToLow = 'Price: high to low',
   PriceLowToHigh = 'Price: low to high',
   TopRatedFirst = 'Top rated first',
-}
-
-export const enum Reducer {
-  App = 'APP',
-  Comments = 'COMMENTS',
-  Favorites = 'FAVORITES',
-  Offer = 'OFFER',
-  Offers = 'OFFERS',
-  User = 'USER',
 }
