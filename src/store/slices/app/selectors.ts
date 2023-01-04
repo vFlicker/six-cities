@@ -13,7 +13,7 @@ export const selectActiveCardId = (state: State): number => {
   return state[Reducer.App].activeCardId;
 };
 
-export const selectfavoriteIdsInProgress = (state: State): OfferID[] => {
+export const selectFavoriteIdsInProgress = (state: State): OfferID[] => {
   return state[Reducer.App].favoriteIdsInProgress;
 };
 

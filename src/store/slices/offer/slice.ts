@@ -30,7 +30,7 @@ const slice = createSlice({
       })
       .addCase(fetchOffer.rejected, (state, { payload }) => {
         state.loading = false;
-        if (payload) state.error = payload;
+        if (payload) state.error = payload.message;
       })
 
       /* TOGGLE FAVORITE */

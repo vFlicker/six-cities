@@ -54,7 +54,7 @@ const slice = createSlice({
           meta.arg.id,
         );
 
-        if (payload) state.error = payload;
+        if (payload) state.error = payload.message;
       });
   },
 });

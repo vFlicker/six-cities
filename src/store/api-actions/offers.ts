@@ -1,9 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { Reducer } from '~/constants';
-import { apiService } from '~/services';
+import { ApiError, apiService } from '~/services';
 import { ThunkOptions, Offer } from '~/types';
-import { errorHandler } from '~/utils';
 
 export const fetchAllOffers = createAsyncThunk<
   Offer[],
@@ -14,7 +13,8 @@ export const fetchAllOffers = createAsyncThunk<
     const offers = await apiService.findAllOffers();
     return offers;
   } catch (error) {
-    return rejectWithValue(errorHandler(error as Error));
+    if (error instanceof ApiError) rejectWithValue(error);
+    throw error;
   }
 });
 
@@ -27,7 +27,8 @@ export const fetchFavoriteOffers = createAsyncThunk<
     const favoriteOffers = await apiService.findFavoriteOffers();
     return favoriteOffers;
   } catch (error) {
-    return rejectWithValue(errorHandler(error as Error));
+    if (error instanceof ApiError) rejectWithValue(error);
+    throw error;
   }
 });
 
@@ -40,6 +41,7 @@ export const fetchOffersNearby = createAsyncThunk<
     const offersNearby = await apiService.findOffersNearby(id);
     return offersNearby;
   } catch (error) {
-    return rejectWithValue(errorHandler(error as Error));
+    if (error instanceof ApiError) rejectWithValue(error);
+    throw error;
   }
 });

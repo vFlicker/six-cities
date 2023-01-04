@@ -2,8 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { AppRoute, Reducer } from '~/constants';
 import { AuthData, ThunkOptions, User } from '~/types';
-import { apiService, dropToken, saveToken } from '~/services';
-import { errorHandler } from '~/utils';
+import { ApiError, apiService, dropToken, saveToken } from '~/services';
 
 import { redirectToRoute } from '../actions/app';
 
@@ -14,7 +13,8 @@ export const checkAuthStatus = createAsyncThunk<User, undefined, ThunkOptions>(
       const user = await apiService.checkAuthStatus();
       return user;
     } catch (error) {
-      return rejectWithValue(errorHandler(error as Error));
+      if (error instanceof ApiError) rejectWithValue(error);
+      throw error;
     }
   },
 );
@@ -31,7 +31,8 @@ export const login = createAsyncThunk<User, AuthData, ThunkOptions>(
 
       return user;
     } catch (error) {
-      return rejectWithValue(errorHandler(error as Error));
+      if (error instanceof ApiError) rejectWithValue(error);
+      throw error;
     }
   },
 );
@@ -44,7 +45,8 @@ export const logout = createAsyncThunk<void, undefined, ThunkOptions>(
 
       return dropToken();
     } catch (error) {
-      return rejectWithValue(errorHandler(error as Error));
+      if (error instanceof ApiError) rejectWithValue(error);
+      throw error;
     }
   },
 );

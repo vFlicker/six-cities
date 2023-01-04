@@ -32,7 +32,7 @@ const slice = createSlice({
       .addCase(checkAuthStatus.rejected, (state, { payload }) => {
         state.authStatus = AuthStatus.NoAuth;
         state.loading = false;
-        if (payload) state.error = payload;
+        if (payload) state.error = payload.message;
       })
 
       /* LOGIN */
@@ -50,7 +50,7 @@ const slice = createSlice({
       .addCase(login.rejected, (state, { payload }) => {
         state.authStatus = AuthStatus.NoAuth;
         state.loading = false;
-        if (payload) state.error = payload;
+        if (payload) state.error = payload.message;
       })
 
       /* LOGOUT */
@@ -66,7 +66,7 @@ const slice = createSlice({
       })
       .addCase(logout.rejected, (state, { payload }) => {
         state.loading = false;
-        if (payload) state.error = payload;
+        if (payload) state.error = payload.message;
       });
   },
 });
