@@ -1,7 +1,6 @@
 import request from 'axios';
 import { toast } from 'react-toastify';
-
-import { HttpCode } from '~/constants';
+import { StatusCodes } from 'http-status-codes';
 
 export const errorHandler = (error: Error): void => {
   if (!request.isAxiosError(error)) {
@@ -12,15 +11,15 @@ export const errorHandler = (error: Error): void => {
 
   if (response) {
     switch (response.status) {
-      case HttpCode.BadRequest:
+      case StatusCodes.BAD_REQUEST:
         toast.info(response.data.error);
         break;
 
-      case HttpCode.Unauthorized:
+      case StatusCodes.UNAUTHORIZED:
         toast.info(response.data.error);
         break;
 
-      case HttpCode.NotFound:
+      case StatusCodes.NOT_FOUND:
         toast.info(response.data.error);
         break;
 

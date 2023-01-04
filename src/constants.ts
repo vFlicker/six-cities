@@ -27,12 +27,6 @@ export const enum FavoriteStatus {
   Remove = 0,
 }
 
-export const enum HttpCode {
-  BadRequest = 400,
-  Unauthorized = 401,
-  NotFound = 404,
-}
-
 export const NO_ACTIVE_CARD = -1;
 
 export const enum Reducer {
