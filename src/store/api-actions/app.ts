@@ -15,7 +15,7 @@ export const toggleFavorite = createAsyncThunk<
       const offer = await apiService.toggleFavoriteStatus(id, status);
       return offer;
     } catch (error) {
-      if (error instanceof ApiError) rejectWithValue(error);
+      if (error instanceof ApiError) return rejectWithValue(error);
       throw error;
     }
   },
