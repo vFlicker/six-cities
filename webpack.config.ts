@@ -21,8 +21,8 @@ const DEV_SERVER_PORT = 3000;
 const config = (env: Env): Configuration => {
   const { mode = 'development' } = env;
 
-  const isProd = mode === 'production';
   const isDev = mode === 'development';
+  const isProd = mode === 'production';
 
   const getOptimization = () => {
     if (isProd) {

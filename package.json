@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "start": "webpack-dev-server --env mode=development",
-    "build": "webpack --env production",
+    "build": "webpack --env mode=production",
     "lint": "eslint src --ext .ts,.tsx --fix",
     "test": "jest"
   },
