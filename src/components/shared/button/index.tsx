@@ -1,11 +1,11 @@
-import { PropsWithChildren } from 'react';
+import { ComponentProps, PropsWithChildren } from 'react';
 
 import * as S from './styles';
 
 type ButtonProps = PropsWithChildren<{
   fullWidth?: boolean;
 }> &
-  JSX.IntrinsicElements['button'];
+  ComponentProps<'button'>;
 
 export function Button({
   children,
