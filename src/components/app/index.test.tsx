@@ -1,4 +1,4 @@
-import { createMemoryHistory } from 'history';
+import { createHashHistory } from 'history';
 
 import { AppRoute, Reducer } from '~/constants';
 import {
@@ -12,12 +12,11 @@ import {
 
 import { App } from './index';
 
-const history = createMemoryHistory();
+const history = createHashHistory();
 
 describe('Component: App', () => {
   it('should render correctly', () => {
     const renderOptions: RenderOptions = {
-      history,
       preloadedState: {
         [Reducer.App]: appStore.initialState,
         [Reducer.Offers]: offersStore.stateWitUpdatedOffers,
@@ -35,7 +34,6 @@ describe('Component: App', () => {
 
   it('should render Loader', () => {
     const renderOptions: RenderOptions = {
-      history,
       preloadedState: {
         [Reducer.App]: appStore.initialState,
         [Reducer.Offers]: offersStore.stateWitUpdatedOffers,
@@ -52,7 +50,6 @@ describe('Component: App', () => {
 
   it('should fetch favorites', () => {
     const renderOptions: RenderOptions = {
-      history,
       preloadedState: {
         [Reducer.App]: appStore.initialState,
         [Reducer.Offers]: offersStore.stateWitUpdatedOffers,
@@ -74,7 +71,6 @@ describe('Component: App', () => {
 
   it('should not fetch favorites', () => {
     const renderOptions: RenderOptions = {
-      history,
       preloadedState: {
         [Reducer.App]: appStore.initialState,
         [Reducer.Offers]: offersStore.stateWitUpdatedOffers,

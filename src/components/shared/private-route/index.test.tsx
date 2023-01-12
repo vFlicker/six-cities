@@ -1,12 +1,12 @@
 import { Route, Routes } from 'react-router-dom';
-import { createMemoryHistory } from 'history';
+import { createHashHistory } from 'history';
 
 import { AppRoute, Reducer } from '~/constants';
 import { render, RenderOptions, screen, userStore } from '~/tests';
 
 import { PrivateRoute } from './index';
 
-const history = createMemoryHistory();
+const history = createHashHistory();
 
 beforeEach(() => {
   history.push('/private');
@@ -15,7 +15,6 @@ beforeEach(() => {
 describe('Component: PrivateRoute', () => {
   it('should render login page when user not authorized,', () => {
     const renderOption: RenderOptions = {
-      history,
       preloadedState: {
         [Reducer.User]: userStore.noAuthState,
       },
@@ -42,7 +41,6 @@ describe('Component: PrivateRoute', () => {
 
   it('should render secret page when user authorized,', () => {
     const renderOption: RenderOptions = {
-      history,
       preloadedState: {
         [Reducer.User]: userStore.authState,
       },

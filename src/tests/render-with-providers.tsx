@@ -1,20 +1,18 @@
 import { PreloadedState } from '@reduxjs/toolkit';
+import { HashRouter } from 'react-router-dom';
 import configureMockStore from 'redux-mock-store';
 import {
   render,
   RenderOptions as RTKRenderOptions,
 } from '@testing-library/react';
-import { createMemoryHistory, MemoryHistory } from 'history';
 import { PropsWithChildren, ReactElement } from 'react';
 import { Provider } from 'react-redux';
 import '@testing-library/jest-dom';
 
-import { HistoryRouter } from '~/components/shared';
 import { AuthData, PostReview, State, ToggleFavoritePayload } from '~/types';
 
 export interface RenderOptions extends Omit<RTKRenderOptions, 'queries'> {
   preloadedState?: PreloadedState<State>;
-  history?: MemoryHistory;
 }
 
 export const mockPageId = 10;
@@ -103,11 +101,7 @@ afterEach(() => {
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 const renderWithProviders = (
   ui: ReactElement,
-  {
-    history = createMemoryHistory(),
-    preloadedState = {},
-    ...renderOptions
-  }: RenderOptions = {},
+  { preloadedState = {}, ...renderOptions }: RenderOptions = {},
 ) => {
   const mockStore = configureMockStore();
   const store = mockStore(preloadedState);
@@ -115,7 +109,7 @@ const renderWithProviders = (
   function Wrapper({ children }: PropsWithChildren): JSX.Element {
     return (
       <Provider store={store}>
-        <HistoryRouter history={history}>{children}</HistoryRouter>
+        <HashRouter>{children}</HashRouter>
       </Provider>
     );
   }

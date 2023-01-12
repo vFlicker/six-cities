@@ -1,4 +1,4 @@
-import { createMemoryHistory } from 'history';
+import { createHashHistory } from 'history';
 
 import { AppRoute, Reducer } from '~/constants';
 import {
@@ -14,12 +14,11 @@ import {
 
 import { Pages } from './index';
 
-const history = createMemoryHistory();
+const history = createHashHistory();
 
 describe('Application Routing', () => {
   it('should render "MainPage" when navigate to "/"', () => {
     const renderOptions: RenderOptions = {
-      history,
       preloadedState: {
         [Reducer.App]: appStore.initialState,
         [Reducer.Offers]: offersStore.stateWitUpdatedOffers,
@@ -37,7 +36,6 @@ describe('Application Routing', () => {
 
   it('should render "FavoritesPage" when navigate to "/favorites"', () => {
     const renderOptions: RenderOptions = {
-      history,
       preloadedState: {
         [Reducer.App]: appStore.initialState,
         [Reducer.Offers]: offersStore.stateWithOffers,
@@ -54,7 +52,6 @@ describe('Application Routing', () => {
 
   it('should render "LoginPage" when navigate to "/login"', () => {
     const renderOptions: RenderOptions = {
-      history,
       preloadedState: {
         [Reducer.App]: appStore.initialState,
         [Reducer.User]: userStore.noAuthState,
@@ -74,7 +71,6 @@ describe('Application Routing', () => {
     const { id, title } = offerStore.stateWithOffer.offer;
 
     const renderOptions: RenderOptions = {
-      history,
       preloadedState: {
         [Reducer.App]: appStore.initialState,
         [Reducer.Offer]: offerStore.stateWithOffer,
@@ -94,7 +90,6 @@ describe('Application Routing', () => {
 
   it('should render "NotFoundPage" when navigate to unknown route', () => {
     const renderOptions: RenderOptions = {
-      history,
       preloadedState: {
         [Reducer.User]: userStore.noAuthState,
       },

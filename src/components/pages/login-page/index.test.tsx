@@ -1,4 +1,4 @@
-import { createMemoryHistory } from 'history';
+import { createHashHistory } from 'history';
 import { Route, Routes } from 'react-router-dom';
 
 import { AppRoute, Reducer } from '~/constants';
@@ -13,7 +13,7 @@ import {
 
 import { LoginPage } from './index';
 
-const history = createMemoryHistory();
+const history = createHashHistory();
 
 const app = (
   <Routes>
@@ -29,7 +29,6 @@ beforeEach(() => {
 describe('Component: LoginPage', () => {
   it('should render correctly', () => {
     const renderOptions: RenderOptions = {
-      history,
       preloadedState: {
         [Reducer.App]: appStore.initialState,
         [Reducer.Offers]: offersStore.stateWithOffers,
@@ -47,7 +46,6 @@ describe('Component: LoginPage', () => {
 
   it('should render "MainPage"', () => {
     const renderOptions: RenderOptions = {
-      history,
       preloadedState: {
         [Reducer.App]: appStore.initialState,
         [Reducer.Offers]: offersStore.stateWithOffers,

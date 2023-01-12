@@ -1,4 +1,4 @@
-import { createMemoryHistory } from 'history';
+import { createHashHistory } from 'history';
 import { Route, Routes } from 'react-router-dom';
 
 import { AppRoute, Reducer } from '~/constants';
@@ -14,7 +14,7 @@ import {
 
 import { MainPage } from './index';
 
-const history = createMemoryHistory();
+const history = createHashHistory();
 
 beforeEach(() => {
   history.push(AppRoute.Root);
