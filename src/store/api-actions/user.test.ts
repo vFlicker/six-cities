@@ -3,7 +3,8 @@ import { StatusCodes } from 'http-status-codes';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
-import { AUTH_TOKEN_KEY_NAME, httpClient } from '~/services';
+import { httpClient } from '~/services/api/http-client';
+import { AUTH_TOKEN_KEY_NAME } from '~/services/token';
 import { AppDispatch, AuthData, State } from '~/types';
 
 import { redirectToRoute } from '../actions/app';

@@ -3,7 +3,7 @@ import { StatusCodes } from 'http-status-codes';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
-import { httpClient } from '~/services';
+import { httpClient } from '~/services/api/http-client';
 import { AppDispatch, PostReview, State } from '~/types';
 
 import { fetchReviews, postReview } from './review';

@@ -4,7 +4,7 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
 import { FavoriteStatus } from '~/constants';
-import { httpClient } from '~/services';
+import { httpClient } from '~/services/api/http-client';
 import { AppDispatch } from '~/types';
 
 import { toggleFavorite } from './app';

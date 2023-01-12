@@ -11,7 +11,7 @@ const fakeHistory = {
   },
 };
 
-jest.mock('~/browser-history.ts', () => ({
+jest.mock('~/services/browser-history.ts', () => ({
   browserHistory: fakeHistory,
 }));
 

@@ -1,6 +1,6 @@
 import { Middleware } from 'redux';
 
-import { browserHistory } from '~/browser-history';
+import { browserHistory } from '~/services/browser-history';
 import { State } from '~/types';
 
 import { REDIRECT_TO_ROUTE } from '../actions/app';
