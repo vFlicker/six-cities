@@ -1,5 +1,6 @@
 import { AppRoute } from '~/constants';
-import { useAppDispatch, useAppSelector } from '~/hooks';
+import { useAppDispatch } from '~/hooks/use-app-dispatch';
+import { useAppSelector } from '~/hooks/use-app-selector';
 import { offersSlice, userSlice } from '~/store';
 
 import * as S from '../styles';

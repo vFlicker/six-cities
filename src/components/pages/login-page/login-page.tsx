@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { AppRoute } from '~/constants';
-import { useAppSelector } from '~/hooks';
+import { useAppSelector } from '~/hooks/use-app-selector';
 import { userSlice } from '~/store';
 
 import { HeaderSection } from '../../sections/header-section/header-section';

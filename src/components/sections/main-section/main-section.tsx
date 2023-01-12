@@ -1,5 +1,6 @@
 import { NO_ACTIVE_CARD } from '~/constants';
-import { useAppDispatch, useAppSelector } from '~/hooks';
+import { useAppDispatch } from '~/hooks/use-app-dispatch';
+import { useAppSelector } from '~/hooks/use-app-selector';
 import { appSlice, offersSlice } from '~/store';
 
 import { CardItem } from '../../shared/card-item/card-item';

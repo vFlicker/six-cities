@@ -1,5 +1,6 @@
 import { CityName } from '~/constants';
-import { useAppDispatch, useAppSelector } from '~/hooks';
+import { useAppDispatch } from '~/hooks/use-app-dispatch';
+import { useAppSelector } from '~/hooks/use-app-selector';
 import { appSlice } from '~/store';
 
 import { Container } from '../../shared/container';

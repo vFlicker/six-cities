@@ -1,4 +1,4 @@
-import { useAppSelector } from '~/hooks';
+import { useAppSelector } from '~/hooks/use-app-selector';
 import { offersSlice } from '~/store';
 
 import { CardItem } from '../../shared/card-item/card-item';

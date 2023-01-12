@@ -1,5 +1,5 @@
 import { noResultsIconSrc } from '~/assets/images';
-import { useAppSelector } from '~/hooks';
+import { useAppSelector } from '~/hooks/use-app-selector';
 import { appSlice } from '~/store';
 
 import { NotFound } from '../../../shared/not-found/not-found';

@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 
-import { useAppSelector, useMapWithPins } from '~/hooks';
+import { useAppSelector } from '~/hooks/use-app-selector';
+import { useMapWithPins } from '~/hooks/use-map-with-pins';
 import { appSlice } from '~/store';
 import { Offer } from '~/types';
 

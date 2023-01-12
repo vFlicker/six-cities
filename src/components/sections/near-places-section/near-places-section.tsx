@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { useAppDispatch, useAppSelector } from '~/hooks';
+import { useAppDispatch } from '~/hooks/use-app-dispatch';
+import { useAppSelector } from '~/hooks/use-app-selector';
 import { offersSlice } from '~/store';
 
 import { CardItem } from '../../shared/card-item/card-item';

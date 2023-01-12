@@ -1,7 +1,8 @@
 import { FormEvent, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { useAppDispatch, useAppSelector } from '~/hooks';
+import { useAppDispatch } from '~/hooks/use-app-dispatch';
+import { useAppSelector } from '~/hooks/use-app-selector';
 import { reviewSlice } from '~/store';
 
 import { Button } from '../../../shared/button/button';

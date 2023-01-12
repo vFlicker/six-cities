@@ -1,7 +1,7 @@
 import { Navigate } from 'react-router-dom';
 
 import { AppRoute } from '~/constants';
-import { useAppSelector } from '~/hooks';
+import { useAppSelector } from '~/hooks/use-app-selector';
 import { userSlice } from '~/store';
 
 type PrivateRouteProps = {

@@ -1,4 +1,4 @@
-import { useAppSelector } from '~/hooks';
+import { useAppSelector } from '~/hooks/use-app-selector';
 import { userSlice } from '~/store';
 
 import { Container } from '../../shared/container';

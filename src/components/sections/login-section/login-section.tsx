@@ -1,6 +1,6 @@
 import { SyntheticEvent, useRef } from 'react';
 
-import { useAppDispatch } from '~/hooks';
+import { useAppDispatch } from '~/hooks/use-app-dispatch';
 import { userSlice } from '~/store';
 
 import { Button } from '../../shared/button/button';

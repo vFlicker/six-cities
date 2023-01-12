@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 
-import { useAppDispatch, useAppSelector } from '~/hooks';
+import { useAppDispatch } from '~/hooks/use-app-dispatch';
+import { useAppSelector } from '~/hooks/use-app-selector';
 import { offersSlice, userSlice } from '~/store';
 
 import { Routing } from '../pages/routing';
