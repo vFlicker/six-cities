@@ -99,7 +99,7 @@ afterEach(() => {
 });
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-const renderWithProviders = (
+export const renderWithProviders = (
   ui: ReactElement,
   { preloadedState = {}, ...renderOptions }: RenderOptions = {},
 ) => {
@@ -121,4 +121,3 @@ const renderWithProviders = (
 
 export * from '@testing-library/react';
 export { default as userEvent } from '@testing-library/user-event';
-export { renderWithProviders as render };

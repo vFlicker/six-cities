@@ -1,4 +1,4 @@
-import { offerStore, render, screen } from '~/tests';
+import { offerStore, renderWithProviders, screen } from '~/tests';
 
 import { Host } from './index';
 
@@ -7,7 +7,9 @@ describe('Component: Host', () => {
     const { description, host } = offerStore.stateWithOffer.offer;
     const { name, isPro } = host;
 
-    render(<Host authorName={name} description={description} isPro={isPro} />);
+    renderWithProviders(
+      <Host authorName={name} description={description} isPro={isPro} />,
+    );
 
     expect(screen.getByText(/Meet the host/i)).toBeInTheDocument();
     expect(screen.getByAltText(new RegExp(name, 'i'))).toBeInTheDocument();

@@ -5,7 +5,7 @@ import { AppRoute, Reducer } from '~/constants';
 import {
   appStore,
   offersStore,
-  render,
+  renderWithProviders,
   RenderOptions,
   screen,
   userEvent,
@@ -30,7 +30,7 @@ describe('Component: MainSection', () => {
       },
     };
 
-    render(<MainPage />, renderOptions);
+    renderWithProviders(<MainPage />, renderOptions);
 
     const filters = screen.getAllByTestId('location');
 
@@ -60,7 +60,7 @@ describe('Component: MainSection', () => {
       </Routes>
     );
 
-    render(app, renderOptions);
+    renderWithProviders(app, renderOptions);
 
     expect(screen.getByText(/places to stay in/i)).toBeInTheDocument();
 
@@ -87,7 +87,7 @@ describe('Component: MainSection', () => {
       </Routes>
     );
 
-    render(app, renderOptions);
+    renderWithProviders(app, renderOptions);
 
     expect(screen.getByText(/places to stay in/i)).toBeInTheDocument();
 

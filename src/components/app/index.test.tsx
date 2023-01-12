@@ -4,7 +4,7 @@ import { AppRoute, Reducer } from '~/constants';
 import {
   appStore,
   offersStore,
-  render,
+  renderWithProviders,
   RenderOptions,
   screen,
   userStore,
@@ -26,7 +26,7 @@ describe('Component: App', () => {
 
     history.push(AppRoute.Root);
 
-    render(<App />, renderOptions);
+    renderWithProviders(<App />, renderOptions);
 
     expect(screen.getByText('Places')).toBeInTheDocument();
     expect(screen.getByText(/places to stay in/i)).toBeInTheDocument();
@@ -43,7 +43,7 @@ describe('Component: App', () => {
 
     history.push(AppRoute.Root);
 
-    render(<App />, renderOptions);
+    renderWithProviders(<App />, renderOptions);
 
     expect(screen.getByTestId('spinner')).toBeInTheDocument();
   });
@@ -59,7 +59,7 @@ describe('Component: App', () => {
 
     history.push(AppRoute.Root);
 
-    const { store } = render(<App />, renderOptions);
+    const { store } = renderWithProviders(<App />, renderOptions);
 
     const actionTypes = store.getActions().map(({ type }) => type);
     expect(actionTypes).toEqual([
@@ -80,7 +80,7 @@ describe('Component: App', () => {
 
     history.push(AppRoute.Root);
 
-    const { store } = render(<App />, renderOptions);
+    const { store } = renderWithProviders(<App />, renderOptions);
 
     const actionTypes = store.getActions().map(({ type }) => type);
     expect(actionTypes).toEqual([

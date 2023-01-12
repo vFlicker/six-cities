@@ -1,10 +1,10 @@
-import { render, screen, userEvent } from '~/tests';
+import { renderWithProviders, screen, userEvent } from '~/tests';
 
 import { BookmarkButton } from './index';
 
 describe('Component: BookmarkButton', () => {
   it('should render correctly', () => {
-    render(
+    renderWithProviders(
       <BookmarkButton
         size="large"
         isLoading={false}
@@ -21,7 +21,7 @@ describe('Component: BookmarkButton', () => {
   it('handleClick should be called', async () => {
     const handleClick = jest.fn();
 
-    render(
+    renderWithProviders(
       <BookmarkButton
         size="small"
         isLoading={false}
@@ -40,7 +40,7 @@ describe('Component: BookmarkButton', () => {
   it('handleClick should not be called', async () => {
     const handleClick = jest.fn();
 
-    render(
+    renderWithProviders(
       <BookmarkButton
         size="small"
         isLoading={true}

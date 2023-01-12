@@ -1,4 +1,4 @@
-import { render, screen } from '~/tests';
+import { renderWithProviders, screen } from '~/tests';
 
 import { NotFound } from './index';
 
@@ -8,7 +8,7 @@ describe('Component: NotFound', () => {
     const description = 'Test description';
     const title = 'Test title';
 
-    render(
+    renderWithProviders(
       <NotFound iconSrc="" alt={alt} description={description} title={title} />,
     );
 

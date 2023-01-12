@@ -2,7 +2,7 @@ import { Reducer } from '~/constants';
 import {
   appStore,
   offersStore,
-  render,
+  renderWithProviders,
   RenderOptions,
   screen,
   userStore,
@@ -20,7 +20,7 @@ describe('Component: FavoritesPage', () => {
       },
     };
 
-    render(<FavoritesPage />, renderOptions);
+    renderWithProviders(<FavoritesPage />, renderOptions);
 
     expect(screen.getByText(/Saved listing/i)).toBeInTheDocument();
     expect(screen.getAllByAltText(/6 cities logo/i)).toHaveLength(2);

@@ -1,5 +1,11 @@
 import { Reducer } from '~/constants';
-import { offersStore, render, RenderOptions, screen, userStore } from '~/tests';
+import {
+  offersStore,
+  renderWithProviders,
+  RenderOptions,
+  screen,
+  userStore,
+} from '~/tests';
 
 import { NotFoundPage } from './index';
 
@@ -12,7 +18,7 @@ describe('Component: NotFoundPage', () => {
   };
 
   it('should render correctly', () => {
-    render(<NotFoundPage />, renderOptions);
+    renderWithProviders(<NotFoundPage />, renderOptions);
 
     expect(screen.getByText(/Page not found/i)).toBeInTheDocument();
     expect(screen.getAllByAltText(/6 cities logo/i)).toHaveLength(2);

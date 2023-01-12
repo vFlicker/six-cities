@@ -1,5 +1,11 @@
 import { Reducer } from '~/constants';
-import { render, RenderOptions, reviewStore, screen, userEvent } from '~/tests';
+import {
+  renderWithProviders,
+  RenderOptions,
+  reviewStore,
+  screen,
+  userEvent,
+} from '~/tests';
 
 import { ReviewForm } from './index';
 
@@ -20,7 +26,7 @@ const comment = Array.from({ length: MIN_REVIEW_LENGTH }, () => '.').join('');
 
 describe('Component: ReviewRating', () => {
   it('should render correctly', () => {
-    render(<ReviewForm />, renderOptions);
+    renderWithProviders(<ReviewForm />, renderOptions);
 
     expect(screen.getByText(/Your review/i)).toBeInTheDocument();
     expect(
@@ -42,7 +48,7 @@ describe('Component: ReviewRating', () => {
       return getRadioButtonElements().map(({ checked }) => checked);
     };
 
-    render(<ReviewForm />, renderOptions);
+    renderWithProviders(<ReviewForm />, renderOptions);
 
     const [firstRadioButtonElement] = getRadioButtonElements();
 
@@ -52,12 +58,12 @@ describe('Component: ReviewRating', () => {
   });
 
   it('submit button should be disabled when the form empty', async () => {
-    render(<ReviewForm />, renderOptions);
+    renderWithProviders(<ReviewForm />, renderOptions);
     expect(screen.getByRole('button')).toBeDisabled();
   });
 
   it('should dispatch postReview and clear form when user click on submit', async () => {
-    const { store } = render(<ReviewForm />, renderOptions);
+    const { store } = renderWithProviders(<ReviewForm />, renderOptions);
 
     const [firstRadioButtonElement] = getRadioButtonElements();
 

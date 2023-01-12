@@ -1,5 +1,11 @@
 import { CityName, Reducer } from '~/constants';
-import { appStore, offersStore, render, RenderOptions, screen } from '~/tests';
+import {
+  appStore,
+  offersStore,
+  renderWithProviders,
+  RenderOptions,
+  screen,
+} from '~/tests';
 
 import { MainSection } from './index';
 
@@ -12,7 +18,7 @@ describe('Component: MainSection', () => {
       },
     };
 
-    render(<MainSection />, renderOptions);
+    renderWithProviders(<MainSection />, renderOptions);
 
     const title = screen.getByText(/places to stay in/i);
     const placeCount = offersStore.stateWithOffers.all.length.toString();
@@ -32,7 +38,7 @@ describe('Component: MainSection', () => {
       },
     };
 
-    render(<MainSection />, renderOptions);
+    renderWithProviders(<MainSection />, renderOptions);
 
     expect(
       screen.getByText(/No places to stay available/i),
@@ -47,7 +53,7 @@ describe('Component: MainSection', () => {
       },
     };
 
-    render(<MainSection />, renderOptions);
+    renderWithProviders(<MainSection />, renderOptions);
 
     expect(screen.getByTestId('spinner')).toBeInTheDocument();
   });
@@ -60,7 +66,7 @@ describe('Component: MainSection', () => {
       },
     };
 
-    render(<MainSection />, renderOptions);
+    renderWithProviders(<MainSection />, renderOptions);
 
     expect(
       screen.getByText(/There are problems, please try again later/i),

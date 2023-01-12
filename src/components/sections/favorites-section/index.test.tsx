@@ -2,7 +2,7 @@ import { CityName, Reducer } from '~/constants';
 import {
   appStore,
   offersStore,
-  render,
+  renderWithProviders,
   RenderOptions,
   screen,
   userStore,
@@ -22,7 +22,7 @@ describe('Component: FavoritesSection', () => {
       },
     };
 
-    render(<FavoritesSection />, renderOptions);
+    renderWithProviders(<FavoritesSection />, renderOptions);
 
     expect(screen.getByText(/Saved listing/i)).toBeInTheDocument();
     expect(
@@ -39,7 +39,7 @@ describe('Component: FavoritesSection', () => {
       },
     };
 
-    render(<FavoritesSection />, renderOptions);
+    renderWithProviders(<FavoritesSection />, renderOptions);
 
     expect(screen.getByText(/Nothing yet saved/i)).toBeInTheDocument();
   });
@@ -52,7 +52,7 @@ describe('Component: FavoritesSection', () => {
       },
     };
 
-    render(<FavoritesSection />, renderOptions);
+    renderWithProviders(<FavoritesSection />, renderOptions);
 
     expect(screen.getByTestId('spinner')).toBeInTheDocument();
   });
@@ -65,7 +65,7 @@ describe('Component: FavoritesSection', () => {
       },
     };
 
-    render(<FavoritesSection />, renderOptions);
+    renderWithProviders(<FavoritesSection />, renderOptions);
 
     expect(
       screen.getByText(/There are problems, please try again later/i),

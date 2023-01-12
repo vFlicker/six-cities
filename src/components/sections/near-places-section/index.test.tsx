@@ -3,7 +3,7 @@ import {
   appStore,
   mockPageId,
   offersStore,
-  render,
+  renderWithProviders,
   RenderOptions,
   screen,
 } from '~/tests';
@@ -21,7 +21,7 @@ describe('Component: NearPlacesSection', () => {
       },
     };
 
-    render(<NearPlacesSection />, renderOptions);
+    renderWithProviders(<NearPlacesSection />, renderOptions);
 
     expect(
       screen.getByText(/Other places in the neighborhood/i),
@@ -38,7 +38,7 @@ describe('Component: NearPlacesSection', () => {
       },
     };
 
-    const { store } = render(<NearPlacesSection />, renderOptions);
+    const { store } = renderWithProviders(<NearPlacesSection />, renderOptions);
 
     const [firstAction] = store.getActions();
     expect(firstAction).toEqual({
@@ -55,7 +55,7 @@ describe('Component: NearPlacesSection', () => {
       },
     };
 
-    render(<NearPlacesSection />, renderOptions);
+    renderWithProviders(<NearPlacesSection />, renderOptions);
 
     expect(
       screen.queryByText(/No places to stay available/i),
@@ -70,7 +70,7 @@ describe('Component: NearPlacesSection', () => {
       },
     };
 
-    render(<NearPlacesSection />, renderOptions);
+    renderWithProviders(<NearPlacesSection />, renderOptions);
 
     expect(screen.getByTestId('spinner')).toBeInTheDocument();
   });
@@ -83,7 +83,7 @@ describe('Component: NearPlacesSection', () => {
       },
     };
 
-    render(<NearPlacesSection />, renderOptions);
+    renderWithProviders(<NearPlacesSection />, renderOptions);
 
     expect(
       screen.getByText(/There are problems, please try again later/i),

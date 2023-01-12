@@ -1,4 +1,4 @@
-import { offerStore, render, screen } from '~/tests';
+import { offerStore, renderWithProviders, screen } from '~/tests';
 
 import { Price } from './index';
 
@@ -6,7 +6,7 @@ describe('Component: Price', () => {
   it('should render correctly', () => {
     const { price } = offerStore.stateWithOffer.offer;
 
-    render(<Price price={price} />);
+    renderWithProviders(<Price price={price} />);
 
     expect(screen.getByText(/night/i)).toBeInTheDocument();
     expect(

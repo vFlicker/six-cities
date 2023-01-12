@@ -1,7 +1,7 @@
 import { Reducer } from '~/constants';
 import {
   offersStore,
-  render,
+  renderWithProviders,
   RenderOptions,
   screen,
   userEvent,
@@ -22,7 +22,7 @@ describe('Component: AuthList', () => {
       },
     };
 
-    render(<AuthList />, renderOptions);
+    renderWithProviders(<AuthList />, renderOptions);
 
     expect(screen.queryByText(/Sign in/i)).not.toBeInTheDocument();
     expect(screen.getByText(/Sign out/i)).toBeInTheDocument();
@@ -42,7 +42,7 @@ describe('Component: AuthList', () => {
       },
     };
 
-    render(<AuthList />, renderOptions);
+    renderWithProviders(<AuthList />, renderOptions);
 
     expect(screen.queryByTestId(/counter/i)).not.toBeInTheDocument();
   });
@@ -55,7 +55,7 @@ describe('Component: AuthList', () => {
       },
     };
 
-    const { store } = render(<AuthList />, renderOptions);
+    const { store } = renderWithProviders(<AuthList />, renderOptions);
 
     await userEvent.click(screen.getByText(/Sign out/i));
 

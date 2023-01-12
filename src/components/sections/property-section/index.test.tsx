@@ -3,7 +3,7 @@ import {
   appStore,
   mockPageId,
   offerStore,
-  render,
+  renderWithProviders,
   RenderOptions,
   reviewStore,
   screen,
@@ -27,7 +27,7 @@ describe('Component: PropertySection', () => {
   it('should render correctly', () => {
     const { images, title } = offer;
 
-    render(<PropertySection {...offer} />, renderOptions);
+    renderWithProviders(<PropertySection {...offer} />, renderOptions);
 
     expect(screen.getAllByAltText('Studio')).toHaveLength(images.length);
     expect(screen.getByText(new RegExp(title, 'i'))).toBeInTheDocument();
@@ -37,7 +37,10 @@ describe('Component: PropertySection', () => {
   });
 
   it('should dispatch fetchReviews when component loaded', async () => {
-    const { store } = render(<PropertySection {...offer} />, renderOptions);
+    const { store } = renderWithProviders(
+      <PropertySection {...offer} />,
+      renderOptions,
+    );
 
     const [firstAction] = store.getActions();
 
@@ -48,7 +51,10 @@ describe('Component: PropertySection', () => {
   });
 
   it('should dispatch toggleFavorite when click on button "To bookmark"', async () => {
-    const { store } = render(<PropertySection {...offer} />, renderOptions);
+    const { store } = renderWithProviders(
+      <PropertySection {...offer} />,
+      renderOptions,
+    );
 
     const bookmarkButton = screen.getByRole('button', {
       name: /To bookmarks/i,

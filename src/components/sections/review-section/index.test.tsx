@@ -1,7 +1,7 @@
 import { Reducer } from '~/constants';
 import {
   mockPageId,
-  render,
+  renderWithProviders,
   RenderOptions,
   reviewStore,
   screen,
@@ -19,7 +19,7 @@ describe('Component: ReviewSection', () => {
       },
     };
 
-    render(<ReviewSection />, renderOptions);
+    renderWithProviders(<ReviewSection />, renderOptions);
 
     expect(screen.getByText(/Reviews/i)).toBeInTheDocument();
     expect(screen.getByText(/Your review/i)).toBeInTheDocument();
@@ -33,7 +33,7 @@ describe('Component: ReviewSection', () => {
       },
     };
 
-    render(<ReviewSection />, renderOptions);
+    renderWithProviders(<ReviewSection />, renderOptions);
 
     expect(screen.queryByText(/Reviews/i)).not.toBeInTheDocument();
     expect(screen.getByText(/Your review/i)).toBeInTheDocument();
@@ -47,7 +47,7 @@ describe('Component: ReviewSection', () => {
       },
     };
 
-    render(<ReviewSection />, renderOptions);
+    renderWithProviders(<ReviewSection />, renderOptions);
 
     expect(screen.getByText(/Reviews/i)).toBeInTheDocument();
     expect(screen.queryByText(/Your review/i)).not.toBeInTheDocument();
@@ -61,7 +61,7 @@ describe('Component: ReviewSection', () => {
       },
     };
 
-    render(<ReviewSection />, renderOptions);
+    renderWithProviders(<ReviewSection />, renderOptions);
 
     expect(
       screen.getByText(/There are problems, please try again later/i),
@@ -76,7 +76,7 @@ describe('Component: ReviewSection', () => {
       },
     };
 
-    const { store } = render(<ReviewSection />, renderOptions);
+    const { store } = renderWithProviders(<ReviewSection />, renderOptions);
 
     const [firstAction] = store.getActions();
     expect(firstAction).toEqual({

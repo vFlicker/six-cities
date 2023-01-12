@@ -2,8 +2,8 @@ import { FavoriteStatus, Reducer } from '~/constants';
 import {
   appStore,
   offerStore,
-  render,
   RenderOptions,
+  renderWithProviders,
   screen,
   userEvent,
 } from '~/tests';
@@ -22,7 +22,7 @@ describe('Component: CardItem', () => {
   it('should render correctly', () => {
     const { price, title, type } = offer;
 
-    render(
+    renderWithProviders(
       <CardItem
         cardType="big"
         offer={offer}
@@ -45,7 +45,7 @@ describe('Component: CardItem', () => {
     const handleCardItemMouseEnter = jest.fn();
     const handleCardItemMouseLeave = jest.fn();
 
-    render(
+    renderWithProviders(
       <CardItem
         cardType="big"
         offer={offer}
@@ -65,7 +65,7 @@ describe('Component: CardItem', () => {
   });
 
   it('handleFavoriteButtonClick should work correctly', async () => {
-    const { store } = render(
+    const { store } = renderWithProviders(
       <CardItem
         cardType="big"
         offer={offer}

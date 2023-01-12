@@ -1,4 +1,4 @@
-import { render, screen } from '~/tests';
+import { renderWithProviders, screen } from '~/tests';
 import { makeReview } from '~/utils';
 
 import { ReviewItem } from './index';
@@ -9,7 +9,7 @@ describe('Component: ReviewItem', () => {
     const { comment, user } = review;
     const { name } = user;
 
-    render(<ReviewItem {...review} />);
+    renderWithProviders(<ReviewItem {...review} />);
 
     expect(screen.getByAltText(new RegExp(name, 'i'))).toBeInTheDocument();
     expect(screen.getByText(new RegExp(name, 'i'))).toBeInTheDocument();

@@ -1,6 +1,12 @@
 import { CityName, cityNames, Reducer } from '~/constants';
 import { appSlice } from '~/store';
-import { appStore, render, RenderOptions, screen, userEvent } from '~/tests';
+import {
+  appStore,
+  renderWithProviders,
+  RenderOptions,
+  screen,
+  userEvent,
+} from '~/tests';
 
 import { FilterSection } from './index';
 
@@ -12,7 +18,7 @@ const renderOptions: RenderOptions = {
 
 describe('Component: FilterSection', () => {
   it('should render correctly', async () => {
-    render(<FilterSection />, renderOptions);
+    renderWithProviders(<FilterSection />, renderOptions);
 
     const renderedLinks = screen.getAllByRole('link');
     const filterCount = cityNames.length;
@@ -21,7 +27,7 @@ describe('Component: FilterSection', () => {
   });
 
   it('should not dispatch changeCityName when an active link is clicked', async () => {
-    const { store } = render(<FilterSection />, renderOptions);
+    const { store } = renderWithProviders(<FilterSection />, renderOptions);
 
     const activeLink = screen.getByText(new RegExp(CityName.Amsterdam, 'i'));
     await userEvent.click(activeLink);
@@ -31,7 +37,7 @@ describe('Component: FilterSection', () => {
   });
 
   it('should dispatch changeCityName when an inactive link is clicked', async () => {
-    const { store } = render(<FilterSection />, renderOptions);
+    const { store } = renderWithProviders(<FilterSection />, renderOptions);
 
     const inactiveLink = screen.getByText(new RegExp(CityName.Brussels, 'i'));
     await userEvent.click(inactiveLink);

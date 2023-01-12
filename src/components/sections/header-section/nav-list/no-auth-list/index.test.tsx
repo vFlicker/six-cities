@@ -1,10 +1,10 @@
-import { render, screen } from '~/tests';
+import { renderWithProviders, screen } from '~/tests';
 
 import { NoAuthList } from './index';
 
 describe('Component: NoAuthList', () => {
   it('should render correctly', () => {
-    render(<NoAuthList />);
+    renderWithProviders(<NoAuthList />);
 
     expect(screen.queryByText(/Sign out/i)).not.toBeInTheDocument();
     expect(screen.getByText(/Sign in/i)).toBeInTheDocument();

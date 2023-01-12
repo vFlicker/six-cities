@@ -1,5 +1,11 @@
 import { Reducer } from '~/constants';
-import { offersStore, render, RenderOptions, screen, userStore } from '~/tests';
+import {
+  offersStore,
+  renderWithProviders,
+  RenderOptions,
+  screen,
+  userStore,
+} from '~/tests';
 
 import { HeaderSection } from './index';
 
@@ -11,7 +17,7 @@ describe('Component: HeaderSection', () => {
       },
     };
 
-    render(<HeaderSection />, renderOptions);
+    renderWithProviders(<HeaderSection />, renderOptions);
 
     expect(screen.queryByText(/Sign in/i)).toBeInTheDocument();
   });
@@ -24,7 +30,7 @@ describe('Component: HeaderSection', () => {
       },
     };
 
-    render(<HeaderSection />, renderOptions);
+    renderWithProviders(<HeaderSection />, renderOptions);
 
     expect(screen.getByText(/Sign out/i)).toBeInTheDocument();
   });

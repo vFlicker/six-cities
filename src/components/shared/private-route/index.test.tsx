@@ -2,7 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import { createHashHistory } from 'history';
 
 import { AppRoute, Reducer } from '~/constants';
-import { render, RenderOptions, screen, userStore } from '~/tests';
+import { renderWithProviders, RenderOptions, screen, userStore } from '~/tests';
 
 import { PrivateRoute } from './index';
 
@@ -20,7 +20,7 @@ describe('Component: PrivateRoute', () => {
       },
     };
 
-    render(
+    renderWithProviders(
       <Routes>
         <Route path={AppRoute.Login} element={<h1>Login page</h1>} />
         <Route
@@ -46,7 +46,7 @@ describe('Component: PrivateRoute', () => {
       },
     };
 
-    render(
+    renderWithProviders(
       <Routes>
         <Route path={AppRoute.Login} element={<h1>Login route</h1>} />
         <Route

@@ -1,10 +1,10 @@
-import { render, screen } from '~/tests';
+import { renderWithProviders, screen } from '~/tests';
 
 import { ErrorBoundary } from './index';
 
 describe('Component: ErrorBoundary', () => {
   it('should render without error', () => {
-    render(
+    renderWithProviders(
       <ErrorBoundary>
         <h1>There are no error</h1>
       </ErrorBoundary>,
@@ -20,7 +20,7 @@ describe('Component: ErrorBoundary', () => {
       return <h1>There are no error</h1>;
     }
 
-    render(
+    renderWithProviders(
       <ErrorBoundary>
         <BrokenComponent />
       </ErrorBoundary>,

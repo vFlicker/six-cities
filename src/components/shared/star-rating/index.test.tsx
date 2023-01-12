@@ -1,4 +1,4 @@
-import { render, screen } from '~/tests';
+import { renderWithProviders, screen } from '~/tests';
 
 import { StarRating } from './index';
 
@@ -6,7 +6,7 @@ const rating = 4;
 
 describe('Component: StarRating', () => {
   it('should render without text', () => {
-    render(<StarRating width={98} height={16} rating={rating} />);
+    renderWithProviders(<StarRating width={98} height={16} rating={rating} />);
 
     expect(
       screen.queryByText(new RegExp(rating.toString(), 'i')),
@@ -16,7 +16,7 @@ describe('Component: StarRating', () => {
   });
 
   it('should render with text', () => {
-    render(
+    renderWithProviders(
       <StarRating width={98} height={16} rating={rating} hasText={true} />,
     );
 

@@ -1,16 +1,18 @@
-import { render, screen, userEvent } from '~/tests';
+import { renderWithProviders, screen, userEvent } from '~/tests';
 import { ReviewRating } from './index';
 
 describe('Component: ReviewRating', () => {
   it('should render correctly', () => {
-    render(<ReviewRating rating={0} onRatingToggle={jest.fn()} />);
+    renderWithProviders(<ReviewRating rating={0} onRatingToggle={jest.fn()} />);
     expect(screen.getAllByTestId('rating-item')).toHaveLength(5);
   });
 
   it('handleRatingToggle should called 2 times with different arguments', async () => {
     const handleRatingToggle = jest.fn();
 
-    render(<ReviewRating rating={0} onRatingToggle={handleRatingToggle} />);
+    renderWithProviders(
+      <ReviewRating rating={0} onRatingToggle={handleRatingToggle} />,
+    );
 
     const [firstButton, , thirdRadioButton] = screen
       .getAllByTestId('rating-item')

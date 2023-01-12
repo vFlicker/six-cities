@@ -1,6 +1,12 @@
 import { Reducer, SortType } from '~/constants';
 import { appSlice } from '~/store';
-import { appStore, render, RenderOptions, screen, userEvent } from '~/tests';
+import {
+  appStore,
+  renderWithProviders,
+  RenderOptions,
+  screen,
+  userEvent,
+} from '~/tests';
 
 import { SortSelect } from './index';
 
@@ -15,7 +21,7 @@ const listItemCount = sortTypes.length;
 
 describe('Component: SortSelect', () => {
   it('should render correctly', () => {
-    render(<SortSelect />, renderOptions);
+    renderWithProviders(<SortSelect />, renderOptions);
 
     expect(screen.getByText(/Sort by/i)).toBeInTheDocument();
     expect(
@@ -25,7 +31,7 @@ describe('Component: SortSelect', () => {
   });
 
   it('should toggle menu when click on button', async () => {
-    render(<SortSelect />, renderOptions);
+    renderWithProviders(<SortSelect />, renderOptions);
 
     const menuToggler = screen.getByRole('button');
 
@@ -41,7 +47,7 @@ describe('Component: SortSelect', () => {
   });
 
   it('should not close menu when click on active select item', async () => {
-    render(<SortSelect />, renderOptions);
+    renderWithProviders(<SortSelect />, renderOptions);
 
     await userEvent.click(screen.getByRole('button'));
 
@@ -52,7 +58,7 @@ describe('Component: SortSelect', () => {
   });
 
   it('should close menu when click on inactive select item', async () => {
-    render(<SortSelect />, renderOptions);
+    renderWithProviders(<SortSelect />, renderOptions);
 
     await userEvent.click(screen.getByRole('button'));
 
@@ -63,7 +69,7 @@ describe('Component: SortSelect', () => {
   });
 
   it('should dispatch changeSortType when click on select item', async () => {
-    const { store } = render(<SortSelect />, renderOptions);
+    const { store } = renderWithProviders(<SortSelect />, renderOptions);
 
     await userEvent.click(screen.getByRole('button'));
 

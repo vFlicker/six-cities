@@ -1,4 +1,4 @@
-import { render, reviewStore, screen } from '~/tests';
+import { renderWithProviders, reviewStore, screen } from '~/tests';
 
 import { ReviewList } from './index';
 
@@ -7,7 +7,7 @@ describe('Component: ReviewList', () => {
     const { reviews } = reviewStore.stateWithReviews;
     const reviewCount = reviews.length;
 
-    render(<ReviewList reviews={reviews} />);
+    renderWithProviders(<ReviewList reviews={reviews} />);
 
     expect(screen.getByText(/Reviews/i)).toBeInTheDocument();
     expect(screen.getByText(/Reviews/i)).toHaveTextContent(
@@ -17,7 +17,7 @@ describe('Component: ReviewList', () => {
   });
 
   it('should not render', () => {
-    render(<ReviewList reviews={[]} />);
+    renderWithProviders(<ReviewList reviews={[]} />);
     expect(screen.queryAllByRole('listitem')).toHaveLength(0);
   });
 });

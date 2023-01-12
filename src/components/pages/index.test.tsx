@@ -5,7 +5,7 @@ import {
   appStore,
   offersStore,
   offerStore,
-  render,
+  renderWithProviders,
   RenderOptions,
   reviewStore,
   screen,
@@ -28,7 +28,7 @@ describe('Application Routing', () => {
 
     history.push(AppRoute.Root);
 
-    render(<Pages />, renderOptions);
+    renderWithProviders(<Pages />, renderOptions);
 
     expect(screen.getByText('Places')).toBeInTheDocument();
     expect(screen.getByText(/places to stay in/i)).toBeInTheDocument();
@@ -45,7 +45,7 @@ describe('Application Routing', () => {
 
     history.push(AppRoute.Favorites);
 
-    render(<Pages />, renderOptions);
+    renderWithProviders(<Pages />, renderOptions);
 
     expect(screen.getByText(/Saved listing/i)).toBeInTheDocument();
   });
@@ -60,7 +60,7 @@ describe('Application Routing', () => {
 
     history.push(AppRoute.Login);
 
-    render(<Pages />, renderOptions);
+    renderWithProviders(<Pages />, renderOptions);
 
     expect(
       screen.getByRole('button', { name: /Sign in/i }),
@@ -82,7 +82,7 @@ describe('Application Routing', () => {
 
     history.push(`/offers/${id}`);
 
-    render(<Pages />, renderOptions);
+    renderWithProviders(<Pages />, renderOptions);
 
     expect(screen.getByText(new RegExp(title, 'i'))).toBeInTheDocument();
     expect(screen.getByText(/Reviews/i)).toBeInTheDocument();
@@ -97,7 +97,7 @@ describe('Application Routing', () => {
 
     history.push('/unknown');
 
-    render(<Pages />, renderOptions);
+    renderWithProviders(<Pages />, renderOptions);
 
     expect(screen.getByText(/Page not found/i)).toBeInTheDocument();
   });

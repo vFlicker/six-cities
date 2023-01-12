@@ -1,5 +1,5 @@
 import { cityNames, Reducer } from '~/constants';
-import { appStore, render, RenderOptions, screen } from '~/tests';
+import { appStore, renderWithProviders, RenderOptions, screen } from '~/tests';
 
 import { LocationSection } from './index';
 
@@ -13,7 +13,10 @@ describe('Component: LocationSection', () => {
       },
     };
 
-    render(<LocationSection cityName={cityNameStub} />, renderOptions);
+    renderWithProviders(
+      <LocationSection cityName={cityNameStub} />,
+      renderOptions,
+    );
 
     expect(screen.getByText(new RegExp(cityNameStub, 'i'))).toBeInTheDocument();
   });

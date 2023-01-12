@@ -1,5 +1,5 @@
 import { CityName, Reducer } from '~/constants';
-import { appStore, render, RenderOptions, screen } from '~/tests';
+import { appStore, renderWithProviders, RenderOptions, screen } from '~/tests';
 
 import { MainEmptySection } from './index';
 
@@ -11,7 +11,7 @@ describe('Component: MainEmptySection', () => {
       },
     };
 
-    render(<MainEmptySection />, renderOptions);
+    renderWithProviders(<MainEmptySection />, renderOptions);
 
     expect(screen.getByAltText(/No results icon/i)).toBeInTheDocument();
     expect(screen.getByText(/No places/i)).toBeInTheDocument();

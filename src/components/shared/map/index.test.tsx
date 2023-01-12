@@ -1,5 +1,11 @@
 import { Reducer } from '~/constants';
-import { appStore, offersStore, render, RenderOptions, screen } from '~/tests';
+import {
+  appStore,
+  offersStore,
+  renderWithProviders,
+  RenderOptions,
+  screen,
+} from '~/tests';
 
 import { Map } from './index';
 
@@ -13,7 +19,10 @@ describe('Component: Map', () => {
       },
     };
 
-    render(<Map offers={offers} orientation="horizontal" />, renderOptions);
+    renderWithProviders(
+      <Map offers={offers} orientation="horizontal" />,
+      renderOptions,
+    );
     expect(screen.getByTestId('map')).toBeInTheDocument();
   });
 });

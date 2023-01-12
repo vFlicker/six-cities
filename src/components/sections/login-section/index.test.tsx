@@ -1,4 +1,4 @@
-import { render, screen, userEvent } from '~/tests';
+import { renderWithProviders, screen, userEvent } from '~/tests';
 
 import { LoginSection } from './index';
 
@@ -7,7 +7,7 @@ const mockPassword = 'password';
 
 describe('Component: LoginSection', () => {
   it('should render correctly', () => {
-    render(<LoginSection />);
+    renderWithProviders(<LoginSection />);
 
     expect(screen.getByLabelText(/E-mail/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/Password/i)).toBeInTheDocument();
@@ -17,7 +17,7 @@ describe('Component: LoginSection', () => {
   });
 
   it('form inputs should work correctly', async () => {
-    render(<LoginSection />);
+    renderWithProviders(<LoginSection />);
 
     const emailInput = screen.getByTestId('email');
     const passwordInput = screen.getByTestId('password');
@@ -35,7 +35,7 @@ describe('Component: LoginSection', () => {
   });
 
   it('form should not be sended when inputs are empty', async () => {
-    const { store } = render(<LoginSection />);
+    const { store } = renderWithProviders(<LoginSection />);
 
     const button = screen.getByRole('button', { name: /Sign in/i });
     await userEvent.click(button);
@@ -45,7 +45,7 @@ describe('Component: LoginSection', () => {
   });
 
   it('form should be sended', async () => {
-    const { store } = render(<LoginSection />);
+    const { store } = renderWithProviders(<LoginSection />);
 
     const emailInput = screen.getByTestId('email');
     const passwordInput = screen.getByTestId('password');

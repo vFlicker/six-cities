@@ -4,7 +4,7 @@ import {
   mockPageId,
   offersStore,
   offerStore,
-  render,
+  renderWithProviders,
   RenderOptions,
   reviewStore,
   screen,
@@ -25,7 +25,7 @@ describe('Component: OfferPage', () => {
       },
     };
 
-    render(<OfferPage />, renderOptions);
+    renderWithProviders(<OfferPage />, renderOptions);
 
     expect(screen.getByText(/Meet the host/i)).toBeInTheDocument();
     expect(screen.getByText(/Reviews/i)).toBeInTheDocument();
@@ -46,7 +46,7 @@ describe('Component: OfferPage', () => {
       },
     };
 
-    const { store } = render(<OfferPage />, renderOptions);
+    const { store } = renderWithProviders(<OfferPage />, renderOptions);
 
     const [action] = store
       .getActions()
@@ -68,7 +68,7 @@ describe('Component: OfferPage', () => {
       },
     };
 
-    render(<OfferPage />, renderOptions);
+    renderWithProviders(<OfferPage />, renderOptions);
 
     expect(screen.getByText(/Page not found/i)).toBeInTheDocument();
   });
@@ -83,7 +83,7 @@ describe('Component: OfferPage', () => {
       },
     };
 
-    render(<OfferPage />, renderOptions);
+    renderWithProviders(<OfferPage />, renderOptions);
 
     expect(screen.getByTestId('spinner')).toBeInTheDocument();
   });
@@ -98,7 +98,7 @@ describe('Component: OfferPage', () => {
       },
     };
 
-    render(<OfferPage />, renderOptions);
+    renderWithProviders(<OfferPage />, renderOptions);
 
     expect(
       screen.getByText(/There are problems, please try again later/i),

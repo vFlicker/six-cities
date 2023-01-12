@@ -5,7 +5,7 @@ import { AppRoute, Reducer } from '~/constants';
 import {
   appStore,
   offersStore,
-  render,
+  renderWithProviders,
   RenderOptions,
   screen,
   userStore,
@@ -36,7 +36,7 @@ describe('Component: LoginPage', () => {
       },
     };
 
-    render(app, renderOptions);
+    renderWithProviders(app, renderOptions);
 
     expect(
       screen.getByRole('button', { name: /Sign in/i }),
@@ -53,7 +53,7 @@ describe('Component: LoginPage', () => {
       },
     };
 
-    render(app, renderOptions);
+    renderWithProviders(app, renderOptions);
 
     expect(screen.getByText(/This is main page/i)).toBeInTheDocument();
   });
