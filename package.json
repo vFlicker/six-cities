@@ -7,8 +7,8 @@
   "scripts": {
     "start": "webpack-dev-server --env mode=development",
     "build": "webpack --env mode=production",
-    "predeploy" : "npm run build",
-    "deploy" : "gh-pages -d public",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d public",
     "lint": "eslint src --ext .ts,.tsx --fix",
     "test": "jest"
   },
@@ -51,7 +51,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-redux": "8.0.5",
-    "react-router-dom": "6.4.3",
+    "react-router-dom": "6.6.2",
     "react-toastify": "9.0.1"
   },
   "devDependencies": {
