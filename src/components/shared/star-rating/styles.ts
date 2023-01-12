@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 import { starsActiveIconSrc, starsIconSrc } from '~/assets/images';
 
-import { visuallyHidden } from '../styles';
+import { visuallyHidden } from '../../styles/visually-hidden';
 
 export const StarsWrapper = styled.div`
   display: flex;

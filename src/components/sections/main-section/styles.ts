@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
-import { Container, visuallyHidden } from '../../shared';
+import { Container } from '../../shared/container';
+import { visuallyHidden } from '../../styles/visually-hidden';
 
 export const MainContainer = styled(Container)`
   display: flex;

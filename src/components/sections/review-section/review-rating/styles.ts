@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { visuallyHidden } from '../../../shared';
+import { visuallyHidden } from '../../../styles/visually-hidden';
 
 export const Rating = styled.div`
   display: flex;

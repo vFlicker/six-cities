@@ -5,8 +5,8 @@ import { Provider } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import { Global } from '@emotion/react';
 
-import { App } from './components/app';
-import { ErrorBoundary } from './components/shared';
+import { ErrorBoundary } from './components/shared/error-boundary/error-boundary';
+import { App } from './components/app/app';
 import { store } from './store';
 import { globalStyle } from './styles';
 

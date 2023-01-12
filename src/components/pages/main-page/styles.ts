@@ -1,10 +1,8 @@
 import styled from '@emotion/styled';
 
-import {
-  Page as BasePage,
-  PageContent as BasePageContent,
-  visuallyHidden,
-} from '../../shared';
+import { Page as BasePage } from '../../shared/page';
+import { PageContent as BasePageContent } from '../../shared/page-content';
+import { visuallyHidden } from '../../styles/visually-hidden';
 
 export const Page = styled(BasePage)`
   display: flex;

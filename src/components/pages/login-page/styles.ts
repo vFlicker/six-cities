@@ -2,7 +2,8 @@ import styled from '@emotion/styled';
 
 import { amsterdam2xPhotoSrc, amsterdamPhotoSrc } from '~/assets/images';
 
-import { Container as BaseContainer, Page as BasePage } from '../../shared';
+import { Container as BaseContainer } from '../../shared/container';
+import { Page as BasePage } from '../../shared/page';
 
 export const Page = styled(BasePage)`
   background-color: #f5f5f5;

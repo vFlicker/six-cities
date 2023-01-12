@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { visuallyHidden } from '../styles';
+import { visuallyHidden } from '../../styles/visually-hidden';
 
 type ButtonProps = {
   isFavorite: boolean;

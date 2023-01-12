@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { Container } from '../../shared';
+import { Container } from '../../shared/container';
 
 export const Footer = styled.footer``;
 
