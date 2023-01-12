@@ -4,7 +4,7 @@ import { Icon, latLng, Marker } from 'leaflet';
 import { pinActiveIconSrc, pinIconSrc } from '~/assets/images';
 import { Offer } from '~/types';
 
-import { useMap } from './use-map';
+import { useMap } from './useMap';
 
 const ICON_SIZE = [27, 39] as [number, number];
 
