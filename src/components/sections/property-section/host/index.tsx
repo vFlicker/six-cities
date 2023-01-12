@@ -1,15 +1,15 @@
+import { avatarAngelinaPhotoSrc } from '~/assets/images';
+
 import * as S from './styles';
 
 type HostProps = {
   authorName: string;
   description: string;
-  avatarUrl: string;
   isPro: boolean;
 };
 
 export function Host({
   authorName,
-  avatarUrl,
   description,
   isPro,
 }: HostProps): JSX.Element {
@@ -19,7 +19,12 @@ export function Host({
 
       <S.User>
         <S.AvatarWrapper isPro={isPro}>
-          <S.Avatar width="74" height="74" src={avatarUrl} alt={authorName} />
+          <S.Avatar
+            width="74"
+            height="74"
+            src={avatarAngelinaPhotoSrc}
+            alt={authorName}
+          />
         </S.AvatarWrapper>
         <S.Name>{authorName}</S.Name>
       </S.User>

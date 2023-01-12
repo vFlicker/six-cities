@@ -30,7 +30,7 @@ export function PropertySection({
   title,
   type,
 }: PropertySectionProps): JSX.Element {
-  const { avatarUrl, isPro, name: authorName } = host;
+  const { isPro, name: authorName } = host;
 
   const favoriteIdsInProgress = useAppSelector(
     appSlice.selectFavoriteIdsInProgress,
@@ -82,7 +82,6 @@ export function PropertySection({
 
           <Host
             authorName={authorName}
-            avatarUrl={avatarUrl}
             description={description}
             isPro={isPro}
           />
