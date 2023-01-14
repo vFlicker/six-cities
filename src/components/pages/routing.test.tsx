@@ -1,16 +1,12 @@
 import { createHashHistory } from 'history';
 
 import { AppRoute, Reducer } from '~/constants';
-import {
-  appStore,
-  offersStore,
-  offerStore,
-  renderWithProviders,
-  RenderOptions,
-  reviewStore,
-  screen,
-  userStore,
-} from '~/tests';
+import * as appStore from '~/tests/store/app';
+import * as offerStore from '~/tests/store/offer';
+import * as offersStore from '~/tests/store/offers';
+import * as reviewStore from '~/tests/store/review';
+import * as userStore from '~/tests/store/user';
+import { renderWithProviders, RenderOptions, screen } from '~/tests/render';
 
 import { Routing } from './routing';
 

@@ -1,4 +1,4 @@
-import { renderWithProviders, screen } from '~/tests';
+import { renderWithProviders, screen } from '~/tests/render';
 
 import { FavoritesEmptySection } from './favorites-empty-section';
 

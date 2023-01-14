@@ -1,10 +1,11 @@
-import { offerStore, renderWithProviders, screen } from '~/tests';
+import { renderWithProviders, screen } from '~/tests/render';
+import { stateWithOffer } from '~/tests/store/offer';
 
 import { Features } from './features';
 
 describe('Component: Features', () => {
   it('should render correctly', () => {
-    const { bedrooms, type, maxAdults } = offerStore.stateWithOffer.offer;
+    const { bedrooms, type, maxAdults } = stateWithOffer.offer;
 
     renderWithProviders(
       <Features

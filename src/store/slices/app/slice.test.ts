@@ -1,5 +1,5 @@
 import { CityName, SortType } from '~/constants';
-import { appStore } from '~/tests';
+import { initialState, loadingState, rejectedState } from '~/tests/store/app';
 import { error } from '~/utils/mock-data';
 
 import appReducer, {
@@ -8,8 +8,6 @@ import appReducer, {
   setActiveCardId,
   toggleFavorite,
 } from './slice';
-
-const { initialState, loadingState, rejectedState } = appStore;
 
 describe('Slice: app', () => {
   it('without additional parameters should return initial state', () => {

@@ -1,12 +1,12 @@
 import { Reducer } from '~/constants';
+import * as offersStore from '~/tests/store/offers';
+import * as userStore from '~/tests/store/user';
 import {
-  offersStore,
   renderWithProviders,
   RenderOptions,
   screen,
   userEvent,
-  userStore,
-} from '~/tests';
+} from '~/tests/render';
 
 import { AuthList } from './auth-list';
 

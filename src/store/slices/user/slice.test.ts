@@ -1,10 +1,13 @@
 import { AuthStatus } from '~/constants';
-import { userStore } from '~/tests';
+import {
+  initialState,
+  loadingState,
+  rejectedState,
+  authState,
+} from '~/tests/store/user';
 import { error } from '~/utils/mock-data';
 
 import userReducer, { checkAuthStatus, login, logout } from './slice';
-
-const { initialState, loadingState, rejectedState, authState } = userStore;
 
 describe('Slice: user', () => {
   it('without additional parameters should return initial state', () => {

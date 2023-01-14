@@ -1,10 +1,11 @@
-import { offerStore, renderWithProviders, screen } from '~/tests';
+import { renderWithProviders, screen } from '~/tests/render';
+import { stateWithOffer } from '~/tests/store/offer';
 
 import { Price } from './price';
 
 describe('Component: Price', () => {
   it('should render correctly', () => {
-    const { price } = offerStore.stateWithOffer.offer;
+    const { price } = stateWithOffer.offer;
 
     renderWithProviders(<Price price={price} />);
 

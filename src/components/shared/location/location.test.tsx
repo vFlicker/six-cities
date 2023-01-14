@@ -1,5 +1,5 @@
 import { CityName } from '~/constants';
-import { renderWithProviders, screen, userEvent } from '~/tests';
+import { renderWithProviders, screen, userEvent } from '~/tests/render';
 
 import { Location } from './location';
 

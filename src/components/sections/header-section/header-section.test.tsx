@@ -1,11 +1,7 @@
 import { Reducer } from '~/constants';
-import {
-  offersStore,
-  renderWithProviders,
-  RenderOptions,
-  screen,
-  userStore,
-} from '~/tests';
+import * as offersStore from '~/tests/store/offers';
+import * as userStore from '~/tests/store/user';
+import { renderWithProviders, RenderOptions, screen } from '~/tests/render';
 
 import { HeaderSection } from './header-section';
 

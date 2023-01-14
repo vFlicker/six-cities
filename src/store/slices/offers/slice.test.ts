@@ -1,4 +1,11 @@
-import { offersStore } from '~/tests';
+import {
+  initialState,
+  stateWithOffers,
+  stateWitUpdatedOffers,
+  loadingState,
+  rejectedState,
+  updatedOffer,
+} from '~/tests/store/offers';
 import { error } from '~/utils/mock-data';
 
 import { toggleFavorite } from '../../api-actions/app';
@@ -8,15 +15,6 @@ import offersReducer, {
   fetchFavoriteOffers,
   fetchOffersNearby,
 } from './slice';
-
-const {
-  initialState,
-  stateWithOffers,
-  stateWitUpdatedOffers,
-  loadingState,
-  rejectedState,
-  updatedOffer,
-} = offersStore;
 
 describe('Slice: offers', () => {
   it('without additional parameters should return initial state', () => {

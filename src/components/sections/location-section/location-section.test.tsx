@@ -1,5 +1,6 @@
 import { cityNames, Reducer } from '~/constants';
-import { appStore, renderWithProviders, RenderOptions, screen } from '~/tests';
+import { renderWithProviders, RenderOptions, screen } from '~/tests/render';
+import { initialState } from '~/tests/store/app';
 
 import { LocationSection } from './location-section';
 
@@ -9,7 +10,7 @@ describe('Component: LocationSection', () => {
 
     const renderOptions: RenderOptions = {
       preloadedState: {
-        [Reducer.App]: appStore.initialState,
+        [Reducer.App]: initialState,
       },
     };
 

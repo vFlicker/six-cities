@@ -1,12 +1,12 @@
 import { FavoriteStatus, Reducer } from '~/constants';
+import * as appStore from '~/tests/store/app';
+import * as offerStore from '~/tests/store/offer';
 import {
-  appStore,
-  offerStore,
   RenderOptions,
   renderWithProviders,
   screen,
   userEvent,
-} from '~/tests';
+} from '~/tests/render';
 
 import { CardItem } from './card-item';
 

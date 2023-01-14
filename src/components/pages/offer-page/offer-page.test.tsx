@@ -1,15 +1,15 @@
 import { Reducer } from '~/constants';
+import * as appStore from '~/tests/store/app';
+import * as offerStore from '~/tests/store/offer';
+import * as offersStore from '~/tests/store/offers';
+import * as reviewStore from '~/tests/store/review';
+import * as userStore from '~/tests/store/user';
 import {
-  appStore,
   mockPageId,
-  offersStore,
-  offerStore,
   renderWithProviders,
   RenderOptions,
-  reviewStore,
   screen,
-  userStore,
-} from '~/tests';
+} from '~/tests/render';
 
 import { OfferPage } from './offer-page';
 

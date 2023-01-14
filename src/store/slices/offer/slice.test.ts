@@ -1,16 +1,14 @@
-import { offerStore } from '~/tests';
-import { error } from '~/utils/mock-data';
-
-import { toggleFavorite } from '../../api-actions/app';
-import offerReducer, { fetchOffer } from './slice';
-
-const {
+import {
   initialState,
   loadingState,
   rejectedState,
   stateWithOffer,
   stateWithUpdatedOffer,
-} = offerStore;
+} from '~/tests/store/offer';
+import { error } from '~/utils/mock-data';
+
+import { toggleFavorite } from '../../api-actions/app';
+import offerReducer, { fetchOffer } from './slice';
 
 describe('Slice: offer', () => {
   it('without additional parameters should return initial state', () => {

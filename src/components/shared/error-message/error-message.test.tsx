@@ -1,4 +1,4 @@
-import { renderWithProviders, screen } from '~/tests';
+import { renderWithProviders, screen } from '~/tests/render';
 
 import { ErrorMessage } from './error-message';
 

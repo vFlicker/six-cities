@@ -1,4 +1,4 @@
-import { renderWithProviders, screen } from '~/tests';
+import { renderWithProviders, screen } from '~/tests/render';
 import { makeReview } from '~/utils/mock-data';
 
 import { ReviewItem } from './review-item';

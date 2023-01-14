@@ -1,5 +1,6 @@
 import { CityName, Reducer } from '~/constants';
-import { appStore, renderWithProviders, RenderOptions, screen } from '~/tests';
+import { renderWithProviders, RenderOptions, screen } from '~/tests/render';
+import { initialState } from '~/tests/store/app';
 
 import { MainEmptySection } from './main-empty-section';
 
@@ -7,7 +8,7 @@ describe('Component: MainEmptySection', () => {
   it('should render correctly', () => {
     const renderOptions: RenderOptions = {
       preloadedState: {
-        [Reducer.App]: appStore.initialState,
+        [Reducer.App]: initialState,
       },
     };
 

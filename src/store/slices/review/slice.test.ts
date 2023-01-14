@@ -1,10 +1,12 @@
-import { reviewStore } from '~/tests';
+import {
+  initialState,
+  loadingState,
+  rejectedState,
+  stateWithReviews,
+} from '~/tests/store/review';
 import { error } from '~/utils/mock-data';
 
 import reviewReducer, { fetchReviews, postReview } from './slice';
-
-const { initialState, loadingState, rejectedState, stateWithReviews } =
-  reviewStore;
 
 describe('Slice: reviews', () => {
   it('without additional parameters should return initial state', () => {

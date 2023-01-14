@@ -1,12 +1,12 @@
 import { Reducer } from '~/constants';
+import * as appStore from '~/tests/store/app';
+import * as offersStore from '~/tests/store/offers';
 import {
-  appStore,
   mockPageId,
-  offersStore,
   renderWithProviders,
   RenderOptions,
   screen,
-} from '~/tests';
+} from '~/tests/render';
 
 import { NearPlacesSection } from './near-places-section';
 

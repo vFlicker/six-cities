@@ -1,18 +1,18 @@
 import { CityName, cityNames, Reducer } from '~/constants';
 import { appSlice } from '~/store';
 import {
-  appStore,
   renderWithProviders,
   RenderOptions,
   screen,
   userEvent,
-} from '~/tests';
+} from '~/tests/render';
+import { initialState } from '~/tests/store/app';
 
 import { FilterSection } from './filter-section';
 
 const renderOptions: RenderOptions = {
   preloadedState: {
-    [Reducer.App]: appStore.initialState,
+    [Reducer.App]: initialState,
   },
 };
 

@@ -1,11 +1,7 @@
 import { Reducer } from '~/constants';
-import {
-  appStore,
-  offersStore,
-  renderWithProviders,
-  RenderOptions,
-  screen,
-} from '~/tests';
+import * as appStore from '~/tests/store/app';
+import * as offersStore from '~/tests/store/offers';
+import { RenderOptions, renderWithProviders, screen } from '~/tests/render';
 
 import { Map } from './map';
 

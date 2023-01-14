@@ -1,10 +1,11 @@
-import { offerStore, renderWithProviders, screen } from '~/tests';
+import { renderWithProviders, screen } from '~/tests/render';
+import { stateWithOffer } from '~/tests/store/offer';
 
 import { Host } from './host';
 
 describe('Component: Host', () => {
   it('should render correctly', () => {
-    const { description, host } = offerStore.stateWithOffer.offer;
+    const { description, host } = stateWithOffer.offer;
     const { name, isPro } = host;
 
     renderWithProviders(

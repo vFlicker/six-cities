@@ -2,10 +2,10 @@ import { Reducer } from '~/constants';
 import {
   renderWithProviders,
   RenderOptions,
-  reviewStore,
   screen,
   userEvent,
-} from '~/tests';
+} from '~/tests/render';
+import { initialState } from '~/tests/store/review';
 
 import { ReviewForm } from './review-form';
 
@@ -14,7 +14,7 @@ const PAGE_ID = 10;
 
 const renderOptions: RenderOptions = {
   preloadedState: {
-    [Reducer.Review]: reviewStore.initialState,
+    [Reducer.Review]: initialState,
   },
 };
 

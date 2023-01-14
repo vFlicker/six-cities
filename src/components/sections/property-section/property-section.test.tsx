@@ -1,15 +1,15 @@
 import { FavoriteStatus, Reducer } from '~/constants';
+import * as appStore from '~/tests/store/app';
+import * as offerStore from '~/tests/store/offer';
+import * as reviewStore from '~/tests/store/review';
+import * as userStore from '~/tests/store/user';
 import {
-  appStore,
   mockPageId,
-  offerStore,
   renderWithProviders,
   RenderOptions,
-  reviewStore,
   screen,
   userEvent,
-  userStore,
-} from '~/tests';
+} from '~/tests/render';
 
 import { PropertySection } from './property-section';
 

@@ -2,7 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import { createHashHistory } from 'history';
 
 import { AppRoute } from '~/constants';
-import { renderWithProviders, screen, userEvent } from '~/tests';
+import { renderWithProviders, screen, userEvent } from '~/tests/render';
 
 import { Logo } from './logo';
 

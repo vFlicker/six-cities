@@ -1,10 +1,11 @@
-import { renderWithProviders, reviewStore, screen } from '~/tests';
+import { stateWithReviews } from '~/tests/store/review';
+import { renderWithProviders, screen } from '~/tests/render';
 
 import { ReviewList } from './review-list';
 
 describe('Component: ReviewList', () => {
   it('should render correctly', () => {
-    const { reviews } = reviewStore.stateWithReviews;
+    const { reviews } = stateWithReviews;
     const reviewCount = reviews.length;
 
     renderWithProviders(<ReviewList reviews={reviews} />);

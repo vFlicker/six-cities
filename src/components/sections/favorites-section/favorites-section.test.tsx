@@ -1,12 +1,8 @@
 import { CityName, Reducer } from '~/constants';
-import {
-  appStore,
-  offersStore,
-  renderWithProviders,
-  RenderOptions,
-  screen,
-  userStore,
-} from '~/tests';
+import * as appStore from '~/tests/store/app';
+import * as offersStore from '~/tests/store/offers';
+import * as userStore from '~/tests/store/user';
+import { renderWithProviders, RenderOptions, screen } from '~/tests/render';
 
 import { FavoritesSection } from './favorites-section';
 

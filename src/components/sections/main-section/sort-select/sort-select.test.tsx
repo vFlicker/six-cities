@@ -1,18 +1,18 @@
 import { Reducer, SortType } from '~/constants';
 import { appSlice } from '~/store';
 import {
-  appStore,
   renderWithProviders,
   RenderOptions,
   screen,
   userEvent,
-} from '~/tests';
+} from '~/tests/render';
+import { initialState } from '~/tests/store/app';
 
 import { SortSelect } from './sort-select';
 
 const renderOptions: RenderOptions = {
   preloadedState: {
-    [Reducer.App]: appStore.initialState,
+    [Reducer.App]: initialState,
   },
 };
 

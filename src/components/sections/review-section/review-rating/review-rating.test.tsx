@@ -1,4 +1,4 @@
-import { renderWithProviders, screen, userEvent } from '~/tests';
+import { renderWithProviders, screen, userEvent } from '~/tests/render';
 import { ReviewRating } from './review-rating';
 
 describe('Component: ReviewRating', () => {

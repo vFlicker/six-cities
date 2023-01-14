@@ -1,10 +1,11 @@
-import { offerStore, renderWithProviders, screen } from '~/tests';
+import { renderWithProviders, screen } from '~/tests/render';
+import { stateWithOffer } from '~/tests/store/offer';
 
 import { WhatIsInside } from './what-is-inside';
 
 describe('Component: Features', () => {
   it('should render correctly', () => {
-    const { goods } = offerStore.stateWithOffer.offer;
+    const { goods } = stateWithOffer.offer;
 
     renderWithProviders(<WhatIsInside goods={goods} />);
 

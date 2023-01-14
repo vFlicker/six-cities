@@ -1,11 +1,7 @@
 import { CityName, Reducer } from '~/constants';
-import {
-  appStore,
-  offersStore,
-  renderWithProviders,
-  RenderOptions,
-  screen,
-} from '~/tests';
+import * as appStore from '~/tests/store/app';
+import * as offersStore from '~/tests/store/offers';
+import { renderWithProviders, RenderOptions, screen } from '~/tests/render';
 
 import { MainSection } from './main-section';
 

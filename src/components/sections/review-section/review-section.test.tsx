@@ -1,12 +1,12 @@
 import { Reducer } from '~/constants';
+import * as reviewStore from '~/tests/store/review';
+import * as userStore from '~/tests/store/user';
 import {
   mockPageId,
   renderWithProviders,
   RenderOptions,
-  reviewStore,
   screen,
-  userStore,
-} from '~/tests';
+} from '~/tests/render';
 
 import { ReviewSection } from './review-section';
 

@@ -2,15 +2,15 @@ import { createHashHistory } from 'history';
 import { Route, Routes } from 'react-router-dom';
 
 import { AppRoute, Reducer } from '~/constants';
+import * as appStore from '~/tests/store/app';
+import * as offersStore from '~/tests/store/offers';
+import * as userStore from '~/tests/store/user';
 import {
-  appStore,
-  offersStore,
   renderWithProviders,
   RenderOptions,
   screen,
   userEvent,
-  userStore,
-} from '~/tests';
+} from '~/tests/render';
 
 import { MainPage } from './main-page';
 

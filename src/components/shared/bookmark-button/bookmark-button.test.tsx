@@ -1,4 +1,4 @@
-import { renderWithProviders, screen, userEvent } from '~/tests';
+import { renderWithProviders, screen, userEvent } from '~/tests/render';
 
 import { BookmarkButton } from './bookmark-button';
 
