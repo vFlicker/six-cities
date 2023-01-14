@@ -36,64 +36,78 @@ jest.mock('react-router-dom', () => {
   };
 });
 
-/**
- * Mock all thunks.
- */
-jest.mock('~/store', () => {
-  const originalModule = jest.requireActual('~/store');
+jest.mock('~/store/slices/app/slice', () => {
+  const originalModule = jest.requireActual('~/store/slices/app/slice');
 
   return {
     ...originalModule,
-    appSlice: {
-      ...originalModule.appSlice,
-      toggleFavorite: (payload: ToggleFavoritePayload) => ({
-        type: 'MOCK_TOGGLE_FAVORITE_ACTION',
-        payload,
-      }),
-    },
-    offerSlice: {
-      ...originalModule.offerSlice,
-      fetchOffer: (id: number) => ({
-        type: 'MOCK_FETCH_OFFER_ACTION',
-        payload: id,
-      }),
-    },
-    offersSlice: {
-      ...originalModule.offersSlice,
-      fetchAllOffers: () => ({
-        type: 'MOCK_FETCH_ALL_OFFERS_ACTION',
-      }),
-      fetchFavoriteOffers: (id: number) => ({
-        type: 'MOCK_FETCH_FAVORITE_OFFERS_ACTION',
-        payload: id,
-      }),
-      fetchOffersNearby: (id: number) => ({
-        type: 'MOCK_FETCH_OFFERS_NEARBY_ACTION',
-        payload: id,
-      }),
-    },
-    reviewSlice: {
-      ...originalModule.reviewSlice,
-      fetchReviews: (payload: number) => ({
-        type: 'MOCK_FETCH_REVIEWS_ACTION',
-        payload,
-      }),
-      postReview: (payload: PostReview) => ({
-        type: 'MOCK_POST_REVIEW_ACTION',
-        payload,
-      }),
-    },
-    userSlice: {
-      ...originalModule.userSlice,
-      checkAuthStatus: () => ({
-        type: 'MOCK_CHECK_AUTH_STATUS_ACTION',
-      }),
-      login: (payload: AuthData) => ({
-        type: 'MOCK_LOGIN_ACTION',
-        payload,
-      }),
-      logout: () => ({ type: 'MOCK_LOGOUT_ACTION' }),
-    },
+    toggleFavorite: (payload: ToggleFavoritePayload) => ({
+      type: 'MOCK_TOGGLE_FAVORITE_ACTION',
+      payload,
+    }),
+  };
+});
+
+jest.mock('~/store/slices/offer/slice', () => {
+  const originalModule = jest.requireActual('~/store/slices/offer/slice');
+
+  return {
+    ...originalModule,
+    fetchOffer: (id: number) => ({
+      type: 'MOCK_FETCH_OFFER_ACTION',
+      payload: id,
+    }),
+  };
+});
+
+jest.mock('~/store/slices/offers/slice', () => {
+  const originalModule = jest.requireActual('~/store/slices/offers/slice');
+
+  return {
+    ...originalModule,
+    fetchAllOffers: () => ({
+      type: 'MOCK_FETCH_ALL_OFFERS_ACTION',
+    }),
+    fetchFavoriteOffers: (id: number) => ({
+      type: 'MOCK_FETCH_FAVORITE_OFFERS_ACTION',
+      payload: id,
+    }),
+    fetchOffersNearby: (id: number) => ({
+      type: 'MOCK_FETCH_OFFERS_NEARBY_ACTION',
+      payload: id,
+    }),
+  };
+});
+
+jest.mock('~/store/slices/review/slice', () => {
+  const originalModule = jest.requireActual('~/store/slices/review/slice');
+
+  return {
+    ...originalModule,
+    fetchReviews: (payload: number) => ({
+      type: 'MOCK_FETCH_REVIEWS_ACTION',
+      payload,
+    }),
+    postReview: (payload: PostReview) => ({
+      type: 'MOCK_POST_REVIEW_ACTION',
+      payload,
+    }),
+  };
+});
+
+jest.mock('~/store/slices/user/slice', () => {
+  const originalModule = jest.requireActual('~/store/slices/user/slice');
+
+  return {
+    ...originalModule,
+    checkAuthStatus: () => ({
+      type: 'MOCK_CHECK_AUTH_STATUS_ACTION',
+    }),
+    login: (payload: AuthData) => ({
+      type: 'MOCK_LOGIN_ACTION',
+      payload,
+    }),
+    logout: () => ({ type: 'MOCK_LOGOUT_ACTION' }),
   };
 });
 

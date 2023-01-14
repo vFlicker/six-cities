@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { FavoriteStatus } from '~/constants';
 import { useAppDispatch } from '~/hooks/use-app-dispatch';
 import { useAppSelector } from '~/hooks/use-app-selector';
-import { appSlice } from '~/store';
+import * as appSlice from '~/store/slices/app/slice';
 import { Offer } from '~/types/offer';
 
 import { BookmarkButton } from '../bookmark-button/bookmark-button';

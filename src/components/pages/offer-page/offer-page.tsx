@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 
 import { useAppDispatch } from '~/hooks/use-app-dispatch';
 import { useAppSelector } from '~/hooks/use-app-selector';
-import { offerSlice } from '~/store';
+import * as offerSlice from '~/store/slices/offer/slice';
 
 import { HeaderSection } from '../../sections/header-section/header-section';
 import { NearPlacesSection } from '../../sections/near-places-section/near-places-section';

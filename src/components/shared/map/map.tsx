@@ -2,7 +2,7 @@ import { useRef } from 'react';
 
 import { useAppSelector } from '~/hooks/use-app-selector';
 import { useMapWithPins } from '~/hooks/use-map-with-pins';
-import { appSlice } from '~/store';
+import * as appSlice from '~/store/slices/app/slice';
 import { Offer } from '~/types/offer';
 
 import * as S from './styles';

@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { SortType } from '~/constants';
 import { useAppDispatch } from '~/hooks/use-app-dispatch';
 import { useAppSelector } from '~/hooks/use-app-selector';
-import { appSlice } from '~/store';
+import * as appSlice from '~/store/slices/app/slice';
 
 import * as S from './styles';
 

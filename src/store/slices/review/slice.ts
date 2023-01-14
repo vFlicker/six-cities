@@ -51,4 +51,6 @@ const slice = createSlice({
 
 export { fetchReviews, postReview };
 
+export * from './selectors';
+
 export default slice.reducer;

@@ -1,4 +1,5 @@
-import { rootReducer, store } from '~/store';
+import { rootReducer } from '~/store/root-reducer';
+import { store } from '~/store/store';
 
 export type Error = {
   message: string;

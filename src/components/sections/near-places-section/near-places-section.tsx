@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 
 import { useAppDispatch } from '~/hooks/use-app-dispatch';
 import { useAppSelector } from '~/hooks/use-app-selector';
-import { offersSlice } from '~/store';
+import * as offersSlice from '~/store/slices/offers/slice';
 
 import { CardItem } from '../../shared/card-item/card-item';
 import { Container } from '../../shared/container';

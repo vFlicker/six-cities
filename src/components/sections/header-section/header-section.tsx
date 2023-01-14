@@ -1,5 +1,5 @@
 import { useAppSelector } from '~/hooks/use-app-selector';
-import { userSlice } from '~/store';
+import * as userSlice from '~/store/slices/user/slice';
 
 import { Container } from '../../shared/container';
 import { Logo } from '../../shared/logo/logo';

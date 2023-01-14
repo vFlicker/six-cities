@@ -2,7 +2,7 @@ import { Navigate } from 'react-router-dom';
 
 import { AppRoute } from '~/constants';
 import { useAppSelector } from '~/hooks/use-app-selector';
-import { userSlice } from '~/store';
+import * as userSlice from '~/store/slices/user/slice';
 
 type PrivateRouteProps = {
   children: JSX.Element;

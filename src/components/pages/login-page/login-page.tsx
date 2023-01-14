@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { AppRoute } from '~/constants';
 import { useAppSelector } from '~/hooks/use-app-selector';
-import { userSlice } from '~/store';
+import * as userSlice from '~/store/slices/user/slice';
 
 import { HeaderSection } from '../../sections/header-section/header-section';
 import { LocationSection } from '../../sections/location-section/location-section';

@@ -1,5 +1,5 @@
 import { Reducer, SortType } from '~/constants';
-import { appSlice } from '~/store';
+import * as appSlice from '~/store/slices/app/slice';
 import {
   renderWithProviders,
   RenderOptions,

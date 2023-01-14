@@ -87,4 +87,6 @@ const slice = createSlice({
 
 export { fetchAllOffers, fetchFavoriteOffers, fetchOffersNearby };
 
+export * from './selectors';
+
 export default slice.reducer;

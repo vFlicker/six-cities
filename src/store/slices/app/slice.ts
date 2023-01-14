@@ -66,4 +66,6 @@ export const { changeCityName, changeSortType, setActiveCardId } =
 
 export { toggleFavorite };
 
+export * from './selectors';
+
 export default slice.reducer;

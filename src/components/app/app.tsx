@@ -2,7 +2,8 @@ import { useEffect } from 'react';
 
 import { useAppDispatch } from '~/hooks/use-app-dispatch';
 import { useAppSelector } from '~/hooks/use-app-selector';
-import { offersSlice, userSlice } from '~/store';
+import * as offersSlice from '~/store/slices/offers/slice';
+import * as userSlice from '~/store/slices/user/slice';
 
 import { Routing } from '../pages/routing';
 import { Spinner } from '../shared/spinner/spinner';

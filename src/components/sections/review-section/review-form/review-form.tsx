@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 
 import { useAppDispatch } from '~/hooks/use-app-dispatch';
 import { useAppSelector } from '~/hooks/use-app-selector';
-import { reviewSlice } from '~/store';
+import * as reviewSlice from '~/store/slices/review/slice';
 
 import { Button } from '../../../shared/button/button';
 import { ReviewRating } from '../review-rating/review-rating';

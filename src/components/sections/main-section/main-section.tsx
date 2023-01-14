@@ -1,7 +1,8 @@
 import { NO_ACTIVE_CARD } from '~/constants';
 import { useAppDispatch } from '~/hooks/use-app-dispatch';
 import { useAppSelector } from '~/hooks/use-app-selector';
-import { appSlice, offersSlice } from '~/store';
+import * as appSlice from '~/store/slices/app/slice';
+import * as offersSlice from '~/store/slices/offers/slice';
 
 import { CardItem } from '../../shared/card-item/card-item';
 import { ErrorMessage } from '../../shared/error-message/error-message';

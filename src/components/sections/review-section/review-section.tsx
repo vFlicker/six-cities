@@ -3,7 +3,8 @@ import { useParams } from 'react-router-dom';
 
 import { useAppDispatch } from '~/hooks/use-app-dispatch';
 import { useAppSelector } from '~/hooks/use-app-selector';
-import { reviewSlice, userSlice } from '~/store';
+import * as reviewSlice from '~/store/slices/review/slice';
+import * as userSlice from '~/store/slices/user/slice';
 
 import { ErrorMessage } from '../../../components/shared/error-message/error-message';
 import { ReviewForm } from './review-form/review-form';

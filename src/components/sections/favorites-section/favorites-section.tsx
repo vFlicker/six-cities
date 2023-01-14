@@ -1,5 +1,5 @@
 import { useAppSelector } from '~/hooks/use-app-selector';
-import { offersSlice } from '~/store';
+import * as offersSlice from '~/store/slices/offers/slice';
 
 import { CardItem } from '../../shared/card-item/card-item';
 import { ErrorMessage } from '../../shared/error-message/error-message';

@@ -73,4 +73,6 @@ const slice = createSlice({
 
 export { checkAuthStatus, login, logout };
 
+export * from './selectors';
+
 export default slice.reducer;

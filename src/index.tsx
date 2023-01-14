@@ -7,7 +7,7 @@ import { Global } from '@emotion/react';
 
 import { ErrorBoundary } from './components/shared/error-boundary/error-boundary';
 import { App } from './components/app/app';
-import { store } from './store';
+import { store } from './store/store';
 import { globalStyle } from './styles';
 
 import 'react-toastify/dist/ReactToastify.css';

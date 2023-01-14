@@ -1,7 +1,7 @@
 import { SyntheticEvent, useRef } from 'react';
 
 import { useAppDispatch } from '~/hooks/use-app-dispatch';
-import { userSlice } from '~/store';
+import * as userSlice from '~/store/slices/user/slice';
 
 import { Button } from '../../shared/button/button';
 
