@@ -3,7 +3,8 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { Reducer } from '~/constants';
 import { ApiError } from '~/services/api/api-error';
 import * as apiService from '~/services/api/api-service';
-import { Offer, ThunkOptions, ToggleFavoritePayload } from '~/types';
+import { Offer, ToggleFavoritePayload } from '~/types/offer';
+import { ThunkOptions } from '~/types/store';
 
 export const toggleFavorite = createAsyncThunk<
   Offer,

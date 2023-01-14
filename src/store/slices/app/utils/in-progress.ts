@@ -1,4 +1,4 @@
-import { OfferID } from '~/types';
+import { OfferID } from '~/types/offer';
 
 export const addIdToInIdsProgress = (
   ids: OfferID[],

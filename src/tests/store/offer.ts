@@ -1,6 +1,6 @@
 import { State } from '~/store/slices/offer/types';
-import { Offer } from '~/types';
-import { error, makeOffer } from '~/utils';
+import { Offer } from '~/types/offer';
+import { error, makeOffer } from '~/utils/mock-data';
 
 type StateWithOffer = State & { offer: Offer };
 

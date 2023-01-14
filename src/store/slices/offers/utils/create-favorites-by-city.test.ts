@@ -1,5 +1,5 @@
 import { CityName } from '~/constants';
-import { makeOffer } from '~/utils';
+import { makeOffer } from '~/utils/mock-data';
 
 import { createFavoritesByCity } from './create-favorites-by-city';
 

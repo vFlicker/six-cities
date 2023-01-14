@@ -1,5 +1,5 @@
 import { renderWithProviders, screen } from '~/tests';
-import { makeReview } from '~/utils';
+import { makeReview } from '~/utils/mock-data';
 
 import { ReviewItem } from './review-item';
 

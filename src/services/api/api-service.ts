@@ -1,5 +1,7 @@
 import { FavoriteStatus } from '~/constants';
-import { AuthData, Offer, PostReview, Review, User } from '~/types';
+import { Offer } from '~/types/offer';
+import { PostReview, Review } from '~/types/review';
+import { AuthData, User } from '~/types/user';
 
 import { handleApiError } from './handle-api-error';
 import { httpClient } from './http-client';

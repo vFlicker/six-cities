@@ -1,5 +1,5 @@
 import { offersStore } from '~/tests';
-import { error } from '~/utils';
+import { error } from '~/utils/mock-data';
 
 import { toggleFavorite } from '../../api-actions/app';
 import { logout } from '../../api-actions/user';

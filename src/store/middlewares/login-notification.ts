@@ -2,7 +2,7 @@ import { isRejectedWithValue } from '@reduxjs/toolkit';
 import { Middleware } from 'redux';
 import { toast } from 'react-toastify';
 
-import { Error, State } from '~/types';
+import { Error, State } from '~/types/store';
 import { StatusCodes } from 'http-status-codes';
 
 export const loginNotification: Middleware<unknown, State> =

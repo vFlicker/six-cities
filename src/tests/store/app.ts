@@ -1,6 +1,6 @@
 import { CityName, NO_ACTIVE_CARD, SortType } from '~/constants';
 import { State } from '~/store/slices/app/types';
-import { error } from '~/utils';
+import { error } from '~/utils/mock-data';
 
 export const initialState: State = {
   activeCardId: NO_ACTIVE_CARD,

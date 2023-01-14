@@ -1,5 +1,5 @@
-import { Offer } from '~/types';
-import { makeOffer } from '~/utils';
+import { Offer } from '~/types/offer';
+import { makeOffer } from '~/utils/mock-data';
 
 import { updateFavorites, updateOffers } from './offers';
 

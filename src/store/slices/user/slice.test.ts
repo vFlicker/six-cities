@@ -1,6 +1,6 @@
 import { AuthStatus } from '~/constants';
 import { userStore } from '~/tests';
-import { error } from '~/utils';
+import { error } from '~/utils/mock-data';
 
 import userReducer, { checkAuthStatus, login, logout } from './slice';
 

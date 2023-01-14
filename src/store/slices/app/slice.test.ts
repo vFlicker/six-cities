@@ -1,6 +1,6 @@
 import { CityName, SortType } from '~/constants';
 import { appStore } from '~/tests';
-import { error } from '~/utils';
+import { error } from '~/utils/mock-data';
 
 import appReducer, {
   changeCityName,

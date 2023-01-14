@@ -5,7 +5,8 @@ import thunk from 'redux-thunk';
 
 import { httpClient } from '~/services/api/http-client';
 import { AUTH_TOKEN_KEY_NAME } from '~/services/token';
-import { AppDispatch, AuthData, State } from '~/types';
+import { AppDispatch, State } from '~/types/store';
+import { AuthData } from '~/types/user';
 
 import { redirectToRoute } from '../actions/app';
 import { checkAuthStatus, login, logout } from './user';

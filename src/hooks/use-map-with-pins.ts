@@ -2,7 +2,7 @@ import { MutableRefObject, useEffect } from 'react';
 import { Icon, latLng, Marker } from 'leaflet';
 
 import { pinActiveIconSrc, pinIconSrc } from '~/assets/images';
-import { Offer } from '~/types';
+import { Offer } from '~/types/offer';
 
 import { useMap } from './use-map';
 

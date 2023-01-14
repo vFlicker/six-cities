@@ -1,5 +1,6 @@
 import { AuthStatus, Reducer } from '~/constants';
-import { State, User } from '~/types';
+import { State } from '~/types/store';
+import { User } from '~/types/user';
 
 export const selectIsAuthChecked = (state: State): boolean => {
   return state[Reducer.User].authStatus !== AuthStatus.Unknown;

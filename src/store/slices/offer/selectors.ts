@@ -1,5 +1,6 @@
 import { Reducer } from '~/constants';
-import { Offer, State } from '~/types';
+import { Offer } from '~/types/offer';
+import { State } from '~/types/store';
 
 export const selectOffer = (state: State): Offer | null => {
   return state[Reducer.Offer].offer;

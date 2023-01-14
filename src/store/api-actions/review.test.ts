@@ -4,7 +4,8 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
 import { httpClient } from '~/services/api/http-client';
-import { AppDispatch, PostReview, State } from '~/types';
+import { PostReview } from '~/types/review';
+import { AppDispatch, State } from '~/types/store';
 
 import { fetchReviews, postReview } from './review';
 

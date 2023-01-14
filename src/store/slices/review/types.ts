@@ -1,4 +1,4 @@
-import { Review } from '~/types';
+import { Review } from '~/types/review';
 
 export type State = {
   reviews: Review[];

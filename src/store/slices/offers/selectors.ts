@@ -1,7 +1,8 @@
 import { createSelector } from '@reduxjs/toolkit';
 
 import { Reducer } from '~/constants';
-import { Offer, PartialOffersByCity, State } from '~/types';
+import { Offer, PartialOffersByCity } from '~/types/offer';
+import { State } from '~/types/store';
 
 import { selectCurrentCityName, selectCurrentSortType } from '../app/selectors';
 import { createFavoritesByCity, sortOffers } from './utils';

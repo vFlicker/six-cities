@@ -1,7 +1,7 @@
 import { CityName, cityNames } from '~/constants';
 import { useAppDispatch } from '~/hooks/use-app-dispatch';
 import { appSlice } from '~/store';
-import { pickRandomItem } from '~/utils';
+import { pickRandomItem } from '~/utils/pick-random-item';
 
 import { Location } from '../../shared/location/location';
 

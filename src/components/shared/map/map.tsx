@@ -3,7 +3,7 @@ import { useRef } from 'react';
 import { useAppSelector } from '~/hooks/use-app-selector';
 import { useMapWithPins } from '~/hooks/use-map-with-pins';
 import { appSlice } from '~/store';
-import { Offer } from '~/types';
+import { Offer } from '~/types/offer';
 
 import * as S from './styles';
 import 'leaflet/dist/leaflet.css';

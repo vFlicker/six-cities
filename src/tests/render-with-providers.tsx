@@ -9,7 +9,10 @@ import { PropsWithChildren, ReactElement } from 'react';
 import { Provider } from 'react-redux';
 import '@testing-library/jest-dom';
 
-import { AuthData, PostReview, State, ToggleFavoritePayload } from '~/types';
+import { State } from '~/types/store';
+import { ToggleFavoritePayload } from '~/types/offer';
+import { PostReview } from '~/types/review';
+import { AuthData } from '~/types/user';
 
 export interface RenderOptions extends Omit<RTKRenderOptions, 'queries'> {
   preloadedState?: PreloadedState<State>;

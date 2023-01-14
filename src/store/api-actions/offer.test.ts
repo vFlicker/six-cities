@@ -4,7 +4,7 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
 import { httpClient } from '~/services/api/http-client';
-import { AppDispatch } from '~/types';
+import { AppDispatch } from '~/types/store';
 
 import { fetchOffer } from './offer';
 

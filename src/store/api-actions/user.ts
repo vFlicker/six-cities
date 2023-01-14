@@ -1,7 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { AppRoute, Reducer } from '~/constants';
-import { AuthData, ThunkOptions, User } from '~/types';
+import { ThunkOptions } from '~/types/store';
+import { AuthData, User } from '~/types/user';
 import * as apiService from '~/services/api/api-service';
 import { ApiError } from '~/services/api/api-error';
 import { dropToken, saveToken } from '~/services/token';

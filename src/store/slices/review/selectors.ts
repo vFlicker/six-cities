@@ -1,5 +1,6 @@
 import { Reducer } from '~/constants';
-import { Review, State } from '~/types';
+import { Review } from '~/types/review';
+import { State } from '~/types/store';
 
 export const selectReviews = (state: State): Review[] => {
   return state[Reducer.Review].reviews;

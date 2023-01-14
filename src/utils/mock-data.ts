@@ -2,15 +2,10 @@ import { faker } from '@faker-js/faker/locale/en_US';
 import { StatusCodes } from 'http-status-codes';
 
 import { CityName } from '~/constants';
-import {
-  Error,
-  Host,
-  Location,
-  Offer,
-  Review,
-  ReviewUser,
-  User,
-} from '~/types';
+import { Host, Location, Offer } from '~/types/offer';
+import { Review, ReviewUser } from '~/types/review';
+import { Error } from '~/types/store';
+import { User } from '~/types/user';
 
 type MakeReviewArgs = Partial<Review>;
 

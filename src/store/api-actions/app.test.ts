@@ -5,7 +5,7 @@ import thunk from 'redux-thunk';
 
 import { FavoriteStatus } from '~/constants';
 import { httpClient } from '~/services/api/http-client';
-import { AppDispatch } from '~/types';
+import { AppDispatch } from '~/types/store';
 
 import { toggleFavorite } from './app';
 

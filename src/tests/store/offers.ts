@@ -1,6 +1,6 @@
 import { State } from '~/store/slices/offers/types';
-import { Offer } from '~/types';
-import { error, makeOffer } from '~/utils';
+import { Offer } from '~/types/offer';
+import { error, makeOffer } from '~/utils/mock-data';
 
 const offer = makeOffer({ isFavorite: true });
 export const updatedOffer: Offer = { ...offer, isFavorite: false };

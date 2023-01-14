@@ -1,5 +1,5 @@
 import { CityName, SortType } from '~/constants';
-import { OfferID } from '~/types';
+import { OfferID } from '~/types/offer';
 
 export type State = {
   activeCardId: number;

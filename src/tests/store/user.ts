@@ -1,7 +1,7 @@
 import { AuthStatus } from '~/constants';
 import { State } from '~/store/slices/user/types';
-import { User } from '~/types';
-import { error, makeUser } from '~/utils';
+import { User } from '~/types/user';
+import { error, makeUser } from '~/utils/mock-data';
 
 type AuthState = State & { user: User };
 

@@ -1,5 +1,5 @@
 import { AuthStatus } from '~/constants';
-import { User } from '~/types';
+import { User } from '~/types/user';
 
 export type State = {
   authStatus: AuthStatus;

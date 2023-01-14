@@ -1,4 +1,4 @@
-import { Offer } from '~/types';
+import { Offer } from '~/types/offer';
 
 const addOffer = (offers: Offer[], updatedOffer: Offer): Offer[] => {
   return [...offers, updatedOffer];

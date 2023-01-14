@@ -1,5 +1,6 @@
 import { CityName, Reducer, SortType } from '~/constants';
-import { OfferID, State } from '~/types';
+import { OfferID } from '~/types/offer';
+import { State } from '~/types/store';
 
 export const selectCurrentCityName = (state: State): CityName => {
   return state[Reducer.App].currentCityName;

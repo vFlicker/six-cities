@@ -1,4 +1,4 @@
-import { Offer, PartialOffersByCity } from '~/types';
+import { Offer, PartialOffersByCity } from '~/types/offer';
 
 export const createFavoritesByCity = (offers: Offer[]): PartialOffersByCity => {
   const offersByCity: PartialOffersByCity = {};

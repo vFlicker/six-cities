@@ -1,5 +1,5 @@
 import { SortType } from '~/constants';
-import { Offer } from '~/types';
+import { Offer } from '~/types/offer';
 
 const sortBy = {
   priceHighToLow: (firstOffer: Offer, secondOffer: Offer): number => {

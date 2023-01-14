@@ -1,5 +1,5 @@
 import { State } from '~/store/slices/review/types';
-import { error, makeReview } from '~/utils';
+import { error, makeReview } from '~/utils/mock-data';
 
 const firstReview = makeReview();
 const secondReview = makeReview();

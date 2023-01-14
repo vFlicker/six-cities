@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import { loginNotification, redirect } from './middlewares';
+import { loginNotification } from './middlewares/login-notification';
+import { redirect } from './middlewares/redirect';
 import { rootReducer } from './root-reducer';
 
 export const store = configureStore({

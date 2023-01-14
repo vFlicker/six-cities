@@ -3,7 +3,8 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { Reducer } from '~/constants';
 import { ApiError } from '~/services/api/api-error';
 import * as apiService from '~/services/api/api-service';
-import { ThunkOptions, Offer } from '~/types';
+import { Offer } from '~/types/offer';
+import { ThunkOptions } from '~/types/store';
 
 export const fetchOffer = createAsyncThunk<Offer, number, ThunkOptions>(
   `${Reducer.Offer}/fetchOne`,

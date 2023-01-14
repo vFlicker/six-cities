@@ -1,5 +1,5 @@
-import { Review } from '~/types';
-import { getFullMonthDate, getScreenReaderDate } from '~/utils';
+import { Review } from '~/types/review';
+import { getFullMonthDate, getScreenReaderDate } from '~/utils/date';
 
 import { StarRating } from '../../../shared/star-rating/star-rating';
 

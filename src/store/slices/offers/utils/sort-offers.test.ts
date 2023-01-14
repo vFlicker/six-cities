@@ -1,5 +1,5 @@
 import { SortType } from '~/constants';
-import { makeOffer } from '~/utils';
+import { makeOffer } from '~/utils/mock-data';
 
 import { sortOffers } from './sort-offers';
 
