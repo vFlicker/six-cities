@@ -1,6 +1,7 @@
 import { createHashHistory } from 'history';
 
 import { AppRoute, Reducer } from '~/constants';
+import { changeCityName } from '~/store/slices/app/slice';
 import * as appStore from '~/tests/store/app';
 import * as offersStore from '~/tests/store/offers';
 import * as userStore from '~/tests/store/user';
@@ -62,6 +63,7 @@ describe('Component: App', () => {
       'MOCK_FETCH_ALL_OFFERS_ACTION',
       'MOCK_CHECK_AUTH_STATUS_ACTION',
       'MOCK_FETCH_FAVORITE_OFFERS_ACTION',
+      changeCityName.type,
     ]);
   });
 
@@ -82,6 +84,7 @@ describe('Component: App', () => {
     expect(actionTypes).toEqual([
       'MOCK_FETCH_ALL_OFFERS_ACTION',
       'MOCK_CHECK_AUTH_STATUS_ACTION',
+      changeCityName.type,
     ]);
   });
 });
