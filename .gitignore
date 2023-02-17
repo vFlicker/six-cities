@@ -1,14 +1,31 @@
-# Файлы и папки операционной системы
-.DS_Store
-Thumbs.db
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
 
-# Файлы редактора
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
 .idea
-*.sublime*
-.vscode
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
 
-# Вспомогательные файлы
-*.log*
-node_modules/
+# Local configuration files
+.env
 
-public
+# Other files
+old-version
+markup
