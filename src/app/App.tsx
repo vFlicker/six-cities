@@ -1,5 +1,13 @@
+import { HashRouter as Router } from 'react-router-dom';
+
+import { MainPage } from '~/pages/MainPage';
+
 import './index.css';
 
 export function App(): JSX.Element {
-  return <h1>App</h1>;
+  return (
+    <Router>
+      <MainPage />
+    </Router>
+  );
 }

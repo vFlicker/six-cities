@@ -27,6 +27,11 @@ img {
   vertical-align: middle;
 }
 
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
 div#root {
   height: 100%;
 }

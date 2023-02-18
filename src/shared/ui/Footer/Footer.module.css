@@ -1,0 +1,8 @@
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 48px;
+  padding-bottom: 52px;
+  border-top: var(--footer-border);
+}
