@@ -1,17 +1,10 @@
-import { Provider } from 'react-redux';
-import { HashRouter as Router } from 'react-router-dom';
-
 import { MainPage } from '~/pages/MainPage';
 
-import { store } from './store';
+import { withProviders } from './providers';
 import './index.css';
 
+const MainPageWithProviders = withProviders(MainPage);
+
 export function App(): JSX.Element {
-  return (
-    <Provider store={store}>
-      <Router>
-        <MainPage />
-      </Router>
-    </Provider>
-  );
+  return <MainPageWithProviders />;
 }
