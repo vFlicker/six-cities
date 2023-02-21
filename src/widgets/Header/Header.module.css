@@ -92,8 +92,8 @@
   line-height: 1;
   text-align: center;
 
-  color: #fff;
-  background-color: #4481c3;
+  color: white;
+  background-color: var(--accent-color);
 
   user-select: none;
 }
