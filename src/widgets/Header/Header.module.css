@@ -40,43 +40,22 @@
 }
 
 .navLink {
-  position: relative;
-
   display: flex;
   align-items: center;
 
   font-size: 1.4rem;
-  line-height: 1.21;
+  line-height: 1;
 
   transition: text-shadow 0.3s;
+}
+
+.navLinkUser {
+  gap: 7px;
 }
 
 .navLink:focus,
 .navLink:hover {
   text-shadow: 0.5px 0 0, -0.5px 0 0;
-}
-
-.userNameWrapper {
-  width: 20px;
-  height: 20px;
-  margin-right: 8px;
-
-  background-image: url(../../shared/assets/images/icons/avatar.svg);
-  background-size: 100%;
-  background-repeat: no-repeat
-}
-
-.login {
-  padding-top: 2px;
-  padding-right: 8px;
-}
-
-.signOut {
-  padding-top: 2px;
-}
-
-.userName {
-  padding-top: 2px;
 }
 
 .favoriteCount {

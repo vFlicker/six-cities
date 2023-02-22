@@ -1,0 +1,21 @@
+.button {
+  -webkit-appearance: none;
+  appearance: none;
+
+  padding: 0;
+  border: 0;
+
+  font-size: 1.4rem;
+  line-height: 1;
+
+  background-color: transparent;
+
+  transition: text-shadow 0.3s;
+
+  cursor: pointer;
+}
+
+.button:focus,
+.button:hover {
+  text-shadow: 0.5px 0 0, -0.5px 0 0;
+}
