@@ -6,6 +6,7 @@ import { selectIsUserAuthenticated } from '~/entities/user/model';
 import { SignOut } from '~/features/SignOut';
 import { AppRoute } from '~/shared/constants';
 import { useAppSelector } from '~/shared/hooks';
+import { HomeLink } from '~/shared/ui/HomeLink';
 import { Logo } from '~/shared/ui/Logo';
 
 import classes from './Header.module.css';
@@ -54,7 +55,9 @@ export function Header(): JSX.Element {
       <div className="container">
         <div className={classes.wrapper}>
           <div className={classes.left}>
-            <Logo width="81px" height="41px" />
+            <HomeLink isActive>
+              <Logo width="81px" height="41px" />
+            </HomeLink>
           </div>
           <nav className={classes.nav}>
             <ul className={classes.navList}>{navList}</ul>
