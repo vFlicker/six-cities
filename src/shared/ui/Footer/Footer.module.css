@@ -4,5 +4,5 @@
   align-items: flex-start;
   padding-top: 48px;
   padding-bottom: 52px;
-  border-top: var(--footer-border);
+  border-top: 2px solid var(--footer-border-color);
 }

@@ -1,3 +1,7 @@
+.header {
+  min-height: 70px;
+}
+
 .wrapper {
   display: flex;
   align-items: flex-start;

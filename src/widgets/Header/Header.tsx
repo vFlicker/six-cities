@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import { UserAvatar, UserEmail } from '~/entities/user';
 import { selectIsUserAuthenticated } from '~/entities/user/model';
@@ -46,12 +46,22 @@ function NoAuthNav(): JSX.Element {
 }
 
 export function Header(): JSX.Element {
+  const { pathname } = useLocation();
+
   const isUserAuthenticated = useAppSelector(selectIsUserAuthenticated);
 
   const navList = isUserAuthenticated ? <AuthNav /> : <NoAuthNav />;
 
+  // TODO: Чи буде навігація створюватися кожен раз?
+  const isLoginRoute = pathname === AppRoute.Login;
+  const navigation = !isLoginRoute && (
+    <nav className={classes.nav}>
+      <ul className={classes.navList}>{navList}</ul>
+    </nav>
+  );
+
   return (
-    <header>
+    <header className={classes.header}>
       <div className="container">
         <div className={classes.wrapper}>
           <div className={classes.left}>
@@ -59,9 +69,7 @@ export function Header(): JSX.Element {
               <Logo width="81px" height="41px" />
             </HomeLink>
           </div>
-          <nav className={classes.nav}>
-            <ul className={classes.navList}>{navList}</ul>
-          </nav>
+          {navigation}
         </div>
       </div>
     </header>

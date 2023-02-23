@@ -3,7 +3,10 @@
 
   --main-color: #383838;
   --accent-color: #4481c3;
-  --grey-color: #f5f5f5;
+  --dark-accent-color: #3069a6;
 
-  --footer-border: 2px solid rgba(222, 222, 222, .5);
+  --background-color: #f5f5f5;
+  --footer-border-color: rgba(222, 222, 222, 0.5);
+  --input-border-color: #e6e6e6;
+  --disabled-bg-color: #c7c7c7;
 }

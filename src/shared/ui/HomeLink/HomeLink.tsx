@@ -12,11 +12,11 @@ type HomeLinkProps = {
 export function HomeLink({ isActive, children }: HomeLinkProps): JSX.Element {
   const { pathname } = useLocation();
 
-  const isRootPath = pathname === AppRoute.Root;
-  if (isRootPath) return children;
+  const isHomeRoute = pathname === AppRoute.Root;
+  if (isHomeRoute) return children;
 
   const className = classNames(classes.link, {
-    [classes.active]: !isRootPath && isActive,
+    [classes.active]: !isHomeRoute && isActive,
   });
 
   return (

@@ -1,0 +1,15 @@
+.button {
+  padding: 16px 20px 13px;
+  border-radius: 3px;
+  color: white;
+  background-color: var(--accent-color);
+}
+
+.button:focus,
+.button:hover {
+  background-color: var(--dark-accent-color);
+}
+
+.button:disabled {
+  background-color: var(--disabled-bg-color);
+}
