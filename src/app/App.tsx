@@ -1,10 +1,10 @@
-import { MainPage } from '~/pages/MainPage';
+import { Routing } from '~/pages/Routing';
 
 import { withProviders } from './providers';
 import './index.css';
 
-const MainPageWithProviders = withProviders(MainPage);
+const RoutingWrapped = withProviders(Routing);
 
 export function App(): JSX.Element {
-  return <MainPageWithProviders />;
+  return <RoutingWrapped />;
 }
