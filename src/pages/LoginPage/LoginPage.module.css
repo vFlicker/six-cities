@@ -60,18 +60,24 @@
   z-index: 1;
 }
 
-.form {
-  position: relative;
-  width: 341px;
-  z-index: 1;
+.locations {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  padding: 0 51px 63px 130px;
 }
 
-.input {
-  width: 100%;
-  margin-bottom: 24px;
+.locationsItem {
+  display: block;
+  margin: 0;
 }
 
-.button {
-  width: 100%;
+.locationsLink {
+  min-width: 137px;
+  padding: 9px 21px 6px 16px !important;
+  text-align: center;
+  letter-spacing: 0.9px;
+  backface-visibility: hidden;
 }
 

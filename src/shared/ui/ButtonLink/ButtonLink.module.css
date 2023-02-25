@@ -1,0 +1,29 @@
+.link {
+  display: block;
+  padding: 9px 21px 6px 11px;
+  border-radius: 3px;
+
+  font-size: 1.9rem;
+  font-weight: 300;
+  font-style: oblique;
+  line-height: 1.211;
+
+  transform: skew(-15deg);
+  transition: background-color 0.3s, color 0.3s, text-shadow 0.3s;
+}
+
+.link span {
+  display: block;
+  transform: skew(15deg);
+}
+
+.link:focus,
+.link:hover {
+  text-shadow: 1px 0 0, 0.5px 0 0, -1px 0 0;
+}
+
+.link.active {
+  text-shadow: 1px 0 0, 0.5px 0 0, -1px 0 0;
+  color: white;
+  background-color: var(--accent-color);
+}

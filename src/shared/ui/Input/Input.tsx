@@ -1,4 +1,4 @@
-import classNames from 'classnames';
+import cn from 'classnames';
 import { ComponentPropsWithoutRef } from 'react';
 
 import classes from './Input.module.css';
@@ -11,7 +11,7 @@ export function Input({ label, className, ...props }: InputProps): JSX.Element {
   return (
     <label>
       <span className="visually-hidden">{label}</span>
-      <input className={classNames(classes.input, className)} {...props} />
+      <input className={cn(className, classes.input)} {...props} />
     </label>
   );
 }

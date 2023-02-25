@@ -1,13 +1,17 @@
-import classNames from 'classnames';
+import cn from 'classnames';
 import { ComponentPropsWithoutRef } from 'react';
 
 import classes from './Button.module.css';
 
 type ButtonProps = ComponentPropsWithoutRef<'button'>;
 
-export function Button({ className, children }: ButtonProps): JSX.Element {
+export function Button({
+  className,
+  children,
+  ...props
+}: ButtonProps): JSX.Element {
   return (
-    <button className={classNames(classes.button, className)}>
+    <button className={cn(className, classes.button)} {...props}>
       {children}
     </button>
   );

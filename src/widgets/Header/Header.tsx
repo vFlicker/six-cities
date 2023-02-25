@@ -1,4 +1,4 @@
-import classNames from 'classnames';
+import cn from 'classnames';
 import { Link, useLocation } from 'react-router-dom';
 
 import { UserAvatar, UserEmail } from '~/entities/user';
@@ -17,7 +17,7 @@ function AuthNav(): JSX.Element {
       <li className={classes.navItem}>
         <Link
           to={AppRoute.FAVORITES}
-          className={classNames(classes.navLink, classes.navLinkUser)}
+          className={cn(classes.navLink, classes.navLinkUser)}
         >
           <UserAvatar />
           <UserEmail />
@@ -36,7 +36,7 @@ function NoAuthNav(): JSX.Element {
     <li className={classes.navItem}>
       <Link
         to={AppRoute.LOGIN}
-        className={classNames(classes.navLink, classes.navLinkUser)}
+        className={cn(classes.navLink, classes.navLinkUser)}
       >
         <UserAvatar />
         <span>Sign in</span>

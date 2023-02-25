@@ -1,6 +1,8 @@
-import classNames from 'classnames';
+import cn from 'classnames';
 
 import { LoginForm } from '~/features/LoginForm';
+import { AppRoute } from '~/shared/constants';
+import { ButtonLink } from '~/shared/ui/ButtonLink';
 import { Header } from '~/widgets/Header';
 
 import classes from './LoginPage.module.css';
@@ -11,19 +13,22 @@ export function LoginPage(): JSX.Element {
       <Header />
 
       <main className={classes.main}>
-        <div className={classNames('container', classes.container)}>
+        <div className={cn('container', classes.container)}>
           <section className={classes.login}>
             <h1 className={classes.title}>Sign in</h1>
             <LoginForm />
           </section>
-          {/* TODO: create location button */}
-          {/* <section className="locations locations--login locations--current">
-            <div className="locations__item">
-              <a className="locations__item-link" href="#">
-                <span>Amsterdam</span>
-              </a>
+          <section className={classes.locations}>
+            <div className={classes.locationsItem}>
+              <ButtonLink
+                to={AppRoute.ROOT}
+                className={classes.locationsLink}
+                isActive
+              >
+                Amsterdam
+              </ButtonLink>
             </div>
-          </section> */}
+          </section>
         </div>
       </main>
     </div>
