@@ -1,7 +1,6 @@
 import classNames from 'classnames';
 
-import { Button } from '~/shared/ui/Button';
-import { Input } from '~/shared/ui/Input';
+import { LoginForm } from '~/features/LoginForm';
 import { Header } from '~/widgets/Header';
 
 import classes from './LoginPage.module.css';
@@ -15,25 +14,7 @@ export function LoginPage(): JSX.Element {
         <div className={classNames('container', classes.container)}>
           <section className={classes.login}>
             <h1 className={classes.title}>Sign in</h1>
-            <form className={classes.form}>
-              <Input
-                label="E-mail"
-                className={classes.input}
-                type="email"
-                name="email"
-                placeholder="Email"
-                required
-              />
-              <Input
-                label="Password"
-                className={classes.input}
-                type="password"
-                name="password"
-                placeholder="Password"
-                required
-              />
-              <Button className={classes.button}>Sign in</Button>
-            </form>
+            <LoginForm />
           </section>
           {/* TODO: create location button */}
           {/* <section className="locations locations--login locations--current">

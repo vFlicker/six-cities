@@ -16,7 +16,7 @@ function AuthNav(): JSX.Element {
     <>
       <li className={classes.navItem}>
         <Link
-          to={AppRoute.Favorites}
+          to={AppRoute.FAVORITES}
           className={classNames(classes.navLink, classes.navLinkUser)}
         >
           <UserAvatar />
@@ -35,7 +35,7 @@ function NoAuthNav(): JSX.Element {
   return (
     <li className={classes.navItem}>
       <Link
-        to={AppRoute.Login}
+        to={AppRoute.LOGIN}
         className={classNames(classes.navLink, classes.navLinkUser)}
       >
         <UserAvatar />
@@ -53,7 +53,7 @@ export function Header(): JSX.Element {
   const navList = isUserAuthenticated ? <AuthNav /> : <NoAuthNav />;
 
   // TODO: Чи буде навігація створюватися кожен раз?
-  const isLoginRoute = pathname === AppRoute.Login;
+  const isLoginRoute = pathname === AppRoute.LOGIN;
   const navigation = !isLoginRoute && (
     <nav className={classes.nav}>
       <ul className={classes.navList}>{navList}</ul>

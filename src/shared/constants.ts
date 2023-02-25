@@ -1,6 +1,6 @@
-export const enum AppRoute {
-  Favorites = '/favorites',
-  Login = '/login',
-  Offer = '/offers/:id',
-  Root = '/',
-}
+export const AppRoute = {
+  FAVORITES: '/favorites',
+  LOGIN: '/login',
+  OFFER: '/offers/:id',
+  ROOT: '/',
+};

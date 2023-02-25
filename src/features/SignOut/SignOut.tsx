@@ -9,7 +9,7 @@ export function SignOut(): JSX.Element {
 
   const handleClick = async () => {
     await console.log('SignOut');
-    navigate(AppRoute.Root);
+    navigate(AppRoute.ROOT);
   };
 
   return (

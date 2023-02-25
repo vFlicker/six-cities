@@ -1,0 +1,15 @@
+.form {
+  position: relative;
+  width: 341px;
+  z-index: 1;
+}
+
+.input {
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.button {
+  width: 100%;
+}
+

@@ -1,15 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import { login } from '~/shared/apiActions';
 import { User } from '~/shared/types';
 
-type AuthStatus = 'authenticated' | 'unauthenticated' | 'unknown';
-
-type State = {
-  authStatus: AuthStatus;
-  user: User | null;
-  loading: boolean;
-  error: string | null;
-};
+import { loginFulfilled, loginPending, loginRejected } from './reducers';
+import { State } from './types';
 
 const initialState: State = {
   authStatus: 'unknown',
@@ -22,11 +17,18 @@ const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {},
+  extraReducers: (builder) => {
+    builder
+      /* LOGIN */
+      .addCase(login.pending, loginPending)
+      .addCase(login.fulfilled, loginFulfilled)
+      .addCase(login.rejected, loginRejected);
+  },
 });
 
 // actions
 
-export const userReducer = userSlice.reducer;
+export default userSlice.reducer;
 
 export const selectUser = (state: RootState): User | null => {
   return state.USER.user;
