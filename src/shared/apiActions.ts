@@ -21,3 +21,15 @@ export const login = createAsyncThunk<User, AuthData, ThunkOptions>(
     }
   },
 );
+
+export const signOut = createAsyncThunk<void, undefined, ThunkOptions>(
+  'user/signOut',
+  async (_, thunkApi) => {
+    try {
+      await apiService.signOut();
+    } catch (error) {
+      if (isApiError(error)) return thunkApi.rejectWithValue(error);
+      throw error;
+    }
+  },
+);

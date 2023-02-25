@@ -1,9 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { login } from '~/shared/apiActions';
+import { login, signOut } from '~/shared/apiActions';
 import { User } from '~/shared/types';
 
-import { loginFulfilled, loginPending, loginRejected } from './reducers';
+import {
+  loginFulfilled,
+  loginPending,
+  loginRejected,
+  signOutFulfilled,
+  signOutPending,
+  signOutRejected,
+} from './reducers';
 import { State } from './types';
 
 const initialState: State = {
@@ -22,7 +29,12 @@ const userSlice = createSlice({
       /* LOGIN */
       .addCase(login.pending, loginPending)
       .addCase(login.fulfilled, loginFulfilled)
-      .addCase(login.rejected, loginRejected);
+      .addCase(login.rejected, loginRejected)
+
+      /* SIGN OUT */
+      .addCase(signOut.pending, signOutPending)
+      .addCase(signOut.fulfilled, signOutFulfilled)
+      .addCase(signOut.rejected, signOutRejected);
   },
 });
 

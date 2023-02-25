@@ -12,3 +12,12 @@ export const login = async (authData: AuthData): Promise<User> => {
     throw result;
   }
 };
+
+export const signOut = async (): Promise<void> => {
+  try {
+    await httpClient.delete<void>('/logout');
+  } catch (error) {
+    const result = handleApiError(error);
+    throw result;
+  }
+};
