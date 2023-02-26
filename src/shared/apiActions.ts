@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { ApiError, apiService, AuthData, isApiError } from './api';
-import { User } from './types';
+import { User } from './types/user';
 
 type ThunkOptions = {
   state: RootState;

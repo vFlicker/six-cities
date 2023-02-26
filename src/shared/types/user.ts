@@ -1,7 +1,7 @@
 export type User = {
+  id: UniqueId;
   avatarUrl: string;
-  email: string;
-  id: number;
+  email: Email;
   isPro: boolean;
   name: string;
   token: string;

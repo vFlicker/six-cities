@@ -1,6 +1,6 @@
 import cn from 'classnames';
 
-import { Card } from '~/entities/offer';
+import { Card } from '~/entities/offers';
 import { AppRoute } from '~/shared/constants';
 import { ButtonLink } from '~/shared/ui/ButtonLink';
 import { Header } from '~/widgets/Header/Header';

@@ -1,4 +1,4 @@
-import { User } from '../types';
+import { User } from '../types/user';
 import { httpClient } from './httpClient';
 import { handleApiError } from './helpers';
 import { AuthData } from './types';
