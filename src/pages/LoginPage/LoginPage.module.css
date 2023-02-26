@@ -73,9 +73,9 @@
   margin: 0;
 }
 
-.locationsLink {
+.locations .locationsLink {
   min-width: 137px;
-  padding: 9px 21px 6px 16px !important;
+  padding: 9px 21px 6px 16px;
   text-align: center;
   letter-spacing: 0.9px;
   backface-visibility: hidden;

@@ -25,3 +25,52 @@
   margin-bottom: 19px;
 }
 
+.cities {
+  display: flex;
+  flex-grow: 1;
+  background-color: white;
+  overflow-y: hidden;
+}
+
+.cities .citiesContainer {
+  display: flex;
+  padding-right: 0;
+}
+
+.places {
+  width: 572px;
+  margin: 2px 2px 0 0;
+  padding: 29px 0 7px 9px;
+  overflow-y: auto;
+}
+
+.placesFound {
+  display: block;
+  margin-bottom: 22px;
+  padding-left: 2px;
+  font-size: 2.4rem;
+  font-weight: 700;
+  font-style: oblique;
+  line-height: 1.167;
+}
+
+.placesList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px 8px;
+}
+
+.mapContainer {
+  display: flex;
+  flex-grow: 1;
+}
+
+.map {
+  width: 100%;
+  align-self: stretch;
+
+  background-image: url(https://via.placeholder.com/682x794);
+  background-size: 682px auto;
+  background-repeat: no-repeat;
+  background-position: -170px center
+}
