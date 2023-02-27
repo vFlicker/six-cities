@@ -1,7 +1,7 @@
 import { avatarIconSrc } from '~/shared/assets/images';
 import { useAppSelector } from '~/shared/hooks';
 
-import { selectUser } from '../../model';
+import { selectUser } from '../../model/user';
 
 export function UserAvatar(): JSX.Element {
   const user = useAppSelector(selectUser);

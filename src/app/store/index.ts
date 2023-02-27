@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import hotelsReducer from '~/entities/hotels/model';
-import userReducer from '~/entities/user/model';
+import { hotelsReducer } from '~/entities/hotels';
+import { userReducer } from '~/entities/user';
 
 export const store = configureStore({
   reducer: {

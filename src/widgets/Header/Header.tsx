@@ -1,8 +1,7 @@
 import cn from 'classnames';
 import { Link, useLocation } from 'react-router-dom';
 
-import { UserAvatar, UserEmail } from '~/entities/user';
-import { selectIsUserAuthenticated } from '~/entities/user/model';
+import { UserAvatar, UserEmail, userModel } from '~/entities/user';
 import { SignOut } from '~/features/SignOut';
 import { AppRoute } from '~/shared/constants';
 import { useAppSelector } from '~/shared/hooks';
@@ -48,7 +47,9 @@ function NoAuthNav(): JSX.Element {
 export function Header(): JSX.Element {
   const { pathname } = useLocation();
 
-  const isUserAuthenticated = useAppSelector(selectIsUserAuthenticated);
+  const isUserAuthenticated = useAppSelector(
+    userModel.selectIsUserAuthenticated,
+  );
 
   const navList = isUserAuthenticated ? <AuthNav /> : <NoAuthNav />;
 

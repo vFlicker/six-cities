@@ -1,8 +1,7 @@
 import cn from 'classnames';
 import { useEffect } from 'react';
 
-import { Card } from '~/entities/hotels';
-import { selectAllHotels } from '~/entities/hotels/model';
+import { Card, hotelsModel } from '~/entities/hotels';
 import { fetchAllHotels } from '~/shared/apiActions';
 import { AppRoute } from '~/shared/constants';
 import { useAppDispatch, useAppSelector } from '~/shared/hooks';
@@ -18,7 +17,7 @@ export function MainPage(): JSX.Element {
     dispatch(fetchAllHotels());
   }, [dispatch]);
 
-  const hotels = useAppSelector(selectAllHotels);
+  const hotels = useAppSelector(hotelsModel.selectAllHotels);
   const hotelList = hotels.map((hotel) => (
     <Card key={hotel.id} hotel={hotel} />
   ));
