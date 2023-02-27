@@ -1,16 +1,18 @@
 import cn from 'classnames';
 
 import { Hotel } from '~/shared/types/hotel';
+import { Rating } from '~/shared/ui/Rating';
 
 import classes from './Card.module.css';
 
 type CardProps = {
   hotel: Hotel;
+  action?: JSX.Element;
   className?: string;
 };
 
-export function Card({ hotel, className }: CardProps): JSX.Element | null {
-  const { isPremium, previewImage } = hotel;
+export function Card({ hotel, action, className }: CardProps): JSX.Element {
+  const { isPremium, previewImage, price, title, type, rating } = hotel;
 
   const mark = isPremium && (
     <div className={classes.mark}>
@@ -33,28 +35,18 @@ export function Card({ hotel, className }: CardProps): JSX.Element | null {
         </a>
       </div>
       <div className={classes.info}>
-        <div className={classes.priceWrapper}>
+        <div className={classes.infoHeader}>
           <div className={classes.price}>
-            <b className={classes.priceValue}>&euro;120</b>
+            <b className={classes.priceValue}>&euro;{price}</b>
             <span className={classes.priceText}>&#47;&nbsp;night</span>
           </div>
-          <button className={classes.bookmarkButton} type="button">
-            <svg className={classes.bookmarkIcon} width="18" height="19">
-              <use xlinkHref="#icon-bookmark"></use>
-            </svg>
-            <span className="visually-hidden">To bookmarks</span>
-          </button>
+          {action}
         </div>
-        <div className={classes.rating}>
-          <div className={cn(classes.rating, classes.stars)}>
-            <span style={{ width: '80%' }}></span>
-            <span className="visually-hidden">Rating</span>
-          </div>
-        </div>
+        <Rating className={classes.rating} size="small" value={rating} />
         <h2 className={classes.title}>
-          <a href="/">Beautiful &amp; luxurious apartment at great location</a>
+          <a href="/">{title}</a>
         </h2>
-        <p className={classes.type}>Apartment</p>
+        <p className={classes.type}>{type}</p>
       </div>
     </article>
   );

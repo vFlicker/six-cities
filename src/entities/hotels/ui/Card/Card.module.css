@@ -42,7 +42,7 @@
   flex-grow: 1;
 }
 
-.priceWrapper {
+.infoHeader {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -64,82 +64,8 @@
   line-height: 1.1667;
 }
 
-.bookmarkButton {
-  flex-shrink: 0;
-  width: 18px;
-  height: 19px;
-  margin-top: 2px;
-}
-
-.bookmarkButton:focus .bookmarkIcon,
-.bookmarkButton:hover .bookmarkIcon {
-  stroke: var(--accent-color);
-}
-
-.bookmarkButton.active .bookmarkIcon {
-  stroke: var(--accent-color);
-  fill: var(--accent-color);
-}
-
 .rating {
   margin-bottom: 6px;
-}
-
-.stars {
-  width: 73px;;
-  height: 12px;
-}
-
-.stars::before {
-  width: 73px;
-  background-size: 73px 12px;
-}
-
-.stars span {
-  width: 0%;
-}
-
-.stars span::before {
-  width: 73px;
-  background-size: 73px 12px;
-}
-
-.stars {
-  position: relative;
-  display: block;
-  font-size: 0;
-}
-
-.stars::before {
-  content: "";
-  display: inline-block;
-  height: 100%;
-  background-color: transparent;
-  background-image: url(../../../../shared/assets/images/icons/stars.svg);
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
-.stars span {
-  position: absolute;
-  top: 0;
-  left: 0;
-
-  display: inline-block;
-  height: 100%;
-
-  overflow: hidden;
-}
-
-.stars span::before {
-  content: "";
-  display: inline-block;
-  height: 100%;
-
-  background-color: transparent;
-  background-image: url(../../../../shared/assets/images/icons/stars-active.svg);
-  background-repeat: no-repeat;
-  background-position: center;
 }
 
 .title {
