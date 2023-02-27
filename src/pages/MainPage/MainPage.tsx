@@ -1,7 +1,7 @@
 import cn from 'classnames';
 import { useEffect } from 'react';
 
-import { Card, hotelsModel } from '~/entities/hotels';
+import { Card, hotelsModel } from '~/entities/hotel';
 import { fetchAllHotels } from '~/shared/apiActions';
 import { AppRoute } from '~/shared/constants';
 import { useAppDispatch, useAppSelector } from '~/shared/hooks';
