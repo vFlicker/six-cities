@@ -1,5 +1,6 @@
 import { Provider } from 'react-redux';
 
+// eslint-disable-next-line boundaries/element-types
 import { store } from '../store';
 import { Component } from './types';
 

@@ -1,6 +1,6 @@
 import { ComponentPropsWithoutRef } from 'react';
 
-import { logoIconSrc } from '../../assets/images';
+import { logoIconSrc } from '~/shared/assets/images';
 
 type LogoProps = ComponentPropsWithoutRef<'img'>;
 

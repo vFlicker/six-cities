@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { camelizeKeys } from 'humps';
 
-import { EnvConfig } from '../config';
+import { EnvConfig } from '~/shared/config';
 
 const TIMEOUT = 5000;
 

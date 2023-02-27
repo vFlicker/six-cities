@@ -1,12 +1,12 @@
 import cn from 'classnames';
 import { useEffect } from 'react';
 
+import { Header } from '~/widgets/Header/Header';
 import { Card, hotelsModel } from '~/entities/hotel';
 import { fetchAllHotels } from '~/shared/apiActions';
 import { AppRoute } from '~/shared/constants';
 import { useAppDispatch, useAppSelector } from '~/shared/hooks';
 import { ButtonLink } from '~/shared/ui/ButtonLink';
-import { Header } from '~/widgets/Header/Header';
 
 import classes from './MainPage.module.css';
 

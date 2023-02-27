@@ -1,9 +1,9 @@
 import cn from 'classnames';
 
+import { Header } from '~/widgets/Header';
 import { LoginForm } from '~/features/LoginForm';
 import { AppRoute } from '~/shared/constants';
 import { ButtonLink } from '~/shared/ui/ButtonLink';
-import { Header } from '~/widgets/Header';
 
 import classes from './LoginPage.module.css';
 

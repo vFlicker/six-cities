@@ -2,7 +2,8 @@ import cn from 'classnames';
 import { ComponentPropsWithoutRef, Fragment } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-import { AppRoute } from '../../constants';
+import { AppRoute } from '~/shared/constants';
+
 import classes from './HomeLink.module.css';
 
 type HomeLinkProps = ComponentPropsWithoutRef<'a'> & {

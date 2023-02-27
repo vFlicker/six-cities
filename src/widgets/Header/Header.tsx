@@ -1,8 +1,8 @@
 import cn from 'classnames';
 import { Link, useLocation } from 'react-router-dom';
 
-import { UserAvatar, UserEmail, userModel } from '~/entities/user';
 import { SignOut } from '~/features/SignOut';
+import { UserAvatar, UserEmail, userModel } from '~/entities/user';
 import { AppRoute } from '~/shared/constants';
 import { useAppSelector } from '~/shared/hooks';
 import { HomeLink } from '~/shared/ui/HomeLink';
