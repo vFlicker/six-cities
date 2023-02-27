@@ -1,3 +1,4 @@
+import { Hotel } from '../types/hotel';
 import { User } from '../types/user';
 import { httpClient } from './httpClient';
 import { handleApiError } from './helpers';
@@ -16,6 +17,16 @@ export const login = async (authData: AuthData): Promise<User> => {
 export const signOut = async (): Promise<void> => {
   try {
     await httpClient.delete<void>('/logout');
+  } catch (error) {
+    const result = handleApiError(error);
+    throw result;
+  }
+};
+
+export const getAllHotels = async (): Promise<Hotel[]> => {
+  try {
+    const { data } = await httpClient.get<Hotel[]>('/hotels');
+    return data;
   } catch (error) {
     const result = handleApiError(error);
     throw result;

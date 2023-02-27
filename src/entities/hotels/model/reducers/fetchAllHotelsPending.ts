@@ -1,7 +1,6 @@
 import { State } from '../types';
 
-export const loginPending = (state: State): void => {
-  state.user = null;
+export const fetchAllHotelsPending = (state: State): void => {
   state.loading = true;
   state.error = null;
 };

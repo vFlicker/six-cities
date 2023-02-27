@@ -1,22 +1,31 @@
 import cn from 'classnames';
 
+import { Hotel } from '~/shared/types/hotel';
+
 import classes from './Card.module.css';
 
 type CardProps = {
+  hotel: Hotel;
   className?: string;
 };
 
-export function Card({ className }: CardProps): JSX.Element {
+export function Card({ hotel, className }: CardProps): JSX.Element | null {
+  const { isPremium, previewImage } = hotel;
+
+  const mark = isPremium && (
+    <div className={classes.mark}>
+      <span>Premium</span>
+    </div>
+  );
+
   return (
     <article className={cn(className, classes.card)}>
-      <div className={classes.mark}>
-        <span>Premium</span>
-      </div>
+      {mark}
       <div className={classes.imageWrapper}>
         <a href="/">
           <img
             className={classes.image}
-            src="https://via.placeholder.com/260x200"
+            src={previewImage}
             width="260"
             height="200"
             alt="Place"

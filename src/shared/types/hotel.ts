@@ -16,7 +16,7 @@ type Host = {
   name: string;
 };
 
-export type Offer = {
+export type Hotel = {
   id: UniqueId;
   bedrooms: number;
   city: City;

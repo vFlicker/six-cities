@@ -1,13 +1,28 @@
 import cn from 'classnames';
+import { useEffect } from 'react';
 
-import { Card } from '~/entities/offers';
+import { Card } from '~/entities/hotels';
+import { selectAllHotels } from '~/entities/hotels/model';
+import { fetchAllHotels } from '~/shared/apiActions';
 import { AppRoute } from '~/shared/constants';
+import { useAppDispatch, useAppSelector } from '~/shared/hooks';
 import { ButtonLink } from '~/shared/ui/ButtonLink';
 import { Header } from '~/widgets/Header/Header';
 
 import classes from './MainPage.module.css';
 
 export function MainPage(): JSX.Element {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchAllHotels());
+  }, [dispatch]);
+
+  const hotels = useAppSelector(selectAllHotels);
+  const hotelList = hotels.map((hotel) => (
+    <Card key={hotel.id} hotel={hotel} />
+  ));
+
   return (
     <div className={classes.page}>
       <Header />
@@ -49,9 +64,7 @@ export function MainPage(): JSX.Element {
               <b className={classes.placesFound}>
                 312 places to stay in Amsterdam
               </b>
-              <div className={classes.placesList}>
-                <Card />
-              </div>
+              <div className={classes.placesList}>{hotelList}</div>
             </section>
             <div className={classes.mapContainer}>
               <section className={classes.map}></section>

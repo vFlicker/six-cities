@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { ApiError, apiService, AuthData, isApiError } from './api';
+import { Hotel } from './types/hotel';
 import { User } from './types/user';
 
 type ThunkOptions = {
@@ -33,3 +34,17 @@ export const signOut = createAsyncThunk<void, undefined, ThunkOptions>(
     }
   },
 );
+
+export const fetchAllHotels = createAsyncThunk<
+  Hotel[],
+  undefined,
+  ThunkOptions
+>('hotels/fetchAllHotels', async (_, thunkApi) => {
+  try {
+    const hotels = await apiService.getAllHotels();
+    return hotels;
+  } catch (error) {
+    if (isApiError(error)) return thunkApi.rejectWithValue(error);
+    throw error;
+  }
+});
