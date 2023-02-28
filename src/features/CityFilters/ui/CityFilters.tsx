@@ -4,8 +4,8 @@ import { filtersModel } from '~/entities/filters';
 import { useAppDispatch, useAppSelector } from '~/shared/hooks';
 import { ButtonLink } from '~/shared/ui/ButtonLink';
 
+import { cityFilters } from '../config';
 import classes from './CityFilters.module.css';
-import { cityFilters } from './config';
 
 export function CityFilters(): JSX.Element {
   const dispatch = useAppDispatch();

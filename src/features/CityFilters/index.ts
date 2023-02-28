@@ -1,1 +1,1 @@
-export { CityFilters } from './CityFilters';
+export { CityFilters } from './ui/CityFilters';

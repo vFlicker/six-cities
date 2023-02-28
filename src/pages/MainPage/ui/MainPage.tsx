@@ -1,7 +1,7 @@
 import cn from 'classnames';
 import { useEffect } from 'react';
 
-import { Header } from '~/widgets/Header/Header';
+import { Header } from '~/widgets/Header/ui/Header';
 import { CityFilters } from '~/features/CityFilters';
 import { Card, hotelsModel } from '~/entities/hotel';
 import { fetchAllHotels } from '~/shared/apiActions';
