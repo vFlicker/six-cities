@@ -1,12 +1,11 @@
 import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-import { filtersModel } from '~/entities/filters';
+import { filtersConfig, filtersModel } from '~/entities/filters';
 import { useAppDispatch, useAppSelector } from '~/shared/hooks';
 import { CityName } from '~/shared/types/hotel';
 import { ButtonLink } from '~/shared/ui/ButtonLink';
 
-import { cityFilters } from '../config';
 import classes from './CityFilters.module.css';
 
 export function CityFilters(): JSX.Element {
@@ -21,7 +20,7 @@ export function CityFilters(): JSX.Element {
     dispatch(filtersModel.changeCityFilter(filter));
   }, [dispatch, searchParams]);
 
-  const filtersList = Array.from(cityFilters).map((city) => {
+  const filtersList = Array.from(filtersConfig.cityFilters).map((city) => {
     const to = `?city=${city}`;
     const isActive = cityFilter === city;
 

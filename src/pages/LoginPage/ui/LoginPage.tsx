@@ -2,8 +2,7 @@ import cn from 'classnames';
 
 import { Header } from '~/widgets/Header';
 import { LoginForm } from '~/features/LoginForm';
-import { AppRoute } from '~/shared/constants';
-import { ButtonLink } from '~/shared/ui/ButtonLink';
+import { RandomLocation } from '~/features/RandomLocation';
 
 import classes from './LoginPage.module.css';
 
@@ -20,13 +19,7 @@ export function LoginPage(): JSX.Element {
           </section>
           <section className={classes.locations}>
             <div className={classes.locationsItem}>
-              <ButtonLink
-                to={AppRoute.ROOT}
-                className={classes.locationsLink}
-                isActive
-              >
-                Amsterdam
-              </ButtonLink>
+              <RandomLocation />
             </div>
           </section>
         </div>
