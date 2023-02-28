@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 
 import { Header } from '~/widgets/Header/ui/Header';
 import { CityFilters } from '~/features/CityFilters';
+import { filtersModel } from '~/entities/filters';
 import { Card, hotelsModel } from '~/entities/hotel';
 import { fetchAllHotels } from '~/shared/apiActions';
 import { useAppDispatch, useAppSelector } from '~/shared/hooks';
@@ -17,9 +18,13 @@ export function MainPage(): JSX.Element {
   }, [dispatch]);
 
   const filteredHotels = useAppSelector(hotelsModel.selectFilteredHotels);
+  const cityFilter = useAppSelector(filtersModel.selectCityFilter);
+
   const hotelList = filteredHotels.map((filteredHotel) => (
     <Card key={filteredHotel.id} hotel={filteredHotel} />
   ));
+
+  const filteredHotelsCount = filteredHotels.length;
 
   return (
     <div className={classes.page}>
@@ -32,7 +37,7 @@ export function MainPage(): JSX.Element {
             <section className={classes.places}>
               <h2 className="visually-hidden">Places</h2>
               <b className={classes.placesFound}>
-                312 places to stay in Amsterdam
+                {filteredHotelsCount} places to stay in {cityFilter}
               </b>
               <div className={classes.placesList}>{hotelList}</div>
             </section>
