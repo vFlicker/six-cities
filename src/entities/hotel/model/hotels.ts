@@ -5,6 +5,7 @@ import { Hotel } from '~/shared/types/hotel';
 
 import { hotelsAdapter } from './lib';
 import {
+  changeCityFilterReducer,
   fetchAllHotelsFulfilled,
   fetchAllHotelsPending,
   fetchAllHotelsRejected,
@@ -13,6 +14,9 @@ import { State } from './types';
 
 const initialState: State = {
   hotels: hotelsAdapter.getInitialState(),
+  queryConfig: {
+    filter: 'Paris',
+  },
   loading: false,
   error: null,
 };
@@ -20,7 +24,9 @@ const initialState: State = {
 const hotelsSlice = createSlice({
   name: 'hotels',
   initialState,
-  reducers: {},
+  reducers: {
+    changeCityFilter: changeCityFilterReducer,
+  },
   extraReducers: (builder) => {
     builder
       /* FETCH ALL HOTELS */
@@ -30,7 +36,7 @@ const hotelsSlice = createSlice({
   },
 });
 
-// actions
+export const { changeCityFilter } = hotelsSlice.actions;
 
 export default hotelsSlice.reducer;
 
@@ -38,13 +44,15 @@ export const { selectAll: selectAllHotels } = hotelsAdapter.getSelectors(
   (state: RootState) => state.HOTELS.hotels,
 );
 
+export const selectCityFilter = (state: RootState) => {
+  return state.HOTELS.queryConfig.filter;
+};
+
 export const selectFilteredHotels = createSelector(
   selectAllHotels,
-  (state: RootState) => state.FILTERS,
-  (hotels, filters): Hotel[] => {
-    const { city } = filters;
-
-    const filteredHotels = hotels.filter((hotel) => hotel.city.name === city);
+  selectCityFilter,
+  (hotels, filter): Hotel[] => {
+    const filteredHotels = hotels.filter((hotel) => hotel.city.name === filter);
     return filteredHotels;
   },
 );

@@ -4,7 +4,6 @@ import { useEffect } from 'react';
 import { Header } from '~/widgets/Header/ui/Header';
 import { CityFilters } from '~/features/CityFilters';
 import { CitySort } from '~/features/CitySort';
-import { filtersModel } from '~/entities/filters';
 import { Card, hotelsModel } from '~/entities/hotel';
 import { fetchAllHotels } from '~/shared/apiActions';
 import { useAppDispatch, useAppSelector } from '~/shared/hooks';
@@ -19,7 +18,7 @@ export function MainPage(): JSX.Element {
   }, [dispatch]);
 
   const filteredHotels = useAppSelector(hotelsModel.selectFilteredHotels);
-  const cityFilter = useAppSelector(filtersModel.selectCityFilter);
+  const cityFilter = useAppSelector(hotelsModel.selectCityFilter);
 
   const hotelList = filteredHotels.map((filteredHotel) => (
     <Card key={filteredHotel.id} hotel={filteredHotel} />

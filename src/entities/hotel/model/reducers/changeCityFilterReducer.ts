@@ -8,5 +8,5 @@ export const changeCityFilterReducer = (
   state: State,
   { payload }: PayloadAction<CityName>,
 ) => {
-  state.city = payload;
+  state.queryConfig.filter = payload;
 };
