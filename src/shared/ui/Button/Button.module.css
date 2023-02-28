@@ -11,5 +11,5 @@
 }
 
 .button:disabled {
-  background-color: var(--disabled-bg-color);
+  background-color: var(--grey-4);
 }

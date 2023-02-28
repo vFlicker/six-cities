@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 
 import { Header } from '~/widgets/Header/ui/Header';
 import { CityFilters } from '~/features/CityFilters';
+import { CitySort } from '~/features/CitySort';
 import { filtersModel } from '~/entities/filters';
 import { Card, hotelsModel } from '~/entities/hotel';
 import { fetchAllHotels } from '~/shared/apiActions';
@@ -39,6 +40,7 @@ export function MainPage(): JSX.Element {
               <b className={classes.placesFound}>
                 {filteredHotelsCount} places to stay in {cityFilter}
               </b>
+              <CitySort className={classes.sorting} />
               <div className={classes.placesList}>{hotelList}</div>
             </section>
             <div className={classes.mapContainer}>

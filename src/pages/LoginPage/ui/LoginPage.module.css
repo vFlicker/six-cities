@@ -6,7 +6,7 @@
 
   margin-inline: auto;
 
-  background-image: linear-gradient(to right, var(--background-color) 509px, transparent 509px), url(../../../shared/assets/images/photos/amsterdam.jpg);
+  background-image: linear-gradient(to right, var(--grey-1) 509px, transparent 509px), url(../../../shared/assets/images/photos/amsterdam.jpg);
   background-position: top left, right top;
   background-size: auto, auto 100%;
   background-repeat: no-repeat, no-repeat;
@@ -42,7 +42,7 @@
   min-height: 450px;
   border-right: 6px solid var(--accent-color);
 
-  background-color: var(--background-color);
+  background-color: var(--grey-1);
 
   transform: skew(-6.5deg);
 }
