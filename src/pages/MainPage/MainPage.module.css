@@ -11,17 +11,7 @@
   overflow-y: hidden;
 }
 
-.locationsList {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  gap: 36px;
-
-  padding: 16px 3px 33px;
+.filter {
   margin-bottom: 19px;
 }
 

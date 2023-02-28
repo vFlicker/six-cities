@@ -1,8 +1,9 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSelector, createSlice } from '@reduxjs/toolkit';
 
 import { fetchAllHotels } from '~/shared/apiActions';
+import { Hotel } from '~/shared/types/hotel';
 
-import { hotelsAdapter } from './helpers';
+import { hotelsAdapter } from './lib';
 import {
   fetchAllHotelsFulfilled,
   fetchAllHotelsPending,
@@ -35,4 +36,15 @@ export default hotelsSlice.reducer;
 
 export const { selectAll: selectAllHotels } = hotelsAdapter.getSelectors(
   (state: RootState) => state.HOTELS.hotels,
+);
+
+export const selectFilteredHotels = createSelector(
+  selectAllHotels,
+  (state: RootState) => state.FILTERS,
+  (hotels, filters): Hotel[] => {
+    const { city } = filters;
+
+    const filteredHotels = hotels.filter((hotel) => hotel.city.name === city);
+    return filteredHotels;
+  },
 );

@@ -2,11 +2,10 @@ import cn from 'classnames';
 import { useEffect } from 'react';
 
 import { Header } from '~/widgets/Header/Header';
+import { CityFilters } from '~/features/CityFilters';
 import { Card, hotelsModel } from '~/entities/hotel';
 import { fetchAllHotels } from '~/shared/apiActions';
-import { AppRoute } from '~/shared/constants';
 import { useAppDispatch, useAppSelector } from '~/shared/hooks';
-import { ButtonLink } from '~/shared/ui/ButtonLink';
 
 import classes from './MainPage.module.css';
 
@@ -17,9 +16,9 @@ export function MainPage(): JSX.Element {
     dispatch(fetchAllHotels());
   }, [dispatch]);
 
-  const hotels = useAppSelector(hotelsModel.selectAllHotels);
-  const hotelList = hotels.map((hotel) => (
-    <Card key={hotel.id} hotel={hotel} />
+  const filteredHotels = useAppSelector(hotelsModel.selectFilteredHotels);
+  const hotelList = filteredHotels.map((filteredHotel) => (
+    <Card key={filteredHotel.id} hotel={filteredHotel} />
   ));
 
   return (
@@ -27,35 +26,7 @@ export function MainPage(): JSX.Element {
       <Header />
       <main className={classes.main}>
         <h1 className="visually-hidden">Cities</h1>
-        <section className="container">
-          <ul className={classes.locationsList}>
-            <li className={classes.locationsItem}>
-              <ButtonLink to={AppRoute.ROOT}>Paris</ButtonLink>
-            </li>
-
-            <li className={classes.locationsItem}>
-              <ButtonLink to={AppRoute.ROOT}>Cologne</ButtonLink>
-            </li>
-
-            <li className={classes.locationsItem}>
-              <ButtonLink to={AppRoute.ROOT}>Brussels</ButtonLink>
-            </li>
-
-            <li className={classes.locationsItem}>
-              <ButtonLink to={AppRoute.ROOT} isActive>
-                Amsterdam
-              </ButtonLink>
-            </li>
-
-            <li className={classes.locationsItem}>
-              <ButtonLink to={AppRoute.ROOT}>Hamburg</ButtonLink>
-            </li>
-
-            <li className={classes.locationsItem}>
-              <ButtonLink to={AppRoute.ROOT}>Dusseldorf</ButtonLink>
-            </li>
-          </ul>
-        </section>
+        <CityFilters />
         <div className={classes.cities}>
           <div className={cn('container', classes.citiesContainer)}>
             <section className={classes.places}>

@@ -2,7 +2,7 @@ import { PayloadAction } from '@reduxjs/toolkit';
 
 import { Hotel } from '~/shared/types/hotel';
 
-import { hotelsAdapter } from '../helpers';
+import { hotelsAdapter } from '../lib';
 import { State } from '../types';
 
 export const fetchAllHotelsFulfilled = (

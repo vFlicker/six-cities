@@ -6,7 +6,7 @@ type Location = {
 
 type City = {
   location: Location;
-  name: Location;
+  name: CityName;
 };
 
 type Host = {
@@ -15,6 +15,14 @@ type Host = {
   isPro: boolean;
   name: string;
 };
+
+export type CityName =
+  | 'Paris'
+  | 'Cologne'
+  | 'Brussels'
+  | 'Amsterdam'
+  | 'Hamburg'
+  | 'Dusseldorf';
 
 export type Hotel = {
   id: UniqueId;

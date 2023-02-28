@@ -1,8 +1,8 @@
 import { Hotel } from '~/shared/types/hotel';
 import { User } from '~/shared/types/user';
 
-import { handleApiError } from './helpers';
 import { httpClient } from './httpClient';
+import { handleApiError } from './lib';
 import { AuthData } from './types';
 
 export const login = async (authData: AuthData): Promise<User> => {
