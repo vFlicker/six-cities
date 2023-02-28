@@ -6,7 +6,7 @@
 
   margin-inline: auto;
 
-  background-image: linear-gradient(to right, var(--background-color) 509px, transparent 509px), url(../../shared/assets/images/photos/amsterdam.jpg);
+  background-image: linear-gradient(to right, var(--background-color) 509px, transparent 509px), url(../../../shared/assets/images/photos/amsterdam.jpg);
   background-position: top left, right top;
   background-size: auto, auto 100%;
   background-repeat: no-repeat, no-repeat;
