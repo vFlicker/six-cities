@@ -1,17 +1,17 @@
-import { hotelsConfig } from '~/entities/hotel';
+import { cityFilters, DEFAULT_SORT } from '~/entities/hotel';
 import { AppRoute } from '~/shared/constants';
-import { ButtonLink } from '~/shared/ui/ButtonLink';
+import { LocationLink } from '~/shared/ui/LocationLink';
 
 import { pickRandomItem } from '../lib';
 import classes from './RandomLocation.module.css';
 
-const randomCity = pickRandomItem(Array.from(hotelsConfig.cityFilters));
-const to = `${AppRoute.ROOT}?city=${randomCity}`;
+const randomCity = pickRandomItem(Array.from(cityFilters));
+const to = `${AppRoute.ROOT}?filter=${randomCity}&sort=${DEFAULT_SORT}`;
 
 export function RandomLocation(): JSX.Element {
   return (
-    <ButtonLink to={to} className={classes.locationsLink} isActive>
+    <LocationLink to={to} className={classes.locationsLink} isActive>
       {randomCity}
-    </ButtonLink>
+    </LocationLink>
   );
 }

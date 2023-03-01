@@ -3,7 +3,7 @@ import { User } from '~/shared/types/user';
 
 export type AuthStatus = 'authenticated' | 'unauthenticated' | 'unknown';
 
-export type State = {
+export type UserState = {
   authStatus: AuthStatus;
   user: User | null;
   loading: boolean;

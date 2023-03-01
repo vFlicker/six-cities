@@ -1,6 +1,6 @@
-import { State } from '../types';
+import { HotelsState } from '../../types';
 
-export const fetchAllHotelsPending = (state: State): void => {
+export const fetchAllHotelsPending = (state: HotelsState): void => {
   state.loading = true;
   state.error = null;
 };

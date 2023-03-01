@@ -1,12 +1,14 @@
 import cn from 'classnames';
 import { useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 import { Header } from '~/widgets/Header/ui/Header';
 import { CityFilters } from '~/features/CityFilters';
 import { CitySort } from '~/features/CitySort';
-import { Card, hotelsModel } from '~/entities/hotel';
+import { Sort, Card, hotelsModel } from '~/entities/hotel';
 import { fetchAllHotels } from '~/shared/apiActions';
 import { useAppDispatch, useAppSelector } from '~/shared/hooks';
+import { CityName } from '~/shared/types/hotel';
 
 import classes from './MainPage.module.css';
 
@@ -17,14 +19,35 @@ export function MainPage(): JSX.Element {
     dispatch(fetchAllHotels());
   }, [dispatch]);
 
-  const filteredHotels = useAppSelector(hotelsModel.selectFilteredHotels);
-  const cityFilter = useAppSelector(hotelsModel.selectCityFilter);
+  const [searchParams] = useSearchParams();
 
-  const hotelList = filteredHotels.map((filteredHotel) => (
+  const filter = useAppSelector(hotelsModel.selectFilter);
+  const sort = useAppSelector(hotelsModel.selectSort);
+
+  useEffect(() => {
+    const filterParam = searchParams.get('filter') as CityName | null;
+    const sortParam = searchParams.get('sort') as Sort | null;
+
+    if (filterParam && filterParam !== filter) {
+      dispatch(hotelsModel.changeFilter(filterParam));
+    }
+
+    if (sortParam && sortParam !== sort) {
+      dispatch(hotelsModel.changeSort(sortParam));
+    }
+  }, [dispatch, filter, searchParams, sort]);
+
+  const filteredAndSortedHotels = useAppSelector(
+    hotelsModel.selectFilteredAndSortedHotels,
+  );
+
+  const cityFilter = useAppSelector(hotelsModel.selectFilter);
+
+  const hotelList = filteredAndSortedHotels.map((filteredHotel) => (
     <Card key={filteredHotel.id} hotel={filteredHotel} />
   ));
 
-  const filteredHotelsCount = filteredHotels.length;
+  const filteredHotelsCount = filteredAndSortedHotels.length;
 
   return (
     <div className={classes.page}>

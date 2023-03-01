@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { login, signOut } from '~/shared/apiActions';
 import { User } from '~/shared/types/user';
 
+import { UserState } from '../types';
 import {
   loginFulfilled,
   loginPending,
@@ -11,9 +12,8 @@ import {
   signOutPending,
   signOutRejected,
 } from './reducers';
-import { State } from './types';
 
-const initialState: State = {
+const initialState: UserState = {
   authStatus: 'unknown',
   user: null,
   loading: false,

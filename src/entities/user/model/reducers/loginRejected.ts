@@ -2,10 +2,10 @@ import { PayloadAction } from '@reduxjs/toolkit';
 
 import { ApiError } from '~/shared/api';
 
-import { State } from '../types';
+import { UserState } from '../../types';
 
 export const loginRejected = (
-  state: State,
+  state: UserState,
   { payload }: PayloadAction<ApiError | undefined>,
 ): void => {
   state.authStatus = 'unauthenticated';

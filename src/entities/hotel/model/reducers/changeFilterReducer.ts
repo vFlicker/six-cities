@@ -2,10 +2,10 @@ import { PayloadAction } from '@reduxjs/toolkit';
 
 import { CityName } from '~/shared/types/hotel';
 
-import { State } from '../types';
+import { HotelsState } from '../../types';
 
-export const changeCityFilterReducer = (
-  state: State,
+export const changeFilterReducer = (
+  state: HotelsState,
   { payload }: PayloadAction<CityName>,
 ) => {
   state.queryConfig.filter = payload;

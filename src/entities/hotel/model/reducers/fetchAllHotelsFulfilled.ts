@@ -2,11 +2,11 @@ import { PayloadAction } from '@reduxjs/toolkit';
 
 import { Hotel } from '~/shared/types/hotel';
 
-import { hotelsAdapter } from '../lib';
-import { State } from '../types';
+import { hotelsAdapter } from '../../lib/hotelsAdapter';
+import { HotelsState } from '../../types';
 
 export const fetchAllHotelsFulfilled = (
-  state: State,
+  state: HotelsState,
   { payload }: PayloadAction<Hotel[]>,
 ): void => {
   hotelsAdapter.setMany(state.hotels, payload);

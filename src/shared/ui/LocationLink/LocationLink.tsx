@@ -2,20 +2,20 @@ import cn from 'classnames';
 import { ComponentPropsWithoutRef } from 'react';
 import { Link, To } from 'react-router-dom';
 
-import classes from './ButtonLink.module.css';
+import classes from './LocationLink.module.css';
 
-type ButtonLinkProps = ComponentPropsWithoutRef<'a'> & {
+type LocationLinkProps = ComponentPropsWithoutRef<'a'> & {
   to: To;
   isActive?: boolean;
 };
 
-export function ButtonLink({
+export function LocationLink({
   to,
   isActive,
   children,
   className,
   ...props
-}: ButtonLinkProps): JSX.Element {
+}: LocationLinkProps): JSX.Element {
   const classNames = cn(className, classes.link, {
     [classes.active]: isActive,
   });

@@ -2,10 +2,10 @@ import { PayloadAction } from '@reduxjs/toolkit';
 
 import { ApiError } from '~/shared/api';
 
-import { State } from '../types';
+import { HotelsState } from '../../types';
 
 export const fetchAllHotelsRejected = (
-  state: State,
+  state: HotelsState,
   { payload }: PayloadAction<ApiError | undefined>,
 ): void => {
   state.loading = false;

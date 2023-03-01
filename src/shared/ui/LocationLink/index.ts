@@ -1,0 +1,1 @@
+export { LocationLink } from './LocationLink';

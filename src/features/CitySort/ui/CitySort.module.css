@@ -22,6 +22,10 @@
   cursor: pointer;
 }
 
+.type:focus {
+  outline: auto;
+}
+
 .arrow {
   position: absolute;
   top: 55%;
@@ -58,13 +62,14 @@
 }
 
 .option {
+  display: block;
   min-width: 170px;
   padding: 14px 16px 10px;
+  text-align: left;
   font-size: 14px;
   line-height: 1.2143;
   transition: background-color 0.3s;
   outline: 0;
-  cursor: pointer;
 }
 
 .option.active,
