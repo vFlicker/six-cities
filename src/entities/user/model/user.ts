@@ -46,6 +46,6 @@ export const selectUser = (state: RootState): User | null => {
   return state.USER.user;
 };
 
-export const selectIsUserAuthenticated = (state: RootState): boolean => {
+export const selectIsAuthenticated = (state: RootState): boolean => {
   return state.USER.authStatus === 'authenticated';
 };

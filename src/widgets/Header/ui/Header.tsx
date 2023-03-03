@@ -47,9 +47,7 @@ function NoAuthNav(): JSX.Element {
 export function Header(): JSX.Element {
   const { pathname } = useLocation();
 
-  const isUserAuthenticated = useAppSelector(
-    userModel.selectIsUserAuthenticated,
-  );
+  const isUserAuthenticated = useAppSelector(userModel.selectIsAuthenticated);
 
   const navList = isUserAuthenticated ? <AuthNav /> : <NoAuthNav />;
 
