@@ -1,10 +1,20 @@
+import { useEffect } from 'react';
+
 import { Routing } from '~/pages/Routing';
+import { checkAuthStatus } from '~/shared/apiActions';
+import { useAppDispatch } from '~/shared/hooks';
 
 import { withProviders } from './providers';
-import './index.css';
+import './styles/index.css';
 
-const RoutingWrapped = withProviders(Routing);
+function App(): JSX.Element {
+  const dispatch = useAppDispatch();
 
-export function App(): JSX.Element {
-  return <RoutingWrapped />;
+  useEffect(() => {
+    dispatch(checkAuthStatus());
+  }, [dispatch]);
+
+  return <Routing />;
 }
+
+export default withProviders(App);

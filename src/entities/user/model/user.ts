@@ -1,10 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { login, signOut } from '~/shared/apiActions';
+import { checkAuthStatus, login, signOut } from '~/shared/apiActions';
 import { User } from '~/shared/types/user';
 
 import { UserState } from '../types';
 import {
+  checkAuthStatusFulfilled,
+  checkAuthStatusPending,
+  checkAuthStatusRejected,
   loginFulfilled,
   loginPending,
   loginRejected,
@@ -26,6 +29,11 @@ const userSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
+      /* CHECK AUTH STATUS */
+      .addCase(checkAuthStatus.pending, checkAuthStatusPending)
+      .addCase(checkAuthStatus.fulfilled, checkAuthStatusFulfilled)
+      .addCase(checkAuthStatus.rejected, checkAuthStatusRejected)
+
       /* LOGIN */
       .addCase(login.pending, loginPending)
       .addCase(login.fulfilled, loginFulfilled)

@@ -1,9 +1,7 @@
-import { Suspense } from 'react';
+import { ComponentType, Suspense } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-import { Component } from './types';
-
-export const withRouter = (component: Component): Component => {
+export const withRouter = (Component: ComponentType): ComponentType => {
   function WithRouter(): JSX.Element {
     return (
       <Router>
@@ -13,7 +11,7 @@ export const withRouter = (component: Component): Component => {
             <p>loading</p>
           }
         >
-          {component()}
+          <Component />
         </Suspense>
       </Router>
     );

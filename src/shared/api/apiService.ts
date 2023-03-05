@@ -5,6 +5,16 @@ import { httpClient } from './httpClient';
 import { handleApiError } from './lib';
 import { AuthData } from './types';
 
+export const checkAuthStatus = async (): Promise<User> => {
+  try {
+    const { data } = await httpClient.get<User>('/login');
+    return data;
+  } catch (error) {
+    const result = handleApiError(error);
+    throw result;
+  }
+};
+
 export const login = async (authData: AuthData): Promise<User> => {
   try {
     const { data } = await httpClient.post<User>('/login', authData);

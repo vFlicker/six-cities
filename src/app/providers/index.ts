@@ -1,6 +1,7 @@
 import { compose } from '@reduxjs/toolkit';
 
-import { withRouter } from './with-router';
-import { withStore } from './with-store';
+import { withNotifier } from './withNotifier';
+import { withRouter } from './withRouter';
+import { withStore } from './withStore';
 
-export const withProviders = compose(withStore, withRouter);
+export const withProviders = compose(withStore, withRouter, withNotifier);
