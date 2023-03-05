@@ -1,6 +1,6 @@
 import { EntityState } from '@reduxjs/toolkit';
 
-import { ApiError } from '~/shared/api';
+import { ApiError } from '~/shared/services/api';
 import { CityName, Hotel } from '~/shared/types/hotel';
 
 export type Sort = 'popular' | 'priceLow' | 'priceHigh' | 'topRated';

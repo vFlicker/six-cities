@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 
+import { PrivateRoute } from '~/entities/user';
 import { AppRoute } from '~/shared/constants';
-import { PrivateRoute } from '~/shared/ui/PrivateRoute';
 
 import { LoginPage } from './LoginPage';
 import { MainPage } from './MainPage';

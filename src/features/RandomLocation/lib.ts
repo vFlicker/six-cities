@@ -1,4 +1,4 @@
-export const pickRandomItem = <T>(array: T[]): T => {
+export const pickRandomItem = <Item>(array: Item[]): Item => {
   const randomIndex = Math.floor(Math.random() * array.length);
   return array[randomIndex];
 };

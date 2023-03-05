@@ -1,6 +1,6 @@
 import { PayloadAction } from '@reduxjs/toolkit';
 
-import { ApiError } from '~/shared/api';
+import { ApiError } from '~/shared/services/api';
 
 import { UserState } from '../../types';
 
