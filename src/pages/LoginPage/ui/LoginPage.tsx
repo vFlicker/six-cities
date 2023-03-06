@@ -1,12 +1,22 @@
 import cn from 'classnames';
+import { Navigate } from 'react-router-dom';
 
 import { Header } from '~/widgets/Header';
 import { LoginForm } from '~/features/LoginForm';
 import { RandomLocation } from '~/features/RandomLocation';
+import { userModel } from '~/entities/user';
+import { AppRoute } from '~/shared/constants';
+import { useAppSelector } from '~/shared/hooks';
 
 import classes from './LoginPage.module.css';
 
 export function LoginPage(): JSX.Element {
+  const isAuthenticated = useAppSelector(userModel.selectIsAuthenticated);
+
+  if (isAuthenticated) {
+    return <Navigate to={AppRoute.ROOT} />;
+  }
+
   return (
     <div className={classes.page}>
       <Header />
