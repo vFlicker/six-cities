@@ -16,7 +16,7 @@ const Button = styled(BaseButton)`
   }
 
   &:disabled {
-    background-color: ${Color.GRAY_20}
+    background-color: ${Color.GRAY_40}
   }
 `;
 

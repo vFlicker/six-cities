@@ -5,6 +5,8 @@ const enum Color {
   BLUE_40 = 'var(--color-blue-40)',
   WHITE = 'var(--color-white)',
   GRAY_20 = 'var(--color-gray-20)',
+  GRAY_40 = 'var(--color-gray-40)',
+  GRAY_80 = 'var(--color-gray-80)',
 }
 
 const globalColors = css`
@@ -14,7 +16,9 @@ const globalColors = css`
 
     --color-white: #ffffff;
 
-    --color-gray-20: #c7c7c7;
+    --color-gray-20: #f5f5f5;
+    --color-gray-40: #c7c7c7;
+    --color-gray-80: #383838;
   }
 `;
 
