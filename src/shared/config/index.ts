@@ -1,1 +1,0 @@
-export { EnvConfig } from './envConfig';
