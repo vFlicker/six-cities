@@ -36,7 +36,7 @@ const globalResets = css`
   }
 
   textarea {
-    resize: none
+    resize: none;
   }
 
   img {

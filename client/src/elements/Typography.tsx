@@ -9,7 +9,7 @@ type TypographyProps = PropsWithChildren<{
   color?: Color;
 }>;
 
-enum TypographyVariant {
+const enum TypographyVariant {
   TITLE_1 = 'title-1',
   TITLE_2 = 'title-2',
   TITLE_3 = 'title-3',
