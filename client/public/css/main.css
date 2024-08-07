@@ -4,7 +4,7 @@ a {
   -webkit-transition: color .3s, opacity .3s;
   transition: color .3s, opacity .3s;
   cursor: pointer;
-  outline: 0
+  outline: 0;
 }
 
 
@@ -684,24 +684,6 @@ a {
   margin-top: 2px
 }
 
-.place-card__bookmark-button:focus .place-card__bookmark-icon,
-.place-card__bookmark-button:hover .place-card__bookmark-icon {
-  stroke: #4481c3
-}
-
-.place-card__bookmark-button--active .place-card__bookmark-icon {
-  stroke: #4481c3;
-  fill: #4481c3
-}
-
-.place-card__bookmark-icon {
-  fill: none;
-  stroke: #979797;
-  stroke-width: 2;
-  -webkit-transition: fill .3s, stroke .3s;
-  transition: fill .3s, stroke .3s
-}
-
 .place-card__price-value {
   font-size: 20px;
   line-height: 1.2;
@@ -924,24 +906,6 @@ a {
   width: 31px;
   height: 33px;
   margin-top: 2px
-}
-
-.offer__bookmark-button:focus .offer__bookmark-icon,
-.offer__bookmark-button:hover .offer__bookmark-icon {
-  stroke: #4481c3
-}
-
-.offer__bookmark-button--active .offer__bookmark-icon {
-  stroke: #4481c3;
-  fill: #4481c3
-}
-
-.offer__bookmark-icon {
-  fill: none;
-  stroke: #979797;
-  stroke-width: 2;
-  -webkit-transition: fill .3s, stroke .3s;
-  transition: fill .3s, stroke .3s
 }
 
 .offer__rating {
