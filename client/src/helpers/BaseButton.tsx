@@ -1,33 +1,31 @@
 import styled from '@emotion/styled';
-import { ComponentProps } from 'react';
 
-type BaseButtonProps = ComponentProps<'button'>;
+import { withAttrs } from './withAttrs';
 
-function BaseButton({ children, ...props }: BaseButtonProps) {
-  return (
-    <StyledBaseButton type="button" {...props}>
-      {children}
-    </StyledBaseButton>
-  );
-}
+const StyledBaseButton = withAttrs(
+  styled.button`
+    display: inline-block;
+    padding: 0;
+    background: 0 0;
+    border: none;
+    text-decoration: none;
+    font: inherit;
+    text-align: center;
+    word-break: break-word;
+    word-wrap: wrap;
+    overflow-wrap: break-word;
+    transition:
+      color 0.3s,
+      background-color 0.3s;
+    cursor: pointer;
 
-const StyledBaseButton = styled.button`
-  display: inline-block;
-  padding: 0;
-  background: 0 0;
-  border: none;
-  text-decoration: none;
-  font: inherit;
-  text-align: center;
-  word-break: break-word;
-  word-wrap: wrap;
-  overflow-wrap: break-word;
-  transition: color .3s, background-color .3s;
-  cursor: pointer;
+    &:disabled {
+      cursor: not-allowed;
+    }
+  `,
+  {
+    type: 'button',
+  },
+);
 
-  &:disabled {
-    cursor: not-allowed;
-  }
-`;
-
-export { BaseButton };
+export { StyledBaseButton as BaseButton };
