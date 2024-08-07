@@ -29,9 +29,10 @@ const globalResets = css`
 
   body {
     font-size: 16px;
-    color: ${Color.GRAY_80};
+    line-height: 19px;
+    color: ${Color.GRAY_90};
     font-family: ${Font.Rubik};
-    background-color: ${Color.GRAY_20};
+    background-color: ${Color.GRAY_10};
   }
 
   textarea {

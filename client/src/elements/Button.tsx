@@ -4,7 +4,7 @@ import { BaseButton } from '~/helpers/BaseButton';
 import { Color } from '~/tokens/colors';
 import { Radius } from '~/tokens/radiuses';
 
-const Button = styled(BaseButton)`
+const StyledButton = styled(BaseButton)`
   padding: 16px 20px 13px;
   border-radius: ${Radius.RADIUS_3};
   color: ${Color.WHITE};
@@ -12,7 +12,7 @@ const Button = styled(BaseButton)`
 
   &:focus,
   &:hover {
-    background-color: ${Color.BLUE_40}
+    background-color: ${Color.BLUE_30}
   }
 
   &:disabled {
@@ -20,4 +20,4 @@ const Button = styled(BaseButton)`
   }
 `;
 
-export { Button };
+export { StyledButton as Button };
