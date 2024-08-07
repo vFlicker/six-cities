@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 
 import { Button } from './elements/Button';
 import { Icon, IconSize } from './elements/Icon';
+import { TextButton } from './elements/TextButton';
 import { Typography, TypographyVariant } from './elements/Typography';
 import { withAttrs } from './helpers/withAttrs';
 import { Color, globalColors } from './tokens/colors';
@@ -65,6 +66,11 @@ function App(): JSX.Element {
         <StyledStarIcon />
         <StyledBookmarkIcon />
       </div>
+
+      <TextButton>
+        <Icon name={IconName.USER} size={IconSize.MEDIUM} />
+        Oliver.conner@gmail.com
+      </TextButton>
 
       <SpriteWithIcons />
     </>

@@ -20,6 +20,7 @@ const IconNameToIconSize = {
   [IconName.ARROW_SELECT]: IconSize.SMALL,
   [IconName.BOOKMARK]: IconSize.MEDIUM,
   [IconName.STAR]: IconSize.LARGE,
+  [IconName.USER]: IconSize.MEDIUM,
 };
 
 const IconNameToCSS = {
@@ -32,6 +33,9 @@ const IconNameToCSS = {
   `,
   [IconName.STAR]: css`
     fill: ${Color.GRAY_40};
+  `,
+  [IconName.USER]: css`
+    fill: ${Color.GRAY_50};
   `,
 };
 
