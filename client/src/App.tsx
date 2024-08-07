@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 
 import { Button } from './elements/Button';
 import { Icon, IconSize } from './elements/Icon';
+import { Input } from './elements/Input';
 import { TextButton } from './elements/TextButton';
 import { Typography, TypographyVariant } from './elements/Typography';
 import { withAttrs } from './helpers/withAttrs';
@@ -71,6 +72,14 @@ function App(): JSX.Element {
         <Icon name={IconName.USER} size={IconSize.MEDIUM} />
         Oliver.conner@gmail.com
       </TextButton>
+
+      <div>
+        <Input placeholder="Type something" />
+        <Input
+          as="textarea"
+          placeholder="Tell how was your stay, what you like and what can be improved"
+        />
+      </div>
 
       <SpriteWithIcons />
     </>

@@ -27,8 +27,8 @@ const globalColors = css`
     --color-white: #ffffff;
 
     --color-gray-10: #f5f5f5;
-    --color-gray-20: #dfdfdf;
-    --color-gray-30: #f2f2f2;
+    --color-gray-20: #f2f2f2;
+    --color-gray-30: #dfdfdf;
     --color-gray-40: #c7c7c7;
     --color-gray-50: #9b9b9b;
     --color-gray-60: #818181;
