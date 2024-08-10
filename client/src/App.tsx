@@ -2,11 +2,13 @@ import { Global } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Route, Routes } from 'react-router-dom';
 
+import { Card, CardVariant } from './components/Card';
 import { Button, Link } from './elements/Button';
 import { Filter } from './elements/Filter';
+import { FormRating } from './elements/FormRating';
 import { Icon, IconSize } from './elements/Icon';
 import { Input } from './elements/Input';
-import { Rating } from './elements/Rating';
+import { Rating, RatingSize } from './elements/Rating';
 import { TextButton } from './elements/TextButton';
 import { Typography, TypographyVariant } from './elements/Typography';
 import { withAttrs } from './helpers/withAttrs';
@@ -82,7 +84,6 @@ function IndexPage(): JSX.Element {
         <Icon name={IconName.BOOKMARK} />
         <Icon name={IconName.STAR} size={IconSize.MEDIUM} />
         <StyledStarIcon />
-        <StyledBookmarkIcon />
       </div>
 
       <TextButton>
@@ -97,7 +98,7 @@ function IndexPage(): JSX.Element {
           placeholder="Tell how was your stay, what you like and what can be improved"
         />
       </div>
-      <Rating />
+      <FormRating />
 
       <Filter label="Sort by:">
         <option>Popular</option>
@@ -107,6 +108,11 @@ function IndexPage(): JSX.Element {
       </Filter>
 
       <Link to="/">Go to home</Link>
+
+      <Card variant={CardVariant.HORIZONTAL} />
+      <Card variant={CardVariant.VERTICAL} />
+
+      <Rating size={RatingSize.LARGE} rating={4} />
     </>
   );
 }

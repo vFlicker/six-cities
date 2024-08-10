@@ -273,35 +273,6 @@ a {
   border-radius: 50%
 }
 
-.rating__stars {
-  position: relative;
-  display: block;
-  font-size: 0
-}
-
-.rating__stars::before {
-  content: "";
-  display: inline-block;
-  height: 100%;
-  background: url(../img/stars.svg) transparent no-repeat center
-}
-
-.rating__stars span {
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: inline-block;
-  height: 100%;
-  overflow: hidden
-}
-
-.rating__stars span::before {
-  content: "";
-  display: inline-block;
-  height: 100%;
-  background: url(../img/stars-active.svg) transparent no-repeat center
-}
-
 .cities {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -363,12 +334,6 @@ a {
   flex-wrap: wrap;
   margin-left: -8px;
   padding-left: 5px
-}
-
-.cities__card {
-  width: 260px;
-  margin-left: 8px;
-  margin-bottom: 24px
 }
 
 .page__main--index-empty .cities__right-section {
@@ -600,44 +565,9 @@ a {
   background-color: #f2f2f2
 }
 
-.place-card {
-  position: relative
-}
-
-.place-card:hover {
-  opacity: .6
-}
-
-.place-card__image-wrapper {
-  margin-bottom: 9px
-}
-
 .place-card__image {
   display: block;
   border-radius: 4px
-}
-
-.place-card__info {
-  -webkit-box-flex: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1
-}
-
-.place-card__price-wrapper {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: start;
-  -ms-flex-align: start;
-  align-items: flex-start;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  margin-bottom: 5px
-}
-
-.place-card__price {
-  margin-right: 20px
 }
 
 .favorites__card .place-card__bookmark-button {
@@ -654,12 +584,6 @@ a {
   margin-top: 2px
 }
 
-.place-card__price-value {
-  font-size: 20px;
-  line-height: 1.2;
-  font-weight: 700
-}
-
 .place-card__price-text {
   font-size: 12px;
   line-height: 1.1667
@@ -669,49 +593,7 @@ a {
   margin-bottom: 6px
 }
 
-.place-card__stars {
-  width: 73px;
-  height: 12px
-}
 
-.place-card__stars::before {
-  width: 73px;
-  background-size: 73px 12px
-}
-
-.place-card__stars span {
-  width: 0%
-}
-
-.place-card__stars span::before {
-  width: 73px;
-  background-size: 73px 12px
-}
-
-.place-card__name {
-  margin-top: 0;
-  margin-bottom: 4px;
-  font-size: 18px;
-  line-height: 1.223;
-  font-weight: 700;
-  font-style: oblique
-}
-
-.place-card__name a {
-  display: inline-block
-}
-
-.place-card__name a:focus,
-.place-card__name a:hover {
-  opacity: .7
-}
-
-.place-card__type {
-  margin-top: 0;
-  margin-bottom: 0;
-  font-size: 12px;
-  line-height: 1.1667
-}
 
 .place-card__mark {
   position: absolute;
@@ -888,24 +770,6 @@ a {
   margin-bottom: 24px
 }
 
-.offer__stars {
-  width: 147px;
-  height: 24px
-}
-
-.offer__stars::before {
-  width: 147px;
-  background-size: 147px 24px
-}
-
-.offer__stars span {
-  width: 0%
-}
-
-.offer__stars span::before {
-  width: 147px;
-  background-size: 147px 24px
-}
 
 .offer__rating-value {
   margin-left: 5px;
@@ -1233,24 +1097,7 @@ a {
   margin-bottom: 7px
 }
 
-.reviews__stars {
-  width: 98px;
-  height: 16px
-}
 
-.reviews__stars::before {
-  width: 98px;
-  background-size: 98px 16px
-}
-
-.reviews__stars span {
-  width: 0%
-}
-
-.reviews__stars span::before {
-  width: 98px;
-  background-size: 98px 16px
-}
 
 .reviews__time {
   font-size: 14px;
@@ -1368,12 +1215,6 @@ a {
   padding-left: 3px
 }
 
-.near-places__card {
-  width: 260px;
-  margin-left: 8px;
-  margin-bottom: 24px
-}
-
 .login {
   position: relative;
   width: 520px;
@@ -1473,21 +1314,6 @@ a {
   display: flex;
   width: 244px;
   margin-right: 20px
-}
-
-.favorites__card {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: start;
-  -ms-flex-align: start;
-  align-items: flex-start;
-  width: 421px;
-  margin-bottom: 32px
-}
-
-.favorites__card:last-child {
-  margin-bottom: 0
 }
 
 .favorites__image-wrapper {
