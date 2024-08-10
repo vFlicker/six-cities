@@ -77,7 +77,9 @@ const StyledTitle = withAttrs(
   {
     variant: TypographyVariant.TITLE_4,
   },
-  Typography,
+  styled(Typography)`
+    margin-bottom: 4px;
+  `,
 );
 
 const StyledType = withAttrs(
@@ -124,9 +126,9 @@ const StyledCard = styled.article<{ variant: CardVariant }>`
   }
 `;
 
-function Card({ variant }: CardProps) {
+function Card({ className, variant }: CardProps) {
   return (
-    <StyledWrapper to="/">
+    <StyledWrapper to="/" className={className}>
       <StyledCard variant={variant}>
         <StyledImage src="img/room.jpg" alt="Card place" />
         <StyledInfo>

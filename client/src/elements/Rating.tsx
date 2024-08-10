@@ -8,6 +8,7 @@ import starsActiveImage from '~/images/stars-active.svg';
 type RatingProps = {
   size: RatingSize;
   rating: number;
+  className?: string;
 };
 
 const enum RatingSize {
@@ -78,9 +79,9 @@ const StyledText = styled.span`
   ${VisuallyHiddenMixin}
 `;
 
-function Rating({ rating, size }: RatingProps): JSX.Element {
+function Rating({ className, rating, size }: RatingProps): JSX.Element {
   return (
-    <StyledRating size={size}>
+    <StyledRating className={className} size={size}>
       <StyledStarIcon rating={rating}></StyledStarIcon>
       <StyledText>Rating</StyledText>
     </StyledRating>
