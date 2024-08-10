@@ -1,3 +1,4 @@
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
 import { VisuallyHiddenMixin } from '~/helpers/VisuallyHiddenMixin';
@@ -20,54 +21,45 @@ const calculateWidthPercentage = (rating: number): string => {
   return `${(clampedRating / 5) * 100}%`;
 };
 
-const StyledStarIcon = styled.span``;
+const StyledStarIcon = styled.span<Pick<RatingProps, 'rating'>>`
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: inline-block;
+  width: ${({ rating }) => calculateWidthPercentage(rating)};
+  height: 100%;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    background: url(${starsActiveImage}) transparent no-repeat center;
+  }
+`;
+
+const SizeMixin = (width: number, height: number) => css`
+  width: ${width}px;
+  height: ${height}px;
+
+  &::before {
+    width: ${width}px;
+    background-size: ${width}px ${height}px;
+  }
+
+  ${StyledStarIcon}::before {
+    width: ${width}px;
+    background-size: ${width}px ${height}px;
+  }
+`;
 
 const RatingSizeToCSS = {
-  [RatingSize.SMALL]: `
-    width: 73px;
-    height: 12px;
-
-    &::before {
-      width: 73px;
-      background-size: 73px 12px;
-    }
-
-    ${StyledStarIcon}::before {
-      width: 73px;
-      background-size: 73px 12px;
-    }
-  `,
-  [RatingSize.MEDIUM]: `
-    width: 98px;
-    height: 16px;
-
-    &::before {
-      width: 98px;
-      background-size: 98px 16px;
-    }
-
-    ${StyledStarIcon}::before {
-      width: 98px;
-      background-size: 98px 16px;
-    }
-  `,
-  [RatingSize.LARGE]: `
-    width: 147px;
-    height: 24px;
-
-    &::before {
-      width: 147px;
-      background-size: 147px 24px;
-    }
-
-    ${StyledStarIcon}::before {
-      width: 147px;
-      background-size: 147px 24px;
-    }
-  `,
+  [RatingSize.SMALL]: SizeMixin(73, 12),
+  [RatingSize.MEDIUM]: SizeMixin(98, 16),
+  [RatingSize.LARGE]: SizeMixin(147, 24),
 };
 
-const StyledRating = styled.div<RatingProps>`
+const StyledRating = styled.div<Pick<RatingProps, 'size'>>`
   position: relative;
   display: block;
   font-size: 0;
@@ -79,23 +71,6 @@ const StyledRating = styled.div<RatingProps>`
     background: url(${starImage}) transparent no-repeat center;
   }
 
-  & ${StyledStarIcon} {
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: inline-block;
-    width: ${({ rating }) => calculateWidthPercentage(rating)};
-    height: 100%;
-    overflow: hidden;
-  }
-
-  & ${StyledStarIcon}::before {
-    content: '';
-    display: inline-block;
-    height: 100%;
-    background: url(${starsActiveImage}) transparent no-repeat center;
-  }
-
   ${({ size }) => RatingSizeToCSS[size]}
 `;
 
@@ -103,10 +78,10 @@ const StyledText = styled.span`
   ${VisuallyHiddenMixin}
 `;
 
-function Rating(props: RatingProps): JSX.Element {
+function Rating({ rating, size }: RatingProps): JSX.Element {
   return (
-    <StyledRating {...props}>
-      <StyledStarIcon></StyledStarIcon>
+    <StyledRating size={size}>
+      <StyledStarIcon rating={rating}></StyledStarIcon>
       <StyledText>Rating</StyledText>
     </StyledRating>
   );
