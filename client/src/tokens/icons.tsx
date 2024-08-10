@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 const enum IconName {
-  ARROW_SELECT = 'icon-arrow-select',
+  ARROW = 'icon-arrow',
   BOOKMARK = 'icon-bookmark',
   STAR = 'icon-star',
   USER = 'icon-user',
@@ -14,7 +14,7 @@ const StyledSpriteWithIcons = styled.svg`
 function SpriteWithIcons() {
   return (
     <StyledSpriteWithIcons xmlns="http://www.w3.org/2000/svg">
-      <symbol id="icon-arrow-select" viewBox="0 0 7 4">
+      <symbol id="icon-arrow" viewBox="0 0 7 4">
         <path
           fill-rule="evenodd"
           clip-rule="evenodd"

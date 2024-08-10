@@ -558,21 +558,6 @@ a {
   font-style: oblique
 }
 
-.places__sorting {
-  position: relative;
-  margin-bottom: 33px;
-  padding-left: 5px
-}
-
-.places__sorting-arrow {
-  position: absolute;
-  top: 55%;
-  -webkit-transform: translateY(-50%);
-  transform: translateY(-50%);
-  right: 0;
-  fill: #0d0d0d
-}
-
 .places__options {
   margin: 0;
   padding: 0;
@@ -613,21 +598,6 @@ a {
 
 .places__option:selected {
   background-color: #f2f2f2
-}
-
-.places__sorting-caption {
-  font-size: 12px;
-  line-height: 1.167;
-  font-weight: 700
-}
-
-.places__sorting-type {
-  position: relative;
-  display: inline-block;
-  padding-right: 12px;
-  font-size: 12px;
-  line-height: 1.167;
-  cursor: pointer
 }
 
 .place-card {

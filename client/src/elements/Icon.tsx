@@ -6,6 +6,7 @@ import { Color } from '~/tokens/colors';
 import { IconName } from '~/tokens/icons';
 
 type IconProps = PropsWithChildren<{
+  className?: string;
   name: IconName;
   size?: IconSize;
 }>;
@@ -17,14 +18,14 @@ const enum IconSize {
 }
 
 const IconNameToIconSize = {
-  [IconName.ARROW_SELECT]: IconSize.SMALL,
+  [IconName.ARROW]: IconSize.SMALL,
   [IconName.BOOKMARK]: IconSize.MEDIUM,
   [IconName.STAR]: IconSize.LARGE,
   [IconName.USER]: IconSize.MEDIUM,
 };
 
 const IconNameToCSS = {
-  [IconName.ARROW_SELECT]: css`
+  [IconName.ARROW]: css`
     fill: ${Color.GRAY_90};
   `,
   [IconName.BOOKMARK]: css`

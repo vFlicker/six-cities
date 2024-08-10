@@ -2,6 +2,7 @@ import { Global } from '@emotion/react';
 import styled from '@emotion/styled';
 
 import { Button } from './elements/Button';
+import { Filter } from './elements/Filter';
 import { Icon, IconSize } from './elements/Icon';
 import { Input } from './elements/Input';
 import { Rating } from './elements/Rating';
@@ -62,7 +63,7 @@ function App(): JSX.Element {
       <StyledButton>Click me</StyledButton>
 
       <div>
-        <Icon name={IconName.ARROW_SELECT} />
+        <Icon name={IconName.ARROW} />
         <Icon name={IconName.BOOKMARK} />
         <Icon name={IconName.STAR} size={IconSize.MEDIUM} />
         <StyledStarIcon />
@@ -83,6 +84,13 @@ function App(): JSX.Element {
       </div>
 
       <Rating />
+
+      <Filter label="Sort by:">
+        <option>Popular</option>
+        <option>Price: low to high</option>
+        <option>Price: high to low</option>
+        <option>Top rated first</option>
+      </Filter>
 
       <SpriteWithIcons />
     </>

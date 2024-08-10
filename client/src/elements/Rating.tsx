@@ -8,6 +8,10 @@ import { IconName } from '~/tokens/icons';
 
 import { Icon } from './Icon';
 
+type RatingProps = {
+  className?: string;
+};
+
 const RATING_VALUES = [5, 4, 3, 2, 1];
 
 const StyledWrapper = styled.div`
@@ -43,9 +47,9 @@ const StyledIcon = withAttrs(Icon, {
   name: IconName.STAR,
 });
 
-function Rating(): JSX.Element {
+function Rating({ className }: RatingProps): JSX.Element {
   return (
-    <StyledWrapper>
+    <StyledWrapper className={className}>
       {RATING_VALUES.map((rating) => (
         <Fragment key={rating}>
           <StyledInput

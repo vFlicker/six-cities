@@ -12,11 +12,11 @@ const StyledButton = styled(BaseButton)`
 
   &:focus,
   &:hover {
-    background-color: ${Color.BLUE_30}
+    background-color: ${Color.BLUE_30};
   }
 
   &:disabled {
-    background-color: ${Color.GRAY_40}
+    background-color: ${Color.GRAY_40};
   }
 `;
 
