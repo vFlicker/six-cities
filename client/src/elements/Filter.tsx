@@ -15,7 +15,7 @@ type FilterProps = PropsWithChildren<{
 
 const StyledWrapper = styled.div`
   display: inline-flex;
-  align-items: center;
+  align-items: baseline;
   width: 200px;
 `;
 
@@ -23,6 +23,8 @@ const StyledFilter = styled.select`
   appearance: none;
   width: 100%;
   padding: 0 26px 2px 4px;
+  font-size: 12px;
+  line-height: 1.167;
   cursor: pointer;
 
   &:hover {

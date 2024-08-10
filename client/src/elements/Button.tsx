@@ -1,10 +1,12 @@
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import { Link } from 'react-router-dom';
 
 import { BaseButton } from '~/helpers/BaseButton';
 import { Color } from '~/tokens/colors';
 import { Radius } from '~/tokens/radiuses';
 
-const StyledButton = styled(BaseButton)`
+const CSS = css`
   padding: 16px 20px 13px;
   border-radius: ${Radius.RADIUS_3};
   color: ${Color.WHITE};
@@ -20,4 +22,12 @@ const StyledButton = styled(BaseButton)`
   }
 `;
 
-export { StyledButton as Button };
+const StyledButton = styled(BaseButton)`
+  ${CSS}
+`;
+
+const StyledLink = styled(Link)`
+  ${CSS};
+`;
+
+export { StyledButton as Button, StyledLink as Link };

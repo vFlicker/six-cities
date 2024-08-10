@@ -1,9 +1,11 @@
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import { Link } from 'react-router-dom';
 
 import { BaseButton } from '../helpers/BaseButton';
 import { Color } from '../tokens/colors';
 
-const StyledTextButton = styled(BaseButton)`
+const CSS = css`
   display: inline-flex;
   align-items: center;
   gap: 4px;
@@ -21,4 +23,12 @@ const StyledTextButton = styled(BaseButton)`
   }
 `;
 
-export { StyledTextButton as TextButton };
+const StyledTextButton = styled(BaseButton)`
+  ${CSS}
+`;
+
+const StyledTextLink = styled(Link)`
+  ${CSS}
+`;
+
+export { StyledTextButton as TextButton, StyledTextLink as TextLink };

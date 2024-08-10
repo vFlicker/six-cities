@@ -1,7 +1,8 @@
 import { Global } from '@emotion/react';
 import styled from '@emotion/styled';
+import { Route, Routes } from 'react-router-dom';
 
-import { Button } from './elements/Button';
+import { Button, Link } from './elements/Button';
 import { Filter } from './elements/Filter';
 import { Icon, IconSize } from './elements/Icon';
 import { Input } from './elements/Input';
@@ -55,7 +56,20 @@ function App(): JSX.Element {
       <Global styles={globalRadiuses} />
       <Global styles={globalColors} />
 
+      <Routes>
+        <Route path="/" element={<IndexPage />} />
+      </Routes>
+
+      <SpriteWithIcons />
+    </>
+  );
+}
+
+function IndexPage(): JSX.Element {
+  return (
+    <>
       <StyledTitle>Styled title</StyledTitle>
+
       <StyledText>
         Lorem ipsum dolor sit amet consectetur adipisicing elit.
       </StyledText>
@@ -82,7 +96,6 @@ function App(): JSX.Element {
           placeholder="Tell how was your stay, what you like and what can be improved"
         />
       </div>
-
       <Rating />
 
       <Filter label="Sort by:">
@@ -92,7 +105,7 @@ function App(): JSX.Element {
         <option>Top rated first</option>
       </Filter>
 
-      <SpriteWithIcons />
+      <Link to="/">Go to home</Link>
     </>
   );
 }
