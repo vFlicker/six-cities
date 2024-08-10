@@ -3,6 +3,9 @@ import styled from '@emotion/styled';
 import { withAttrs } from './withAttrs';
 
 const StyledBaseButton = withAttrs(
+  {
+    type: 'button',
+  },
   styled.button`
     display: inline-block;
     padding: 0;
@@ -23,9 +26,6 @@ const StyledBaseButton = withAttrs(
       cursor: not-allowed;
     }
   `,
-  {
-    type: 'button',
-  },
 );
 
 export { StyledBaseButton as BaseButton };

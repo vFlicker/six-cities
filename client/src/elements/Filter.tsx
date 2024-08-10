@@ -41,20 +41,23 @@ const StyledFilter = styled.select`
 `;
 
 const StyledLabel = withAttrs(
+  {
+    variant: TypographyVariant.TEXT_3,
+    as: 'label',
+  },
   styled(Typography)`
     order: -1;
     flex-shrink: 0;
     font-weight: 700;
   `,
-  {
-    variant: TypographyVariant.TEXT_3,
-    as: 'label',
-  },
 );
 
-const StyledChevron = withAttrs(Icon, {
-  name: IconName.ARROW,
-});
+const StyledChevron = withAttrs(
+  {
+    name: IconName.ARROW,
+  },
+  Icon,
+);
 
 function Filter({ className, label, children }: FilterProps) {
   return (

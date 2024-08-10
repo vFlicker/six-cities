@@ -18,34 +18,35 @@ import { globalRadiuses } from './tokens/radiuses';
 import { globalResets } from './tokens/resets';
 
 const StyledTitle = withAttrs(
-  styled(Typography)`
-    margin-bottom: 8px;
-  `,
   {
     as: 'h2',
     variant: TypographyVariant.TITLE_2,
   },
+  styled(Typography)`
+    margin-bottom: 8px;
+  `,
 );
 
-const StyledText = withAttrs(Typography, {
-  as: 'p',
-  variant: TypographyVariant.TEXT_1,
-  color: Color.ORANGE_10,
-});
+const StyledText = withAttrs(
+  {
+    as: 'p',
+    variant: TypographyVariant.TEXT_1,
+    color: Color.ORANGE_10,
+  },
+  Typography,
+);
 
 const StyledButton = styled(Button)`
   margin-bottom: 10px;
 `;
 
-const StyledStarIcon = withAttrs(Icon, {
-  name: IconName.STAR,
-  size: IconSize.LARGE,
-});
-
-const StyledBookmarkIcon = withAttrs(Icon, {
-  name: IconName.BOOKMARK,
-  size: IconSize.LARGE,
-});
+const StyledStarIcon = withAttrs(
+  {
+    name: IconName.STAR,
+    size: IconSize.LARGE,
+  },
+  Icon,
+);
 
 function App(): JSX.Element {
   return (

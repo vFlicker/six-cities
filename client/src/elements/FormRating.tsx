@@ -8,11 +8,11 @@ import { IconName } from '~/tokens/icons';
 
 import { Icon } from './Icon';
 
-type RatingProps = {
+type FormRatingProps = {
   className?: string;
 };
 
-const RATING_VALUES = [5, 4, 3, 2, 1];
+const FORM_RATING_VALUES = [5, 4, 3, 2, 1];
 
 const StyledWrapper = styled.div`
   display: flex;
@@ -43,14 +43,17 @@ const StyledLabel = styled.label`
   }
 `;
 
-const StyledIcon = withAttrs(Icon, {
-  name: IconName.STAR,
-});
+const StyledIcon = withAttrs(
+  {
+    name: IconName.STAR,
+  },
+  Icon,
+);
 
-function Rating({ className }: RatingProps): JSX.Element {
+function FormRating({ className }: FormRatingProps): JSX.Element {
   return (
     <StyledWrapper className={className}>
-      {RATING_VALUES.map((rating) => (
+      {FORM_RATING_VALUES.map((rating) => (
         <Fragment key={rating}>
           <StyledInput
             type="radio"
@@ -67,4 +70,4 @@ function Rating({ className }: RatingProps): JSX.Element {
   );
 }
 
-export { Rating };
+export { FormRating };
