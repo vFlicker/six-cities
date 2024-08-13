@@ -1,10 +1,14 @@
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 
+import { withAttrs } from '~/helpers/withAttrs';
+
 import logoImage from '../images/logo.svg';
 
 type LogoProps = {
   className?: string;
+  width?: string;
+  height?: string;
 };
 
 const StyledLogo = styled(Link)`
@@ -13,10 +17,23 @@ const StyledLogo = styled(Link)`
   height: 22px;
 `;
 
-function Logo({ className }: LogoProps): JSX.Element {
+const StyledImage = withAttrs(
+  ({ width, height }) => ({
+    width: width || '81',
+    height: height || '41',
+  }),
+  styled.img``,
+);
+
+function Logo({ className, width, height }: LogoProps): JSX.Element {
   return (
     <StyledLogo className={className} to="/">
-      <img src={logoImage} width="81" height="41" alt="Logotype 6 Cities" />
+      <StyledImage
+        src={logoImage}
+        width={width}
+        height={height}
+        alt="6 cities logo"
+      />
     </StyledLogo>
   );
 }

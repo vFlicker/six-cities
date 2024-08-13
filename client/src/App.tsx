@@ -11,6 +11,7 @@ import { Input } from './elements/Input';
 import { Rating, RatingSize } from './elements/Rating';
 import { Typography, TypographyVariant } from './elements/Typography';
 import { withAttrs } from './helpers/withAttrs';
+import { Footer } from './sections/Footer';
 import { Header } from './sections/Header';
 import { Color, globalColors } from './tokens/colors';
 import { globalFonts } from './tokens/fonts';
@@ -107,6 +108,8 @@ function IndexPage(): JSX.Element {
       <Card variant={CardVariant.VERTICAL} />
 
       <Rating size={RatingSize.LARGE} rating={4} />
+
+      <Footer />
     </>
   );
 }
