@@ -92,7 +92,6 @@ const StyledType = withAttrs(
 
 const CartVariantToCSS = {
   [CardVariant.VERTICAL]: css`
-    display: flex;
     flex-direction: column;
     width: 260px;
 
@@ -103,7 +102,6 @@ const CartVariantToCSS = {
     }
   `,
   [CardVariant.HORIZONTAL]: css`
-    display: flex;
     flex-direction: row;
     width: 420px;
 

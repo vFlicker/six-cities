@@ -8,7 +8,7 @@ import { Color } from '../tokens/colors';
 const CSS = css`
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: 8px;
 
   color: ${Color.GRAY_90};
   font-size: 14px;
