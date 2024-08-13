@@ -11,8 +11,7 @@ import { Input } from './elements/Input';
 import { Rating, RatingSize } from './elements/Rating';
 import { Typography, TypographyVariant } from './elements/Typography';
 import { withAttrs } from './helpers/withAttrs';
-import { Footer } from './sections/Footer';
-import { Header } from './sections/Header';
+import { DefaultLayout } from './layouts/DefaultLayout';
 import { Color, globalColors } from './tokens/colors';
 import { globalFonts } from './tokens/fonts';
 import { IconName, SpriteWithIcons } from './tokens/icons';
@@ -61,19 +60,18 @@ function App(): JSX.Element {
       <Global styles={globalColors} />
 
       <Routes>
-        <Route path="/" element={<IndexPage />} />
+        <Route path="/" element={<DefaultLayout />}>
+          <Route index element={<IndexPage />} />
+        </Route>
       </Routes>
 
       <SpriteWithIcons />
     </>
   );
 }
-
 function IndexPage(): JSX.Element {
   return (
     <>
-      <Header />
-
       <StyledTitle>Styled title</StyledTitle>
 
       <StyledText>
@@ -108,8 +106,6 @@ function IndexPage(): JSX.Element {
       <Card variant={CardVariant.VERTICAL} />
 
       <Rating size={RatingSize.LARGE} rating={4} />
-
-      <Footer />
     </>
   );
 }
