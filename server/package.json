@@ -1,0 +1,37 @@
+{
+  "name": "server-six-cities",
+  "version": "1.0.0",
+  "author": "Vladyslav Sliusar",
+  "license": "ISC",
+  "main": "main.js",
+  "type": "module",
+  "engines": {
+    "node": "^20.0.0",
+    "npm": ">=10"
+  },
+  "scripts": {
+    "dev": "nodemon",
+    "start": "npm run build && node ./dist/main.js",
+    "build": "npm run clean && npm run compile",
+    "lint": "eslint src/ --ext .ts --fix",
+    "compile": "tsc -p tsconfig.json",
+    "clean": "rimraf dist",
+    "ts": "tsx"
+  },
+  "devDependencies": {
+    "@eslint/js": "9.9.0",
+    "@types/node": "22.3.0",
+    "@typescript-eslint/eslint-plugin": "8.1.0",
+    "@typescript-eslint/parser": "8.1.0",
+    "eslint": "9.9.0",
+    "eslint-config-prettier": "9.1.0",
+    "eslint-plugin-prettier": "5.2.1",
+    "eslint-plugin-simple-import-sort": "12.1.1",
+    "nodemon": "3.1.4",
+    "prettier": "3.3.3",
+    "rimraf": "6.0.1",
+    "tsx": "4.17.0",
+    "typescript": "5.5.4",
+    "typescript-eslint": "8.1.0"
+  }
+}

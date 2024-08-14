@@ -1,8 +1,8 @@
 {
-  "name": "six-cities",
-  "private": true,
+  "name": "client-six-cities",
   "version": "3.0.0",
   "type": "module",
+  "author": "Vladyslav Sliusar",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
