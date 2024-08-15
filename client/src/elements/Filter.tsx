@@ -46,6 +46,9 @@ const StyledLabel = withAttrs(
     as: 'label',
   },
   styled(Typography)`
+    display: flex;
+    align-items: center;
+    gap: 4px;
     order: -1;
     flex-shrink: 0;
     font-weight: 700;
@@ -62,7 +65,7 @@ const StyledChevron = withAttrs(
 function Filter({ className, label, children }: FilterProps) {
   return (
     <StyledWrapper className={className}>
-      <StyledFilter>{children} </StyledFilter>
+      <StyledFilter>{children}</StyledFilter>
       <StyledLabel>
         <StyledChevron /> {label}
       </StyledLabel>

@@ -17,7 +17,7 @@ const StyledNavigation = styled.nav`
 const StyledWrapper = styled.div`
   display: flex;
   align-items: flex-start;
-  padding: 19px 16px 0;
+  padding: 20px 0;
 `;
 
 const StyledLeft = styled.div`

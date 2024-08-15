@@ -2,6 +2,8 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 
+import { TextShadow } from '~/tokens/textShadow';
+
 import { BaseButton } from '../helpers/BaseButton';
 import { Color } from '../tokens/colors';
 
@@ -17,9 +19,7 @@ const CSS = css`
   &:hover,
   &:focus,
   &:active {
-    text-shadow:
-      0.1px 0 0,
-      -0.1px 0 0;
+    text-shadow: ${TextShadow.SHADOW_1};
   }
 `;
 

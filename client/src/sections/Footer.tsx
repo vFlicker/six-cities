@@ -1,19 +1,28 @@
 import styled from '@emotion/styled';
 
 import { Logo } from '~/elements/Logo';
+import { Container } from '~/helpers/Container';
+import { Color } from '~/tokens/colors';
 
 const StyledFooter = styled.footer`
+  background-color: ${Color.WHITE};
+`;
+
+const StyledContainer = styled(Container)`
   display: flex;
   justify-content: center;
   align-items: flex-start;
   padding-top: 48px;
   padding-bottom: 52px;
+  border-top: 2px solid ${Color.GRAY_20};
 `;
 
 function Footer(): JSX.Element {
   return (
     <StyledFooter>
-      <Logo width="64" height="33" />
+      <StyledContainer>
+        <Logo width="64" height="33" />
+      </StyledContainer>
     </StyledFooter>
   );
 }

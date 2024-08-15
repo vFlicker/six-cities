@@ -43,6 +43,7 @@ const StyledPriceValue = styled.b`
   font-size: 20px;
   line-height: 1.2;
   font-weight: 700;
+  margin-right: 4px;
 `;
 
 const StyledPriceText = withAttrs(
@@ -50,9 +51,7 @@ const StyledPriceText = withAttrs(
     variant: TypographyVariant.TEXT_3,
     as: 'span',
   },
-  styled(Typography)`
-    margin-bottom: 4px;
-  `,
+  Typography,
 );
 
 const StyledBookmarkIcon = withAttrs(
