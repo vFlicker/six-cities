@@ -25,7 +25,11 @@
     ],
     "lib": [
       "ESNext"
-    ]
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["src/*"]
+    }
   },
   "include": [
     "src/**/*.ts"
