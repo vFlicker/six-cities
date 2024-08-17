@@ -6,6 +6,7 @@ import { Icon, IconSize } from '~/elements/Icon';
 import { Rating, RatingSize } from '~/elements/Rating';
 import { Typography, TypographyVariant } from '~/elements/Typography';
 import { withAttrs } from '~/helpers/withAttrs';
+import apartmentImage1 from '~/images/gallery/1.jpg';
 import { IconName } from '~/tokens/icons';
 
 type CardProps = {
@@ -127,7 +128,7 @@ function Card({ className, variant }: CardProps) {
   return (
     <StyledWrapper to="/" className={className}>
       <StyledCard variant={variant}>
-        <StyledImage src="img/room.jpg" alt="Card place" />
+        <StyledImage src={apartmentImage1} alt="Card place" />
         <StyledInfo>
           <StyledPriceWrapper>
             <StyledPrice>
