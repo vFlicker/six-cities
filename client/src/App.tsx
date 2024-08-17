@@ -1,6 +1,8 @@
 import { Global } from '@emotion/react';
 import { Route, Routes } from 'react-router-dom';
 
+import { PrivateRoute } from './components/PrivateRoute';
+import { AppRoute } from './constants';
 import { DefaultLayout } from './layouts/DefaultLayout';
 import { IndexPage } from './pages/IndexPage';
 import { OfferPage } from './pages/OfferPage';
@@ -23,9 +25,11 @@ function App(): JSX.Element {
       <Global styles={globalTextShadows} />
 
       <Routes>
-        <Route path="/" element={<DefaultLayout />}>
+        <Route path={AppRoute.Root} element={<DefaultLayout />}>
           <Route index element={<IndexPage />} />
-          <Route path="/offer" element={<OfferPage />} />
+          <Route element={<PrivateRoute isAllowed={true} />}>
+            <Route path="offer" element={<OfferPage />} />
+          </Route>
         </Route>
       </Routes>
 

@@ -26,7 +26,7 @@ const StyledStarIcon = withAttrs(
 
 function OfferPage(): JSX.Element {
   return (
-    <>
+    <main>
       <StyledText>
         Lorem ipsum dolor sit amet consectetur adipisicing elit.
       </StyledText>
@@ -49,7 +49,7 @@ function OfferPage(): JSX.Element {
       <FormRating />
 
       <Rating size={RatingSize.LARGE} rating={4} />
-    </>
+    </main>
   );
 }
 
