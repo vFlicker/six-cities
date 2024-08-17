@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { Helmet } from 'react-helmet-async';
 
 import { Container } from '~/helpers/Container';
 import { VisuallyHiddenMixin } from '~/helpers/VisuallyHiddenMixin';
@@ -31,6 +32,9 @@ const StyledMap = styled.div`
 function IndexPage(): JSX.Element {
   return (
     <StyledIndexPage>
+      <Helmet>
+        <title>Home page</title>
+      </Helmet>
       <StyledTitle>Six Cities</StyledTitle>
       <LocationTabs />
       <StyledContent>

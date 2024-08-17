@@ -1,3 +1,5 @@
+import { Helmet } from 'react-helmet-async';
+
 import { FormRating } from '~/elements/FormRating';
 import { Icon, IconSize } from '~/elements/Icon';
 import { Input } from '~/elements/Input';
@@ -24,9 +26,15 @@ const StyledStarIcon = withAttrs(
   Icon,
 );
 
+const OFFER_NAME = 'Offer';
+
 function OfferPage(): JSX.Element {
   return (
     <main>
+      <Helmet>
+        <title>{OFFER_NAME}</title>
+      </Helmet>
+
       <StyledText>
         Lorem ipsum dolor sit amet consectetur adipisicing elit.
       </StyledText>
