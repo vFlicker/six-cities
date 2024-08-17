@@ -10,6 +10,35 @@ type HeaderProps = {
   className?: string;
 };
 
+function Header({ className }: HeaderProps): JSX.Element {
+  return (
+    <header className={className}>
+      <StyledNavigation>
+        <StyledWrapper>
+          <StyledLeft>
+            <Logo />
+          </StyledLeft>
+          <StyledRight>
+            <StyledTextLinksList>
+              <StyledTextLinksItem>
+                <TextLink to="/">
+                  <Icon name={IconName.USER} size={IconSize.MEDIUM} />
+                  Oliver.conner@gmail.com
+                </TextLink>
+              </StyledTextLinksItem>
+              <StyledTextLinksItem>
+                <TextLink to="/">Sign out</TextLink>
+              </StyledTextLinksItem>
+            </StyledTextLinksList>
+          </StyledRight>
+        </StyledWrapper>
+      </StyledNavigation>
+    </header>
+  );
+}
+
+export { Header };
+
 const StyledNavigation = styled.nav`
   ${ContainerMixin}
 `;
@@ -47,32 +76,3 @@ const StyledTextLinksItem = styled.li`
   gap: 15px;
   min-height: 25px;
 `;
-
-function Header({ className }: HeaderProps): JSX.Element {
-  return (
-    <header className={className}>
-      <StyledNavigation>
-        <StyledWrapper>
-          <StyledLeft>
-            <Logo />
-          </StyledLeft>
-          <StyledRight>
-            <StyledTextLinksList>
-              <StyledTextLinksItem>
-                <TextLink to="/">
-                  <Icon name={IconName.USER} size={IconSize.MEDIUM} />
-                  Oliver.conner@gmail.com
-                </TextLink>
-              </StyledTextLinksItem>
-              <StyledTextLinksItem>
-                <TextLink to="/">Sign out</TextLink>
-              </StyledTextLinksItem>
-            </StyledTextLinksList>
-          </StyledRight>
-        </StyledWrapper>
-      </StyledNavigation>
-    </header>
-  );
-}
-
-export { Header };

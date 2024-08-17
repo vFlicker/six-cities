@@ -6,16 +6,6 @@ type CardListProps = PropsWithChildren<{
   className?: string;
 }>;
 
-const StyledCardList = styled.ul<Pick<CardListProps, 'col'>>`
-  display: grid;
-  gap: 16px;
-  grid-template-columns: ${({ col }) => `repeat(${col}, 1fr)`};
-`;
-
-const StyledCardsItem = styled.li`
-  display: grid;
-`;
-
 function CardList({ children, ...props }: CardListProps): JSX.Element {
   return (
     <StyledCardList {...props}>
@@ -27,3 +17,13 @@ function CardList({ children, ...props }: CardListProps): JSX.Element {
 }
 
 export { CardList };
+
+const StyledCardList = styled.ul<Pick<CardListProps, 'col'>>`
+  display: grid;
+  gap: 16px;
+  grid-template-columns: ${({ col }) => `repeat(${col}, 1fr)`};
+`;
+
+const StyledCardsItem = styled.li`
+  display: grid;
+`;

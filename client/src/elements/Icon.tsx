@@ -17,6 +17,18 @@ const enum IconSize {
   LARGE = 'large',
 }
 
+function Icon(props: IconProps) {
+  const xlinkHref = `#${props.name}`;
+
+  return (
+    <StyledIcon xmlns="http://www.w3.org/2000/svg" {...props}>
+      <use xlinkHref={xlinkHref} />
+    </StyledIcon>
+  );
+}
+
+export { Icon, IconSize };
+
 const IconNameToIconSize = {
   [IconName.ARROW]: IconSize.SMALL,
   [IconName.BOOKMARK]: IconSize.MEDIUM,
@@ -63,15 +75,3 @@ const StyledIcon = styled.svg<IconProps>(({ name, size }) => {
     ${IconNameToCSS[name]};
   `;
 });
-
-function Icon(props: IconProps) {
-  const xlinkHref = `#${props.name}`;
-
-  return (
-    <StyledIcon xmlns="http://www.w3.org/2000/svg" {...props}>
-      <use xlinkHref={xlinkHref} />
-    </StyledIcon>
-  );
-}
-
-export { Icon, IconSize };

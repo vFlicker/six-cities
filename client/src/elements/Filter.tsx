@@ -13,6 +13,19 @@ type FilterProps = PropsWithChildren<{
   label: string;
 }>;
 
+function Filter({ className, label, children }: FilterProps) {
+  return (
+    <StyledWrapper className={className}>
+      <StyledFilter>{children}</StyledFilter>
+      <StyledLabel>
+        <StyledChevron /> {label}
+      </StyledLabel>
+    </StyledWrapper>
+  );
+}
+
+export { Filter };
+
 const StyledWrapper = styled.div`
   display: inline-flex;
   align-items: baseline;
@@ -61,16 +74,3 @@ const StyledChevron = withAttrs(
   },
   Icon,
 );
-
-function Filter({ className, label, children }: FilterProps) {
-  return (
-    <StyledWrapper className={className}>
-      <StyledFilter>{children}</StyledFilter>
-      <StyledLabel>
-        <StyledChevron /> {label}
-      </StyledLabel>
-    </StyledWrapper>
-  );
-}
-
-export { Filter };

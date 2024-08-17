@@ -11,20 +11,6 @@ type LogoProps = {
   height?: string;
 };
 
-const StyledLogo = styled(Link)`
-  display: inline-grid;
-  width: 128px;
-  height: 22px;
-`;
-
-const StyledImage = withAttrs(
-  ({ width, height }) => ({
-    width: width || '81',
-    height: height || '41',
-  }),
-  styled.img``,
-);
-
 function Logo({ className, width, height }: LogoProps): JSX.Element {
   return (
     <StyledLogo className={className} to="/">
@@ -39,3 +25,17 @@ function Logo({ className, width, height }: LogoProps): JSX.Element {
 }
 
 export { Logo };
+
+const StyledLogo = styled(Link)`
+  display: inline-grid;
+  width: 128px;
+  height: 22px;
+`;
+
+const StyledImage = withAttrs(
+  ({ width, height }) => ({
+    width: width || '81',
+    height: height || '41',
+  }),
+  styled.img``,
+);

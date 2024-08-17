@@ -14,6 +14,28 @@ type FormRatingProps = {
 
 const FORM_RATING_VALUES = [5, 4, 3, 2, 1];
 
+function FormRating({ className }: FormRatingProps): JSX.Element {
+  return (
+    <StyledWrapper className={className}>
+      {FORM_RATING_VALUES.map((rating) => (
+        <Fragment key={rating}>
+          <StyledInput
+            type="radio"
+            id={`rating-${rating}`}
+            name="rating"
+            value={rating}
+          />
+          <StyledLabel htmlFor={`rating-${rating}`}>
+            <StyledIcon />
+          </StyledLabel>
+        </Fragment>
+      ))}
+    </StyledWrapper>
+  );
+}
+
+export { FormRating };
+
 const StyledWrapper = styled.div`
   display: flex;
   flex-direction: row-reverse;
@@ -49,25 +71,3 @@ const StyledIcon = withAttrs(
   },
   Icon,
 );
-
-function FormRating({ className }: FormRatingProps): JSX.Element {
-  return (
-    <StyledWrapper className={className}>
-      {FORM_RATING_VALUES.map((rating) => (
-        <Fragment key={rating}>
-          <StyledInput
-            type="radio"
-            id={`rating-${rating}`}
-            name="rating"
-            value={rating}
-          />
-          <StyledLabel htmlFor={`rating-${rating}`}>
-            <StyledIcon />
-          </StyledLabel>
-        </Fragment>
-      ))}
-    </StyledWrapper>
-  );
-}
-
-export { FormRating };

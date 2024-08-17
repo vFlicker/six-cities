@@ -6,25 +6,9 @@ import { Input } from '~/elements/Input';
 import { Rating, RatingSize } from '~/elements/Rating';
 import { Typography, TypographyVariant } from '~/elements/Typography';
 import { withAttrs } from '~/helpers/withAttrs';
+import { Offer } from '~/sections/Offer';
 import { Color } from '~/tokens/colors';
 import { IconName } from '~/tokens/icons';
-
-const StyledText = withAttrs(
-  {
-    as: 'p',
-    variant: TypographyVariant.TEXT_1,
-    color: Color.ORANGE_10,
-  },
-  Typography,
-);
-
-const StyledStarIcon = withAttrs(
-  {
-    name: IconName.STAR,
-    size: IconSize.LARGE,
-  },
-  Icon,
-);
 
 const OFFER_NAME = 'Offer';
 
@@ -34,6 +18,8 @@ function OfferPage(): JSX.Element {
       <Helmet>
         <title>{OFFER_NAME}</title>
       </Helmet>
+
+      <Offer />
 
       <StyledText>
         Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -62,3 +48,20 @@ function OfferPage(): JSX.Element {
 }
 
 export { OfferPage };
+
+const StyledText = withAttrs(
+  {
+    as: 'p',
+    variant: TypographyVariant.TEXT_1,
+    color: Color.ORANGE_10,
+  },
+  Typography,
+);
+
+const StyledStarIcon = withAttrs(
+  {
+    name: IconName.STAR,
+    size: IconSize.LARGE,
+  },
+  Icon,
+);

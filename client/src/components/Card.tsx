@@ -19,6 +19,30 @@ const enum CardVariant {
   HORIZONTAL = 'horizontal',
 }
 
+function Card({ className, variant }: CardProps) {
+  return (
+    <StyledWrapper to="/" className={className}>
+      <StyledCard variant={variant}>
+        <StyledImage src={apartmentImage1} alt="Card place" />
+        <StyledInfo>
+          <StyledPriceWrapper>
+            <StyledPrice>
+              <StyledPriceValue>€80</StyledPriceValue>
+              <StyledPriceText>/&nbsp;night</StyledPriceText>
+            </StyledPrice>
+            <StyledBookmarkIcon />
+          </StyledPriceWrapper>
+          <StyledRating />
+          <StyledTitle>Wood and stone place</StyledTitle>
+          <StyledType>Room</StyledType>
+        </StyledInfo>
+      </StyledCard>
+    </StyledWrapper>
+  );
+}
+
+export { Card, CardVariant };
+
 const StyledWrapper = styled(Link)``;
 
 const StyledImage = styled.img`
@@ -123,27 +147,3 @@ const StyledCard = styled.article<{ variant: CardVariant }>`
     opacity: 0.6;
   }
 `;
-
-function Card({ className, variant }: CardProps) {
-  return (
-    <StyledWrapper to="/" className={className}>
-      <StyledCard variant={variant}>
-        <StyledImage src={apartmentImage1} alt="Card place" />
-        <StyledInfo>
-          <StyledPriceWrapper>
-            <StyledPrice>
-              <StyledPriceValue>€80</StyledPriceValue>
-              <StyledPriceText>/&nbsp;night</StyledPriceText>
-            </StyledPrice>
-            <StyledBookmarkIcon />
-          </StyledPriceWrapper>
-          <StyledRating />
-          <StyledTitle>Wood and stone place</StyledTitle>
-          <StyledType>Room</StyledType>
-        </StyledInfo>
-      </StyledCard>
-    </StyledWrapper>
-  );
-}
-
-export { Card, CardVariant };

@@ -10,6 +10,17 @@ type SectionProps = PropsWithChildren<{
   className?: string;
 }>;
 
+function Section({ className, title, children }: SectionProps): JSX.Element {
+  return (
+    <StyledSection className={className}>
+      <StyledTitle>{title}</StyledTitle>
+      {children}
+    </StyledSection>
+  );
+}
+
+export { Section };
+
 const StyledSection = styled.section`
   display: grid;
   gap: 24px;
@@ -22,14 +33,3 @@ const StyledTitle = withAttrs(
   },
   Typography,
 );
-
-function Section({ className, title, children }: SectionProps): JSX.Element {
-  return (
-    <StyledSection className={className}>
-      <StyledTitle>{title}</StyledTitle>
-      {children}
-    </StyledSection>
-  );
-}
-
-export { Section };

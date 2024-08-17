@@ -17,6 +17,17 @@ const enum RatingSize {
   LARGE = 'large',
 }
 
+function Rating({ className, rating, size }: RatingProps): JSX.Element {
+  return (
+    <StyledRating className={className} size={size}>
+      <StyledStarIcon rating={rating}></StyledStarIcon>
+      <StyledText>Rating</StyledText>
+    </StyledRating>
+  );
+}
+
+export { Rating, RatingSize };
+
 const calculateWidthPercentage = (rating: number): string => {
   const clampedRating = Math.max(0, Math.min(rating, 5));
   return `${(clampedRating / 5) * 100}%`;
@@ -78,14 +89,3 @@ const StyledRating = styled.div<Pick<RatingProps, 'size'>>`
 const StyledText = styled.span`
   ${VisuallyHiddenMixin}
 `;
-
-function Rating({ className, rating, size }: RatingProps): JSX.Element {
-  return (
-    <StyledRating className={className} size={size}>
-      <StyledStarIcon rating={rating}></StyledStarIcon>
-      <StyledText>Rating</StyledText>
-    </StyledRating>
-  );
-}
-
-export { Rating, RatingSize };

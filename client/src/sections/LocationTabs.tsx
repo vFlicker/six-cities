@@ -12,21 +12,6 @@ const TABS = [
   'Dusseldorf',
 ];
 
-const StyledContainer = styled(Container)`
-  padding-bottom: 32px;
-`;
-
-const StyledList = styled.ul`
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  gap: 36px;
-`;
-
-const StyledItem = styled.li`
-  display: flex;
-`;
-
 function LocationTabs(): JSX.Element {
   return (
     <StyledContainer>
@@ -44,3 +29,18 @@ function LocationTabs(): JSX.Element {
 }
 
 export { LocationTabs };
+
+const StyledContainer = styled(Container)`
+  padding-bottom: 32px;
+`;
+
+const StyledList = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 36px;
+`;
+
+const StyledItem = styled.li`
+  display: flex;
+`;
