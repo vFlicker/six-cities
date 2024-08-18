@@ -3,6 +3,10 @@ import styled from '@emotion/styled';
 import { SlantedLink } from '~/elements/SlantedButton';
 import { Container } from '~/helpers/Container';
 
+type LocationTabsProps = {
+  className?: string;
+};
+
 const TABS = [
   'Paris',
   'Cologne',
@@ -12,9 +16,9 @@ const TABS = [
   'Dusseldorf',
 ];
 
-function LocationTabs(): JSX.Element {
+function LocationTabs({ className }: LocationTabsProps): JSX.Element {
   return (
-    <StyledContainer>
+    <StyledContainer className={className}>
       <StyledList>
         {TABS.map((tab) => (
           <StyledItem key={tab}>

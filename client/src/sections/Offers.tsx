@@ -1,7 +1,10 @@
+import styled from '@emotion/styled';
+
 import { Card, CardVariant } from '~/components/Card';
 import { Filter } from '~/elements/Filter';
+import { Typography, TypographyVariant } from '~/elements/Typography';
 import { CardList } from '~/helpers/CardList';
-import { Section } from '~/helpers/Section';
+import { withAttrs } from '~/helpers/withAttrs';
 
 type OffersProps = {
   className?: string;
@@ -24,21 +27,37 @@ const cards = [
 
 function Offers({ className }: OffersProps): JSX.Element {
   return (
-    <Section className={className} title="312 places to stay in Amsterdam">
-      <Filter label="Sort by:">
+    <section className={className}>
+      <StyledTitle>312 places to stay in Amsterdam</StyledTitle>
+
+      <StyledFilter label="Sort by:">
         <option>Popular</option>
         <option>Price: low to high</option>
         <option>Price: high to low</option>
         <option>Top rated first</option>
-      </Filter>
+      </StyledFilter>
 
       <CardList col={2}>
         {cards.map((card, index) => (
           <Card key={index} variant={CardVariant.VERTICAL} {...card} />
         ))}
       </CardList>
-    </Section>
+    </section>
   );
 }
 
 export { Offers };
+
+const StyledTitle = withAttrs(
+  {
+    as: 'h2',
+    variant: TypographyVariant.TITLE_3,
+  },
+  styled(Typography)`
+    margin-bottom: 24px;
+  `,
+);
+
+const StyledFilter = styled(Filter)`
+  margin-bottom: 24px;
+`;

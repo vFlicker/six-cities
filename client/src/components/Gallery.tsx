@@ -9,6 +9,10 @@ import apartmentImage5 from '~/images/gallery/5.jpg';
 import apartmentImage6 from '~/images/gallery/6.jpg';
 import triangleImage from '~/images/triangle.svg';
 
+type GalleryProps = {
+  className?: string;
+};
+
 const images = [
   apartmentImage1,
   apartmentImage2,
@@ -18,9 +22,9 @@ const images = [
   apartmentImage6,
 ];
 
-function Gallery(): JSX.Element {
+function Gallery({ className }: GalleryProps): JSX.Element {
   return (
-    <Container>
+    <Container className={className}>
       <StyledGallery>
         {images.map((image) => (
           <StyledImageWrapper key={image}>

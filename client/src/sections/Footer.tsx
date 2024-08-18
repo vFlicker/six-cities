@@ -4,9 +4,13 @@ import { Logo } from '~/elements/Logo';
 import { Container } from '~/helpers/Container';
 import { Color } from '~/tokens/colors';
 
-function Footer(): JSX.Element {
+type FooterProps = {
+  className?: string;
+};
+
+function Footer({ className }: FooterProps): JSX.Element {
   return (
-    <StyledFooter>
+    <StyledFooter className={className}>
       <StyledContainer>
         <Logo width="64" height="33" />
       </StyledContainer>
