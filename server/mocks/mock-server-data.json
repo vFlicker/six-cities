@@ -1,0 +1,106 @@
+{
+  "api": {
+    "titles": [
+      "Loft Studio in the Central Area",
+      "The Pondhouse - A Magical Place"
+    ],
+    "descriptions": [
+      "Peaceful studio in the most wanted area in town. Quiet house Near of everything. Completely renovated. Lovely neighbourhood, lot of trendy shops, restaurants and bars in a walking distance.",
+      "Relax, rejuvenate and unplug in this ultimate rustic getaway experience in the country. In our beautiful screened Pondhouse, you can gaze at the stars and listen to the sounds of nature from your cozy warm bed."
+    ],
+    "cities": [
+      "Paris",
+      "Hamburg"
+    ],
+    "propertyType": [
+      "apartment",
+      "room"
+    ],
+    "previewImages": [
+      "http://preview_image.jpg",
+      "http://preview_image2.jpg"
+    ],
+    "offerImages": [
+      "http://photo1.jpg",
+      "http://photo7.jpg"
+    ],
+    "users": [
+      "John Doe",
+      "Jane Doe"
+    ],
+    "isPremium": [
+      true,
+      false
+    ],
+    "isFavorite": [
+      false,
+      true
+    ],
+    "emails": [
+      "john@example.com",
+      "jane@example.com"
+    ],
+    "avatars": [
+      "http://avatar.jpg",
+      "http://avatar2.jpg"
+    ],
+    "publishedAt": [
+      "2023-09-06T08:45:40.283Z",
+      "2023-09-06T09:15:20.123Z"
+    ],
+    "ratings": [
+      4.5,
+      4.2
+    ],
+    "apartmentTypes": [
+      "Apartment",
+      "House"
+    ],
+    "bedrooms": [
+      3,
+      4
+    ],
+    "guestsCount": [
+      6,
+      8
+    ],
+    "rentalCosts": [
+      250,
+      500,
+      120,
+      800,
+      150
+    ],
+    "amenities": [
+      [
+        "Breakfast",
+        "Air conditioning",
+        "Laptop friendly workspace"
+      ],
+      [
+        "Air conditioning",
+        "Washer",
+        "Towels",
+        "Fridge"
+      ]
+    ],
+    "commentsAmounts": [
+      25,
+      15
+    ],
+    "locations": [
+      {
+        "latitude": 48.85661,
+        "longitude": 2.351499
+      },
+      {
+        "latitude": 53.550341,
+        "longitude": 10.000654
+      }
+    ],
+    "hostTypes": [
+      "pro",
+      "regular"
+    ]
+  }
+}
