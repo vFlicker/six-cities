@@ -20,7 +20,9 @@
     "compile": "tsc -p tsconfig.json",
     "clean": "rimraf dist",
     "ts": "tsx",
-    "mock:server": "json-server --watch mocks/mock-server-data.json --port 3123 --host 127.0.0.1"
+    "mock:server": "json-server --watch mocks/mock-server-data.json --port 3123 --host 127.0.0.1",
+    "mock:generate": "./dist/main.cli.js --generate 2 ./mocks/mock-data.tsv http://localhost:3123/api",
+    "mock:import": "./dist/main.cli.js --import ./mocks/mock-data.tsv"
   },
   "devDependencies": {
     "@eslint/js": "9.9.0",
@@ -38,5 +40,9 @@
     "tsx": "4.17.0",
     "typescript": "5.5.4",
     "typescript-eslint": "8.1.0"
+  },
+  "dependencies": {
+    "dayjs": "1.11.12",
+    "got": "14.4.2"
   }
 }

@@ -15,14 +15,14 @@ export type Offer = {
   publishedAt: Date;
   city: City;
   previewImage: string;
-  images: string[];
+  offerImages: string[];
   isPremium: boolean;
   isFavorite: boolean;
   rating: number;
   propertyType: Property;
-  rooms: number;
+  roomsCount: number;
   guestsCount: number;
-  price: number;
+  rentalPrice: number;
   amenities: string[];
   host: User;
   location: Location;

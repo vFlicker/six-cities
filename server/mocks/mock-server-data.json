@@ -2,105 +2,61 @@
   "api": {
     "titles": [
       "Loft Studio in the Central Area",
-      "The Pondhouse - A Magical Place"
+      "The Pondhouse - A Magical Place",
+      "Beautiful & luxurious apartment at great location",
+      "Cozy, clean, and stylish place in the heart of the city",
+      "Unique, cozy, and stylish house"
     ],
     "descriptions": [
       "Peaceful studio in the most wanted area in town. Quiet house Near of everything. Completely renovated. Lovely neighbourhood, lot of trendy shops, restaurants and bars in a walking distance.",
-      "Relax, rejuvenate and unplug in this ultimate rustic getaway experience in the country. In our beautiful screened Pondhouse, you can gaze at the stars and listen to the sounds of nature from your cozy warm bed."
-    ],
-    "cities": [
-      "Paris",
-      "Hamburg"
-    ],
-    "propertyType": [
-      "apartment",
-      "room"
+      "Relax, rejuvenate and unplug in this ultimate rustic getaway experience in the country. In our beautiful screened Pondhouse, you can gaze at the stars and listen to the sounds of nature from your cozy warm bed.",
+      "This beautiful apartment is located in the heart of the city. The apartment is spacious, light and fully equipped. It has a great location with a lot of shops, restaurants and bars in a walking distance.",
+      "This stylish apartment is located in the heart of the city. The apartment is spacious, light and fully equipped. It has a great location with a lot of shops, restaurants and bars in a walking distance.",
+      "This beautiful house is located in the heart of the city. The house is spacious, light and fully equipped. It has a great location with a lot of shops, restaurants and bars in a walking distance."
     ],
     "previewImages": [
-      "http://preview_image.jpg",
-      "http://preview_image2.jpg"
+      "http://preview_image1.jpg",
+      "http://preview_image2.jpg",
+      "http://preview_image3.jpg",
+      "http://preview_image4.jpg",
+      "http://preview_image5.jpg"
     ],
     "offerImages": [
       "http://photo1.jpg",
-      "http://photo7.jpg"
-    ],
-    "users": [
-      "John Doe",
-      "Jane Doe"
-    ],
-    "isPremium": [
-      true,
-      false
-    ],
-    "isFavorite": [
-      false,
-      true
-    ],
-    "emails": [
-      "john@example.com",
-      "jane@example.com"
-    ],
-    "avatars": [
-      "http://avatar.jpg",
-      "http://avatar2.jpg"
-    ],
-    "publishedAt": [
-      "2023-09-06T08:45:40.283Z",
-      "2023-09-06T09:15:20.123Z"
-    ],
-    "ratings": [
-      4.5,
-      4.2
-    ],
-    "apartmentTypes": [
-      "Apartment",
-      "House"
-    ],
-    "bedrooms": [
-      3,
-      4
-    ],
-    "guestsCount": [
-      6,
-      8
-    ],
-    "rentalCosts": [
-      250,
-      500,
-      120,
-      800,
-      150
+      "http://photo2.jpg",
+      "http://photo3.jpg",
+      "http://photo4.jpg",
+      "http://photo5.jpg"
     ],
     "amenities": [
-      [
-        "Breakfast",
-        "Air conditioning",
-        "Laptop friendly workspace"
-      ],
-      [
-        "Air conditioning",
-        "Washer",
-        "Towels",
-        "Fridge"
-      ]
+      "Breakfast",
+      "Air conditioning",
+      "Laptop friendly workspace",
+      "Air conditioning",
+      "Washer",
+      "Towels",
+      "Fridge"
     ],
-    "commentsAmounts": [
-      25,
-      15
+    "hostNames": [
+      "John Doe",
+      "Jane Doe",
+      "Alice Smith",
+      "Bob Johnson",
+      "Eva Brown"
     ],
-    "locations": [
-      {
-        "latitude": 48.85661,
-        "longitude": 2.351499
-      },
-      {
-        "latitude": 53.550341,
-        "longitude": 10.000654
-      }
+    "hostEmails": [
+      "john@example.com",
+      "jane@example.com",
+      "alice@example.com",
+      "bob@example.com",
+      "eva@example.com"
     ],
-    "hostTypes": [
-      "pro",
-      "regular"
+    "hostAvatars": [
+      "http://avatar1.jpg",
+      "http://avatar2.jpg",
+      "http://avatar3.jpg",
+      "http://avatar4.jpg",
+      "http://avatar5.jpg"
     ]
   }
 }

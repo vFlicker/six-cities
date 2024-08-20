@@ -12,8 +12,10 @@ export class HelpCommand implements Command {
       Example:
         cli.js --<command> [--arguments]
       Commands:
-        --version:            outputs the version number
-        --help:               prints this text
+        --version:                     outputs the version number
+        --help:                        prints this text
+        --import <path>:               imports data from a file
+        --generate <n> <path> <url>:   generates data
     `);
   }
 }

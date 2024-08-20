@@ -6,7 +6,6 @@ export enum UserType {
 export type User = {
   name: string;
   email: string;
-  password: string;
   type: UserType;
   avatarUrl?: string;
 };
