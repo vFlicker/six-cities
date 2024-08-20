@@ -21,13 +21,11 @@ import {
   WEEK_DAYS,
 } from './offer-conditions.js';
 
-export class TSVOfferGenerator {
-  constructor(private readonly mockData: MockServerData) {}
-
-  generate(): string {
+export class TSVOfferGenerator implements TSVOfferGenerator {
+  static generate(mockData: MockServerData): string {
     const tsvOffer: TSVOffer = {
-      title: getRandomItem(this.mockData.titles),
-      description: getRandomItem(this.mockData.descriptions),
+      title: getRandomItem(mockData.titles),
+      description: getRandomItem(mockData.descriptions),
       cityName: getRandomItem(Object.values(CityName)),
       cityLocationLatitude: generateRandomValue(
         LATITUDE_RANGE.MIN,
@@ -39,8 +37,8 @@ export class TSVOfferGenerator {
         LONGITUDE_RANGE.MAX,
         LONGITUDE_RANGE.DECIMALS,
       ),
-      previewImage: getRandomItem(this.mockData.offerImages),
-      offerImages: getRandomItems(this.mockData.offerImages),
+      previewImage: getRandomItem(mockData.offerImages),
+      offerImages: getRandomItems(mockData.offerImages),
       isPremium: getRandomBoolean(),
       isFavorite: getRandomBoolean(),
       rating: generateRandomValue(
@@ -58,10 +56,10 @@ export class TSVOfferGenerator {
         GUEST_COUNT_RANGE.MAX,
       ),
       rentalPrice: generateRandomValue(RATING_RANGE.MIN, RATING_RANGE.MAX),
-      amenities: getRandomItems(this.mockData.amenities),
-      hostName: getRandomItem(this.mockData.hostNames),
-      hostEmail: getRandomItem(this.mockData.hostEmails),
-      hostAvatarUrl: getRandomItem(this.mockData.hostAvatars),
+      amenities: getRandomItems(mockData.amenities),
+      hostName: getRandomItem(mockData.hostNames),
+      hostEmail: getRandomItem(mockData.hostEmails),
+      hostAvatarUrl: getRandomItem(mockData.hostAvatars),
       hostType: getRandomItem(Object.values(UserType)),
       offerLocationLatitude: generateRandomValue(
         LATITUDE_RANGE.MIN,

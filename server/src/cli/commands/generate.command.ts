@@ -1,7 +1,8 @@
-import { appendFile } from 'fs/promises';
 import got from 'got';
 
-import { TSVOfferGenerator } from '#src/shared/libs/offer-generator/tsv-offer-generator.js';
+import { getErrorMessage } from '#src/shared/helpers/index.js';
+import { TSVFileWriter } from '#src/shared/libs/file-writer/index.js';
+import { TSVOfferGenerator } from '#src/shared/libs/offer-generator/index.js';
 import { MockServerData } from '#src/shared/types/mock-server-data-type.js';
 
 import { Command } from './command.interface.js';
@@ -23,6 +24,7 @@ export class GenerateCommand implements Command {
       console.info(`Generated ${offerCount} offers`);
     } catch (err: unknown) {
       console.error("Can't generate offers");
+      console.error(getErrorMessage(err));
     }
   }
 
@@ -35,14 +37,11 @@ export class GenerateCommand implements Command {
   }
 
   private async write(filepath: string, offersCount: number): Promise<void> {
-    const tsvOfferGenerator = new TSVOfferGenerator(this.initialDate!);
+    const tsvFileWriter = new TSVFileWriter(filepath);
+
     for (let i = 0; i < offersCount; i++) {
-      // It may seem that it is more convenient to first collect the generated
-      // offers in an array and write them together, but this is not the case.
-      // A certain amount of memory is allocated for the Node.js process.
-      // If it is exceeded, an error will occur.
-      const offer = tsvOfferGenerator.generate();
-      await appendFile(filepath, `${offer}\n`, { encoding: 'utf-8' });
+      const offer = TSVOfferGenerator.generate(this.initialDate!);
+      await tsvFileWriter.write(offer);
     }
   }
 }
