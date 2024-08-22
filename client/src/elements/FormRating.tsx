@@ -67,7 +67,7 @@ const StyledLabel = styled.label`
 
 const StyledIcon = withAttrs(
   {
-    name: IconName.STAR,
+    name: IconName.Star,
   },
   Icon,
 );

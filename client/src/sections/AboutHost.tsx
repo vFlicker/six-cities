@@ -10,6 +10,7 @@ import starImage from '~/images/star-white.svg';
 import { Color } from '~/tokens/colors';
 
 type AboutHostProps = {
+  // TODO: use enum
   userType: 'regular' | 'pro';
   className?: string;
 };
@@ -52,23 +53,6 @@ function AboutHost({ className, userType }: AboutHostProps): JSX.Element {
 
 export { AboutHost };
 
-const ProLabelMixin = css`
-  &::after {
-    content: '';
-    position: absolute;
-    top: -3px;
-    right: -16px;
-    width: 33px;
-    height: 33px;
-    border-radius: 50%;
-    background-color: ${Color.ORANGE_10};
-    background-image: url(${starImage});
-    background-size: 20px 19px;
-    background-position: center 6px;
-    background-repeat: no-repeat;
-  }
-`;
-
 const StyledUser = styled.div`
   display: flex;
   flex-direction: column;
@@ -78,8 +62,6 @@ const StyledUser = styled.div`
 `;
 
 const StyledAvatarWrapper = styled.div<StyledAvatarProps>`
-  ${({ isPro }) => isPro && ProLabelMixin}
-
   position: relative;
   width: 74px;
   min-width: 74px;
@@ -88,6 +70,25 @@ const StyledAvatarWrapper = styled.div<StyledAvatarProps>`
   background-image: url(${defaultAvatarImage});
   background-size: 100%;
   background-repeat: no-repeat;
+
+  ${({ isPro }) =>
+    isPro &&
+    css`
+      &::after {
+        content: '';
+        position: absolute;
+        top: -3px;
+        right: -16px;
+        width: 33px;
+        height: 33px;
+        border-radius: 50%;
+        background-color: ${Color.ORANGE_10};
+        background-image: url(${starImage});
+        background-size: 20px 19px;
+        background-position: center 6px;
+        background-repeat: no-repeat;
+      }
+    `}
 `;
 
 const StyledAvatarImage = styled.img`

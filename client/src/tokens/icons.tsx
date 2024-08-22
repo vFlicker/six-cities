@@ -1,10 +1,13 @@
 import styled from '@emotion/styled';
 
 const enum IconName {
-  ARROW = 'icon-arrow',
-  BOOKMARK = 'icon-bookmark',
-  STAR = 'icon-star',
-  USER = 'icon-user',
+  Arrow = 'icon-arrow',
+  Bookmark = 'icon-bookmark',
+  Star = 'icon-star',
+  User = 'icon-user',
+  Adults = 'icon-adults',
+  Bedrooms = 'icon-bedrooms',
+  Place = 'icon-place',
 }
 
 const StyledSpriteWithIcons = styled.svg`
@@ -37,6 +40,35 @@ function SpriteWithIcons() {
           clipRule="evenodd"
           d="M10 0C4.48 0 0 4.48 0 10s4.48 10 10 10 10-4.48 10-10S15.52 0 10 0zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2a7.2 7.2 0 0 1-6-3.22c.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08a7.2 7.2 0 0 1-6 3.22z"
         />
+      </symbol>
+      <symbol id="icon-adults" viewBox="0 0 13 12">
+        <path
+          fillRule="evenodd"
+          clipRule="evenodd"
+          d="M9.5 5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zM6 9.5a3.5 3.5 0 1 1 7 0V12H6V9.5zM3.5 6a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zM0 9.3A2.3 2.3 0 0 1 2.3 7h2.167c1.03 0 1.61 1.186.978 2v3H0V9.3z"
+        />
+      </symbol>
+      <symbol id="icon-bedrooms" viewBox="0 0 14 18">
+        <path
+          d="M.5 1.578V.5h13v15h-1.979V3.451l-.416-.07L.5 1.578z"
+          stroke="#9b9b9b"
+          fill="#ffffff"
+        />
+        <path
+          fillRule="evenodd"
+          clipRule="evenodd"
+          d="M0 1l12 2v15L0 16V1z"
+          fill="#9b9b9b"
+        />
+        <path
+          fillRule="evenodd"
+          clipRule="evenodd"
+          d="M9 11a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"
+          fill="#ffffff"
+        />
+      </symbol>
+      <symbol id="icon-place" viewBox="0 0 13 16">
+        <path d="M1 15V4.806l5.5-3.61 5.5 3.61V15H1z" stroke-width="2" />
       </symbol>
     </StyledSpriteWithIcons>
   );

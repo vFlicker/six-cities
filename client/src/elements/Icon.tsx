@@ -12,9 +12,10 @@ type IconProps = PropsWithChildren<{
 }>;
 
 const enum IconSize {
-  SMALL = 'small',
-  MEDIUM = 'medium',
-  LARGE = 'large',
+  ExtraSmall = 'extra-small',
+  Small = 'small',
+  Medium = 'medium',
+  Large = 'large',
 }
 
 function Icon(props: IconProps) {
@@ -30,38 +31,53 @@ function Icon(props: IconProps) {
 export { Icon, IconSize };
 
 const IconNameToIconSize = {
-  [IconName.ARROW]: IconSize.SMALL,
-  [IconName.BOOKMARK]: IconSize.MEDIUM,
-  [IconName.STAR]: IconSize.LARGE,
-  [IconName.USER]: IconSize.MEDIUM,
+  [IconName.Arrow]: IconSize.ExtraSmall,
+  [IconName.Bookmark]: IconSize.Medium,
+  [IconName.Star]: IconSize.Large,
+  [IconName.User]: IconSize.Medium,
+  [IconName.Adults]: IconSize.Small,
+  [IconName.Bedrooms]: IconSize.Small,
+  [IconName.Place]: IconSize.Small,
 };
 
 const IconNameToCSS = {
-  [IconName.ARROW]: css`
+  [IconName.Arrow]: css`
     fill: ${Color.GRAY_90};
   `,
-  [IconName.BOOKMARK]: css`
+  [IconName.Bookmark]: css`
     fill: transparent;
     stroke: ${Color.GRAY_50};
   `,
-  [IconName.STAR]: css`
+  [IconName.Star]: css`
     fill: ${Color.GRAY_40};
   `,
-  [IconName.USER]: css`
+  [IconName.User]: css`
     fill: ${Color.GRAY_50};
+  `,
+  [IconName.Adults]: css`
+    fill: ${Color.GRAY_50};
+  `,
+  [IconName.Bedrooms]: css``,
+  [IconName.Place]: css`
+    fill: ${Color.GRAY_50};
+    stroke: ${Color.GRAY_50};
   `,
 };
 
 const IconSizeToCSS = {
-  [IconSize.SMALL]: css`
+  [IconSize.ExtraSmall]: css`
     width: 8px;
     height: 8px;
   `,
-  [IconSize.MEDIUM]: css`
+  [IconSize.Small]: css`
+    width: 14px;
+    height: 14px;
+  `,
+  [IconSize.Medium]: css`
     width: 20px;
     height: 20px;
   `,
-  [IconSize.LARGE]: css`
+  [IconSize.Large]: css`
     width: 34px;
     height: 34px;
   `,

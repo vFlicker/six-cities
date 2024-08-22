@@ -70,7 +70,7 @@ const StyledLabel = withAttrs(
 
 const StyledChevron = withAttrs(
   {
-    name: IconName.ARROW,
+    name: IconName.Arrow,
   },
   Icon,
 );

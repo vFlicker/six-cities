@@ -1,9 +1,10 @@
 import styled from '@emotion/styled';
 
-import { Icon, IconSize } from '~/elements/Icon';
+import { Icon } from '~/elements/Icon';
 import { Logo } from '~/elements/Logo';
 import { TextLink } from '~/elements/TextButton';
 import { ContainerMixin } from '~/helpers/Container';
+import { withAttrs } from '~/helpers/withAttrs';
 import { IconName } from '~/tokens/icons';
 
 type HeaderProps = {
@@ -22,7 +23,7 @@ function Header({ className }: HeaderProps): JSX.Element {
             <StyledTextLinksList>
               <StyledTextLinksItem>
                 <TextLink to="/">
-                  <Icon name={IconName.USER} size={IconSize.MEDIUM} />
+                  <StyledUserIcon />
                   Oliver.conner@gmail.com
                 </TextLink>
               </StyledTextLinksItem>
@@ -76,3 +77,5 @@ const StyledTextLinksItem = styled.li`
   gap: 15px;
   min-height: 25px;
 `;
+
+const StyledUserIcon = withAttrs({ name: IconName.User }, Icon);

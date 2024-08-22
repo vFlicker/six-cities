@@ -35,9 +35,6 @@ function Amenities({ className }: AmenitiesProps): JSX.Element {
 export { Amenities };
 
 const StyledList = styled.ul`
-  margin: 0;
-  padding: 0;
-  list-style: none;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
