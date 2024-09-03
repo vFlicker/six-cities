@@ -27,6 +27,8 @@
   },
   "devDependencies": {
     "@eslint/js": "9.9.0",
+    "@types/convict": "6.1.6",
+    "@types/convict-format-with-validator": "6.0.5",
     "@types/node": "22.3.0",
     "@typescript-eslint/eslint-plugin": "8.1.0",
     "@typescript-eslint/parser": "8.1.0",
@@ -44,6 +46,8 @@
     "typescript-eslint": "8.1.0"
   },
   "dependencies": {
+    "convict": "6.2.4",
+    "convict-format-with-validator": "6.2.0",
     "dayjs": "1.11.12",
     "dotenv": "16.4.5",
     "got": "14.4.2",
