@@ -1,10 +1,12 @@
 import { RestApplication } from './rest/index.js';
-import { Logger, PinoLoger } from './shared/libs/logger/index.js';
+import { RestConfig } from './shared/libs/config/index.js';
+import { Logger, PinoLogger } from './shared/libs/logger/index.js';
 
 async function bootstrap(): Promise<void> {
-  const logger: Logger = new PinoLoger();
+  const logger: Logger = new PinoLogger();
+  const config = new RestConfig(logger);
 
-  const restApplication = new RestApplication(logger);
+  const restApplication = new RestApplication(logger, config);
   await restApplication.init();
 }
 

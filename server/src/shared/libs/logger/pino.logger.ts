@@ -6,7 +6,7 @@ import { getCurrentModuleDirectoryPath } from '#src/shared/helpers/index.js';
 
 import { Logger } from './logger.interface.js';
 
-export class PinoLoger implements Logger {
+export class PinoLogger implements Logger {
   private readonly logger: PinoInstance;
 
   constructor() {
