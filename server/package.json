@@ -16,6 +16,7 @@
     "dev": "nodemon | npm run pino",
     "start": "npm run build && node ./dist/main.rest.js",
     "build": "npm run clean && npm run compile",
+    "docker:start": "docker compose --file ./docker-compose.dev.yml --env-file .env --project-name \"six-cities\" up",
     "lint": "eslint src/ --ext .ts --fix",
     "compile": "tsc -p tsconfig.json",
     "clean": "rimraf dist",
