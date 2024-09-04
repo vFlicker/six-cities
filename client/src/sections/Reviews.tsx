@@ -1,166 +1,96 @@
+import styled from '@emotion/styled';
+
+import { Comment } from '~/components/Comment';
+import { Button } from '~/elements/Button';
 import { FormRating } from '~/elements/FormRating';
+import { Icon, IconSize } from '~/elements/Icon';
 import { Input } from '~/elements/Input';
+import { Section } from '~/helpers/Section';
+import { withAttrs } from '~/helpers/withAttrs';
+import { Color } from '~/tokens/colors';
+import { IconName } from '~/tokens/icons';
 
-function Reviews(): JSX.Element {
+type ReviewsProps = {
+  className?: string;
+};
+
+function Reviews({ className }: ReviewsProps): JSX.Element {
   return (
-    <section className="offer__reviews reviews">
-      <h2 className="reviews__title">
-        Reviews &middot; <span className="reviews__amount">1</span>
-      </h2>
-      <ul className="reviews__list">
-        <li className="reviews__item">
-          <div className="reviews__user user">
-            <div className="reviews__avatar-wrapper user__avatar-wrapper">
-              <img
-                className="reviews__avatar user__avatar"
-                src="img/avatar-max.jpg"
-                width="54"
-                height="54"
-                alt="Reviews avatar"
-              />
-            </div>
-            <span className="reviews__user-name">Max</span>
-          </div>
-          <div className="reviews__info">
-            <div className="reviews__rating rating">
-              <div className="reviews__stars rating__stars">
-                <span style={{ width: '80%' }}></span>
-                <span className="visually-hidden">Rating</span>
-              </div>
-            </div>
-            <p className="reviews__text">
-              A quiet cozy and picturesque that hides behind a a river by the
-              unique lightness of Amsterdam. The building is green and from 18th
-              century.
-            </p>
-            <time className="reviews__time" dateTime="2019-04-24">
-              April 2019
-            </time>
-          </div>
-        </li>
-      </ul>
-      <form className="reviews__form form" action="/" method="post">
-        <label className="reviews__label form__label" htmlFor="review">
-          Your review
-        </label>
-        <div className="reviews__rating-form form__rating">
-          <input
-            className="form__rating-input visually-hidden"
-            name="rating"
-            value="5"
-            id="5-stars"
-            type="radio"
-          />
-          <label
-            htmlFor="5-stars"
-            className="reviews__rating-label form__rating-label"
-            title="perfect"
-          >
-            <svg className="form__star-image" width="37" height="33">
-              <use xlinkHref="#icon-star"></use>
-            </svg>
-          </label>
-
-          <input
-            className="form__rating-input visually-hidden"
-            name="rating"
-            value="4"
-            id="4-stars"
-            type="radio"
-          />
-          <label
-            htmlFor="4-stars"
-            className="reviews__rating-label form__rating-label"
-            title="good"
-          >
-            <svg className="form__star-image" width="37" height="33">
-              <use xlinkHref="#icon-star"></use>
-            </svg>
-          </label>
-
-          <input
-            className="form__rating-input visually-hidden"
-            name="rating"
-            value="3"
-            id="3-stars"
-            type="radio"
-          />
-          <label
-            htmlFor="3-stars"
-            className="reviews__rating-label form__rating-label"
-            title="not bad"
-          >
-            <svg className="form__star-image" width="37" height="33">
-              <use xlinkHref="#icon-star"></use>
-            </svg>
-          </label>
-
-          <input
-            className="form__rating-input visually-hidden"
-            name="rating"
-            value="2"
-            id="2-stars"
-            type="radio"
-          />
-          <label
-            htmlFor="2-stars"
-            className="reviews__rating-label form__rating-label"
-            title="badly"
-          >
-            <svg className="form__star-image" width="37" height="33">
-              <use xlinkHref="#icon-star"></use>
-            </svg>
-          </label>
-
-          <input
-            className="form__rating-input visually-hidden"
-            name="rating"
-            value="1"
-            id="1-star"
-            type="radio"
-          />
-          <label
-            htmlFor="1-star"
-            className="reviews__rating-label form__rating-label"
-            title="terribly"
-          >
-            <svg className="form__star-image" width="37" height="33">
-              <use xlinkHref="#icon-star"></use>
-            </svg>
-          </label>
-        </div>
-        <textarea
-          className="reviews__textarea form__textarea"
-          id="review"
-          name="review"
-          placeholder="Tell how was your stay, what you like and what can be improved"
-        ></textarea>
-        <div className="reviews__button-wrapper">
-          <p className="reviews__help">
-            To submit review please make sure to set{' '}
-            <span className="reviews__star">rating</span> and describe your stay
-            with at least <b className="reviews__text-amount">50 characters</b>.
-          </p>
-          <button
-            className="reviews__submit form__submit button"
-            type="submit"
-            disabled
-          >
-            Submit
-          </button>
-        </div>
-      </form>
-
-      <div>
-        <Input placeholder="Type something" />
-        <Input
-          as="textarea"
-          placeholder="Tell how was your stay, what you like and what can be improved"
-        />
-      </div>
-
-      <FormRating />
-    </section>
+    <Section className={className} title="Reviews &middot; 1">
+      <Comment />
+      <Form action="/" method="post">
+        <StyledTextareaLabel htmlFor="review">Your review</StyledTextareaLabel>
+        <StyledFormRating />
+        <StyledTextarea name="review" id="review" />
+        <StyledButtonWrapper>
+          <StyledHelpText>
+            To submit review please make sure to set <StyledStarIcon /> rating
+            and describe your stay with at least{' '}
+            <StyledAmount>50 characters</StyledAmount>.
+          </StyledHelpText>
+          <Button disabled>Submit</Button>
+        </StyledButtonWrapper>
+      </Form>
+    </Section>
   );
 }
 export { Reviews };
+
+const Form = styled.form`
+  padding-left: 76px;
+`;
+
+const StyledFormRating = styled(FormRating)`
+  margin-bottom: 22px;
+`;
+
+const StyledTextarea = withAttrs(
+  {
+    as: 'textarea',
+    placeholder:
+      'Tell how was your stay, what you like and what can be improved',
+  },
+  styled(Input)`
+    width: 568px;
+    height: 92px;
+    margin-bottom: 12px;
+  `,
+);
+
+const StyledTextareaLabel = styled.label`
+  display: inline-block;
+  margin-bottom: 14px;
+  font-size: 14px;
+  line-height: 1.2143;
+  font-weight: 700;
+  font-style: oblique;
+  color: ${Color.BLACK};
+`;
+
+const StyledButtonWrapper = styled.div`
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+`;
+
+const StyledHelpText = styled.p`
+  width: 400px;
+  font-size: 12px;
+  line-height: 1.334;
+`;
+
+const StyledStarIcon = withAttrs(
+  {
+    name: IconName.Star,
+    size: IconSize.Small,
+  },
+  styled(Icon)`
+    position: relative;
+    top: 2px;
+    fill: ${Color.ORANGE_10};
+  `,
+);
+
+const StyledAmount = styled.b`
+  font-weight: 700;
+`;

@@ -89,7 +89,7 @@ const StyledBookmarkIcon = withAttrs(
 const StyledRating = withAttrs(
   {
     size: RatingSize.SMALL,
-    rating: 5,
+    value: 5,
   },
   styled(Rating)`
     margin-bottom: 6px;

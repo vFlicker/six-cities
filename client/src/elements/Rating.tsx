@@ -7,7 +7,7 @@ import starsActiveImage from '~/images/stars-active.svg';
 
 type RatingProps = {
   size: RatingSize;
-  rating: number;
+  value: number;
   className?: string;
 };
 
@@ -17,10 +17,10 @@ const enum RatingSize {
   LARGE = 'large',
 }
 
-function Rating({ className, rating, size }: RatingProps): JSX.Element {
+function Rating({ className, value, size }: RatingProps): JSX.Element {
   return (
     <StyledRating className={className} size={size}>
-      <StyledStarIcon rating={rating}></StyledStarIcon>
+      <StyledStarIcon value={value}></StyledStarIcon>
       <StyledText>Rating</StyledText>
     </StyledRating>
   );
@@ -33,12 +33,12 @@ const calculateWidthPercentage = (rating: number): string => {
   return `${(clampedRating / 5) * 100}%`;
 };
 
-const StyledStarIcon = styled.span<Pick<RatingProps, 'rating'>>`
+const StyledStarIcon = styled.span<Pick<RatingProps, 'value'>>`
   position: absolute;
   top: 0;
   left: 0;
   display: inline-block;
-  width: ${({ rating }) => calculateWidthPercentage(rating)};
+  width: ${({ value: rating }) => calculateWidthPercentage(rating)};
   height: 100%;
   overflow: hidden;
 

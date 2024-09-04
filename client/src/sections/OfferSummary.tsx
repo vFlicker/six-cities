@@ -24,7 +24,7 @@ function OfferSummary({ className }: OfferSummaryProps): JSX.Element {
         <StyledBookmarkIcon />
       </HeaderWrapper>
       <StyledRatingWrapper>
-        <StyledRating rating={4} />
+        <StyledRating value={4} />
         <StyledTotalRating>4.8</StyledTotalRating>
       </StyledRatingWrapper>
       <StyledFeatureList>

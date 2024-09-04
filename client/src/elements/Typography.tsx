@@ -6,7 +6,7 @@ import { Color } from '~/tokens/colors';
 
 type TypographyProps = PropsWithChildren<{
   variant: TypographyVariant;
-  color?: Color;
+  $color?: Color;
 }>;
 
 const enum TypographyVariant {
@@ -61,8 +61,8 @@ const TypographyVariantToCSS = {
   `,
 };
 
-const StyledTypography = styled.div<TypographyProps>(({ color, variant }) => {
-  const defaultColor = color || Color.GRAY_90;
+const StyledTypography = styled.div<TypographyProps>(({ $color, variant }) => {
+  const defaultColor = $color || Color.GRAY_90;
 
   return css`
     ${TypographyVariantToCSS[variant]}
