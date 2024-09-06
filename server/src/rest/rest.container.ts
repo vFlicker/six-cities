@@ -5,6 +5,10 @@ import {
   RestConfig,
   RestSchema,
 } from '#src/shared/libs/config/index.js';
+import {
+  DatabaseClient,
+  MongoDatabaseClient,
+} from '#src/shared/libs/database-client/index.js';
 import { Logger, PinoLogger } from '#src/shared/libs/logger/index.js';
 import { Component } from '#src/shared/types/index.js';
 
@@ -26,6 +30,11 @@ export function createRestApplicationContainer() {
   restApplicationContainer
     .bind<Config<RestSchema>>(Component.Config)
     .to(RestConfig)
+    .inSingletonScope();
+
+  restApplicationContainer
+    .bind<DatabaseClient>(Component.DatabaseClient)
+    .to(MongoDatabaseClient)
     .inSingletonScope();
 
   return restApplicationContainer;
