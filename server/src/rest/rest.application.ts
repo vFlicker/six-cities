@@ -25,7 +25,7 @@ export class RestApplication {
     // TODO: remove code below
     const user = await UserModel.create({
       name: 'John Doe',
-      email: 123,
+      email: 'example@mail.com',
       type: UserType.Pro,
       avatarUrl: 'https://example.com/avatar.jpg',
     });
