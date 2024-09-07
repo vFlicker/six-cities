@@ -5,6 +5,7 @@ import { getMongoURI } from '#src/shared/helpers/index.js';
 import { Config, RestSchema } from '#src/shared/libs/config/index.js';
 import { DatabaseClient } from '#src/shared/libs/database-client/index.js';
 import { Logger } from '#src/shared/libs/logger/index.js';
+import { Controller } from '#src/shared/libs/rest/index.js';
 import { Component } from '#src/shared/types/index.js';
 
 @injectable()
@@ -16,6 +17,8 @@ export class RestApplication {
     @inject(Component.Config) private readonly config: Config<RestSchema>,
     @inject(Component.DatabaseClient)
     private readonly databaseClient: DatabaseClient,
+    @inject(Component.UserController)
+    private readonly userController: Controller,
   ) {
     this.server = express();
   }
@@ -23,11 +26,15 @@ export class RestApplication {
   public async init(): Promise<void> {
     this.logger.info('Application initialized.');
 
-    this.logger.info('Initialize database connection.');
+    this.logger.info('Initialize database connection...');
     await this.initDb();
     this.logger.info('Database connection initialized.');
 
-    this.logger.info('Initialize models.');
+    this.logger.info('Initialize controllers...');
+    this.initControllers();
+    this.logger.info('Controllers initialized.');
+
+    this.logger.info('Initialize server...');
     this.initServer();
     const port = this.config.get('PORT');
     this.logger.info(`Server initialized and listening on port ${port}.`);
@@ -42,6 +49,10 @@ export class RestApplication {
 
     const mongoURI = getMongoURI(username, password, host, port, databaseName);
     await this.databaseClient.connect(mongoURI);
+  }
+
+  private initControllers(): void {
+    this.server.use('/users', this.userController.router);
   }
 
   private initServer(): void {

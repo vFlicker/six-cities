@@ -36,4 +36,9 @@ export class DefaultUserService implements UserService {
     if (existedUser) return existedUser;
     return this.create(dto, salt);
   }
+
+  // TODO: remove this method
+  public async findAll(): Promise<UserDocument[]> {
+    return this.userModel.find();
+  }
 }

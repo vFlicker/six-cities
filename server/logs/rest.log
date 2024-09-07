@@ -1,0 +1,24 @@
+{"level":30,"time":1725728452790,"pid":10328,"hostname":"WINDOWS-DTSBRQD","msg":".env file found and successfully parsed."}
+{"level":30,"time":1725728452791,"pid":10328,"hostname":"WINDOWS-DTSBRQD","msg":"Register routes for UserController"}
+{"level":30,"time":1725728452791,"pid":10328,"hostname":"WINDOWS-DTSBRQD","msg":"Route added: GET /"}
+{"level":30,"time":1725728452792,"pid":10328,"hostname":"WINDOWS-DTSBRQD","msg":"Application initialized."}
+{"level":30,"time":1725728452792,"pid":10328,"hostname":"WINDOWS-DTSBRQD","msg":"Initialize database connection..."}
+{"level":30,"time":1725728452792,"pid":10328,"hostname":"WINDOWS-DTSBRQD","msg":"Connecting to MongoDB..."}
+{"level":30,"time":1725728452841,"pid":10328,"hostname":"WINDOWS-DTSBRQD","msg":"Database connection established."}
+{"level":30,"time":1725728452841,"pid":10328,"hostname":"WINDOWS-DTSBRQD","msg":"Database connection initialized."}
+{"level":30,"time":1725728452841,"pid":10328,"hostname":"WINDOWS-DTSBRQD","msg":"Initialize controllers..."}
+{"level":30,"time":1725728452842,"pid":10328,"hostname":"WINDOWS-DTSBRQD","msg":"Controllers initialized."}
+{"level":30,"time":1725728452842,"pid":10328,"hostname":"WINDOWS-DTSBRQD","msg":"Initialize server..."}
+{"level":30,"time":1725728452843,"pid":10328,"hostname":"WINDOWS-DTSBRQD","msg":"Server initialized and listening on port 8000."}
+{"level":30,"time":1725728489123,"pid":13124,"hostname":"WINDOWS-DTSBRQD","msg":".env file found and successfully parsed."}
+{"level":30,"time":1725728489124,"pid":13124,"hostname":"WINDOWS-DTSBRQD","msg":"Register routes for UserController"}
+{"level":30,"time":1725728489124,"pid":13124,"hostname":"WINDOWS-DTSBRQD","msg":"Route added: GET /"}
+{"level":30,"time":1725728489125,"pid":13124,"hostname":"WINDOWS-DTSBRQD","msg":"Application initialized."}
+{"level":30,"time":1725728489125,"pid":13124,"hostname":"WINDOWS-DTSBRQD","msg":"Initialize database connection..."}
+{"level":30,"time":1725728489125,"pid":13124,"hostname":"WINDOWS-DTSBRQD","msg":"Connecting to MongoDB..."}
+{"level":30,"time":1725728489169,"pid":13124,"hostname":"WINDOWS-DTSBRQD","msg":"Database connection established."}
+{"level":30,"time":1725728489169,"pid":13124,"hostname":"WINDOWS-DTSBRQD","msg":"Database connection initialized."}
+{"level":30,"time":1725728489169,"pid":13124,"hostname":"WINDOWS-DTSBRQD","msg":"Initialize controllers..."}
+{"level":30,"time":1725728489170,"pid":13124,"hostname":"WINDOWS-DTSBRQD","msg":"Controllers initialized."}
+{"level":30,"time":1725728489170,"pid":13124,"hostname":"WINDOWS-DTSBRQD","msg":"Initialize server..."}
+{"level":30,"time":1725728489171,"pid":13124,"hostname":"WINDOWS-DTSBRQD","msg":"Server initialized and listening on port 8000."}

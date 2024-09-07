@@ -5,4 +5,6 @@ export interface UserService {
   create(dto: CreateUserDto, salt: string): Promise<UserDocument>;
   findByEmail(email: string): Promise<UserDocument | null>;
   findOrCreate(dto: CreateUserDto, salt: string): Promise<UserDocument>;
+  // TODO: remove this method
+  findAll(): Promise<UserDocument[]>;
 }

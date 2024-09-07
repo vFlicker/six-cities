@@ -1,0 +1,7 @@
+# Users
+## Get all users
+// TODO: remove this method
+GET http://localhost:8000/users/ HTTP/1.1
+Content-Type: application/json
+
+###

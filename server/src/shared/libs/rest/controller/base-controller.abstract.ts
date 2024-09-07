@@ -1,8 +1,8 @@
 import { Response, Router } from 'express';
 import { StatusCodes } from 'http-status-codes';
 import { injectable } from 'inversify';
-import { Logger } from 'pino';
 
+import { Logger } from '../../logger/index.js';
 import { Route } from '../route.interface.js';
 import { Controller } from './controller.interface.js';
 
