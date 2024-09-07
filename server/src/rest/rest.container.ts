@@ -14,7 +14,7 @@ import { Component } from '#src/shared/types/index.js';
 
 import { RestApplication } from './rest.application.js';
 
-export function createRestApplicationContainer() {
+export function createRestApplicationContainer(): Container {
   const restApplicationContainer = new Container();
 
   restApplicationContainer
