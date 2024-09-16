@@ -22,13 +22,22 @@ export abstract class BaseController implements Controller {
   }
 
   public addRoute(route: Route): void {
-    this.setupAsyncRoute(route);
+    this.initializeRouteHandlers(route);
     this.showRouteAddedMessage(route);
   }
 
-  private setupAsyncRoute(route: Route): void {
+  private initializeRouteHandlers(route: Route): void {
     const wrapperAsyncHandler = asyncHandler(route.handler.bind(this));
-    this._router[route.method](route.path, wrapperAsyncHandler);
+
+    const middlewareHandlers = route.middlewares?.map((middleware) => {
+      return asyncHandler(middleware.execute.bind(middleware));
+    });
+
+    const allHandlers = !middlewareHandlers
+      ? wrapperAsyncHandler
+      : [...middlewareHandlers, wrapperAsyncHandler];
+
+    this._router[route.method](route.path, allHandlers);
   }
 
   private showRouteAddedMessage(route: Route): void {

@@ -1,13 +1,14 @@
-import { plainToInstance } from 'class-transformer';
-import { validate } from 'class-validator';
 import { Response } from 'express';
-import { StatusCodes } from 'http-status-codes';
 import { inject, injectable } from 'inversify';
 
 import { fillDTO } from '#src/shared/helpers/index.js';
 import { Config, RestSchema } from '#src/shared/libs/config/index.js';
 import { Logger } from '#src/shared/libs/logger/index.js';
-import { BaseController, HttpMethod } from '#src/shared/libs/rest/index.js';
+import {
+  BaseController,
+  HttpMethod,
+  ValidateDtoMiddleware,
+} from '#src/shared/libs/rest/index.js';
 import { Component } from '#src/shared/types/index.js';
 
 import { CreateUserRequest } from './create-user-request.type.js';
@@ -31,20 +32,13 @@ export class UserController extends BaseController {
       path: '/register',
       method: HttpMethod.Post,
       handler: this.create,
+      middlewares: [new ValidateDtoMiddleware(CreateUserDto)],
     });
   }
 
   public async create(req: CreateUserRequest, res: Response): Promise<void> {
     const { body } = req;
     const { email } = body;
-
-    const dtoInstance = plainToInstance(CreateUserDto, body);
-    const errors = await validate(dtoInstance);
-
-    if (errors.length) {
-      this.send(res, StatusCodes.BAD_REQUEST, errors);
-      return;
-    }
 
     const existingUser = await this.userService.findByEmail(email);
     if (existingUser) {
