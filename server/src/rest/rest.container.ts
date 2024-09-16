@@ -9,7 +9,11 @@ import {
   DatabaseClient,
   MongoDatabaseClient,
 } from '#src/shared/libs/database-client/index.js';
-import { Logger, PinoLogger } from '#src/shared/libs/logger/index.js';
+import { ConsoleLogger, Logger } from '#src/shared/libs/logger/index.js';
+import {
+  AppExceptionFilter,
+  ExceptionFilter,
+} from '#src/shared/libs/rest/index.js';
 import { Component } from '#src/shared/types/index.js';
 
 import { RestApplication } from './rest.application.js';
@@ -24,7 +28,7 @@ export function createRestApplicationContainer(): Container {
 
   restApplicationContainer
     .bind<Logger>(Component.Logger)
-    .to(PinoLogger)
+    .to(ConsoleLogger)
     .inSingletonScope();
 
   restApplicationContainer
@@ -35,6 +39,11 @@ export function createRestApplicationContainer(): Container {
   restApplicationContainer
     .bind<DatabaseClient>(Component.DatabaseClient)
     .to(MongoDatabaseClient)
+    .inSingletonScope();
+
+  restApplicationContainer
+    .bind<ExceptionFilter>(Component.ExceptionFilter)
+    .to(AppExceptionFilter)
     .inSingletonScope();
 
   return restApplicationContainer;

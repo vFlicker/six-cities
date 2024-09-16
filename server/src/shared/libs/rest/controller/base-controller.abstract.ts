@@ -1,4 +1,5 @@
 import { Response, Router } from 'express';
+import asyncHandler from 'express-async-handler';
 import { StatusCodes } from 'http-status-codes';
 import { injectable } from 'inversify';
 
@@ -21,9 +22,18 @@ export abstract class BaseController implements Controller {
   }
 
   public addRoute(route: Route): void {
-    this._router[route.method](route.path, route.handler.bind(this));
-    const massage = `Route added: ${route.method.toUpperCase()} ${route.path}`;
-    this.logger.info(massage);
+    this.setupAsyncRoute(route);
+    this.showRouteAddedMessage(route);
+  }
+
+  private setupAsyncRoute(route: Route): void {
+    const wrapperAsyncHandler = asyncHandler(route.handler.bind(this));
+    this._router[route.method](route.path, wrapperAsyncHandler);
+  }
+
+  private showRouteAddedMessage(route: Route): void {
+    const message = `Route added: ${route.method.toUpperCase()} ${route.path}`;
+    this.logger.info(message);
   }
 
   public send<T>(res: Response, statusCode: number, data: T): void {

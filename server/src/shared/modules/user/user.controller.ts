@@ -20,10 +20,20 @@ export class UserController extends BaseController {
     this.logger.info('Register routes for UserController');
 
     this.addRoute({
+      path: '/register',
+      method: HttpMethod.Post,
+      handler: this.create,
+    });
+
+    this.addRoute({
       path: '/',
       method: HttpMethod.Get,
       handler: this.getUsers,
     });
+  }
+
+  public async create(_req: Request, _res: Response): Promise<void> {
+    throw new Error('Method not implemented.');
   }
 
   // TODO: remove this method
