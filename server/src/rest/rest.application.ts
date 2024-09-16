@@ -32,6 +32,10 @@ export class RestApplication {
     await this.initDb();
     this.logger.info('Database connection initialized.');
 
+    this.logger.info('Initialize middlewares...');
+    await this.initMiddlewares();
+    this.logger.info('Middlewares initialized.');
+
     this.logger.info('Initialize controllers...');
     await this.initControllers();
     this.logger.info('Controllers initialized.');
@@ -55,6 +59,10 @@ export class RestApplication {
 
     const mongoURI = getMongoURI(username, password, host, port, databaseName);
     await this.databaseClient.connect(mongoURI);
+  }
+
+  private async initMiddlewares(): Promise<void> {
+    this.server.use(express.json());
   }
 
   private async initControllers(): Promise<void> {
