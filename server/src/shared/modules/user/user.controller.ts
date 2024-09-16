@@ -1,10 +1,12 @@
 import { Request, Response } from 'express';
 import { inject, injectable } from 'inversify';
 
+import { fillDTO } from '#src/shared/helpers/index.js';
 import { Logger } from '#src/shared/libs/logger/index.js';
 import { BaseController, HttpMethod } from '#src/shared/libs/rest/index.js';
 import { Component } from '#src/shared/types/index.js';
 
+import { UserRdo } from './rdo/user.rdo.js';
 import { UserService } from './user-service.interface.js';
 
 @injectable()
@@ -27,6 +29,7 @@ export class UserController extends BaseController {
   // TODO: remove this method
   public async getUsers(_req: Request, res: Response): Promise<void> {
     const users = await this.userService.findAll();
-    this.ok(res, { users });
+    const responseData = fillDTO(UserRdo, users);
+    this.ok(res, { users: responseData });
   }
 }

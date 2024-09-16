@@ -31,11 +31,11 @@ export class RestApplication {
     this.logger.info('Database connection initialized.');
 
     this.logger.info('Initialize controllers...');
-    this.initControllers();
+    await this.initControllers();
     this.logger.info('Controllers initialized.');
 
     this.logger.info('Initialize server...');
-    this.initServer();
+    await this.initServer();
     const port = this.config.get('PORT');
     this.logger.info(`Server initialized and listening on port ${port}.`);
   }
@@ -51,11 +51,12 @@ export class RestApplication {
     await this.databaseClient.connect(mongoURI);
   }
 
-  private initControllers(): void {
-    this.server.use('/users', this.userController.router);
+  private async initControllers(): Promise<void> {
+    this.server.use('/api/users', this.userController.router);
   }
 
-  private initServer(): void {
+
+  private async initServer(): Promise<void> {
     const port = this.config.get('PORT');
     this.server.listen(port);
   }
