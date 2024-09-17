@@ -1,4 +1,5 @@
 import { Response } from 'express';
+import { StatusCodes } from 'http-status-codes';
 import { inject, injectable } from 'inversify';
 
 import { fillDTO } from '#src/shared/helpers/index.js';
@@ -6,6 +7,7 @@ import { Config, RestSchema } from '#src/shared/libs/config/index.js';
 import { Logger } from '#src/shared/libs/logger/index.js';
 import {
   BaseController,
+  HttpError,
   HttpMethod,
   ValidateDtoMiddleware,
 } from '#src/shared/libs/rest/index.js';
@@ -42,7 +44,11 @@ export class UserController extends BaseController {
 
     const existingUser = await this.userService.findByEmail(email);
     if (existingUser) {
-      throw new Error(`User with email «${email}» exists.`);
+      throw new HttpError(
+        StatusCodes.CONFLICT,
+        `User with email «${email}» exists.`,
+        'UserController.create',
+      );
     }
 
     const salt = this.config.get('SALT');
