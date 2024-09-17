@@ -4,7 +4,9 @@ import { Route, Routes } from 'react-router-dom';
 import { PrivateRoute } from './components/PrivateRoute';
 import { AppRoute } from './constants';
 import { DefaultLayout } from './layouts/DefaultLayout';
+import { LoginLayout } from './layouts/LoginLayout';
 import { IndexPage } from './pages/IndexPage';
+import { LoginPage } from './pages/LoginPage';
 import { OfferPage } from './pages/OfferPage';
 import { globalColors } from './tokens/colors';
 import { globalFonts } from './tokens/fonts';
@@ -30,6 +32,9 @@ function App(): JSX.Element {
           <Route element={<PrivateRoute isAllowed={true} />}>
             <Route path="offer" element={<OfferPage />} />
           </Route>
+        </Route>
+        <Route path={AppRoute.Login} element={<LoginLayout />}>
+          <Route index element={<LoginPage />} />
         </Route>
       </Routes>
 

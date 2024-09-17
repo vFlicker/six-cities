@@ -16,7 +16,7 @@ type StyledButtonProps = CustomProps & ComponentProps<typeof BaseButton>;
 type StyledLinkProps = CustomProps & LinkProps;
 
 const CSS = css`
-  padding: 9px 20px 6px 14px;
+  padding: 8px 20px 7px 14px;
   border-radius: ${Radius.RADIUS_3};
   font-size: 19px;
   line-height: 1.211;

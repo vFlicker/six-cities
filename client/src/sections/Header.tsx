@@ -8,10 +8,11 @@ import { withAttrs } from '~/helpers/withAttrs';
 import { IconName } from '~/tokens/icons';
 
 type HeaderProps = {
+  hasMenu?: boolean;
   className?: string;
 };
 
-function Header({ className }: HeaderProps): JSX.Element {
+function Header({ className, hasMenu = true }: HeaderProps): JSX.Element {
   return (
     <header className={className}>
       <StyledNavigation>
@@ -19,19 +20,21 @@ function Header({ className }: HeaderProps): JSX.Element {
           <StyledLeft>
             <Logo />
           </StyledLeft>
-          <StyledRight>
-            <StyledTextLinksList>
-              <StyledTextLinksItem>
-                <TextLink to="/">
-                  <StyledUserIcon />
-                  Oliver.conner@gmail.com
-                </TextLink>
-              </StyledTextLinksItem>
-              <StyledTextLinksItem>
-                <TextLink to="/">Sign out</TextLink>
-              </StyledTextLinksItem>
-            </StyledTextLinksList>
-          </StyledRight>
+          {hasMenu && (
+            <StyledRight>
+              <StyledTextLinksList>
+                <StyledTextLinksItem>
+                  <TextLink to="/">
+                    <StyledUserIcon />
+                    Oliver.conner@gmail.com
+                  </TextLink>
+                </StyledTextLinksItem>
+                <StyledTextLinksItem>
+                  <TextLink to="/">Sign out</TextLink>
+                </StyledTextLinksItem>
+              </StyledTextLinksList>
+            </StyledRight>
+          )}
         </StyledWrapper>
       </StyledNavigation>
     </header>
