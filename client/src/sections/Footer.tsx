@@ -10,17 +10,15 @@ type FooterProps = {
 
 function Footer({ className }: FooterProps): JSX.Element {
   return (
-    <StyledFooter className={className}>
+    <footer className={className}>
       <StyledContainer>
         <Logo width="64" height="33" />
       </StyledContainer>
-    </StyledFooter>
+    </footer>
   );
 }
 
 export { Footer };
-
-const StyledFooter = styled.footer``;
 
 const StyledContainer = styled(Container)`
   display: flex;

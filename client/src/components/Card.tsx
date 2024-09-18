@@ -21,7 +21,7 @@ const enum CardVariant {
 
 function Card({ className, variant }: CardProps) {
   return (
-    <StyledWrapper to="/" className={className}>
+    <Link to="/" className={className}>
       <StyledCard variant={variant}>
         <StyledImage src={apartmentImage1} alt="Card place" />
         <StyledInfo>
@@ -37,13 +37,11 @@ function Card({ className, variant }: CardProps) {
           <StyledType>Room</StyledType>
         </StyledInfo>
       </StyledCard>
-    </StyledWrapper>
+    </Link>
   );
 }
 
 export { Card, CardVariant };
-
-const StyledWrapper = styled(Link)``;
 
 const StyledImage = styled.img`
   border-radius: 4px;

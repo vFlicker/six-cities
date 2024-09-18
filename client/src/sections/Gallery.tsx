@@ -41,6 +41,7 @@ export { Gallery };
 const StyledGallery = styled.div`
   position: relative;
   display: flex;
+  gap: 2px;
   align-items: flex-start;
   flex-wrap: wrap;
   justify-content: center;
@@ -54,7 +55,7 @@ const StyledGallery = styled.div`
   &::before {
     content: '';
     position: absolute;
-    top: -1px;
+    top: 0;
     left: 0;
     width: 34px;
     height: 100%;
@@ -67,7 +68,7 @@ const StyledGallery = styled.div`
   &::after {
     content: '';
     position: absolute;
-    top: -1px;
+    top: 0;
     right: 0;
     width: 34px;
     height: 100%;
@@ -81,15 +82,9 @@ const StyledImageWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 2px;
-  margin-right: 2px;
   width: 260px;
   height: 200px;
   overflow: hidden;
-
-  &:nth-child(3n) {
-    margin-right: 0;
-  }
 `;
 
 const StyledImage = styled.img`

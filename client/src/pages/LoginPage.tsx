@@ -5,55 +5,83 @@ import { Button } from '~/elements/Button';
 import { Input } from '~/elements/Input';
 import { SlantedLink } from '~/elements/SlantedButton';
 import { Typography, TypographyVariant } from '~/elements/Typography';
-import { Container } from '~/helpers/Container';
+import { ContainerMixin } from '~/helpers/Container';
 import { withAttrs } from '~/helpers/withAttrs';
+import backgroundImage from '~/images/amsterdam.jpg';
+import { Header } from '~/sections/Header';
 import { Color } from '~/tokens/colors';
 
 function LoginPage(): JSX.Element {
   return (
-    <StyledMain>
+    <StyledWrapper>
       <Helmet>
         <title>Login</title>
       </Helmet>
-
       <StyledContainer>
-        <StyledLogin>
-          <StyledTitle>Sign in</StyledTitle>
-          <StyledForm action="#" method="post">
-            <Input
-              type="email"
-              name="email"
-              aria-label="E-mail"
-              placeholder="Email"
-              required
-            />
-            <Input
-              type="password"
-              name="password"
-              aria-label="Password"
-              placeholder="Password"
-              required
-            />
-            <StyledButton type="submit">Sign in</StyledButton>
-          </StyledForm>
-        </StyledLogin>
-        <StyledLocation>
-          <StyledLocationLink to="/">Amsterdam</StyledLocationLink>
-        </StyledLocation>
+        <Header hasMenu={false} />
+        <StyledMain>
+          <StyledLogin>
+            <StyledTitle>Sign in</StyledTitle>
+            <StyledForm action="#" method="post">
+              <Input
+                type="email"
+                name="email"
+                aria-label="E-mail"
+                placeholder="Email"
+                required
+              />
+              <Input
+                type="password"
+                name="password"
+                aria-label="Password"
+                placeholder="Password"
+                required
+              />
+              <StyledButton type="submit">Sign in</StyledButton>
+            </StyledForm>
+          </StyledLogin>
+          <StyledLocation>
+            <StyledLocationLink to="/">Amsterdam</StyledLocationLink>
+          </StyledLocation>
+        </StyledMain>
       </StyledContainer>
-    </StyledMain>
+    </StyledWrapper>
   );
 }
 
 export { LoginPage };
 
+const StyledWrapper = styled.div`
+  background-color: ${Color.GRAY_10};
+`;
+
 const StyledMain = styled.main`
+  ${ContainerMixin}
   display: flex;
   flex-grow: 1;
 `;
 
-const StyledContainer = styled(Container)`
+const StyledContainer = styled.div`
   display: flex;
+  flex-direction: column;
+  width: 1144px;
+  height: 100vh;
+  margin-left: auto;
+  margin-right: auto;
+  background-image: linear-gradient(
+      to right,
+      ${Color.GRAY_10} 509px,
+      transparent 509px
+    ),
+    url(${backgroundImage});
+  background-position:
+    top left,
+    right top;
+  background-size:
+    auto,
+    auto 100%;
+  background-repeat: no-repeat, no-repeat;
+  overflow: hidden;
 `;
 
 const StyledLogin = styled.section`

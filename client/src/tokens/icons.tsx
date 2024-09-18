@@ -22,6 +22,7 @@ function SpriteWithIcons() {
           fillRule="evenodd"
           clipRule="evenodd"
           d="M0 0l3.5 2.813L7 0v1.084L3.5 4 0 1.084V0z"
+          strokeWidth="1"
         ></path>
       </symbol>
       <symbol id="icon-bookmark" viewBox="0 0 17 18">
@@ -68,7 +69,7 @@ function SpriteWithIcons() {
         />
       </symbol>
       <symbol id="icon-place" viewBox="0 0 13 16">
-        <path d="M1 15V4.806l5.5-3.61 5.5 3.61V15H1z" stroke-width="2" />
+        <path d="M1 15V4.806l5.5-3.61 5.5 3.61V15H1z" strokeWidth="2" />
       </symbol>
     </StyledSpriteWithIcons>
   );

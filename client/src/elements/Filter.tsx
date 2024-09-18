@@ -61,7 +61,7 @@ const StyledLabel = withAttrs(
   styled(Typography)`
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 6px;
     order: -1;
     flex-shrink: 0;
     font-weight: 700;

@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 
 import { SlantedLink } from '~/elements/SlantedButton';
 import { Container } from '~/helpers/Container';
+import { Color } from '~/tokens/colors';
 
 type LocationTabsProps = {
   className?: string;
@@ -18,21 +19,27 @@ const TABS = [
 
 function LocationTabs({ className }: LocationTabsProps): JSX.Element {
   return (
-    <StyledContainer className={className}>
-      <StyledList>
-        {TABS.map((tab) => (
-          <StyledItem key={tab}>
-            <SlantedLink active={tab === 'Amsterdam'} to="/">
-              {tab}
-            </SlantedLink>
-          </StyledItem>
-        ))}
-      </StyledList>
-    </StyledContainer>
+    <StyledWrapper>
+      <StyledContainer className={className}>
+        <StyledList>
+          {TABS.map((tab) => (
+            <StyledItem key={tab}>
+              <SlantedLink active={tab === 'Amsterdam'} to="/">
+                {tab}
+              </SlantedLink>
+            </StyledItem>
+          ))}
+        </StyledList>
+      </StyledContainer>
+    </StyledWrapper>
   );
 }
 
 export { LocationTabs };
+
+const StyledWrapper = styled.div`
+  background-color: ${Color.GRAY_10};
+`;
 
 const StyledContainer = styled(Container)`
   padding-bottom: 32px;

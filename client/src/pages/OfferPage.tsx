@@ -1,9 +1,12 @@
 import styled from '@emotion/styled';
 import { Helmet } from 'react-helmet-async';
 
+import { DefaultLayout } from '~/helpers/DefaultLayout';
 import { AboutHost } from '~/sections/AboutHost';
 import { Amenities } from '~/sections/Amenities';
+import { Footer } from '~/sections/Footer';
 import { Gallery } from '~/sections/Gallery';
+import { Header } from '~/sections/Header';
 import { OfferSummary } from '~/sections/OfferSummary';
 import { OtherOffers } from '~/sections/OtherOffers';
 import { Reviews } from '~/sections/Reviews';
@@ -13,29 +16,30 @@ const OFFER_NAME = 'Offer';
 
 function OfferPage(): JSX.Element {
   return (
-    <main>
+    <DefaultLayout>
       <Helmet>
         <title>{OFFER_NAME}</title>
       </Helmet>
-
-      <StyledOffer>
-        <Gallery />
-        <StyledWrapper>
-          <OfferSummary />
-          <Amenities />
-          <AboutHost userType="pro" />
-          <Reviews />
-        </StyledWrapper>
-        <StyledMap />
-        <StyledOtherOffers />
-      </StyledOffer>
-    </main>
+      <Header />
+      <main>
+        <section>
+          <Gallery />
+          <StyledWrapper>
+            <OfferSummary />
+            <Amenities />
+            <AboutHost userType="pro" />
+            <Reviews />
+          </StyledWrapper>
+          <StyledMap />
+          <StyledOtherOffers />
+        </section>
+      </main>
+      <Footer />
+    </DefaultLayout>
   );
 }
 
 export { OfferPage };
-
-const StyledOffer = styled.section``;
 
 const StyledWrapper = styled.div`
   display: flex;

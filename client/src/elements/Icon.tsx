@@ -42,7 +42,7 @@ const IconNameToIconSize = {
 
 const IconNameToCSS = {
   [IconName.Arrow]: css`
-    fill: ${Color.GRAY_90};
+    stroke: ${Color.GRAY_90};
   `,
   [IconName.Bookmark]: css`
     fill: transparent;
