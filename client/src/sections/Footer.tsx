@@ -20,9 +20,7 @@ function Footer({ className }: FooterProps): JSX.Element {
 
 export { Footer };
 
-const StyledFooter = styled.footer`
-  background-color: ${Color.WHITE};
-`;
+const StyledFooter = styled.footer``;
 
 const StyledContainer = styled(Container)`
   display: flex;

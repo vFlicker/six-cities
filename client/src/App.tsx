@@ -5,6 +5,7 @@ import { PrivateRoute } from './components/PrivateRoute';
 import { AppRoute } from './constants';
 import { DefaultLayout } from './layouts/DefaultLayout';
 import { LoginLayout } from './layouts/LoginLayout';
+import { FavoritesPage } from './pages/FavoritesPage';
 import { IndexPage } from './pages/IndexPage';
 import { LoginPage } from './pages/LoginPage';
 import { OfferPage } from './pages/OfferPage';
@@ -29,8 +30,9 @@ function App(): JSX.Element {
       <Routes>
         <Route path={AppRoute.Root} element={<DefaultLayout />}>
           <Route index element={<IndexPage />} />
+          <Route path="offer" element={<OfferPage />} />
           <Route element={<PrivateRoute isAllowed={true} />}>
-            <Route path="offer" element={<OfferPage />} />
+            <Route path="favorites" element={<FavoritesPage />} />
           </Route>
         </Route>
         <Route path={AppRoute.Login} element={<LoginLayout />}>

@@ -24,6 +24,4 @@ const StyledCardList = styled.ul<Pick<CardListProps, 'col'>>`
   grid-template-columns: ${({ col }) => `repeat(${col}, 1fr)`};
 `;
 
-const StyledCardsItem = styled.li`
-  display: grid;
-`;
+const StyledCardsItem = styled.li``;

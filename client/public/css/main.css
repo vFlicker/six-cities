@@ -28,14 +28,6 @@
   background-color: #f5f5f5
 }
 
-.page__main--offer {
-  padding-bottom: 129px
-}
-
-.page__main--favorites {
-  padding-top: 11px
-}
-
 .page__main--favorites-empty {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -51,31 +43,6 @@
   display: flex
 }
 
-.page__main--index {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-flex: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  overflow-y: hidden
-}
-
-.page__login-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex
-}
-
-.header__avatar-wrapper {
-  width: 20px;
-  height: 20px;
-  margin-right: 8px
-}
 
 .header__login {
   padding-top: 2px;
@@ -100,24 +67,6 @@
   color: #fff;
   background: #4481c3;
   border-radius: 15px
-}
-
-.cities {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-flex: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-  background-color: #fff;
-  overflow-y: hidden
-}
-
-.cities__places-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  padding-right: 0
 }
 
 .cities__places-container--empty {
@@ -172,21 +121,6 @@
   background-position: right 100%
 }
 
-@media (-webkit-min-device-pixel-ratio:1.5),
-(min-resolution:144dpi),
-(min-resolution:1.5dppx) {
-  .page__main--index-empty .cities__right-section {
-    background-image: url(../img/no-places@2x.png)
-  }
-}
-
-@media (max-height:780px) {
-  .page__main--index-empty .cities__right-section {
-    background-position: right center;
-    background-size: 100% auto
-  }
-}
-
 .cities__right-section {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -204,21 +138,6 @@
   background-size: 682px auto;
   background-repeat: no-repeat;
   background-position: -170px center
-}
-
-@media (-webkit-min-device-pixel-ratio:1.5),
-(min-resolution:144dpi),
-(min-resolution:1.5dppx) {
-  .cities__map {
-    background-image: url(../img/map@2x.jpg);
-    background-size: 682px 794px
-  }
-}
-
-@media (min-height:980px) {
-  .cities__map {
-    background-size: cover
-  }
 }
 
 .cities__status-wrapper {
@@ -251,221 +170,12 @@
   line-height: 1.5
 }
 
-.locations--login {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-flex: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-  padding: 0 51px 63px 130px
-}
-
-.places__found {
-  display: block;
-  margin-bottom: 22px;
-  padding-left: 2px;
-  font-size: 24px;
-  line-height: 1.167;
-  font-weight: 700;
-  font-style: oblique
-}
-
-.places__options {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  background-color: #fff;
-  border: 1px solid #dfdfdf;
-  border-radius: 4px
-}
-
-.places__options--custom {
-  position: absolute;
-  top: calc(100% + 1px);
-  left: 52px;
-  z-index: 1;
-  display: none
-}
-
-.places__options--opened {
-  display: block
-}
-
-.places__option {
-  min-width: 170px;
-  padding: 14px 16px 10px;
-  font-size: 14px;
-  line-height: 1.2143;
-  -webkit-transition: background .3s;
-  transition: background .3s;
-  outline: 0;
-  cursor: pointer
-}
-
-.places__option--active,
-.places__option:focus,
-.places__option:hover {
-  background-color: #f2f2f2
-}
-
-.places__option:selected {
-  background-color: #f2f2f2
-}
-
-.place-card__image {
-  display: block;
-  border-radius: 4px
-}
-
-.favorites__card .place-card__bookmark-button {
-  margin-top: 0;
-  -webkit-transform: skew(10deg);
-  transform: skew(10deg)
-}
-
-.place-card__bookmark-button {
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  width: 18px;
-  height: 19px;
-  margin-top: 2px
-}
-
-.place-card__price-text {
-  font-size: 12px;
-  line-height: 1.1667
-}
-
-.place-card__rating {
-  margin-bottom: 6px
-}
-
-.place-card__mark {
-  position: absolute;
-  top: -5px;
-  left: -3px;
-  padding: 5px 15px 5px 9px;
-  font-size: 12px;
-  line-height: 1.1667;
-  font-weight: 700;
-  color: #fff;
-  background-color: #4481c3;
-  -webkit-transform: skew(-10deg);
-  transform: skew(-10deg);
-  border-radius: 3px
-}
-
-.place-card__mark span {
-  display: block;
-  -webkit-transform: skew(10deg);
-  transform: skew(10deg)
-}
-
-
-.offer__container {
-  position: relative;
-  overflow-x: hidden
-}
-
-
-.near-places {
-  margin: 0 16px 0 12px;
-  padding-bottom: 27px;
-  border-bottom: 2px solid rgba(222, 222, 222, .5)
-}
-
-.near-places__title {
-  margin-top: 0;
-  margin-bottom: 25px;
-  font-size: 24px;
-  line-height: 1.1667;
-  font-weight: 700;
-  font-style: oblique;
-  text-align: center;
-  color: #000
-}
-
-.near-places__list {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-box-align: start;
-  -ms-flex-align: start;
-  align-items: flex-start;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  margin-left: -8px;
-  padding-left: 3px
-}
-
-
-.favorites {
-  padding: 0 15px 93px;
-  border-bottom: 2px solid rgba(222, 222, 222, .5)
-}
 
 .favorites--empty {
   width: 100%;
   padding: 0 0 93px 38px
 }
 
-.favorites__title {
-  margin-top: 0;
-  margin-bottom: 49px;
-  font-size: 32px;
-  line-height: 1.1429;
-  font-weight: 700;
-  font-style: oblique;
-  text-align: center
-}
-
-.favorites__list {
-  margin: 0;
-  padding: 0;
-  list-style: none
-}
-
-.favorites__locations-items {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: start;
-  -ms-flex-align: start;
-  align-items: flex-start;
-  margin-bottom: 52px
-}
-
-.favorites__locations-items:last-child {
-  margin-bottom: 0
-}
-
-.favorites__locations {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  width: 244px;
-  margin-right: 20px
-}
-
-.favorites__image-wrapper {
-  min-width: 150px;
-  margin-right: 16px;
-  margin-bottom: 0
-}
-
-.favorites__card-info {
-  padding-top: 1px
-}
 
 .favorites__status-wrapper {
   width: 420px;
@@ -493,11 +203,6 @@
   padding: 0 30px;
   font-size: 16px;
   line-height: 1.5
-}
-
-.header__logo-link:not(.header__logo-link--active):focus,
-.header__logo-link:not(.header__logo-link--active):hover {
-  opacity: .5
 }
 
 /*# sourceMappingURL=main.css.map */

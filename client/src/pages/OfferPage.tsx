@@ -35,9 +35,7 @@ function OfferPage(): JSX.Element {
 
 export { OfferPage };
 
-const StyledOffer = styled.section`
-  background-color: ${Color.WHITE};
-`;
+const StyledOffer = styled.section``;
 
 const StyledWrapper = styled.div`
   display: flex;

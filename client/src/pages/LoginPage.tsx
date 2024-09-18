@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { Helmet } from 'react-helmet-async';
 
 import { Button } from '~/elements/Button';
 import { Input } from '~/elements/Input';
@@ -11,6 +12,10 @@ import { Color } from '~/tokens/colors';
 function LoginPage(): JSX.Element {
   return (
     <StyledMain>
+      <Helmet>
+        <title>Login</title>
+      </Helmet>
+
       <StyledContainer>
         <StyledLogin>
           <StyledTitle>Sign in</StyledTitle>

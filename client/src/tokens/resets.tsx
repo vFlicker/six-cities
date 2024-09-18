@@ -32,7 +32,6 @@ const globalResets = css`
     line-height: 1.2;
     color: ${Color.GRAY_90};
     font-family: ${Font.Rubik};
-    background-color: ${Color.GRAY_10};
   }
 
   textarea {

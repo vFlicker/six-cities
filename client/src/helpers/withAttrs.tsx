@@ -1,27 +1,21 @@
 import { ComponentType } from 'react';
 
-type DefaultPropsType<T> = Partial<T> | ((props: Partial<T>) => Partial<T>);
-
-function resolveDefaultProps<T>(
-  defaultProps: DefaultPropsType<T>,
-  props: Partial<T>,
-): Partial<T> {
-  return typeof defaultProps === 'function'
-    ? defaultProps(props)
-    : defaultProps;
-}
+type DefaultProps<T> = Partial<T> | ((props: Partial<T>) => Partial<T>);
 
 function withAttrs<T extends object>(
-  defaultProps: DefaultPropsType<T>,
+  defaultProps: DefaultProps<T>,
   Component: ComponentType<T>,
-): ComponentType<
-  Omit<T, keyof ReturnType<typeof resolveDefaultProps<T>>> & Partial<T>
-> {
-  return (props: Partial<T>) => {
-    const resolvedDefaultProps = resolveDefaultProps(defaultProps, props);
+): ComponentType<Partial<T>> {
+  const WrappedComponent: React.FC<Partial<T>> = (props) => {
+    const resolvedDefaultProps =
+      typeof defaultProps === 'function' ? defaultProps(props) : defaultProps;
+
     const combinedProps = { ...resolvedDefaultProps, ...props } as T;
+
     return <Component {...combinedProps} />;
   };
+
+  return WrappedComponent;
 }
 
 export { withAttrs };
