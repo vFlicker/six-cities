@@ -42,7 +42,7 @@ const StyledWrapper = styled.div`
 `;
 
 const StyledContainer = styled(Container)`
-  padding-bottom: 32px;
+  padding: 16px 42px 50px;
 `;
 
 const StyledList = styled.ul`

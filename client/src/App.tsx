@@ -4,8 +4,8 @@ import { Route, Routes } from 'react-router-dom';
 import { PrivateRoute } from './components/PrivateRoute';
 import { AppRoute } from './constants';
 import { FavoritesPage } from './pages/FavoritesPage';
-import { IndexPage } from './pages/IndexPage';
 import { LoginPage } from './pages/LoginPage';
+import { MainPage } from './pages/MainPage';
 import { OfferPage } from './pages/OfferPage';
 import { globalColors } from './tokens/colors';
 import { globalFonts } from './tokens/fonts';
@@ -26,7 +26,7 @@ function App(): JSX.Element {
       <Global styles={globalTextShadows} />
 
       <Routes>
-        <Route index path={AppRoute.Root} element={<IndexPage />} />
+        <Route index path={AppRoute.Root} element={<MainPage />} />
         <Route path="offer" element={<OfferPage />} />
         <Route path="login" element={<LoginPage />} />
         <Route element={<PrivateRoute isAllowed={true} />}>

@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 
 import { FavoriteCategory } from '~/components/FavoriteCategory';
 import { Typography, TypographyVariant } from '~/elements/Typography';
+import { Container } from '~/helpers/Container';
 import { FavoriteList } from '~/helpers/FavoriteList';
 import { withAttrs } from '~/helpers/withAttrs';
 
@@ -22,15 +23,17 @@ const favorites = [
 
 function Favorites({ className }: FavoriteProps): JSX.Element {
   return (
-    <StyledSection className={className}>
-      <StyledTitle>Saved listing</StyledTitle>
+    <StyledContainer>
+      <StyledSection className={className}>
+        <StyledTitle>Saved listing</StyledTitle>
 
-      <FavoriteList>
-        {favorites.map((favorite, index) => (
-          <FavoriteCategory key={index} {...favorite} />
-        ))}
-      </FavoriteList>
-    </StyledSection>
+        <FavoriteList>
+          {favorites.map((favorite, index) => (
+            <FavoriteCategory key={index} {...favorite} />
+          ))}
+        </FavoriteList>
+      </StyledSection>{' '}
+    </StyledContainer>
   );
 }
 
@@ -38,6 +41,10 @@ export { Favorites };
 
 const StyledSection = styled.section`
   width: 100%;
+`;
+
+const StyledContainer = styled(Container)`
+  display: flex;
 `;
 
 const StyledTitle = withAttrs(

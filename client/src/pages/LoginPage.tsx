@@ -1,14 +1,12 @@
 import styled from '@emotion/styled';
 import { Helmet } from 'react-helmet-async';
 
-import { Button } from '~/elements/Button';
-import { Input } from '~/elements/Input';
 import { SlantedLink } from '~/elements/SlantedButton';
-import { Typography, TypographyVariant } from '~/elements/Typography';
 import { ContainerMixin } from '~/helpers/Container';
 import { withAttrs } from '~/helpers/withAttrs';
 import backgroundImage from '~/images/amsterdam.jpg';
 import { Header } from '~/sections/Header';
+import { Login } from '~/sections/Login';
 import { Color } from '~/tokens/colors';
 
 function LoginPage(): JSX.Element {
@@ -20,26 +18,7 @@ function LoginPage(): JSX.Element {
       <StyledContainer>
         <Header hasMenu={false} />
         <StyledMain>
-          <StyledLogin>
-            <StyledTitle>Sign in</StyledTitle>
-            <StyledForm action="#" method="post">
-              <Input
-                type="email"
-                name="email"
-                aria-label="E-mail"
-                placeholder="Email"
-                required
-              />
-              <Input
-                type="password"
-                name="password"
-                aria-label="Password"
-                placeholder="Password"
-                required
-              />
-              <StyledButton type="submit">Sign in</StyledButton>
-            </StyledForm>
-          </StyledLogin>
+          <StyledLogin />
           <StyledLocation>
             <StyledLocationLink to="/">Amsterdam</StyledLocationLink>
           </StyledLocation>
@@ -84,7 +63,7 @@ const StyledContainer = styled.div`
   overflow: hidden;
 `;
 
-const StyledLogin = styled.section`
+const StyledLogin = styled(Login)`
   position: relative;
   width: 520px;
   padding-top: 19.6vh;
@@ -105,26 +84,6 @@ const StyledLogin = styled.section`
     transform: skew(-6.5deg);
   }
 `;
-
-const StyledForm = styled.form`
-  position: relative;
-  display: grid;
-  gap: 24px;
-  width: 340px;
-  z-index: 1;
-`;
-
-const StyledButton = styled(Button)`
-  width: 100%;
-`;
-
-const StyledTitle = withAttrs(
-  {
-    as: 'h1',
-    variant: TypographyVariant.TITLE_2,
-  },
-  Typography,
-);
 
 const StyledLocation = styled.section`
   display: flex;

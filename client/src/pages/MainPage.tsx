@@ -6,31 +6,42 @@ import { DefaultLayout } from '~/helpers/DefaultLayout';
 import { VisuallyHiddenMixin } from '~/helpers/VisuallyHiddenMixin';
 import { Header } from '~/sections/Header';
 import { LocationTabs } from '~/sections/LocationTabs';
+import { NoAvailableOffers } from '~/sections/NoAvailableOffers';
 import { Offers } from '~/sections/Offers';
 import { Color } from '~/tokens/colors';
 
-function IndexPage(): JSX.Element {
+const hasOffers = true;
+
+function MainPage(): JSX.Element {
   return (
     <DefaultLayout>
       <Helmet>
         <title>Home page</title>
       </Helmet>
       <StyledHeader />
-      <main>
+      <StyledMain>
         <StyledTitle>Six Cities</StyledTitle>
         <LocationTabs />
-        <StyledContent>
-          <StyledContainer>
-            <Offers />
-            <StyledMap>map</StyledMap>
-          </StyledContainer>
-        </StyledContent>
-      </main>
+        {hasOffers && (
+          <StyledContent>
+            <StyledContainer>
+              <Offers />
+              <StyledMap>map</StyledMap>
+            </StyledContainer>
+          </StyledContent>
+        )}
+        {!hasOffers && <NoAvailableOffers />}
+      </StyledMain>
     </DefaultLayout>
   );
 }
 
-export { IndexPage };
+export { MainPage };
+
+const StyledMain = styled.main`
+  display: flex;
+  flex-direction: column;
+`;
 
 const StyledHeader = styled(Header)`
   background-color: ${Color.GRAY_10};
