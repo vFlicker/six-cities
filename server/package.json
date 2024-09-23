@@ -14,14 +14,13 @@
   },
   "scripts": {
     "dev": "nodemon | npm run pino",
+    "pino": "pino-pretty --colorize --translateTime SYS:standard",
     "start": "npm run build && node ./dist/main.rest.js",
     "build": "npm run clean && npm run compile",
-    "docker:start": "docker compose --file ./docker-compose.dev.yml --env-file .env --project-name \"six-cities\" up",
-    "lint": "eslint src/ --ext .ts --fix",
-    "compile": "tsc -p tsconfig.json",
     "clean": "rimraf dist",
-    "ts": "tsx",
-    "pino": "pino-pretty --colorize --translateTime SYS:standard",
+    "compile": "tsc -p tsconfig.json",
+    "lint": "eslint src/ --ext .ts --fix",
+    "docker:start": "docker compose --file ./docker-compose.dev.yml --env-file .env --project-name \"six-cities\" up",
     "mock:server": "json-server --watch mocks/mock-server-data.json --port 3123 --host 127.0.0.1",
     "mock:generate": "./dist/main.cli.js --generate 2 ./mocks/mock-data.tsv http://localhost:3123/api",
     "mock:import": "./dist/main.cli.js --import ./mocks/mock-data.tsv"

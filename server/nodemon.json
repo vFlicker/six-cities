@@ -3,5 +3,5 @@
     "src"
   ],
   "ext": "ts, json",
-  "exec": "npm run ts ./src/main.rest.ts"
+  "exec": "npx tsx ./src/main.rest.ts"
 }
