@@ -13,9 +13,10 @@ import {
 } from '#src/shared/libs/rest/index.js';
 import { Component } from '#src/shared/types/index.js';
 
-import { CreateUserRequest } from './create-user-request.type.js';
 import { CreateUserDto } from './dto/create-user.dto.js';
 import { UserRdo } from './rdo/user.rdo.js';
+import { CreateUserRequest } from './type/create-user-request.type.js';
+import { CreateUserResponse } from './type/create-user-response.type.js';
 import { UserService } from './user-service.interface.js';
 
 @injectable()
@@ -38,7 +39,10 @@ export class UserController extends BaseController {
     });
   }
 
-  public async create(req: CreateUserRequest, res: Response): Promise<void> {
+  public async create(
+    req: CreateUserRequest,
+    res: CreateUserResponse,
+  ): Promise<void> {
     const { body } = req;
     const { email } = body;
 

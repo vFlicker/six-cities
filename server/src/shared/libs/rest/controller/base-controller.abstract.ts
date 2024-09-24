@@ -45,15 +45,15 @@ export abstract class BaseController implements Controller {
     this.logger.info(message);
   }
 
-  public send<T>(res: Response, statusCode: number, data: T): void {
+  public send<D>(res: Response<D>, statusCode: number, data: D): void {
     res.type(DEFAULT_CONTENT_TYPE).status(statusCode).send(data);
   }
 
-  public created<T>(res: Response, data: T): void {
+  public created<D>(res: Response<D>, data: D): void {
     this.send(res, StatusCodes.CREATED, data);
   }
 
-  public ok<T>(res: Response, data: T): void {
+  public ok<D>(res: Response<D>, data: D): void {
     this.send(res, StatusCodes.OK, data);
   }
 
