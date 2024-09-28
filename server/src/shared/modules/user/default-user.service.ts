@@ -25,6 +25,7 @@ export class DefaultUserService implements UserService {
   }
 
   public async findByEmail(email: string): Promise<UserDocument | null> {
+    // TODO: should we use exec() here?
     return this.userModel.findOne({ email });
   }
 

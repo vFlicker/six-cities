@@ -1,5 +1,3 @@
-import { Location } from './location.type.js';
-
 export enum CityName {
   Paris = 'Paris',
   Cologne = 'Cologne',
@@ -8,8 +6,3 @@ export enum CityName {
   Hamburg = 'Hamburg',
   Dusseldorf = 'Dusseldorf',
 }
-
-export type City = {
-  name: CityName;
-  location: Location;
-};

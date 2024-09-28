@@ -1,6 +1,5 @@
 import { CityName } from '#src/shared/types/city.type.js';
-import { Offer, Property } from '#src/shared/types/offer.type.js';
-import { UserType } from '#src/shared/types/user.type.js';
+import { Offer, PropertyType, UserType } from '#src/shared/types/index.js';
 
 function stringToBoolean(value: string): boolean {
   return value === 'true';
@@ -46,7 +45,7 @@ export class OfferFactory {
       isPremium: stringToBoolean(isPremium),
       isFavorite: stringToBoolean(isFavorite),
       rating: Number(rating),
-      propertyType: propertyType as Property,
+      propertyType: propertyType as PropertyType,
       roomsCount: Number(roomsCount),
       guestsCount: Number(guestsCount),
       rentalPrice: Number(rentalPrice),

@@ -1,6 +1,6 @@
-import { CityName } from './city.type.js';
-import { Property } from './offer.type.js';
-import { UserType } from './user.type.js';
+import { CityName } from './city-name.enum.js';
+import { PropertyType } from './property-type.enum.js';
+import { UserType } from './user-type.enum.js';
 
 export type TSVOffer = {
   title: string;
@@ -13,7 +13,7 @@ export type TSVOffer = {
   isPremium: boolean;
   isFavorite: boolean;
   rating: number;
-  propertyType: Property;
+  propertyType: PropertyType;
   roomsCount: number;
   guestsCount: number;
   rentalPrice: number;

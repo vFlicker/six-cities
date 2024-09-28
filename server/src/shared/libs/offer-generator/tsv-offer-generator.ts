@@ -5,12 +5,14 @@ import {
   getRandomBoolean,
   getRandomItem,
   getRandomItems,
-} from '#src/shared/helpers/common.js';
-import { CityName } from '#src/shared/types/city.type.js';
-import { MockServerData } from '#src/shared/types/mock-server-data-type.js';
-import { Property } from '#src/shared/types/offer.type.js';
-import { TSVOffer } from '#src/shared/types/tsv-offer.js';
-import { UserType } from '#src/shared/types/user.type.js';
+} from '#src/shared/helpers/index.js';
+import {
+  CityName,
+  MockServerData,
+  PropertyType,
+  TSVOffer,
+  UserType,
+} from '#src/shared/types/index.js';
 
 import {
   GUEST_COUNT_RANGE,
@@ -46,7 +48,7 @@ export class TSVOfferGenerator implements TSVOfferGenerator {
         RATING_RANGE.MAX,
         RATING_RANGE.DECIMALS,
       ),
-      propertyType: getRandomItem(Object.values(Property)),
+      propertyType: getRandomItem(Object.values(PropertyType)),
       roomsCount: generateRandomValue(
         ROOM_COUNT_RANGE.MIN,
         ROOM_COUNT_RANGE.MAX,
