@@ -1,4 +1,4 @@
-import { CityName } from '#src/shared/types/city.type.js';
+import { CityName } from '#src/shared/types/city-name.enum.js';
 import { Offer, PropertyType, UserType } from '#src/shared/types/index.js';
 
 function stringToBoolean(value: string): boolean {
@@ -10,8 +10,6 @@ export class OfferFactory {
     title,
     description,
     cityName,
-    cityLocationLatitude,
-    cityLocationLongitude,
     previewImage,
     offerImages,
     isPremium,
@@ -33,13 +31,7 @@ export class OfferFactory {
     return {
       title,
       description,
-      city: {
-        name: cityName as CityName,
-        location: {
-          latitude: Number(cityLocationLatitude),
-          longitude: Number(cityLocationLongitude),
-        },
-      },
+      city: cityName as CityName,
       previewImage,
       offerImages: offerImages.split(','),
       isPremium: stringToBoolean(isPremium),
@@ -60,7 +52,7 @@ export class OfferFactory {
         latitude: Number(offerLocationLatitude),
         longitude: Number(offerLocationLongitude),
       },
-      publishedAt: new Date(publishedAt),
+      postDate: new Date(publishedAt),
     };
   }
 }

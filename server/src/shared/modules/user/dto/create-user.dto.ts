@@ -1,6 +1,6 @@
 import { IsEmail, IsEnum, IsOptional, IsString, Length } from 'class-validator';
 
-import { UserType } from '#src/shared/types/user.type.js';
+import { UserType } from '#src/shared/types/user-type.enum.js';
 
 import { CreateUserMessages } from './create-user.messages.js';
 
