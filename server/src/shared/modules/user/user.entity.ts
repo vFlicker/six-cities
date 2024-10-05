@@ -20,14 +20,12 @@ export type UserModelType = types.ModelType<UserEntity>;
 })
 export class UserEntity extends defaultClasses.TimeStamps implements User {
   @prop({
-    type: String,
     required: true,
-    minlength: [2, 'Min length for name is 2'],
+    minlength: [3, 'Min length for name is 3'],
   })
   public name!: string;
 
   @prop({
-    type: String,
     required: true,
     unique: true,
     match: [/^([\w-\\.]+@([\w-]+\.)+[\w-]{2,4})?$/, 'Email is incorrect'],
@@ -35,7 +33,7 @@ export class UserEntity extends defaultClasses.TimeStamps implements User {
   public email!: string;
 
   @prop({
-    type: String,
+    type: () => String,
     required: true,
     enum: Object.values(UserType),
     default: UserType.Regular,
@@ -43,13 +41,12 @@ export class UserEntity extends defaultClasses.TimeStamps implements User {
   public type!: UserType;
 
   @prop({
-    type: String,
+    required: true,
     default: '',
   })
   public avatarUrl!: string;
 
   @prop({
-    type: String,
     required: true,
     minlength: [8, 'Min length for password is 8'],
   })

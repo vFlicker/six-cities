@@ -1,0 +1,6 @@
+# Offers
+
+## Get all offers
+GET http://localhost:8000/api/offers HTTP/1.1
+
+###
