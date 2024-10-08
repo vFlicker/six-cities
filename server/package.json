@@ -23,8 +23,8 @@
     "lint": "eslint src/ --ext .ts --fix",
     "docker:start": "docker compose --file ./docker-compose.dev.yml --env-file .env --project-name \"six-cities\" up",
     "mock:server": "json-server --watch mocks/mock-server-data.json --port 3123 --host 127.0.0.1",
-    "mock:generate": "./dist/main.cli.js --generate 2 ./mocks/mock-data.tsv http://localhost:3123/api",
-    "mock:import": "./dist/main.cli.js --import ./mocks/mock-data.tsv"
+    "mock:generate": "node ./dist/main.cli.js --generate 2 ./mocks/mock-data.tsv http://localhost:3123/api",
+    "mock:import": "node ./dist/main.cli.js --import ./mocks/mock-data.tsv db_username db_password db_host db_port db_name salt"
   },
   "dependencies": {
     "@typegoose/typegoose": "12.7.0",

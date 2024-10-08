@@ -1,26 +1,40 @@
 import { getErrorMessage } from '#src/shared/helpers/index.js';
 import { getMongoURI } from '#src/shared/helpers/index.js';
 import {
+  TSVData,
+  TSVDataGenerator,
+} from '#src/shared/libs/data-generator/index.js';
+import {
   DatabaseClient,
   MongoDatabaseClient,
 } from '#src/shared/libs/database-client/index.js';
 import { TSVFileReader } from '#src/shared/libs/file-reader/index.js';
 import { ConsoleLogger, Logger } from '#src/shared/libs/logger/index.js';
 import {
+  CreateOfferDto,
   DefaultOfferService,
   OfferModel,
   OfferService,
 } from '#src/shared/modules/offer/index.js';
 import {
+  CreateUserDto,
   DefaultUserService,
   UserModel,
   UserService,
 } from '#src/shared/modules/user/index.js';
-import { Offer } from '#src/shared/types/index.js';
 
-import { OfferFactory } from '../offer-factory.js';
 import { DEFAULT_USER_PASSWORD } from './command.constant.js';
 import { Command } from './command.interface.js';
+
+type ImportParameters = {
+  filename: string;
+  username: string;
+  password: string;
+  host: string;
+  dbPort: string;
+  dbName: string;
+  salt: string;
+};
 
 export class ImportCommand implements Command {
   private logger: Logger;
@@ -30,13 +44,13 @@ export class ImportCommand implements Command {
   private salt: string = '';
 
   constructor() {
-    this.onImportedLine = this.onImportedLine.bind(this);
-    this.onCompletedImport = this.onCompletedImport.bind(this);
-
     this.logger = new ConsoleLogger();
     this.userService = new DefaultUserService(this.logger, UserModel);
     this.offerService = new DefaultOfferService(this.logger, OfferModel);
     this.databaseClient = new MongoDatabaseClient(this.logger);
+
+    this.onImportedLine = this.onImportedLine.bind(this);
+    this.onCompletedImport = this.onCompletedImport.bind(this);
   }
 
   public getName(): string {
@@ -44,22 +58,48 @@ export class ImportCommand implements Command {
   }
 
   public async execute(...parameters: string[]): Promise<void> {
-    const [_, username, password, host, dbPort, dbName, salt] = parameters;
-    const uri = getMongoURI(username, password, host, dbPort, dbName);
+    const importParams = this.parseParameters(parameters);
+    const uri = this.buildMongoURI(importParams);
+
     await this.databaseClient.connect(uri);
+
+    const { filename, salt } = importParams;
+    const fileReader = new TSVFileReader(filename.trim());
     this.salt = salt;
 
-    const [filename] = parameters;
-    const fileReader = new TSVFileReader(filename.trim());
+    this.registerFileReaderEvents(fileReader);
+    this.importData(fileReader);
+  }
 
+  private parseParameters(parameters: string[]): ImportParameters {
+    const [filename, username, password, host, dbPort, dbName, salt] =
+      parameters;
+    return { filename, username, password, host, dbPort, dbName, salt };
+  }
+
+  private buildMongoURI({
+    username,
+    password,
+    host,
+    dbPort,
+    dbName,
+  }: ImportParameters): string {
+    return getMongoURI(username, password, host, dbPort, dbName);
+  }
+
+  private registerFileReaderEvents(fileReader: TSVFileReader): void {
     fileReader.on('line', this.onImportedLine);
     fileReader.on('end', this.onCompletedImport);
+  }
 
+  private async importData(fileReader: TSVFileReader): Promise<void> {
     try {
       await fileReader.read();
-    } catch (err) {
-      console.error(`Can't import data from file: ${filename}`);
-      console.error(getErrorMessage(err));
+    } catch (err: unknown) {
+      const error = err as Error;
+      const fileName = fileReader.filename;
+      this.logger.error(`Can't import data from file: ${fileName}`, error);
+      this.logger.error(getErrorMessage(error), error);
     }
   }
 
@@ -67,24 +107,54 @@ export class ImportCommand implements Command {
     line: string,
     resolve: () => void,
   ): Promise<void> {
-    const tsvData = TSVFileReader.toArray(line);
-    const offer = OfferFactory.create(tsvData);
-    console.log({ offer });
-
-    await this.saveOffer(offer);
+    const tsvData = TSVDataGenerator.parse(line);
+    await this.saveData(tsvData);
     resolve();
   }
 
-  private async saveOffer(offer: Offer) {
-    const userDto = { ...offer.host, password: DEFAULT_USER_PASSWORD };
+  private async saveData(tsvData: TSVData): Promise<void> {
+    const userDto = this.buildUserDto(tsvData);
     const user = await this.userService.findOrCreate(userDto, this.salt);
-    const offerDto = { ...offer, host: user._id };
-    const hostId = user._id as never as string;
-    await this.offerService.create({ ...offerDto, hostId: hostId });
+
+    const offerDto = this.buildOfferDto(tsvData, user.id);
+    await this.offerService.create(offerDto);
+  }
+
+  private buildUserDto(tsvData: TSVData): CreateUserDto {
+    return {
+      avatarUrl: tsvData.hostAvatarUrl,
+      email: tsvData.hostEmail,
+      name: tsvData.hostName,
+      type: tsvData.hostType,
+      password: DEFAULT_USER_PASSWORD,
+    };
+  }
+
+  private buildOfferDto(tsvData: TSVData, hostId: string): CreateOfferDto {
+    return {
+      title: tsvData.title,
+      description: tsvData.description,
+      city: tsvData.cityName,
+      previewImage: tsvData.previewImage,
+      offerImages: tsvData.offerImages,
+      isPremium: tsvData.isPremium,
+      isFavorite: tsvData.isFavorite,
+      rating: tsvData.rating,
+      propertyType: tsvData.propertyType,
+      roomsCount: tsvData.roomsCount,
+      guestsCount: tsvData.guestsCount,
+      rentalPrice: tsvData.rentalPrice,
+      amenities: tsvData.amenities,
+      hostId,
+      location: {
+        latitude: tsvData.locationLatitude,
+        longitude: tsvData.locationLongitude,
+      },
+    };
   }
 
   private async onCompletedImport(importedRowCount: number): Promise<void> {
-    console.info(`Imported ${importedRowCount} offers`);
+    console.info(`Imported ${importedRowCount} rows`);
     await this.databaseClient.disconnect();
   }
 }

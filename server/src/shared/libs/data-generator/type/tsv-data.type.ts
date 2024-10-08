@@ -1,8 +1,8 @@
-import { CityName } from './city-name.enum.js';
-import { PropertyType } from './property-type.enum.js';
-import { UserType } from './user-type.enum.js';
+import { CityName } from '../../../types/city-name.enum.js';
+import { PropertyType } from '../../../types/property-type.enum.js';
+import { UserType } from '../../../types/user-type.enum.js';
 
-export type TSVOffer = {
+export type TSVData = {
   title: string;
   description: string;
   cityName: CityName;
@@ -20,6 +20,6 @@ export type TSVOffer = {
   hostEmail: string;
   hostAvatarUrl: string;
   hostType: UserType;
-  offerLocationLatitude: number;
-  offerLocationLongitude: number;
+  locationLatitude: number;
+  locationLongitude: number;
 };

@@ -1,8 +1,8 @@
 import got from 'got';
 
 import { getErrorMessage } from '#src/shared/helpers/index.js';
+import { TSVDataGenerator } from '#src/shared/libs/data-generator/index.js';
 import { TSVFileWriter } from '#src/shared/libs/file-writer/index.js';
-import { TSVOfferGenerator } from '#src/shared/libs/offer-generator/index.js';
 import { MockServerData } from '#src/shared/types/mock-server-data-type.js';
 
 import { Command } from './command.interface.js';
@@ -16,14 +16,14 @@ export class GenerateCommand implements Command {
 
   public async execute(...parameters: string[]): Promise<void> {
     const [count, filepath, url] = parameters;
-    const offerCount = Number.parseInt(count, 10);
+    const parsedCount = Number.parseInt(count, 10);
 
     try {
       await this.load(url);
-      await this.write(filepath, offerCount);
-      console.info(`Generated ${offerCount} offers`);
+      await this.write(filepath, parsedCount);
+      console.info(`Generated ${parsedCount} data rows`);
     } catch (err: unknown) {
-      console.error("Can't generate offers");
+      console.error("Can't generate data");
       console.error(getErrorMessage(err));
     }
   }
@@ -36,12 +36,13 @@ export class GenerateCommand implements Command {
     }
   }
 
-  private async write(filepath: string, offersCount: number): Promise<void> {
+  private async write(filepath: string, count: number): Promise<void> {
     const tsvFileWriter = new TSVFileWriter(filepath);
+    const tsvDataGenerator = new TSVDataGenerator(this.initialDate!);
 
-    for (let i = 0; i < offersCount; i++) {
-      const offer = TSVOfferGenerator.generate(this.initialDate!);
-      await tsvFileWriter.write(offer);
+    for (let i = 0; i < count; i++) {
+      const tsvRow = tsvDataGenerator.generate();
+      await tsvFileWriter.write(tsvRow);
     }
   }
 }

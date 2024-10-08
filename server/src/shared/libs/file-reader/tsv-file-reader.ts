@@ -6,12 +6,8 @@ import { FileReader } from './file-reader.interface.js';
 const CHUNK_SIZE_16KB = 16384;
 
 export class TSVFileReader extends EventEmitter implements FileReader {
-  constructor(private readonly filename: string) {
+  constructor(public readonly filename: string) {
     super();
-  }
-
-  static toArray(line: string): string[] {
-    return line.replace('\n', '').split('\t');
   }
 
   public async read(): Promise<void> {
