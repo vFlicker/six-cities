@@ -6,8 +6,6 @@ export type TSVOffer = {
   title: string;
   description: string;
   cityName: CityName;
-  cityLocationLatitude: number;
-  cityLocationLongitude: number;
   previewImage: string;
   offerImages: string[];
   isPremium: boolean;
@@ -24,5 +22,4 @@ export type TSVOffer = {
   hostType: UserType;
   offerLocationLatitude: number;
   offerLocationLongitude: number;
-  publishedAt: string;
 };

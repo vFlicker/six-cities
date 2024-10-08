@@ -27,8 +27,8 @@ export const GUEST_COUNT_RANGE = {
 };
 
 export const RENTAL_PRICE_RANGE = {
-  MIN: 100,
-  MAX: 5000,
+  MIN: 10,
+  MAX: 1_000_000,
 };
 
 export const WEEK_DAYS = {

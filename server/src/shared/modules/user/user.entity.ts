@@ -21,8 +21,8 @@ export type UserModelType = types.ModelType<UserEntity>;
 export class UserEntity extends defaultClasses.TimeStamps {
   @prop({
     required: true,
-    minlength: [4, 'Min length for name is 3'],
-    maxlength: [16, 'Max length for name is 15'],
+    minlength: [2, 'Min length for name is 2'],
+    maxlength: [16, 'Max length for name is 16'],
   })
   public name!: string;
 
@@ -51,7 +51,7 @@ export class UserEntity extends defaultClasses.TimeStamps {
   @prop({
     required: true,
     minlength: [8, 'Min length for password is 8'],
-    maxlength: [64, 'Max length for password is 32'],
+    maxlength: [64, 'Max length for password is 64'],
   })
   public _password!: string;
 

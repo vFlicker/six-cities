@@ -26,7 +26,6 @@ export class OfferFactory {
     hostType,
     offerLocationLatitude,
     offerLocationLongitude,
-    publishedAt,
   ]: string[]): Offer {
     return {
       title,
@@ -52,7 +51,6 @@ export class OfferFactory {
         latitude: Number(offerLocationLatitude),
         longitude: Number(offerLocationLongitude),
       },
-      postDate: new Date(publishedAt),
     };
   }
 }

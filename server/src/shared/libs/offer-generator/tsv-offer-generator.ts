@@ -1,5 +1,3 @@
-import dayjs from 'dayjs';
-
 import {
   generateRandomValue,
   getRandomBoolean,
@@ -19,8 +17,8 @@ import {
   LATITUDE_RANGE,
   LONGITUDE_RANGE,
   RATING_RANGE,
+  RENTAL_PRICE_RANGE,
   ROOM_COUNT_RANGE,
-  WEEK_DAYS,
 } from './offer-conditions.js';
 
 export class TSVOfferGenerator implements TSVOfferGenerator {
@@ -29,16 +27,6 @@ export class TSVOfferGenerator implements TSVOfferGenerator {
       title: getRandomItem(mockData.titles),
       description: getRandomItem(mockData.descriptions),
       cityName: getRandomItem(Object.values(CityName)),
-      cityLocationLatitude: generateRandomValue(
-        LATITUDE_RANGE.MIN,
-        LATITUDE_RANGE.MAX,
-        LATITUDE_RANGE.DECIMALS,
-      ),
-      cityLocationLongitude: generateRandomValue(
-        LONGITUDE_RANGE.MIN,
-        LONGITUDE_RANGE.MAX,
-        LONGITUDE_RANGE.DECIMALS,
-      ),
       previewImage: getRandomItem(mockData.offerImages),
       offerImages: getRandomItems(mockData.offerImages),
       isPremium: getRandomBoolean(),
@@ -57,7 +45,10 @@ export class TSVOfferGenerator implements TSVOfferGenerator {
         GUEST_COUNT_RANGE.MIN,
         GUEST_COUNT_RANGE.MAX,
       ),
-      rentalPrice: generateRandomValue(RATING_RANGE.MIN, RATING_RANGE.MAX),
+      rentalPrice: generateRandomValue(
+        RENTAL_PRICE_RANGE.MIN,
+        RENTAL_PRICE_RANGE.MAX,
+      ),
       amenities: getRandomItems(mockData.amenities),
       hostName: getRandomItem(mockData.hostNames),
       hostEmail: getRandomItem(mockData.hostEmails),
@@ -73,9 +64,6 @@ export class TSVOfferGenerator implements TSVOfferGenerator {
         LONGITUDE_RANGE.MAX,
         LONGITUDE_RANGE.DECIMALS,
       ),
-      publishedAt: dayjs()
-        .subtract(generateRandomValue(WEEK_DAYS.FIRST, WEEK_DAYS.LAST), 'day')
-        .toISOString(),
     };
 
     return Object.values(tsvOffer).join('\t');

@@ -109,7 +109,7 @@ export class OfferEntity extends defaultClasses.TimeStamps {
 
   @prop({
     required: true,
-    min: [10, 'Min rental price is 1'],
+    min: [10, 'Min rental price is 10'],
     max: [1_000_000, 'Max rental price is 1000000'],
   })
   public rentalPrice!: number;
