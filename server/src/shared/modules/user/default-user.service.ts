@@ -21,12 +21,11 @@ export class DefaultUserService implements UserService {
     const createdUser = await this.userModel.create(user);
     this.logger.info(`User with email ${dto.email} was created`);
 
-    return createdUser as UserDocument;
+    return createdUser;
   }
 
   public async findByEmail(email: string): Promise<UserDocument | null> {
-    // TODO: should we use exec() here?
-    return this.userModel.findOne({ email });
+    return this.userModel.findOne({ email }).exec();
   }
 
   public async findOrCreate(

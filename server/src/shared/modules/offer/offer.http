@@ -1,5 +1,33 @@
 # Offers
 
+## Create an offer
+
+POST http://localhost:8000/api/offers HTTP/1.1
+Content-Type: application/json
+
+{
+  "title": "Offer title",
+  "description": "Offer description",
+  "city": "Paris",
+  "previewImage": "https://www.google.com",
+  "offerImages": ["https://www.google.com"],
+  "isPremium": true,
+  "isFavorite": true,
+  "rating": 5,
+  "propertyType": "apartment",
+  "roomsCount": 2,
+  "guestsCount": 2,
+  "rentalPrice": 100,
+  "amenities": ["wifi"],
+  "hostId": "67053fd2332cf4f0939a4d9f",
+  "location": {
+    "latitude": 50.4501,
+    "longitude": 30.5234
+  }
+}
+
+###
+
 ## Get all offers
 GET http://localhost:8000/api/offers HTTP/1.1
 

@@ -36,31 +36,29 @@ export class OfferEntity extends defaultClasses.TimeStamps {
   @prop({
     trim: true,
     required: true,
-    minlength: [3, 'Min length for title is 3'],
+    minlength: [8, 'Min length for title is 8'],
+    maxlength: [128, 'Max length for title is 128'],
   })
   public title!: string;
 
   @prop({
     trim: true,
     required: true,
-    minlength: [20, 'Min length for description is 20'],
+    minlength: [16, 'Min length for description is 16'],
+    maxlength: [1024, 'Max length for description is 1024'],
   })
   public description!: string;
 
   @prop({
-    required: true,
-  })
-  public postDate!: Date;
-
-  @prop({
+    type: () => String,
     enum: CityName,
     required: true,
-    minlength: [2, 'Min length for city is 2'],
   })
   public city!: CityName;
 
   @prop({
     required: true,
+    maxlength: [255, 'Max length for preview image is 255'],
   })
   public previewImage!: string;
 
@@ -83,12 +81,13 @@ export class OfferEntity extends defaultClasses.TimeStamps {
 
   @prop({
     required: true,
-    min: 1,
-    max: 5,
+    min: [1, 'Min rating is 1'],
+    max: [5, 'Max rating is 5'],
   })
   public rating!: number;
 
   @prop({
+    type: () => String,
     enum: PropertyType,
     required: true,
   })
@@ -96,21 +95,22 @@ export class OfferEntity extends defaultClasses.TimeStamps {
 
   @prop({
     required: true,
-    min: 1,
-    max: 5,
+    min: [1, 'Min rooms count is 1'],
+    max: [5, 'Max rooms count is 5'],
   })
   public roomsCount!: number;
 
   @prop({
     required: true,
-    min: 1,
-    max: 10,
+    min: [1, 'Min guests count is 1'],
+    max: [10, 'Max guests count is 10'],
   })
   public guestsCount!: number;
 
   @prop({
     required: true,
-    min: 10,
+    min: [10, 'Min rental price is 1'],
+    max: [1_000_000, 'Max rental price is 1000000'],
   })
   public rentalPrice!: number;
 
