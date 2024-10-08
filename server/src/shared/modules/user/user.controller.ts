@@ -1,6 +1,7 @@
 import { StatusCodes } from 'http-status-codes';
 import { inject, injectable } from 'inversify';
 
+import { Component } from '#src/shared/enums/index.js';
 import { fillDTO } from '#src/shared/helpers/index.js';
 import { Config, RestSchema } from '#src/shared/libs/config/index.js';
 import { Logger } from '#src/shared/libs/logger/index.js';
@@ -10,7 +11,6 @@ import {
   HttpMethod,
   ValidateDtoMiddleware,
 } from '#src/shared/libs/rest/index.js';
-import { Component } from '#src/shared/types/index.js';
 
 import { CreateUserDto } from './dto/create-user.dto.js';
 import { UserRdo } from './rdo/user.rdo.js';

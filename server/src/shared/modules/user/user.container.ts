@@ -1,7 +1,7 @@
 import { Container } from 'inversify';
 
+import { Component } from '#src/shared/enums/index.js';
 import { Controller } from '#src/shared/libs/rest/index.js';
-import { Component } from '#src/shared/types/index.js';
 
 import { DefaultUserService } from './default-user.service.js';
 import { UserController } from './user.controller.js';

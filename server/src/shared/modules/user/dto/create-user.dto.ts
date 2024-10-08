@@ -7,7 +7,7 @@ import {
   MaxLength,
 } from 'class-validator';
 
-import { UserType } from '#src/shared/types/user-type.enum.js';
+import { UserType } from '#src/shared/enums/index.js';
 
 import { CreateUserMessages } from './create-user.messages.js';
 

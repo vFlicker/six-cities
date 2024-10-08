@@ -6,9 +6,9 @@ import {
   createRestApplicationContainer,
   RestApplication,
 } from './rest/index.js';
+import { Component } from './shared/enums/index.js';
 import { createOfferContainer } from './shared/modules/offer/index.js';
 import { createUserContainer } from './shared/modules/user/index.js';
-import { Component } from './shared/types/index.js';
 
 async function bootstrap(): Promise<void> {
   const container = Container.merge(

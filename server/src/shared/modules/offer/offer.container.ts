@@ -1,7 +1,7 @@
 import { Container } from 'inversify';
 
+import { Component } from '#src/shared/enums/index.js';
 import { Controller } from '#src/shared/libs/rest/index.js';
-import { Component } from '#src/shared/types/index.js';
 
 import { DefaultOfferService } from './default-offer.service.js';
 import { OfferController } from './offer.controller.js';

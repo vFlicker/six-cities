@@ -3,9 +3,9 @@ import { setTimeout } from 'node:timers/promises';
 import { inject, injectable } from 'inversify';
 import * as Mongoose from 'mongoose';
 
-import { Component } from '#src/shared/types/index.js';
+import { Component } from '#src/shared/enums/index.js';
+import { Logger } from '#src/shared/libs/logger/index.js';
 
-import { Logger } from '../logger/index.js';
 import { DatabaseClient } from './database-client.interface.js';
 
 const RETRY_COUNT = 5;

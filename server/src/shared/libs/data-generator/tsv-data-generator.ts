@@ -1,15 +1,11 @@
+import { CityName, PropertyType, UserType } from '#src/shared/enums/index.js';
 import {
   generateRandomValue,
   getRandomBoolean,
   getRandomItem,
   getRandomItems,
 } from '#src/shared/helpers/index.js';
-import {
-  CityName,
-  MockServerData,
-  PropertyType,
-  UserType,
-} from '#src/shared/types/index.js';
+import { MockServerData } from '#src/shared/types/index.js';
 
 import { DataGenerator } from './data-generator.interface.js';
 import { GeneratorConditions } from './generator.conditions.js';

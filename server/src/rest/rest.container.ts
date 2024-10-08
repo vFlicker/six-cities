@@ -1,5 +1,6 @@
 import { Container } from 'inversify';
 
+import { Component } from '#src/shared/enums/index.js';
 import {
   Config,
   RestConfig,
@@ -14,7 +15,6 @@ import {
   AppExceptionFilter,
   ExceptionFilter,
 } from '#src/shared/libs/rest/index.js';
-import { Component } from '#src/shared/types/index.js';
 
 import { RestApplication } from './rest.application.js';
 

@@ -7,8 +7,10 @@ import {
   types,
 } from '@typegoose/typegoose';
 
+import { UserType } from '#src/shared/enums/user-type.enum.js';
 import { createSHA256 } from '#src/shared/helpers/hash.js';
-import { User, UserType } from '#src/shared/types/index.js';
+
+import { User } from './type/user.type.js';
 
 export type UserDocument = DocumentType<UserEntity>;
 export type UserModelType = types.ModelType<UserEntity>;

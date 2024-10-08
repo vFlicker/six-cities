@@ -1,9 +1,9 @@
 import { config } from 'dotenv';
 import { inject, injectable } from 'inversify';
 
-import { Component } from '#src/shared/types/index.js';
+import { Component } from '#src/shared/enums/index.js';
+import { Logger } from '#src/shared/libs/logger/index.js';
 
-import { Logger } from '../logger/index.js';
 import { Config } from './config.interface.js';
 import { configRestSchema, RestSchema } from './rest.schema.js';
 

@@ -1,6 +1,6 @@
-import { CityName } from '../../../types/city-name.enum.js';
-import { PropertyType } from '../../../types/property-type.enum.js';
-import { UserType } from '../../../types/user-type.enum.js';
+import { CityName } from '#src/shared/enums/city-name.enum.js';
+import { PropertyType } from '#src/shared/enums/property-type.enum.js';
+import { UserType } from '#src/shared/enums/user-type.enum.js';
 
 export type TSVData = {
   title: string;

@@ -3,8 +3,8 @@ import { StatusCodes } from 'http-status-codes';
 import { inject, injectable } from 'inversify';
 import { Logger } from 'pino';
 
+import { Component } from '#src/shared/enums/index.js';
 import { createErrorObject } from '#src/shared/helpers/common.js';
-import { Component } from '#src/shared/types/component.enum.js';
 
 import { HttpError } from '../errors/http-error.js';
 import { ExceptionFilter } from './exception-filter.interface.js';

@@ -3,7 +3,8 @@ import asyncHandler from 'express-async-handler';
 import { StatusCodes } from 'http-status-codes';
 import { injectable } from 'inversify';
 
-import { Logger } from '../../logger/index.js';
+import { Logger } from '#src/shared/libs/logger/index.js';
+
 import { Route } from '../route.interface.js';
 import { Controller } from './controller.interface.js';
 

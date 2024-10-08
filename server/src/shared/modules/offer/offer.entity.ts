@@ -8,9 +8,8 @@ import {
   types,
 } from '@typegoose/typegoose';
 
-import { CityName, PropertyType } from '#src/shared/types/index.js';
-
-import { UserEntity } from '../user/user.entity.js';
+import { CityName, PropertyType } from '#src/shared/enums/index.js';
+import { UserEntity } from '#src/shared/modules/user/user.entity.js';
 
 export type OfferDocument = DocumentType<OfferEntity>;
 export type OfferModelType = types.ModelType<OfferEntity>;

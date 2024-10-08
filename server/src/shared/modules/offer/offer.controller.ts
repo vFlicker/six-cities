@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { inject, injectable } from 'inversify';
 
+import { Component } from '#src/shared/enums/index.js';
 import { fillDTO } from '#src/shared/helpers/common.js';
 import { Logger } from '#src/shared/libs/logger/index.js';
 import {
@@ -8,7 +9,6 @@ import {
   HttpMethod,
   ValidateDtoMiddleware,
 } from '#src/shared/libs/rest/index.js';
-import { Component } from '#src/shared/types/index.js';
 
 import { CreateOfferDto } from './dto/create-offer.dto.js';
 import { OfferService } from './offer-service.interface.js';

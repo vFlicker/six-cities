@@ -19,7 +19,7 @@ Content-Type: application/json
   "guestsCount": 2,
   "rentalPrice": 100,
   "amenities": ["wifi"],
-  "hostId": "67053fd2332cf4f0939a4d9f",
+  "hostId": "670590ed0738b400f26c4442",
   "location": {
     "latitude": 50.4501,
     "longitude": 30.5234

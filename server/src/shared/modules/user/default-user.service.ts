@@ -1,7 +1,7 @@
 import { inject, injectable } from 'inversify';
 
+import { Component } from '#src/shared/enums/index.js';
 import { Logger } from '#src/shared/libs/logger/index.js';
-import { Component } from '#src/shared/types/index.js';
 
 import { CreateUserDto } from './dto/create-user.dto.js';
 import { UserDocument, UserEntity, UserModelType } from './user.entity.js';

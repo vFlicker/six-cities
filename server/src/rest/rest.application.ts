@@ -1,12 +1,12 @@
 import express, { Express } from 'express';
 import { inject, injectable } from 'inversify';
 
+import { Component } from '#src/shared/enums/index.js';
 import { getMongoURI } from '#src/shared/helpers/index.js';
 import { Config, RestSchema } from '#src/shared/libs/config/index.js';
 import { DatabaseClient } from '#src/shared/libs/database-client/index.js';
 import { Logger } from '#src/shared/libs/logger/index.js';
 import { Controller, ExceptionFilter } from '#src/shared/libs/rest/index.js';
-import { Component } from '#src/shared/types/index.js';
 
 @injectable()
 export class RestApplication {

@@ -14,8 +14,7 @@ import {
   ValidateNested,
 } from 'class-validator';
 
-import { CityName } from '#src/shared/types/city-name.enum.js';
-import { PropertyType } from '#src/shared/types/property-type.enum.js';
+import { CityName, PropertyType } from '#src/shared/enums/index.js';
 
 import { CreateOfferMessages } from './create-offer.messages.js';
 import { LocationDto } from './location.dto.js';

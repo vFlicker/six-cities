@@ -1,7 +1,7 @@
 import { inject, injectable } from 'inversify';
 
+import { Component } from '#src/shared/enums/index.js';
 import { Logger } from '#src/shared/libs/logger/index.js';
-import { Component } from '#src/shared/types/index.js';
 
 import { CreateOfferDto } from './dto/create-offer.dto.js';
 import { OfferDocument, OfferModelType } from './offer.entity.js';
