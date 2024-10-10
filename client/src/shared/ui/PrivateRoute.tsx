@@ -1,6 +1,6 @@
 import { Navigate, Outlet } from 'react-router-dom';
 
-import { AppRoute } from '~/constants';
+import { AppRoute } from '~/shared/router';
 
 type PrivateRouteProps = {
   isAllowed: boolean;

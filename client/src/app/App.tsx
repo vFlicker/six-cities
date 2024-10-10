@@ -9,11 +9,11 @@ import { globalRadiuses } from '~/shared/tokens/radiuses';
 import { globalResets } from '~/shared/tokens/resets';
 import { globalTextShadows } from '~/shared/tokens/textShadow';
 
-import { AppRoute } from '../constants';
 import { LoginPage } from '../pages/auth/ui/LoginPage';
 import { FavoritesPage } from '../pages/favorite/ui/FavoritesPage';
 import { HomePage } from '../pages/home/ui/HomePage';
 import { OfferPage } from '../pages/offer/ui/OfferPage';
+import { AppRoute } from '../shared/router';
 import { PrivateRoute } from '../shared/ui/PrivateRoute';
 
 function App(): JSX.Element {
