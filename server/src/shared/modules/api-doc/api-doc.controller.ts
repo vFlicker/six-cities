@@ -8,6 +8,7 @@ import { BaseController, HttpMethod } from '#src/shared/libs/rest/index.js';
 
 import { ApiDocService } from './api-doc-service.interface.js';
 import { GetApiDocsResponse } from './type/get-api-docs.response.js';
+import { GetApiDocsConfigResponse } from './type/get-api-docs-config.response.js';
 
 export class DocController extends BaseController {
   constructor(
@@ -21,12 +22,23 @@ export class DocController extends BaseController {
     this.addRoute({
       path: '/',
       method: HttpMethod.Get,
-      handler: this.showApiDocs,
+      handler: this.getApiDocs,
+    });
+
+    this.addRoute({
+      path: '/config',
+      method: HttpMethod.Get,
+      handler: this.getApiDocsConfig,
     });
   }
 
-  public showApiDocs(_req: Request, res: GetApiDocsResponse): void {
+  public getApiDocs(_req: Request, res: GetApiDocsResponse): void {
     const swaggerDocument = this.docService.getSwaggerDocument();
     this.sendHtml(res, swaggerUi.generateHTML(swaggerDocument));
+  }
+
+  public getApiDocsConfig(_req: Request, res: GetApiDocsConfigResponse): void {
+    const swaggerDocument = this.docService.getSwaggerDocument();
+    this.ok(res, swaggerDocument);
   }
 }
