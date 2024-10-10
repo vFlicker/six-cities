@@ -1,3 +1,4 @@
+import cors from 'cors';
 import express, { Express } from 'express';
 import { inject, injectable } from 'inversify';
 import swaggerUi from 'swagger-ui-express';
@@ -68,6 +69,7 @@ export class RestApplication {
 
   private async initMiddlewares(): Promise<void> {
     this.server.use(express.json());
+    this.server.use(cors());
     this.server.use('/api-docs', swaggerUi.serve);
   }
 
