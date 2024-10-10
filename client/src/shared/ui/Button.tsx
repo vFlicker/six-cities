@@ -2,8 +2,8 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 
-import { Color } from '~/shared/tokens/colors';
-import { Radius } from '~/shared/tokens/radiuses';
+import { Color } from '~/shared/theme/colors';
+import { Radius } from '~/shared/theme/radiuses';
 
 import { BaseButton } from './BaseButton';
 

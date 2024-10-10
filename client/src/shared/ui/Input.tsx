@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
-import { Color } from '~/shared/tokens/colors';
-import { Radius } from '~/shared/tokens/radiuses';
+import { Color } from '~/shared/theme/colors';
+import { Radius } from '~/shared/theme/radiuses';
 
 const StyledInput = styled.input`
   width: 100%;

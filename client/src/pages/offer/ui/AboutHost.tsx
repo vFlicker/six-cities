@@ -6,7 +6,7 @@ import {
   defaultAvatarImage,
   starImage,
 } from '~/shared/assets/images';
-import { Color } from '~/shared/tokens/colors';
+import { Color } from '~/shared/theme/colors';
 import { Typography, TypographyVariant } from '~/shared/ui/Typography';
 import { withAttrs } from '~/shared/ui/withAttrs';
 

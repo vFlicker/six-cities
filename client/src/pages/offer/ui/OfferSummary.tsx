@@ -2,8 +2,8 @@ import styled from '@emotion/styled';
 
 import { Container } from '~/shared/ui/Container';
 import { withAttrs } from '~/shared/ui/withAttrs';
-import { Color } from '~/shared/tokens/colors';
-import { IconName } from '~/shared/tokens/icons';
+import { Color } from '~/shared/theme/colors';
+import { IconName } from '~/shared/theme/icons';
 import { Icon, IconSize } from '~/shared/ui/Icon';
 import { Mark, MarkSize } from '~/shared/ui/Mark';
 import { Rating, RatingSize } from '~/shared/ui/Rating';

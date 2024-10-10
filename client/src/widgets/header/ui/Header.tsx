@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { IconName } from '~/shared/tokens/icons';
+import { IconName } from '~/shared/theme/icons';
 import { ContainerMixin } from '~/shared/ui/Container';
 import { Icon } from '~/shared/ui/Icon';
 import { Logo } from '~/shared/ui/Logo';

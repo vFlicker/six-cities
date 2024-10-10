@@ -6,7 +6,7 @@ import {
   backgroundNoPlacesImage,
   noResultsImage,
 } from '~/shared/assets/images';
-import { Color } from '~/shared/tokens/colors';
+import { Color } from '~/shared/theme/colors';
 import { ResultMessage } from '~/shared/ui/ResultsMessage';
 
 type NoAvailableOffersProps = {

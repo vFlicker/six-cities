@@ -1,13 +1,13 @@
 import { Global } from '@emotion/react';
 import { Route, Routes } from 'react-router-dom';
 
-import { globalColors } from '~/shared/tokens/colors';
-import { globalFonts } from '~/shared/tokens/fonts';
-import { SpriteWithIcons } from '~/shared/tokens/icons';
-import { globalNormalize } from '~/shared/tokens/normalize';
-import { globalRadiuses } from '~/shared/tokens/radiuses';
-import { globalResets } from '~/shared/tokens/resets';
-import { globalTextShadows } from '~/shared/tokens/textShadow';
+import { globalColors } from '~/shared/theme/colors';
+import { globalFonts } from '~/shared/theme/fonts';
+import { SpriteWithIcons } from '~/shared/theme/icons';
+import { globalNormalize } from '~/shared/theme/normalize';
+import { globalRadiuses } from '~/shared/theme/radiuses';
+import { globalResets } from '~/shared/theme/resets';
+import { globalTextShadows } from '~/shared/theme/textShadow';
 
 import { LoginPage } from '../pages/auth/ui/LoginPage';
 import { FavoritesPage } from '../pages/favorite/ui/FavoritesPage';

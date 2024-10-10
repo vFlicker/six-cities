@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { Color } from '~/shared/tokens/colors';
+import { Color } from '~/shared/theme/colors';
 
 import { Section } from './Section';
 

@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 import { Container } from '~/shared/ui/Container';
-import { Color } from '~/shared/tokens/colors';
+import { Color } from '~/shared/theme/colors';
 import { Logo } from '~/shared/ui/Logo';
 
 type FooterProps = {

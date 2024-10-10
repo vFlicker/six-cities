@@ -2,8 +2,8 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { PropsWithChildren } from 'react';
 
-import { Color } from '~/shared/tokens/colors';
-import { IconName } from '~/shared/tokens/icons';
+import { Color } from '~/shared/theme/colors';
+import { IconName } from '~/shared/theme/icons';
 
 type IconProps = PropsWithChildren<{
   className?: string;

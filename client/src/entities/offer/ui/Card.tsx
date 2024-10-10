@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import { withAttrs } from '~/shared/ui/withAttrs';
 import { apartmentImage1 } from '~/shared/assets/images';
-import { IconName } from '~/shared/tokens/icons';
+import { IconName } from '~/shared/theme/icons';
 import { Icon } from '~/shared/ui/Icon';
 import { Rating, RatingSize } from '~/shared/ui/Rating';
 import { Typography, TypographyVariant } from '~/shared/ui/Typography';

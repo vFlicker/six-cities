@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { Helmet } from 'react-helmet-async';
 
-import { Color } from '~/shared/tokens/colors';
+import { Color } from '~/shared/theme/colors';
 import { Container } from '~/shared/ui/Container';
 import { DefaultLayout } from '~/shared/ui/DefaultLayout';
 import { VisuallyHiddenMixin } from '~/shared/ui/VisuallyHiddenMixin';

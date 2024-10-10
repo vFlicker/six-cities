@@ -2,7 +2,7 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { PropsWithChildren } from 'react';
 
-import { Color } from '~/shared/tokens/colors';
+import { Color } from '~/shared/theme/colors';
 
 type TypographyProps = PropsWithChildren<{
   variant: TypographyVariant;

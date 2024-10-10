@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 
 import { Comment } from '~/entities/comment';
-import { Color } from '~/shared/tokens/colors';
-import { IconName } from '~/shared/tokens/icons';
+import { Color } from '~/shared/theme/colors';
+import { IconName } from '~/shared/theme/icons';
 import { Button } from '~/shared/ui/Button';
 import { FormRating } from '~/shared/ui/FormRating';
 import { Icon, IconSize } from '~/shared/ui/Icon';

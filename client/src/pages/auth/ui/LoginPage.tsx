@@ -5,7 +5,7 @@ import { Login } from '~/features/auth';
 import { ContainerMixin } from '~/shared/ui/Container';
 import { withAttrs } from '~/shared/ui/withAttrs';
 import { backgroundAmsterdamImage } from '~/shared/assets/images';
-import { Color } from '~/shared/tokens/colors';
+import { Color } from '~/shared/theme/colors';
 import { SlantedLink } from '~/shared/ui/SlantedButton';
 import { Header } from '~/widgets/header';
 
