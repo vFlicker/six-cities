@@ -9,12 +9,12 @@ import { globalRadiuses } from '~/shared/tokens/radiuses';
 import { globalResets } from '~/shared/tokens/resets';
 import { globalTextShadows } from '~/shared/tokens/textShadow';
 
-import { PrivateRoute } from '../components/PrivateRoute';
 import { AppRoute } from '../constants';
-import { FavoritesPage } from '../pages/FavoritesPage';
-import { LoginPage } from '../pages/LoginPage';
-import { MainPage } from '../pages/MainPage';
-import { OfferPage } from '../pages/OfferPage';
+import { LoginPage } from '../pages/auth/ui/LoginPage';
+import { FavoritesPage } from '../pages/favorite/ui/FavoritesPage';
+import { HomePage } from '../pages/home/ui/HomePage';
+import { OfferPage } from '../pages/offer/ui/OfferPage';
+import { PrivateRoute } from '../shared/ui/PrivateRoute';
 
 function App(): JSX.Element {
   return (
@@ -27,7 +27,7 @@ function App(): JSX.Element {
       <Global styles={globalTextShadows} />
 
       <Routes>
-        <Route index path={AppRoute.Root} element={<MainPage />} />
+        <Route index path={AppRoute.Root} element={<HomePage />} />
         <Route path="offer" element={<OfferPage />} />
         <Route path="login" element={<LoginPage />} />
         <Route element={<PrivateRoute isAllowed={true} />}>
