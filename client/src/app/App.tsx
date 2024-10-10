@@ -1,13 +1,13 @@
 import { Global } from '@emotion/react';
 import { Route, Routes } from 'react-router-dom';
 
-import { globalColors } from '~/tokens/colors';
-import { globalFonts } from '~/tokens/fonts';
-import { SpriteWithIcons } from '~/tokens/icons';
-import { globalNormalize } from '~/tokens/normalize';
-import { globalRadiuses } from '~/tokens/radiuses';
-import { globalResets } from '~/tokens/resets';
-import { globalTextShadows } from '~/tokens/textShadow';
+import { globalColors } from '~/shared/tokens/colors';
+import { globalFonts } from '~/shared/tokens/fonts';
+import { SpriteWithIcons } from '~/shared/tokens/icons';
+import { globalNormalize } from '~/shared/tokens/normalize';
+import { globalRadiuses } from '~/shared/tokens/radiuses';
+import { globalResets } from '~/shared/tokens/resets';
+import { globalTextShadows } from '~/shared/tokens/textShadow';
 
 import { PrivateRoute } from '../components/PrivateRoute';
 import { AppRoute } from '../constants';

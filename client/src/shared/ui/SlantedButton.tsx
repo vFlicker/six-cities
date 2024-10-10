@@ -4,9 +4,9 @@ import { ComponentProps } from 'react';
 import { Link as RouterLink, LinkProps } from 'react-router-dom';
 
 import { BaseButton } from '~/helpers/BaseButton';
-import { Color } from '~/tokens/colors';
-import { Radius } from '~/tokens/radiuses';
-import { TextShadow } from '~/tokens/textShadow';
+import { Color } from '~/shared/tokens/colors';
+import { Radius } from '~/shared/tokens/radiuses';
+import { TextShadow } from '~/shared/tokens/textShadow';
 
 type CustomProps = {
   active?: boolean;

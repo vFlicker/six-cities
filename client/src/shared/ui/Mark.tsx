@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
-import { Color } from '~/tokens/colors';
+import { Color } from '~/shared/tokens/colors';
 
 type MarkProps = {
   size: MarkSize;

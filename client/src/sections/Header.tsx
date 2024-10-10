@@ -5,7 +5,7 @@ import { Logo } from '~/shared/ui/Logo';
 import { TextLink } from '~/shared/ui/TextButton';
 import { ContainerMixin } from '~/helpers/Container';
 import { withAttrs } from '~/helpers/withAttrs';
-import { IconName } from '~/tokens/icons';
+import { IconName } from '~/shared/tokens/icons';
 
 type HeaderProps = {
   hasMenu?: boolean;

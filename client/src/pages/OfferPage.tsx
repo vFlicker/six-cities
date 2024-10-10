@@ -10,7 +10,7 @@ import { Header } from '~/sections/Header';
 import { OfferSummary } from '~/sections/OfferSummary';
 import { OtherOffers } from '~/sections/OtherOffers';
 import { Reviews } from '~/sections/Reviews';
-import { Color } from '~/tokens/colors';
+import { Color } from '~/shared/tokens/colors';
 
 const OFFER_NAME = 'Offer';
 

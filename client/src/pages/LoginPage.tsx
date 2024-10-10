@@ -7,7 +7,7 @@ import { Header } from '~/sections/Header';
 import { Login } from '~/sections/Login';
 import { backgroundAmsterdamImage } from '~/shared/assets/images';
 import { SlantedLink } from '~/shared/ui/SlantedButton';
-import { Color } from '~/tokens/colors';
+import { Color } from '~/shared/tokens/colors';
 
 function LoginPage(): JSX.Element {
   return (

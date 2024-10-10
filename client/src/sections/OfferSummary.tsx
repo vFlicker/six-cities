@@ -6,8 +6,8 @@ import { Rating, RatingSize } from '~/shared/ui/Rating';
 import { Typography, TypographyVariant } from '~/shared/ui/Typography';
 import { Container } from '~/helpers/Container';
 import { withAttrs } from '~/helpers/withAttrs';
-import { Color } from '~/tokens/colors';
-import { IconName } from '~/tokens/icons';
+import { Color } from '~/shared/tokens/colors';
+import { IconName } from '~/shared/tokens/icons';
 
 type OfferSummaryProps = {
   className?: string;

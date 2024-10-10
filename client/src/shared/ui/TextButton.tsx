@@ -3,8 +3,8 @@ import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 
 import { BaseButton } from '~/helpers/BaseButton';
-import { Color } from '~/tokens/colors';
-import { TextShadow } from '~/tokens/textShadow';
+import { Color } from '~/shared/tokens/colors';
+import { TextShadow } from '~/shared/tokens/textShadow';
 
 const CSS = css`
   display: inline-flex;

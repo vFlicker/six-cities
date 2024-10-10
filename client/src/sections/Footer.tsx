@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 import { Logo } from '~/shared/ui/Logo';
 import { Container } from '~/helpers/Container';
-import { Color } from '~/tokens/colors';
+import { Color } from '~/shared/tokens/colors';
 
 type FooterProps = {
   className?: string;

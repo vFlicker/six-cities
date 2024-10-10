@@ -4,7 +4,7 @@ import { ResultMessage } from '~/components/ResultsMessage';
 import { ContainerMixin } from '~/helpers/Container';
 import { withAttrs } from '~/helpers/withAttrs';
 import { backgroundNoPlacesImage, noResultsImage } from '~/shared/assets/images';
-import { Color } from '~/tokens/colors';
+import { Color } from '~/shared/tokens/colors';
 
 type NoAvailableOffersProps = {
   className?: string;

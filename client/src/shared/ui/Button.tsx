@@ -3,8 +3,8 @@ import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 
 import { BaseButton } from '~/helpers/BaseButton';
-import { Color } from '~/tokens/colors';
-import { Radius } from '~/tokens/radiuses';
+import { Color } from '~/shared/tokens/colors';
+import { Radius } from '~/shared/tokens/radiuses';
 
 const CSS = css`
   padding: 16px 20px 13px;

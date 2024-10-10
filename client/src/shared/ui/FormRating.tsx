@@ -3,8 +3,8 @@ import { Fragment } from 'react';
 
 import { VisuallyHiddenMixin } from '~/helpers/VisuallyHiddenMixin';
 import { withAttrs } from '~/helpers/withAttrs';
-import { Color } from '~/tokens/colors';
-import { IconName } from '~/tokens/icons';
+import { Color } from '~/shared/tokens/colors';
+import { IconName } from '~/shared/tokens/icons';
 
 import { Icon } from './Icon';
 

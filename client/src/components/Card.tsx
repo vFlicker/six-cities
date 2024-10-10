@@ -7,7 +7,7 @@ import { apartmentImage1 } from '~/shared/assets/images';
 import { Icon } from '~/shared/ui/Icon';
 import { Rating, RatingSize } from '~/shared/ui/Rating';
 import { Typography, TypographyVariant } from '~/shared/ui/Typography';
-import { IconName } from '~/tokens/icons';
+import { IconName } from '~/shared/tokens/icons';
 
 type CardProps = {
   variant: CardVariant;

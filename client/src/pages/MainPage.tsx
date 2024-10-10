@@ -8,7 +8,7 @@ import { Header } from '~/sections/Header';
 import { LocationTabs } from '~/sections/LocationTabs';
 import { NoAvailableOffers } from '~/sections/NoAvailableOffers';
 import { Offers } from '~/sections/Offers';
-import { Color } from '~/tokens/colors';
+import { Color } from '~/shared/tokens/colors';
 
 const hasOffers = true;
 

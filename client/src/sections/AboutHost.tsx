@@ -5,7 +5,7 @@ import { Section } from '~/helpers/Section';
 import { withAttrs } from '~/helpers/withAttrs';
 import { avatarImage, defaultAvatarImage, starImage } from '~/shared/assets/images';
 import { Typography, TypographyVariant } from '~/shared/ui/Typography';
-import { Color } from '~/tokens/colors';
+import { Color } from '~/shared/tokens/colors';
 
 type AboutHostProps = {
   // TODO: use enum

@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 import { SlantedLink } from '~/shared/ui/SlantedButton';
 import { Container } from '~/helpers/Container';
-import { Color } from '~/tokens/colors';
+import { Color } from '~/shared/tokens/colors';
 
 type LocationTabsProps = {
   className?: string;
