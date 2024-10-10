@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 import { Helmet } from 'react-helmet-async';
 
-import { DefaultLayout } from '~/helpers/DefaultLayout';
 import { Color } from '~/shared/tokens/colors';
+import { DefaultLayout } from '~/shared/ui/DefaultLayout';
 import { Footer } from '~/shared/ui/Footer';
 import { Header } from '~/widgets/header';
 

@@ -1,11 +1,11 @@
 import styled from '@emotion/styled';
 
-import { ContainerMixin } from '~/helpers/Container';
-import { withAttrs } from '~/helpers/withAttrs';
 import { IconName } from '~/shared/tokens/icons';
+import { ContainerMixin } from '~/shared/ui/Container';
 import { Icon } from '~/shared/ui/Icon';
 import { Logo } from '~/shared/ui/Logo';
 import { TextLink } from '~/shared/ui/TextButton';
+import { withAttrs } from '~/shared/ui/withAttrs';
 
 type HeaderProps = {
   hasMenu?: boolean;

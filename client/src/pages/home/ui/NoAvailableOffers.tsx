@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
-import { ContainerMixin } from '~/helpers/Container';
-import { withAttrs } from '~/helpers/withAttrs';
+import { ContainerMixin } from '~/shared/ui/Container';
+import { withAttrs } from '~/shared/ui/withAttrs';
 import {
   backgroundNoPlacesImage,
   noResultsImage,

@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { withAttrs } from '~/helpers/withAttrs';
+import { withAttrs } from '~/shared/ui/withAttrs';
 import { Color } from '~/shared/tokens/colors';
 import { Rating, RatingSize } from '~/shared/ui/Rating';
 import { Typography, TypographyVariant } from '~/shared/ui/Typography';

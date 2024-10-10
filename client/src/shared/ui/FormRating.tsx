@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 import { Fragment } from 'react';
 
-import { VisuallyHiddenMixin } from '~/helpers/VisuallyHiddenMixin';
-import { withAttrs } from '~/helpers/withAttrs';
+import { VisuallyHiddenMixin } from '~/shared/ui/VisuallyHiddenMixin';
+import { withAttrs } from '~/shared/ui/withAttrs';
 import { Color } from '~/shared/tokens/colors';
 import { IconName } from '~/shared/tokens/icons';
 

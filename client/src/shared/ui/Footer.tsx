@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { Container } from '~/helpers/Container';
+import { Container } from '~/shared/ui/Container';
 import { Color } from '~/shared/tokens/colors';
 import { Logo } from '~/shared/ui/Logo';
 

@@ -1,10 +1,10 @@
 import styled from '@emotion/styled';
 import { Helmet } from 'react-helmet-async';
 
-import { Container } from '~/helpers/Container';
-import { DefaultLayout } from '~/helpers/DefaultLayout';
-import { VisuallyHiddenMixin } from '~/helpers/VisuallyHiddenMixin';
 import { Color } from '~/shared/tokens/colors';
+import { Container } from '~/shared/ui/Container';
+import { DefaultLayout } from '~/shared/ui/DefaultLayout';
+import { VisuallyHiddenMixin } from '~/shared/ui/VisuallyHiddenMixin';
 import { Header } from '~/widgets/header';
 
 import { LocationTabs } from './LocationTabs';

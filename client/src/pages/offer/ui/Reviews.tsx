@@ -1,14 +1,15 @@
 import styled from '@emotion/styled';
 
 import { Comment } from '~/entities/comment';
-import { Section } from '~/helpers/Section';
-import { withAttrs } from '~/helpers/withAttrs';
 import { Color } from '~/shared/tokens/colors';
 import { IconName } from '~/shared/tokens/icons';
 import { Button } from '~/shared/ui/Button';
 import { FormRating } from '~/shared/ui/FormRating';
 import { Icon, IconSize } from '~/shared/ui/Icon';
 import { Input } from '~/shared/ui/Input';
+import { withAttrs } from '~/shared/ui/withAttrs';
+
+import { Section } from './Section';
 
 type ReviewsProps = {
   className?: string;

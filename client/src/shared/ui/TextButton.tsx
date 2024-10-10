@@ -2,9 +2,9 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 
-import { BaseButton } from '~/helpers/BaseButton';
 import { Color } from '~/shared/tokens/colors';
 import { TextShadow } from '~/shared/tokens/textShadow';
+import { BaseButton } from '~/shared/ui/BaseButton';
 
 const CSS = css`
   display: inline-flex;

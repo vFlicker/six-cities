@@ -1,7 +1,8 @@
 import styled from '@emotion/styled';
 
-import { Section } from '~/helpers/Section';
 import { Color } from '~/shared/tokens/colors';
+
+import { Section } from './Section';
 
 type AmenitiesProps = {
   className?: string;

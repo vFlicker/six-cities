@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
 
 import { Card, CardVariant } from '~/entities/offer';
-import { CardList } from '~/helpers/CardList';
-import { withAttrs } from '~/helpers/withAttrs';
+import { CardList } from '~/shared/ui/CardList';
 import { SlantedLink } from '~/shared/ui/SlantedButton';
+import { withAttrs } from '~/shared/ui/withAttrs';
 
 type FavoriteItemProps = {
   title: string;

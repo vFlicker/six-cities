@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { withAttrs } from '~/helpers/withAttrs';
+import { withAttrs } from '~/shared/ui/withAttrs';
 import { saveImage } from '~/shared/assets/images';
 import { ResultMessage } from '~/shared/ui/ResultsMessage';
 

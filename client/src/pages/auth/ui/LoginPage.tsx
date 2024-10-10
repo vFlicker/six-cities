@@ -2,8 +2,8 @@ import styled from '@emotion/styled';
 import { Helmet } from 'react-helmet-async';
 
 import { Login } from '~/features/auth';
-import { ContainerMixin } from '~/helpers/Container';
-import { withAttrs } from '~/helpers/withAttrs';
+import { ContainerMixin } from '~/shared/ui/Container';
+import { withAttrs } from '~/shared/ui/withAttrs';
 import { backgroundAmsterdamImage } from '~/shared/assets/images';
 import { Color } from '~/shared/tokens/colors';
 import { SlantedLink } from '~/shared/ui/SlantedButton';

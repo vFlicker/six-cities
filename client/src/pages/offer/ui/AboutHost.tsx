@@ -1,8 +1,6 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
-import { Section } from '~/helpers/Section';
-import { withAttrs } from '~/helpers/withAttrs';
 import {
   avatarImage,
   defaultAvatarImage,
@@ -10,6 +8,9 @@ import {
 } from '~/shared/assets/images';
 import { Color } from '~/shared/tokens/colors';
 import { Typography, TypographyVariant } from '~/shared/ui/Typography';
+import { withAttrs } from '~/shared/ui/withAttrs';
+
+import { Section } from './Section';
 
 type AboutHostProps = {
   // TODO: use enum

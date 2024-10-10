@@ -2,7 +2,7 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 
-import { withAttrs } from '~/helpers/withAttrs';
+import { withAttrs } from '~/shared/ui/withAttrs';
 import { apartmentImage1 } from '~/shared/assets/images';
 import { IconName } from '~/shared/tokens/icons';
 import { Icon } from '~/shared/ui/Icon';

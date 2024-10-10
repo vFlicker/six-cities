@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
-import { Container } from '~/helpers/Container';
-import { withAttrs } from '~/helpers/withAttrs';
+import { Container } from '~/shared/ui/Container';
+import { withAttrs } from '~/shared/ui/withAttrs';
 import { Color } from '~/shared/tokens/colors';
 import { IconName } from '~/shared/tokens/icons';
 import { Icon, IconSize } from '~/shared/ui/Icon';

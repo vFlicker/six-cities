@@ -3,10 +3,10 @@ import styled from '@emotion/styled';
 import { ComponentProps } from 'react';
 import { Link as RouterLink, LinkProps } from 'react-router-dom';
 
-import { BaseButton } from '~/helpers/BaseButton';
 import { Color } from '~/shared/tokens/colors';
 import { Radius } from '~/shared/tokens/radiuses';
 import { TextShadow } from '~/shared/tokens/textShadow';
+import { BaseButton } from '~/shared/ui/BaseButton';
 
 type CustomProps = {
   active?: boolean;

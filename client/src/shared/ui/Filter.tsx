@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { PropsWithChildren } from 'react';
 
-import { withAttrs } from '~/helpers/withAttrs';
+import { withAttrs } from '~/shared/ui/withAttrs';
 import { Color } from '~/shared/tokens/colors';
 import { IconName } from '~/shared/tokens/icons';
 

@@ -1,10 +1,10 @@
 import styled from '@emotion/styled';
 
 import { Card, CardVariant } from '~/entities/offer';
-import { CardList } from '~/helpers/CardList';
-import { withAttrs } from '~/helpers/withAttrs';
+import { CardList } from '~/shared/ui/CardList';
 import { Filter } from '~/shared/ui/Filter';
 import { Typography, TypographyVariant } from '~/shared/ui/Typography';
+import { withAttrs } from '~/shared/ui/withAttrs';
 
 type OffersProps = {
   className?: string;

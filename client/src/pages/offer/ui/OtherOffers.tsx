@@ -1,6 +1,7 @@
 import { Card, CardVariant } from '~/entities/offer';
-import { CardList } from '~/helpers/CardList';
-import { Section } from '~/helpers/Section';
+import { CardList } from '~/shared/ui/CardList';
+
+import { Section } from './Section';
 
 type OtherOffersProps = {
   className?: string;
