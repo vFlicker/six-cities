@@ -1,10 +1,10 @@
 import styled from '@emotion/styled';
 
 import { FavoriteCategory } from '~/components/FavoriteCategory';
-import { Typography, TypographyVariant } from '~/elements/Typography';
 import { Container } from '~/helpers/Container';
 import { FavoriteList } from '~/helpers/FavoriteList';
 import { withAttrs } from '~/helpers/withAttrs';
+import { Typography, TypographyVariant } from '~/shared/ui/Typography';
 
 type FavoriteProps = {
   className?: string;

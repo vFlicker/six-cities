@@ -2,8 +2,7 @@ import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 
 import { withAttrs } from '~/helpers/withAttrs';
-
-import logoImage from '../images/logo.svg';
+import { logoImage } from '~/shared/assets/images';
 
 type LogoProps = {
   className?: string;

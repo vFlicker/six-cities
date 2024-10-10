@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 
 import { Card, CardVariant } from '~/components/Card';
-import { Filter } from '~/elements/Filter';
-import { Typography, TypographyVariant } from '~/elements/Typography';
+import { Filter } from '~/shared/ui/Filter';
+import { Typography, TypographyVariant } from '~/shared/ui/Typography';
 import { CardList } from '~/helpers/CardList';
 import { withAttrs } from '~/helpers/withAttrs';
 

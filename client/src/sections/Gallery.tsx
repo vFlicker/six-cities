@@ -1,13 +1,15 @@
 import styled from '@emotion/styled';
 
 import { Container } from '~/helpers/Container';
-import apartmentImage1 from '~/images/gallery/1.jpg';
-import apartmentImage2 from '~/images/gallery/2.jpg';
-import apartmentImage3 from '~/images/gallery/3.jpg';
-import apartmentImage4 from '~/images/gallery/4.jpg';
-import apartmentImage5 from '~/images/gallery/5.jpg';
-import apartmentImage6 from '~/images/gallery/6.jpg';
-import triangleImage from '~/images/triangle.svg';
+import {
+  apartmentImage1,
+  apartmentImage2,
+  apartmentImage3,
+  apartmentImage4,
+  apartmentImage5,
+  apartmentImage6,
+  triangleImage,
+} from '~/shared/assets/images';
 
 type GalleryProps = {
   className?: string;

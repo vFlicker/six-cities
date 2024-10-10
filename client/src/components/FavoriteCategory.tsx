@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
 
 import { Card, CardVariant } from '~/components/Card';
-import { SlantedLink } from '~/elements/SlantedButton';
 import { CardList } from '~/helpers/CardList';
 import { withAttrs } from '~/helpers/withAttrs';
+import { SlantedLink } from '~/shared/ui/SlantedButton';
 
 type FavoriteItemProps = {
   title: string;

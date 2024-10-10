@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 
-import { Icon } from '~/elements/Icon';
-import { Logo } from '~/elements/Logo';
-import { TextLink } from '~/elements/TextButton';
+import { Icon } from '~/shared/ui/Icon';
+import { Logo } from '~/shared/ui/Logo';
+import { TextLink } from '~/shared/ui/TextButton';
 import { ContainerMixin } from '~/helpers/Container';
 import { withAttrs } from '~/helpers/withAttrs';
 import { IconName } from '~/tokens/icons';

@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
 
-import { Icon, IconSize } from '~/elements/Icon';
-import { Mark, MarkSize } from '~/elements/Mark';
-import { Rating, RatingSize } from '~/elements/Rating';
-import { Typography, TypographyVariant } from '~/elements/Typography';
+import { Icon, IconSize } from '~/shared/ui/Icon';
+import { Mark, MarkSize } from '~/shared/ui/Mark';
+import { Rating, RatingSize } from '~/shared/ui/Rating';
+import { Typography, TypographyVariant } from '~/shared/ui/Typography';
 import { Container } from '~/helpers/Container';
 import { withAttrs } from '~/helpers/withAttrs';
 import { Color } from '~/tokens/colors';

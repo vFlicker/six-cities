@@ -2,11 +2,11 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 
-import { Icon } from '~/elements/Icon';
-import { Rating, RatingSize } from '~/elements/Rating';
-import { Typography, TypographyVariant } from '~/elements/Typography';
 import { withAttrs } from '~/helpers/withAttrs';
-import apartmentImage1 from '~/images/gallery/1.jpg';
+import { apartmentImage1 } from '~/shared/assets/images';
+import { Icon } from '~/shared/ui/Icon';
+import { Rating, RatingSize } from '~/shared/ui/Rating';
+import { Typography, TypographyVariant } from '~/shared/ui/Typography';
 import { IconName } from '~/tokens/icons';
 
 type CardProps = {

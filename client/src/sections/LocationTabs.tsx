@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { SlantedLink } from '~/elements/SlantedButton';
+import { SlantedLink } from '~/shared/ui/SlantedButton';
 import { Container } from '~/helpers/Container';
 import { Color } from '~/tokens/colors';
 

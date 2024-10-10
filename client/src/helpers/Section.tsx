@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { PropsWithChildren } from 'react';
 
-import { Typography, TypographyVariant } from '~/elements/Typography';
+import { Typography, TypographyVariant } from '~/shared/ui/Typography';
 
 import { SmallContainerMixin } from './Container';
 import { withAttrs } from './withAttrs';

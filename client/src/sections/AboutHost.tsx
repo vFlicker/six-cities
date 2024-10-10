@@ -1,12 +1,10 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
-import { Typography, TypographyVariant } from '~/elements/Typography';
 import { Section } from '~/helpers/Section';
 import { withAttrs } from '~/helpers/withAttrs';
-import defaultAvatarImage from '~/images/avatar.svg';
-import avatarImage from '~/images/avatar-angelina.jpg';
-import starImage from '~/images/star-white.svg';
+import { avatarImage, defaultAvatarImage, starImage } from '~/shared/assets/images';
+import { Typography, TypographyVariant } from '~/shared/ui/Typography';
 import { Color } from '~/tokens/colors';
 
 type AboutHostProps = {

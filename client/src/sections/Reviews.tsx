@@ -1,10 +1,10 @@
 import styled from '@emotion/styled';
 
 import { Comment } from '~/components/Comment';
-import { Button } from '~/elements/Button';
-import { FormRating } from '~/elements/FormRating';
-import { Icon, IconSize } from '~/elements/Icon';
-import { Input } from '~/elements/Input';
+import { Button } from '~/shared/ui/Button';
+import { FormRating } from '~/shared/ui/FormRating';
+import { Icon, IconSize } from '~/shared/ui/Icon';
+import { Input } from '~/shared/ui/Input';
 import { Section } from '~/helpers/Section';
 import { withAttrs } from '~/helpers/withAttrs';
 import { Color } from '~/tokens/colors';

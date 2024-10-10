@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 import { ResultMessage } from '~/components/ResultsMessage';
 import { withAttrs } from '~/helpers/withAttrs';
-import SaveImage from '~/images/ico-saved.svg';
+import { saveImage } from '~/shared/assets/images';
 
 type EmptyFavoritesProps = {
   className?: string;
@@ -27,7 +27,7 @@ const EmptyFavoritesMessage = withAttrs(
   {
     title: 'Nothing yet saved.',
     message: 'Save properties to narrow down search or plan your future trips.',
-    image: SaveImage,
+    image: saveImage,
   },
   styled(ResultMessage)`
     margin-top: 150px;

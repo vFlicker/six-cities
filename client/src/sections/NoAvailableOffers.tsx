@@ -3,8 +3,7 @@ import styled from '@emotion/styled';
 import { ResultMessage } from '~/components/ResultsMessage';
 import { ContainerMixin } from '~/helpers/Container';
 import { withAttrs } from '~/helpers/withAttrs';
-import NoResultsImage from '~/images/ico-no-results.svg';
-import BackgroundImage from '~/images/no-places.png';
+import { backgroundNoPlacesImage, noResultsImage } from '~/shared/assets/images';
 import { Color } from '~/tokens/colors';
 
 type NoAvailableOffersProps = {
@@ -54,7 +53,7 @@ const NoResultsMessage = withAttrs(
     title: 'No places to stay available.',
     message:
       'We could not find any property available at the moment in Dusseldorf.',
-    image: NoResultsImage,
+    image: noResultsImage,
   },
   ResultMessage,
 );
@@ -64,7 +63,7 @@ const StyledBackground = styled.div`
   flex-grow: 1;
   width: 50%;
 
-  background-image: url(${BackgroundImage});
+  background-image: url(${backgroundNoPlacesImage});
   background-size: auto 119%;
   background-repeat: no-repeat;
   background-position: right 100%;

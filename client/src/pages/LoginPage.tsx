@@ -1,12 +1,12 @@
 import styled from '@emotion/styled';
 import { Helmet } from 'react-helmet-async';
 
-import { SlantedLink } from '~/elements/SlantedButton';
 import { ContainerMixin } from '~/helpers/Container';
 import { withAttrs } from '~/helpers/withAttrs';
-import backgroundImage from '~/images/amsterdam.jpg';
 import { Header } from '~/sections/Header';
 import { Login } from '~/sections/Login';
+import { backgroundAmsterdamImage } from '~/shared/assets/images';
+import { SlantedLink } from '~/shared/ui/SlantedButton';
 import { Color } from '~/tokens/colors';
 
 function LoginPage(): JSX.Element {
@@ -52,7 +52,7 @@ const StyledContainer = styled.div`
       ${Color.GRAY_10} 509px,
       transparent 509px
     ),
-    url(${backgroundImage});
+    url(${backgroundAmsterdamImage});
   background-position:
     top left,
     right top;

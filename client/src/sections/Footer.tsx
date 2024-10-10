@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { Logo } from '~/elements/Logo';
+import { Logo } from '~/shared/ui/Logo';
 import { Container } from '~/helpers/Container';
 import { Color } from '~/tokens/colors';
 

@@ -1,9 +1,11 @@
 import { css } from '@emotion/react';
 
-import rubikBold from '../fonts/Rubik-Bold.woff2';
-import rubikLight from '../fonts/Rubik-Light.woff2';
-import rubikMedium from '../fonts/Rubik-Medium.woff2';
-import rubikRegular from '../fonts/Rubik-Regular.woff2';
+import {
+  rubikBold,
+  rubikLight,
+  rubikMedium,
+  rubikRegular,
+} from '~/shared/assets/fonts';
 
 const enum Font {
   Rubik = 'var(--font-rubik)',

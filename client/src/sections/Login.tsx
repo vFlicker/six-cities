@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 
-import { Button } from '~/elements/Button';
-import { Input } from '~/elements/Input';
-import { Typography, TypographyVariant } from '~/elements/Typography';
+import { Button } from '~/shared/ui/Button';
+import { Input } from '~/shared/ui/Input';
+import { Typography, TypographyVariant } from '~/shared/ui/Typography';
 import { withAttrs } from '~/helpers/withAttrs';
 
 type LoginProps = {
