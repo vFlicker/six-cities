@@ -1,31 +1,17 @@
 import styled from '@emotion/styled';
 
-import { Card, CardVariant } from '~/entities/offer';
+import { Card, CardVariant, Offer } from '~/entities/offer';
 import { CardList } from '~/shared/ui/CardList';
 import { Filter } from '~/shared/ui/Filter';
 import { Typography, TypographyVariant } from '~/shared/ui/Typography';
 import { withAttrs } from '~/shared/ui/withAttrs';
 
 type OffersProps = {
+  offers: Offer[];
   className?: string;
 };
 
-const cards = [
-  {
-    title: 'Paris',
-  },
-  {
-    title: 'Cologne',
-  },
-  {
-    title: 'Cologne',
-  },
-  {
-    title: 'Cologne',
-  },
-];
-
-function Offers({ className }: OffersProps): JSX.Element {
+function Offers({ offers, className }: OffersProps): JSX.Element {
   return (
     <section className={className}>
       <StyledTitle>312 places to stay in Amsterdam</StyledTitle>
@@ -38,8 +24,8 @@ function Offers({ className }: OffersProps): JSX.Element {
       </StyledFilter>
 
       <CardList col={2}>
-        {cards.map((card, index) => (
-          <Card key={index} variant={CardVariant.VERTICAL} {...card} />
+        {offers.map((offer) => (
+          <Card key={offer.id} variant={CardVariant.VERTICAL} offer={offer} />
         ))}
       </CardList>
     </section>

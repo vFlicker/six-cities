@@ -2,14 +2,16 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 
-import { withAttrs } from '~/shared/ui/withAttrs';
-import { apartmentImage1 } from '~/shared/assets/images';
 import { IconName } from '~/shared/theme/icons';
 import { Icon } from '~/shared/ui/Icon';
 import { Rating, RatingSize } from '~/shared/ui/Rating';
 import { Typography, TypographyVariant } from '~/shared/ui/Typography';
+import { withAttrs } from '~/shared/ui/withAttrs';
+
+import { Offer } from '../model/offer';
 
 type CardProps = {
+  offer: Offer;
   variant: CardVariant;
   className?: string;
 };
@@ -19,22 +21,22 @@ const enum CardVariant {
   HORIZONTAL = 'horizontal',
 }
 
-function Card({ className, variant }: CardProps) {
+function Card({ offer, variant, className }: CardProps) {
   return (
     <Link to="/" className={className}>
       <StyledCard variant={variant}>
-        <StyledImage src={apartmentImage1} alt="Card place" />
+        <StyledImage src={offer.previewImage} alt={offer.title} />
         <StyledInfo>
           <StyledPriceWrapper>
             <StyledPrice>
-              <StyledPriceValue>€80</StyledPriceValue>
+              <StyledPriceValue>€{offer.rentalPrice}</StyledPriceValue>
               <StyledPriceText>/&nbsp;night</StyledPriceText>
             </StyledPrice>
             <StyledBookmarkIcon />
           </StyledPriceWrapper>
           <StyledRating />
-          <StyledTitle>Wood and stone place</StyledTitle>
-          <StyledType>Room</StyledType>
+          <StyledTitle>{offer.title}</StyledTitle>
+          <StyledType>{offer.propertyType}</StyledType>
         </StyledInfo>
       </StyledCard>
     </Link>

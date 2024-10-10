@@ -1,13 +1,13 @@
 import styled from '@emotion/styled';
 
-import { Card, CardVariant } from '~/entities/offer';
+import { Card, CardVariant, Offer } from '~/entities/offer';
 import { CardList } from '~/shared/ui/CardList';
 import { SlantedLink } from '~/shared/ui/SlantedButton';
 import { withAttrs } from '~/shared/ui/withAttrs';
 
 type FavoriteItemProps = {
   title: string;
-  offers: { title: string }[];
+  offers: Offer[];
   className?: string;
 };
 
@@ -20,8 +20,8 @@ function FavoriteCategory({
     <StyledWrapper className={className}>
       <StyledLocationLink to="/">{title}</StyledLocationLink>
       <CardList col={1}>
-        {offers.map((offer, index) => (
-          <Card key={index} variant={CardVariant.HORIZONTAL} {...offer} />
+        {offers.map((offer) => (
+          <Card key={offer.id} variant={CardVariant.HORIZONTAL} offer={offer} />
         ))}
       </CardList>
     </StyledWrapper>

@@ -1,0 +1,5 @@
+Questions:
+1. Where do I load data, in Page component or in section component?
+
+Todo:
+1. Handle errors. Add try..catch to api functions.

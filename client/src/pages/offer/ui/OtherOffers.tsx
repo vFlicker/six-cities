@@ -1,4 +1,5 @@
 import { Card, CardVariant } from '~/entities/offer';
+import { offers } from '~/mocks/offers';
 import { CardList } from '~/shared/ui/CardList';
 
 import { Section } from './Section';
@@ -7,24 +8,12 @@ type OtherOffersProps = {
   className?: string;
 };
 
-const cards = [
-  {
-    title: 'Paris',
-  },
-  {
-    title: 'Cologne',
-  },
-  {
-    title: 'Cologne',
-  },
-];
-
 function OtherOffers({ className }: OtherOffersProps): JSX.Element {
   return (
     <Section className={className} title="Other places in the neighbourhood">
       <CardList col={3}>
-        {cards.map((card, index) => (
-          <Card key={index} variant={CardVariant.VERTICAL} {...card} />
+        {offers.map((offer) => (
+          <Card key={offer.id} variant={CardVariant.VERTICAL} offer={offer} />
         ))}
       </CardList>
     </Section>

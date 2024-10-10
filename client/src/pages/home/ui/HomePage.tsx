@@ -1,6 +1,8 @@
 import styled from '@emotion/styled';
+import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 
+import { getAllOffers, Offer } from '~/entities/offer';
 import { Color } from '~/shared/theme/colors';
 import { Container } from '~/shared/ui/Container';
 import { DefaultLayout } from '~/shared/ui/DefaultLayout';
@@ -14,6 +16,18 @@ import { Offers } from './Offers';
 const hasOffers = true;
 
 function HomePage(): JSX.Element {
+  const [offers, setOffers] = useState<Offer[]>(null!);
+
+  useEffect(() => {
+    getAllOffers().then((data) => {
+      setOffers(data);
+    });
+  }, []);
+
+  if (!offers) {
+    return <p>Loading...</p>;
+  }
+
   return (
     <DefaultLayout>
       <Helmet>
@@ -26,7 +40,7 @@ function HomePage(): JSX.Element {
         {hasOffers && (
           <StyledContent>
             <StyledContainer>
-              <Offers />
+              <Offers offers={offers} />
               <StyledMap>map</StyledMap>
             </StyledContainer>
           </StyledContent>

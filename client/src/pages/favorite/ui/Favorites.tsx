@@ -1,8 +1,9 @@
 import styled from '@emotion/styled';
 
+import { favoriteCategory } from '~/entities/offer/model/favoriteCategory';
 import { Container } from '~/shared/ui/Container';
-import { withAttrs } from '~/shared/ui/withAttrs';
 import { Typography, TypographyVariant } from '~/shared/ui/Typography';
+import { withAttrs } from '~/shared/ui/withAttrs';
 
 import { FavoriteCategory } from './FavoriteCategory';
 import { FavoriteList } from './FavoriteList';
@@ -11,17 +12,6 @@ type FavoriteProps = {
   className?: string;
 };
 
-const favorites = [
-  {
-    title: 'Paris',
-    offers: [{ title: 'Paris' }, { title: 'Paris' }],
-  },
-  {
-    title: 'Cologne',
-    offers: [{ title: 'Cologne' }],
-  },
-];
-
 function Favorites({ className }: FavoriteProps): JSX.Element {
   return (
     <StyledContainer>
@@ -29,8 +19,8 @@ function Favorites({ className }: FavoriteProps): JSX.Element {
         <StyledTitle>Saved listing</StyledTitle>
 
         <FavoriteList>
-          {favorites.map((favorite, index) => (
-            <FavoriteCategory key={index} {...favorite} />
+          {favoriteCategory.map(({ offers, title }, index) => (
+            <FavoriteCategory key={index} title={title} offers={offers} />
           ))}
         </FavoriteList>
       </StyledSection>{' '}
