@@ -1,0 +1,352 @@
+openapi: 3.1.0
+
+info:
+  title: Api server for «Six-cities» project.
+  description: List of resources and routes of the server «Six-cities».
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+  version: 1.0.0
+
+tags:
+  - name: Offers
+    description: Actions with offers
+  - name: Users
+    description: Actions with users
+
+paths:
+  /api/users/register:
+    post:
+      tags:
+        - Users
+      summary: Register
+      description: Register a user
+
+      requestBody:
+        description: Information for register new user
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/createUser'
+
+      responses:
+        '201':
+          description: User created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/user'
+        '409':
+          description: User with the email exists.
+
+  /api/offers:
+    get:
+      tags:
+        - Offers
+      summary: Get offers
+      description: Get offers list
+
+      responses:
+        '200':
+          description: List of offers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/offer'
+
+    post:
+      tags:
+        - Offers
+      summary: Create offer
+      description: Create a new offer
+
+      requestBody:
+        description: Information for create new offer
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/createOffer'
+
+      responses:
+        '201':
+          description: Offer created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/offer'
+
+components:
+  schemas:
+    user:
+      type: object
+
+      properties:
+        name:
+          type: string
+          example: John Doe
+
+        email:
+          type: string
+          example: john@email.com
+
+        type:
+          type: string
+          example: pro
+
+        avatarUrl:
+          type: string
+          example: https://www.example-image.com
+
+      required:
+        - name
+        - email
+        - type
+        - avatarUrl
+
+    createUser:
+      type: object
+
+      properties:
+        name:
+          type: string
+          minLength: 2
+          maxLength: 16
+          example: John Doe
+
+        email:
+          type: string
+          example: john@email.com
+
+        type:
+          type: string
+          enum: [regular, pro]
+          example: pro
+
+        avatarUrl:
+          type: string
+          example: https://www.example-image.com
+
+        password:
+          type: string
+          minLength: 8
+          maxLength: 64
+          example: 12345678
+
+      required:
+        - name
+        - email
+        - type
+        - avatarUrl
+        - password
+
+    offer:
+      type: object
+
+      properties:
+        id:
+          type: string
+          example: 6707ef63b33d7d3f2fa56b5b
+
+        title:
+          type: string
+          example: Offer title
+
+        description:
+          type: string
+          example: Offer description
+
+        city:
+          type: string
+          example: Paris
+
+        previewImage:
+          type: string
+          example: https://www.google.com
+
+        offerImages:
+          type: array
+          items:
+            type: string
+          example:
+            - https://www.google.com
+
+        isPremium:
+          type: boolean
+          example: true
+
+        isFavorite:
+          type: boolean
+          example: true
+
+        rating:
+          type: number
+          example: 5
+
+        propertyType:
+          type: string
+          example: apartment
+
+        roomsCount:
+          type: number
+          example: 2
+
+        guestsCount:
+          type: number
+          example: 2
+
+        rentalPrice:
+          type: number
+          example: 100
+
+        amenities:
+          type: array
+          items:
+            type: string
+          example:
+            - wifi
+
+        host:
+          type: object
+          properties:
+            name:
+              type: string
+              example: John Doe
+
+            email:
+              type: string
+              example:
+
+            type:
+              type: string
+              example: pro
+
+            avatarUrl:
+              type: string
+              example: https://www.example-image.com
+
+        location:
+          type: object
+          properties:
+            latitude:
+              type: number
+              example: 50.4501
+
+            longitude:
+              type: number
+              example: 30.5234
+
+      required:
+        - id
+        - title
+        - description
+        - city
+        - previewImage
+        - offerImages
+        - isPremium
+        - isFavorite
+        - rating
+        - propertyType
+        - roomsCount
+        - guestsCount
+        - rentalPrice
+        - amenities
+        - host
+        - location
+
+    createOffer:
+      type: object
+
+      properties:
+        title:
+          type: string
+          example: Offer title
+
+        description:
+          type: string
+          example: Offer description
+
+        city:
+          type: string
+          example: Paris
+
+        previewImage:
+          type: string
+          example: https://www.google.com
+
+        offerImages:
+          type: array
+          items:
+            type: string
+          example:
+            - https://www.google.com
+
+        isPremium:
+          type: boolean
+          example: true
+
+        isFavorite:
+          type: boolean
+          example: true
+
+        rating:
+          type: number
+          example: 5
+
+        propertyType:
+          type: string
+          example: apartment
+
+        roomsCount:
+          type: number
+          example: 2
+
+        guestsCount:
+          type: number
+          example: 2
+
+        rentalPrice:
+          type: number
+          example: 100
+
+        amenities:
+          type: array
+          items:
+            type: string
+          example:
+            - wifi
+
+        hostId:
+          type: string
+          example: 670590ed0738b400f26c4442
+
+        location:
+          type: object
+          properties:
+            latitude:
+              type: number
+              example: 50.4501
+
+            longitude:
+              type: number
+              example: 30.5234
+
+      required:
+        - title
+        - description
+        - city
+        - previewImage
+        - offerImages
+        - isPremium
+        - isFavorite
+        - rating
+        - propertyType
+        - roomsCount
+        - guestsCount
+        - rentalPrice
+        - amenities
+        - hostId
+        - location

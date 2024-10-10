@@ -9,6 +9,7 @@ import { Route } from '../route.interface.js';
 import { Controller } from './controller.interface.js';
 
 const DEFAULT_CONTENT_TYPE = 'application/json';
+const HTML_CONTENT_TYPE = 'text/html';
 
 @injectable()
 export abstract class BaseController implements Controller {
@@ -44,6 +45,10 @@ export abstract class BaseController implements Controller {
   private showRouteAddedMessage(route: Route): void {
     const message = `Route added: ${route.method.toUpperCase()} ${route.path}`;
     this.logger.info(message);
+  }
+
+  public sendHtml<D>(res: Response<D>, data: D): void {
+    res.type(HTML_CONTENT_TYPE).status(StatusCodes.OK).send(data);
   }
 
   public send<D>(res: Response<D>, statusCode: number, data: D): void {

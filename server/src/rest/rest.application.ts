@@ -1,5 +1,6 @@
 import express, { Express } from 'express';
 import { inject, injectable } from 'inversify';
+import swaggerUi from 'swagger-ui-express';
 
 import { Component } from '#src/shared/enums/index.js';
 import { getMongoURI } from '#src/shared/helpers/index.js';
@@ -21,6 +22,8 @@ export class RestApplication {
     private readonly userController: Controller,
     @inject(Component.OfferController)
     private readonly offerController: Controller,
+    @inject(Component.ApiDocController)
+    private readonly docController: Controller,
     @inject(Component.ExceptionFilter)
     private readonly appExceptionFilter: ExceptionFilter,
   ) {
@@ -65,11 +68,13 @@ export class RestApplication {
 
   private async initMiddlewares(): Promise<void> {
     this.server.use(express.json());
+    this.server.use('/api-docs', swaggerUi.serve);
   }
 
   private async initControllers(): Promise<void> {
     this.server.use('/api/users', this.userController.router);
     this.server.use('/api/offers', this.offerController.router);
+    this.server.use('/api-docs', this.docController.router);
   }
 
   private async initExceptionFilters(): Promise<void> {

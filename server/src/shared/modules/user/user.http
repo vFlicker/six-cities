@@ -8,7 +8,7 @@ Content-Type: application/json
   "name": "John Doe",
   "email": "john@mail.com",
   "type": "pro",
-  "avatarUrl": "https://www.google.com",
+  "avatarUrl": "https://www.example-image.com",
   "password": "12345678"
 }
 
