@@ -6,6 +6,7 @@ import { getAllOffers, Offer } from '~/entities/offer';
 import { Color } from '~/shared/theme/colors';
 import { Container } from '~/shared/ui/Container';
 import { DefaultLayout } from '~/shared/ui/DefaultLayout';
+import { LatLngTuple, Map } from '~/shared/ui/Map';
 import { VisuallyHiddenMixin } from '~/shared/ui/VisuallyHiddenMixin';
 import { Header } from '~/widgets/header';
 
@@ -28,6 +29,14 @@ function HomePage(): JSX.Element {
     return <p>Loading...</p>;
   }
 
+  const letLng: LatLngTuple = [
+    offers[0].location.latitude,
+    offers[0].location.longitude,
+  ];
+  const markers: LatLngTuple[] = offers.map(
+    ({ location }) => [location.latitude, location.longitude] as LatLngTuple,
+  );
+
   return (
     <DefaultLayout>
       <Helmet>
@@ -40,8 +49,8 @@ function HomePage(): JSX.Element {
         {hasOffers && (
           <StyledContent>
             <StyledContainer>
-              <Offers offers={offers} />
-              <StyledMap>map</StyledMap>
+              <StyledOffers offers={offers} />
+              <Map letLng={letLng} markers={markers} />
             </StyledContainer>
           </StyledContent>
         )}
@@ -56,6 +65,7 @@ export { HomePage };
 const StyledMain = styled.main`
   display: flex;
   flex-direction: column;
+  overflow-y: hidden;
 `;
 
 const StyledHeader = styled(Header)`
@@ -67,16 +77,17 @@ const StyledTitle = styled.h1`
 `;
 
 const StyledContent = styled.div`
-  padding: 32px 0;
+  display: flex;
+  padding: 32px 0 0;
+  overflow-y: hidden;
 `;
 
 const StyledContainer = styled(Container)`
   display: flex;
 `;
 
-const StyledMap = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-grow: 1;
+const StyledOffers = styled(Offers)`
+  flex-shrink: 0;
+  overflow-y: scroll;
+  padding-right: 20px;
 `;

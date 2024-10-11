@@ -2,6 +2,7 @@ import { css } from '@emotion/react';
 
 import { Color } from './colors';
 import { Font } from './fonts';
+import { Radius } from './radiuses';
 
 const globalResets = css`
   * {
@@ -15,6 +16,20 @@ const globalResets = css`
 
     background: none;
     box-shadow: none;
+
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background-color: ${Color.GRAY_30};
+      border-radius: ${Radius.RADIUS_4};
+    }
+
+    ::-webkit-scrollbar-thumb {
+      border-radius: ${Radius.RADIUS_4};
+      background-color: ${Color.BLUE_30};
+    }
   }
 
   *::before,

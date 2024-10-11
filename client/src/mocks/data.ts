@@ -1,0 +1,117 @@
+[
+  {
+    id: '651cd327-4bea-41c2-83f6-ea254461299e',
+    title: 'The Pondhouse - A Magical Place',
+    type: 'house',
+    price: 911,
+    previewImage: 'https://15.design.htmlacademy.pro/static/hotel/19.jpg',
+    city: {
+      name: 'Paris',
+      location: {
+        latitude: 48.85661,
+        longitude: 2.351499,
+        zoom: 13,
+      },
+    },
+    location: {
+      latitude: 48.834610000000005,
+      longitude: 2.335499,
+      zoom: 16,
+    },
+    isFavorite: false,
+    isPremium: true,
+    rating: 2.5,
+  },
+  {
+    id: '8fe5cc5d-498b-4987-821e-9a750dbe26f3',
+    title: 'Waterfront with extraordinary view',
+    type: 'apartment',
+    price: 159,
+    previewImage: 'https://15.design.htmlacademy.pro/static/hotel/20.jpg',
+    city: {
+      name: 'Paris',
+      location: {
+        latitude: 48.85661,
+        longitude: 2.351499,
+        zoom: 13,
+      },
+    },
+    location: {
+      latitude: 48.85761,
+      longitude: 2.358499,
+      zoom: 16,
+    },
+    isFavorite: false,
+    isPremium: false,
+    rating: 3.6,
+  },
+  {
+    id: '9feb05de-6870-473c-a087-ffde12976e99',
+    title: 'Beautiful & luxurious apartment at great location',
+    type: 'house',
+    price: 548,
+    previewImage: 'https://15.design.htmlacademy.pro/static/hotel/8.jpg',
+    city: {
+      name: 'Paris',
+      location: {
+        latitude: 48.85661,
+        longitude: 2.351499,
+        zoom: 13,
+      },
+    },
+    location: {
+      latitude: 48.87561,
+      longitude: 2.375499,
+      zoom: 16,
+    },
+    isFavorite: false,
+    isPremium: false,
+    rating: 3.1,
+  },
+  {
+    id: 'aa315b9f-076a-40ec-b27b-565514b14a14',
+    title: 'The Pondhouse - A Magical Place',
+    type: 'apartment',
+    price: 373,
+    previewImage: 'https://15.design.htmlacademy.pro/static/hotel/9.jpg',
+    city: {
+      name: 'Paris',
+      location: {
+        latitude: 48.85661,
+        longitude: 2.351499,
+        zoom: 13,
+      },
+    },
+    location: {
+      latitude: 48.87961000000001,
+      longitude: 2.353499,
+      zoom: 16,
+    },
+    isFavorite: false,
+    isPremium: true,
+    rating: 2.3,
+  },
+  {
+    id: '3495e2b7-25fa-4ec3-9559-4e30cc310c26',
+    title: 'Tile House',
+    type: 'apartment',
+    price: 420,
+    previewImage: 'https://15.design.htmlacademy.pro/static/hotel/19.jpg',
+    city: {
+      name: 'Paris',
+      location: {
+        latitude: 48.85661,
+        longitude: 2.351499,
+        zoom: 13,
+      },
+    },
+    location: {
+      latitude: 48.834610000000005,
+      longitude: 2.364499,
+      zoom: 16,
+    },
+    isFavorite: false,
+    isPremium: true,
+    rating: 1.7,
+  },
+];
