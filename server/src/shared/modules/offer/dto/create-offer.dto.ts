@@ -5,6 +5,7 @@ import {
   IsEnum,
   IsInt,
   IsMongoId,
+  IsNumber,
   IsString,
   IsUrl,
   Length,
@@ -45,7 +46,7 @@ export class CreateOfferDto {
   @IsBoolean({ message: CreateOfferMessages.isFavorite.invalidFormat })
   public isFavorite!: boolean;
 
-  @IsInt({ message: CreateOfferMessages.rating.invalidFormat })
+  @IsNumber()
   @Min(1, { message: CreateOfferMessages.rating.minValue })
   @Max(5, { message: CreateOfferMessages.rating.maxValue })
   public rating!: number;
