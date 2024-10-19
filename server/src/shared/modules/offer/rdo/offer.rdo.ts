@@ -1,8 +1,7 @@
 import { Expose, Type } from 'class-transformer';
 
+import { LocationRdo } from '#src/shared/modules/location/index.js';
 import { UserRdo } from '#src/shared/modules/user/index.js';
-
-import { LocationRdo } from './location.rdo.js';
 
 export class OfferRdo {
   @Expose({

@@ -14,8 +14,8 @@ import {
 
 import { CreateUserDto } from './dto/create-user.dto.js';
 import { UserRdo } from './rdo/user.rdo.js';
-import { CreateUserRequest } from './type/create-user-request.type.js';
-import { CreateUserResponse } from './type/create-user-response.type.js';
+import { CreateUserRequest } from './type/create-user.request.js';
+import { CreateUserResponse } from './type/create-user.response.js';
 import { UserService } from './user-service.interface.js';
 
 @injectable()

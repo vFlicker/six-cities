@@ -11,6 +11,11 @@ import {
 import { TSVFileReader } from '#src/shared/libs/file-reader/index.js';
 import { ConsoleLogger, Logger } from '#src/shared/libs/logger/index.js';
 import {
+  CityModel,
+  CityService,
+  DefaultCityService,
+} from '#src/shared/modules/city/index.js';
+import {
   CreateOfferDto,
   DefaultOfferService,
   OfferModel,
@@ -39,6 +44,7 @@ type ImportParameters = {
 export class ImportCommand implements Command {
   private logger: Logger;
   private userService: UserService;
+  private cityService: CityService;
   private offerService: OfferService;
   private databaseClient: DatabaseClient;
   private salt: string = '';
@@ -46,7 +52,12 @@ export class ImportCommand implements Command {
   constructor() {
     this.logger = new ConsoleLogger();
     this.userService = new DefaultUserService(this.logger, UserModel);
-    this.offerService = new DefaultOfferService(this.logger, OfferModel);
+    this.cityService = new DefaultCityService(this.logger, CityModel);
+    this.offerService = new DefaultOfferService(
+      this.logger,
+      OfferModel,
+      CityModel,
+    );
     this.databaseClient = new MongoDatabaseClient(this.logger);
 
     this.onImportedLine = this.onImportedLine.bind(this);
@@ -116,6 +127,9 @@ export class ImportCommand implements Command {
     const userDto = this.buildUserDto(tsvData);
     const user = await this.userService.findOrCreate(userDto, this.salt);
 
+    // TODO: add city to the database
+    console.log({ cityService: this.cityService });
+
     const offerDto = this.buildOfferDto(tsvData, user.id);
     await this.offerService.create(offerDto);
   }
@@ -134,7 +148,7 @@ export class ImportCommand implements Command {
     return {
       title: tsvData.title,
       description: tsvData.description,
-      city: tsvData.cityName,
+      cityName: tsvData.cityName,
       previewImage: tsvData.previewImage,
       offerImages: tsvData.offerImages,
       isPremium: tsvData.isPremium,

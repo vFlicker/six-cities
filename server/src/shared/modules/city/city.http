@@ -1,0 +1,22 @@
+# Cities
+
+## Create a new city
+
+POST http://localhost:8000/api/cities HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "Paris",
+  "location": {
+    "latitude": 48.85661,
+    "longitude": 2.351499
+  }
+}
+
+###
+
+## Get all cities
+
+GET http://localhost:8000/api/cities HTTP/1.1
+
+###

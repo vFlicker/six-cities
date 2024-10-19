@@ -16,9 +16,9 @@ import {
 } from 'class-validator';
 
 import { CityName, PropertyType } from '#src/shared/enums/index.js';
+import { LocationDto } from '#src/shared/modules/location/index.js';
 
 import { CreateOfferMessages } from './create-offer.messages.js';
-import { LocationDto } from './location.dto.js';
 
 export class CreateOfferDto {
   @IsString({ message: CreateOfferMessages.title.invalidFormat })
@@ -28,9 +28,6 @@ export class CreateOfferDto {
   @IsString({ message: CreateOfferMessages.description.invalidFormat })
   @Length(16, 1024, { message: CreateOfferMessages.description.lengthField })
   public description!: string;
-
-  @IsEnum(CityName, { message: CreateOfferMessages.city.invalidFormat })
-  public city!: string;
 
   @IsUrl({}, { message: CreateOfferMessages.previewImage.invalidFormat })
   @MaxLength(255, { message: CreateOfferMessages.previewImage.maxLength })
@@ -75,10 +72,13 @@ export class CreateOfferDto {
   @IsString({ each: true })
   public amenities!: string[];
 
-  @IsMongoId({ message: CreateOfferMessages.hostId.invalidFormat })
-  public hostId!: string;
-
   @ValidateNested()
   @Type(() => LocationDto)
   public location!: LocationDto;
+
+  @IsEnum(CityName, { message: CreateOfferMessages.city.invalidFormat })
+  public cityName!: string;
+
+  @IsMongoId({ message: CreateOfferMessages.hostId.invalidFormat })
+  public hostId!: string;
 }

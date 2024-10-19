@@ -8,23 +8,13 @@ import {
   types,
 } from '@typegoose/typegoose';
 
-import { CityName, PropertyType } from '#src/shared/enums/index.js';
-import { UserEntity } from '#src/shared/modules/user/user.entity.js';
+import { PropertyType } from '#src/shared/enums/index.js';
+import { CityEntity } from '#src/shared/modules/city/index.js';
+import { Location } from '#src/shared/modules/location/index.js';
+import { UserEntity } from '#src/shared/modules/user/index.js';
 
 export type OfferDocument = DocumentType<OfferEntity>;
 export type OfferModelType = types.ModelType<OfferEntity>;
-
-class Location {
-  @prop({
-    required: true,
-  })
-  public latitude!: number;
-
-  @prop({
-    required: true,
-  })
-  public longitude!: number;
-}
 
 @modelOptions({
   schemaOptions: {
@@ -47,13 +37,6 @@ export class OfferEntity extends defaultClasses.TimeStamps {
     maxlength: [1024, 'Max length for description is 1024'],
   })
   public description!: string;
-
-  @prop({
-    type: () => String,
-    enum: CityName,
-    required: true,
-  })
-  public city!: CityName;
 
   @prop({
     required: true,
@@ -119,18 +102,23 @@ export class OfferEntity extends defaultClasses.TimeStamps {
     default: [],
   })
   public amenities!: string[];
+  @prop({
+    required: true,
+    _id: false,
+  })
+  public location!: Location;
+
+  @prop({
+    ref: CityEntity,
+    required: true,
+  })
+  public cityId!: Ref<UserEntity>;
 
   @prop({
     ref: UserEntity,
     required: true,
   })
   public hostId!: Ref<UserEntity>;
-
-  @prop({
-    required: true,
-    _id: false,
-  })
-  public location!: Location;
 }
 
 export const OfferModel = getModelForClass(OfferEntity);

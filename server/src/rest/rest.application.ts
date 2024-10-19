@@ -21,6 +21,8 @@ export class RestApplication {
     private readonly databaseClient: DatabaseClient,
     @inject(Component.UserController)
     private readonly userController: Controller,
+    @inject(Component.CityController)
+    private readonly cityController: Controller,
     @inject(Component.OfferController)
     private readonly offerController: Controller,
     @inject(Component.ApiDocController)
@@ -75,6 +77,7 @@ export class RestApplication {
 
   private async initControllers(): Promise<void> {
     this.server.use('/api/users', this.userController.router);
+    this.server.use('/api/cities', this.cityController.router);
     this.server.use('/api/offers', this.offerController.router);
     this.server.use('/api-docs', this.docController.router);
   }

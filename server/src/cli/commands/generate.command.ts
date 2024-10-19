@@ -3,7 +3,7 @@ import got from 'got';
 import { getErrorMessage } from '#src/shared/helpers/index.js';
 import { TSVDataGenerator } from '#src/shared/libs/data-generator/index.js';
 import { TSVFileWriter } from '#src/shared/libs/file-writer/index.js';
-import { MockServerData } from '#src/shared/types/mock-server-data-type.js';
+import { MockServerData } from '#src/shared/types/index.js';
 
 import { Command } from './command.interface.js';
 
