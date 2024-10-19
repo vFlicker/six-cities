@@ -1,5 +1,6 @@
 import { Expose, Type } from 'class-transformer';
 
+import { CityRdo } from '#src/shared/modules/city/index.js';
 import { LocationRdo } from '#src/shared/modules/location/index.js';
 import { UserRdo } from '#src/shared/modules/user/index.js';
 
@@ -18,7 +19,8 @@ export class OfferRdo {
   @Expose()
   public postDate!: Date;
 
-  @Expose()
+  @Expose({ name: 'cityId' })
+  @Type(() => CityRdo)
   public city!: string;
 
   @Expose()
