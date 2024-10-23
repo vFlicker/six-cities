@@ -13,7 +13,7 @@ function OtherOffers({ className }: OtherOffersProps): JSX.Element {
     <Section className={className} title="Other places in the neighbourhood">
       <CardList col={3}>
         {offers.map((offer) => (
-          <Card key={offer.id} variant={CardVariant.VERTICAL} offer={offer} />
+          <Card key={offer.id} variant={CardVariant.VERTICAL} {...offer} />
         ))}
       </CardList>
     </Section>

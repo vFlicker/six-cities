@@ -21,7 +21,7 @@ function FavoriteCategory({
       <StyledLocationLink to="/">{title}</StyledLocationLink>
       <CardList col={1}>
         {offers.map((offer) => (
-          <Card key={offer.id} variant={CardVariant.HORIZONTAL} offer={offer} />
+          <Card key={offer.id} {...offer} variant={CardVariant.HORIZONTAL} />
         ))}
       </CardList>
     </StyledWrapper>

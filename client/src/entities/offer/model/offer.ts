@@ -1,8 +1,16 @@
+type Location = {
+  latitude: number;
+  longitude: number;
+};
+
 export type Offer = {
   id: string;
   title: string;
   description: string;
-  city: string;
+  city: {
+    name: string;
+    location: Location;
+  };
   previewImage: string;
   offerImages: string[];
   isPremium: boolean;
@@ -19,8 +27,5 @@ export type Offer = {
     type: string;
     avatarUrl: string;
   };
-  location: {
-    latitude: number;
-    longitude: number;
-  };
+  location: Location;
 };

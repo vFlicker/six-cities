@@ -11,12 +11,15 @@ import noResultsImage from './ico-no-results.svg';
 import saveImage from './ico-saved.svg';
 import logoImage from './logo.svg';
 import backgroundNoPlacesImage from './no-places.png';
+import defaultPinIcon from './pin.svg';
+import activePinIcon from './pin-active.svg';
 import starWhiteImage from './star-white.svg';
 import starImage from './stars.svg';
 import starsActiveImage from './stars-active.svg';
 import triangleImage from './triangle.svg';
 
 export {
+  activePinIcon,
   apartmentImage1,
   apartmentImage2,
   apartmentImage3,
@@ -27,6 +30,7 @@ export {
   backgroundAmsterdamImage,
   backgroundNoPlacesImage,
   defaultAvatarImage,
+  defaultPinIcon,
   logoImage,
   noResultsImage,
   saveImage,

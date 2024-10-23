@@ -10,10 +10,11 @@ import { withAttrs } from '~/shared/ui/withAttrs';
 
 import { Offer } from '../model/offer';
 
-type CardProps = {
-  offer: Offer;
+type CardProps = Offer & {
   variant: CardVariant;
   className?: string;
+  onMouseEnter?: (offerId: string) => void;
+  onMouseLeave?: () => void;
 };
 
 const enum CardVariant {
@@ -21,22 +22,44 @@ const enum CardVariant {
   HORIZONTAL = 'horizontal',
 }
 
-function Card({ offer, variant, className }: CardProps) {
+function Card({
+  id,
+  previewImage,
+  title,
+  rentalPrice,
+  propertyType,
+  variant,
+  className,
+  onMouseEnter,
+  onMouseLeave,
+}: CardProps) {
+  const handleMouseEnter = (): void => {
+    if (onMouseEnter) onMouseEnter(id);
+  };
+
+  const handleMouseLeave = (): void => {
+    if (onMouseLeave) onMouseLeave();
+  };
+
   return (
     <Link to="/" className={className}>
-      <StyledCard variant={variant}>
-        <StyledImage src={offer.previewImage} alt={offer.title} />
+      <StyledCard
+        variant={variant}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
+        <StyledImage src={previewImage} alt={title} />
         <StyledInfo>
           <StyledPriceWrapper>
             <StyledPrice>
-              <StyledPriceValue>€{offer.rentalPrice}</StyledPriceValue>
+              <StyledPriceValue>€{rentalPrice}</StyledPriceValue>
               <StyledPriceText>/&nbsp;night</StyledPriceText>
             </StyledPrice>
             <StyledBookmarkIcon />
           </StyledPriceWrapper>
           <StyledRating />
-          <StyledTitle>{offer.title}</StyledTitle>
-          <StyledType>{offer.propertyType}</StyledType>
+          <StyledTitle>{title}</StyledTitle>
+          <StyledType>{propertyType}</StyledType>
         </StyledInfo>
       </StyledCard>
     </Link>

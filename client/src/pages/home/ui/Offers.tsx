@@ -9,9 +9,16 @@ import { withAttrs } from '~/shared/ui/withAttrs';
 type OffersProps = {
   offers: Offer[];
   className?: string;
+  onCardMouseEnter?: (offerId: string) => void;
+  onCardMouseLeave?: () => void;
 };
 
-function Offers({ offers, className }: OffersProps): JSX.Element {
+function Offers({
+  offers,
+  className,
+  onCardMouseEnter,
+  onCardMouseLeave,
+}: OffersProps): JSX.Element {
   return (
     <section className={className}>
       <StyledTitle>312 places to stay in Amsterdam</StyledTitle>
@@ -25,7 +32,13 @@ function Offers({ offers, className }: OffersProps): JSX.Element {
 
       <CardList col={2}>
         {offers.map((offer) => (
-          <Card key={offer.id} variant={CardVariant.VERTICAL} offer={offer} />
+          <Card
+            key={offer.id}
+            {...offer}
+            variant={CardVariant.VERTICAL}
+            onMouseEnter={onCardMouseEnter}
+            onMouseLeave={onCardMouseLeave}
+          />
         ))}
       </CardList>
     </section>

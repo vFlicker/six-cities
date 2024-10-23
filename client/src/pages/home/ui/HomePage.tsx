@@ -6,7 +6,7 @@ import { getAllOffers, Offer } from '~/entities/offer';
 import { Color } from '~/shared/theme/colors';
 import { Container } from '~/shared/ui/Container';
 import { DefaultLayout } from '~/shared/ui/DefaultLayout';
-import { LatLngTuple, Map } from '~/shared/ui/Map';
+import { Map, MarkerLocation } from '~/shared/ui/map';
 import { VisuallyHiddenMixin } from '~/shared/ui/VisuallyHiddenMixin';
 import { Header } from '~/widgets/header';
 
@@ -14,28 +14,42 @@ import { LocationTabs } from './LocationTabs';
 import { NoAvailableOffers } from './NoAvailableOffers';
 import { Offers } from './Offers';
 
-const hasOffers = true;
-
 function HomePage(): JSX.Element {
-  const [offers, setOffers] = useState<Offer[]>(null!);
+  const [offers, setOffers] = useState<Offer[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [activeOfferId, setActiveOfferId] = useState<string>();
 
   useEffect(() => {
-    getAllOffers().then((data) => {
+    const fetchOffers = async () => {
+      setIsLoading(true);
+      const data = await getAllOffers();
       setOffers(data);
-    });
+      setIsLoading(false);
+    };
+
+    fetchOffers();
   }, []);
 
-  if (!offers) {
-    return <p>Loading...</p>;
-  }
+  const hasOffers = offers.length > 0;
+  if (isLoading || !hasOffers) return <p>Loading...</p>;
 
-  const letLng: LatLngTuple = [
-    offers[0].location.latitude,
-    offers[0].location.longitude,
-  ];
-  const markers: LatLngTuple[] = offers.map(
-    ({ location }) => [location.latitude, location.longitude] as LatLngTuple,
-  );
+  // TODO: add current active city to the state,
+  // and use it to set the map center
+  const { latitude, longitude } = offers[0].city.location;
+  const mapCenter = [latitude, longitude] as [number, number];
+
+  const markerLocations: MarkerLocation[] = offers.map(({ id, location }) => ({
+    id,
+    location: [location.latitude, location.longitude],
+  }));
+
+  const handleCardMouseEnter = (offerId: string): void => {
+    setActiveOfferId(offerId);
+  };
+
+  const handleCardMouseLeave = (): void => {
+    setActiveOfferId(undefined);
+  };
 
   return (
     <DefaultLayout>
@@ -46,15 +60,23 @@ function HomePage(): JSX.Element {
       <StyledMain>
         <StyledTitle>Six Cities</StyledTitle>
         <LocationTabs />
+        {!hasOffers && <NoAvailableOffers />}
         {hasOffers && (
           <StyledContent>
             <StyledContainer>
-              <StyledOffers offers={offers} />
-              <Map letLng={letLng} markers={markers} />
+              <StyledOffers
+                offers={offers}
+                onCardMouseEnter={handleCardMouseEnter}
+                onCardMouseLeave={handleCardMouseLeave}
+              />
+              <Map
+                mapCenter={mapCenter}
+                markerLocations={markerLocations}
+                activeMarkerId={activeOfferId}
+              />
             </StyledContainer>
           </StyledContent>
         )}
-        {!hasOffers && <NoAvailableOffers />}
       </StyledMain>
     </DefaultLayout>
   );
