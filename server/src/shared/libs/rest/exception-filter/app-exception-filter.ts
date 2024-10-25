@@ -13,6 +13,8 @@ import { ExceptionFilter } from './exception-filter.interface.js';
 export class AppExceptionFilter implements ExceptionFilter {
   constructor(@inject(Component.Logger) private readonly logger: Logger) {
     this.logger.info('Register AppExceptionFilter');
+
+    this.catch = this.catch.bind(this);
   }
 
   public catch(

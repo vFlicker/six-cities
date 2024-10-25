@@ -83,9 +83,7 @@ export class RestApplication {
   }
 
   private async initExceptionFilters(): Promise<void> {
-    this.server.use(
-      this.appExceptionFilter.catch.bind(this.appExceptionFilter),
-    );
+    this.server.use(this.appExceptionFilter.catch);
   }
 
   private async initServer(): Promise<void> {

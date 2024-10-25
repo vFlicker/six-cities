@@ -7,3 +7,5 @@ export * from './http-method.enum.js';
 export * from './middleware/middleware.interface.js';
 export * from './middleware/validate-dto.middleware.js';
 export * from './route.interface.js';
+export * from './types/request-params.type.js';
+export * from './types/response-body.type.js';

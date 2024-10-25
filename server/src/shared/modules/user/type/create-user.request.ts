@@ -1,6 +1,6 @@
 import { Request } from 'express';
 
-import { RequestParams, ResponseBody } from '#src/rest/index.js';
+import { RequestParams, ResponseBody } from '#src/shared/libs/rest/index.js';
 
 import { CreateUserDto } from '../dto/create-user.dto.js';
 

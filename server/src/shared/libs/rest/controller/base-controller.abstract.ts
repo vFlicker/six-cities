@@ -5,11 +5,11 @@ import { injectable } from 'inversify';
 
 import { Logger } from '#src/shared/libs/logger/index.js';
 
+import { ContentType } from '../content-type.enum.js';
 import { Route } from '../route.interface.js';
 import { Controller } from './controller.interface.js';
 
-const DEFAULT_CONTENT_TYPE = 'application/json';
-const HTML_CONTENT_TYPE = 'text/html';
+const DEFAULT_CONTENT_TYPE = ContentType.Json;
 
 @injectable()
 export abstract class BaseController implements Controller {
@@ -47,19 +47,19 @@ export abstract class BaseController implements Controller {
     this.logger.info(message);
   }
 
-  public sendHtml<D>(res: Response<D>, data: D): void {
-    res.type(HTML_CONTENT_TYPE).status(StatusCodes.OK).send(data);
+  public sendHtml<T>(res: Response<T>, data: T): void {
+    res.type(ContentType.Html).status(StatusCodes.OK).send(data);
   }
 
-  public send<D>(res: Response<D>, statusCode: number, data: D): void {
+  public send<T>(res: Response<T>, statusCode: number, data: T): void {
     res.type(DEFAULT_CONTENT_TYPE).status(statusCode).send(data);
   }
 
-  public created<D>(res: Response<D>, data: D): void {
+  public created<T>(res: Response<T>, data: T): void {
     this.send(res, StatusCodes.CREATED, data);
   }
 
-  public ok<D>(res: Response<D>, data: D): void {
+  public ok<T>(res: Response<T>, data: T): void {
     this.send(res, StatusCodes.OK, data);
   }
 
