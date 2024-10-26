@@ -1,47 +1,84 @@
 import styled from '@emotion/styled';
 
-import { Container } from '~/shared/ui/Container';
-import { withAttrs } from '~/shared/ui/withAttrs';
 import { Color } from '~/shared/theme/colors';
 import { IconName } from '~/shared/theme/icons';
+import { Container } from '~/shared/ui/Container';
 import { Icon, IconSize } from '~/shared/ui/Icon';
 import { Mark, MarkSize } from '~/shared/ui/Mark';
 import { Rating, RatingSize } from '~/shared/ui/Rating';
 import { Typography, TypographyVariant } from '~/shared/ui/Typography';
+import { withAttrs } from '~/shared/ui/withAttrs';
 
 type OfferSummaryProps = {
+  title: string;
+  rating: number;
+  propertyType: string;
+  guestsCount: number;
+  rentalPrice: number;
+  roomsCount: number;
+  isFavorite: boolean;
+  isPremium: boolean;
   className?: string;
 };
 
-function OfferSummary({ className }: OfferSummaryProps): JSX.Element {
+const StyledBookmarkIcon = withAttrs(
+  {
+    name: IconName.Bookmark,
+    size: IconSize.Large,
+  },
+  styled(Icon)`
+    position: absolute;
+    top: 15px;
+    right: 0;
+  `,
+);
+
+function ToggleBookmark({ isActive }: { isActive: boolean }): JSX.Element {
+  return (
+    <button onClick={() => console.log(isActive)}>
+      <StyledBookmarkIcon />
+    </button>
+  );
+}
+
+function OfferSummary({
+  className,
+  propertyType,
+  roomsCount,
+  guestsCount,
+  rentalPrice,
+  rating,
+  title,
+  isPremium,
+  isFavorite,
+}: OfferSummaryProps): JSX.Element {
   return (
     <StyledSection className={className}>
-      <StyledMark />
+      {isPremium && <StyledMark />}
       <HeaderWrapper>
-        <StyledTitle>
-          Beautiful &amp; luxurious studio at great location
-        </StyledTitle>
-        <StyledBookmarkIcon />
+        <StyledTitle>{title}</StyledTitle>
+        <ToggleBookmark isActive={isFavorite} />
       </HeaderWrapper>
       <StyledRatingWrapper>
-        <StyledRating value={4} />
-        <StyledTotalRating>4.8</StyledTotalRating>
+        <StyledRating value={rating} />
+        <StyledTotalRating>{rating}</StyledTotalRating>
       </StyledRatingWrapper>
       <StyledFeatureList>
         <StyledFeatureItem>
           <StyledPlaceIcon />
-          Apartment
+          {propertyType}
         </StyledFeatureItem>
         <StyledFeatureItem>
-          <StyledBedroomsIcon />3 Bedrooms
+          <StyledBedroomsIcon />
+          {roomsCount} Bedrooms
         </StyledFeatureItem>
         <StyledFeatureItem>
           <StyledAdultsIcon />
-          Max 4 adults
+          Max {guestsCount} adults
         </StyledFeatureItem>
       </StyledFeatureList>
       <StyledPrice>
-        <StyledPriceValue>&euro;120</StyledPriceValue>
+        <StyledPriceValue>&euro;{rentalPrice}</StyledPriceValue>
         <StyledPriceText>&nbsp;night</StyledPriceText>
       </StyledPrice>
     </StyledSection>
@@ -82,18 +119,6 @@ const StyledTitle = withAttrs(
     margin: 0 0 8px 0;
     max-width: 560px;
     text-align: center;
-  `,
-);
-
-const StyledBookmarkIcon = withAttrs(
-  {
-    name: IconName.Bookmark,
-    size: IconSize.Large,
-  },
-  styled(Icon)`
-    position: absolute;
-    top: 15px;
-    right: 0;
   `,
 );
 

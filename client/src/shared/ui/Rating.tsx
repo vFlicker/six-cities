@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
-import { starImage, starsActiveImage } from '~/shared/assets/images';
+import { starsActiveImage, starsNoActiveImage } from '~/shared/assets/images';
 import { VisuallyHiddenMixin } from '~/shared/ui/VisuallyHiddenMixin';
 
 type RatingProps = {
@@ -79,7 +79,7 @@ const StyledRating = styled.div<Pick<RatingProps, 'size'>>`
     content: '';
     display: inline-block;
     height: 100%;
-    background: url(${starImage}) transparent no-repeat center;
+    background: url(${starsNoActiveImage}) transparent no-repeat center;
   }
 
   ${({ size }) => RatingSizeToCSS[size]}

@@ -1,3 +1,3 @@
-export { getAllOffers } from './api/getAllOffers';
-export type { Offer } from './model/offer';
+export { getAllOffers, getOfferById } from './api/offersApi';
+export type { Offer, OfferId } from './model/offer';
 export { Card, CardVariant } from './ui/Card';

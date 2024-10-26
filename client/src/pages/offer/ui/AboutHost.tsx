@@ -1,28 +1,28 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
-import {
-  avatarImage,
-  defaultAvatarImage,
-  starImage,
-} from '~/shared/assets/images';
+import { defaultAvatarImage, starWhiteImage } from '~/shared/assets/images';
 import { Color } from '~/shared/theme/colors';
 import { Typography, TypographyVariant } from '~/shared/ui/Typography';
 import { withAttrs } from '~/shared/ui/withAttrs';
 
 import { Section } from './Section';
 
-type AboutHostProps = {
-  // TODO: use enum
+type HostAboutOfferProps = {
+  avatarUrl: string;
+  offerDescription: string;
+  hostName: string;
   userType: 'regular' | 'pro';
   className?: string;
 };
 
-type StyledAvatarProps = {
-  isPro: boolean;
-};
-
-function AboutHost({ className, userType }: AboutHostProps): JSX.Element {
+function HostAboutOffer({
+  className,
+  avatarUrl,
+  hostName,
+  userType,
+  offerDescription,
+}: HostAboutOfferProps): JSX.Element {
   const isPro = userType === 'pro';
 
   return (
@@ -30,31 +30,27 @@ function AboutHost({ className, userType }: AboutHostProps): JSX.Element {
       <StyledUser>
         <StyledAvatarWrapper isPro={isPro}>
           <StyledAvatarImage
-            src={avatarImage}
+            src={avatarUrl}
             width="74"
             height="74"
-            alt="Host avatar"
+            alt={`${hostName} avatar`}
           />
         </StyledAvatarWrapper>
-        <StyledName>Angelina</StyledName>
+        <StyledName>{hostName}</StyledName>
         {isPro && <StyledStatus>Pro</StyledStatus>}
       </StyledUser>
       <StyledDescription>
-        <StyledText>
-          A quiet cozy and picturesque that hides behind a a river by the unique
-          lightness of Amsterdam. The building is green and from 18th century.
-        </StyledText>
-        <StyledText>
-          An independent House, strategically located between Rembrand Square
-          and National Opera, but where the bustle of the city comes to rest in
-          this alley flowery and colorful.
-        </StyledText>
+        <StyledText>{offerDescription}</StyledText>
       </StyledDescription>
     </Section>
   );
 }
 
-export { AboutHost };
+export { HostAboutOffer as AboutHost };
+
+type StyledAvatarProps = {
+  isPro: boolean;
+};
 
 const StyledUser = styled.div`
   display: flex;
@@ -86,7 +82,7 @@ const StyledAvatarWrapper = styled.div<StyledAvatarProps>`
         height: 33px;
         border-radius: 50%;
         background-color: ${Color.ORANGE_10};
-        background-image: url(${starImage});
+        background-image: url(${starWhiteImage});
         background-size: 20px 19px;
         background-position: center 6px;
         background-repeat: no-repeat;

@@ -14,8 +14,8 @@ import backgroundNoPlacesImage from './no-places.png';
 import defaultPinIcon from './pin.svg';
 import activePinIcon from './pin-active.svg';
 import starWhiteImage from './star-white.svg';
-import starImage from './stars.svg';
 import starsActiveImage from './stars-active.svg';
+import starsNoActiveImage from './stars-no-active.svg';
 import triangleImage from './triangle.svg';
 
 export {
@@ -34,8 +34,8 @@ export {
   logoImage,
   noResultsImage,
   saveImage,
-  starImage,
   starsActiveImage,
+  starsNoActiveImage,
   starWhiteImage,
   triangleImage,
 };

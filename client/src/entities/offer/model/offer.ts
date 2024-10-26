@@ -3,8 +3,10 @@ type Location = {
   longitude: number;
 };
 
+export type OfferId = string;
+
 export type Offer = {
-  id: string;
+  id: OfferId;
   title: string;
   description: string;
   city: {
@@ -24,7 +26,7 @@ export type Offer = {
   host: {
     name: string;
     email: string;
-    type: string;
+    type: 'pro' | 'regular';
     avatarUrl: string;
   };
   location: Location;

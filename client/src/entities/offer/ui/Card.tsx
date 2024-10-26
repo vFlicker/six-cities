@@ -2,6 +2,7 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 
+import { AppRoute } from '~/shared/router';
 import { IconName } from '~/shared/theme/icons';
 import { Icon } from '~/shared/ui/Icon';
 import { Rating, RatingSize } from '~/shared/ui/Rating';
@@ -42,7 +43,7 @@ function Card({
   };
 
   return (
-    <Link to="/" className={className}>
+    <Link to={`${AppRoute.Offers}/${id}`} className={className}>
       <StyledCard
         variant={variant}
         onMouseEnter={handleMouseEnter}

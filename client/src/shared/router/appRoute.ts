@@ -1,5 +1,5 @@
 export const enum AppRoute {
   Root = '/',
-  Offer = '/offer',
+  Offers = '/offers',
   Login = '/login',
 }

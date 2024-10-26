@@ -1,36 +1,22 @@
 import styled from '@emotion/styled';
 
+import { triangleImage } from '~/shared/assets/images';
 import { Container } from '~/shared/ui/Container';
-import {
-  apartmentImage1,
-  apartmentImage2,
-  apartmentImage3,
-  apartmentImage4,
-  apartmentImage5,
-  apartmentImage6,
-  triangleImage,
-} from '~/shared/assets/images';
 
 type GalleryProps = {
+  imageUrls: string[];
   className?: string;
 };
 
-const images = [
-  apartmentImage1,
-  apartmentImage2,
-  apartmentImage3,
-  apartmentImage4,
-  apartmentImage5,
-  apartmentImage6,
-];
+function Gallery({ className, imageUrls }: GalleryProps): JSX.Element {
+  const first6ImageUrls = imageUrls.slice(0, 6);
 
-function Gallery({ className }: GalleryProps): JSX.Element {
   return (
     <Container className={className}>
       <StyledGallery>
-        {images.map((image) => (
-          <StyledImageWrapper key={image}>
-            <StyledImage src={image} alt="Studio" />
+        {first6ImageUrls.map((imageUrl) => (
+          <StyledImageWrapper key={imageUrl}>
+            <StyledImage src={imageUrl} alt="Studio" />
           </StyledImageWrapper>
         ))}
       </StyledGallery>

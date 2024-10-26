@@ -5,27 +5,15 @@ import { Color } from '~/shared/theme/colors';
 import { Section } from './Section';
 
 type AmenitiesProps = {
+  items: string[];
   className?: string;
 };
 
-const AMENITIES = [
-  'Wi-Fi',
-  'Washing machine',
-  'Towels',
-  'Heating',
-  'Coffee machine',
-  'Baby seat',
-  'Kitchen',
-  'Dishwasher',
-  'Cabel TV',
-  'Fridge',
-];
-
-function Amenities({ className }: AmenitiesProps): JSX.Element {
+function Amenities({ className, items }: AmenitiesProps): JSX.Element {
   return (
     <Section title="What's inside" className={className}>
       <StyledList>
-        {AMENITIES.map((amenity) => (
+        {items.map((amenity) => (
           <StyledItem key={amenity}>{amenity}</StyledItem>
         ))}
       </StyledList>
