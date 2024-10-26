@@ -3,5 +3,6 @@ import { OfferDocument } from './offer.entity.js';
 
 export interface OfferService {
   create(dto: CreateOfferDto): Promise<OfferDocument>;
+  findById(id: string): Promise<OfferDocument | null>;
   findAll(): Promise<OfferDocument[]>;
 }

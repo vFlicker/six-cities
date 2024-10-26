@@ -35,6 +35,10 @@ export class DefaultOfferService implements OfferService {
     return createdOffer;
   }
 
+  public async findById(id: string): Promise<OfferDocument | null> {
+    return this.offerModel.findById(id).populate(['hostId', 'cityId']).exec();
+  }
+
   public async findAll(): Promise<OfferDocument[]> {
     return this.offerModel.find().populate(['hostId', 'cityId']).exec();
   }

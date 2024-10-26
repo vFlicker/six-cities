@@ -1,13 +1,12 @@
 import { Expose, Type } from 'class-transformer';
 
+import { ExposeId } from '#src/shared/helpers/index.js';
 import { CityRdo } from '#src/shared/modules/city/index.js';
 import { LocationRdo } from '#src/shared/modules/location/index.js';
 import { UserRdo } from '#src/shared/modules/user/index.js';
 
 export class OfferRdo {
-  @Expose({
-    name: '_id',
-  })
+  @ExposeId({ name: '_id' })
   public id!: string;
 
   @Expose()
@@ -18,10 +17,6 @@ export class OfferRdo {
 
   @Expose()
   public postDate!: Date;
-
-  @Expose({ name: 'cityId' })
-  @Type(() => CityRdo)
-  public city!: string;
 
   @Expose()
   public previewImage!: string;
@@ -52,6 +47,10 @@ export class OfferRdo {
 
   @Expose()
   public amenities!: string[];
+
+  @Expose({ name: 'cityId' })
+  @Type(() => CityRdo)
+  public city!: string;
 
   @Expose({ name: 'hostId' })
   @Type(() => UserRdo)

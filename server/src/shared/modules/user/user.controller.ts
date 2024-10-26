@@ -44,8 +44,8 @@ export class UserController extends BaseController {
   ): Promise<void> {
     const { email } = body;
 
-    const existingUser = await this.userService.findByEmail(email);
-    if (existingUser) {
+    const foundUser = await this.userService.findByEmail(email);
+    if (foundUser) {
       throw new HttpError(
         StatusCodes.CONFLICT,
         `User with email «${email}» exists.`,
