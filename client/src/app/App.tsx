@@ -1,5 +1,5 @@
 import { Global } from '@emotion/react';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { globalColors } from '~/shared/theme/colors';
 import { globalFonts } from '~/shared/theme/fonts';
@@ -13,7 +13,7 @@ import { LoginPage } from '../pages/auth/ui/LoginPage';
 import { FavoritesPage } from '../pages/favorite/ui/FavoritesPage';
 import { HomePage } from '../pages/home/ui/HomePage';
 import { OfferPage } from '../pages/offer/ui/OfferPage';
-import { AppRoute } from '../shared/router';
+import { AppRoute, DEFAULT_CITY } from '../shared/router';
 import { PrivateRoute } from '../shared/ui/PrivateRoute';
 
 function App(): JSX.Element {
@@ -27,7 +27,14 @@ function App(): JSX.Element {
       <Global styles={globalTextShadows} />
 
       <Routes>
-        <Route index path={AppRoute.Root} element={<HomePage />} />
+        <Route
+          path={AppRoute.Root}
+          element={<Navigate to={`${AppRoute.Offers}/city/${DEFAULT_CITY}`} />}
+        />
+        <Route
+          path={`${AppRoute.Offers}/city/:cityName`}
+          element={<HomePage />}
+        />
         <Route path={`${AppRoute.Offers}/:offerId`} element={<OfferPage />} />
         <Route path="login" element={<LoginPage />} />
         <Route element={<PrivateRoute isAllowed={true} />}>

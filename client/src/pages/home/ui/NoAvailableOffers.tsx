@@ -1,13 +1,13 @@
 import styled from '@emotion/styled';
 
-import { ContainerMixin } from '~/shared/ui/Container';
-import { withAttrs } from '~/shared/ui/withAttrs';
 import {
   backgroundNoPlacesImage,
   noResultsImage,
 } from '~/shared/assets/images';
 import { Color } from '~/shared/theme/colors';
+import { ContainerMixin } from '~/shared/ui/Container';
 import { ResultMessage } from '~/shared/ui/ResultsMessage';
+import { withAttrs } from '~/shared/ui/withAttrs';
 
 type NoAvailableOffersProps = {
   className?: string;

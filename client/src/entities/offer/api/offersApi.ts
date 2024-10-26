@@ -11,3 +11,10 @@ export const getAllOffers = async (): Promise<Offer[]> => {
   const { data } = await apiClient.get<Offer[]>('/offers');
   return data;
 };
+
+export const getAllOffersByCityName = async (
+  cityName: string,
+): Promise<Offer[]> => {
+  const { data } = await apiClient.get<Offer[]>(`/offers/city/${cityName}`);
+  return data;
+};

@@ -1,8 +1,10 @@
 import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { useParams } from 'react-router-dom';
 
-import { getAllOffers, Offer } from '~/entities/offer';
+import { getAllOffersByCityName, Offer } from '~/entities/offer';
+import { DEFAULT_CITY } from '~/shared/router';
 import { Color } from '~/shared/theme/colors';
 import { Container } from '~/shared/ui/Container';
 import { DefaultLayout } from '~/shared/ui/DefaultLayout';
@@ -14,7 +16,15 @@ import { LocationTabs } from './LocationTabs';
 import { NoAvailableOffers } from './NoAvailableOffers';
 import { Offers } from './Offers';
 
+type CityNameParams = {
+  cityName: string;
+};
+
+const DEFAULT_CITY_NAME = DEFAULT_CITY;
+
 function HomePage(): JSX.Element {
+  const { cityName } = useParams<CityNameParams>();
+
   const [offers, setOffers] = useState<Offer[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [activeOfferId, setActiveOfferId] = useState<string>();
@@ -22,13 +32,13 @@ function HomePage(): JSX.Element {
   useEffect(() => {
     const fetchOffers = async () => {
       setIsLoading(true);
-      const data = await getAllOffers();
+      const data = await getAllOffersByCityName(cityName || DEFAULT_CITY_NAME);
       setOffers(data);
       setIsLoading(false);
     };
 
     fetchOffers();
-  }, []);
+  }, [cityName]);
 
   const hasOffers = offers.length > 0;
   if (isLoading || !hasOffers) return <p>Loading...</p>;
@@ -69,7 +79,7 @@ function HomePage(): JSX.Element {
                 onCardMouseEnter={handleCardMouseEnter}
                 onCardMouseLeave={handleCardMouseLeave}
               />
-              <Map
+              <StyledMap
                 mapCenter={mapCenter}
                 markerLocations={markerLocations}
                 activeMarkerId={activeOfferId}
@@ -87,6 +97,7 @@ export { HomePage };
 const StyledMain = styled.main`
   display: flex;
   flex-direction: column;
+  height: 100%;
   overflow-y: hidden;
 `;
 
@@ -101,6 +112,7 @@ const StyledTitle = styled.h1`
 const StyledContent = styled.div`
   display: flex;
   padding: 32px 0 0;
+  height: 100%;
   overflow-y: hidden;
 `;
 
@@ -112,4 +124,9 @@ const StyledOffers = styled(Offers)`
   flex-shrink: 0;
   overflow-y: scroll;
   padding-right: 20px;
+`;
+
+const StyledMap = styled(Map)`
+  flex-grow: 1;
+  height: 100%;
 `;

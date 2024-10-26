@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
-import { Container } from '~/shared/ui/Container';
 import { Color } from '~/shared/theme/colors';
+import { Container } from '~/shared/ui/Container';
 import { SlantedLink } from '~/shared/ui/SlantedButton';
 
 type LocationTabsProps = {
@@ -18,6 +18,8 @@ const TABS = [
 ];
 
 function LocationTabs({ className }: LocationTabsProps): JSX.Element {
+  // TODO: use filter
+
   return (
     <StyledWrapper>
       <StyledContainer className={className}>
