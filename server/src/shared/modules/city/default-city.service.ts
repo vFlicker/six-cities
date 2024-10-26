@@ -20,6 +20,10 @@ export class DefaultCityService implements CityService {
     return createdCity;
   }
 
+  public async findByName(name: string): Promise<CityDocument | null> {
+    return this.cityModel.findOne({ name }).exec();
+  }
+
   public async findAll(): Promise<CityDocument[]> {
     return this.cityModel.find().exec();
   }

@@ -1,3 +1,5 @@
+import { ObjectId } from 'mongodb';
+
 import { getErrorMessage } from '#src/shared/helpers/index.js';
 import { getMongoURI } from '#src/shared/helpers/index.js';
 import {
@@ -53,11 +55,7 @@ export class ImportCommand implements Command {
     this.logger = new ConsoleLogger();
     this.userService = new DefaultUserService(this.logger, UserModel);
     this.cityService = new DefaultCityService(this.logger, CityModel);
-    this.offerService = new DefaultOfferService(
-      this.logger,
-      OfferModel,
-      CityModel,
-    );
+    this.offerService = new DefaultOfferService(this.logger, OfferModel);
     this.databaseClient = new MongoDatabaseClient(this.logger);
 
     this.onImportedLine = this.onImportedLine.bind(this);
@@ -131,7 +129,10 @@ export class ImportCommand implements Command {
     console.log({ cityService: this.cityService });
 
     const offerDto = this.buildOfferDto(tsvData, user.id);
-    await this.offerService.create(offerDto);
+    await this.offerService.create(
+      new ObjectId('60f1b6b9e6f3f3b3b8b3b3b3'),
+      offerDto,
+    );
   }
 
   private buildUserDto(tsvData: TSVData): CreateUserDto {

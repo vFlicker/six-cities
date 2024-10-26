@@ -1,10 +1,15 @@
 import { Request } from 'express';
+import { StatusCodes } from 'http-status-codes';
 import { inject, injectable } from 'inversify';
 
 import { Component } from '#src/shared/enums/index.js';
 import { fillDTO } from '#src/shared/helpers/index.js';
 import { Logger } from '#src/shared/libs/logger/index.js';
-import { BaseController, HttpMethod } from '#src/shared/libs/rest/index.js';
+import {
+  BaseController,
+  HttpError,
+  HttpMethod,
+} from '#src/shared/libs/rest/index.js';
 
 import { CityService } from './city-service.interface.js';
 import { CityRdo } from './rdo/city.rdo.js';
@@ -35,8 +40,17 @@ export class CityController extends BaseController {
     });
   }
 
-  public async create(req: CreateCityRequest, res: CreateCityResponse) {
-    const city = await this.cityService.create(req.body);
+  public async create({ body }: CreateCityRequest, res: CreateCityResponse) {
+    const foundCategory = await this.cityService.findByName(body.name);
+    if (foundCategory) {
+      throw new HttpError(
+        StatusCodes.UNPROCESSABLE_ENTITY,
+        `City with name ${body.name} already exists`,
+        'CityController.create',
+      );
+    }
+
+    const city = await this.cityService.create(body);
     const cityRdo = fillDTO(CityRdo, city);
     this.ok(res, cityRdo);
   }

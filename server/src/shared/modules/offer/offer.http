@@ -8,7 +8,7 @@ Content-Type: application/json
 {
   "title": "Offer title",
   "description": "Offer description",
-  "city": "Paris",
+  "cityName": "Paris",
   "previewImage": "https://www.google.com",
   "offerImages": ["https://www.google.com"],
   "isPremium": true,

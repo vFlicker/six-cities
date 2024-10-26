@@ -11,6 +11,7 @@ import {
   HttpMethod,
   ValidateDtoMiddleware,
 } from '#src/shared/libs/rest/index.js';
+import { CityService } from '#src/shared/modules/city/index.js';
 
 import { CreateOfferDto } from './dto/create-offer.dto.js';
 import { OfferService } from './offer-service.interface.js';
@@ -26,6 +27,7 @@ export class OfferController extends BaseController {
   constructor(
     @inject(Component.Logger) protected readonly logger: Logger,
     @inject(Component.OfferService) private readonly offerService: OfferService,
+    @inject(Component.CityService) private readonly cityService: CityService,
   ) {
     super(logger);
 
@@ -55,7 +57,17 @@ export class OfferController extends BaseController {
     req: CreateOfferRequest,
     res: CreateOfferResponse,
   ): Promise<void> {
-    const createdOffer = await this.offerService.create(req.body);
+    const foundCity = await this.cityService.findByName(req.body.cityName);
+    if (!foundCity) {
+      throw new HttpError(
+        StatusCodes.BAD_REQUEST,
+        `City with name ${req.body.cityName} not exists`,
+        'DefaultOfferService.create',
+      );
+    }
+
+    const cityId = foundCity._id;
+    const createdOffer = await this.offerService.create(cityId, req.body);
     const offerRdo = fillDTO(OfferRdo, createdOffer);
     this.created(res, offerRdo);
   }
