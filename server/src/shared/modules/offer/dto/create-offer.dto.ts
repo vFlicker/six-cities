@@ -76,7 +76,7 @@ export class CreateOfferDto {
   @Type(() => LocationDto)
   public location!: LocationDto;
 
-  @IsEnum(CityName, { message: CreateOfferMessages.city.invalidFormat })
+  @IsEnum(CityName, { message: CreateOfferMessages.cityName.invalidFormat })
   public cityName!: string;
 
   @IsMongoId({ message: CreateOfferMessages.hostId.invalidFormat })

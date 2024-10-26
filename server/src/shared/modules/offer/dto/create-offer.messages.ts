@@ -7,7 +7,7 @@ export const CreateOfferMessages = {
     invalidFormat: 'Description must be a string',
     lengthField: 'Description must be between 16 and 1024 characters',
   },
-  city: {
+  cityName: {
     invalidFormat: 'Invalid city name',
   },
   previewImage: {

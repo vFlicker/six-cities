@@ -21,7 +21,9 @@ export class DefaultCityService implements CityService {
   }
 
   public async findByName(name: string): Promise<CityDocument | null> {
-    return this.cityModel.findOne({ name }).exec();
+    return this.cityModel
+      .findOne({ name: { $regex: name, $options: 'i' } })
+      .exec();
   }
 
   public async findAll(): Promise<CityDocument[]> {

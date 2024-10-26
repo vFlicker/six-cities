@@ -1,5 +1,3 @@
-import { ObjectId } from 'mongodb';
-
 import { getErrorMessage } from '#src/shared/helpers/index.js';
 import { getMongoURI } from '#src/shared/helpers/index.js';
 import {
@@ -129,10 +127,7 @@ export class ImportCommand implements Command {
     console.log({ cityService: this.cityService });
 
     const offerDto = this.buildOfferDto(tsvData, user.id);
-    await this.offerService.create(
-      new ObjectId('60f1b6b9e6f3f3b3b8b3b3b3'),
-      offerDto,
-    );
+    await this.offerService.create('6713b3fc713bfa6bfd1300fc', offerDto);
   }
 
   private buildUserDto(tsvData: TSVData): CreateUserDto {

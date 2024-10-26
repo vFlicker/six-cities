@@ -19,6 +19,8 @@ import { OfferRdo } from './rdo/offer.rdo.js';
 import { CreateOfferRequest } from './type/create-offer.request.js';
 import { CreateOfferResponse } from './type/create-offer.response.js';
 import { GetAllOffersResponse } from './type/get-all-offers.response.js';
+import { GetAllOffersByCityNameRequest } from './type/get-all-offers-by-city-name.request.js';
+import { GetAllOffersByCityNameResponse } from './type/get-all-offers-by-city-name.response.js';
 import { GetOfferByIdRequest } from './type/get-offer-by-id.request.js';
 import { GetOfferByIdResponse } from './type/get-offer-by-id.response.js';
 
@@ -51,6 +53,12 @@ export class OfferController extends BaseController {
       method: HttpMethod.Get,
       handler: this.getAll,
     });
+
+    this.addRoute({
+      path: '/city/:cityName',
+      method: HttpMethod.Get,
+      handler: this.getAllByCityName,
+    });
   }
 
   public async create(
@@ -66,7 +74,7 @@ export class OfferController extends BaseController {
       );
     }
 
-    const cityId = foundCity._id;
+    const cityId = foundCity._id.toString();
     const createdOffer = await this.offerService.create(cityId, req.body);
     const offerRdo = fillDTO(OfferRdo, createdOffer);
     this.created(res, offerRdo);
@@ -93,6 +101,27 @@ export class OfferController extends BaseController {
 
   public async getAll(_req: Request, res: GetAllOffersResponse): Promise<void> {
     const foundOffers = await this.offerService.findAll();
+    const offersRdo = fillDTO(OfferRdo, foundOffers);
+    this.ok(res, offersRdo);
+  }
+
+  public async getAllByCityName(
+    req: GetAllOffersByCityNameRequest,
+    res: GetAllOffersByCityNameResponse,
+  ): Promise<void> {
+    const cityName = req.params.cityName;
+
+    const foundCity = await this.cityService.findByName(cityName);
+    if (!foundCity) {
+      throw new HttpError(
+        StatusCodes.BAD_REQUEST,
+        `City with name ${req.params.cityName} not exists`,
+        'DefaultOfferService.create',
+      );
+    }
+
+    const cityId = foundCity._id.toString();
+    const foundOffers = await this.offerService.findAllByCityId(cityId);
     const offersRdo = fillDTO(OfferRdo, foundOffers);
     this.ok(res, offersRdo);
   }

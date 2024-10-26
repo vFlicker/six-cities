@@ -1,5 +1,4 @@
 import { inject, injectable } from 'inversify';
-import { Types } from 'mongoose';
 
 import { Component } from '#src/shared/enums/index.js';
 import { Logger } from '#src/shared/libs/logger/index.js';
@@ -18,7 +17,7 @@ export class DefaultOfferService implements OfferService {
   ) {}
 
   public async create(
-    cityId: Types.ObjectId,
+    cityId: string,
     dto: CreateOfferDto,
   ): Promise<OfferDocument> {
     const offerData = { cityId, ...dto };
@@ -34,5 +33,12 @@ export class DefaultOfferService implements OfferService {
 
   public async findAll(): Promise<OfferDocument[]> {
     return this.offerModel.find().populate(['hostId', 'cityId']).exec();
+  }
+
+  public async findAllByCityId(id: string): Promise<OfferDocument[]> {
+    return this.offerModel
+      .find({ cityId: id })
+      .populate(['hostId', 'cityId'])
+      .exec();
   }
 }
