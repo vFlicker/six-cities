@@ -9,6 +9,7 @@ import {
   HttpError,
   HttpMethod,
   ValidateDtoMiddleware,
+  ValidateObjectIdMiddleware,
 } from '#src/shared/libs/rest/index.js';
 import { CityService } from '#src/shared/modules/city/index.js';
 
@@ -45,6 +46,7 @@ export class OfferController extends BaseController {
       path: '/:offerId',
       method: HttpMethod.Get,
       handler: this.getById,
+      middlewares: [new ValidateObjectIdMiddleware('offerId')],
     });
 
     this.addRoute({
