@@ -15,6 +15,6 @@ export const getAllOffers = async (): Promise<Offer[]> => {
 export const getAllOffersByCityName = async (
   cityName: string,
 ): Promise<Offer[]> => {
-  const { data } = await apiClient.get<Offer[]>(`/offers/city/${cityName}`);
+  const { data } = await apiClient.get<Offer[]>(`/offers?cityName=${cityName}`);
   return data;
 };

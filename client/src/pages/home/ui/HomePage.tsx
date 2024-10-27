@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { useParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 
 import { getAllOffersByCityName, Offer } from '~/entities/offer';
 import { DEFAULT_CITY } from '~/shared/router';
@@ -16,23 +16,25 @@ import { LocationTabs } from './LocationTabs';
 import { NoAvailableOffers } from './NoAvailableOffers';
 import { Offers } from './Offers';
 
-type CityNameParams = {
-  cityName: string;
-};
-
-const DEFAULT_CITY_NAME = DEFAULT_CITY;
-
 function HomePage(): JSX.Element {
-  const { cityName } = useParams<CityNameParams>();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const [offers, setOffers] = useState<Offer[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [activeOfferId, setActiveOfferId] = useState<string>();
 
+  const cityName = searchParams.get('cityName');
+
+  useEffect(() => {
+    if (!cityName) setSearchParams({ cityName: DEFAULT_CITY });
+  }, [cityName, setSearchParams]);
+
   useEffect(() => {
     const fetchOffers = async () => {
+      if (!cityName) return;
+
       setIsLoading(true);
-      const data = await getAllOffersByCityName(cityName || DEFAULT_CITY_NAME);
+      const data = await getAllOffersByCityName(cityName);
       setOffers(data);
       setIsLoading(false);
     };
