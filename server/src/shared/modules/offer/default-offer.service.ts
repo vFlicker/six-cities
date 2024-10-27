@@ -4,6 +4,7 @@ import { Component } from '#src/shared/enums/index.js';
 import { Logger } from '#src/shared/libs/logger/index.js';
 
 import { CreateOfferDto } from './dto/create-offer.dto.js';
+import { DEFAULT_OFFER_COUNT } from './offer.constant.js';
 import { OfferDocument, OfferModelType } from './offer.entity.js';
 import { OfferService } from './offer-service.interface.js';
 
@@ -35,9 +36,13 @@ export class DefaultOfferService implements OfferService {
     return this.offerModel.find().populate(['hostId', 'cityId']).exec();
   }
 
-  public async findAllByCityId(id: string): Promise<OfferDocument[]> {
+  public async findAllByCityId(
+    id: string,
+    count?: number,
+  ): Promise<OfferDocument[]> {
+    const limit = count ?? DEFAULT_OFFER_COUNT;
     return this.offerModel
-      .find({ cityId: id })
+      .find({ cityId: id }, {}, { limit })
       .populate(['hostId', 'cityId'])
       .exec();
   }

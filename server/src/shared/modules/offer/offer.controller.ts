@@ -1,4 +1,3 @@
-import { Request } from 'express';
 import { StatusCodes } from 'http-status-codes';
 import { inject, injectable } from 'inversify';
 
@@ -14,11 +13,11 @@ import {
 import { CityService } from '#src/shared/modules/city/index.js';
 
 import { CreateOfferDto } from './dto/create-offer.dto.js';
+import { DEFAULT_CITY_NAME } from './offer.constant.js';
 import { OfferService } from './offer-service.interface.js';
 import { OfferRdo } from './rdo/offer.rdo.js';
 import { CreateOfferRequest } from './type/create-offer.request.js';
 import { CreateOfferResponse } from './type/create-offer.response.js';
-import { GetAllOffersResponse } from './type/get-all-offers.response.js';
 import { GetAllOffersByCityNameRequest } from './type/get-all-offers-by-city-name.request.js';
 import { GetAllOffersByCityNameResponse } from './type/get-all-offers-by-city-name.response.js';
 import { GetOfferByIdRequest } from './type/get-offer-by-id.request.js';
@@ -50,12 +49,6 @@ export class OfferController extends BaseController {
 
     this.addRoute({
       path: '/',
-      method: HttpMethod.Get,
-      handler: this.getAll,
-    });
-
-    this.addRoute({
-      path: '/city/:cityName',
       method: HttpMethod.Get,
       handler: this.getAllByCityName,
     });
@@ -99,29 +92,23 @@ export class OfferController extends BaseController {
     this.ok(res, offerRdo);
   }
 
-  public async getAll(_req: Request, res: GetAllOffersResponse): Promise<void> {
-    const foundOffers = await this.offerService.findAll();
-    const offersRdo = fillDTO(OfferRdo, foundOffers);
-    this.ok(res, offersRdo);
-  }
-
   public async getAllByCityName(
     req: GetAllOffersByCityNameRequest,
     res: GetAllOffersByCityNameResponse,
   ): Promise<void> {
-    const cityName = req.params.cityName;
+    const { cityName = DEFAULT_CITY_NAME, limit } = req.query;
 
     const foundCity = await this.cityService.findByName(cityName);
     if (!foundCity) {
       throw new HttpError(
         StatusCodes.BAD_REQUEST,
-        `City with name ${req.params.cityName} not exists`,
+        `City with name ${cityName} not exists`,
         'DefaultOfferService.create',
       );
     }
 
     const cityId = foundCity._id.toString();
-    const foundOffers = await this.offerService.findAllByCityId(cityId);
+    const foundOffers = await this.offerService.findAllByCityId(cityId, limit);
     const offersRdo = fillDTO(OfferRdo, foundOffers);
     this.ok(res, offersRdo);
   }

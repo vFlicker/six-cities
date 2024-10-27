@@ -5,5 +5,5 @@ export interface OfferService {
   create(cityId: string, dto: CreateOfferDto): Promise<OfferDocument>;
   findById(id: string): Promise<OfferDocument | null>;
   findAll(): Promise<OfferDocument[]>;
-  findAllByCityId(id: string): Promise<OfferDocument[]>;
+  findAllByCityId(id: string, count?: number): Promise<OfferDocument[]>;
 }

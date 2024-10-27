@@ -1,11 +1,16 @@
 import { Request } from 'express';
 
-import { ResponseBody } from '#src/shared/libs/rest/index.js';
+import {
+  RequestParams,
+  RequestQuery,
+  ResponseBody,
+} from '#src/shared/libs/rest/index.js';
 
-import { CityNameParam } from './city-name.param.js';
+import { CityNameQuery } from './city-name.query.js';
 
 export type GetAllOffersByCityNameRequest = Request<
-  CityNameParam,
+  RequestParams,
   ResponseBody,
-  unknown
+  unknown,
+  RequestQuery & CityNameQuery
 >;

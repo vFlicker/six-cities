@@ -51,7 +51,7 @@ GET http://localhost:8000/api/offers HTTP/1.1
 
 ## Get all offers by city name
 
-GET http://localhost:8000/api/offers/city/amsterdam HTTP/1.1
+GET http://localhost:8000/api/offers?cityName=Paris&limit=1 HTTP/1.1
 
 ###
 
