@@ -34,7 +34,10 @@ export class CreateOfferDto {
   public previewImage!: string;
 
   @IsArray({ message: CreateOfferMessages.offerImages.invalidFormat })
-  @IsUrl({}, { each: true })
+  @IsUrl(
+    {},
+    { each: true, message: CreateOfferMessages.offerImages.invalidUrl },
+  )
   public offerImages!: string[];
 
   @IsBoolean({ message: CreateOfferMessages.isPremium.invalidFormat })

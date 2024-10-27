@@ -22,7 +22,7 @@ export class ValidateObjectIdMiddleware implements Middleware {
 
     throw new HttpError(
       StatusCodes.BAD_REQUEST,
-      `Invalid ObjectId: ${objectId}`,
+      `Invalid id: ${objectId}`,
       'ValidateObjectIdMiddleware',
     );
   }

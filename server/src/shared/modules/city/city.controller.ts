@@ -9,9 +9,11 @@ import {
   BaseController,
   HttpError,
   HttpMethod,
+  ValidateDtoMiddleware,
 } from '#src/shared/libs/rest/index.js';
 
 import { CityService } from './city-service.interface.js';
+import { CreateCityDto } from './dto/create-city-dto.js';
 import { CityRdo } from './rdo/city.rdo.js';
 import { CreateCityRequest } from './type/create-city.request.js';
 import { CreateCityResponse } from './type/create-city.response.js';
@@ -31,6 +33,7 @@ export class CityController extends BaseController {
       path: '/',
       method: HttpMethod.Post,
       handler: this.create,
+      middlewares: [new ValidateDtoMiddleware(CreateCityDto)],
     });
 
     this.addRoute({

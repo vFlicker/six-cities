@@ -16,6 +16,7 @@ export const CreateOfferMessages = {
   },
   offerImages: {
     invalidFormat: 'Offer images must be an array of strings',
+    invalidUrl: 'Invalid URL in offer images',
   },
   isPremium: {
     invalidFormat: 'Is premium must be a boolean',
