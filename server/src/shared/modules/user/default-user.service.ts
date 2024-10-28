@@ -32,8 +32,8 @@ export class DefaultUserService implements UserService {
     dto: CreateUserDto,
     salt: string,
   ): Promise<UserDocument> {
-    const existedUser = await this.findByEmail(dto.email);
-    if (existedUser) return existedUser;
+    const foundUser = await this.findByEmail(dto.email);
+    if (foundUser) return foundUser;
     return this.create(dto, salt);
   }
 }

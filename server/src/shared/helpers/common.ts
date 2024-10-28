@@ -19,6 +19,14 @@ export function generateRandomValue(
   return +(Math.random() * (max - min) + min).toFixed(numAfterDigit);
 }
 
+export function generateRandomValues(
+  min: number,
+  max: number,
+  count: number,
+): number[] {
+  return Array.from({ length: count }, () => generateRandomValue(min, max));
+}
+
 export function getRandomItems<T>(items: T[]): T[] {
   const startPosition = generateRandomValue(0, items.length - 1);
   const endPosition =

@@ -5,4 +5,5 @@ export interface CityService {
   create(dto: CreateCityDto): Promise<CityDocument>;
   findByName(name: string): Promise<CityDocument | null>;
   findAll(): Promise<CityDocument[]>;
+  findOrCreate(dto: CreateCityDto): Promise<CityDocument>;
 }

@@ -10,6 +10,7 @@ import {
 } from '#src/shared/libs/database-client/index.js';
 import { TSVFileReader } from '#src/shared/libs/file-reader/index.js';
 import { ConsoleLogger, Logger } from '#src/shared/libs/logger/index.js';
+import { CreateCityDto } from '#src/shared/modules/city/index.js';
 import {
   CityModel,
   CityService,
@@ -123,11 +124,11 @@ export class ImportCommand implements Command {
     const userDto = this.buildUserDto(tsvData);
     const user = await this.userService.findOrCreate(userDto, this.salt);
 
-    // TODO: add city to the database
-    console.log({ cityService: this.cityService });
+    const cityDto = this.buildCityDto(tsvData);
+    const city = await this.cityService.findOrCreate(cityDto);
 
     const offerDto = this.buildOfferDto(tsvData, user.id);
-    await this.offerService.create('6713b3fc713bfa6bfd1300fc', offerDto);
+    await this.offerService.create(city.id, offerDto);
   }
 
   private buildUserDto(tsvData: TSVData): CreateUserDto {
@@ -137,6 +138,16 @@ export class ImportCommand implements Command {
       name: tsvData.hostName,
       type: tsvData.hostType,
       password: DEFAULT_USER_PASSWORD,
+    };
+  }
+
+  private buildCityDto(tsvData: TSVData): CreateCityDto {
+    return {
+      name: tsvData.cityName,
+      location: {
+        latitude: tsvData.cityLatitude,
+        longitude: tsvData.cityLongitude,
+      },
     };
   }
 

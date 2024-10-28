@@ -69,8 +69,7 @@ export class OfferController extends BaseController {
       );
     }
 
-    const cityId = foundCity._id.toString();
-    const createdOffer = await this.offerService.create(cityId, req.body);
+    const createdOffer = await this.offerService.create(foundCity.id, req.body);
     const offerRdo = fillDTO(OfferRdo, createdOffer);
     this.created(res, offerRdo);
   }
@@ -109,7 +108,7 @@ export class OfferController extends BaseController {
       );
     }
 
-    const cityId = foundCity._id.toString();
+    const cityId = foundCity.id;
     const foundOffers = await this.offerService.findAllByCityId(cityId, limit);
     const offersRdo = fillDTO(OfferRdo, foundOffers);
     this.ok(res, offersRdo);

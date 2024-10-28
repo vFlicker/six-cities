@@ -29,4 +29,10 @@ export class DefaultCityService implements CityService {
   public async findAll(): Promise<CityDocument[]> {
     return this.cityModel.find().exec();
   }
+
+  public async findOrCreate(dto: CreateCityDto): Promise<CityDocument> {
+    const foundCity = await this.findByName(dto.name);
+    if (foundCity) return foundCity;
+    return this.create(dto);
+  }
 }

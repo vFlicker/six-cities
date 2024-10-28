@@ -29,3 +29,21 @@ cd server
 npm install
 npm run dev
 ```
+
+TODO: make text for fill database
+
+## Create data for application
+
+1. Write in first terminal
+
+```bash
+npm run mock:server
+```
+
+2. Write in second terminal
+
+```bash
+npm run build
+npm run mock:generate
+npm run mock:import
+```
