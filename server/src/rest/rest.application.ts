@@ -70,7 +70,10 @@ export class RestApplication {
   }
 
   private async initMiddlewares(): Promise<void> {
+    const uploadDirectoryPath = this.config.get('UPLOAD_DIRECTORY');
+
     this.server.use(express.json());
+    this.server.use('/static', express.static(uploadDirectoryPath));
     this.server.use(cors());
     this.server.use('/api-docs', swaggerUi.serve);
   }
