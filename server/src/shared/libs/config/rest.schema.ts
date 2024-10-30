@@ -6,6 +6,7 @@ convict.addFormats(validator);
 export type RestSchema = {
   PORT: number;
   SALT: string;
+  JWT_SECRET: string;
   DB_HOST: string;
   DB_USERNAME: string;
   DB_PASSWORD: string;
@@ -25,6 +26,12 @@ export const configRestSchema = convict<RestSchema>({
     doc: 'Salt for password hash.',
     format: String,
     env: 'SALT',
+    default: null,
+  },
+  JWT_SECRET: {
+    doc: 'Secret for signing JWT.',
+    format: String,
+    env: 'JWT_SECRET',
     default: null,
   },
   DB_HOST: {

@@ -27,6 +27,8 @@ export class RestApplication {
     private readonly offerController: Controller,
     @inject(Component.ApiDocController)
     private readonly docController: Controller,
+    @inject(Component.AuthExceptionFilter)
+    private readonly authExceptionFilter: ExceptionFilter,
     @inject(Component.ExceptionFilter)
     private readonly appExceptionFilter: ExceptionFilter,
   ) {
@@ -86,6 +88,7 @@ export class RestApplication {
   }
 
   private async initExceptionFilters(): Promise<void> {
+    this.server.use(this.authExceptionFilter.catch);
     this.server.use(this.appExceptionFilter.catch);
   }
 

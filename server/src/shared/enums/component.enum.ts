@@ -7,6 +7,8 @@ export const Component = {
   UserModel: Symbol.for('UserModel'),
   UserService: Symbol.for('UserService'),
   UserController: Symbol.for('UserController'),
+  AuthService: Symbol.for('AuthService'),
+  AuthExceptionFilter: Symbol.for('AuthExceptionFilter'),
   CityModel: Symbol.for('CityModel'),
   CityService: Symbol.for('CityService'),
   CityController: Symbol.for('CityController'),

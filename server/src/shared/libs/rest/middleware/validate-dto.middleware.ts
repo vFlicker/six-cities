@@ -16,6 +16,7 @@ export class ValidateDtoMiddleware implements Middleware {
     const dtoInstance = plainToInstance(this.dto, body);
     const errors = await validate(dtoInstance);
 
+    // TODO: чому така різниця з в коді у порівнянні з validate-objectid.middleware.ts?
     if (errors.length > 0) {
       res.status(StatusCodes.BAD_REQUEST).json(errors);
       return;
