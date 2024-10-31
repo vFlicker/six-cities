@@ -1,3 +1,4 @@
+import chalk from 'chalk';
 import { injectable } from 'inversify';
 
 import { getErrorMessage } from '#src/shared/helpers/common.js';
@@ -11,12 +12,12 @@ export class ConsoleLogger implements Logger {
   }
 
   public warn(message: string, ...args: unknown[]): void {
-    console.warn(message, ...args);
+    console.warn(chalk.yellow(message, ...args));
   }
 
   public error(message: string, error: Error, ...args: unknown[]): void {
-    console.error(message, ...args);
-    console.error(`Error message: ${getErrorMessage(error)}`);
+    console.error(chalk.red(message, ...args));
+    console.error(chalk.red(`Error message: ${getErrorMessage(error)}`));
   }
 
   public debug(message: string, ...args: unknown[]): void {
