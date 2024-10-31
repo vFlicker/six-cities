@@ -13,38 +13,53 @@ import {
 import { ConsoleLogger, Logger } from '#src/shared/libs/logger/index.js';
 import {
   AppExceptionFilter,
+  AuthExceptionFilter,
   ExceptionFilter,
+  HttpErrorExceptionFilter,
+  ValidationExceptionFilter,
 } from '#src/shared/libs/rest/index.js';
 
 import { RestApplication } from './rest.application.js';
 
 export function createRestApplicationContainer(): Container {
-  const restApplicationContainer = new Container();
+  const container = new Container();
 
-  restApplicationContainer
+  container
     .bind<RestApplication>(Component.RestApplication)
     .to(RestApplication)
     .inSingletonScope();
 
-  restApplicationContainer
-    .bind<Logger>(Component.Logger)
-    .to(ConsoleLogger)
-    .inSingletonScope();
+  container.bind<Logger>(Component.Logger).to(ConsoleLogger).inSingletonScope();
 
-  restApplicationContainer
+  container
     .bind<Config<RestSchema>>(Component.Config)
     .to(RestConfig)
     .inSingletonScope();
 
-  restApplicationContainer
+  container
     .bind<DatabaseClient>(Component.DatabaseClient)
     .to(MongoDatabaseClient)
     .inSingletonScope();
 
-  restApplicationContainer
+  container
+    .bind<ExceptionFilter>(Component.AuthExceptionFilter)
+    .to(AuthExceptionFilter)
+    .inSingletonScope();
+
+  container
+    .bind<ExceptionFilter>(Component.ValidationExceptionFilter)
+    .to(ValidationExceptionFilter)
+    .inSingletonScope();
+
+  container
+    .bind<ExceptionFilter>(Component.HttpExceptionFilter)
+    .to(HttpErrorExceptionFilter)
+    .inSingletonScope();
+
+  container
     .bind<ExceptionFilter>(Component.ExceptionFilter)
     .to(AppExceptionFilter)
     .inSingletonScope();
 
-  return restApplicationContainer;
+  return container;
 }

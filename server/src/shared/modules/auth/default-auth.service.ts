@@ -7,13 +7,12 @@ import { Logger } from 'pino';
 
 import { Component } from '#src/shared/enums/index.js';
 import { RestSchema } from '#src/shared/libs/config/index.js';
+import { AuthenticationException } from '#src/shared/libs/rest/index.js';
 import { UserDocument, UserService } from '#src/shared/modules/user/index.js';
 import { LoginUserDto } from '#src/shared/modules/user/index.js';
 
 import { JWT_ALGORITHM, JWT_EXPIRES_IN } from './auth.constant.js';
 import { AuthService } from './auth-service.interface.js';
-import { UserNotFoundException } from './errors/user-not-found.exception.js';
-import { UserPasswordIncorrectException } from './errors/user-password-incorrect.exception.js';
 import { TokenPayload } from './types/token-payload.js';
 
 @injectable()
@@ -28,12 +27,12 @@ export class DefaultAuthService implements AuthService {
     const foundUser = await this.userService.findByEmail(dto.email);
     if (!foundUser) {
       this.logger.warn(`User with email ${dto.email} not found`);
-      throw new UserNotFoundException();
+      throw new AuthenticationException('DefaultAuthService.verify');
     }
 
     if (!foundUser.verifyPassword(dto.password, this.config.get('SALT'))) {
       this.logger.warn(`Password for user ${dto.email} is incorrect`);
-      throw new UserPasswordIncorrectException();
+      throw new AuthenticationException('DefaultAuthService.verify');
     }
 
     return foundUser;

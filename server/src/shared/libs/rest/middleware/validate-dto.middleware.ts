@@ -1,8 +1,9 @@
 import { ClassConstructor, plainToInstance } from 'class-transformer';
 import { validate } from 'class-validator';
 import { NextFunction, Request, Response } from 'express';
-import { StatusCodes } from 'http-status-codes';
 
+import { ValidationException } from '../exception/validation.exception.js';
+import { reduceValidationErrors } from '../helpers.js';
 import { Middleware } from './middleware.interface.js';
 
 export class ValidateDtoMiddleware implements Middleware {
@@ -10,16 +11,20 @@ export class ValidateDtoMiddleware implements Middleware {
 
   public async execute(
     { body }: Request,
-    res: Response,
+    _res: Response,
     next: NextFunction,
   ): Promise<void> {
     const dtoInstance = plainToInstance(this.dto, body);
     const errors = await validate(dtoInstance);
 
-    // TODO: чому така різниця з в коді у порівнянні з validate-objectid.middleware.ts?
     if (errors.length > 0) {
-      res.status(StatusCodes.BAD_REQUEST).json(errors);
-      return;
+      const error = new ValidationException(
+        'Validation error',
+        reduceValidationErrors(errors),
+        'ValidateDtoMiddleware',
+      );
+
+      next(error);
     }
 
     next();

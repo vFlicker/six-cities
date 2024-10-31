@@ -7,10 +7,6 @@ import {
   TransformFnParams,
 } from 'class-transformer';
 
-type ErrorObject = {
-  error: string;
-};
-
 export function generateRandomValue(
   min: number,
   max: number,
@@ -50,10 +46,6 @@ export function fillDTO<T, V>(someDto: ClassConstructor<T>, plainObject: V): T {
   return plainToInstance(someDto, plainObject, {
     excludeExtraneousValues: true,
   });
-}
-
-export function createErrorObject(message: string): ErrorObject {
-  return { error: message };
 }
 
 export function ExposeId(options?: ExposeOptions): PropertyDecorator {

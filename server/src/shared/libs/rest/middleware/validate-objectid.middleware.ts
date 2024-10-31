@@ -15,15 +15,16 @@ export class ValidateObjectIdMiddleware implements Middleware {
   ): Promise<void> {
     const objectId = params[this.param];
 
-    if (Types.ObjectId.isValid(objectId)) {
-      next();
-      return;
+    if (!Types.ObjectId.isValid(objectId)) {
+      const error = new HttpError(
+        StatusCodes.BAD_REQUEST,
+        `Invalid id: ${objectId}`,
+        'ValidateObjectIdMiddleware',
+      );
+
+      next(error);
     }
 
-    throw new HttpError(
-      StatusCodes.BAD_REQUEST,
-      `Invalid id: ${objectId}`,
-      'ValidateObjectIdMiddleware',
-    );
+    next();
   }
 }
