@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
 
+import { Logout } from '~/features/auth';
+import { AppRoute } from '~/shared/router';
 import { IconName } from '~/shared/theme/icons';
 import { ContainerMixin } from '~/shared/ui/Container';
 import { Icon } from '~/shared/ui/Icon';
@@ -13,6 +15,8 @@ type HeaderProps = {
 };
 
 function Header({ className, hasMenu = true }: HeaderProps): JSX.Element {
+  const isLogged = localStorage.getItem('token');
+
   return (
     <header className={className}>
       <StyledNavigation>
@@ -20,7 +24,16 @@ function Header({ className, hasMenu = true }: HeaderProps): JSX.Element {
           <StyledLeft>
             <Logo />
           </StyledLeft>
-          {hasMenu && (
+          {hasMenu && !isLogged && (
+            <StyledRight>
+              <StyledTextLinksItem>
+                <TextLink to={AppRoute.Login}>
+                  <StyledUserIcon /> Sign in
+                </TextLink>
+              </StyledTextLinksItem>
+            </StyledRight>
+          )}
+          {hasMenu && isLogged && (
             <StyledRight>
               <StyledTextLinksList>
                 <StyledTextLinksItem>
@@ -30,7 +43,7 @@ function Header({ className, hasMenu = true }: HeaderProps): JSX.Element {
                   </TextLink>
                 </StyledTextLinksItem>
                 <StyledTextLinksItem>
-                  <TextLink to="/">Sign out</TextLink>
+                  <Logout />
                 </StyledTextLinksItem>
               </StyledTextLinksList>
             </StyledRight>

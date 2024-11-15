@@ -2,11 +2,11 @@ import styled from '@emotion/styled';
 import { Helmet } from 'react-helmet-async';
 
 import { Login } from '~/features/auth';
-import { ContainerMixin } from '~/shared/ui/Container';
-import { withAttrs } from '~/shared/ui/withAttrs';
 import { backgroundAmsterdamImage } from '~/shared/assets/images';
 import { Color } from '~/shared/theme/colors';
+import { ContainerMixin } from '~/shared/ui/Container';
 import { SlantedLink } from '~/shared/ui/SlantedButton';
+import { withAttrs } from '~/shared/ui/withAttrs';
 import { Header } from '~/widgets/header';
 
 function LoginPage(): JSX.Element {

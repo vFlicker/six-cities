@@ -1,19 +1,31 @@
 import styled from '@emotion/styled';
+import { FormEvent } from 'react';
 
-import { withAttrs } from '~/shared/ui/withAttrs';
+import { AuthData, login } from '~/entities/user';
 import { Button } from '~/shared/ui/Button';
 import { Input } from '~/shared/ui/Input';
 import { Typography, TypographyVariant } from '~/shared/ui/Typography';
+import { withAttrs } from '~/shared/ui/withAttrs';
 
 type LoginProps = {
   className?: string;
 };
 
 export function Login({ className }: LoginProps): JSX.Element {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const formData = new FormData(event.currentTarget);
+    const fields = Object.fromEntries(formData.entries()) as AuthData;
+
+    const token = await login(fields);
+    localStorage.setItem('token', token.token);
+  };
+
   return (
     <section className={className}>
       <StyledTitle>Sign in</StyledTitle>
-      <StyledForm action="#" method="post">
+      <StyledForm action="#" method="post" onSubmit={handleSubmit}>
         <Input
           type="email"
           name="email"
