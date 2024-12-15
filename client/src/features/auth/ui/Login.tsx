@@ -18,8 +18,8 @@ export function Login({ className }: LoginProps): JSX.Element {
     const formData = new FormData(event.currentTarget);
     const fields = Object.fromEntries(formData.entries()) as AuthData;
 
-    const token = await login(fields);
-    localStorage.setItem('token', token.token);
+    const { token } = await login(fields);
+    localStorage.setItem('token', token);
   };
 
   return (
