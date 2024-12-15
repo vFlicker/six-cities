@@ -23,10 +23,10 @@ export type UserModelType = types.ModelType<UserEntity>;
 export class UserEntity extends defaultClasses.TimeStamps {
   @prop({
     required: true,
-    minlength: [2, 'Min length for name is 2'],
-    maxlength: [16, 'Max length for name is 16'],
+    minlength: [2, 'Min length for username is 2'],
+    maxlength: [16, 'Max length for username is 16'],
   })
-  public name!: string;
+  public username!: string;
 
   @prop({
     required: true,
@@ -45,7 +45,8 @@ export class UserEntity extends defaultClasses.TimeStamps {
 
   @prop({
     required: true,
-    default: '',
+    // TODO: remove hardcoded default avatar URL
+    default: 'http://localhost:8000/uploads/default-avatar.jpg',
     maxlength: [255, 'Max length for avatar URL is 255'],
   })
   public avatarUrl!: string;
@@ -60,10 +61,8 @@ export class UserEntity extends defaultClasses.TimeStamps {
   constructor(userData: User) {
     super();
 
-    this.name = userData.name;
+    this.username = userData.username;
     this.email = userData.email;
-    this.type = userData.type;
-    this.avatarUrl = userData.avatarUrl;
   }
 
   public getPassword(): string {

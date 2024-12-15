@@ -5,11 +5,10 @@ POST http://localhost:8000/api/users/register HTTP/1.1
 Content-Type: application/json
 
 {
-  "name": "John Doe",
-  "email": "john@mail.com",
-  "type": "pro",
-  "avatarUrl": "https://www.example-image.com",
-  "password": "12345678"
+  "username": "vlad",
+  "email": "vlad@mail.com",
+  "password": "12345678",
+  "passwordConfirmation": "12345678"
 }
 
 ###
@@ -20,7 +19,7 @@ POST http://localhost:8000/api/users/login HTTP/1.1
 Content-Type: application/json
 
 {
-  "email": "angelina@example.com",
+  "email": "vlad@mail.com",
   "password": "12345678"
 }
 

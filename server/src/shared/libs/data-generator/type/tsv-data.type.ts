@@ -6,7 +6,7 @@ export type TSVData = {
   cityName: CityName;
   cityLatitude: number;
   cityLongitude: number;
-  hostName: string;
+  hostUsername: string;
   hostEmail: string;
   hostAvatarUrl: string;
   hostType: UserType;

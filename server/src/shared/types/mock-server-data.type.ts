@@ -10,7 +10,7 @@ export type MockServerData = {
   }[];
   amenities: string[];
   hosts: {
-    name: string;
+    username: string;
     email: string;
     avatarUrl: string;
   }[];

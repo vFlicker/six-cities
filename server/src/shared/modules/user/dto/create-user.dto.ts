@@ -1,20 +1,13 @@
-import {
-  IsEmail,
-  IsEnum,
-  IsString,
-  IsUrl,
-  Length,
-  MaxLength,
-} from 'class-validator';
+import { IsEmail, IsString, Length } from 'class-validator';
 
-import { UserType } from '#src/shared/enums/index.js';
+import { Match } from '#src/shared/libs/rest/index.js';
 
 import { CreateUserMessages } from './create-user.messages.js';
 
 export class CreateUserDto {
-  @IsString({ message: CreateUserMessages.name.invalidFormat })
-  @Length(2, 16, { message: CreateUserMessages.name.lengthField })
-  public name!: string;
+  @IsString({ message: CreateUserMessages.username.invalidFormat })
+  @Length(2, 16, { message: CreateUserMessages.username.lengthField })
+  public username!: string;
 
   @IsEmail({}, { message: CreateUserMessages.email.invalidFormat })
   public email!: string;
@@ -23,10 +16,10 @@ export class CreateUserDto {
   @Length(8, 64, { message: CreateUserMessages.password.lengthField })
   public password!: string;
 
-  @IsEnum(UserType, { message: CreateUserMessages.type.invalid })
-  public type!: UserType;
-
-  @IsUrl({}, { message: CreateUserMessages.avatarUrl.invalidFormat })
-  @MaxLength(255, { message: CreateUserMessages.avatarUrl.maxLength })
-  public avatarUrl!: string;
+  @IsString({ message: CreateUserMessages.passwordConfirmation.invalidFormat })
+  @Length(8, 64, {
+    message: CreateUserMessages.passwordConfirmation.lengthField,
+  })
+  @Match(CreateUserDto, (dto) => dto.password)
+  public passwordConfirmation!: string;
 }

@@ -133,11 +133,10 @@ export class ImportCommand implements Command {
 
   private buildUserDto(tsvData: TSVData): CreateUserDto {
     return {
-      avatarUrl: tsvData.hostAvatarUrl,
+      username: tsvData.hostUsername,
       email: tsvData.hostEmail,
-      name: tsvData.hostName,
-      type: tsvData.hostType,
       password: DEFAULT_USER_PASSWORD,
+      passwordConfirmation: DEFAULT_USER_PASSWORD,
     };
   }
 

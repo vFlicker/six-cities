@@ -84,12 +84,12 @@
     ],
     "hosts": [
       {
-        "name": "Angelina",
+        "username": "Angelina",
         "email": "angelina@example.com",
         "avatarUrl": "http://localhost:8000/static/host/avatar-angelina.jpg"
       },
       {
-        "name": "Max",
+        "username": "Max",
         "email": "max@example.com",
         "avatarUrl": "http://localhost:8000/static/host/avatar-max.jpg"
       }
