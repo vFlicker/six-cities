@@ -11,7 +11,7 @@ type ResultMessageProps = {
   className?: string;
 };
 
-export function ResultMessage({
+function ResultMessage({
   className,
   title,
   message,
@@ -26,6 +26,8 @@ export function ResultMessage({
     </StyledWrapper>
   );
 }
+
+export { ResultMessage };
 
 const StyledWrapper = styled.div`
   max-width: 480px;

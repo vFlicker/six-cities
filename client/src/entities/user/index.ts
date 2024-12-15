@@ -1,2 +1,2 @@
-export type { AuthData } from './api/userApi';
-export { login } from './api/userApi';
+export type { AuthData, RegisterData } from './api/userApi';
+export { login, register } from './api/userApi';
