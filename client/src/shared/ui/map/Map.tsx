@@ -30,7 +30,6 @@ function Map({
 }
 
 export { Map };
-export type { LatLngTuple };
 
 const StyledMap = styled.div`
   display: flex;

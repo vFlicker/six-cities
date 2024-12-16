@@ -5,4 +5,5 @@ export const enum AppRoute {
   Offers = '/offers',
   Login = '/login',
   Register = '/register',
+  Favorites = '/favorites',
 }

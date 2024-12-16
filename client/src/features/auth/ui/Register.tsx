@@ -25,7 +25,7 @@ function Register({ className }: RegisterProps): JSX.Element {
 
   return (
     <section className={className}>
-      <StyledTitle>Sign in</StyledTitle>
+      <StyledTitle>Sign up</StyledTitle>
       <StyledForm action="#" method="post" onSubmit={handleSubmit}>
         <Input
           type="text"

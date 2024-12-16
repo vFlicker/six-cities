@@ -45,7 +45,7 @@ function HomePage(): JSX.Element {
   return (
     <DefaultLayout>
       <Helmet>
-        <title>Home page</title>
+        <title>Home</title>
       </Helmet>
       <StyledHeader />
       <StyledMain>

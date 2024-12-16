@@ -1,20 +1,22 @@
-import { Navigate, Outlet } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
+import { AuthStatus } from '~/shared/auth';
 import { AppRoute } from '~/shared/router';
 
 type PrivateRouteProps = {
-  isAllowed: boolean;
+  authStatus: AuthStatus;
   children?: JSX.Element;
   redirectTo?: string;
 };
 
 function PrivateRoute({
-  isAllowed,
+  authStatus,
   children,
   redirectTo = AppRoute.Root,
 }: PrivateRouteProps): JSX.Element {
-  if (!isAllowed) return <Navigate to={redirectTo} />;
-  return children ?? <Outlet />;
+  const isUserAuthenticated = authStatus === AuthStatus.Auth;
+  if (isUserAuthenticated) return <Navigate to={redirectTo} />;
+  return <>{children}</>;
 }
 
 export { PrivateRoute };

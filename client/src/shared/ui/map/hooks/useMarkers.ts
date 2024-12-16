@@ -35,9 +35,7 @@ export const useMarkers = (
     }
 
     return () => {
-      for (const marker of markers) {
-        map.removeLayer(marker);
-      }
+      for (const marker of markers) map.removeLayer(marker);
     };
   }, [activeId, map, markerLocations]);
 };

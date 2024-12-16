@@ -13,7 +13,7 @@ function RegisterPage(): JSX.Element {
   return (
     <StyledWrapper>
       <Helmet>
-        <title>Sign up</title>
+        <title>Register</title>
       </Helmet>
       <StyledContainer>
         <Header hasMenu={false} />
