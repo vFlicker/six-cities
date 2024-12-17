@@ -3,5 +3,6 @@ export {
   getAllOffersByCityName,
   getOfferById,
 } from './api/offersApi';
-export type { Offer, OfferId } from './model/offer';
+export { default as offerReducer } from './model/offerModel';
+export type { Offer, OfferId } from './model/types';
 export { Card, CardVariant } from './ui/Card';

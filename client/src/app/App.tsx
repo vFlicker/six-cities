@@ -1,4 +1,5 @@
 import { Global } from '@emotion/react';
+import { Provider } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 
 import { LoginPage, RegisterPage } from '~/pages/auth';
@@ -17,9 +18,11 @@ import { globalResets } from '~/shared/theme/resets';
 import { globalTextShadows } from '~/shared/theme/textShadow';
 import { PrivateRoute } from '~/shared/ui/PrivateRoute';
 
+import { store } from './store';
+
 function App(): JSX.Element {
   return (
-    <>
+    <Provider store={store}>
       <Global styles={globalNormalize} />
       <Global styles={globalResets} />
       <Global styles={globalFonts} />
@@ -39,7 +42,7 @@ function App(): JSX.Element {
       </Routes>
 
       <SpriteWithIcons />
-    </>
+    </Provider>
   );
 }
 

@@ -12,11 +12,13 @@
   "dependencies": {
     "@emotion/react": "11.13.0",
     "@emotion/styled": "11.13.0",
+    "@reduxjs/toolkit": "2.5.0",
     "axios": "1.7.7",
     "leaflet": "1.9.4",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-helmet-async": "2.0.5",
+    "react-redux": "9.2.0",
     "react-router-dom": "6.26.1"
   },
   "devDependencies": {
