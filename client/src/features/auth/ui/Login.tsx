@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { FormEvent } from 'react';
 
-import { AuthData, login } from '~/entities/user';
+import { AuthData, login } from '~/entities/auth';
 import { saveToken } from '~/shared/libs/token';
 import { AuthRedirect } from '~/shared/ui/AuthRedirect';
 import { Button } from '~/shared/ui/Button';
