@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import { FormEvent } from 'react';
 
 import { AuthData, login } from '~/entities/user';
+import { saveToken } from '~/shared/libs/token';
 import { AuthRedirect } from '~/shared/ui/AuthRedirect';
 import { Button } from '~/shared/ui/Button';
 import { Input } from '~/shared/ui/Input';
@@ -20,7 +21,7 @@ function Login({ className }: LoginProps): JSX.Element {
     const fields = Object.fromEntries(formData.entries()) as AuthData;
 
     const { token } = await login(fields);
-    localStorage.setItem('token', token);
+    saveToken(token);
   };
 
   return (

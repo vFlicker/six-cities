@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
 import { Logout } from '~/features/auth';
+import { getToken } from '~/shared/libs/token';
 import { AppRoute } from '~/shared/router';
 import { IconName } from '~/shared/theme/icons';
 import { ContainerMixin } from '~/shared/ui/Container';
@@ -15,7 +16,7 @@ type HeaderProps = {
 };
 
 function Header({ className, hasMenu = true }: HeaderProps): JSX.Element {
-  const isLogged = localStorage.getItem('token');
+  const isLogged = getToken() !== null;
 
   return (
     <header className={className}>
