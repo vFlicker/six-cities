@@ -1,9 +1,10 @@
 import styled from '@emotion/styled';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useSearchParams } from 'react-router-dom';
 
-import { getAllOffersByCityName, Offer } from '~/entities/offer';
+import { fetchOffersByCityName, offerModel } from '~/entities/offer';
+import { useAppDispatch, useAppSelector } from '~/shared/libs/state';
 import { DEFAULT_CITY } from '~/shared/router';
 import { Color } from '~/shared/theme/colors';
 import { DefaultLayout } from '~/shared/ui/DefaultLayout';
@@ -15,10 +16,12 @@ import { LocationTabs } from './LocationTabs';
 import { NoAvailableOffers } from './NoAvailableOffers';
 
 function HomePage(): JSX.Element {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const dispatch = useAppDispatch();
 
-  const [offers, setOffers] = useState<Offer[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const offersByCityName = useAppSelector(offerModel.getOffersByCityName);
+  const isLoading = useAppSelector(offerModel.getIsOffersByCityNameLoading);
+
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const cityName = searchParams.get('cityName');
 
@@ -27,19 +30,10 @@ function HomePage(): JSX.Element {
   }, [cityName, setSearchParams]);
 
   useEffect(() => {
-    const fetchOffers = async () => {
-      if (!cityName) return;
+    if (cityName) dispatch(fetchOffersByCityName(cityName));
+  }, [dispatch, cityName]);
 
-      setIsLoading(true);
-      const data = await getAllOffersByCityName(cityName);
-      setOffers(data);
-      setIsLoading(false);
-    };
-
-    fetchOffers();
-  }, [cityName]);
-
-  const hasOffers = offers.length > 0;
+  const hasOffers = offersByCityName.length > 0;
   if (isLoading) return <p>Loading...</p>;
 
   return (
@@ -52,7 +46,7 @@ function HomePage(): JSX.Element {
         <StyledTitle>Six Cities</StyledTitle>
         <LocationTabs />
         {!hasOffers && <NoAvailableOffers />}
-        {hasOffers && <AvailableOffers offers={offers} />}
+        {hasOffers && <AvailableOffers offers={offersByCityName} />}
       </StyledMain>
     </DefaultLayout>
   );

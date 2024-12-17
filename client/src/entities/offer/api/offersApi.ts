@@ -1,6 +1,6 @@
 import { apiClient } from '~/shared/api/apiClient';
 
-import { Offer } from '../model/types';
+import { Offer } from '../types';
 
 export const getOfferById = async (id: string): Promise<Offer> => {
   const { data } = await apiClient.get<Offer>(`/offers/${id}`);
