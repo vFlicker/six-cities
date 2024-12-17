@@ -1,13 +1,13 @@
 import { Global } from '@emotion/react';
-import { Provider } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 
+import { authModel } from '~/entities/auth';
 import { LoginPage, RegisterPage } from '~/pages/auth';
 import { FavoritesPage } from '~/pages/favorite';
 import { HomePage } from '~/pages/home';
 import { NotFoundPage } from '~/pages/NotFoundPage';
 import { OfferPage } from '~/pages/offer';
-import { AuthStatus } from '~/shared/auth';
+import { useAppSelector } from '~/shared/libs/state';
 import { AppRoute } from '~/shared/router';
 import { globalColors } from '~/shared/theme/colors';
 import { globalFonts } from '~/shared/theme/fonts';
@@ -18,11 +18,11 @@ import { globalResets } from '~/shared/theme/resets';
 import { globalTextShadows } from '~/shared/theme/textShadow';
 import { PrivateRoute } from '~/shared/ui/PrivateRoute';
 
-import { store } from './store';
-
 function App(): JSX.Element {
+  const isAuth = useAppSelector(authModel.getIsAuthStatus);
+
   return (
-    <Provider store={store}>
+    <>
       <Global styles={globalNormalize} />
       <Global styles={globalResets} />
       <Global styles={globalFonts} />
@@ -35,14 +35,14 @@ function App(): JSX.Element {
         <Route path={`${AppRoute.Offers}/:offerId`} element={<OfferPage />} />
         <Route path={AppRoute.Login} element={<LoginPage />} />
         <Route path={AppRoute.Register} element={<RegisterPage />} />
-        <Route element={<PrivateRoute authStatus={AuthStatus.Auth} />}>
+        <Route element={<PrivateRoute isAuthenticated={isAuth} />}>
           <Route path={AppRoute.Favorites} element={<FavoritesPage />} />
         </Route>
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
 
       <SpriteWithIcons />
-    </Provider>
+    </>
   );
 }
 

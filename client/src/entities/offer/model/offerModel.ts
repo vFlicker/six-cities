@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { StoreSlice } from '~/shared/libs/state';
 
-import { Offer } from '../types';
+import { Offer } from '../types/offerTypes';
 import { fetchOffer, fetchOffers, fetchOffersByCityName } from './offerActions';
 
 type OfferState = {

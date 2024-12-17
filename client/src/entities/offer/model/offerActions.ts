@@ -1,30 +1,23 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import {
-  getAllOffers,
-  getAllOffersByCityName,
-  getOfferById,
-} from '../api/offersApi';
-import { Offer } from '../types';
+import { StoreSlice } from '~/shared/libs/state';
+import { ThunkOptions } from '~/shared/libs/state';
 
-type ThunkOptions = {
-  state: RootState;
-  dispatch: AppDispatch;
-  rejectValue: unknown;
-};
+import { offerApi } from '../api/offersApi';
+import { Offer } from '../types/offerTypes';
 
 export const fetchOffer = createAsyncThunk<Offer, string, ThunkOptions>(
-  'OFFER/fetchOffer',
+  `${StoreSlice.Offer}/fetchOffer`,
   async (id) => {
-    const offer = await getOfferById(id);
+    const offer = await offerApi.getOfferById(id);
     return offer;
   },
 );
 
 export const fetchOffers = createAsyncThunk<Offer[], void, ThunkOptions>(
-  'OFFER/fetchOffers',
+  `${StoreSlice.Offer}/fetchOffers`,
   async () => {
-    const offers = await getAllOffers();
+    const offers = await offerApi.getAllOffers();
     return offers;
   },
 );
@@ -33,7 +26,7 @@ export const fetchOffersByCityName = createAsyncThunk<
   Offer[],
   string,
   ThunkOptions
->('OFFER/fetchOffersByCityName', async (cityName) => {
-  const offers = await getAllOffersByCityName(cityName);
+>(`${StoreSlice.Offer}/fetchOffersByCityName`, async (cityName) => {
+  const offers = await offerApi.getAllOffersByCityName(cityName);
   return offers;
 });

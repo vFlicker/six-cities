@@ -9,7 +9,7 @@ import { Rating, RatingSize } from '~/shared/ui/Rating';
 import { Typography, TypographyVariant } from '~/shared/ui/Typography';
 import { withAttrs } from '~/shared/ui/withAttrs';
 
-import { Offer } from '../types';
+import { Offer } from '../types/offerTypes';
 
 type CardProps = Offer & {
   variant: CardVariant;

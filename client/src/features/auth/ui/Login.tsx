@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { FormEvent } from 'react';
 
 import { AuthData, login } from '~/entities/auth';
-import { saveToken } from '~/shared/libs/token';
+import { useAppDispatch } from '~/shared/libs/state';
 import { AuthRedirect } from '~/shared/ui/AuthRedirect';
 import { Button } from '~/shared/ui/Button';
 import { Input } from '~/shared/ui/Input';
@@ -14,14 +14,15 @@ type LoginProps = {
 };
 
 function Login({ className }: LoginProps): JSX.Element {
+  const dispatch = useAppDispatch();
+
   const handleSubmit = async (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
     const formData = new FormData(evt.currentTarget);
-    const fields = Object.fromEntries(formData.entries()) as AuthData;
+    const data = Object.fromEntries(formData.entries()) as AuthData;
 
-    const { token } = await login(fields);
-    saveToken(token);
+    dispatch(login(data));
   };
 
   return (

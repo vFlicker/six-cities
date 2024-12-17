@@ -1,25 +1,15 @@
 import { apiClient } from '~/shared/api/apiClient';
 
-type Token = { token: string };
+import { AuthData, RegisterData, TokenData } from '../types/authTypes';
 
-export type AuthData = {
-  email: string;
-  password: string;
-};
+export const authApi = {
+  async login(body: AuthData): Promise<TokenData> {
+    const { data } = await apiClient.post<TokenData>('/users/login', body);
+    return data;
+  },
 
-export type RegisterData = {
-  username: string;
-  email: string;
-  password: string;
-  passwordConfirmation: string;
-};
-
-export const login = async (body: AuthData): Promise<Token> => {
-  const { data } = await apiClient.post<Token>('/users/login', body);
-  return data;
-};
-
-export const register = async (body: RegisterData): Promise<Token> => {
-  const { data } = await apiClient.post<Token>('/users/register', body);
-  return data;
+  async register(body: RegisterData): Promise<TokenData> {
+    const { data } = await apiClient.post<TokenData>('/users/register', body);
+    return data;
+  },
 };

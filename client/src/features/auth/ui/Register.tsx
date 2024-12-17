@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { FormEvent } from 'react';
 
 import { register, RegisterData } from '~/entities/auth';
-import { saveToken } from '~/shared/libs/token';
+import { useAppDispatch } from '~/shared/libs/state';
 import { AuthRedirect } from '~/shared/ui/AuthRedirect';
 import { Button } from '~/shared/ui/Button';
 import { Input } from '~/shared/ui/Input';
@@ -14,14 +14,15 @@ type RegisterProps = {
 };
 
 function Register({ className }: RegisterProps): JSX.Element {
+  const dispatch = useAppDispatch();
+
   const handleSubmit = async (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
     const formData = new FormData(evt.currentTarget);
-    const fields = Object.fromEntries(formData.entries()) as RegisterData;
+    const data = Object.fromEntries(formData.entries()) as RegisterData;
 
-    const { token } = await register(fields);
-    saveToken(token);
+    dispatch(register(data));
   };
 
   return (
