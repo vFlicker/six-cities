@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { Helmet } from 'react-helmet-async';
 
-import { AppRoute } from '~/shared/router';
+import { AppRoute } from '~/shared/libs/router';
 import { Color } from '~/shared/theme/colors';
 import { DefaultLayout } from '~/shared/ui/DefaultLayout';
 import { TextLink } from '~/shared/ui/TextButton';

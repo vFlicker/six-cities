@@ -4,8 +4,8 @@ import { Helmet } from 'react-helmet-async';
 import { useSearchParams } from 'react-router-dom';
 
 import { fetchOffersByCityName, offerModel } from '~/entities/offer';
+import { DEFAULT_CITY } from '~/shared/libs/router';
 import { useAppDispatch, useAppSelector } from '~/shared/libs/state';
-import { DEFAULT_CITY } from '~/shared/router';
 import { Color } from '~/shared/theme/colors';
 import { DefaultLayout } from '~/shared/ui/DefaultLayout';
 import { VisuallyHiddenMixin } from '~/shared/ui/VisuallyHiddenMixin';

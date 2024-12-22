@@ -7,8 +7,8 @@ import { FavoritesPage } from '~/pages/favorite';
 import { HomePage } from '~/pages/home';
 import { NotFoundPage } from '~/pages/NotFoundPage';
 import { OfferPage } from '~/pages/offer';
+import { AppRoute } from '~/shared/libs/router';
 import { useAppSelector } from '~/shared/libs/state';
-import { AppRoute } from '~/shared/router';
 import { globalColors } from '~/shared/theme/colors';
 import { globalFonts } from '~/shared/theme/fonts';
 import { SpriteWithIcons } from '~/shared/theme/icons';
@@ -19,7 +19,10 @@ import { globalTextShadows } from '~/shared/theme/textShadow';
 import { PrivateRoute } from '~/shared/ui/PrivateRoute';
 
 function App(): JSX.Element {
-  const isAuth = useAppSelector(authModel.getIsAuthStatus);
+  const isAuthChecked = useAppSelector(authModel.getIsAuthCheckedStatus);
+  const isAuthenticated = useAppSelector(authModel.getIsIsAuthenticated);
+
+  if (!isAuthChecked) return <div>Loading...</div>;
 
   return (
     <>
@@ -32,12 +35,32 @@ function App(): JSX.Element {
 
       <Routes>
         <Route path={AppRoute.Root} element={<HomePage />} />
-        <Route path={`${AppRoute.Offers}/:offerId`} element={<OfferPage />} />
         <Route path={AppRoute.Login} element={<LoginPage />} />
         <Route path={AppRoute.Register} element={<RegisterPage />} />
-        <Route element={<PrivateRoute isAuthenticated={isAuth} />}>
-          <Route path={AppRoute.Favorites} element={<FavoritesPage />} />
-        </Route>
+
+        <Route
+          path={`${AppRoute.Offers}/:offerId`}
+          element={
+            <PrivateRoute
+              isAuthenticated={isAuthenticated}
+              redirectTo={AppRoute.Login}
+            >
+              <OfferPage />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path={AppRoute.Favorites}
+          element={
+            <PrivateRoute
+              isAuthenticated={isAuthenticated}
+              redirectTo={AppRoute.Login}
+            >
+              <FavoritesPage />
+            </PrivateRoute>
+          }
+        />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
 

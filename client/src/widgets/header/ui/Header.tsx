@@ -1,8 +1,9 @@
 import styled from '@emotion/styled';
 
+import { authModel } from '~/entities/auth';
 import { Logout } from '~/features/auth';
-import { getToken } from '~/shared/libs/token';
-import { AppRoute } from '~/shared/router';
+import { AppRoute } from '~/shared/libs/router';
+import { useAppSelector } from '~/shared/libs/state';
 import { IconName } from '~/shared/theme/icons';
 import { ContainerMixin } from '~/shared/ui/Container';
 import { Icon } from '~/shared/ui/Icon';
@@ -16,7 +17,7 @@ type HeaderProps = {
 };
 
 function Header({ className, hasMenu = true }: HeaderProps): JSX.Element {
-  const isLogged = getToken() !== null;
+  const isAuthenticated = useAppSelector(authModel.getIsIsAuthenticated);
 
   return (
     <header className={className}>
@@ -25,7 +26,7 @@ function Header({ className, hasMenu = true }: HeaderProps): JSX.Element {
           <StyledLeft>
             <Logo />
           </StyledLeft>
-          {hasMenu && !isLogged && (
+          {hasMenu && !isAuthenticated && (
             <StyledRight>
               <StyledTextLinksItem>
                 <TextLink to={AppRoute.Login}>
@@ -34,7 +35,7 @@ function Header({ className, hasMenu = true }: HeaderProps): JSX.Element {
               </StyledTextLinksItem>
             </StyledRight>
           )}
-          {hasMenu && isLogged && (
+          {hasMenu && isAuthenticated && (
             <StyledRight>
               <StyledTextLinksList>
                 <StyledTextLinksItem>

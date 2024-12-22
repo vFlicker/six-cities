@@ -34,44 +34,45 @@ const offerReducer = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchOffer.pending, (state) => {
-      state.isOfferLoading = true;
-      state.offerError = null;
-    });
-    builder.addCase(fetchOffer.fulfilled, (state, action) => {
-      state.isOfferLoading = false;
-      state.offer = action.payload;
-    });
-    builder.addCase(fetchOffer.rejected, (state, action) => {
-      state.isOfferLoading = false;
-      state.offerError = action.error;
-    });
+    builder
+      .addCase(fetchOffer.pending, (state) => {
+        state.isOfferLoading = true;
+        state.offerError = null;
+      })
+      .addCase(fetchOffer.fulfilled, (state, action) => {
+        state.isOfferLoading = false;
+        state.offer = action.payload;
+      })
+      .addCase(fetchOffer.rejected, (state, action) => {
+        state.isOfferLoading = false;
+        state.offerError = action.error;
+      })
 
-    builder.addCase(fetchOffers.pending, (state) => {
-      state.isOffersLoading = true;
-      state.offersError = null;
-    });
-    builder.addCase(fetchOffers.fulfilled, (state, action) => {
-      state.isOffersLoading = false;
-      state.offers = action.payload;
-    });
-    builder.addCase(fetchOffers.rejected, (state, action) => {
-      state.isOffersLoading = false;
-      state.offersError = action.error;
-    });
+      .addCase(fetchOffers.pending, (state) => {
+        state.isOffersLoading = true;
+        state.offersError = null;
+      })
+      .addCase(fetchOffers.fulfilled, (state, action) => {
+        state.isOffersLoading = false;
+        state.offers = action.payload;
+      })
+      .addCase(fetchOffers.rejected, (state, action) => {
+        state.isOffersLoading = false;
+        state.offersError = action.error;
+      })
 
-    builder.addCase(fetchOffersByCityName.pending, (state) => {
-      state.isOffersByCityNameLoading = true;
-      state.offersByCityNameError = null;
-    });
-    builder.addCase(fetchOffersByCityName.fulfilled, (state, action) => {
-      state.isOffersByCityNameLoading = false;
-      state.offersByCityName = action.payload;
-    });
-    builder.addCase(fetchOffersByCityName.rejected, (state, action) => {
-      state.isOffersByCityNameLoading = false;
-      state.offersByCityNameError = action.error;
-    });
+      .addCase(fetchOffersByCityName.pending, (state) => {
+        state.isOffersByCityNameLoading = true;
+        state.offersByCityNameError = null;
+      })
+      .addCase(fetchOffersByCityName.fulfilled, (state, action) => {
+        state.isOffersByCityNameLoading = false;
+        state.offersByCityName = action.payload;
+      })
+      .addCase(fetchOffersByCityName.rejected, (state, action) => {
+        state.isOffersByCityNameLoading = false;
+        state.offersByCityNameError = action.error;
+      });
   },
 });
 
