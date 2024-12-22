@@ -24,3 +24,10 @@ Content-Type: application/json
 }
 
 ###
+
+## Auth
+
+GET http://localhost:8000/api/users/auth HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpZCI6IjY3NWYyOGI0OTY1YjY5MzI0ODllMGZjMCIsInVzZXJuYW1lIjoidmxhZCIsImVtYWlsIjoidmxhZEBtYWlsLmNvbSIsImlhdCI6MTczNDg4MjY4MywiZXhwIjoxNzM1MDU1NDgzfQ.GstpHqwmfhIxpa5Up1J67hXHeJoDVTKL3XUYiGTk3pw
+
+###

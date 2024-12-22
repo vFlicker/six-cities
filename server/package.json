@@ -15,7 +15,6 @@
   "scripts": {
     "dev": "nodemon",
     "watch": "tsc -w",
-    "pino": "pino-pretty --colorize --translateTime SYS:standard",
     "start": "npm run build && node ./dist/main.rest.js",
     "build": "npm run clean && npm run compile",
     "clean": "rimraf dist",

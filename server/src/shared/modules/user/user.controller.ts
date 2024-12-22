@@ -6,6 +6,7 @@ import { fillDTO } from '#src/shared/helpers/index.js';
 import { Config, RestSchema } from '#src/shared/libs/config/index.js';
 import { Logger } from '#src/shared/libs/logger/index.js';
 import {
+  AuthenticationException,
   BaseController,
   HttpError,
   HttpMethod,
@@ -17,6 +18,8 @@ import { CreateUserDto } from './dto/create-user.dto.js';
 import { LoginUserDto } from './dto/login-user.dto.js';
 import { LoggedUserRdo } from './rdo/logged-user.rdo.js';
 import { UserRdo } from './rdo/user.rdo.js';
+import { CheckAuthenticateRequest } from './type/check-authenticate.request.js';
+import { CheckAuthenticateResponse } from './type/check-authenticate.response.js';
 import { CreateUserRequest } from './type/create-user.request.js';
 import { CreateUserResponse } from './type/create-user.response.js';
 import { LoginUserRequest } from './type/login-user.request.js';
@@ -44,6 +47,12 @@ export class UserController extends BaseController {
     });
 
     this.addRoute({
+      path: '/auth',
+      method: HttpMethod.Get,
+      handler: this.checkAuthenticate,
+    });
+
+    this.addRoute({
       path: '/register',
       method: HttpMethod.Post,
       handler: this.create,
@@ -59,6 +68,23 @@ export class UserController extends BaseController {
     const token = await this.authService.authenticate(user);
     const loggedUserRdo = fillDTO(LoggedUserRdo, { token });
     this.ok(res, loggedUserRdo);
+  }
+
+  public async checkAuthenticate(
+    { tokenPayload }: CheckAuthenticateRequest,
+    res: CheckAuthenticateResponse,
+  ): Promise<void> {
+    if (!tokenPayload) {
+      throw new AuthenticationException('UserController.checkAuthenticate');
+    }
+
+    const { email } = tokenPayload;
+    const foundUser = await this.userService.findByEmail(email);
+    if (!foundUser) {
+      throw new AuthenticationException('UserController.checkAuthenticate');
+    }
+
+    this.noContent(res);
   }
 
   public async create(
