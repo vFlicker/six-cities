@@ -25,6 +25,7 @@ export class ValidateDtoMiddleware implements Middleware {
       );
 
       next(error);
+      return;
     }
 
     next();

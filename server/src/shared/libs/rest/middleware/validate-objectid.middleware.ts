@@ -23,6 +23,7 @@ export class ValidateObjectIdMiddleware implements Middleware {
       );
 
       next(error);
+      return;
     }
 
     next();

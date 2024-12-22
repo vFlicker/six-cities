@@ -40,7 +40,8 @@ Content-Type: application/json
 
 ## Get offer by id
 
-GET http://localhost:8000/api/offers/6713b3cb713bfa6bfd1300f8 HTTP/1.1
+GET http://localhost:8000/api/offers/675f2838bb5d19ed14199ad6 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpZCI6IjY3NWYyOGI0OTY1YjY5MzI0ODllMGZjMCIsInVzZXJuYW1lIjoidmxhZCIsImVtYWlsIjoidmxhZEBtYWlsLmNvbSIsImlhdCI6MTczNDg3NjI2NiwiZXhwIjoxNzM1MDQ5MDY2fQ.DP3if4zs5cYtxXJpGovb6L-X5HV_MWq0SwmHOjiILqk
 
 ###
 

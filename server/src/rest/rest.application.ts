@@ -9,6 +9,7 @@ import { Config, RestSchema } from '#src/shared/libs/config/index.js';
 import { DatabaseClient } from '#src/shared/libs/database-client/index.js';
 import { Logger } from '#src/shared/libs/logger/index.js';
 import { Controller, ExceptionFilter } from '#src/shared/libs/rest/index.js';
+import { ParseTokenMiddleware } from '#src/shared/modules/auth/index.js';
 
 @injectable()
 export class RestApplication {
@@ -77,11 +78,14 @@ export class RestApplication {
 
   private async initMiddlewares(): Promise<void> {
     const uploadDirectoryPath = this.config.get('UPLOAD_DIRECTORY');
+    const jwtSecret = this.config.get('JWT_SECRET');
+    const authenticateMiddleware = new ParseTokenMiddleware(jwtSecret);
 
     this.server.use(express.json());
     this.server.use('/static', express.static(uploadDirectoryPath));
     this.server.use(cors());
     this.server.use('/api-docs', swaggerUi.serve);
+    this.server.use(authenticateMiddleware.execute);
   }
 
   private async initControllers(): Promise<void> {

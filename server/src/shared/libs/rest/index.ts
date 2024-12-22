@@ -14,6 +14,7 @@ export * from './exception-filters/http-error.exception-filter.js';
 export * from './exception-filters/validation.exception-filter.js';
 export * from './http-method.enum.js';
 export * from './middleware/middleware.interface.js';
+export * from './middleware/private-route.middleware.js';
 export * from './middleware/validate-dto.middleware.js';
 export * from './middleware/validate-objectid.middleware.js';
 export * from './route.interface.js';
