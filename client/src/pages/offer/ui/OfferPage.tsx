@@ -1,10 +1,9 @@
 import styled from '@emotion/styled';
-import { useEffect } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { Helmet } from 'react-helmet-async';
 import { useParams } from 'react-router-dom';
 
-import { fetchOffer, fetchOffers, OfferId, offerModel } from '~/entities/offer';
-import { useAppDispatch, useAppSelector } from '~/shared/libs/state';
+import { offerApi, OfferId } from '~/entities/offer';
 import { DefaultLayout } from '~/shared/ui/DefaultLayout';
 import { Footer } from '~/shared/ui/Footer';
 import { Map, MarkerLocation } from '~/shared/ui/map';
@@ -20,28 +19,23 @@ import { Reviews } from './Reviews';
 const OFFER_NAME = 'Offer';
 
 function OfferPage(): JSX.Element {
-  const dispatch = useAppDispatch();
-
-  const offer = useAppSelector(offerModel.getOffer);
-  const isOfferLoading = useAppSelector(offerModel.getIsOfferLoading);
-  const offers = useAppSelector(offerModel.getOffers);
-  const isOffersLoading = useAppSelector(offerModel.getIsOffersLoading);
-
   const { offerId } = useParams<OfferId>();
 
-  useEffect(() => {
-    // TODO: we should show 404 page if the offer is not found
-    if (offerId) dispatch(fetchOffer(offerId));
-  }, [dispatch, offerId]);
+  const { data: offer, isPending: isOfferPending } = useQuery({
+    queryKey: ['offers', offerId],
+    queryFn: () => offerApi.getOfferById(offerId!),
+    enabled: !!offerId,
+  });
 
-  useEffect(() => {
-    dispatch(fetchOffers());
-  }, [dispatch]);
+  const { data: offers, isPending: isOffersPending } = useQuery({
+    queryKey: ['offers'],
+    queryFn: offerApi.getAllOffers,
+  });
 
   if (!offerId) return <p>Offer not found</p>;
 
-  const hasOffers = offers.length > 0;
-  if (isOffersLoading || !hasOffers) return <p>Loading...</p>;
+  const hasOffers = offers && offers.length > 0;
+  if (isOffersPending || !hasOffers) return <p>Loading...</p>;
 
   // TODO: add current active city to the state,
   // and use it to set the map center
@@ -53,7 +47,7 @@ function OfferPage(): JSX.Element {
     location: [location.latitude, location.longitude],
   }));
 
-  if (isOfferLoading) return <p>Loading...</p>;
+  if (isOfferPending) return <p>Loading...</p>;
   if (!offer) return <p>Offer not found</p>;
 
   const {

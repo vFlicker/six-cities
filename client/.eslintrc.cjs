@@ -5,9 +5,10 @@ module.exports = {
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:react-hooks/recommended',
-    "plugin:jsx-a11y/recommended",
+    'plugin:jsx-a11y/recommended',
     'eslint-config-prettier',
-    "plugin:prettier/recommended",
+    'plugin:prettier/recommended',
+    'plugin:@tanstack/query/recommended',
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
@@ -17,10 +18,8 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
-    "simple-import-sort/imports": "error",
-    "simple-import-sort/exports": "error",
-    "@typescript-eslint/no-unused-vars": [
-      "error", { "argsIgnorePattern": "^_" }
-    ],
+    'simple-import-sort/imports': 'error',
+    'simple-import-sort/exports': 'error',
+    '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
   },
-}
+};

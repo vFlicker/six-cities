@@ -1,11 +1,11 @@
 import styled from '@emotion/styled';
+import { useQuery } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useSearchParams } from 'react-router-dom';
 
-import { fetchOffersByCityName, offerModel } from '~/entities/offer';
+import { offerApi } from '~/entities/offer';
 import { DEFAULT_CITY } from '~/shared/libs/router';
-import { useAppDispatch, useAppSelector } from '~/shared/libs/state';
 import { Color } from '~/shared/theme/colors';
 import { DefaultLayout } from '~/shared/ui/DefaultLayout';
 import { VisuallyHiddenMixin } from '~/shared/ui/VisuallyHiddenMixin';
@@ -16,11 +16,6 @@ import { LocationTabs } from './LocationTabs';
 import { NoAvailableOffers } from './NoAvailableOffers';
 
 function HomePage(): JSX.Element {
-  const dispatch = useAppDispatch();
-
-  const offersByCityName = useAppSelector(offerModel.getOffersByCityName);
-  const isLoading = useAppSelector(offerModel.getIsOffersByCityNameLoading);
-
   const [searchParams, setSearchParams] = useSearchParams();
 
   const cityName = searchParams.get('cityName');
@@ -29,12 +24,14 @@ function HomePage(): JSX.Element {
     if (!cityName) setSearchParams({ cityName: DEFAULT_CITY });
   }, [cityName, setSearchParams]);
 
-  useEffect(() => {
-    if (cityName) dispatch(fetchOffersByCityName(cityName));
-  }, [dispatch, cityName]);
+  const { data: offersByCityName, isPending } = useQuery({
+    queryKey: ['offers', cityName],
+    queryFn: () => offerApi.getAllOffersByCityName(cityName!),
+    enabled: !!cityName,
+  });
 
-  const hasOffers = offersByCityName.length > 0;
-  if (isLoading) return <p>Loading...</p>;
+  const hasOffers = offersByCityName && offersByCityName.length > 0;
+  if (isPending) return <p>Loading...</p>;
 
   return (
     <DefaultLayout>
