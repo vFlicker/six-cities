@@ -2,6 +2,7 @@ import { Global } from '@emotion/react';
 import { Route, Routes } from 'react-router-dom';
 
 import { authModel } from '~/entities/auth';
+import { PrivateRoute } from '~/entities/auth';
 import { LoginPage, RegisterPage } from '~/pages/auth';
 import { FavoritesPage } from '~/pages/favorite';
 import { HomePage } from '~/pages/home';
@@ -16,11 +17,9 @@ import { globalNormalize } from '~/shared/theme/normalize';
 import { globalRadiuses } from '~/shared/theme/radiuses';
 import { globalResets } from '~/shared/theme/resets';
 import { globalTextShadows } from '~/shared/theme/textShadow';
-import { PrivateRoute } from '~/shared/ui/PrivateRoute';
 
 function App(): JSX.Element {
   const isAuthChecked = useAppSelector(authModel.getIsAuthCheckedStatus);
-  const isAuthenticated = useAppSelector(authModel.getIsIsAuthenticated);
 
   if (!isAuthChecked) return <div>Loading...</div>;
 
@@ -41,10 +40,7 @@ function App(): JSX.Element {
         <Route
           path={`${AppRoute.Offers}/:offerId`}
           element={
-            <PrivateRoute
-              isAuthenticated={isAuthenticated}
-              redirectTo={AppRoute.Login}
-            >
+            <PrivateRoute>
               <OfferPage />
             </PrivateRoute>
           }
@@ -53,10 +49,7 @@ function App(): JSX.Element {
         <Route
           path={AppRoute.Favorites}
           element={
-            <PrivateRoute
-              isAuthenticated={isAuthenticated}
-              redirectTo={AppRoute.Login}
-            >
+            <PrivateRoute>
               <FavoritesPage />
             </PrivateRoute>
           }
