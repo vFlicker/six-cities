@@ -3,16 +3,14 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { HelmetProvider } from 'react-helmet-async';
-import { Provider } from 'react-redux';
 
 import { App } from './app/App';
-import { store } from './app/store';
-import { checkAuth } from './features/checkAuth';
+import { checkUserAuthentication } from './features/auth';
 import { queryClient } from './shared/api';
 import { browserHistory } from './shared/libs/router';
 import { HistoryRouter } from './shared/ui/HistoryRoute';
 
-checkAuth(store);
+checkUserAuthentication();
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
@@ -20,9 +18,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       <HistoryRouter history={browserHistory}>
         <QueryClientProvider client={queryClient}>
           <ReactQueryDevtools initialIsOpen={false} />
-          <Provider store={store}>
-            <App />
-          </Provider>
+          <App />
         </QueryClientProvider>
       </HistoryRouter>
     </HelmetProvider>

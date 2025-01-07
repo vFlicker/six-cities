@@ -2,14 +2,9 @@ import styled from '@emotion/styled';
 import { useMutation } from '@tanstack/react-query';
 import { FormEvent } from 'react';
 
-import {
-  authApi,
-  authModel,
-  redirectToRoute,
-  RegisterData,
-} from '~/entities/auth';
+import { authApi, RegisterData } from '~/entities/auth';
+import { authModel } from '~/entities/auth';
 import { AppRoute } from '~/shared/libs/router';
-import { useAppDispatch } from '~/shared/libs/state';
 import { saveToken } from '~/shared/libs/token';
 import { AuthRedirect } from '~/shared/ui/AuthRedirect';
 import { Button } from '~/shared/ui/Button';
@@ -22,19 +17,23 @@ type RegisterProps = {
 };
 
 function Register({ className }: RegisterProps): JSX.Element {
-  const dispatch = useAppDispatch();
+  const setAuthenticated = authModel.useAuthStore(
+    (state) => state.setAuthenticated,
+  );
+
+  const redirectToRoute = authModel.useAuthStore(
+    (state) => state.redirectToRoute,
+  );
 
   const { mutate } = useMutation({
     mutationFn: authApi.register,
     onSuccess({ token }) {
       saveToken(token);
-      dispatch(authModel.changeAuthStatus(authModel.AuthStatus.Authenticated));
-      dispatch(redirectToRoute(AppRoute.Root));
+      setAuthenticated(authModel.AuthStatus.Authenticated);
+      redirectToRoute(AppRoute.Root);
     },
     onError: () => {
-      dispatch(
-        authModel.changeAuthStatus(authModel.AuthStatus.Unauthenticated),
-      );
+      setAuthenticated(authModel.AuthStatus.Unauthenticated);
     },
   });
 

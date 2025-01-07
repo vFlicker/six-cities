@@ -3,7 +3,6 @@ import styled from '@emotion/styled';
 import { authModel } from '~/entities/auth';
 import { Logout } from '~/features/auth';
 import { AppRoute } from '~/shared/libs/router';
-import { useAppSelector } from '~/shared/libs/state';
 import { IconName } from '~/shared/theme/icons';
 import { ContainerMixin } from '~/shared/ui/Container';
 import { Icon } from '~/shared/ui/Icon';
@@ -17,7 +16,7 @@ type HeaderProps = {
 };
 
 function Header({ className, hasMenu = true }: HeaderProps): JSX.Element {
-  const isAuthenticated = useAppSelector(authModel.getIsIsAuthenticated);
+  const isAuthenticated = authModel.useAuthStore(authModel.getIsAuthenticated);
 
   return (
     <header className={className}>

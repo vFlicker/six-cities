@@ -1,9 +1,8 @@
 import { Navigate } from 'react-router-dom';
 
 import { AppRoute } from '~/shared/libs/router';
-import { useAppSelector } from '~/shared/libs/state';
 
-import { getIsIsAuthenticated } from '../model/authModel';
+import { getIsAuthenticated, useAuthStore } from '../model/authModel';
 
 type PrivateRouteProps = {
   redirectTo?: string;
@@ -14,8 +13,7 @@ function PrivateRoute({
   children,
   redirectTo = AppRoute.Login,
 }: PrivateRouteProps): JSX.Element {
-  const isAuthenticated = useAppSelector(getIsIsAuthenticated);
-
+  const isAuthenticated = useAuthStore(getIsAuthenticated);
   if (!isAuthenticated) return <Navigate to={redirectTo} />;
   return <>{children}</>;
 }

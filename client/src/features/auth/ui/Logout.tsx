@@ -1,13 +1,14 @@
 import { authModel } from '~/entities/auth';
-import { useAppDispatch } from '~/shared/libs/state';
 import { dropToken } from '~/shared/libs/token';
 import { TextButton } from '~/shared/ui/TextButton';
 
 function Logout(): JSX.Element {
-  const dispatch = useAppDispatch();
+  const setAuthenticated = authModel.useAuthStore(
+    (state) => state.setAuthenticated,
+  );
 
   const handleLogout = () => {
-    dispatch(authModel.logout());
+    setAuthenticated(authModel.AuthStatus.Unauthenticated);
     dropToken();
   };
 

@@ -9,7 +9,6 @@ import { HomePage } from '~/pages/home';
 import { NotFoundPage } from '~/pages/NotFoundPage';
 import { OfferPage } from '~/pages/offer';
 import { AppRoute } from '~/shared/libs/router';
-import { useAppSelector } from '~/shared/libs/state';
 import { globalColors } from '~/shared/theme/colors';
 import { globalFonts } from '~/shared/theme/fonts';
 import { SpriteWithIcons } from '~/shared/theme/icons';
@@ -19,7 +18,7 @@ import { globalResets } from '~/shared/theme/resets';
 import { globalTextShadows } from '~/shared/theme/textShadow';
 
 function App(): JSX.Element {
-  const isAuthChecked = useAppSelector(authModel.getIsAuthCheckedStatus);
+  const isAuthChecked = authModel.useAuthStore(authModel.getIsAuthChecked);
 
   if (!isAuthChecked) return <div>Loading...</div>;
 

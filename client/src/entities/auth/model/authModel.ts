@@ -1,42 +1,33 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { create } from 'zustand';
+import { devtools } from 'zustand/middleware';
 
-import { StoreSlice } from '~/shared/libs/state';
+import { AppRoute, browserHistory } from '~/shared/libs/router';
 
-type AuthState = {
-  authStatus: AuthStatus;
-};
-
-export const enum AuthStatus {
+export enum AuthStatus {
   Authenticated = 'AUTHENTICATED',
   Unauthenticated = 'UNAUTHENTICATED',
   Unknown = 'UNKNOWN',
 }
 
-const initialState: AuthState = {
-  authStatus: AuthStatus.Unknown,
+type AuthState = {
+  isAuthenticated: AuthStatus;
+  setAuthenticated: (value: AuthStatus) => void;
+  redirectToRoute: (route: AppRoute) => void;
+};
+export const useAuthStore = create<AuthState>()(
+  devtools((set) => ({
+    isAuthenticated: AuthStatus.Unknown,
+    setAuthenticated: (value) => set({ isAuthenticated: value }),
+    redirectToRoute: (route) => {
+      browserHistory.push(route);
+    },
+  })),
+);
+
+export const getIsAuthenticated = (state: AuthState) => {
+  return state.isAuthenticated === AuthStatus.Authenticated;
 };
 
-const authReducer = createSlice({
-  name: 'auth',
-  initialState,
-  reducers: {
-    changeAuthStatus: (state, action: PayloadAction<AuthStatus>) => {
-      state.authStatus = action.payload;
-    },
-    logout: (state) => {
-      state.authStatus = AuthStatus.Unauthenticated;
-    },
-  },
-});
-
-export default authReducer.reducer;
-
-export const { logout, changeAuthStatus } = authReducer.actions;
-
-export const getIsAuthCheckedStatus = (state: RootState): boolean => {
-  return state[StoreSlice.Auth].authStatus !== AuthStatus.Unknown;
-};
-
-export const getIsIsAuthenticated = (state: RootState): boolean => {
-  return state[StoreSlice.Auth].authStatus === AuthStatus.Authenticated;
+export const getIsAuthChecked = (state: AuthState) => {
+  return state.isAuthenticated !== AuthStatus.Unknown;
 };
