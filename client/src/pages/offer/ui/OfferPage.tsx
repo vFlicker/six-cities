@@ -1,9 +1,7 @@
 import styled from '@emotion/styled';
-import { useQuery } from '@tanstack/react-query';
 import { Helmet } from 'react-helmet-async';
-import { useParams } from 'react-router-dom';
 
-import { offerApi, OfferId } from '~/entities/offer';
+import { offerModel } from '~/entities/offer';
 import { DefaultLayout } from '~/shared/ui/DefaultLayout';
 import { Footer } from '~/shared/ui/Footer';
 import { Map, MarkerLocation } from '~/shared/ui/map';
@@ -19,20 +17,8 @@ import { Reviews } from './Reviews';
 const OFFER_NAME = 'Offer';
 
 function OfferPage(): JSX.Element {
-  const { offerId } = useParams<OfferId>();
-
-  const { data: offer, isPending: isOfferPending } = useQuery({
-    queryKey: ['offers', offerId],
-    queryFn: () => offerApi.getOfferById(offerId!),
-    enabled: !!offerId,
-  });
-
-  const { data: offers, isPending: isOffersPending } = useQuery({
-    queryKey: ['offers'],
-    queryFn: offerApi.getAllOffers,
-  });
-
-  if (!offerId) return <p>Offer not found</p>;
+  const { offer, isOfferPending } = offerModel.useOffer();
+  const { offers, isOffersPending } = offerModel.useOffers();
 
   const hasOffers = offers && offers.length > 0;
   if (isOffersPending || !hasOffers) return <p>Loading...</p>;

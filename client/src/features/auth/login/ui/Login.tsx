@@ -1,53 +1,24 @@
 import styled from '@emotion/styled';
-import { useMutation } from '@tanstack/react-query';
-import { FormEvent } from 'react';
 
-import { authApi, AuthData, authModel } from '~/entities/auth';
-import { AppRoute } from '~/shared/libs/router';
-import { saveToken } from '~/shared/libs/token';
 import { AuthRedirect } from '~/shared/ui/AuthRedirect';
 import { Button } from '~/shared/ui/Button';
 import { Input } from '~/shared/ui/Input';
 import { Typography, TypographyVariant } from '~/shared/ui/Typography';
 import { withAttrs } from '~/shared/ui/withAttrs';
 
+import { useLogin } from '../useLogin';
+
 type LoginProps = {
   className?: string;
 };
 
 function Login({ className }: LoginProps): JSX.Element {
-  const setAuthenticated = authModel.useAuthStore(
-    (state) => state.setAuthenticated,
-  );
-  const redirectToRoute = authModel.useAuthStore(
-    (state) => state.redirectToRoute,
-  );
-
-  const { mutate /* TODO: , isPending, isError, error */ } = useMutation({
-    mutationFn: authApi.login,
-    onSuccess: ({ token }) => {
-      saveToken(token);
-      setAuthenticated(authModel.AuthStatus.Authenticated);
-      redirectToRoute(AppRoute.Root);
-    },
-    onError: () => {
-      setAuthenticated(authModel.AuthStatus.Unauthenticated);
-    },
-  });
-
-  const handleSubmit = async (evt: FormEvent<HTMLFormElement>) => {
-    evt.preventDefault();
-
-    const formData = new FormData(evt.currentTarget);
-    const authData = Object.fromEntries(formData.entries()) as AuthData;
-
-    mutate(authData);
-  };
+  const { handleLogin } = useLogin();
 
   return (
     <section className={className}>
       <StyledTitle>Sign in</StyledTitle>
-      <StyledForm action="#" method="post" onSubmit={handleSubmit}>
+      <StyledForm action="#" method="post" onSubmit={handleLogin}>
         <Input
           type="email"
           name="email"

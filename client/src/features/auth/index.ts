@@ -1,4 +1,4 @@
-export { checkUserAuthentication } from './checkUserAuthentication';
-export { Login } from './ui/Login';
-export { Logout } from './ui/Logout';
-export { Register } from './ui/Register';
+export * from './checkUserAuthentication';
+export * from './login';
+export * from './logout';
+export * from './register';
