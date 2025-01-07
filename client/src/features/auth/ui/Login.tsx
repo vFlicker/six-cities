@@ -1,8 +1,11 @@
 import styled from '@emotion/styled';
+import { useMutation } from '@tanstack/react-query';
 import { FormEvent } from 'react';
 
-import { AuthData, login } from '~/entities/auth';
+import { authApi, AuthData, authModel, redirectToRoute } from '~/entities/auth';
+import { AppRoute } from '~/shared/libs/router';
 import { useAppDispatch } from '~/shared/libs/state';
+import { saveToken } from '~/shared/libs/token';
 import { AuthRedirect } from '~/shared/ui/AuthRedirect';
 import { Button } from '~/shared/ui/Button';
 import { Input } from '~/shared/ui/Input';
@@ -16,13 +19,27 @@ type LoginProps = {
 function Login({ className }: LoginProps): JSX.Element {
   const dispatch = useAppDispatch();
 
+  const { mutate /* TODO: , isPending, isError, error */ } = useMutation({
+    mutationFn: authApi.login,
+    onSuccess: ({ token }) => {
+      saveToken(token);
+      dispatch(authModel.changeAuthStatus(authModel.AuthStatus.Authenticated));
+      dispatch(redirectToRoute(AppRoute.Root));
+    },
+    onError: () => {
+      dispatch(
+        authModel.changeAuthStatus(authModel.AuthStatus.Unauthenticated),
+      );
+    },
+  });
+
   const handleSubmit = async (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
     const formData = new FormData(evt.currentTarget);
-    const data = Object.fromEntries(formData.entries()) as AuthData;
+    const authData = Object.fromEntries(formData.entries()) as AuthData;
 
-    dispatch(login(data));
+    mutate(authData);
   };
 
   return (

@@ -1,8 +1,16 @@
 import styled from '@emotion/styled';
+import { useMutation } from '@tanstack/react-query';
 import { FormEvent } from 'react';
 
-import { register, RegisterData } from '~/entities/auth';
+import {
+  authApi,
+  authModel,
+  redirectToRoute,
+  RegisterData,
+} from '~/entities/auth';
+import { AppRoute } from '~/shared/libs/router';
 import { useAppDispatch } from '~/shared/libs/state';
+import { saveToken } from '~/shared/libs/token';
 import { AuthRedirect } from '~/shared/ui/AuthRedirect';
 import { Button } from '~/shared/ui/Button';
 import { Input } from '~/shared/ui/Input';
@@ -16,13 +24,27 @@ type RegisterProps = {
 function Register({ className }: RegisterProps): JSX.Element {
   const dispatch = useAppDispatch();
 
+  const { mutate } = useMutation({
+    mutationFn: authApi.register,
+    onSuccess({ token }) {
+      saveToken(token);
+      dispatch(authModel.changeAuthStatus(authModel.AuthStatus.Authenticated));
+      dispatch(redirectToRoute(AppRoute.Root));
+    },
+    onError: () => {
+      dispatch(
+        authModel.changeAuthStatus(authModel.AuthStatus.Unauthenticated),
+      );
+    },
+  });
+
   const handleSubmit = async (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
     const formData = new FormData(evt.currentTarget);
     const data = Object.fromEntries(formData.entries()) as RegisterData;
 
-    dispatch(register(data));
+    mutate(data);
   };
 
   return (

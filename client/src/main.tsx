@@ -7,12 +7,12 @@ import { Provider } from 'react-redux';
 
 import { App } from './app/App';
 import { store } from './app/store';
-import { checkAuthStatus } from './entities/auth';
+import { checkAuth } from './features/checkAuth';
 import { queryClient } from './shared/api';
 import { browserHistory } from './shared/libs/router';
 import { HistoryRouter } from './shared/ui/HistoryRoute';
 
-store.dispatch(checkAuthStatus());
+checkAuth(store);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
