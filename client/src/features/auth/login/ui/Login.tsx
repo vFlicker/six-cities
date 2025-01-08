@@ -6,7 +6,7 @@ import { Input } from '~/shared/ui/Input';
 import { Typography, TypographyVariant } from '~/shared/ui/Typography';
 import { withAttrs } from '~/shared/ui/withAttrs';
 
-import { useLogin } from '../useLogin';
+import { useLogin } from '../api/useLogin';
 
 type LoginProps = {
   className?: string;

@@ -14,6 +14,7 @@ type AuthState = {
   setAuthenticated: (value: AuthStatus) => void;
   redirectToRoute: (route: AppRoute) => void;
 };
+
 export const useAuthStore = create<AuthState>()(
   devtools((set) => ({
     isAuthenticated: AuthStatus.Unknown,

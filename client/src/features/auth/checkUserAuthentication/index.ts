@@ -1,1 +1,1 @@
-export { checkUserAuthentication } from './checkUserAuthentication';
+export { checkUserAuthentication } from './api/checkUserAuthentication';

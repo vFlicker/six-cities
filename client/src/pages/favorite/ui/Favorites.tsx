@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { favoriteCategory } from '~/entities/offer/model/favoriteCategory';
+import { favoriteCategory } from '~/entities/offer';
 import { Container } from '~/shared/ui/Container';
 import { Typography, TypographyVariant } from '~/shared/ui/Typography';
 import { withAttrs } from '~/shared/ui/withAttrs';

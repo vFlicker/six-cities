@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { Helmet } from 'react-helmet-async';
 
-import { offerModel } from '~/entities/offer';
+import { useOffer, useOffers } from '~/entities/offer';
 import { DefaultLayout } from '~/shared/ui/DefaultLayout';
 import { Footer } from '~/shared/ui/Footer';
 import { Map, MarkerLocation } from '~/shared/ui/map';
@@ -17,8 +17,8 @@ import { Reviews } from './Reviews';
 const OFFER_NAME = 'Offer';
 
 function OfferPage(): JSX.Element {
-  const { offer, isOfferPending } = offerModel.useOffer();
-  const { offers, isOffersPending } = offerModel.useOffers();
+  const { offer, isOfferPending } = useOffer();
+  const { offers, isOffersPending } = useOffers();
 
   const hasOffers = offers && offers.length > 0;
   if (isOffersPending || !hasOffers) return <p>Loading...</p>;

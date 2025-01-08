@@ -6,7 +6,7 @@ import { Input } from '~/shared/ui/Input';
 import { Typography, TypographyVariant } from '~/shared/ui/Typography';
 import { withAttrs } from '~/shared/ui/withAttrs';
 
-import { useRegister } from '../useRegister';
+import { useRegister } from '../api/useRegister';
 
 type RegisterProps = {
   className?: string;
