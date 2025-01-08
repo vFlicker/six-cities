@@ -14,14 +14,14 @@ export const useMap = (
     const mapElement = mapRef.current;
     if (!mapElement) return;
 
-    const map = new Map(mapElement);
+    const newMap = new Map(mapElement);
     const layer = new TileLayer(URL_TEMPLATE);
     const view = new LatLng(centerLat, centerLng);
-    map.addLayer(layer).setView(view, DEFAULT_ZOOM);
-    setMap(map);
+    newMap.addLayer(layer).setView(view, DEFAULT_ZOOM);
+    setMap(newMap);
 
     return () => {
-      map.remove();
+      newMap.remove();
     };
   }, [centerLat, centerLng, mapRef]);
 

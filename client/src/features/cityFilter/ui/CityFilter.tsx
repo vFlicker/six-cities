@@ -1,33 +1,33 @@
 import styled from '@emotion/styled';
+import { useSearchParams } from 'react-router-dom';
 
+import { useCities } from '~/entities/cities';
 import { Color } from '~/shared/theme/colors';
 import { Container } from '~/shared/ui/Container';
 import { SlantedLink } from '~/shared/ui/SlantedButton';
 
-type LocationTabsProps = {
+type CityFilterProps = {
   className?: string;
 };
 
-const TABS = [
-  'Paris',
-  'Cologne',
-  'Brussels',
-  'Amsterdam',
-  'Hamburg',
-  'Dusseldorf',
-];
+function CityFilter({ className }: CityFilterProps): JSX.Element | null {
+  const [searchParams] = useSearchParams();
+  const activeCityName = searchParams.get('cityName');
 
-function LocationTabs({ className }: LocationTabsProps): JSX.Element {
-  // TODO: use filter
+  const { cities, isCitiesPending } = useCities();
+  if (isCitiesPending || !cities) return null;
 
   return (
     <StyledWrapper>
       <StyledContainer className={className}>
         <StyledList>
-          {TABS.map((tab) => (
-            <StyledItem key={tab}>
-              <SlantedLink active={tab === 'Amsterdam'} to="/">
-                {tab}
+          {cities.map(({ name }) => (
+            <StyledItem key={name}>
+              <SlantedLink
+                active={name === activeCityName}
+                to={`?cityName=${name}`}
+              >
+                {name}
               </SlantedLink>
             </StyledItem>
           ))}
@@ -37,7 +37,7 @@ function LocationTabs({ className }: LocationTabsProps): JSX.Element {
   );
 }
 
-export { LocationTabs };
+export { CityFilter };
 
 const StyledWrapper = styled.div`
   background-color: ${Color.GRAY_10};

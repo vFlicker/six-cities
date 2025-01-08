@@ -20,8 +20,8 @@ function Header({ className, hasMenu = true }: HeaderProps): JSX.Element {
 
   return (
     <header className={className}>
-      <StyledNavigation>
-        <StyledWrapper>
+      <StyledContainer>
+        <StyledInner>
           <StyledLeft>
             <Logo />
           </StyledLeft>
@@ -49,19 +49,19 @@ function Header({ className, hasMenu = true }: HeaderProps): JSX.Element {
               </StyledTextLinksList>
             </StyledRight>
           )}
-        </StyledWrapper>
-      </StyledNavigation>
+        </StyledInner>
+      </StyledContainer>
     </header>
   );
 }
 
 export { Header };
 
-const StyledNavigation = styled.nav`
+const StyledContainer = styled.nav`
   ${ContainerMixin}
 `;
 
-const StyledWrapper = styled.div`
+const StyledInner = styled.div`
   display: flex;
   align-items: flex-start;
   padding: 20px 0;

@@ -1,10 +1,10 @@
 import styled from '@emotion/styled';
-import { useQuery } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useSearchParams } from 'react-router-dom';
 
-import { offerApi } from '~/entities/offer';
+import { useOffersForCity } from '~/entities/offer';
+import { CityFilter } from '~/features/cityFilter';
 import { DEFAULT_CITY } from '~/shared/libs/router';
 import { Color } from '~/shared/theme/colors';
 import { DefaultLayout } from '~/shared/ui/DefaultLayout';
@@ -12,7 +12,6 @@ import { VisuallyHiddenMixin } from '~/shared/ui/VisuallyHiddenMixin';
 import { Header } from '~/widgets/header';
 
 import { AvailableOffers } from './AvailableOffers';
-import { LocationTabs } from './LocationTabs';
 import { NoAvailableOffers } from './NoAvailableOffers';
 
 function HomePage(): JSX.Element {
@@ -24,14 +23,9 @@ function HomePage(): JSX.Element {
     if (!cityName) setSearchParams({ cityName: DEFAULT_CITY });
   }, [cityName, setSearchParams]);
 
-  const { data: offersByCityName, isPending } = useQuery({
-    queryKey: ['offers', cityName],
-    queryFn: () => offerApi.getAllOffersByCityName(cityName!),
-    enabled: !!cityName,
-  });
-
-  const hasOffers = offersByCityName && offersByCityName.length > 0;
-  if (isPending) return <p>Loading...</p>;
+  const { offersForCity, isOffersForCityPending } = useOffersForCity();
+  const hasOffers = offersForCity && offersForCity.length > 0;
+  if (isOffersForCityPending) return <p>Loading...</p>;
 
   return (
     <DefaultLayout>
@@ -41,9 +35,9 @@ function HomePage(): JSX.Element {
       <StyledHeader />
       <StyledMain>
         <StyledTitle>Six Cities</StyledTitle>
-        <LocationTabs />
+        <CityFilter />
         {!hasOffers && <NoAvailableOffers />}
-        {hasOffers && <AvailableOffers offers={offersByCityName} />}
+        {hasOffers && <AvailableOffers offers={offersForCity} />}
       </StyledMain>
     </DefaultLayout>
   );

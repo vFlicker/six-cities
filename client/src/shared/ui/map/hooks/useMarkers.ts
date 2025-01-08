@@ -1,5 +1,5 @@
 import { Icon, Map, Marker } from 'leaflet';
-import { useEffect } from 'react';
+import { useLayoutEffect } from 'react';
 
 import { activePinIcon, defaultPinIcon } from '~/shared/assets/images';
 
@@ -22,7 +22,7 @@ export const useMarkers = (
   markerLocations?: MarkerLocation[],
   activeId?: string,
 ): void => {
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!map || !markerLocations) return;
 
     const markers: Marker[] = [];
