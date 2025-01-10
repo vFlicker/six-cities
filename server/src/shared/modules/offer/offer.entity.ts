@@ -102,6 +102,7 @@ export class OfferEntity extends defaultClasses.TimeStamps {
     default: [],
   })
   public amenities!: string[];
+
   @prop({
     required: true,
     _id: false,

@@ -1,0 +1,13 @@
+# Comments
+
+## Create an comment
+
+POST http://localhost:8000/api/comments HTTP/1.1
+Content-Type: application/json
+
+{
+  "text": "Comment text",
+  "rating": 4,
+  "offerId": "675f2838bb5d19ed14199ad6",
+  "authorId": "675f2838bb5d19ed14199abe"
+}

@@ -5,7 +5,6 @@ export * from './enums/application-error.enum.js';
 export * from './errors/http-error.js';
 export * from './exception/authentication.exception.js';
 export * from './exception/authentication.exception.js';
-export * from './exception/user-not-found.exception.js';
 export * from './exception/validation.exception.js';
 export * from './exception-filters/app.exception-filter.js';
 export * from './exception-filters/auth.exception-filter.js';

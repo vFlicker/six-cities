@@ -26,6 +26,8 @@ export class RestApplication {
     private readonly cityController: Controller,
     @inject(Component.OfferController)
     private readonly offerController: Controller,
+    @inject(Component.CommentController)
+    private readonly commentController: Controller,
     @inject(Component.ApiDocController)
     private readonly docController: Controller,
     @inject(Component.AuthExceptionFilter)
@@ -92,6 +94,7 @@ export class RestApplication {
     this.server.use('/api/users', this.userController.router);
     this.server.use('/api/cities', this.cityController.router);
     this.server.use('/api/offers', this.offerController.router);
+    this.server.use('/api/comments', this.commentController.router);
     this.server.use('/api-docs', this.docController.router);
   }
 

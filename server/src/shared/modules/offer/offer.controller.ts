@@ -64,11 +64,13 @@ export class OfferController extends BaseController {
     req: CreateOfferRequest,
     res: CreateOfferResponse,
   ): Promise<void> {
-    const foundCity = await this.cityService.findByName(req.body.cityName);
+    const { cityName } = req.body;
+
+    const foundCity = await this.cityService.findByName(cityName);
     if (!foundCity) {
       throw new HttpError(
         StatusCodes.BAD_REQUEST,
-        `City with name ${req.body.cityName} not exists`,
+        `City with name ${cityName} not exists`,
         'DefaultOfferService.create',
       );
     }
