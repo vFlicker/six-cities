@@ -1,16 +1,13 @@
 import styled from '@emotion/styled';
 
-import { Loader } from '~/shared/ui/Loader';
-
-import { useComments } from '../api/useComments';
+import { CommentData } from '../types/commentTypes';
 import { Comment } from './Comment';
 
-export function Comments(): JSX.Element {
-  const { comments, isCommentsPending } = useComments();
+type CommentsProps = {
+  comments: CommentData[];
+};
 
-  if (isCommentsPending) return <Loader />;
-  if (!comments?.length) return <p>No comments yet</p>;
-
+export function Comments({ comments }: CommentsProps): JSX.Element {
   return (
     <StyledWrapper>
       {comments.map((comment) => (

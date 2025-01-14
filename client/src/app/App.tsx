@@ -37,14 +37,7 @@ function App(): JSX.Element {
         <Route path={AppRoute.Login} element={<LoginPage />} />
         <Route path={AppRoute.Register} element={<RegisterPage />} />
 
-        <Route
-          path={`${AppRoute.Offers}/:offerId`}
-          element={
-            <PrivateRoute>
-              <OfferPage />
-            </PrivateRoute>
-          }
-        />
+        <Route path={`${AppRoute.Offers}/:offerId`} element={<OfferPage />} />
 
         <Route
           path={AppRoute.Favorites}

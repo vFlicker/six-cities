@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { authModel } from '~/entities/auth';
+import { authModel, useUser } from '~/entities/auth';
 import { Logout } from '~/features/auth';
 import { AppRoute } from '~/shared/libs/router';
 import { IconName } from '~/shared/theme/icons';
@@ -17,6 +17,7 @@ type HeaderProps = {
 
 function Header({ className, hasMenu = true }: HeaderProps): JSX.Element {
   const isAuthenticated = authModel.useAuthStore(authModel.getIsAuthenticated);
+  const { user } = useUser();
 
   return (
     <header className={className}>
@@ -40,7 +41,7 @@ function Header({ className, hasMenu = true }: HeaderProps): JSX.Element {
                 <StyledTextLinksItem>
                   <TextLink to="/">
                     <StyledUserIcon />
-                    Oliver.conner@gmail.com
+                    {user!.username}
                   </TextLink>
                 </StyledTextLinksItem>
                 <StyledTextLinksItem>
