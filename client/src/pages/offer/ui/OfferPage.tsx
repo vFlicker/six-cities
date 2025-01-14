@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import { useOffer, useOffers } from '~/entities/offer';
 import { DefaultLayout } from '~/shared/ui/DefaultLayout';
 import { Footer } from '~/shared/ui/Footer';
+import { Loader } from '~/shared/ui/Loader';
 import { Map, MarkerLocation } from '~/shared/ui/map';
 import { Header } from '~/widgets/header';
 
@@ -21,7 +22,7 @@ function OfferPage(): JSX.Element {
   const { offers, isOffersPending } = useOffers();
 
   const hasOffers = offers && offers.length > 0;
-  if (isOffersPending || !hasOffers) return <p>Loading...</p>;
+  if (isOffersPending || !hasOffers) return <Loader />;
 
   // TODO: add current active city to the state,
   // and use it to set the map center
@@ -33,7 +34,7 @@ function OfferPage(): JSX.Element {
     location: [location.latitude, location.longitude],
   }));
 
-  if (isOfferPending) return <p>Loading...</p>;
+  if (isOfferPending) return <Loader />;
   if (!offer) return <p>Offer not found</p>;
 
   const {

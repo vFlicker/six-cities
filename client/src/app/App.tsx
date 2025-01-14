@@ -16,11 +16,12 @@ import { globalNormalize } from '~/shared/theme/normalize';
 import { globalRadiuses } from '~/shared/theme/radiuses';
 import { globalResets } from '~/shared/theme/resets';
 import { globalTextShadows } from '~/shared/theme/textShadow';
+import { Loader } from '~/shared/ui/Loader';
 
 function App(): JSX.Element {
   const isAuthChecked = authModel.useAuthStore(authModel.getIsAuthChecked);
 
-  if (!isAuthChecked) return <div>Loading...</div>;
+  if (!isAuthChecked) return <Loader />;
 
   return (
     <>

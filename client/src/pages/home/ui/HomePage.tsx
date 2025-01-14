@@ -8,6 +8,7 @@ import { CityFilter } from '~/features/cityFilter';
 import { DEFAULT_CITY } from '~/shared/libs/router';
 import { Color } from '~/shared/theme/colors';
 import { DefaultLayout } from '~/shared/ui/DefaultLayout';
+import { Loader } from '~/shared/ui/Loader';
 import { VisuallyHiddenMixin } from '~/shared/ui/VisuallyHiddenMixin';
 import { Header } from '~/widgets/header';
 
@@ -25,7 +26,7 @@ function HomePage(): JSX.Element {
 
   const { offersForCity, isOffersForCityPending } = useOffersForCity();
   const hasOffers = offersForCity && offersForCity.length > 0;
-  if (isOffersForCityPending) return <p>Loading...</p>;
+  if (isOffersForCityPending) return <Loader />;
 
   return (
     <DefaultLayout>
