@@ -8,7 +8,7 @@ import { withAttrs } from '~/shared/ui/withAttrs';
 
 import { Section } from './Section';
 
-type HostAboutOfferProps = {
+type AboutHostSectionProps = {
   avatarUrl: string;
   offerDescription: string;
   hostName: string;
@@ -16,13 +16,13 @@ type HostAboutOfferProps = {
   className?: string;
 };
 
-function HostAboutOffer({
+function AboutHostSection({
   className,
   avatarUrl,
   hostName,
   userType,
   offerDescription,
-}: HostAboutOfferProps): JSX.Element {
+}: AboutHostSectionProps): JSX.Element {
   const isPro = userType === 'pro';
 
   return (
@@ -46,7 +46,7 @@ function HostAboutOffer({
   );
 }
 
-export { HostAboutOffer as AboutHost };
+export { AboutHostSection };
 
 type StyledAvatarProps = {
   isPro: boolean;

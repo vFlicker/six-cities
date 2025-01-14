@@ -9,7 +9,7 @@ import { Rating, RatingSize } from '~/shared/ui/Rating';
 import { Typography, TypographyVariant } from '~/shared/ui/Typography';
 import { withAttrs } from '~/shared/ui/withAttrs';
 
-type OfferSummaryProps = {
+type OfferSummarySectionProps = {
   title: string;
   rating: number;
   propertyType: string;
@@ -41,7 +41,7 @@ function ToggleBookmark({ isActive }: { isActive: boolean }): JSX.Element {
   );
 }
 
-function OfferSummary({
+function OfferSummarySection({
   className,
   propertyType,
   roomsCount,
@@ -51,7 +51,7 @@ function OfferSummary({
   title,
   isPremium,
   isFavorite,
-}: OfferSummaryProps): JSX.Element {
+}: OfferSummarySectionProps): JSX.Element {
   return (
     <StyledSection className={className}>
       {isPremium && <StyledMark />}
@@ -85,7 +85,7 @@ function OfferSummary({
   );
 }
 
-export { OfferSummary };
+export { OfferSummarySection };
 
 const StyledSection = withAttrs(
   { as: 'section' },

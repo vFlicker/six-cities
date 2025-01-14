@@ -3,8 +3,8 @@ import { PropsWithChildren } from 'react';
 
 import { Typography, TypographyVariant } from '~/shared/ui/Typography';
 
-import { withAttrs } from '../../../shared/ui/withAttrs';
 import { SmallContainerMixin } from '../../../shared/ui/Container';
+import { withAttrs } from '../../../shared/ui/withAttrs';
 
 type SectionProps = PropsWithChildren<{
   title: string;

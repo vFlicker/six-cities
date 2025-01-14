@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
 
-import { withAttrs } from '~/shared/ui/withAttrs';
 import { Color } from '~/shared/theme/colors';
 import { Rating, RatingSize } from '~/shared/ui/Rating';
 import { Typography, TypographyVariant } from '~/shared/ui/Typography';
+import { withAttrs } from '~/shared/ui/withAttrs';
 
 type ReviewsProps = {
   className?: string;

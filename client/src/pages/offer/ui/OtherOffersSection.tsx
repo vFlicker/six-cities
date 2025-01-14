@@ -4,11 +4,13 @@ import { CardList } from '~/shared/ui/CardList';
 
 import { Section } from './Section';
 
-type OtherOffersProps = {
+type OtherOffersSectionProps = {
   className?: string;
 };
 
-function OtherOffers({ className }: OtherOffersProps): JSX.Element {
+function OtherOffersSection({
+  className,
+}: OtherOffersSectionProps): JSX.Element {
   return (
     <Section className={className} title="Other places in the neighbourhood">
       <CardList col={3}>
@@ -20,4 +22,4 @@ function OtherOffers({ className }: OtherOffersProps): JSX.Element {
   );
 }
 
-export { OtherOffers };
+export { OtherOffersSection };

@@ -7,12 +7,12 @@ import { Footer } from '~/shared/ui/Footer';
 import { Map, MarkerLocation } from '~/shared/ui/map';
 import { Header } from '~/widgets/header';
 
-import { AboutHost } from './AboutHost';
-import { Amenities } from './Amenities';
-import { Gallery } from './Gallery';
-import { OfferSummary } from './OfferSummary';
-import { OtherOffers } from './OtherOffers';
-import { Reviews } from './Reviews';
+import { AboutHostSection } from './AboutHostSection';
+import { AmenitiesSection } from './AmenitiesSection';
+import { GallerySection } from './GallerySection';
+import { OfferSummarySection } from './OfferSummarySection';
+import { OtherOffersSection } from './OtherOffersSection';
+import { ReviewsSection } from './ReviewsSection';
 
 const OFFER_NAME = 'Offer';
 
@@ -59,9 +59,9 @@ function OfferPage(): JSX.Element {
       <Header />
       <main>
         <section>
-          <Gallery imageUrls={offerImages} />
+          <GallerySection imageUrls={offerImages} />
           <StyledWrapper>
-            <OfferSummary
+            <OfferSummarySection
               propertyType={propertyType}
               roomsCount={roomsCount}
               guestsCount={guestsCount}
@@ -71,17 +71,17 @@ function OfferPage(): JSX.Element {
               isFavorite={isFavorite}
               isPremium={isPremium}
             />
-            <Amenities items={amenities} />
-            <AboutHost
+            <AmenitiesSection items={amenities} />
+            <AboutHostSection
               avatarUrl={host.avatarUrl}
               hostName={host.name}
               offerDescription={description}
               userType={host.type}
             />
-            <Reviews />
+            <ReviewsSection />
           </StyledWrapper>
           <StyledMap mapCenter={mapCenter} markerLocations={markerLocations} />
-          <StyledOtherOffers />
+          <StyledOtherOffersSection />
         </section>
       </main>
       <Footer />
@@ -104,6 +104,6 @@ const StyledMap = styled(Map)`
   margin-bottom: 50px;
 `;
 
-const StyledOtherOffers = styled(OtherOffers)`
+const StyledOtherOffersSection = styled(OtherOffersSection)`
   padding-bottom: 50px;
 `;

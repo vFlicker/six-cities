@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
 
-import { Comment } from '~/entities/comment';
 import { Color } from '~/shared/theme/colors';
 import { IconName } from '~/shared/theme/icons';
 import { Button } from '~/shared/ui/Button';
@@ -9,33 +8,28 @@ import { Icon, IconSize } from '~/shared/ui/Icon';
 import { Input } from '~/shared/ui/Input';
 import { withAttrs } from '~/shared/ui/withAttrs';
 
-import { Section } from './Section';
-
-type ReviewsProps = {
+type AddCommentProps = {
   className?: string;
 };
 
-function Reviews({ className }: ReviewsProps): JSX.Element {
+function AddComment({ className }: AddCommentProps): JSX.Element {
   return (
-    <Section className={className} title="Reviews &middot; 1">
-      <Comment />
-      <Form action="/" method="post">
-        <StyledTextareaLabel htmlFor="review">Your review</StyledTextareaLabel>
-        <StyledFormRating />
-        <StyledTextarea name="review" id="review" />
-        <StyledButtonWrapper>
-          <StyledHelpText>
-            To submit review please make sure to set <StyledStarIcon /> rating
-            and describe your stay with at least{' '}
-            <StyledAmount>50 characters</StyledAmount>.
-          </StyledHelpText>
-          <Button disabled>Submit</Button>
-        </StyledButtonWrapper>
-      </Form>
-    </Section>
+    <Form className={className} action="/" method="post">
+      <StyledTextareaLabel htmlFor="review">Your review</StyledTextareaLabel>
+      <StyledFormRating />
+      <StyledTextarea name="review" id="review" />
+      <StyledButtonWrapper>
+        <StyledHelpText>
+          To submit review please make sure to set <StyledStarIcon /> rating and
+          describe your stay with at least{' '}
+          <StyledAmount>50 characters</StyledAmount>.
+        </StyledHelpText>
+        <Button disabled>Submit</Button>
+      </StyledButtonWrapper>
+    </Form>
   );
 }
-export { Reviews };
+export { AddComment };
 
 const Form = styled.form`
   padding-left: 76px;

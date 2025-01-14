@@ -4,12 +4,15 @@ import { Color } from '~/shared/theme/colors';
 
 import { Section } from './Section';
 
-type AmenitiesProps = {
+type AmenitiesSectionProps = {
   items: string[];
   className?: string;
 };
 
-function Amenities({ className, items }: AmenitiesProps): JSX.Element {
+function AmenitiesSection({
+  className,
+  items,
+}: AmenitiesSectionProps): JSX.Element {
   return (
     <Section title="What's inside" className={className}>
       <StyledList>
@@ -21,7 +24,7 @@ function Amenities({ className, items }: AmenitiesProps): JSX.Element {
   );
 }
 
-export { Amenities };
+export { AmenitiesSection };
 
 const StyledList = styled.ul`
   display: flex;

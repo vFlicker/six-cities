@@ -3,12 +3,15 @@ import styled from '@emotion/styled';
 import { triangleImage } from '~/shared/assets/images';
 import { Container } from '~/shared/ui/Container';
 
-type GalleryProps = {
+type GallerySectionProps = {
   imageUrls: string[];
   className?: string;
 };
 
-function Gallery({ className, imageUrls }: GalleryProps): JSX.Element {
+function GallerySection({
+  className,
+  imageUrls,
+}: GallerySectionProps): JSX.Element {
   const first6ImageUrls = imageUrls.slice(0, 6);
 
   return (
@@ -24,7 +27,7 @@ function Gallery({ className, imageUrls }: GalleryProps): JSX.Element {
   );
 }
 
-export { Gallery };
+export { GallerySection };
 
 const StyledGallery = styled.div`
   position: relative;
