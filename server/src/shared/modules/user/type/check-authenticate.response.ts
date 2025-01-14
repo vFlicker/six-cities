@@ -1,3 +1,5 @@
 import { Response } from 'express';
 
-export type CheckAuthenticateResponse = Response<void>;
+import { UserRdo } from '../rdo/user.rdo.js';
+
+export type CheckAuthenticateResponse = Response<UserRdo>;

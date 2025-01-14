@@ -10,6 +10,9 @@ export class CommentRdo {
   @Expose()
   public text!: string;
 
+  @Expose()
+  public rating!: number;
+
   @Expose({ name: 'authorId' })
   @Type(() => UserRdo)
   public author!: UserRdo;

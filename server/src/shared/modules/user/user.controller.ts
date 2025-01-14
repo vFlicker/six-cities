@@ -47,7 +47,7 @@ export class UserController extends BaseController {
     });
 
     this.addRoute({
-      path: '/auth',
+      path: '/login',
       method: HttpMethod.Get,
       handler: this.checkAuthenticate,
     });
@@ -84,7 +84,8 @@ export class UserController extends BaseController {
       throw new AuthenticationException('UserController.checkAuthenticate');
     }
 
-    this.noContent(res);
+    const userRdo = fillDTO(UserRdo, foundUser);
+    this.ok(res, userRdo);
   }
 
   public async create(
