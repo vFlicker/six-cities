@@ -13,6 +13,10 @@ import {
   ValidateObjectIdMiddleware,
 } from '#src/shared/libs/rest/index.js';
 import { CityService } from '#src/shared/modules/city/index.js';
+import {
+  CommentRdo,
+  CommentService,
+} from '#src/shared/modules/comment/index.js';
 
 import { CreateOfferDto } from './dto/create-offer.dto.js';
 import { DEFAULT_CITY_NAME } from './offer.constant.js';
@@ -20,6 +24,8 @@ import { OfferService } from './offer-service.interface.js';
 import { OfferRdo } from './rdo/offer.rdo.js';
 import { CreateOfferRequest } from './type/create-offer.request.js';
 import { CreateOfferResponse } from './type/create-offer.response.js';
+import { GetAllCommentsRequest } from './type/get-all-comments.request.js';
+import { GetAllCommentsResponse } from './type/get-all-comments.response.js';
 import { GetAllOffersByCityNameRequest } from './type/get-all-offers-by-city-name.request.js';
 import { GetAllOffersByCityNameResponse } from './type/get-all-offers-by-city-name.response.js';
 import { GetOfferByIdRequest } from './type/get-offer-by-id.request.js';
@@ -31,6 +37,8 @@ export class OfferController extends BaseController {
     @inject(Component.Logger) protected readonly logger: Logger,
     @inject(Component.OfferService) private readonly offerService: OfferService,
     @inject(Component.CityService) private readonly cityService: CityService,
+    @inject(Component.CommentService)
+    private readonly commentService: CommentService,
   ) {
     super(logger);
 
@@ -57,6 +65,12 @@ export class OfferController extends BaseController {
       path: '/',
       method: HttpMethod.Get,
       handler: this.getAllByCityName,
+    });
+
+    this.addRoute({
+      path: '/:offerId/comments',
+      method: HttpMethod.Get,
+      handler: this.getAllComments,
     });
   }
 
@@ -118,5 +132,25 @@ export class OfferController extends BaseController {
     const foundOffers = await this.offerService.findAllByCityId(cityId, limit);
     const offersRdo = fillDTO(OfferRdo, foundOffers);
     this.ok(res, offersRdo);
+  }
+
+  public async getAllComments(
+    req: GetAllCommentsRequest,
+    res: GetAllCommentsResponse,
+  ): Promise<void> {
+    const offerId = req.params.offerId;
+
+    const foundOffer = await this.offerService.findById(offerId);
+    if (!foundOffer) {
+      throw new HttpError(
+        StatusCodes.NOT_FOUND,
+        `Offer with id ${offerId} not found`,
+        'OfferController.getById',
+      );
+    }
+
+    const foundComments = await this.commentService.findAllByOfferId(offerId);
+    const commentRdo = fillDTO(CommentRdo, foundComments);
+    this.ok(res, commentRdo);
   }
 }

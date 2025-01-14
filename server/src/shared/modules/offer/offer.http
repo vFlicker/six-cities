@@ -56,3 +56,8 @@ GET http://localhost:8000/api/offers?cityName=Paris&limit=1 HTTP/1.1
 
 ###
 
+## Get all comments for offer
+
+GET http://localhost:8000/api/offers/675f2838bb5d19ed14199ad6/comments HTTP/1.1
+
+###

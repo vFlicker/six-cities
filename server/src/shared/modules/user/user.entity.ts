@@ -46,7 +46,7 @@ export class UserEntity extends defaultClasses.TimeStamps {
   @prop({
     required: true,
     // TODO: remove hardcoded default avatar URL
-    default: 'http://localhost:8000/uploads/default-avatar.jpg',
+    default: 'http://localhost:8000/static/default-avatar.jpg',
     maxlength: [255, 'Max length for avatar URL is 255'],
   })
   public avatarUrl!: string;

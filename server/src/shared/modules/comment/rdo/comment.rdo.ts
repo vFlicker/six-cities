@@ -13,6 +13,9 @@ export class CommentRdo {
   @Expose()
   public rating!: number;
 
+  @Expose()
+  public createdAt!: Date;
+
   @Expose({ name: 'authorId' })
   @Type(() => UserRdo)
   public author!: UserRdo;

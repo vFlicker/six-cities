@@ -19,10 +19,10 @@ export class DefaultCommentService implements CommentService {
     const createdComment = await this.commentModel.create(dto);
     this.logger.info(`Comment with text ${dto.text} was created`);
 
-    return createdComment;
+    return createdComment.populate('authorId');
   }
 
   public async findAllByOfferId(id: string): Promise<CommentDocument[]> {
-    return this.commentModel.find({ offerId: id }).exec();
+    return this.commentModel.find({ offerId: id }).populate('authorId').exec();
   }
 }
