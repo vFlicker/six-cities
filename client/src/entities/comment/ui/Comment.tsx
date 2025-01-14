@@ -5,29 +5,38 @@ import { Rating, RatingSize } from '~/shared/ui/Rating';
 import { Typography, TypographyVariant } from '~/shared/ui/Typography';
 import { withAttrs } from '~/shared/ui/withAttrs';
 
-type ReviewsProps = {
+type CommentProps = {
   className?: string;
+  text: string;
+  rating: number;
+  createdAt: string;
+  authorName: string;
+  authorAvatarUrl: string;
 };
 
-function Comment({ className }: ReviewsProps): JSX.Element {
+function Comment({
+  className,
+  rating,
+  text,
+  createdAt,
+  authorName,
+  authorAvatarUrl,
+}: CommentProps): JSX.Element {
   return (
     <StyledWrapper className={className}>
       <StyledLeftWrapper>
         <StyledAvatarImage
-          src="img/avatar-max.jpg"
+          src={authorAvatarUrl}
           width="54"
           height="54"
-          alt="Reviews avatar"
+          alt="Author avatar"
         />
-        <StyledAvatarText>Max</StyledAvatarText>
+        <StyledAvatarText>{authorName}</StyledAvatarText>
       </StyledLeftWrapper>
       <StyledRightWrapper>
-        <StyledRating value={4} />
-        <StyledText>
-          A quiet cozy and picturesque that hides behind a a river by the unique
-          lightness of Amsterdam. The building is green and from 18th century.
-        </StyledText>
-        <StyledTime dateTime="2019-04-24">April 2019</StyledTime>
+        <StyledRating value={rating} />
+        <StyledText>{text}</StyledText>
+        <StyledTime dateTime={createdAt}>{createdAt}</StyledTime>
       </StyledRightWrapper>
     </StyledWrapper>
   );

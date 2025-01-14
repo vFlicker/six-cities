@@ -8,23 +8,29 @@ import { Icon, IconSize } from '~/shared/ui/Icon';
 import { Input } from '~/shared/ui/Input';
 import { withAttrs } from '~/shared/ui/withAttrs';
 
+import { useCreateComment } from '../api/useCreateComment';
+
 type AddCommentProps = {
   className?: string;
 };
 
 function AddComment({ className }: AddCommentProps): JSX.Element {
+  const { handleCreateComment, isPending } = useCreateComment();
+
   return (
-    <Form className={className} action="/" method="post">
-      <StyledTextareaLabel htmlFor="review">Your review</StyledTextareaLabel>
+    <Form className={className} method="post" onSubmit={handleCreateComment}>
+      <StyledTextareaLabel htmlFor="text">Your review</StyledTextareaLabel>
       <StyledFormRating />
-      <StyledTextarea name="review" id="review" />
+      <StyledTextarea name="text" id="text" />
       <StyledButtonWrapper>
         <StyledHelpText>
           To submit review please make sure to set <StyledStarIcon /> rating and
           describe your stay with at least{' '}
           <StyledAmount>50 characters</StyledAmount>.
         </StyledHelpText>
-        <Button disabled>Submit</Button>
+        <Button type="submit" disabled={isPending}>
+          Submit
+        </Button>
       </StyledButtonWrapper>
     </Form>
   );
