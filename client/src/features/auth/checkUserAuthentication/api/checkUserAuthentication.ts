@@ -8,7 +8,7 @@ export const checkUserAuthentication = async () => {
 
   try {
     await queryClient.fetchQuery({
-      queryKey: ['checkAuthStatus'],
+      queryKey: ['active-user'],
       queryFn: authApi.checkAuthStatus,
     });
 

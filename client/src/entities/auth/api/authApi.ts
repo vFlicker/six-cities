@@ -1,6 +1,6 @@
 import { apiClient } from '~/shared/api';
 
-import { AuthData, RegisterData, TokenData } from '../types/authTypes';
+import { AuthData, RegisterData, TokenData, User } from '../types/authTypes';
 
 export const authApi = {
   async login(body: AuthData): Promise<TokenData> {
@@ -8,8 +8,9 @@ export const authApi = {
     return data;
   },
 
-  async checkAuthStatus(): Promise<void> {
-    await apiClient.get('/users/auth');
+  async checkAuthStatus(): Promise<User> {
+    const { data } = await apiClient.get<User>('/users/login');
+    return data;
   },
 
   async register(body: RegisterData): Promise<TokenData> {

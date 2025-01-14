@@ -1,10 +1,10 @@
 import styled from '@emotion/styled';
 import { Fragment } from 'react';
 
-import { VisuallyHiddenMixin } from '~/shared/ui/VisuallyHiddenMixin';
-import { withAttrs } from '~/shared/ui/withAttrs';
 import { Color } from '~/shared/theme/colors';
 import { IconName } from '~/shared/theme/icons';
+import { VisuallyHiddenMixin } from '~/shared/ui/VisuallyHiddenMixin';
+import { withAttrs } from '~/shared/ui/withAttrs';
 
 import { Icon } from './Icon';
 
