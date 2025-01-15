@@ -1,7 +1,7 @@
 import { getErrorMessage } from '#src/shared/helpers/index.js';
 import { getMongoURI } from '#src/shared/helpers/index.js';
 import {
-  TSVData,
+  ParsedTSVData,
   TSVDataGenerator,
 } from '#src/shared/libs/data-generator/index.js';
 import {
@@ -16,6 +16,12 @@ import {
   CityService,
   DefaultCityService,
 } from '#src/shared/modules/city/index.js';
+import {
+  CommentModel,
+  CommentService,
+  CreateCommentDto,
+  DefaultCommentService,
+} from '#src/shared/modules/comment/index.js';
 import {
   CreateOfferDto,
   DefaultOfferService,
@@ -47,6 +53,7 @@ export class ImportCommand implements Command {
   private userService: UserService;
   private cityService: CityService;
   private offerService: OfferService;
+  private commentService: CommentService;
   private databaseClient: DatabaseClient;
   private salt: string = '';
 
@@ -55,6 +62,7 @@ export class ImportCommand implements Command {
     this.userService = new DefaultUserService(this.logger, UserModel);
     this.cityService = new DefaultCityService(this.logger, CityModel);
     this.offerService = new DefaultOfferService(this.logger, OfferModel);
+    this.commentService = new DefaultCommentService(this.logger, CommentModel);
     this.databaseClient = new MongoDatabaseClient(this.logger);
 
     this.onImportedLine = this.onImportedLine.bind(this);
@@ -115,62 +123,88 @@ export class ImportCommand implements Command {
     line: string,
     resolve: () => void,
   ): Promise<void> {
-    const tsvData = TSVDataGenerator.parse(line);
-    await this.saveData(tsvData);
+    const parsedTSVData = TSVDataGenerator.parse(line);
+    await this.saveData(parsedTSVData);
     resolve();
   }
 
-  private async saveData(tsvData: TSVData): Promise<void> {
-    const userDto = this.buildUserDto(tsvData);
+  private async saveData(parsedTSVData: ParsedTSVData): Promise<void> {
+    const userDto = this.buildUserDto(parsedTSVData);
     const user = await this.userService.findOrCreate(userDto, this.salt);
 
-    const cityDto = this.buildCityDto(tsvData);
+    const cityDto = this.buildCityDto(parsedTSVData);
     const city = await this.cityService.findOrCreate(cityDto);
 
-    const offerDto = this.buildOfferDto(tsvData, user.id);
-    await this.offerService.create(city.id, offerDto);
+    const offerDto = this.buildOfferDto(parsedTSVData, user.id);
+    const offer = await this.offerService.create(city.id, offerDto);
+
+    const commentDtos = this.buildCommentDtos(parsedTSVData, user.id, offer.id);
+    for (const commentDto of commentDtos) {
+      this.commentService.create(commentDto);
+    }
   }
 
-  private buildUserDto(tsvData: TSVData): CreateUserDto {
+  private buildUserDto(parsedTSVData: ParsedTSVData): CreateUserDto {
     return {
-      username: tsvData.hostUsername,
-      email: tsvData.hostEmail,
+      username: parsedTSVData.hostUsername,
+      email: parsedTSVData.hostEmail,
       password: DEFAULT_USER_PASSWORD,
       passwordConfirmation: DEFAULT_USER_PASSWORD,
     };
   }
 
-  private buildCityDto(tsvData: TSVData): CreateCityDto {
+  private buildCityDto(parsedTSVData: ParsedTSVData): CreateCityDto {
     return {
-      name: tsvData.cityName,
+      name: parsedTSVData.cityName,
       location: {
-        latitude: tsvData.cityLatitude,
-        longitude: tsvData.cityLongitude,
+        latitude: parsedTSVData.cityLatitude,
+        longitude: parsedTSVData.cityLongitude,
       },
     };
   }
 
-  private buildOfferDto(tsvData: TSVData, hostId: string): CreateOfferDto {
+  private buildOfferDto(
+    parsedTSVData: ParsedTSVData,
+    hostId: string,
+  ): CreateOfferDto {
     return {
-      title: tsvData.title,
-      description: tsvData.description,
-      cityName: tsvData.cityName,
-      previewImage: tsvData.previewImage,
-      offerImages: tsvData.offerImages,
-      isPremium: tsvData.isPremium,
-      isFavorite: tsvData.isFavorite,
-      rating: tsvData.rating,
-      propertyType: tsvData.propertyType,
-      roomsCount: tsvData.roomsCount,
-      guestsCount: tsvData.guestsCount,
-      rentalPrice: tsvData.rentalPrice,
-      amenities: tsvData.amenities,
+      title: parsedTSVData.title,
+      description: parsedTSVData.description,
+      cityName: parsedTSVData.cityName,
+      previewImage: parsedTSVData.previewImage,
+      offerImages: parsedTSVData.offerImages,
+      isPremium: parsedTSVData.isPremium,
+      isFavorite: parsedTSVData.isFavorite,
+      rating: parsedTSVData.offerRating,
+      propertyType: parsedTSVData.propertyType,
+      roomsCount: parsedTSVData.roomsCount,
+      guestsCount: parsedTSVData.guestsCount,
+      rentalPrice: parsedTSVData.rentalPrice,
+      amenities: parsedTSVData.amenities,
       hostId,
       location: {
-        latitude: tsvData.locationLatitude,
-        longitude: tsvData.locationLongitude,
+        latitude: parsedTSVData.locationLatitude,
+        longitude: parsedTSVData.locationLongitude,
       },
     };
+  }
+
+  buildCommentDtos(
+    parsedTSVData: ParsedTSVData,
+    authorId: string,
+    offerId: string,
+  ): CreateCommentDto[] {
+    const commentDtos: CreateCommentDto[] = [];
+
+    for (let i = 0; i < parsedTSVData.comments.length - 1; i++) {
+      const text = parsedTSVData.comments[i];
+      const rating = parsedTSVData.commentRatings[i];
+
+      const commentDto: CreateCommentDto = { text, rating, authorId, offerId };
+      commentDtos.push(commentDto);
+    }
+
+    return commentDtos;
   }
 
   private async onCompletedImport(importedRowCount: number): Promise<void> {

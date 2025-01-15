@@ -10,7 +10,7 @@ import { MockServerData } from '#src/shared/types/index.js';
 
 import { DataGenerator } from './data-generator.interface.js';
 import { GeneratorConditions } from './generator.conditions.js';
-import { TSVData } from './type/tsv-data.type.js';
+import { ParsedTSVData, TSVData } from './type/tsv-data.type.js';
 import { TSVRow } from './type/tsv-row.type.js';
 
 export class TSVDataGenerator implements DataGenerator {
@@ -24,50 +24,60 @@ export class TSVDataGenerator implements DataGenerator {
     const offerImages = imageNames.map(
       (name) => `${imageUrlWithoutName}${name}.jpg`,
     );
+    const comments = getRandomItems(this.mockData.comments);
 
     const tsvRow: TSVData = {
-      cityName: city.name as CityName,
-      cityLatitude: city.location.latitude,
-      cityLongitude: city.location.longitude,
+      cityName: city.name,
+      cityLatitude: city.location.latitude.toString(),
+      cityLongitude: city.location.longitude.toString(),
       hostUsername: host.username,
       hostEmail: host.email,
       hostAvatarUrl: host.avatarUrl,
       hostType: getRandomItem(Object.values(UserType)),
       title: getRandomItem(this.mockData.titles),
       description: getRandomItem(this.mockData.descriptions),
+      comments: comments.join('|'),
+      commentRatings: generateRandomValues(
+        GeneratorConditions.CommentRating.Min,
+        GeneratorConditions.CommentRating.Max,
+        comments.length,
+      ).join('|'),
       previewImage: offerImages[0],
-      offerImages,
-      isPremium: getRandomBoolean(),
-      isFavorite: getRandomBoolean(),
-      rating: generateRandomValue(
-        GeneratorConditions.Rating.Min,
-        GeneratorConditions.Rating.Max,
-        GeneratorConditions.Rating.Decimals,
-      ),
+      offerImages: offerImages.join('|'),
+      isPremium: getRandomBoolean().toString(),
+      isFavorite: getRandomBoolean().toString(),
+      offerRating: generateRandomValue(
+        GeneratorConditions.OfferRating.Min,
+        GeneratorConditions.OfferRating.Max,
+        GeneratorConditions.OfferRating.Decimals,
+      ).toString(),
       propertyType: getRandomItem(Object.values(PropertyType)),
       roomsCount: generateRandomValue(
         GeneratorConditions.RoomCount.Min,
         GeneratorConditions.RoomCount.Max,
-      ),
+      ).toString(),
       guestsCount: generateRandomValue(
         GeneratorConditions.GuestCount.Min,
         GeneratorConditions.GuestCount.Max,
-      ),
+      ).toString(),
       rentalPrice: generateRandomValue(
         GeneratorConditions.RentalPrice.Min,
         GeneratorConditions.RentalPrice.Max,
-      ),
-      amenities: getRandomItems(this.mockData.amenities),
+      ).toString(),
+      amenities: getRandomItems(this.mockData.amenities).join('|'),
       locationLatitude:
-        city.location.latitude + generateRandomValue(-0.04, 0.04, 6),
+        city.location.latitude + generateRandomValue(-0.04, 0.04, 6).toString(),
       locationLongitude:
-        city.location.longitude + generateRandomValue(-0.04, 0.04, 6),
+        city.location.longitude +
+        generateRandomValue(-0.04, 0.04, 6).toString(),
     };
+
+    console.log(TSVDataGenerator.parse(Object.values(tsvRow).join('\t')));
 
     return Object.values(tsvRow).join('\t');
   }
 
-  static parse(tsvRow: TSVRow): TSVData {
+  static parse(tsvRow: TSVRow): ParsedTSVData {
     const [
       cityName,
       cityLatitude,
@@ -78,11 +88,13 @@ export class TSVDataGenerator implements DataGenerator {
       hostType,
       title,
       description,
+      comments,
+      commentRatings,
       previewImage,
       offerImages,
       isPremium,
       isFavorite,
-      rating,
+      offerRating,
       propertyType,
       roomsCount,
       guestsCount,
@@ -94,26 +106,28 @@ export class TSVDataGenerator implements DataGenerator {
 
     return {
       cityName: cityName as CityName,
-      cityLatitude: Number(cityLatitude),
-      cityLongitude: Number(cityLongitude),
+      cityLatitude: Number.parseFloat(cityLatitude),
+      cityLongitude: Number.parseFloat(cityLongitude),
       hostUsername,
       hostEmail,
       hostAvatarUrl,
       hostType: hostType as UserType,
       title,
       description,
+      comments: comments.split('|'),
+      commentRatings: commentRatings.split('|').map(Number),
       previewImage,
-      offerImages: offerImages.split(','),
+      offerImages: offerImages.split('|'),
       isPremium: isPremium === 'true',
       isFavorite: isFavorite === 'true',
-      rating: Number(rating),
+      offerRating: Number(offerRating),
       propertyType: propertyType as PropertyType,
       roomsCount: Number(roomsCount),
       guestsCount: Number(guestsCount),
       rentalPrice: Number(rentalPrice),
-      amenities: amenities.split(','),
-      locationLatitude: Number(locationLatitude),
-      locationLongitude: Number(locationLongitude),
+      amenities: amenities.split('|'),
+      locationLatitude: Number.parseFloat(locationLatitude),
+      locationLongitude: Number.parseFloat(locationLongitude),
     };
   }
 }
