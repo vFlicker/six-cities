@@ -29,13 +29,16 @@ export class CreateOfferDto {
   @Length(16, 1024, { message: CreateOfferMessages.description.lengthField })
   public description!: string;
 
-  @IsUrl({}, { message: CreateOfferMessages.previewImage.invalidFormat })
+  @IsUrl(
+    { protocols: ['http', 'https'], require_tld: false },
+    { message: CreateOfferMessages.previewImage.invalidFormat },
+  )
   @MaxLength(255, { message: CreateOfferMessages.previewImage.maxLength })
   public previewImage!: string;
 
   @IsArray({ message: CreateOfferMessages.offerImages.invalidFormat })
   @IsUrl(
-    {},
+    { protocols: ['http', 'https'], require_tld: false },
     { each: true, message: CreateOfferMessages.offerImages.invalidUrl },
   )
   public offerImages!: string[];

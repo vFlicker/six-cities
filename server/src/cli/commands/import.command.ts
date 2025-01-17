@@ -139,9 +139,10 @@ export class ImportCommand implements Command {
     const offer = await this.offerService.create(city.id, offerDto);
 
     const commentDtos = this.buildCommentDtos(parsedTSVData, user.id, offer.id);
-    for (const commentDto of commentDtos) {
-      this.commentService.create(commentDto);
-    }
+    const pendingComments = commentDtos.map((commentDto) => {
+      return this.commentService.create(commentDto);
+    });
+    await Promise.all(pendingComments);
   }
 
   private buildUserDto(parsedTSVData: ParsedTSVData): CreateUserDto {
@@ -157,8 +158,7 @@ export class ImportCommand implements Command {
     return {
       name: parsedTSVData.cityName,
       location: {
-        latitude: parsedTSVData.cityLatitude,
-        longitude: parsedTSVData.cityLongitude,
+        coordinates: [parsedTSVData.cityLatitude, parsedTSVData.cityLongitude],
       },
     };
   }
@@ -183,8 +183,10 @@ export class ImportCommand implements Command {
       amenities: parsedTSVData.amenities,
       hostId,
       location: {
-        latitude: parsedTSVData.locationLatitude,
-        longitude: parsedTSVData.locationLongitude,
+        coordinates: [
+          parsedTSVData.offerLatitude,
+          parsedTSVData.offerLongitude,
+        ],
       },
     };
   }

@@ -28,6 +28,8 @@ import { GetAllCommentsRequest } from './type/get-all-comments.request.js';
 import { GetAllCommentsResponse } from './type/get-all-comments.response.js';
 import { GetAllOffersByCityNameRequest } from './type/get-all-offers-by-city-name.request.js';
 import { GetAllOffersByCityNameResponse } from './type/get-all-offers-by-city-name.response.js';
+import { GetNearbyOffersByIdRequest } from './type/get-nearby-offers-by-id.request.js';
+import { GetNearbyOffersByIdResponse } from './type/get-nearby-offers-by-id.response.js';
 import { GetOfferByIdRequest } from './type/get-offer-by-id.request.js';
 import { GetOfferByIdResponse } from './type/get-offer-by-id.response.js';
 
@@ -59,6 +61,12 @@ export class OfferController extends BaseController {
       method: HttpMethod.Get,
       handler: this.getById,
       middlewares: [new ValidateObjectIdMiddleware('offerId')],
+    });
+
+    this.addRoute({
+      path: '/:offerId/nearby',
+      method: HttpMethod.Get,
+      handler: this.getNearbyOffersById,
     });
 
     this.addRoute({
@@ -111,6 +119,26 @@ export class OfferController extends BaseController {
 
     const offerRdo = fillDTO(OfferRdo, foundOffer);
     this.ok(res, offerRdo);
+  }
+
+  public async getNearbyOffersById(
+    req: GetNearbyOffersByIdRequest,
+    res: GetNearbyOffersByIdResponse,
+  ): Promise<void> {
+    const offerId = req.params.offerId;
+
+    const foundOffer = await this.offerService.findById(offerId);
+    if (!foundOffer) {
+      throw new HttpError(
+        StatusCodes.NOT_FOUND,
+        `Offer with id ${offerId} not found`,
+        'OfferController.getById',
+      );
+    }
+
+    const nearbyOffers = await this.offerService.findNearbyById(offerId);
+    const nearbyOffersRdo = fillDTO(OfferRdo, nearbyOffers);
+    this.ok(res, nearbyOffersRdo);
   }
 
   public async getAllByCityName(

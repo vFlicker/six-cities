@@ -2,12 +2,14 @@ import { prop } from '@typegoose/typegoose';
 
 export class Location {
   @prop({
-    required: true,
+    type: String,
+    default: 'Point',
   })
-  public latitude!: number;
+  public type!: string;
 
   @prop({
+    type: [Number],
     required: true,
   })
-  public longitude!: number;
+  public coordinates!: [number, number];
 }

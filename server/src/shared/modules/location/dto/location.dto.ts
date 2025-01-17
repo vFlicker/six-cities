@@ -1,11 +1,13 @@
-import { IsLatitude, IsLongitude } from 'class-validator';
+import { ArrayMinSize, IsArray, IsNumber } from 'class-validator';
 
 import { LocationMessages } from './location.messages.js';
 
 export class LocationDto {
-  @IsLatitude({ message: LocationMessages.latitude.invalidFormat })
-  public latitude!: number;
-
-  @IsLongitude({ message: LocationMessages.longitude.invalidFormat })
-  public longitude!: number;
+  @IsArray({ message: LocationMessages.coordinates.invalidFormat })
+  @ArrayMinSize(2, { message: LocationMessages.coordinates.invalidLength })
+  @IsNumber(
+    {},
+    { each: true, message: LocationMessages.coordinates.invalidElement },
+  )
+  public coordinates!: [number, number];
 }

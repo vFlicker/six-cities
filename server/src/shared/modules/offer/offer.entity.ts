@@ -2,6 +2,7 @@ import {
   defaultClasses,
   DocumentType,
   getModelForClass,
+  index,
   modelOptions,
   prop,
   Ref,
@@ -21,6 +22,7 @@ export type OfferModelType = types.ModelType<OfferEntity>;
     collection: 'offers',
   },
 })
+@index({ location: '2dsphere' })
 export class OfferEntity extends defaultClasses.TimeStamps {
   @prop({
     trim: true,

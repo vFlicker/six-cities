@@ -25,6 +25,9 @@ export class TSVDataGenerator implements DataGenerator {
       (name) => `${imageUrlWithoutName}${name}.jpg`,
     );
     const comments = getRandomItems(this.mockData.comments);
+    const { latitude, longitude } = city.location;
+    const offerLatitude = latitude + generateRandomValue(-0.04, 0.04, 6);
+    const offerLongitude = longitude + generateRandomValue(-0.04, 0.04, 6);
 
     const tsvRow: TSVData = {
       cityName: city.name,
@@ -65,14 +68,9 @@ export class TSVDataGenerator implements DataGenerator {
         GeneratorConditions.RentalPrice.Max,
       ).toString(),
       amenities: getRandomItems(this.mockData.amenities).join('|'),
-      locationLatitude:
-        city.location.latitude + generateRandomValue(-0.04, 0.04, 6).toString(),
-      locationLongitude:
-        city.location.longitude +
-        generateRandomValue(-0.04, 0.04, 6).toString(),
+      offerLatitude: offerLatitude.toString(),
+      offerLongitude: offerLongitude.toString(),
     };
-
-    console.log(TSVDataGenerator.parse(Object.values(tsvRow).join('\t')));
 
     return Object.values(tsvRow).join('\t');
   }
@@ -100,8 +98,8 @@ export class TSVDataGenerator implements DataGenerator {
       guestsCount,
       rentalPrice,
       amenities,
-      locationLatitude,
-      locationLongitude,
+      offerLatitude,
+      offerLongitude,
     ] = tsvRow.split('\t');
 
     return {
@@ -126,8 +124,8 @@ export class TSVDataGenerator implements DataGenerator {
       guestsCount: Number(guestsCount),
       rentalPrice: Number(rentalPrice),
       amenities: amenities.split('|'),
-      locationLatitude: Number.parseFloat(locationLatitude),
-      locationLongitude: Number.parseFloat(locationLongitude),
+      offerLatitude: Number.parseFloat(offerLatitude),
+      offerLongitude: Number.parseFloat(offerLongitude),
     };
   }
 }

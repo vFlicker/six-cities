@@ -1,8 +1,7 @@
 export const LocationMessages = {
-  latitude: {
-    invalidFormat: 'Latitude must be a number',
-  },
-  longitude: {
-    invalidFormat: 'Longitude must be a number',
+  coordinates: {
+    invalidFormat: 'Coordinates must be an array',
+    invalidLength: 'Coordinates must have exactly 2 elements',
+    invalidElement: 'Each coordinate must be a number',
   },
 };

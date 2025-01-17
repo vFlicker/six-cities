@@ -7,11 +7,24 @@ import { ValidationErrorField } from './types/validation-error-field.type.js';
 export function reduceValidationErrors(
   errors: ValidationError[],
 ): ValidationErrorField[] {
-  return errors.map(({ property, constraints, value }) => ({
-    field: property,
-    value,
-    messages: constraints ? Object.values(constraints) : [],
-  }));
+  const flattenErrors = (
+    errors: ValidationError[],
+    parentField = '',
+  ): ValidationErrorField[] => {
+    return errors.flatMap(({ property, constraints, value, children }) => {
+      const fieldName = parentField ? `${parentField}.${property}` : property;
+      const currentError = constraints
+        ? [{ field: fieldName, value, messages: Object.values(constraints) }]
+        : [];
+      const childErrors = children?.length
+        ? flattenErrors(children, fieldName)
+        : [];
+
+      return [...currentError, ...childErrors];
+    });
+  };
+
+  return flattenErrors(errors);
 }
 
 export function createErrorResponse(

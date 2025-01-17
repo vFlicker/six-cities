@@ -4,7 +4,10 @@ import { Component } from '#src/shared/enums/index.js';
 import { Logger } from '#src/shared/libs/logger/index.js';
 
 import { CreateOfferDto } from './dto/create-offer.dto.js';
-import { DEFAULT_OFFER_COUNT } from './offer.constant.js';
+import {
+  DEFAULT_NEARBY_OFFER_COUNT,
+  DEFAULT_OFFER_COUNT,
+} from './offer.constant.js';
 import { OfferDocument, OfferModelType } from './offer.entity.js';
 import { OfferService } from './offer-service.interface.js';
 
@@ -30,6 +33,29 @@ export class DefaultOfferService implements OfferService {
 
   public async findById(id: string): Promise<OfferDocument | null> {
     return this.offerModel.findById(id).populate(['hostId', 'cityId']).exec();
+  }
+
+  public async findNearbyById(id: string): Promise<OfferDocument[]> {
+    const offer = await this.offerModel.findById(id).exec();
+    const { _id: currentOfferId, cityId, location } = offer!;
+
+    return this.offerModel
+      .find({
+        cityId,
+        _id: { $ne: currentOfferId },
+        location: {
+          $near: {
+            $geometry: {
+              type: 'Point',
+              coordinates: location.coordinates,
+            },
+            $maxDistance: 1000,
+          },
+        },
+      })
+      .populate(['hostId', 'cityId'])
+      .limit(DEFAULT_NEARBY_OFFER_COUNT)
+      .exec();
   }
 
   public async findAll(): Promise<OfferDocument[]> {

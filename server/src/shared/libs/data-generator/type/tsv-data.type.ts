@@ -24,8 +24,8 @@ export type TSVData = {
   guestsCount: string;
   rentalPrice: string;
   amenities: string;
-  locationLatitude: string;
-  locationLongitude: string;
+  offerLatitude: string;
+  offerLongitude: string;
 };
 
 export type ParsedTSVData = {
@@ -50,6 +50,6 @@ export type ParsedTSVData = {
   guestsCount: number;
   rentalPrice: number;
   amenities: string[];
-  locationLatitude: number;
-  locationLongitude: number;
+  offerLatitude: number;
+  offerLongitude: number;
 };
