@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 
 import { Color } from '~/shared/theme/colors';
 import { TextShadow } from '~/shared/theme/textShadow';
-import { BaseButton } from '~/shared/ui/BaseButton';
+
+import { BaseButton } from './BaseButton';
 
 const CSS = css`
   display: inline-flex;

@@ -1,8 +1,7 @@
 import styled from '@emotion/styled';
 
 import { Color } from '~/shared/theme/colors';
-
-import { Section } from './Section';
+import { Section } from '~/shared/ui/Section';
 
 type AmenitiesSectionProps = {
   items: string[];

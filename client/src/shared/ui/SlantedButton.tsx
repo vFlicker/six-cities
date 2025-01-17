@@ -6,7 +6,8 @@ import { Link as RouterLink, LinkProps } from 'react-router-dom';
 import { Color } from '~/shared/theme/colors';
 import { Radius } from '~/shared/theme/radiuses';
 import { TextShadow } from '~/shared/theme/textShadow';
-import { BaseButton } from '~/shared/ui/BaseButton';
+
+import { BaseButton } from './BaseButton';
 
 type CustomProps = {
   active?: boolean;

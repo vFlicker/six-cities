@@ -1,12 +1,12 @@
 import styled from '@emotion/styled';
 import { PropsWithChildren } from 'react';
 
-import { withAttrs } from '~/shared/ui/withAttrs';
 import { Color } from '~/shared/theme/colors';
 import { IconName } from '~/shared/theme/icons';
 
 import { Icon } from './Icon';
 import { Typography, TypographyVariant } from './Typography';
+import { withAttrs } from './withAttrs';
 
 type FilterProps = PropsWithChildren<{
   className?: string;

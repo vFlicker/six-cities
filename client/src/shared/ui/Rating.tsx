@@ -2,7 +2,8 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
 import { starsActiveImage, starsNoActiveImage } from '~/shared/assets/images';
-import { VisuallyHiddenMixin } from '~/shared/ui/VisuallyHiddenMixin';
+
+import { VisuallyHiddenMixin } from './VisuallyHiddenMixin';
 
 type RatingProps = {
   size: RatingSize;

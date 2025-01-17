@@ -1,10 +1,9 @@
 import styled from '@emotion/styled';
 import { PropsWithChildren } from 'react';
 
-import { Typography, TypographyVariant } from '~/shared/ui/Typography';
-
-import { SmallContainerMixin } from '../../../shared/ui/Container';
-import { withAttrs } from '../../../shared/ui/withAttrs';
+import { SmallContainerMixin } from './Container';
+import { Typography, TypographyVariant } from './Typography';
+import { withAttrs } from './withAttrs';
 
 type SectionProps = PropsWithChildren<{
   title: string;

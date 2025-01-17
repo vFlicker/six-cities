@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
-import { Typography, TypographyVariant } from '~/shared/ui/Typography';
-import { withAttrs } from '~/shared/ui/withAttrs';
+import { Typography, TypographyVariant } from './Typography';
+import { withAttrs } from './withAttrs';
 
 type ResultMessageProps = {
   title: string;

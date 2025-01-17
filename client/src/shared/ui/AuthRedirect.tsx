@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
-import { Color } from '../theme/colors';
+import { Color } from '~/shared/theme/colors';
+
 import { TextLink } from './TextButton';
 
 type AuthRedirectProps = {

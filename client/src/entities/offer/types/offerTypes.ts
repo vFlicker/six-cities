@@ -1,6 +1,5 @@
 type Location = {
-  latitude: number;
-  longitude: number;
+  coordinates: [number, number];
 };
 
 export type OfferId = string;

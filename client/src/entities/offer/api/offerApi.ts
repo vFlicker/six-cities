@@ -21,4 +21,9 @@ export const offerApi = {
     );
     return data;
   },
+
+  async getAllNearbyOffers(id: string): Promise<Offer[]> {
+    const { data } = await apiClient.get<Offer[]>(`/offers/${id}/nearby`);
+    return data;
+  },
 };

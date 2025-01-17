@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { withAttrs } from '~/shared/ui/withAttrs';
+import { withAttrs } from './withAttrs';
 
 const StyledBaseButton = withAttrs(
   {

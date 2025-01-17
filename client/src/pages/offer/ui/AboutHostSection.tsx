@@ -3,10 +3,9 @@ import styled from '@emotion/styled';
 
 import { defaultAvatarImage, starWhiteImage } from '~/shared/assets/images';
 import { Color } from '~/shared/theme/colors';
+import { Section } from '~/shared/ui/Section';
 import { Typography, TypographyVariant } from '~/shared/ui/Typography';
 import { withAttrs } from '~/shared/ui/withAttrs';
-
-import { Section } from './Section';
 
 type AboutHostSectionProps = {
   avatarUrl: string;

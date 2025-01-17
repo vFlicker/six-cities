@@ -8,8 +8,7 @@ export const offers: Offer[] = [
     city: {
       name: 'Amsterdam',
       location: {
-        latitude: 52.38333,
-        longitude: 4.9,
+        coordinates: [52.38333, 4.9],
       },
     },
     previewImage: 'https://www.google.com',
@@ -29,8 +28,7 @@ export const offers: Offer[] = [
       avatarUrl: 'https://www.example-image.com',
     },
     location: {
-      latitude: 50.4501,
-      longitude: 30.5234,
+      coordinates: [50.4501, 30.5234],
     },
   },
 ];

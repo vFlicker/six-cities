@@ -2,8 +2,7 @@ import { authModel } from '~/entities/auth';
 import { Comments, useComments } from '~/entities/comment';
 import { AddComment } from '~/features/addComment';
 import { Loader } from '~/shared/ui/Loader';
-
-import { Section } from './Section';
+import { Section } from '~/shared/ui/Section';
 
 type ReviewsSectionProps = {
   className?: string;

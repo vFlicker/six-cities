@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import { Helmet } from 'react-helmet-async';
 
 import { useOffer, useOffers } from '~/entities/offer';
+import { NearbyOffersSection } from '~/entities/offer';
 import { DefaultLayout } from '~/shared/ui/DefaultLayout';
 import { Footer } from '~/shared/ui/Footer';
 import { Loader } from '~/shared/ui/Loader';
@@ -12,7 +13,6 @@ import { AboutHostSection } from './AboutHostSection';
 import { AmenitiesSection } from './AmenitiesSection';
 import { GallerySection } from './GallerySection';
 import { OfferSummarySection } from './OfferSummarySection';
-import { OtherOffersSection } from './OtherOffersSection';
 import { ReviewsSection } from './ReviewsSection';
 
 const OFFER_NAME = 'Offer';
@@ -26,12 +26,11 @@ function OfferPage(): JSX.Element {
 
   // TODO: add current active city to the state,
   // and use it to set the map center
-  const { latitude, longitude } = offers[0].city.location;
-  const mapCenter = [latitude, longitude] as [number, number];
+  const { coordinates: mapCenterCoordinates } = offers[0].city.location;
 
   const markerLocations: MarkerLocation[] = offers.map(({ id, location }) => ({
     id,
-    location: [location.latitude, location.longitude],
+    location: location.coordinates,
   }));
 
   if (isOfferPending) return <Loader />;
@@ -81,8 +80,12 @@ function OfferPage(): JSX.Element {
             />
             <ReviewsSection />
           </StyledWrapper>
-          <StyledMap mapCenter={mapCenter} markerLocations={markerLocations} />
-          <StyledOtherOffersSection />
+          <StyledMap
+            mapCenter={mapCenterCoordinates}
+            markerLocations={markerLocations}
+          />
+
+          <StyledNearbyOffersSection />
         </section>
       </main>
       <Footer />
@@ -105,6 +108,6 @@ const StyledMap = styled(Map)`
   margin-bottom: 50px;
 `;
 
-const StyledOtherOffersSection = styled(OtherOffersSection)`
+const StyledNearbyOffersSection = styled(NearbyOffersSection)`
   padding-bottom: 50px;
 `;

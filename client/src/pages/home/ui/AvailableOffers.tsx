@@ -21,12 +21,11 @@ function AvailableOffers({
 
   // TODO: add current active city to the state,
   // and use it to set the map center
-  const { latitude, longitude } = offers[0].city.location;
-  const mapCenter = [latitude, longitude] as [number, number];
+  const { coordinates: mapCenterCoordinates } = offers[0].city.location;
 
   const markerLocations: MarkerLocation[] = offers.map(({ id, location }) => ({
     id,
-    location: [location.latitude, location.longitude],
+    location: location.coordinates,
   }));
 
   const handleCardMouseEnter = (offerId: string): void => {
@@ -46,7 +45,7 @@ function AvailableOffers({
           onCardMouseLeave={handleCardMouseLeave}
         />
         <StyledMap
-          mapCenter={mapCenter}
+          mapCenter={mapCenterCoordinates}
           markerLocations={markerLocations}
           activeMarkerId={activeOfferId}
         />
