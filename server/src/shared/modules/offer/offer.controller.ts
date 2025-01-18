@@ -6,6 +6,7 @@ import { fillDTO } from '#src/shared/helpers/common.js';
 import { Logger } from '#src/shared/libs/logger/index.js';
 import {
   BaseController,
+  DocumentExistsMiddleware,
   HttpError,
   HttpMethod,
   PrivateRouteMiddleware,
@@ -66,21 +67,30 @@ export class OfferController extends BaseController {
       path: '/:offerId',
       method: HttpMethod.Get,
       handler: this.getById,
-      middlewares: [new ValidateObjectIdMiddleware('offerId')],
+      middlewares: [
+        new ValidateObjectIdMiddleware('offerId'),
+        new DocumentExistsMiddleware(this.offerService, 'Offer', 'offerId'),
+      ],
     });
 
     this.addRoute({
       path: '/:offerId/nearby',
       method: HttpMethod.Get,
       handler: this.getNearbyOffersById,
-      middlewares: [new ValidateObjectIdMiddleware('offerId')],
+      middlewares: [
+        new ValidateObjectIdMiddleware('offerId'),
+        new DocumentExistsMiddleware(this.offerService, 'Offer', 'offerId'),
+      ],
     });
 
     this.addRoute({
       path: '/:offerId/comments',
       method: HttpMethod.Get,
       handler: this.getAllComments,
-      middlewares: [new ValidateObjectIdMiddleware('offerId')],
+      middlewares: [
+        new ValidateObjectIdMiddleware('offerId'),
+        new DocumentExistsMiddleware(this.offerService, 'Offer', 'offerId'),
+      ],
     });
   }
 
@@ -130,16 +140,7 @@ export class OfferController extends BaseController {
     res: GetOfferByIdResponse,
   ): Promise<void> {
     const offerId = req.params.offerId;
-
     const foundOffer = await this.offerService.findById(offerId);
-    if (!foundOffer) {
-      throw new HttpError(
-        StatusCodes.NOT_FOUND,
-        `Offer with id ${offerId} not found`,
-        'OfferController.getById',
-      );
-    }
-
     const offerRdo = fillDTO(OfferRdo, foundOffer);
     this.ok(res, offerRdo);
   }
@@ -149,16 +150,6 @@ export class OfferController extends BaseController {
     res: GetNearbyOffersByIdResponse,
   ): Promise<void> {
     const offerId = req.params.offerId;
-
-    const foundOffer = await this.offerService.findById(offerId);
-    if (!foundOffer) {
-      throw new HttpError(
-        StatusCodes.NOT_FOUND,
-        `Offer with id ${offerId} not found`,
-        'OfferController.getById',
-      );
-    }
-
     const nearbyOffers = await this.offerService.findNearbyById(offerId);
     const nearbyOffersRdo = fillDTO(OfferRdo, nearbyOffers);
     this.ok(res, nearbyOffersRdo);
@@ -169,16 +160,6 @@ export class OfferController extends BaseController {
     res: GetAllCommentsResponse,
   ): Promise<void> {
     const offerId = req.params.offerId;
-
-    const foundOffer = await this.offerService.findById(offerId);
-    if (!foundOffer) {
-      throw new HttpError(
-        StatusCodes.NOT_FOUND,
-        `Offer with id ${offerId} not found`,
-        'OfferController.getById',
-      );
-    }
-
     const foundComments = await this.commentService.findAllByOfferId(offerId);
     const commentRdo = fillDTO(CommentRdo, foundComments);
     this.ok(res, commentRdo);

@@ -72,4 +72,9 @@ export class DefaultOfferService implements OfferService {
       .populate(['hostId', 'cityId'])
       .exec();
   }
+
+  public async exists(id: string): Promise<boolean> {
+    const isExist = await this.offerModel.exists({ _id: id });
+    return isExist !== null;
+  }
 }

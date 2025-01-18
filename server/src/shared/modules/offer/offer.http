@@ -45,7 +45,7 @@ GET http://localhost:8000/api/offers/678a82802581094fe38bafaa HTTP/1.1
 ###
 
 ## Get nearby offers
-GET http://localhost:8000/api/offers/678a8c9145d49d520bafc021/nearby HTTP/1.1
+GET http://localhost:8000/api/offers/678a82802581094fe38bafaa/nearby HTTP/1.1
 
 ###
 
