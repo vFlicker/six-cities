@@ -57,6 +57,12 @@ export class OfferController extends BaseController {
     });
 
     this.addRoute({
+      path: '/',
+      method: HttpMethod.Get,
+      handler: this.getAllByCityName,
+    });
+
+    this.addRoute({
       path: '/:offerId',
       method: HttpMethod.Get,
       handler: this.getById,
@@ -67,18 +73,14 @@ export class OfferController extends BaseController {
       path: '/:offerId/nearby',
       method: HttpMethod.Get,
       handler: this.getNearbyOffersById,
-    });
-
-    this.addRoute({
-      path: '/',
-      method: HttpMethod.Get,
-      handler: this.getAllByCityName,
+      middlewares: [new ValidateObjectIdMiddleware('offerId')],
     });
 
     this.addRoute({
       path: '/:offerId/comments',
       method: HttpMethod.Get,
       handler: this.getAllComments,
+      middlewares: [new ValidateObjectIdMiddleware('offerId')],
     });
   }
 
@@ -100,6 +102,27 @@ export class OfferController extends BaseController {
     const createdOffer = await this.offerService.create(foundCity.id, req.body);
     const offerRdo = fillDTO(OfferRdo, createdOffer);
     this.created(res, offerRdo);
+  }
+
+  public async getAllByCityName(
+    req: GetAllOffersByCityNameRequest,
+    res: GetAllOffersByCityNameResponse,
+  ): Promise<void> {
+    const { cityName = DEFAULT_CITY_NAME, limit } = req.query;
+
+    const foundCity = await this.cityService.findByName(cityName);
+    if (!foundCity) {
+      throw new HttpError(
+        StatusCodes.BAD_REQUEST,
+        `City with name ${cityName} not exists`,
+        'DefaultOfferService.create',
+      );
+    }
+
+    const cityId = foundCity.id;
+    const foundOffers = await this.offerService.findAllByCityId(cityId, limit);
+    const offersRdo = fillDTO(OfferRdo, foundOffers);
+    this.ok(res, offersRdo);
   }
 
   public async getById(
@@ -139,27 +162,6 @@ export class OfferController extends BaseController {
     const nearbyOffers = await this.offerService.findNearbyById(offerId);
     const nearbyOffersRdo = fillDTO(OfferRdo, nearbyOffers);
     this.ok(res, nearbyOffersRdo);
-  }
-
-  public async getAllByCityName(
-    req: GetAllOffersByCityNameRequest,
-    res: GetAllOffersByCityNameResponse,
-  ): Promise<void> {
-    const { cityName = DEFAULT_CITY_NAME, limit } = req.query;
-
-    const foundCity = await this.cityService.findByName(cityName);
-    if (!foundCity) {
-      throw new HttpError(
-        StatusCodes.BAD_REQUEST,
-        `City with name ${cityName} not exists`,
-        'DefaultOfferService.create',
-      );
-    }
-
-    const cityId = foundCity.id;
-    const foundOffers = await this.offerService.findAllByCityId(cityId, limit);
-    const offersRdo = fillDTO(OfferRdo, foundOffers);
-    this.ok(res, offersRdo);
   }
 
   public async getAllComments(
