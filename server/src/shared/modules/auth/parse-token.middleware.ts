@@ -8,6 +8,7 @@ import { HttpError, Middleware } from '#src/shared/libs/rest/index.js';
 
 import { TokenPayload } from './types/token-payload.js';
 
+// TODO: can I to get rid of TokenPayload?
 function isTokenPayload(payload: unknown): payload is TokenPayload {
   return (
     typeof payload === 'object' &&
