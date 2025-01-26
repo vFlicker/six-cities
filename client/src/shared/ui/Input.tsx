@@ -1,7 +1,28 @@
 import styled from '@emotion/styled';
+import { ComponentProps, forwardRef } from 'react';
 
 import { Color } from '~/shared/theme/colors';
 import { Radius } from '~/shared/theme/radiuses';
+
+import { ErrorBlock } from './ErrorBlock';
+
+type InputProps = {
+  errorMessage?: string;
+} & ComponentProps<typeof StyledInput>;
+
+const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
+  { errorMessage, ...props }: InputProps,
+  ref,
+) {
+  return (
+    <div>
+      <StyledInput ref={ref} {...props} />
+      <StyledErrorBlock message={errorMessage} />
+    </div>
+  );
+});
+
+export { Input };
 
 const StyledInput = styled.input`
   width: 100%;
@@ -23,4 +44,6 @@ const StyledInput = styled.input`
   }
 `;
 
-export { StyledInput as Input };
+const StyledErrorBlock = styled(ErrorBlock)`
+  margin-top: 8px;
+`;

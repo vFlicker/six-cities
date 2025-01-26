@@ -2,6 +2,7 @@ import { css } from '@emotion/react';
 
 const enum Color {
   ORANGE_10 = 'var(--color-orange-10)',
+  RED_10 = 'var(--color-red-10)',
   BLUE_20 = 'var(--color-blue-20)',
   BLUE_30 = 'var(--color-blue-30)',
   WHITE = 'var(--color-white)',
@@ -20,6 +21,7 @@ const enum Color {
 const globalColors = css`
   :root {
     --color-orange-10: #ff9000;
+    --color-red-10: #ff0000;
 
     --color-blue-20: #4481c3;
     --color-blue-30: #3069a6;
