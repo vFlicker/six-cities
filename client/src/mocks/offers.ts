@@ -25,7 +25,7 @@ export const offers: Offer[] = [
       name: 'John Doe',
       email: 'john@mail.com',
       type: 'pro',
-      avatarUrl: 'https://www.example-image.com',
+      avatar: '',
     },
     location: {
       coordinates: [50.4501, 30.5234],

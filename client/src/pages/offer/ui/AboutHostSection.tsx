@@ -8,7 +8,7 @@ import { Typography, TypographyVariant } from '~/shared/ui/Typography';
 import { withAttrs } from '~/shared/ui/withAttrs';
 
 type AboutHostSectionProps = {
-  avatarUrl: string;
+  avatar: string;
   offerDescription: string;
   hostName: string;
   userType: 'regular' | 'pro';
@@ -17,7 +17,7 @@ type AboutHostSectionProps = {
 
 function AboutHostSection({
   className,
-  avatarUrl,
+  avatar,
   hostName,
   userType,
   offerDescription,
@@ -29,7 +29,7 @@ function AboutHostSection({
       <StyledUser>
         <StyledAvatarWrapper isPro={isPro}>
           <StyledAvatarImage
-            src={avatarUrl}
+            src={avatar}
             width="74"
             height="74"
             alt={`${hostName} avatar`}

@@ -11,7 +11,7 @@ type CommentProps = {
   rating: number;
   createdAt: string;
   authorName: string;
-  authorAvatarUrl: string;
+  authorAvatar: string;
 };
 
 function Comment({
@@ -20,13 +20,13 @@ function Comment({
   text,
   createdAt,
   authorName,
-  authorAvatarUrl,
+  authorAvatar,
 }: CommentProps): JSX.Element {
   return (
     <StyledWrapper className={className}>
       <StyledLeftWrapper>
         <StyledAvatarImage
-          src={authorAvatarUrl}
+          src={authorAvatar}
           width="54"
           height="54"
           alt="Author avatar"

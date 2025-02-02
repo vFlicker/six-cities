@@ -42,6 +42,7 @@ export class OfferEntity extends defaultClasses.TimeStamps {
 
   @prop({
     required: true,
+    trim: true,
     maxlength: [255, 'Max length for preview image is 255'],
   })
   public previewImage!: string;
@@ -49,6 +50,7 @@ export class OfferEntity extends defaultClasses.TimeStamps {
   @prop({
     type: String,
     required: true,
+    trim: true,
     default: [],
   })
   public offerImages!: string[];

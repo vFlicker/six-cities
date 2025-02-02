@@ -18,6 +18,8 @@ export * from './middleware/private-route.middleware.js';
 export * from './middleware/validate-dto.middleware.js';
 export * from './middleware/validate-objectid.middleware.js';
 export * from './route.interface.js';
+export * from './transform/default-path-transformer.js';
+export * from './transform/path-transformer.js';
 export * from './types/request-params.type.js';
 export * from './types/request-query.type.js';
 export * from './types/response-body.type.js';

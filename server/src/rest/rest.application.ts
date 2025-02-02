@@ -4,12 +4,14 @@ import { inject, injectable } from 'inversify';
 import swaggerUi from 'swagger-ui-express';
 
 import { Component } from '#src/shared/enums/index.js';
-import { getMongoURI } from '#src/shared/helpers/index.js';
+import { getFullServerPath, getMongoURI } from '#src/shared/helpers/index.js';
 import { Config, RestSchema } from '#src/shared/libs/config/index.js';
 import { DatabaseClient } from '#src/shared/libs/database-client/index.js';
 import { Logger } from '#src/shared/libs/logger/index.js';
 import { Controller, ExceptionFilter } from '#src/shared/libs/rest/index.js';
 import { ParseTokenMiddleware } from '#src/shared/modules/auth/index.js';
+
+import { STATIC_FILES_ROUTE, STATIC_UPLOAD_ROUTE } from './rest.constants.js';
 
 @injectable()
 export class RestApplication {
@@ -64,7 +66,9 @@ export class RestApplication {
     this.logger.info('Initialize server...');
     await this.initServer();
     const port = this.config.get('PORT');
-    this.logger.info(`Server initialized and listening on port ${port}.`);
+    const host = this.config.get('HOST');
+    const serverPath = getFullServerPath(host, port);
+    this.logger.info(`Server initialized and listening on ${serverPath}.`);
   }
 
   private async initDb(): Promise<void> {
@@ -79,12 +83,14 @@ export class RestApplication {
   }
 
   private async initMiddlewares(): Promise<void> {
-    const uploadDirectoryPath = this.config.get('UPLOAD_DIRECTORY');
+    const staticDirectoryPath = this.config.get('STATIC_DIRECTORY_PATH');
+    const uploadsDirectoryPath = this.config.get('UPLOADS_DIRECTORY_PATH');
     const jwtSecret = this.config.get('JWT_SECRET');
     const authenticateMiddleware = new ParseTokenMiddleware(jwtSecret);
 
     this.server.use(express.json());
-    this.server.use('/static', express.static(uploadDirectoryPath));
+    this.server.use(STATIC_FILES_ROUTE, express.static(staticDirectoryPath));
+    this.server.use(STATIC_UPLOAD_ROUTE, express.static(uploadsDirectoryPath));
     this.server.use(cors());
     this.server.use('/api-docs', swaggerUi.serve);
     this.server.use(authenticateMiddleware.execute);

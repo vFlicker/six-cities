@@ -73,7 +73,7 @@ function OfferPage(): JSX.Element {
             />
             <AmenitiesSection items={amenities} />
             <AboutHostSection
-              avatarUrl={host.avatarUrl}
+              avatar={host.avatar}
               hostName={host.name}
               offerDescription={description}
               userType={host.type}

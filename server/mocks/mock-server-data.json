@@ -94,12 +94,12 @@
       {
         "username": "Angelina",
         "email": "angelina@example.com",
-        "avatarUrl": "http://localhost:8000/static/host/avatar-angelina.jpg"
+        "avatar": "avatar-angelina.jpg"
       },
       {
         "username": "Max",
         "email": "max@example.com",
-        "avatarUrl": "http://localhost:8000/static/host/avatar-max.jpg"
+        "avatar": "avatar-max.jpg"
       }
     ]
   }

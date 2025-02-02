@@ -8,7 +8,7 @@ export type TSVData = {
   cityLongitude: string;
   hostUsername: string;
   hostEmail: string;
-  hostAvatarUrl: string;
+  hostAvatar: string;
   hostType: UserType;
   title: string;
   comments: string;
@@ -34,7 +34,7 @@ export type ParsedTSVData = {
   cityLongitude: number;
   hostUsername: string;
   hostEmail: string;
-  hostAvatarUrl: string;
+  hostAvatar: string;
   hostType: UserType;
   title: string;
   comments: string[];

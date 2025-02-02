@@ -26,7 +26,7 @@ export type Offer = {
     name: string;
     email: string;
     type: 'pro' | 'regular';
-    avatarUrl: string;
+    avatar: string;
   };
   location: Location;
 };

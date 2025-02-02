@@ -97,7 +97,7 @@ components:
           type: string
           example: pro
 
-        avatarUrl:
+        avatar:
           type: string
           example: https://www.example-image.com
 
@@ -105,7 +105,7 @@ components:
         - name
         - email
         - type
-        - avatarUrl
+        - avatar
 
     createUser:
       type: object
@@ -126,7 +126,7 @@ components:
           enum: [regular, pro]
           example: pro
 
-        avatarUrl:
+        avatar:
           type: string
           example: https://www.example-image.com
 
@@ -140,7 +140,7 @@ components:
         - name
         - email
         - type
-        - avatarUrl
+        - avatar
         - password
 
     offer:
@@ -224,7 +224,7 @@ components:
               type: string
               example: pro
 
-            avatarUrl:
+            avatar:
               type: string
               example: https://www.example-image.com
 

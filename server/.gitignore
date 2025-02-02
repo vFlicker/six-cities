@@ -16,6 +16,3 @@ dist/
 
 # Files with environment variables
 .env
-
-# Uploads
-uploads/

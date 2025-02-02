@@ -13,6 +13,6 @@ export type MockServerData = {
   hosts: {
     username: string;
     email: string;
-    avatarUrl: string;
+    avatar: string;
   }[];
 };

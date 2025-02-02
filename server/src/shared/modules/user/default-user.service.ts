@@ -4,6 +4,7 @@ import { Component } from '#src/shared/enums/index.js';
 import { Logger } from '#src/shared/libs/logger/index.js';
 
 import { CreateUserDto } from './dto/create-user.dto.js';
+import { DEFAULT_AVATAR_FILE_NAME } from './user.constant.js';
 import { UserDocument, UserEntity, UserModelType } from './user.entity.js';
 import { UserService } from './user-service.interface.js';
 
@@ -15,7 +16,10 @@ export class DefaultUserService implements UserService {
   ) {}
 
   public async create(dto: CreateUserDto, salt: string): Promise<UserDocument> {
-    const user = new UserEntity(dto);
+    const user = new UserEntity({
+      ...dto,
+      avatar: DEFAULT_AVATAR_FILE_NAME,
+    });
     user.setPassword(dto.password, salt);
 
     const createdUser = await this.userModel.create(user);

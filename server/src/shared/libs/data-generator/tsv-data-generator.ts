@@ -19,11 +19,8 @@ export class TSVDataGenerator implements DataGenerator {
   public generate(): TSVRow {
     const city = getRandomItem(this.mockData.cities);
     const host = getRandomItem(this.mockData.hosts);
-    const imageNames = generateRandomValues(1, 20, 6);
-    const imageUrlWithoutName = 'http://localhost:8000/static/hotel/';
-    const offerImages = imageNames.map(
-      (name) => `${imageUrlWithoutName}${name}.jpg`,
-    );
+    const randomNumbers = generateRandomValues(1, 20, 6);
+    const offerImages = randomNumbers.map((number) => `offer-${number}.jpg`);
     const comments = getRandomItems(this.mockData.comments);
     const { latitude, longitude } = city.location;
     const offerLatitude = latitude + generateRandomValue(-0.04, 0.04, 6);
@@ -35,7 +32,7 @@ export class TSVDataGenerator implements DataGenerator {
       cityLongitude: city.location.longitude.toString(),
       hostUsername: host.username,
       hostEmail: host.email,
-      hostAvatarUrl: host.avatarUrl,
+      hostAvatar: host.avatar,
       hostType: getRandomItem(Object.values(UserType)),
       title: getRandomItem(this.mockData.titles),
       description: getRandomItem(this.mockData.descriptions),
@@ -82,7 +79,7 @@ export class TSVDataGenerator implements DataGenerator {
       cityLongitude,
       hostUsername,
       hostEmail,
-      hostAvatarUrl,
+      hostAvatar,
       hostType,
       title,
       description,
@@ -108,7 +105,7 @@ export class TSVDataGenerator implements DataGenerator {
       cityLongitude: Number.parseFloat(cityLongitude),
       hostUsername,
       hostEmail,
-      hostAvatarUrl,
+      hostAvatar,
       hostType: hostType as UserType,
       title,
       description,

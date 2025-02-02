@@ -13,7 +13,7 @@ export function Comments({ comments }: CommentsProps): JSX.Element {
       {comments.map((comment) => (
         <Comment
           key={comment.id}
-          authorAvatarUrl={comment.author.avatarUrl}
+          authorAvatar={comment.author.avatar}
           authorName={comment.author.username}
           createdAt={comment.createdAt}
           rating={comment.rating}

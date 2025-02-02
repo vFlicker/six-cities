@@ -45,11 +45,10 @@ export class UserEntity extends defaultClasses.TimeStamps {
 
   @prop({
     required: true,
-    // TODO: remove hardcoded default avatar URL
-    default: 'http://localhost:8000/static/default-avatar.jpg',
+    trim: true,
     maxlength: [255, 'Max length for avatar URL is 255'],
   })
-  public avatarUrl!: string;
+  public avatar!: string;
 
   @prop({
     required: true,
@@ -63,6 +62,7 @@ export class UserEntity extends defaultClasses.TimeStamps {
 
     this.username = userData.username;
     this.email = userData.email;
+    this.avatar = userData.avatar;
   }
 
   public getPassword(): string {

@@ -18,6 +18,10 @@ import {
   HttpErrorExceptionFilter,
   ValidationExceptionFilter,
 } from '#src/shared/libs/rest/index.js';
+import {
+  DefaultPathTransformer,
+  PathTransformer,
+} from '#src/shared/libs/rest/index.js';
 
 import { RestApplication } from './rest.application.js';
 
@@ -59,6 +63,11 @@ export function createRestApplicationContainer(): Container {
   container
     .bind<ExceptionFilter>(Component.ExceptionFilter)
     .to(AppExceptionFilter)
+    .inSingletonScope();
+
+  container
+    .bind<PathTransformer>(Component.PathTransformer)
+    .to(DefaultPathTransformer)
     .inSingletonScope();
 
   return container;

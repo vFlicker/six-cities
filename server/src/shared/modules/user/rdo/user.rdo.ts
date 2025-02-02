@@ -16,5 +16,5 @@ export class UserRdo {
   public type!: string;
 
   @Expose()
-  public avatarUrl!: string;
+  public avatar!: string;
 }

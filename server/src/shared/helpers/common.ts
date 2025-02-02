@@ -57,3 +57,7 @@ export function ExposeId(options?: ExposeOptions): PropertyDecorator {
     Expose(options)(target, propertyKey);
   };
 }
+
+export function getFullServerPath(host: string, port: number): string {
+  return `http://${host}:${port}`;
+}

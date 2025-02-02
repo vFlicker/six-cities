@@ -22,4 +22,5 @@ export const Component = {
   CommentController: Symbol.for('CommentController'),
   ApiDocService: Symbol.for('ApiDocService'),
   ApiDocController: Symbol.for('ApiDocController'),
+  PathTransformer: Symbol.for('PathTransformer'),
 } as const;
