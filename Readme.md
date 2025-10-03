@@ -10,40 +10,57 @@ Important: any email address and password are accepted for authorization.
 git clone {repository URL}
 ```
 
-## Installing NPM modules
+## Running application
 
-Navigate to the client directory and run the following commands:
+### Backend
+
+#### Installing NPM modules
+
+Write in the terminal:
+
+```bash
+cd server
+npm install
+```
+
+#### Setup docker
+
+Write in the terminal:
+
+```bash
+npm run docker:start
+```
+
+#### Create data for application
+
+1. In a separate terminal window:
+
+```bash
+cd server
+npm run mock:server
+```
+
+2. In a separate terminal window:
+
+```bash
+cd server
+npm run build
+npm run mock:generate
+npm run mock:import
+```
+
+### Start the server
+
+```bash
+npm run dev
+```
+
+### Frontend
+
+In a separate terminal window:
 
 ```bash
 cd client
 npm install
 npm run dev
-```
-
-## Running application
-
-In a separate terminal window, navigate to the server directory and run the following commands.
-
-```bash
-cd server
-npm install
-npm run dev
-```
-
-TODO: make text for fill database
-
-## Create data for application
-
-1. Write in first terminal
-
-```bash
-npm run mock:server
-```
-
-2. Write in second terminal
-
-```bash
-npm run build
-npm run mock:generate
-npm run mock:import
 ```
