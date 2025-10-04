@@ -1,17 +1,13 @@
 import './globals.css';
 
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { Rubik } from 'next/font/google';
 import { JSX } from 'react';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
+const rubik = Rubik({
+  variable: '--font-rubik',
   subsets: ['latin'],
-});
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
+  weight: ['300', '400', '500', '700'],
 });
 
 export const metadata: Metadata = {
@@ -26,11 +22,7 @@ type RootLayoutProps = Readonly<{
 export default function RootLayout({ children }: RootLayoutProps): JSX.Element {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
+      <body className={`${rubik.variable} antialiased`}>{children}</body>
     </html>
   );
 }

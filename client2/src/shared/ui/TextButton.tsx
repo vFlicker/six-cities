@@ -8,10 +8,10 @@ type ButtonProps = ComponentProps<'button'>;
 type LinkProps = ComponentProps<typeof NextLink>;
 
 const buttonStyles = cn(
-  'focus:bg-blue-30 disabled:bg-gray-40 bg-blue-20 hover:bg-blue-30 rounded px-5 pt-3 pb-2 text-white',
+  'text-gray-90 inline-flex items-center gap-2 text-sm hover:text-shadow-2xs focus:text-shadow-2xs active:text-shadow-2xs',
 );
 
-export function Button({
+export function TextButton({
   className,
   children,
   ...props
@@ -26,7 +26,7 @@ export function Button({
   );
 }
 
-export function Link({
+export function TextLink({
   className,
   children,
   ...props
