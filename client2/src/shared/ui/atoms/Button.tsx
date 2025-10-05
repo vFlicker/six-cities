@@ -1,15 +1,11 @@
 import NextLink from 'next/link';
 import { ComponentProps, JSX } from 'react';
 
-import { baseButtonStyles } from '~/shared/css/baseButtonStyles';
+import { baseButtonClasses } from '~/shared/css';
 import { cn } from '~/shared/lib/css';
 
 type ButtonProps = ComponentProps<'button'>;
 type LinkProps = ComponentProps<typeof NextLink>;
-
-const buttonStyles = cn(
-  'focus:bg-blue-30 disabled:bg-gray-40 bg-blue-20 hover:bg-blue-30 rounded px-5 pt-3 pb-2 text-white',
-);
 
 export function Button({
   className,
@@ -18,7 +14,7 @@ export function Button({
 }: ButtonProps): JSX.Element {
   return (
     <button
-      className={cn(baseButtonStyles, buttonStyles, className)}
+      className={cn(baseButtonClasses, buttonClasses, className)}
       {...props}
     >
       {children}
@@ -33,10 +29,14 @@ export function Link({
 }: LinkProps): JSX.Element {
   return (
     <NextLink
-      className={cn(baseButtonStyles, buttonStyles, className)}
+      className={cn(baseButtonClasses, buttonClasses, className)}
       {...props}
     >
       {children}
     </NextLink>
   );
 }
+
+const buttonClasses = cn(
+  'focus:bg-blue-30 disabled:bg-gray-40 bg-blue-20 hover:bg-blue-30 rounded px-5 pt-3 pb-2 text-white',
+);

@@ -26,11 +26,11 @@ export { Mark, MarkSize };
 const MarkSizeToCSS = {
   [MarkSize.Small]: css`
     font-size: 12px;
-    line-height: 1.1667;
+    line-height: 1.1667; // in px 14/12
   `,
   [MarkSize.Large]: css`
     font-size: 16px;
-    line-height: 1.1875;
+    line-height: 1.1875; // in px 19/16
   `,
 };
 

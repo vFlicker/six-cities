@@ -1,7 +1,7 @@
 import NextLink from 'next/link';
 import { ComponentProps, JSX } from 'react';
 
-import { baseButtonStyles } from '~/shared/css/baseButtonStyles';
+import { baseButtonClasses } from '~/shared/css';
 import { cn } from '~/shared/lib/css';
 
 type ButtonBaseProps = {
@@ -10,16 +10,6 @@ type ButtonBaseProps = {
 
 type ButtonProps = ComponentProps<'button'> & ButtonBaseProps;
 type LinkProps = ComponentProps<typeof NextLink> & ButtonBaseProps;
-
-const buttonStyles = cn(
-  '-skew-x-15 rounded py-2 pr-5 pl-4 text-lg font-light italic hover:text-shadow-xs',
-);
-
-const activeButtonStyles = cn(
-  'bg-blue-20 focus:bg-blue-30 hover:bg-blue-30 text-white text-shadow-white text-shadow-xs',
-);
-
-const buttonTextStyles = cn('block skew-x-15');
 
 export function SlantedButton({
   className,
@@ -30,14 +20,14 @@ export function SlantedButton({
   return (
     <button
       className={cn(
-        baseButtonStyles,
-        buttonStyles,
-        active && activeButtonStyles,
+        baseButtonClasses,
+        buttonClasses,
+        active && activeButtonClasses,
         className,
       )}
       {...props}
     >
-      <span className={buttonTextStyles}>{children}</span>
+      <span className={buttonTextClasses}>{children}</span>
     </button>
   );
 }
@@ -51,14 +41,24 @@ export function SlantedLink({
   return (
     <NextLink
       className={cn(
-        baseButtonStyles,
-        buttonStyles,
-        active && activeButtonStyles,
+        baseButtonClasses,
+        buttonClasses,
+        active && activeButtonClasses,
         className,
       )}
       {...props}
     >
-      <span className={buttonTextStyles}>{children}</span>
+      <span className={buttonTextClasses}>{children}</span>
     </NextLink>
   );
 }
+
+const buttonClasses = cn(
+  '-skew-x-15 rounded py-2 pr-5 pl-4 text-lg font-light italic hover:text-shadow-xs',
+);
+
+const activeButtonClasses = cn(
+  'bg-blue-20 focus:bg-blue-30 hover:bg-blue-30 text-white text-shadow-white text-shadow-xs',
+);
+
+const buttonTextClasses = cn('block skew-x-15');
