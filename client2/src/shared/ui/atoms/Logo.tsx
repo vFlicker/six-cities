@@ -13,8 +13,8 @@ type LogoProps = {
 
 export function Logo({
   className,
-  width = 128,
-  height = 22,
+  width = 81,
+  height = 41,
 }: LogoProps): JSX.Element {
   return (
     <Link className={cn(className)} href={AppRoute.Home}>
