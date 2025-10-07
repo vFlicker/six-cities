@@ -6,3 +6,5 @@ export const CITIES = [
   'Hamburg',
   'Dusseldorf',
 ];
+
+export const DEFAULT_CITY = CITIES[0];

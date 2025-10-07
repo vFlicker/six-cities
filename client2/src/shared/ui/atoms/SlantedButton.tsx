@@ -5,7 +5,7 @@ import { baseButtonClasses } from '~/shared/css';
 import { cn } from '~/shared/lib/css';
 
 type ButtonBaseProps = {
-  active?: boolean;
+  isActive?: boolean;
 };
 
 type ButtonProps = ComponentProps<'button'> & ButtonBaseProps;
@@ -14,7 +14,7 @@ type LinkProps = ComponentProps<typeof NextLink> & ButtonBaseProps;
 export function SlantedButton({
   className,
   children,
-  active = false,
+  isActive = false,
   ...props
 }: ButtonProps): JSX.Element {
   return (
@@ -22,7 +22,7 @@ export function SlantedButton({
       className={cn(
         baseButtonClasses,
         buttonClasses,
-        active && activeButtonClasses,
+        isActive && activeButtonClasses,
         className,
       )}
       {...props}
@@ -35,7 +35,7 @@ export function SlantedButton({
 export function SlantedLink({
   className,
   children,
-  active = false,
+  isActive = false,
   ...props
 }: LinkProps): JSX.Element {
   return (
@@ -43,7 +43,7 @@ export function SlantedLink({
       className={cn(
         baseButtonClasses,
         buttonClasses,
-        active && activeButtonClasses,
+        isActive && activeButtonClasses,
         className,
       )}
       {...props}
