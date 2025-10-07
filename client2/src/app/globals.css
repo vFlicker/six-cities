@@ -40,8 +40,19 @@
   --color-black: var(--black);
 }
 
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-rubik);
+}
+
+ui,
+li {
+  list-style: none;
 }

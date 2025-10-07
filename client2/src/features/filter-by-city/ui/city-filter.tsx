@@ -13,11 +13,11 @@ type CityFilterProps = {
 export function CityFilter({ className }: CityFilterProps): JSX.Element {
   return (
     <div className={cn('bg-gray-10', className)}>
-      <div className={cn(`${containerClasses.lg}, px-1 pt-4 pb-12`)}>
+      <div className={cn(`${containerClasses.lg} px-10 pt-4 pb-12`)}>
         <div className={cn('flex flex-wrap items-start gap-9')}>
           {CITIES.map((name, index) => (
             <li key={name} className={cn('flex')}>
-              <SlantedLink href="#" active={index === 3}>
+              <SlantedLink href="#" active={index === 0}>
                 {name}
               </SlantedLink>
             </li>

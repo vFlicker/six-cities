@@ -67,9 +67,9 @@ export default function HomePage(): JSX.Element {
       </div>
 
       <Section title="Ratings">
-        <Rating size="small" rating={2} />
-        <Rating size="medium" rating={3.8} className="mt-2" />
-        <Rating size="large" rating={5} />
+        <Rating size="small" value={2} />
+        <Rating size="medium" value={3.8} className="mt-2" />
+        <Rating size="large" value={5} />
       </Section>
 
       <ResultMessage

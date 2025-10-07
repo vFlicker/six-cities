@@ -15,7 +15,7 @@ export function CardList({
   cols,
 }: CardListProps): JSX.Element {
   return (
-    <div className={cn('grid gap-4', GRID_COLS_MAP[cols], className)}>
+    <div className={cn('grid gap-2', GRID_COLS_MAP[cols], className)}>
       {Children.map(children, (child) => (
         <li>{child}</li>
       ))}

@@ -6,12 +6,12 @@ type RatingSize = 'small' | 'medium' | 'large';
 
 type RatingProps = {
   size: RatingSize;
-  rating: number;
+  value: number;
   className?: string;
 };
 
-export function Rating({ className, rating, size }: RatingProps): JSX.Element {
-  const widthPercentage = calculateWidthPercentage(rating);
+export function Rating({ className, value, size }: RatingProps): JSX.Element {
+  const widthPercentage = calculateWidthPercentage(value);
 
   return (
     <div className={cn('relative', sizeClasses[size].container, className)}>
@@ -24,7 +24,7 @@ export function Rating({ className, rating, size }: RatingProps): JSX.Element {
         <div className={activeStarsClasses(size)} />
       </div>
 
-      <span className="sr-only">Rating: {rating} out of 5</span>
+      <span className="sr-only">Rating: {value} out of 5</span>
     </div>
   );
 }
