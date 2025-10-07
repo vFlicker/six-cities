@@ -1,7 +1,9 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { JSX } from 'react';
 
 import { cn } from '~/shared/lib/css';
+import { AppRoute } from '~/shared/lib/router';
 import { Rating } from '~/shared/ui/atoms';
 
 type Variant = 'vertical' | 'horizontal';
@@ -20,6 +22,7 @@ type OfferCardProps = {
 
 export function OfferCard({
   className,
+  id,
   title,
   price,
   rating,
@@ -63,12 +66,12 @@ export function OfferCard({
 
         <Rating className={cn('mb-2')} size="small" value={rating} />
 
-        <a
-          href="#"
+        <Link
+          href={`${AppRoute.Offers}/${id}`}
           className={cn('mb-1 text-lg leading-5 font-bold hover:opacity-60')}
         >
           {title}
-        </a>
+        </Link>
         <p className={cn('text-gray-70 text-xs')}>{propertyType}</p>
       </div>
     </article>

@@ -10,55 +10,18 @@ type OfferListProps = {
 export function OfferList({ className }: OfferListProps): JSX.Element {
   return (
     <CardList cols={2} className={className}>
-      <OfferCard
-        id="1"
-        title="Beautiful & luxurious apartment at great location"
-        price={120}
-        rating={4.8}
-        imageUrl="/mock/apartment-01.jpg"
-        propertyType="Apartment"
-        variant="vertical"
-      />
-
-      <OfferCard
-        id="1"
-        title="Beautiful & luxurious apartment at great location"
-        price={120}
-        rating={4.8}
-        imageUrl="/mock/apartment-01.jpg"
-        propertyType="Apartment"
-        variant="vertical"
-      />
-
-      <OfferCard
-        id="1"
-        title="Beautiful & luxurious apartment at great location"
-        price={120}
-        rating={4.8}
-        imageUrl="/mock/apartment-01.jpg"
-        propertyType="Apartment"
-        variant="vertical"
-      />
-
-      <OfferCard
-        id="1"
-        title="Beautiful & luxurious apartment at great location"
-        price={120}
-        rating={4.8}
-        imageUrl="/mock/apartment-01.jpg"
-        propertyType="Apartment"
-        variant="vertical"
-      />
-
-      <OfferCard
-        id="1"
-        title="Beautiful & luxurious apartment at great location"
-        price={120}
-        rating={4.8}
-        imageUrl="/mock/apartment-01.jpg"
-        propertyType="Apartment"
-        variant="vertical"
-      />
+      {['1', '2', '3'].map((id) => (
+        <OfferCard
+          key={id}
+          id={id}
+          title="Beautiful & luxurious apartment at great location"
+          price={120}
+          rating={4.8}
+          imageUrl="/mock/apartment-02.jpg"
+          propertyType="Apartment"
+          variant="vertical"
+        />
+      ))}
     </CardList>
   );
 }

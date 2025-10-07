@@ -1,6 +1,5 @@
 import { JSX } from 'react';
 
-import { OfferCard } from '~/entities/offer';
 import { CityFilter } from '~/features/filter-by-city';
 import { containerClasses, defaultLayoutClasses } from '~/shared/css';
 import { cn } from '~/shared/lib/css';
