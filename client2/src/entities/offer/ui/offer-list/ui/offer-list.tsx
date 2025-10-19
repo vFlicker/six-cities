@@ -2,26 +2,19 @@ import React, { JSX } from 'react';
 
 import { CardList } from '~/shared/ui/atoms';
 
+import { Offer } from '../../../model';
 import { OfferCard } from '../../offer-card';
 
 type OfferListProps = {
+  offers: Offer[];
   className?: string;
 };
 
-export function OfferList({ className }: OfferListProps): JSX.Element {
+export function OfferList({ className, offers }: OfferListProps): JSX.Element {
   return (
     <CardList cols={2} className={className}>
-      {['1', '2', '3'].map((id) => (
-        <OfferCard
-          key={id}
-          id={id}
-          title="Beautiful & luxurious apartment at great location"
-          price={120}
-          rating={4.8}
-          imageUrl="/mock/apartment-02.jpg"
-          propertyType="Apartment"
-          variant="vertical"
-        />
+      {offers.map((offer) => (
+        <OfferCard key={offer.id} offer={offer} variant="vertical" />
       ))}
     </CardList>
   );

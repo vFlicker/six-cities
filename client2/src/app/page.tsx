@@ -1,13 +1,25 @@
 import { JSX } from 'react';
 
-import { OfferList } from '~/entities/offer';
-import { CityFilter } from '~/features/filter-by-city';
+import { offerApiService, OfferList } from '~/entities/offer';
+import { CityFilter, getCityFromSearchParams } from '~/features/filter-by-city';
 import { containerClasses, defaultLayoutClasses } from '~/shared/css';
 import { cn } from '~/shared/lib/css';
+import { SearchParams } from '~/shared/lib/next';
 import { Header } from '~/widget/header';
 import { OfferMap } from '~/widget/offer-map';
 
-export default function HomePage(): JSX.Element {
+type HomePageProps = {
+  searchParams: Promise<SearchParams>;
+};
+
+export default async function HomePage({
+  searchParams,
+}: HomePageProps): Promise<JSX.Element> {
+  const params = await searchParams;
+  const city = getCityFromSearchParams(params);
+
+  const offers = await offerApiService.getAllForCity(city);
+
   return (
     <div className={cn(`${defaultLayoutClasses} flex h-screen flex-col`)}>
       <Header className={cn('bg-gray-10')} />
@@ -19,7 +31,7 @@ export default function HomePage(): JSX.Element {
             `${containerClasses.lg} grid w-full grid-cols-[1fr_512px]`,
           )}
         >
-          <OfferList className={cn('overflow-y-scroll')} />
+          <OfferList className={cn('overflow-y-scroll')} offers={offers} />
           <OfferMap className={cn('ml-auto')} />
         </div>
       </div>

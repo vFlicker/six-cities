@@ -6,31 +6,27 @@ import { cn } from '~/shared/lib/css';
 import { AppRoute } from '~/shared/lib/router';
 import { Rating } from '~/shared/ui/atoms';
 
+import { Offer } from '../../../model';
+
 type Variant = 'vertical' | 'horizontal';
 
 type OfferCardProps = {
-  id: string;
-  title: string;
-  price: number;
-  rating: number;
-  imageUrl: string;
-  propertyType: string;
+  offer: Offer;
   variant: Variant;
   actionSlot?: JSX.Element;
   className?: string;
 };
 
+const PREVIEW_IMAGE_URL = '/mock/apartment-02.jpg';
+
 export function OfferCard({
   className,
-  id,
-  title,
-  price,
-  rating,
-  imageUrl,
-  propertyType,
+  offer,
   variant,
   actionSlot,
 }: OfferCardProps): JSX.Element {
+  const { id, title, rentalPrice, rating, propertyType } = offer;
+
   const isVertical = variant === 'vertical';
 
   return (
@@ -42,7 +38,7 @@ export function OfferCard({
       )}
     >
       <Image
-        src={imageUrl}
+        src={PREVIEW_IMAGE_URL}
         alt={title}
         width={isVertical ? 260 : 150}
         height={isVertical ? 200 : 110}
@@ -57,7 +53,7 @@ export function OfferCard({
         <div className={cn('mb-1 flex items-start justify-between')}>
           <div className={cn('text-gray-90')}>
             <b className={cn('mr-1 text-xl leading-tight font-bold')}>
-              €{price}
+              €{rentalPrice}
             </b>
             <span className={cn('text-xs')}>&nbsp;/night</span>
           </div>
