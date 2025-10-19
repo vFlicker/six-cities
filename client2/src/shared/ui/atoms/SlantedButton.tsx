@@ -1,8 +1,9 @@
 import NextLink from 'next/link';
 import { ComponentProps, JSX } from 'react';
 
-import { baseButtonClasses } from '~/shared/css';
 import { cn } from '~/shared/lib/css';
+
+import { baseButtonClasses } from '../css';
 
 type ButtonBaseProps = {
   isActive?: boolean;

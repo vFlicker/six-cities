@@ -2,9 +2,9 @@ import { JSX } from 'react';
 
 import { offerApiService, OfferList } from '~/entities/offer';
 import { CityFilter, getCityFromSearchParams } from '~/features/filter-by-city';
-import { containerClasses, defaultLayoutClasses } from '~/shared/css';
 import { cn } from '~/shared/lib/css';
 import { SearchParams } from '~/shared/lib/next';
+import { containerClasses, defaultLayoutClasses } from '~/shared/ui/css';
 import { Header } from '~/widget/header';
 import { OfferMap } from '~/widget/offer-map';
 

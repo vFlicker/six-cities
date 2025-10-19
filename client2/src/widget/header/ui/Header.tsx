@@ -1,9 +1,9 @@
 import { JSX } from 'react';
 
-import { containerClasses } from '~/shared/css';
 import { cn } from '~/shared/lib/css';
 import { AppRoute } from '~/shared/lib/router';
 import { Logo, TextLink } from '~/shared/ui/atoms';
+import { containerClasses } from '~/shared/ui/css';
 import { UserIcon } from '~/shared/ui/icons';
 
 type HeaderProps = {

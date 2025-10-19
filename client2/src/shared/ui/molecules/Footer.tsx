@@ -1,9 +1,9 @@
 import { JSX } from 'react';
 
-import { containerClasses } from '~/shared/css';
 import { cn } from '~/shared/lib/css';
 
 import { Logo } from '../atoms';
+import { containerClasses } from '../css';
 
 type FooterProps = {
   className?: string;

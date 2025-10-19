@@ -1,7 +1,8 @@
 import { JSX, PropsWithChildren } from 'react';
 
-import { containerClasses } from '~/shared/css';
 import { cn } from '~/shared/lib/css';
+
+import { containerClasses } from '../css';
 
 type SectionProps = PropsWithChildren<{
   title: string;
