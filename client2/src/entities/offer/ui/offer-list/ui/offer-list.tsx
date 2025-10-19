@@ -1,7 +1,8 @@
 import React, { JSX } from 'react';
 
-import { OfferCard } from '~/entities/offer';
 import { CardList } from '~/shared/ui/atoms';
+
+import { OfferCard } from '../../offer-card';
 
 type OfferListProps = {
   className?: string;

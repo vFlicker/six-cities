@@ -1,10 +1,10 @@
 import { JSX } from 'react';
 
+import { OfferList } from '~/entities/offer';
 import { CityFilter } from '~/features/filter-by-city';
 import { containerClasses, defaultLayoutClasses } from '~/shared/css';
 import { cn } from '~/shared/lib/css';
 import { Header } from '~/widget/header';
-import { OfferList } from '~/widget/offer-list';
 import { OfferMap } from '~/widget/offer-map';
 
 export default function HomePage(): JSX.Element {
