@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { JSX } from 'react';
 
 type OfferPageProps = {
@@ -15,6 +16,7 @@ export default async function OfferPage({
     <div>
       <h1>Offer Details</h1>
       <p>Offer ID: {id}</p>
+      <Link href="/">Back to Home</Link>
     </div>
   );
 }

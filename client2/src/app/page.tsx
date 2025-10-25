@@ -1,9 +1,10 @@
-import { JSX } from 'react';
+import { JSX, Suspense } from 'react';
 
 import { offerApiService, OfferList } from '~/entities/offer';
 import { CityFilter, getCityFromSearchParams } from '~/features/filter-by-city';
 import { cn } from '~/shared/lib/css';
 import { SearchParams } from '~/shared/lib/next';
+import { Loader } from '~/shared/ui/atoms/Loader';
 import { containerClasses, defaultLayoutClasses } from '~/shared/ui/css';
 import { Header } from '~/widget/header';
 import { OfferMap } from '~/widget/offer-map';
@@ -18,22 +19,31 @@ export default async function HomePage({
   const params = await searchParams;
   const city = getCityFromSearchParams(params);
 
-  const offers = await offerApiService.getAllForCity(city);
-
   return (
     <div className={cn(`${defaultLayoutClasses} flex h-screen flex-col`)}>
       <Header className={cn('bg-gray-10')} />
       <CityFilter />
+      <main className={cn(`flex h-full items-center justify-center`)}>
+        <Suspense fallback={<Loader size="lg" />}>
+          <Offers city={city} />
+        </Suspense>
+      </main>
+    </div>
+  );
+}
 
-      <div className={cn('flex h-full overflow-y-hidden pt-8')}>
-        <div
-          className={cn(
-            `${containerClasses.lg} grid w-full grid-cols-[1fr_512px]`,
-          )}
-        >
-          <OfferList className={cn('overflow-y-scroll')} offers={offers} />
-          <OfferMap className={cn('ml-auto')} />
-        </div>
+async function Offers({ city }: { city: string }): Promise<JSX.Element> {
+  const offers = await offerApiService.getAllForCity(city);
+
+  return (
+    <div className={cn('flex h-full overflow-y-hidden pt-8')}>
+      <div
+        className={cn(
+          `${containerClasses.lg} grid w-full grid-cols-[1fr_512px]`,
+        )}
+      >
+        <OfferList className={cn('overflow-y-scroll')} offers={offers} />
+        <OfferMap className={cn('ml-auto')} />
       </div>
     </div>
   );

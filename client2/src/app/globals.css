@@ -1,7 +1,6 @@
 @import 'tailwindcss';
 
 :root {
-  /* Project colors */
   --red-10: #ff0000;
   --orange-10: #ff9000;
   --blue-20: #4481c3;
@@ -44,6 +43,18 @@
 *::after,
 *::before {
   box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body,
+#root {
+  height: 100%;
 }
 
 body {

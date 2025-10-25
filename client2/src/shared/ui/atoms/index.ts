@@ -2,6 +2,7 @@ export { Button, Link } from './Button';
 export { CardList } from './CardList';
 export { Chip } from './Chip';
 export { Error } from './Error';
+export { Loader } from './Loader';
 export { Logo } from './Logo';
 export { Rating } from './Rating';
 export { ResultMessage } from './ResultMessage';
