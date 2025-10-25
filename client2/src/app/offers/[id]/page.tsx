@@ -7,6 +7,8 @@ import { defaultLayoutClasses } from '~/shared/ui/css';
 import { Gallery } from '~/shared/ui/molecules/Gallery';
 import { Header } from '~/widget/header';
 
+import { OfferSummarySection } from './ui/offer-summary-section';
+
 type OfferPageProps = {
   params: Promise<Params<'id'>>;
 };
@@ -15,13 +17,35 @@ export default async function OfferPage({
   params,
 }: OfferPageProps): Promise<JSX.Element> {
   const { id } = await params;
-  const { offerImages } = await offerApiService.getById(id);
+  const {
+    amenities,
+    guestsCount,
+    isFavorite,
+    isPremium,
+    propertyType,
+    rating,
+    rentalPrice,
+    roomsCount,
+    title,
+    offerImages,
+  } = await offerApiService.getById(id);
 
   return (
     <div className={cn(defaultLayoutClasses)}>
       <Header />
       <main>
-        <Gallery imageUrls={offerImages} />
+        <Gallery className={cn('mb-7')} imageUrls={offerImages} />
+        <OfferSummarySection
+          amenities={amenities}
+          guestsCount={guestsCount}
+          isFavorite={isFavorite}
+          isPremium={isPremium}
+          propertyType={propertyType}
+          rating={rating}
+          rentalPrice={rentalPrice}
+          roomsCount={roomsCount}
+          title={title}
+        />
       </main>
     </div>
   );
