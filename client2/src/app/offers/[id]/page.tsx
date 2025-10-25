@@ -1,22 +1,28 @@
-import Link from 'next/link';
 import { JSX } from 'react';
 
+import { offerApiService } from '~/entities/offer';
+import { cn } from '~/shared/lib/css';
+import { Params } from '~/shared/lib/next';
+import { defaultLayoutClasses } from '~/shared/ui/css';
+import { Gallery } from '~/shared/ui/molecules/Gallery';
+import { Header } from '~/widget/header';
+
 type OfferPageProps = {
-  params: {
-    id: string;
-  };
+  params: Promise<Params<'id'>>;
 };
 
 export default async function OfferPage({
   params,
 }: OfferPageProps): Promise<JSX.Element> {
   const { id } = await params;
+  const { offerImages } = await offerApiService.getById(id);
 
   return (
-    <div>
-      <h1>Offer Details</h1>
-      <p>Offer ID: {id}</p>
-      <Link href="/">Back to Home</Link>
+    <div className={cn(defaultLayoutClasses)}>
+      <Header />
+      <main>
+        <Gallery imageUrls={offerImages} />
+      </main>
     </div>
   );
 }

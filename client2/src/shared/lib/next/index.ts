@@ -1,1 +1,1 @@
-export type { SearchParams } from './types';
+export type { Params, SearchParams } from './types';
