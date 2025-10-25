@@ -1,6 +1,6 @@
 import React, { JSX } from 'react';
 
-import { cn } from '~/shared/lib/css';
+import { cn } from '~/shared1/lib/css';
 
 type OfferMapProps = {
   className?: string;

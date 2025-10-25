@@ -1,10 +1,10 @@
 import { JSX } from 'react';
 
 import { offerApiService } from '~/entities/offer';
-import { cn } from '~/shared/lib/css';
-import { Params } from '~/shared/lib/next';
-import { defaultLayoutClasses } from '~/shared/ui/css';
-import { Gallery } from '~/shared/ui/molecules/Gallery';
+import { cn } from '~/shared1/lib/css';
+import { Params } from '~/shared1/lib/next';
+import { defaultLayoutClasses } from '~/shared1/ui/css';
+import { Gallery } from '~/shared1/ui/molecules';
 import { Header } from '~/widget/header';
 
 import { OfferSummarySection } from './ui/offer-summary-section';

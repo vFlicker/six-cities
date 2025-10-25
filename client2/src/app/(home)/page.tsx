@@ -2,10 +2,10 @@ import { JSX, Suspense } from 'react';
 
 import { offerApiService, OfferList } from '~/entities/offer';
 import { CityFilter, getCityFromSearchParams } from '~/features/filter-by-city';
-import { cn } from '~/shared/lib/css';
-import { SearchParams } from '~/shared/lib/next';
-import { Loader } from '~/shared/ui/atoms/Loader';
-import { containerClasses, defaultLayoutClasses } from '~/shared/ui/css';
+import { cn } from '~/shared1/lib/css';
+import { SearchParams } from '~/shared1/lib/next';
+import { Loader } from '~/shared1/ui/atoms/Loader';
+import { containerClasses, defaultLayoutClasses } from '~/shared1/ui/css';
 import { Header } from '~/widget/header';
 import { OfferMap } from '~/widget/offer-map';
 

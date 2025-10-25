@@ -2,9 +2,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { JSX } from 'react';
 
-import { cn } from '~/shared/lib/css';
-import { AppRoute } from '~/shared/lib/router';
-import { Rating } from '~/shared/ui/atoms';
+import { cn } from '~/shared1/lib/css';
+import { AppRoute } from '~/shared1/lib/router';
+import { Rating } from '~/shared1/ui/atoms';
 
 import { Offer } from '../../../model';
 

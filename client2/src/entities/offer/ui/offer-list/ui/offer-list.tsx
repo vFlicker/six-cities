@@ -1,6 +1,6 @@
 import React, { JSX } from 'react';
 
-import { CardList } from '~/shared/ui/atoms';
+import { CardList } from '~/shared1/ui/atoms';
 
 import { Offer } from '../../../model';
 import { OfferCard } from '../../offer-card';

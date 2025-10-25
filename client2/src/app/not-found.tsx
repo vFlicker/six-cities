@@ -1,9 +1,9 @@
 import { JSX } from 'react';
 
-import { cn } from '~/shared/lib/css';
-import { AppRoute } from '~/shared/lib/router';
-import { TextLink } from '~/shared/ui/atoms';
-import { defaultLayoutClasses } from '~/shared/ui/css';
+import { cn } from '~/shared1/lib/css';
+import { AppRoute } from '~/shared1/lib/router';
+import { TextLink } from '~/shared1/ui/atoms';
+import { defaultLayoutClasses } from '~/shared1/ui/css';
 import { Header } from '~/widget/header';
 
 export default function NotFoundPage(): JSX.Element {

@@ -1,4 +1,4 @@
-import { apiClient } from '~/shared/lib/api';
+import { apiClient } from '~/shared1/lib/api';
 
 import { Offer } from '../model/offer';
 

@@ -1,4 +1,4 @@
-import { SearchParams } from '~/shared/lib/next';
+import { SearchParams } from '~/shared1/lib/next';
 
 import { CITIES, DEFAULT_CITY } from '../config/filter-by-city-config';
 

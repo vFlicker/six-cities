@@ -1,10 +1,10 @@
 import { JSX } from 'react';
 
-import { cn } from '~/shared/lib/css';
-import { AppRoute } from '~/shared/lib/router';
-import { Logo, TextLink } from '~/shared/ui/atoms';
-import { containerClasses } from '~/shared/ui/css';
-import { UserIcon } from '~/shared/ui/icons';
+import { cn } from '~/shared1/lib/css';
+import { AppRoute } from '~/shared1/lib/router';
+import { Logo, TextLink } from '~/shared1/ui/atoms';
+import { containerClasses } from '~/shared1/ui/css';
+import { UserIcon } from '~/shared1/ui/icons';
 
 type HeaderProps = {
   isNavigationVisible?: boolean;

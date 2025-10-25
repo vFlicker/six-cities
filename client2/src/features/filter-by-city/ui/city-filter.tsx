@@ -3,9 +3,9 @@
 import { useSearchParams } from 'next/navigation';
 import { JSX } from 'react';
 
-import { cn } from '~/shared/lib/css';
-import { SlantedLink } from '~/shared/ui/atoms';
-import { containerClasses } from '~/shared/ui/css';
+import { cn } from '~/shared1/lib/css';
+import { SlantedLink } from '~/shared1/ui/atoms';
+import { containerClasses } from '~/shared1/ui/css';
 
 import { CITIES, DEFAULT_CITY } from '../config/filter-by-city-config';
 

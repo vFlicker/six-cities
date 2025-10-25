@@ -1,15 +1,15 @@
 import { JSX } from 'react';
 
-import { cn } from '~/shared/lib/css';
-import { Chip } from '~/shared/ui/atoms';
-import { Rating } from '~/shared/ui/atoms/Rating';
-import { containerClasses } from '~/shared/ui/css';
+import { cn } from '~/shared1/lib/css';
+import { Chip } from '~/shared1/ui/atoms';
+import { Rating } from '~/shared1/ui/atoms/Rating';
+import { containerClasses } from '~/shared1/ui/css';
 import {
   AdultsIcon,
   BedroomsIcon,
   BookmarkIcon,
   PlaceIcon,
-} from '~/shared/ui/icons';
+} from '~/shared1/ui/icons';
 
 type OfferSummarySectionProps = {
   title: string;
