@@ -1,8 +1,8 @@
 import { JSX, PropsWithChildren } from 'react';
 
-import { cn } from '~/shared1/lib/css';
+import { cn } from '~/shared/lib/css';
 
-import { containerClasses } from '../css';
+import { container } from '../css';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -15,11 +15,12 @@ export function Section({
   children,
 }: SectionProps): JSX.Element {
   return (
-    <div className={cn(`${containerClasses.md} grid gap-6`, className)}>
-      <h2 className={cn('mx-auto text-2xl leading-4 font-bold italic')}>
-        {title}
-      </h2>
+    <div className={cn(wrapperClasses, className)}>
+      <h2 className={cn(titleClasses)}>{title}</h2>
       {children}
     </div>
   );
 }
+
+const wrapperClasses = cn(container.md, 'grid gap-6');
+const titleClasses = cn('mx-auto text-2xl leading-4 font-bold italic');

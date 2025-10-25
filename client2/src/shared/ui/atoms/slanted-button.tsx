@@ -1,7 +1,7 @@
 import NextLink from 'next/link';
 import { ComponentProps, JSX } from 'react';
 
-import { cn } from '~/shared1/lib/css';
+import { cn } from '~/shared/lib/css';
 
 import { baseButtonClasses } from '../css';
 

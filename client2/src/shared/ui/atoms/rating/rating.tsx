@@ -1,6 +1,8 @@
 import { JSX } from 'react';
 
-import { cn } from '~/shared1/lib/css';
+import { cn } from '~/shared/lib/css';
+
+import { calculateWidthPercentage } from './rating-lib';
 
 type RatingSize = 'small' | 'medium' | 'large';
 
@@ -15,24 +17,19 @@ export function Rating({ className, value, size }: RatingProps): JSX.Element {
 
   return (
     <div className={cn('relative', sizeClasses[size].container, className)}>
-      <div className={inactiveStarsClasses(size)} />
+      <div className={getInactiveStarsClasses(size)} />
 
       <div
         className={activeStarsWrapperClasses}
         style={{ width: `${widthPercentage}%` }}
       >
-        <div className={activeStarsClasses(size)} />
+        <div className={getActiveStarsClasses(size)} />
       </div>
 
       <span className="sr-only">Rating: {value} out of 5</span>
     </div>
   );
 }
-
-const calculateWidthPercentage = (rating: number): number => {
-  const clampedRating = Math.max(0, Math.min(rating, 5));
-  return (clampedRating / 5) * 100;
-};
 
 const sizeClasses: Record<RatingSize, { container: string; stars: string }> = {
   small: {
@@ -49,18 +46,20 @@ const sizeClasses: Record<RatingSize, { container: string; stars: string }> = {
   },
 };
 
-const inactiveStarsClasses = (size: RatingSize) =>
-  cn(
+const getInactiveStarsClasses = (size: RatingSize): string => {
+  return cn(
     'absolute top-0 left-0 h-full bg-[url(/icons/stars-no-active.svg)] bg-left bg-no-repeat',
     sizeClasses[size].stars,
   );
+};
 
 const activeStarsWrapperClasses = cn(
   'absolute top-0 left-0 h-full overflow-hidden',
 );
 
-const activeStarsClasses = (size: RatingSize) =>
-  cn(
+const getActiveStarsClasses = (size: RatingSize): string => {
+  return cn(
     'h-full bg-[url(/icons/stars-active.svg)] bg-left bg-no-repeat',
     sizeClasses[size].stars,
   );
+};

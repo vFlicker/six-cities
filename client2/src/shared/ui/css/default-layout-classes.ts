@@ -1,4 +1,4 @@
-import { cn } from '~/shared1/lib/css';
+import { cn } from '~/shared/lib/css';
 
 export const defaultLayoutClasses = cn(
   'grid',

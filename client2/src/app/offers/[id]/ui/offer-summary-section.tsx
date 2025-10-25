@@ -1,15 +1,15 @@
 import { JSX } from 'react';
 
-import { cn } from '~/shared1/lib/css';
-import { Chip } from '~/shared1/ui/atoms';
-import { Rating } from '~/shared1/ui/atoms/Rating';
-import { containerClasses } from '~/shared1/ui/css';
+import { cn } from '~/shared/lib/css';
+import { Chip } from '~/shared/ui/atoms';
+import { Rating } from '~/shared/ui/atoms';
+import { container } from '~/shared/ui/css';
 import {
   AdultsIcon,
   BedroomsIcon,
   BookmarkIcon,
   PlaceIcon,
-} from '~/shared1/ui/icons';
+} from '~/shared/ui/icons';
 
 type OfferSummarySectionProps = {
   title: string;
@@ -100,7 +100,7 @@ export function OfferSummarySection({
 }
 
 const offerSummarySectionClasses = cn(
-  containerClasses.lg,
+  container.lg,
   'flex flex-col items-center',
 );
 
@@ -109,14 +109,14 @@ const headerWrapperClasses = cn(
 );
 
 const titleClasses = cn(
-  containerClasses.md,
+  container.md,
   'text-gray-90 text-center text-4xl font-bold italic',
 );
 
 const toggleBookmarkClasses = cn('absolute top-0 right-0');
 
 const ratingWrapperClasses = cn(
-  containerClasses.md,
+  container.md,
   'mb-6 flex items-center justify-center gap-1',
 );
 
@@ -124,10 +124,7 @@ const ratingTextClasses = cn(
   'text-gray-90 relative top-0.5 text-2xl font-bold italic',
 );
 
-const featureListClasses = cn(
-  containerClasses.md,
-  'mb-9 flex justify-center gap-16',
-);
+const featureListClasses = cn(container.md, 'mb-9 flex justify-center gap-16');
 
 const featureItemClasses = cn('flex items-baseline gap-1 text-base');
 const featureTextClasses = cn('capitalize');
@@ -159,7 +156,7 @@ const priceTextClasses = cn(
 );
 
 const amenitiesListClasses = cn(
-  containerClasses.md,
+  container.md,
   'flex w-full flex-wrap items-start justify-between gap-2',
 );
 

@@ -15,9 +15,9 @@ import {
   SlantedLink,
   TextButton,
   TextLink,
-} from '~/shared1/ui/atoms';
-import { ArrowIcon, BookmarkIcon, StarIcon } from '~/shared1/ui/icons';
-import { AuthRedirect, Footer } from '~/shared1/ui/molecules';
+} from '~/shared/ui/atoms';
+import { ArrowIcon, BookmarkIcon, StarIcon } from '~/shared/ui/icons';
+import { AuthRedirect, Footer } from '~/shared/ui/molecules';
 
 export default function HomePage(): JSX.Element {
   return (

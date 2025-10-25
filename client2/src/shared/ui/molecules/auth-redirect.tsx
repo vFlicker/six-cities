@@ -1,5 +1,7 @@
 import { JSX } from 'react';
 
+import { cn } from '~/shared/lib/css';
+
 import { TextLink } from '../atoms';
 
 type AuthRedirectProps = {
@@ -16,15 +18,14 @@ export function AuthRedirect({
   text,
 }: AuthRedirectProps): JSX.Element {
   return (
-    <div className={className}>
-      <span className="mr-1 text-sm">{text}</span>
-      <TextLink
-        href={href}
-        aria-label={label}
-        className="text-blue-20 underline"
-      >
+    <div className={cn(className)}>
+      <span className={textClasses}>{text}</span>
+      <TextLink href={href} aria-label={label} className={linkClasses}>
         {label}
       </TextLink>
     </div>
   );
 }
+
+const textClasses = cn('mr-1 text-sm');
+const linkClasses = cn('text-blue-20 underline');

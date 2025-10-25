@@ -2,9 +2,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { JSX } from 'react';
 
-import { cn } from '~/shared1/lib/css';
-import { AppRoute } from '~/shared1/lib/router';
-import { Rating } from '~/shared1/ui/atoms';
+import { cn } from '~/shared/lib/css';
+import { AppRoute } from '~/shared/lib/router';
+import { Rating } from '~/shared/ui/atoms';
 
 import { Offer } from '../../../model';
 
@@ -30,46 +30,58 @@ export function OfferCard({
   const isVertical = variant === 'vertical';
 
   return (
-    <article
-      className={cn(
-        'relative flex',
-        isVertical ? 'w-65 flex-col' : 'w-105 flex-row',
-        className,
-      )}
-    >
+    <article className={cn(getWrapperClasses(variant), className)}>
       <Image
         src={PREVIEW_IMAGE_URL}
         alt={title}
         width={isVertical ? 260 : 150}
         height={isVertical ? 200 : 110}
-        className={cn(
-          'rounded object-cover',
-          isVertical ? 'mb-2 h-50 w-full' : 'mr-4 h-27 w-37 flex-row',
-          className,
-        )}
+        className={cn(getImageClasses(variant), className)}
       />
 
-      <div className={cn('flex flex-grow flex-col')}>
-        <div className={cn('mb-1 flex items-start justify-between')}>
-          <div className={cn('text-gray-90')}>
-            <b className={cn('mr-1 text-xl leading-tight font-bold')}>
-              €{rentalPrice}
-            </b>
-            <span className={cn('text-xs')}>&nbsp;/night</span>
+      <div className={infoWrapperClasses}>
+        <div className={priceWrapperClasses}>
+          <div className={priceClasses}>
+            <b className={priceValueClasses}>€{rentalPrice}</b>
+            <span className={priceTextClasses}>&nbsp;/night</span>
           </div>
           {actionSlot}
         </div>
 
-        <Rating className={cn('mb-2')} size="small" value={rating} />
+        <Rating className={ratingClasses} size="small" value={rating} />
 
-        <Link
-          href={`${AppRoute.Offers}/${id}`}
-          className={cn('mb-1 text-lg leading-5 font-bold hover:opacity-60')}
-        >
+        <Link href={`${AppRoute.Offers}/${id}`} className={linkClasses}>
           {title}
         </Link>
-        <p className={cn('text-gray-70 text-xs')}>{propertyType}</p>
+        <p className={propertyTypeClasses}>{propertyType}</p>
       </div>
     </article>
   );
 }
+
+const infoWrapperClasses = cn('flex flex-grow flex-col');
+const priceWrapperClasses = cn('mb-1 flex items-start justify-between');
+const priceClasses = cn('text-gray-90');
+const priceValueClasses = cn('mr-1 text-xl leading-tight font-bold');
+const priceTextClasses = cn('text-sm');
+const ratingClasses = cn('mb-2');
+const linkClasses = cn('mb-1 text-lg leading-5 font-bold hover:opacity-60');
+const propertyTypeClasses = cn('text-gray-70 text-xs');
+
+const getWrapperClasses = (variant: Variant): string => {
+  const classes = {
+    ['vertical']: 'w-65 flex-col',
+    ['horizontal']: 'w-105 flex-row',
+  };
+
+  return cn('relative flex', classes[variant]);
+};
+
+const getImageClasses = (variant: Variant): string => {
+  const classes = {
+    ['vertical']: 'mb-2 h-50 w-full',
+    ['horizontal']: 'mr-4 h-27 w-37 flex-row',
+  };
+
+  return cn('rounded object-cover', classes[variant]);
+};

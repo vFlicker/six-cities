@@ -1,6 +1,6 @@
 import { JSX } from 'react';
 
-import { cn } from '~/shared1/lib/css';
+import { cn } from '~/shared/lib/css';
 
 type ErrorProps = {
   message: string;
@@ -8,5 +8,7 @@ type ErrorProps = {
 };
 
 export function Error({ className, message }: ErrorProps): JSX.Element {
-  return <div className={cn('text-sm text-red-500', className)}>{message}</div>;
+  return <div className={cn(errorClasses, className)}>{message}</div>;
 }
+
+const errorClasses = cn('text-sm text-red-500');

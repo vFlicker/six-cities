@@ -3,9 +3,9 @@
 import { useSearchParams } from 'next/navigation';
 import { JSX } from 'react';
 
-import { cn } from '~/shared1/lib/css';
-import { SlantedLink } from '~/shared1/ui/atoms';
-import { containerClasses } from '~/shared1/ui/css';
+import { cn } from '~/shared/lib/css';
+import { SlantedLink } from '~/shared/ui/atoms';
+import { container } from '~/shared/ui/css';
 
 import { CITIES, DEFAULT_CITY } from '../config/filter-by-city-config';
 
@@ -19,14 +19,14 @@ export function CityFilter({ className }: CityFilterProps): JSX.Element {
   const params = new URLSearchParams(searchParams);
 
   return (
-    <div className={cn('bg-gray-10', className)}>
-      <div className={cn(`${containerClasses.lg} px-10 pt-4 pb-12`)}>
-        <div className={cn('flex flex-wrap items-start gap-9')}>
+    <div className={cn(wrapperClasses, className)}>
+      <div className={containerClasses}>
+        <div className={listClasses}>
           {CITIES.map((city) => {
             params.set('city', city);
 
             return (
-              <li key={city} className={cn('flex')}>
+              <li key={city} className={itemClasses}>
                 <SlantedLink
                   href={`?${params.toString()}`}
                   isActive={city === currentCity}
@@ -41,3 +41,8 @@ export function CityFilter({ className }: CityFilterProps): JSX.Element {
     </div>
   );
 }
+
+const wrapperClasses = cn('bg-gray-10');
+const containerClasses = cn(container.lg, 'px-10 pt-4 pb-12');
+const listClasses = cn('flex flex-wrap items-start gap-9');
+const itemClasses = cn('flex');

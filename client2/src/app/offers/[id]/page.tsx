@@ -1,10 +1,10 @@
 import { JSX } from 'react';
 
 import { offerApiService } from '~/entities/offer';
-import { cn } from '~/shared1/lib/css';
-import { Params } from '~/shared1/lib/next';
-import { defaultLayoutClasses } from '~/shared1/ui/css';
-import { Gallery } from '~/shared1/ui/molecules';
+import { cn } from '~/shared/lib/css';
+import { Params } from '~/shared/lib/next';
+import { defaultLayoutClasses } from '~/shared/ui/css';
+import { Gallery } from '~/shared/ui/molecules';
 import { Header } from '~/widget/header';
 
 import { OfferSummarySection } from './ui/offer-summary-section';
@@ -34,7 +34,7 @@ export default async function OfferPage({
     <div className={cn(defaultLayoutClasses)}>
       <Header />
       <main>
-        <Gallery className={cn('mb-7')} imageUrls={offerImages} />
+        <Gallery className={galleryClasses} imageUrls={offerImages} />
         <OfferSummarySection
           amenities={amenities}
           guestsCount={guestsCount}
@@ -50,3 +50,5 @@ export default async function OfferPage({
     </div>
   );
 }
+
+const galleryClasses = cn('mb-7');

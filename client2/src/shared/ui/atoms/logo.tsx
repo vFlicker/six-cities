@@ -2,8 +2,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { JSX } from 'react';
 
-import { cn } from '~/shared1/lib/css';
-import { AppRoute } from '~/shared1/lib/router';
+import { cn } from '~/shared/lib/css';
+import { AppRoute } from '~/shared/lib/router';
 
 type LogoProps = {
   width?: number;

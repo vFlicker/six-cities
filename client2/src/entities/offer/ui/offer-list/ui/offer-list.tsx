@@ -1,6 +1,7 @@
 import React, { JSX } from 'react';
 
-import { CardList } from '~/shared1/ui/atoms';
+import { cn } from '~/shared/lib/css';
+import { CardList } from '~/shared/ui/atoms';
 
 import { Offer } from '../../../model';
 import { OfferCard } from '../../offer-card';
@@ -12,7 +13,7 @@ type OfferListProps = {
 
 export function OfferList({ className, offers }: OfferListProps): JSX.Element {
   return (
-    <CardList cols={2} className={className}>
+    <CardList cols={2} className={cn(className)}>
       {offers.map((offer) => (
         <OfferCard key={offer.id} offer={offer} variant="vertical" />
       ))}

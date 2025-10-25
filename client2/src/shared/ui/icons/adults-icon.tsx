@@ -1,6 +1,6 @@
 import { ComponentProps, JSX } from 'react';
 
-import { cn } from '~/shared1/lib/css';
+import { cn } from '~/shared/lib/css';
 
 type AdultsIconProps = ComponentProps<'svg'>;
 

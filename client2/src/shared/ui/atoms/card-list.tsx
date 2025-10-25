@@ -1,6 +1,6 @@
 import { Children, JSX, PropsWithChildren } from 'react';
 
-import { cn } from '~/shared1/lib/css';
+import { cn } from '~/shared/lib/css';
 
 type Cols = 2 | 3;
 
