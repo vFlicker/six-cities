@@ -1,7 +1,8 @@
 import { JSX } from 'react';
 
 import { cn } from '~/shared/lib/css';
-import { container } from '~/shared/ui/css';
+
+import { container } from '../css';
 
 type GalleryProps = {
   imageUrls: string[];

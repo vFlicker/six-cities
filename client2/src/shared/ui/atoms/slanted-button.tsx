@@ -16,10 +16,12 @@ export function SlantedButton({
   className,
   children,
   isActive = false,
+  type = 'button',
   ...props
 }: ButtonProps): JSX.Element {
   return (
     <button
+      type={type}
       className={cn(
         baseButtonClasses,
         buttonClasses,

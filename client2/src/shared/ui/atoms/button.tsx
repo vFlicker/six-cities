@@ -11,10 +11,12 @@ type LinkProps = ComponentProps<typeof NextLink>;
 export function Button({
   className,
   children,
+  type = 'button',
   ...props
 }: ButtonProps): JSX.Element {
   return (
     <button
+      type={type}
       className={cn(baseButtonClasses, buttonClasses, className)}
       {...props}
     >
