@@ -10,16 +10,21 @@ type HeaderProps = {
   className?: string;
 };
 
-export function Header({ className }: HeaderProps): JSX.Element {
+export function Header({
+  className,
+  isNavigationVisible = true,
+}: HeaderProps): JSX.Element {
   return (
     <header className={cn(className)}>
       <div className={containerClasses}>
         <div className={innerClasses}>
           <Logo className={logoClasses} />
-          <div className={navigationClasses}>
-            <TextLink href={AppRoute.Login}>Login</TextLink>
-            <TextLink href={AppRoute.Register}>Register</TextLink>
-          </div>
+          {isNavigationVisible && (
+            <div className={navigationClasses}>
+              <TextLink href={AppRoute.Login}>Login</TextLink>
+              <TextLink href={AppRoute.Register}>Register</TextLink>
+            </div>
+          )}
         </div>
       </div>
     </header>
