@@ -2,10 +2,10 @@ import { JSX } from 'react';
 
 import { cn } from '~/shared/lib/css';
 import { AppRoute } from '~/shared/lib/router';
-import { Button } from '~/shared/ui/atoms';
 import { AuthRedirect, Input } from '~/shared/ui/molecules';
 
 import { registerUser } from '../api/auth-actions';
+import { RegisterSubmit } from './register-submit';
 
 type RegisterProps = {
   className?: string;
@@ -55,13 +55,7 @@ export function RegisterForm({ className }: RegisterProps): JSX.Element {
 
         {/* {isError && <Error message={error?.message} />} */}
 
-        <Button
-          type="submit"
-          className={buttonClasses}
-          // disabled={isPending}
-        >
-          Sign up
-        </Button>
+        <RegisterSubmit />
       </form>
 
       <AuthRedirect
@@ -75,4 +69,3 @@ export function RegisterForm({ className }: RegisterProps): JSX.Element {
 
 const titleClasses = cn('mb-7 text-3xl font-bold italic');
 const formClasses = cn('relative mb-2 grid w-80 gap-5');
-const buttonClasses = cn('w-full');

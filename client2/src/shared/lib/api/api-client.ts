@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+// TODO: move BACKEND_URL to env variable
 const BACKEND_URL = 'http://localhost:8000/api';
 const REQUEST_TIMEOUT = 5000;
 
