@@ -1,3 +1,4 @@
+import { notFound } from 'next/navigation';
 import { JSX } from 'react';
 
 import { offerApiService } from '~/entities/offer';
@@ -17,6 +18,10 @@ export default async function OfferPage({
   params,
 }: OfferPageProps): Promise<JSX.Element> {
   const { id } = await params;
+
+  const foundOffer = await offerApiService.getById(id);
+  if (!foundOffer) notFound();
+
   const {
     amenities,
     guestsCount,
@@ -28,7 +33,7 @@ export default async function OfferPage({
     roomsCount,
     title,
     offerImages,
-  } = await offerApiService.getById(id);
+  } = foundOffer;
 
   return (
     <div className={cn(defaultLayoutClasses)}>

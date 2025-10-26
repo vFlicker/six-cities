@@ -4,6 +4,7 @@ export { Chip } from './chip';
 export { Error } from './error';
 export { Loader } from './loader';
 export { Logo } from './logo';
+export { NotFound } from './not-found';
 export { Rating } from './rating/rating';
 export { ResultMessage } from './result-message';
 export { Section } from './section';

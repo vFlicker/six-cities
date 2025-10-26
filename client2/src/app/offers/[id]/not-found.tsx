@@ -10,8 +10,8 @@ export default function NotFoundPage(): JSX.Element {
     <div className={cn(defaultLayoutClasses)}>
       <Header className={headerClasses} />
       <NotFound
-        title="404 Not Found"
-        description="The page you are looking for does not exist."
+        title="Offer Not Found"
+        description="The offer you are looking for does not exist."
       />
     </div>
   );
