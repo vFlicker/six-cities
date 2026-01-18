@@ -1,59 +1,65 @@
-import { JSX } from 'react';
+'use client';
 
+import { JSX, useActionState } from 'react';
+
+import { getFieldError } from '~/shared/lib/api';
 import { cn } from '~/shared/lib/css';
 import { AppRoute } from '~/shared/lib/router';
+import { Alert } from '~/shared/ui/atoms';
 import { AuthRedirect, Input } from '~/shared/ui/molecules';
 
-import { registerUser } from '../api/auth-actions';
+import { RegisterActionState, registerUser } from '../api/auth-actions';
 import { RegisterSubmit } from './register-submit';
 
 type RegisterProps = {
   className?: string;
 };
 
+const initialRegisterState: RegisterActionState = {
+  values: { username: '', email: '' },
+  error: null,
+  errors: null,
+};
+
 export function RegisterForm({ className }: RegisterProps): JSX.Element {
-  // const { handleRegister, isError, error, fieldErrors, isPending, register } =
-  //   useRegister();
+  const [state, formAction] = useActionState(
+    registerUser,
+    initialRegisterState,
+  );
 
   return (
     <section className={cn(className)}>
       <h1 className={titleClasses}>Sign up</h1>
 
-      <form className={formClasses} action={registerUser}>
+      <form className={formClasses} action={formAction}>
         <Input
-          // {...register('username')}
           type="text"
           name="username"
-          aria-label="Username"
           placeholder="Username"
-          // errorMessage={fieldErrors.username?.message}
+          defaultValue={state.values.username}
+          errorMessage={getFieldError('username', state.errors)}
         />
         <Input
-          // {...register('email')}
-          type="text"
+          type="email"
           name="email"
-          aria-label="E-mail"
           placeholder="Email"
-          // errorMessage={fieldErrors.email?.message}
+          defaultValue={state.values.email}
+          errorMessage={getFieldError('email', state.errors)}
         />
         <Input
-          // {...register('password')}
           type="password"
           name="password"
-          aria-label="Password"
           placeholder="Password"
-          // errorMessage={fieldErrors.password?.message}
+          errorMessage={getFieldError('password', state.errors)}
         />
         <Input
-          // {...register('passwordConfirmation')}
           type="password"
           name="passwordConfirmation"
-          aria-label="Password confirmation"
           placeholder="Password confirmation"
-          // errorMessage={fieldErrors.passwordConfirmation?.message}
+          errorMessage={getFieldError('passwordConfirmation', state.errors)}
         />
 
-        {/* {isError && <Error message={error?.message} />} */}
+        {state.error && <Alert variant="error">{state.error}</Alert>}
 
         <RegisterSubmit />
       </form>

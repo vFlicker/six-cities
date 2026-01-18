@@ -1,3 +1,4 @@
+export { Alert } from './alert';
 export { Button, Link } from './button';
 export { CardList } from './card-list';
 export { Chip } from './chip';

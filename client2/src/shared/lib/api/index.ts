@@ -1,2 +1,7 @@
 export { apiClient } from './api-client';
-export { isBadRequestError, isNotFoundError } from './error-handlers';
+export {
+  type ErrorDetail,
+  getFieldError,
+  isBadRequestError,
+  isNotFoundError,
+} from './validation-errors';
