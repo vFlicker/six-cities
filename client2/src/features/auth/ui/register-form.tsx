@@ -8,17 +8,12 @@ import { AppRoute } from '~/shared/lib/router';
 import { Alert } from '~/shared/ui/atoms';
 import { AuthRedirect, Input } from '~/shared/ui/molecules';
 
-import { RegisterActionState, registerUser } from '../api/auth-actions';
+import { registerUser } from '../api/auth-actions';
+import { initialRegisterState } from '../model/register-state';
 import { RegisterSubmit } from './register-submit';
 
 type RegisterProps = {
   className?: string;
-};
-
-const initialRegisterState: RegisterActionState = {
-  values: { username: '', email: '' },
-  error: null,
-  errors: null,
 };
 
 export function RegisterForm({ className }: RegisterProps): JSX.Element {
@@ -26,6 +21,8 @@ export function RegisterForm({ className }: RegisterProps): JSX.Element {
     registerUser,
     initialRegisterState,
   );
+
+  const { values, error } = state;
 
   return (
     <section className={cn(className)}>
@@ -36,30 +33,30 @@ export function RegisterForm({ className }: RegisterProps): JSX.Element {
           type="text"
           name="username"
           placeholder="Username"
-          defaultValue={state.values.username}
-          errorMessage={getFieldError('username', state.errors)}
+          defaultValue={values.username}
+          errorMessage={getFieldError('username', error.details)}
         />
         <Input
           type="email"
           name="email"
           placeholder="Email"
-          defaultValue={state.values.email}
-          errorMessage={getFieldError('email', state.errors)}
+          defaultValue={values.email}
+          errorMessage={getFieldError('email', error.details)}
         />
         <Input
           type="password"
           name="password"
           placeholder="Password"
-          errorMessage={getFieldError('password', state.errors)}
+          errorMessage={getFieldError('password', error.details)}
         />
         <Input
           type="password"
           name="passwordConfirmation"
           placeholder="Password confirmation"
-          errorMessage={getFieldError('passwordConfirmation', state.errors)}
+          errorMessage={getFieldError('passwordConfirmation', error.details)}
         />
 
-        {state.error && <Alert variant="error">{state.error}</Alert>}
+        {error.message && <Alert variant="error">{error.message}</Alert>}
 
         <RegisterSubmit />
       </form>

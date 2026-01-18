@@ -1,38 +1,33 @@
-import { ZodError, ZodSchema } from 'zod';
+import { ZodError, ZodType } from 'zod';
 
-import { ErrorDetail } from '../api';
-
-export type FormValidationResult<T> =
-  | { success: true; data: T }
-  | { success: false; errors: ErrorDetail[] };
+import { ApiError } from '../api';
 
 export const parseFormData = <T>(
   rawData: Record<string, FormDataEntryValue>,
-  schema: ZodSchema<T>,
-): FormValidationResult<T> => {
+  schema: ZodType<T>,
+): T | ApiError => {
   const result = schema.safeParse(rawData);
-
-  if (result.success) return { success: true, data: result.data };
-  return { success: false, errors: formatZodErrors(result.error) };
+  if (result.success) return result.data;
+  return transformValidationError(result.error);
 };
 
-export const formatZodErrors = (error: ZodError): ErrorDetail[] => {
-  const fieldErrors = new Map<string, ErrorDetail>();
+const transformValidationError = (error: ZodError): ApiError => {
+  const fieldErrors = new Map<string, string[]>();
 
   for (const issue of error.issues) {
     const field = issue.path.join('.');
-    const existing = fieldErrors.get(field);
-
-    if (existing) {
-      existing.messages.push(issue.message);
-    } else {
-      fieldErrors.set(field, {
-        field,
-        value: '',
-        messages: [issue.message],
-      });
-    }
+    const messages = fieldErrors.get(field) ?? [];
+    messages.push(issue.message);
+    fieldErrors.set(field, messages);
   }
 
-  return Array.from(fieldErrors.values());
+  return {
+    type: 'VALIDATION_ERROR',
+    message: '',
+    details: Array.from(fieldErrors, ([field, messages]) => ({
+      field,
+      value: '',
+      messages,
+    })),
+  };
 };
