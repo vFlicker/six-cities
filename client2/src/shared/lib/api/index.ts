@@ -1,3 +1,3 @@
 export { apiClient } from './api-client';
-export { type ApiError, type ErrorDetail, isApiError } from './api-types';
-export { getFieldError, parseError } from './validation-errors';
+export type { ApiError, ErrorDetail } from './api-types';
+export { getFieldError } from './validation-errors';

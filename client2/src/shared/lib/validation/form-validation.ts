@@ -1,3 +1,4 @@
+import { Either, left, right } from '@sweet-monads/either';
 import { ZodError, ZodType } from 'zod';
 
 import { ApiError } from '../api';
@@ -5,10 +6,10 @@ import { ApiError } from '../api';
 export const parseFormData = <T>(
   rawData: Record<string, FormDataEntryValue>,
   schema: ZodType<T>,
-): T | ApiError => {
+): Either<ApiError, T> => {
   const result = schema.safeParse(rawData);
-  if (result.success) return result.data;
-  return transformValidationError(result.error);
+  if (result.success) return right(result.data);
+  return left(transformValidationError(result.error));
 };
 
 const transformValidationError = (error: ZodError): ApiError => {

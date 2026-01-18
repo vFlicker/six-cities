@@ -19,8 +19,8 @@ export default async function OfferPage({
 }: OfferPageProps): Promise<JSX.Element> {
   const { id } = await params;
 
-  const foundOffer = await offerApiService.getById(id);
-  if (!foundOffer) notFound();
+  const foundOfferResult = await offerApiService.getById(id);
+  if (foundOfferResult.isLeft()) notFound();
 
   const {
     amenities,
@@ -33,7 +33,7 @@ export default async function OfferPage({
     roomsCount,
     title,
     offerImages,
-  } = foundOffer;
+  } = foundOfferResult.value;
 
   return (
     <div className={cn(defaultLayoutClasses)}>

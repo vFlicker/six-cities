@@ -33,12 +33,16 @@ export default async function HomePage({
 }
 
 async function Offers({ city }: { city: string }): Promise<JSX.Element> {
-  const offers = await offerApiService.getAllForCity(city);
+  const offersResult = await offerApiService.getAllByCity(city);
+
+  if (offersResult.isLeft()) {
+    return <div>Failed to load offers</div>;
+  }
 
   return (
     <div className={offersWrapperClasses}>
       <div className={offersContainerClasses}>
-        <OfferList className={offerListClasses} offers={offers} />
+        <OfferList className={offerListClasses} offers={offersResult.value} />
         <OfferMap className={offerMapClasses} />
       </div>
     </div>

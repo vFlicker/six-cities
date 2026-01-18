@@ -3,7 +3,6 @@
 import { redirect } from 'next/navigation';
 
 import { authApiService } from '~/entities/auth';
-import { isApiError } from '~/shared/lib/api';
 import { AppRoute } from '~/shared/lib/router';
 import { parseFormData } from '~/shared/lib/validation';
 
@@ -21,13 +20,13 @@ export const registerUser = async (
   };
 
   const parsedData = parseFormData(rawData, registerSchema);
-  if (isApiError(parsedData)) {
-    return { values, error: parsedData };
+  if (parsedData.isLeft()) {
+    return { values, error: parsedData.value };
   }
 
-  const result = await authApiService.register(parsedData);
-  if (isApiError(result)) {
-    return { values, error: result };
+  const result = await authApiService.register(parsedData.value);
+  if (result.isLeft()) {
+    return { values, error: result.value };
   }
 
   redirect(AppRoute.Login);
