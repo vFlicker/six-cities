@@ -1,3 +1,4 @@
+import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { JSX } from 'react';
 
@@ -9,6 +10,20 @@ import { Gallery } from '~/shared/ui/molecules';
 import { Header } from '~/widget/header';
 
 import { OfferSummarySection } from './ui/offer-summary-section';
+
+export async function generateMetadata({
+  params,
+}: OfferPageProps): Promise<Metadata> {
+  const { id } = await params;
+
+  const foundOffer = await offerApiService.getById(id);
+  if (!foundOffer) notFound();
+
+  return {
+    title: foundOffer.title,
+    description: foundOffer.description,
+  };
+}
 
 type OfferPageProps = {
   params: Promise<Params<'id'>>;

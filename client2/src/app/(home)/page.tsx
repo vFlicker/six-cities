@@ -1,3 +1,4 @@
+import { Metadata } from 'next';
 import { JSX, Suspense } from 'react';
 
 import { offerApiService, OfferList } from '~/entities/offer';
@@ -8,6 +9,11 @@ import { Loader } from '~/shared/ui/atoms';
 import { container, defaultLayoutClasses } from '~/shared/ui/css';
 import { Header } from '~/widget/header';
 import { OfferMap } from '~/widget/offer-map';
+
+export const metadata: Metadata = {
+  title: 'Home',
+  description: 'Browse and book places to stay in various cities.',
+};
 
 type HomePageProps = {
   searchParams: Promise<SearchParams>;

@@ -1,9 +1,15 @@
+import { Metadata } from 'next';
 import { JSX } from 'react';
 
 import { cn } from '~/shared/lib/css';
 import { NotFound } from '~/shared/ui/atoms';
 import { defaultLayoutClasses } from '~/shared/ui/css';
 import { Header } from '~/widget/header';
+
+export const metadata: Metadata = {
+  title: 'Offer Not Found',
+  description: 'The offer you are looking for does not exist.',
+};
 
 export default function NotFoundPage(): JSX.Element {
   return (

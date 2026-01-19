@@ -29,7 +29,7 @@ export default function HomePage(): JSX.Element {
 
       <div>
         <SlantedLink href="/">Slanted Link</SlantedLink>
-        <SlantedButton active>Slanted Button</SlantedButton>
+        <SlantedButton isActive>Slanted Button</SlantedButton>
       </div>
 
       <div>

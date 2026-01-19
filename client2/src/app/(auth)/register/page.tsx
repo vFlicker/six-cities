@@ -1,3 +1,4 @@
+import { Metadata } from 'next';
 import { JSX } from 'react';
 
 import { RegisterForm } from '~/features/auth';
@@ -6,6 +7,11 @@ import { AppRoute } from '~/shared/lib/router';
 import { SlantedLink } from '~/shared/ui/atoms';
 import { container } from '~/shared/ui/css';
 import { Header } from '~/widget/header';
+
+export const metadata: Metadata = {
+  title: 'Register',
+  description: 'Create an account to book places to stay in various cities.',
+};
 
 export default function RegisterPage(): JSX.Element {
   return (

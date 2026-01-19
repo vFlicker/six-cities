@@ -12,6 +12,7 @@ const rubik = Rubik({
 
 export const metadata: Metadata = {
   title: 'Six Cities',
+  description: 'An application for booking places to stay in various cities.',
 };
 
 type RootLayoutProps = Readonly<{
